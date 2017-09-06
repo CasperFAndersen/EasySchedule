@@ -10,6 +10,7 @@ namespace _3.semester_projekt
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello, World!");
         }
     }
 }
