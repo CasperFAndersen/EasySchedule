@@ -10,6 +10,8 @@ namespace BusinessLogic
 {
     public class Mail
     {
+        private string troll = "null";
+
         public IRestResponse SendSimpleMessage()
         {
             RestClient client = new RestClient();
