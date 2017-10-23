@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MailingService.Models.Email>
+﻿@model MailingService.Models.ViewModel.EmailViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -44,7 +44,7 @@
 
 </table>*@
 
-<form class="form-horizontal">
+<form class="form-horizontal" action="/Emails/Index" method="post">
     <fieldset>
 
         <!-- Form Name -->
@@ -54,7 +54,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Reciver Email</label>
             <div class="col-md-4">
-                <input id="textinput" name="textinput" type="text" placeholder="someone@something.com" class="form-control input-md">
+                <input id="textinput" name="Email" type="text" placeholder="someone@something.com" class="form-control input-md">
 
             </div>
         </div>
@@ -63,7 +63,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Subject</label>
             <div class="col-md-4">
-                <input id="textinput" name="textinput" type="text" placeholder="Svinger party hos Mikkels mor" class="form-control input-md">
+                <input id="textinput" name="subject" type="text" placeholder="Svinger party hos Mikkels mor" class="form-control input-md">
 
             </div>
         </div>
@@ -72,7 +72,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textarea">Email Test</label>
             <div class="col-md-4">
-                <textarea class="form-control" id="textarea" name="textarea">Your message here</textarea>
+                <textarea class="form-control" id="textarea" name="message">Your message here</textarea>
             </div>
         </div>
 
