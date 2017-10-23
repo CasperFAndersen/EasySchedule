@@ -15,16 +15,6 @@ namespace MailingService.Controllers
 
         public ActionResult About()
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            ViewBag.Message = "Det løgn";
-=======
-            ViewBag.Message = "Arne er sej!";
->>>>>>> bc9546bdc1d8ad33a40040c70abc3d2c146d5766
-=======
-            ViewBag.Message = "Arne er sej!";
->>>>>>> bc9546bdc1d8ad33a40040c70abc3d2c146d5766
-
             return View();
         }
 
