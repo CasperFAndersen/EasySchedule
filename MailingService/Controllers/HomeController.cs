@@ -15,7 +15,7 @@ namespace MailingService.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Arne er sej!";
 
             return View();
         }
