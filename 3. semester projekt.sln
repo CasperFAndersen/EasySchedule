@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLibrary", "Service\ServiceLibrary.csproj", "{D4612C0A-5086-4CFD-800A-D3DC174969A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailingService", "MailingService\MailingService.csproj", "{45C97078-85B1-45FC-BD51-03E9AE73B1AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer", "MailingService\WebServer.csproj", "{45C97078-85B1-45FC-BD51-03E9AE73B1AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailingService.Tests", "MailingService.Tests\MailingService.Tests.csproj", "{879FA0F2-D2CF-4DDA-85DA-146AEC9CEFD5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "MailingService.Tests\Tests.csproj", "{879FA0F2-D2CF-4DDA-85DA-146AEC9CEFD5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{206B5D10-0DA4-47AB-96F3-D3BC86554CFE}"
 EndProject

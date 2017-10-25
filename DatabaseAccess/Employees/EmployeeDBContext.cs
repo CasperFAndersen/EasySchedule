@@ -6,15 +6,16 @@ namespace DatabaseAccess
     using System.Linq;
     using Core;
 
-    public class EmployeeDB : DbContext
+    public class EmployeeDBContext : DbContext
     {
+        DbSet<Employee> Employees { get; set; }
         // Your context has been configured to use a 'Employee' connection string from your application's 
         // configuration file (App.config or Web.config). By default, this connection string targets the 
         // 'DatabaseAccess.Employee' database on your LocalDb instance. 
         // 
         // If you wish to target a different database and/or database provider, modify the 'Employee' 
         // connection string in the application configuration file.
-        public EmployeeDB()
+        public EmployeeDBContext()
             : base("name=Employee")
         {
         }

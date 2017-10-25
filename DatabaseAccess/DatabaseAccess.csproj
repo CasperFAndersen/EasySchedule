@@ -50,8 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="EmployeeDB.cs" />
+    <Compile Include="DbConnectionADO.cs" />
+    <Compile Include="Employees\EmployeeDBContext.cs" />
+    <Compile Include="Employees\IEmployeeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
