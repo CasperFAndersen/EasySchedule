@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>867</x>
-      <y>221</y>
+      <x>646</x>
+      <y>289</y>
       <w>170</w>
       <h>51</h>
     </coordinates>
@@ -16,8 +16,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>663</x>
-      <y>374</y>
+      <x>425</x>
+      <y>425</y>
       <w>170</w>
       <h>51</h>
     </coordinates>
@@ -27,8 +27,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>867</x>
-      <y>323</y>
+      <x>646</x>
+      <y>374</y>
       <w>170</w>
       <h>102</h>
     </coordinates>
@@ -38,8 +38,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>731</x>
-      <y>493</y>
+      <x>493</x>
+      <y>544</y>
       <w>221</w>
       <h>51</h>
     </coordinates>
@@ -49,8 +49,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>765</x>
-      <y>561</y>
+      <x>527</x>
+      <y>612</y>
       <w>170</w>
       <h>51</h>
     </coordinates>
@@ -60,8 +60,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>646</x>
-      <y>680</y>
+      <x>408</x>
+      <y>731</y>
       <w>170</w>
       <h>51</h>
     </coordinates>
@@ -71,8 +71,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>850</x>
-      <y>680</y>
+      <x>612</x>
+      <y>731</y>
       <w>221</w>
       <h>51</h>
     </coordinates>
@@ -82,8 +82,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>731</x>
-      <y>595</y>
+      <x>493</x>
+      <y>646</y>
       <w>119</w>
       <h>119</h>
     </coordinates>
@@ -94,8 +94,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>867</x>
-      <y>595</y>
+      <x>629</x>
+      <y>646</y>
       <w>119</w>
       <h>119</h>
     </coordinates>
@@ -106,8 +106,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>833</x>
-      <y>527</y>
+      <x>595</x>
+      <y>578</y>
       <w>51</w>
       <h>68</h>
     </coordinates>
@@ -118,20 +118,20 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>867</x>
-      <y>408</y>
-      <w>119</w>
+      <x>629</x>
+      <y>459</y>
+      <w>136</w>
       <h>119</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>10.0;50.0;50.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;60.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>731</x>
-      <y>408</y>
+      <x>493</x>
+      <y>459</y>
       <w>102</w>
       <h>119</h>
     </coordinates>
@@ -142,20 +142,20 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>935</x>
-      <y>255</y>
+      <x>714</x>
+      <y>323</y>
       <w>51</w>
-      <h>102</h>
+      <h>85</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>918</x>
-      <y>357</y>
+      <x>697</x>
+      <y>408</y>
       <w>68</w>
       <h>51</h>
     </coordinates>
@@ -165,19 +165,20 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>629</x>
-      <y>459</y>
-      <w>459</w>
+      <x>391</x>
+      <y>510</y>
+      <w>663</w>
       <h>289</h>
     </coordinates>
-    <panel_attributes>System</panel_attributes>
+    <panel_attributes>Backend
+bg=blue</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1139</x>
-      <y>680</y>
+      <x>867</x>
+      <y>731</y>
       <w>170</w>
       <h>51</h>
     </coordinates>
@@ -187,25 +188,78 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1054</x>
-      <y>680</y>
-      <w>119</w>
+      <x>816</x>
+      <y>731</y>
+      <w>85</w>
       <h>68</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>50.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>30.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>799</x>
-      <y>680</y>
+      <x>561</x>
+      <y>731</y>
       <w>85</w>
       <h>68</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
     <additional_attributes>10.0;20.0;30.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1088</x>
+      <y>306</y>
+      <w>323</w>
+      <h>357</h>
+    </coordinates>
+    <panel_attributes>bg=yellow
+I "Backend" bruger vi 3-lags 
+(lagdelt arkitektur). 
+Ved webserver bruger vi 
+MVC-arkitektur. 
+Service arkitektur fremgår 
+også</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>629</x>
+      <y>255</y>
+      <w>204</w>
+      <h>238</h>
+    </coordinates>
+    <panel_attributes>Web
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>391</x>
+      <y>374</y>
+      <w>221</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>Client
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>374</x>
+      <y>238</y>
+      <w>697</w>
+      <h>578</h>
+    </coordinates>
+    <panel_attributes>N-tier / systemet
+bg=yellow</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
