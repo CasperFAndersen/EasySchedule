@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>17</zoom_level>
+  <zoom_level>20</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>646</x>
-      <y>289</y>
-      <w>170</w>
-      <h>51</h>
+      <x>480</x>
+      <y>200</y>
+      <w>200</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>WebClient
 </panel_attributes>
@@ -16,10 +16,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>425</x>
-      <y>425</y>
-      <w>170</w>
-      <h>51</h>
+      <x>220</x>
+      <y>340</y>
+      <w>200</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>Desktop Client</panel_attributes>
     <additional_attributes/>
@@ -27,10 +27,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>646</x>
-      <y>374</y>
-      <w>170</w>
-      <h>102</h>
+      <x>480</x>
+      <y>280</y>
+      <w>200</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>WebServer</panel_attributes>
     <additional_attributes/>
@@ -38,10 +38,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>493</x>
-      <y>544</y>
-      <w>221</w>
-      <h>51</h>
+      <x>180</x>
+      <y>520</y>
+      <w>540</w>
+      <h>360</h>
     </coordinates>
     <panel_attributes>Application server</panel_attributes>
     <additional_attributes/>
@@ -49,10 +49,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>527</x>
-      <y>612</y>
-      <w>170</w>
-      <h>51</h>
+      <x>340</x>
+      <y>660</y>
+      <w>200</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>Controller</panel_attributes>
     <additional_attributes/>
@@ -60,10 +60,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>408</x>
-      <y>731</y>
-      <w>170</w>
-      <h>51</h>
+      <x>200</x>
+      <y>800</y>
+      <w>200</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>Model</panel_attributes>
     <additional_attributes/>
@@ -71,10 +71,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>612</x>
-      <y>731</y>
-      <w>221</w>
-      <h>51</h>
+      <x>440</x>
+      <y>800</y>
+      <w>260</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>Data Access Layer</panel_attributes>
     <additional_attributes/>
@@ -82,10 +82,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>493</x>
-      <y>646</y>
-      <w>119</w>
-      <h>119</h>
+      <x>300</x>
+      <y>700</y>
+      <w>140</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
@@ -94,10 +94,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>629</x>
-      <y>646</y>
-      <w>119</w>
-      <h>119</h>
+      <x>460</x>
+      <y>700</y>
+      <w>140</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
@@ -106,58 +106,58 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>595</x>
-      <y>578</y>
-      <w>51</w>
-      <h>68</h>
-    </coordinates>
-    <panel_attributes>lt=-
-</panel_attributes>
-    <additional_attributes>10.0;20.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>629</x>
-      <y>459</y>
-      <w>136</w>
-      <h>119</h>
-    </coordinates>
-    <panel_attributes>lt=-
-</panel_attributes>
-    <additional_attributes>10.0;50.0;60.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>493</x>
-      <y>459</y>
-      <w>102</w>
-      <h>119</h>
-    </coordinates>
-    <panel_attributes>lt=-
-</panel_attributes>
-    <additional_attributes>40.0;50.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>714</x>
-      <y>323</y>
-      <w>51</w>
-      <h>85</h>
+      <x>420</x>
+      <y>600</y>
+      <w>60</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
     <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
   </element>
   <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>380</y>
+      <w>180</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;90.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>380</y>
+      <w>160</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>60.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>240</y>
+      <w>60</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>697</x>
-      <y>408</y>
-      <w>68</w>
-      <h>51</h>
+      <x>540</x>
+      <y>320</y>
+      <w>80</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>MVC</panel_attributes>
     <additional_attributes/>
@@ -165,10 +165,10 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>391</x>
-      <y>510</y>
-      <w>663</w>
-      <h>289</h>
+      <x>160</x>
+      <y>460</y>
+      <w>800</w>
+      <h>440</h>
     </coordinates>
     <panel_attributes>Backend
 bg=blue</panel_attributes>
@@ -177,21 +177,22 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>867</x>
-      <y>731</y>
-      <w>170</w>
-      <h>51</h>
+      <x>740</x>
+      <y>800</y>
+      <w>200</w>
+      <h>60</h>
     </coordinates>
-    <panel_attributes>Database</panel_attributes>
+    <panel_attributes>Database
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>816</x>
-      <y>731</y>
-      <w>85</w>
-      <h>68</h>
+      <x>680</x>
+      <y>800</y>
+      <w>100</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
@@ -200,10 +201,10 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>561</x>
-      <y>731</y>
-      <w>85</w>
-      <h>68</h>
+      <x>380</x>
+      <y>800</y>
+      <w>100</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
@@ -212,10 +213,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1088</x>
-      <y>306</y>
-      <w>323</w>
-      <h>357</h>
+      <x>1000</x>
+      <y>200</y>
+      <w>380</w>
+      <h>420</h>
     </coordinates>
     <panel_attributes>bg=yellow
 I "Backend" bruger vi 3-lags 
@@ -229,10 +230,10 @@ også</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>629</x>
-      <y>255</y>
-      <w>204</w>
-      <h>238</h>
+      <x>460</x>
+      <y>140</y>
+      <w>240</w>
+      <h>280</h>
     </coordinates>
     <panel_attributes>Web
 bg=red</panel_attributes>
@@ -241,10 +242,10 @@ bg=red</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>391</x>
-      <y>374</y>
-      <w>221</w>
-      <h>119</h>
+      <x>200</x>
+      <y>280</y>
+      <w>240</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>Client
 bg=green</panel_attributes>
@@ -253,13 +254,39 @@ bg=green</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>374</x>
-      <y>238</y>
-      <w>697</w>
-      <h>578</h>
+      <x>140</x>
+      <y>120</y>
+      <w>840</w>
+      <h>800</h>
     </coordinates>
     <panel_attributes>N-tier / systemet
+bg=yellow
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1000</x>
+      <y>640</y>
+      <w>380</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Tilføj hvilke protokoller
+vi bruger til at kommunikere
 bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>560</y>
+      <w>80</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>WCF
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
