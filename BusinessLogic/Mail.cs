@@ -11,7 +11,8 @@ namespace BusinessLogic
 {
     public class Mail
     {
-        EmployeeDB employeeDB = new EmployeeDB();
+        //TODO: Fix so the real employeeDB is being used, instead of the EmployeeDBContext
+        EmployeeDBContext employeeDB = new EmployeeDBContext();
 
         public IRestResponse SendSimpleMessage()
         {
@@ -25,8 +26,8 @@ namespace BusinessLogic
             request.Resource = "{domain}/messages";
             request.AddParameter("from", "Excited User <mailgun@itkrabbe.dk>");
             request.AddParameter("to", "rivercola9800@gmail.com");
-            //request.AddParameter("to", "stefankrabbe54@gmail.com");
-            request.AddParameter("to", "mailgun@itkrabbe.dk"); 
+            request.AddParameter("to", "stefankrabbe54@gmail.com");
+            //request.AddParameter("to", "mailgun@itkrabbe.dk"); 
             //request.AddParameter("to", "mikkellpaulsen@gmail.com");
             //request.AddParameter("to", "arne_ralston@hotmail.com");
             request.AddParameter("subject", "Hello");
