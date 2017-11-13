@@ -8,6 +8,27 @@ namespace Core
 {
     public class Employee
     {
+        private string name;
+
+        public string Name
+        {
+            get { return this.name; }
+            set { if (value != null) { this.name = value; } }
+        }
+        public string Phone { get; set; }
+        public int NumbOfHours { get; set; }
+        public bool IsAdmin { get; set; }
+        public string UserName { get; set; }
+        public string PassWord { get; set; }
+
+
         public string Mail { get; set; }
+
+        public Employee()
+        {
+
+        }
+
+
     }
 }
