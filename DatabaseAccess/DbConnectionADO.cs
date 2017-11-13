@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Configuration;
+using System.Data;
 
 namespace DatabaseAccess
 {
@@ -33,6 +34,11 @@ namespace DatabaseAccess
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+        public bool IsConnected()
+        {
+            return connection.State == ConnectionState.Open;
         }
 
         public void CloseConnection()
