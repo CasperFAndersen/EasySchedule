@@ -10,5 +10,7 @@ namespace DatabaseAccess
     public interface IEmployeeRepository
     {
         List<Employee> GetAllEmployees();
+        Employee GetEmployeeByUsername(string username);
+        
     }
 }
