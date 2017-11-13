@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Configuration;
 
 namespace DatabaseAccess
 {
@@ -18,12 +19,7 @@ namespace DatabaseAccess
 
         public DbConnectionADO()
         {
-            Initialize();
-        }
-
-        private void Initialize()
-        {
-            connection = new SqlConnection(GetConnectionString());
+            connection = new SqlConnection(LocalConnectionString);
         }
 
         public void OpenConnection()
@@ -52,18 +48,20 @@ namespace DatabaseAccess
             }
         }
 
-        private string GetLocalConnectionString()
+        public static string LocalConnectionString
         {
-            string connectionString =
-                "Server=localhost;Initial Catalog=Semester3DB; Integrated Security =True;";
-
-            return connectionString;
+            get
+            {
+                return ConfigurationManager.ConnectionStrings["LocalDB"].ToString();
+            }
         }
 
-        private string GetKrakaConnectionString()
+        public static string KrakaConnectionString
         {
-            string connectionString = null;
-            return connectionString;
+            get
+            {
+                return ConfigurationManager.ConnectionStrings["KrakaDB"].ToString();
+            }
         }
 
     }

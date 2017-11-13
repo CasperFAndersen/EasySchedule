@@ -36,6 +36,7 @@
       <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,6 +57,22 @@
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{f9f9296a-aef1-4fb7-9aec-da0d2daf8207}</Project>
       <Name>BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseAccess\DatabaseAccess.csproj">
+      <Project>{61dfd29f-5446-4afe-ab42-d80b26e6fdc2}</Project>
+      <Name>DatabaseAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Core.csproj">
+      <Project>{3e8c167c-bc2d-4ca0-a666-d3c4af3b9db0}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MailingService\WebServer.csproj">
+      <Project>{45c97078-85b1-45fc-bd51-03e9ae73b1ae}</Project>
+      <Name>WebServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\ServiceLibrary.csproj">
+      <Project>{d4612c0a-5086-4cfd-800a-d3dc174969a8}</Project>
+      <Name>ServiceLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
