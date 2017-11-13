@@ -4,6 +4,7 @@ namespace Core
 {
     public class TempShift
     {
+        public int ID { get; set; }
         public DateTime WeekNumber { get; set; }
         public int Hours { get; set; }
         public DateTime StartTime { get; set; }
@@ -11,6 +12,15 @@ namespace Core
 
         public TempShift(DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee)
         {
+            WeekNumber = weekNumber;
+            Hours = hours;
+            StartTime = startTime;
+            ShiftEmployee = shiftEmployee;
+        }
+
+        public TempShift(int id, DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee)
+        {
+            ID = id;
             WeekNumber = weekNumber;
             Hours = hours;
             StartTime = startTime;

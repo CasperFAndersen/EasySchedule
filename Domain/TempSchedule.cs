@@ -9,6 +9,7 @@ namespace Core
     
     public class TempSchedule
     {
+        public int ID { get; set; }
         public int NoOfWeeks { get; set; }
         public string Name { get; set; }
         public List<TempShift> ListOfTempShift { get; }
@@ -17,6 +18,16 @@ namespace Core
         {
             NoOfWeeks = numberOfWeeks;
             Name = name; 
+        }
+        public TempSchedule(int id, int numberOfWeeks, string name)
+        {
+            ID = id;
+            NoOfWeeks = numberOfWeeks;
+            Name = name;
+        }
+
+        public TempSchedule()
+        {
         }
 
         public void AddTempShift(TempShift tShift)
