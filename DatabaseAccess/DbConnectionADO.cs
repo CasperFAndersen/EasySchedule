@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseAccess
 {
-    class DbConnectionADO
+    public class DbConnectionADO
     {
     }
 }
