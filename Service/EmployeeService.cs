@@ -4,28 +4,24 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using BusinessLogic;
+using Core;
 
 namespace Service
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
-    public class Service1 : IService1
+
+    public class EmployeeService : IEmployeeService
     {
-        public string GetData(int value)
+        EmployeeController empCtrl = new EmployeeController();
+
+        public Employee GetEmployeeByUsername(string username)
         {
-            return string.Format("You entered: {0}", value);
+            return empCtrl.GetEmployeeByUsername(username);
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public Employee GetEmployeeByUsername3(string username)
         {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            throw new NotImplementedException();
         }
     }
 }
