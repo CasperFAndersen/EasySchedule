@@ -22,7 +22,7 @@ namespace Tests.DatabaseAccess
             DbConnectionADO dbConnection = new DbConnectionADO();
             dbConnection.OpenConnection();
             dbConnection.CloseConnection();
-            Assert.IsFalse(dbConnection.IsConnected());
+            Assert.IsTrue(dbConnection.IsDisconnected());
         }
     }
 }

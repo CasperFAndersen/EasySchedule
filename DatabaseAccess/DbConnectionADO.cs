@@ -36,11 +36,6 @@ namespace DatabaseAccess
             }
         }
 
-        public bool IsConnected()
-        {
-            return connection.State == ConnectionState.Open;
-        }
-
         public void CloseConnection()
         {
             try
@@ -53,6 +48,17 @@ namespace DatabaseAccess
                 throw;
             }
         }
+
+        public bool IsConnected()
+        {
+            return connection.State == ConnectionState.Open;
+        }
+
+        public bool IsDisconnected()
+        {
+            return connection.State == ConnectionState.Closed;
+        }
+
 
         public static string LocalConnectionString
         {
