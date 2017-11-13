@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DatabaseAccess
 {
-    public class Class1
+    public interface IEmployeeRepository
     {
-        //Database adgang
+
     }
 }
