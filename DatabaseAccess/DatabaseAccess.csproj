@@ -64,6 +64,8 @@
     <Compile Include="Employees\IEmployeeRepository.cs" />
     <Compile Include="Employees\MockEmployeeRep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schedule\IScheduleRepository.cs" />
+    <Compile Include="Schedule\MockScheduleRep.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
