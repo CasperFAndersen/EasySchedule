@@ -100,6 +100,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="WCF\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{f9f9296a-aef1-4fb7-9aec-da0d2daf8207}</Project>
       <Name>BusinessLogic</Name>
@@ -117,16 +120,13 @@
       <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\MailingService\WebServer.csproj">
-      <Project>{45C97078-85B1-45FC-BD51-03E9AE73B1AE}</Project>
+      <Project>{45c97078-85b1-45fc-bd51-03e9ae73b1ae}</Project>
       <Name>WebServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Service\ServiceLibrary.csproj">
       <Project>{d4612c0a-5086-4cfd-800a-d3dc174969a8}</Project>
       <Name>ServiceLibrary</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="WCF\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

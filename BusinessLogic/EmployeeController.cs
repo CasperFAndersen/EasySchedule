@@ -16,5 +16,17 @@ namespace BusinessLogic
         {
             return empRep.GetAllEmployees();
         }
+
+        public Employee GetEmployeeByUsername(string username)
+        {
+            return empRep.GetEmployeeByUsername(username);
+        }
+
+        public bool ValidatePassword(string username, string password)
+        {
+            Employee e1 = GetEmployeeByUsername(username);
+            return e1.Password == password;
+        }
+
     }
 }

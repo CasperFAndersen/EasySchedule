@@ -25,5 +25,14 @@ namespace DatabaseAccess.Employees
             return res;
         }
 
+        public Employee GetEmployeeByUsername(string username)
+        {
+            Employee e1 = new Employee() {Username = "TobMaster", Name = "Tobias", Password = "1234"};
+
+            return e1;
+        }
+
+       
+
     }
 }
