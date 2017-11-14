@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Data.SqlClient;
+using Core;
 
 namespace DatabaseAccess.Schedule
 {
     public interface IScheduleRepository
     {
-        Core.Schedule GetScheduleByCurrentDate(DateTime currentDate);
+        Schedule GetScheduleByCurrentDate(DateTime currentDate);
+
+        Schedule BuildScheduleObject(SqlDataReader reader);
     }
 }
