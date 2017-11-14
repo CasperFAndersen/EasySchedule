@@ -11,6 +11,7 @@ namespace BusinessLogic
     public class TempScheduleController
     {
         TempScheduleDB tScheduleDB = new TempScheduleDB();
+        TempSchedule tscheduleModel = new TempSchedule();
 
         public IEnumerable<TempSchedule> GetAllTempSchedules()
         {
@@ -25,6 +26,11 @@ namespace BusinessLogic
         public void AddTempScheduleToDB(TempSchedule tSchedule)
         {
             tScheduleDB.AddTempScheduleToDB(tSchedule);
+        }
+        
+        public void AddTempShift(TempShift tShift)
+        {
+            tscheduleModel.AddTempShift(tShift);
         }
     }
 }

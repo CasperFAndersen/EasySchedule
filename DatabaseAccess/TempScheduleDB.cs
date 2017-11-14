@@ -17,7 +17,7 @@ namespace DatabaseAccess
             List<TempSchedule> tempList = new List<TempSchedule>();
             using (DbConnectionADO dBCon = new DbConnectionADO())
             {
-                con.OpenConnection();
+                dBCon.OpenConnection();
                 SqlCommand command = new SqlCommand("SELECT * FROM TempSchedule", dBCon);
                 using (DbDataReader reader = command.ExecuteReader())
                 {
@@ -27,7 +27,7 @@ namespace DatabaseAccess
                         tempList.Add(tempSchedule);
                     }
                 }
-                con.CloseConnection();
+                dBCon.CloseConnection();
             }
             return tempList;
         }
@@ -36,14 +36,14 @@ namespace DatabaseAccess
         {
             using (DbConnectionADO dBCon = new DbConnectionADO())
             {
-                con.OpenConnection();
+                dBCon.OpenConnection();
                 SqlCommand insertTempSchedule = new SqlCommand("INSERT INTO TempSchedule (noOfWeeks, name)  VALUES(@param1,@param2)");
                 
                 insertTempSchedule.Parameters.AddWithValue("@param1", tSchedule.NoOfWeeks);
                 insertTempSchedule.Parameters.AddWithValue("@param2", tSchedule.Name);
                 insertTempSchedule.ExecuteNonQuery();
 
-                con.CloseConnection();
+                dBCon.CloseConnection();
             }
         }
 
@@ -52,7 +52,7 @@ namespace DatabaseAccess
             TempSchedule tSchedule = new TempSchedule();
             using (DbConnectionADO dBCon = new DbConnectionADO())
             {
-                con.OpenConnection();
+                dBCon.OpenConnection();
                 
                 SqlCommand command = new SqlCommand("SELECT TempSchedule FROM TempSchedule WHERE Name = @param1", dBCon);
                 command.Parameters.AddWithValue("@param1", scheduleName);
@@ -64,7 +64,7 @@ namespace DatabaseAccess
                         tSchedule = new TempSchedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2));
                     }
                 }
-                con.CloseConnection();
+                dBCon.CloseConnection();
             }
             return tSchedule;
         }

@@ -18,7 +18,6 @@ namespace MailingService.Tests.DataBaseAcces
         [TestMethod]
         public void TestCreateTempSchedule()
         {
-            //TempScheduleDB tSDB = new TempScheduleDB();
             TempScheduleController tSC = new TempScheduleController();
             int numberOfCurrentTempSchedules = tSC.GetAllTempSchedules().Count();
 
@@ -33,7 +32,6 @@ namespace MailingService.Tests.DataBaseAcces
         [TestMethod]
         public void TestAddTempShiftToTempScheldule()
         {
-            //TempScheduleDB tSDB = new TempScheduleDB();
             TempScheduleController tSC = new TempScheduleController();
             TempShiftController tShiftC = new TempShiftController();
             TempSchedule tSchedule = new TempSchedule(4, "DummySchedule");
