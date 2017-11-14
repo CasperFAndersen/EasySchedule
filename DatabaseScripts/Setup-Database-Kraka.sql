@@ -53,7 +53,7 @@ create table Schedule(
 
 create table Shift(
 	id int primary key identity(1,1),
-	date date,
+	date smalldatetime,
 	hours float,
 	startTime time,
 	scheduleId int foreign key references Schedule(id),
