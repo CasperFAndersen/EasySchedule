@@ -1,13 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Core
 {
+    [DataContract]
     public class Employee
     {
+        private string name;
+        [DataMember]
+        public string Name
+        {
+            get { return this.name; }
+            set { if (value != null) { this.name = value; } }
+        }
+        [DataMember]
+        public string Phone { get; set; }
+        [DataMember]
+        public int NumbOfHours { get; set; }
+        [DataMember]
+        public bool IsAdmin { get; set; }
+        [DataMember]
+        public string Username { get; set; }
+        [DataMember]
+        public string Password { get; set; }
+        [DataMember]
         public string Mail { get; set; }
+        public Employee()
+        {
+
+        }
+
+
     }
 }

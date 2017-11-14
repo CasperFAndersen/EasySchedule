@@ -1,26 +1,18 @@
-﻿using Service;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ServiceHosting
+namespace ServiceHost
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Console Based WCF Host");
-            using (ServiceHost serviceHost = new ServiceHost(typeof(TempScheduleService)))
+            Console.WriteLine("WCF EmployeeService is now running.");
 
+            using (ServiceHost host = new ServiceHost(typeof(EmployeeService))) ;
             {
-                //open the host and start listening for incoming messages                 
-                serviceHost.Open();
-                //keep the service running until the Enter key is pressed                 
-                Console.WriteLine("The service is ready.");
-                Console.WriteLine("Press the Enter key to terminate service.");
+                host.Open();
+                Console.WriteLine("Service is now running");
                 Console.ReadLine();
             }
         }

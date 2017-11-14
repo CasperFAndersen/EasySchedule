@@ -7,10 +7,8 @@ using Core;
 
 namespace DatabaseAccess
 {
-    public interface IEmployeeRepository
+    public interface IScheduleRepository
     {
-        List<Employee> GetAllEmployees();
-        Employee GetEmployeeByUsername(string username);
-        
+        Schedule GetScheduleByCurrentDate(DateTime currentDate);
     }
 }
