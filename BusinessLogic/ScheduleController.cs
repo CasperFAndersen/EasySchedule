@@ -18,7 +18,9 @@ namespace BusinessLogic
 
         public Schedule GetScheduleByCurrentDate(DateTime currentDate)
         {
-            return schRep.GetScheduleByCurrentDate(currentDate);
+            DateTime res = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day);
+
+            return schRep.GetScheduleByCurrentDate(res);
         }
     }
 }

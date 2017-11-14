@@ -14,7 +14,7 @@ namespace Service
         [OperationContract]
         Employee GetEmployeeByUsername(string username);
 
-        Employee GetEmployeeByUsername3(string username);
+        
 
 
     }

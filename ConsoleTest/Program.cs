@@ -11,9 +11,13 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            Mail mail = new Mail();
-            mail.SendSimpleMessage();
-            Console.WriteLine("Mail er sendt-");
+            //Mail mail = new Mail();
+            //mail.SendSimpleMessage();
+            //Console.WriteLine("Mail er sendt-");
+            //Console.ReadLine();
+
+            Service service = new Service();
+            Console.WriteLine(service.GetEmployeeByUsername("TobMaster").Name);
             Console.ReadLine();
         }
     }
