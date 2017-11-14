@@ -91,7 +91,6 @@
   <ItemGroup>
     <Compile Include="Core\ScheduleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="DatabaseAccess\DatabaseConnectionTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +124,9 @@
       <Project>{d4612c0a-5086-4cfd-800a-d3dc174969a8}</Project>
       <Name>ServiceLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
