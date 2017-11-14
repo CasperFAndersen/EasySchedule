@@ -1,20 +1,35 @@
+
+﻿using Service;
+
 using System;
 using System.ServiceModel;
 
-namespace ServiceHost
+
+namespace ServiceHosting
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("WCF EmployeeService is now running.");
 
-            using (System.ServiceModel.ServiceHost host = new System.ServiceModel.ServiceHost(typeof(EmployeeService)))
-            {
-                host.Open();
-                Console.WriteLine("Service is now running");
-                Console.ReadLine();
-            }
+            Console.WriteLine("WCF Services is now running.");
+
+            ServiceHost EmpHost = new ServiceHost(typeof(EmployeeService));
+           // ServiceHost ScheHost = new ServiceHost(typeof(ScheduleService));
+
+            EmpHost.Open();
+            Console.WriteLine("Employee Service is now running");
+      
+
+            //ScheHost.Open();
+            //Console.WriteLine("Schedule Service is now running");
+
+            Console.ReadLine();
+
+            EmpHost.Close();
+           // ScheHost.Close();
+
+
         }
     }
 }
