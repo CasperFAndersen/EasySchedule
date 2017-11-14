@@ -14,9 +14,6 @@ namespace ServiceLibrary
             return empCtrl.GetEmployeeByUsername(username);
         }
 
-        public Employee GetEmployeeByUsername3(string username)
-        {
-            throw new NotImplementedException();
-        }
+   
     }
 }

@@ -22,6 +22,8 @@ namespace MailingService.Controllers
             return View();
         }
 
+        
+
 
 
         // POST: Emails/Create

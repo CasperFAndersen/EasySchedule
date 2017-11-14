@@ -12,15 +12,15 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            GetConnectionString();
-            Console.ReadKey();
-        }
 
-        void SendMail()
-        {
-            Mail mail = new Mail();
-            mail.SendSimpleMessage();
-            Console.WriteLine("Mail er sendt");
+            //Mail mail = new Mail();
+            //mail.SendSimpleMessage();
+            //Console.WriteLine("Mail er sendt-");
+            //Console.ReadLine();
+
+            Service service = new Service();
+            Console.WriteLine(service.GetEmployeeByUsername("TobMaster").Name);
+
             Console.ReadLine();
         }
 

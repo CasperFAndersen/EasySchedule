@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E55FC70A-C764-4CDC-89BD-AB06090F4813}</ProjectGuid>
+    <ProjectGuid>{0B0035C3-7322-419D-B4B3-8508EF1D0C03}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>ServiceHost</RootNamespace>
     <AssemblyName>ServiceHost</AssemblyName>
@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,6 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Service\ServiceLibrary.csproj">
+      <Project>{D4612C0A-5086-4CFD-800A-D3DC174969A8}</Project>
+      <Name>ServiceLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
