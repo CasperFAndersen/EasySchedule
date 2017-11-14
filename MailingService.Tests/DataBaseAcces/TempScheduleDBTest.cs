@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Core;
-using DatabaseAccess;
-using BusinessLogic;
 using System.Linq;
+using BusinessLogic;
+using Core;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MailingService.Tests.DataBaseAcces
+namespace Tests.DataBaseAcces
 {
     /// <summary>
     /// Summary description for TempScheduleDBTest

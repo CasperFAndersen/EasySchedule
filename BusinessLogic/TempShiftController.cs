@@ -16,7 +16,7 @@ namespace BusinessLogic
 
         public TempShift FindTempShiftByID(TempSchedule tSchedule, int tempShiftID)
         {
-            TempShift tShift = tSchedule.ListOfTempShift.Where(x => x.ShiftEmployee.ID.equals(tempShiftID)).FirstOrDefault();
+            TempShift tShift = tSchedule.ListOfTempShift.Where(x => x.ShiftEmployee.Id.Equals(tempShiftID)).FirstOrDefault();
             return tShift;
         }
     }

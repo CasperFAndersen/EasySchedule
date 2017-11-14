@@ -1,9 +1,9 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Core;
 using BusinessLogic;
+using Core;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MailingService.Tests.BusinessLogic
+namespace Tests.BusinessLogic
 {
     [TestClass]
     public class TestScheduleCtrl

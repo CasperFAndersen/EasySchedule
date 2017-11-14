@@ -2,7 +2,7 @@
 using System.ServiceModel;
 using Core;
 
-namespace Service
+namespace ServiceLibrary
 {
     [ServiceContract]
     public interface IScheduleService

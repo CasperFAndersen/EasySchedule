@@ -9,7 +9,7 @@ namespace ServiceHost
         {
             Console.WriteLine("WCF EmployeeService is now running.");
 
-            using (ServiceHost host = new ServiceHost(typeof(EmployeeService))) ;
+            using (System.ServiceModel.ServiceHost host = new System.ServiceModel.ServiceHost(typeof(EmployeeService)))
             {
                 host.Open();
                 Console.WriteLine("Service is now running");

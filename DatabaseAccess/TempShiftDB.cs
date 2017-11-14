@@ -14,7 +14,7 @@ namespace DatabaseAccess
         {
             using (DbConnectionADO dBCon = new DbConnectionADO())
             {
-                con.OpenConnection();
+                dBCon.OpenConnection();
                 SqlCommand insertTempShift = new SqlCommand("INSERT INTO TempShift(weekNumber, hours, startTime, shiftEmployee)   VALUES(@param1,@param2,@param3,@param4)");
                 foreach (TempShift ts in TShift)
                 {
@@ -25,7 +25,7 @@ namespace DatabaseAccess
 
                     insertTempShift.ExecuteNonQuery();
                 }
-                con.CloseConnection();
+                dBCon.CloseConnection();
             }
         }
     }

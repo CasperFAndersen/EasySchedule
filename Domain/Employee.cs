@@ -6,6 +6,8 @@ namespace Core
     public class Employee
     {
         private string name;
+
+        public int Id { get; set; }
         [DataMember]
         public string Name
         {
@@ -24,11 +26,16 @@ namespace Core
         public string Password { get; set; }
         [DataMember]
         public string Mail { get; set; }
+
+
         public Employee()
         {
 
         }
 
-
+        public Employee(string name, string s, string hejDenemailDk, int i, bool b, string usernamemichael, string passwordmichael)
+        {
+            
+        }
     }
 }

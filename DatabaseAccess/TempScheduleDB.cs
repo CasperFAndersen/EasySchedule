@@ -18,15 +18,16 @@ namespace DatabaseAccess
             using (DbConnectionADO dBCon = new DbConnectionADO())
             {
                 dBCon.OpenConnection();
-                SqlCommand command = new SqlCommand("SELECT * FROM TempSchedule", dBCon);
-                using (DbDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        TempSchedule tempSchedule = new TempSchedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2));
-                        tempList.Add(tempSchedule);
-                    }
-                }
+                //TODO: Uncomment
+                //SqlCommand command = new SqlCommand("SELECT * FROM TempSchedule", dBCon);
+                //using (DbDataReader reader = command.ExecuteReader())
+                //{
+                //    while (reader.Read())
+                //    {
+                //        TempSchedule tempSchedule = new TempSchedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2));
+                //        tempList.Add(tempSchedule);
+                //    }
+                //}
                 dBCon.CloseConnection();
             }
             return tempList;
@@ -53,17 +54,17 @@ namespace DatabaseAccess
             using (DbConnectionADO dBCon = new DbConnectionADO())
             {
                 dBCon.OpenConnection();
-                
-                SqlCommand command = new SqlCommand("SELECT TempSchedule FROM TempSchedule WHERE Name = @param1", dBCon);
-                command.Parameters.AddWithValue("@param1", scheduleName);
+                //TODO: Uncomment
+                //SqlCommand command = new SqlCommand("SELECT TempSchedule FROM TempSchedule WHERE Name = @param1", dBCon);
+                //command.Parameters.AddWithValue("@param1", scheduleName);
 
-                using (DbDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        tSchedule = new TempSchedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2));
-                    }
-                }
+                //using (DbDataReader reader = command.ExecuteReader())
+                //{
+                //    while (reader.Read())
+                //    {
+                //        tSchedule = new TempSchedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2));
+                //    }
+                //}
                 dBCon.CloseConnection();
             }
             return tSchedule;

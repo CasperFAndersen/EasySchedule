@@ -1,12 +1,8 @@
-﻿using Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
+using Core;
 
-namespace Service
+namespace ServiceLibrary
 {
     [ServiceContract]
     public interface ITempShiftService

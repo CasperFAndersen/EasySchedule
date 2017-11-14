@@ -2,7 +2,7 @@
 using BusinessLogic;
 using Core;
 
-namespace Service
+namespace ServiceLibrary
 {
     public class ScheduleService : IScheduleService
     {

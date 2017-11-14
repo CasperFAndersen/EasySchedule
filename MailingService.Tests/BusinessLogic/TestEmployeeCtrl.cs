@@ -1,11 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DatabaseAccess;
+﻿using System.Collections.Generic;
 using BusinessLogic;
 using Core;
-using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MailingService.Tests.BusinessLogic
+namespace Tests.BusinessLogic
 {
     [TestClass]
     public class TestEmployeeCtrl

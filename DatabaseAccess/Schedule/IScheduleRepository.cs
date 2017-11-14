@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core;
 
-namespace DatabaseAccess
+namespace DatabaseAccess.Schedule
 {
     public interface IScheduleRepository
     {
-        Schedule GetScheduleByCurrentDate(DateTime currentDate);
+        Core.Schedule GetScheduleByCurrentDate(DateTime currentDate);
     }
 }

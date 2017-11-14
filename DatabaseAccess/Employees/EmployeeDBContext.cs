@@ -1,11 +1,9 @@
-namespace DatabaseAccess
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Linq;
-    using Core;
+using System.Collections.Generic;
+using System.Data.Entity;
+using Core;
 
+namespace DatabaseAccess.Employees
+{
     public class EmployeeDBContext : DbContext
     {
         DbSet<Employee> Employees { get; set; }
