@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>126</x>
-      <y>450</y>
+      <x>90</x>
+      <y>504</y>
       <w>90</w>
       <h>135</h>
     </coordinates>
@@ -23,8 +23,8 @@ password</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>126</x>
-      <y>297</y>
+      <x>90</x>
+      <y>351</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
@@ -39,8 +39,8 @@ phone</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>126</x>
-      <y>135</y>
+      <x>90</x>
+      <y>189</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
@@ -55,8 +55,8 @@ phone</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>162</x>
-      <y>216</y>
+      <x>126</x>
+      <y>270</y>
       <w>63</w>
       <h>99</h>
     </coordinates>
@@ -69,8 +69,8 @@ has &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>486</x>
-      <y>297</y>
+      <x>477</x>
+      <y>351</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
@@ -83,8 +83,8 @@ startDate
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>162</x>
-      <y>378</y>
+      <x>126</x>
+      <y>432</y>
       <w>45</w>
       <h>90</h>
     </coordinates>
@@ -96,22 +96,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>27</x>
-      <y>306</y>
-      <w>117</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-m1=0..*
-m2=1
-consist of &gt;</panel_attributes>
-    <additional_attributes>110.0;70.0;10.0;70.0;10.0;10.0;110.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>207</x>
-      <y>486</y>
+      <x>171</x>
+      <y>540</y>
       <w>144</w>
       <h>36</h>
     </coordinates>
@@ -123,8 +109,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>207</x>
-      <y>324</y>
+      <x>171</x>
+      <y>378</y>
       <w>126</w>
       <h>45</h>
     </coordinates>
@@ -137,8 +123,8 @@ has &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>486</x>
-      <y>477</y>
+      <x>477</x>
+      <y>531</y>
       <w>90</w>
       <h>72</h>
     </coordinates>
@@ -153,8 +139,8 @@ startTime
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>522</x>
-      <y>378</y>
+      <x>513</x>
+      <y>432</y>
       <w>45</w>
       <h>117</h>
     </coordinates>
@@ -166,8 +152,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>333</x>
-      <y>477</y>
+      <x>297</x>
+      <y>531</y>
       <w>90</w>
       <h>72</h>
     </coordinates>
@@ -182,8 +168,8 @@ startTime
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>315</x>
-      <y>297</y>
+      <x>279</x>
+      <y>351</y>
       <w>117</w>
       <h>90</h>
     </coordinates>
@@ -196,8 +182,8 @@ noOfWeeks</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>369</x>
-      <y>378</y>
+      <x>333</x>
+      <y>432</y>
       <w>45</w>
       <h>117</h>
     </coordinates>
@@ -209,26 +195,27 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>207</x>
-      <y>540</y>
-      <w>333</w>
+      <x>171</x>
+      <y>594</y>
+      <w>387</w>
       <h>54</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=0..*</panel_attributes>
-    <additional_attributes>10.0;30.0;330.0;30.0;330.0;10.0</additional_attributes>
+    <additional_attributes>10.0;30.0;390.0;30.0;390.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>423</x>
-      <y>315</y>
-      <w>81</w>
+      <x>387</x>
+      <y>378</y>
+      <w>108</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>lt=-
-</panel_attributes>
-    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
   </element>
 </diagram>
