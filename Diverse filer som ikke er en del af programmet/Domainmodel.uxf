@@ -159,7 +159,7 @@ m2=0..*</panel_attributes>
     </coordinates>
     <panel_attributes>TemplateShift
 --
-weekNumber
+weekDay
 hours
 startTime
 </panel_attributes>
