@@ -125,6 +125,10 @@
       <Project>{45c97078-85b1-45fc-bd51-03e9ae73b1ae}</Project>
       <Name>WebServer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ServiceHost\ServiceHosting.csproj">
+      <Project>{e55fc70a-c764-4cdc-89bd-ab06090f4813}</Project>
+      <Name>ServiceHosting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Service\ServiceLibrary.csproj">
       <Project>{d4612c0a-5086-4cfd-800a-d3dc174969a8}</Project>
       <Name>ServiceLibrary</Name>

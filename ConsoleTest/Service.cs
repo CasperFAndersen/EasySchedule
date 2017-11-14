@@ -7,7 +7,7 @@ using ConsoleTest.ServiceReference1;
 
 namespace ConsoleTest
 {
-    class Service : IEmployeeService 
+    public class Service : IEmployeeService 
     {
         public Employee GetEmployeeByUsername(string username)
         {

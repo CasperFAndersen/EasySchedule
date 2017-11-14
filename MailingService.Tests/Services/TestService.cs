@@ -1,6 +1,7 @@
 ﻿using System;
 using MailingService.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ConsoleTest;
 
 namespace MailingService.Tests.Services
 {
@@ -10,7 +11,7 @@ namespace MailingService.Tests.Services
         [TestMethod]
         public void EmployeeServiceTest()
         {
-            EmployeeProxy empProxy = new EmployeeProxy();
+            ConsoleTest.Service empProxy = new ConsoleTest.Service();
 
             Assert.AreEqual("Tobias", empProxy.GetEmployeeByUsername("TobMaster"));
         }

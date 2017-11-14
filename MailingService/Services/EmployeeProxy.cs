@@ -10,15 +10,19 @@ namespace MailingService.Services
 {
     public class EmployeeProxy : IEmployeeService
     {
-        IEmployeeService proxy = new EmployeeService.EmployeeServiceClient();
+        
         public EmployeeService.Employee GetEmployeeByUsername(string username)
         {
+            EmployeeServiceClient proxy = new EmployeeServiceClient();
             return proxy.GetEmployeeByUsername(username);
         }
 
         public Task<EmployeeService.Employee> GetEmployeeByUsernameAsync(string username)
         {
+            EmployeeServiceClient proxy = new EmployeeServiceClient();
             return proxy.GetEmployeeByUsernameAsync(username);
         }
+
+   
     }
 }
