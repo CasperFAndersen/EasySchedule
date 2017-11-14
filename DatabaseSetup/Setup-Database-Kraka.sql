@@ -38,7 +38,7 @@ create table TemplateSchedule(
 
 create table TemplateShift(
 	id int primary key identity(1,1),
-	weekday varchar(20),
+	weekNumber int,
 	hours float, 
 	startTime time,
 	templateScheduleId int foreign key references TemplateSchedule(id),
