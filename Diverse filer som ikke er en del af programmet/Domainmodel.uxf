@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>126</x>
-      <y>459</y>
+      <y>450</y>
       <w>90</w>
       <h>135</h>
     </coordinates>
@@ -24,7 +24,7 @@ password</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>126</x>
-      <y>306</y>
+      <y>297</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
@@ -40,7 +40,7 @@ phone</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>126</x>
-      <y>144</y>
+      <y>135</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
@@ -56,7 +56,7 @@ phone</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>162</x>
-      <y>225</y>
+      <y>216</y>
       <w>63</w>
       <h>99</h>
     </coordinates>
@@ -70,7 +70,7 @@ has &gt;</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>486</x>
-      <y>306</y>
+      <y>297</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
@@ -84,7 +84,7 @@ startDate
     <id>Relation</id>
     <coordinates>
       <x>162</x>
-      <y>387</y>
+      <y>378</y>
       <w>45</w>
       <h>90</h>
     </coordinates>
@@ -97,7 +97,7 @@ m2=0..*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>27</x>
-      <y>315</y>
+      <y>306</y>
       <w>117</w>
       <h>90</h>
     </coordinates>
@@ -111,7 +111,7 @@ consist of &gt;</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>207</x>
-      <y>495</y>
+      <y>486</y>
       <w>144</w>
       <h>36</h>
     </coordinates>
@@ -124,13 +124,13 @@ m2=0..*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>207</x>
-      <y>333</y>
+      <y>324</y>
       <w>126</w>
       <h>45</h>
     </coordinates>
     <panel_attributes>lt=-
-m1=0..*
-m2=1
+m1=1
+m2=0..*
 has &gt;</panel_attributes>
     <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
   </element>
@@ -138,7 +138,7 @@ has &gt;</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>486</x>
-      <y>486</y>
+      <y>477</y>
       <w>90</w>
       <h>72</h>
     </coordinates>
@@ -154,7 +154,7 @@ startTime
     <id>Relation</id>
     <coordinates>
       <x>522</x>
-      <y>387</y>
+      <y>378</y>
       <w>45</w>
       <h>117</h>
     </coordinates>
@@ -166,31 +166,8 @@ m2=0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>783</x>
-      <y>513</y>
-      <w>189</w>
-      <h>171</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
-Package::FatClass
-{Some Properties}
---
--id: Long {composite}
-_-ClassAttribute: Long_
---
-#Operation(i: int): int
-/+AbstractOperation()/
---
-Responsibilities
--- Resp1
--- Resp2</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
       <x>333</x>
-      <y>486</y>
+      <y>477</y>
       <w>90</w>
       <h>72</h>
     </coordinates>
@@ -206,7 +183,7 @@ startTime
     <id>UMLClass</id>
     <coordinates>
       <x>315</x>
-      <y>306</y>
+      <y>297</y>
       <w>117</w>
       <h>90</h>
     </coordinates>
@@ -220,7 +197,7 @@ noOfWeeks</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>369</x>
-      <y>387</y>
+      <y>378</y>
       <w>45</w>
       <h>117</h>
     </coordinates>
@@ -233,7 +210,7 @@ m2=0..*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>207</x>
-      <y>549</y>
+      <y>540</y>
       <w>333</w>
       <h>54</h>
     </coordinates>
@@ -246,7 +223,7 @@ m2=0..*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>423</x>
-      <y>324</y>
+      <y>315</y>
       <w>81</w>
       <h>36</h>
     </coordinates>
