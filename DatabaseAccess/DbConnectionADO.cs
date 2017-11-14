@@ -20,7 +20,7 @@ namespace DatabaseAccess
 
         public DbConnectionADO()
         {
-            connection = new SqlConnection(LocalConnectionString);
+            connection = new SqlConnection(KrakaConnectionString());
         }
 
         public void OpenConnection()
@@ -60,20 +60,20 @@ namespace DatabaseAccess
         }
 
 
-        public static string LocalConnectionString
+        public string LocalConnectionString()
         {
-            get
-            {
-                return ConfigurationManager.ConnectionStrings["LocalDB"].ToString();
-            }
+            Server = ".\\sqlexpress";
+            Database = "Semester3DB";
+            return "Data Source=" + Server + ";Initial Catalog=" + Database + ";Integrated Security=True";
         }
 
-        public static string KrakaConnectionString
+        public string KrakaConnectionString()
         {
-            get
-            {
-                return ConfigurationManager.ConnectionStrings["KrakaDB"].ToString();
-            }
+            Server = "kraka.ucn.dk";
+            Database = "dmab0916_1062358";
+            Username = "dmab0916_1062358";
+            Password = "Password1!";
+            return "Data Source=" + Server + "; Initial Catalog=" + Database + ";User Id=" + Username + ";Password=" + Password + ";";
         }
 
     }

@@ -20,14 +20,14 @@ namespace ConsoleTest
         {
             Mail mail = new Mail();
             mail.SendSimpleMessage();
-            Console.WriteLine("Mail er sendt-");
+            Console.WriteLine("Mail er sendt");
             Console.ReadLine();
         }
 
         static void GetConnectionString()
         {
-            Console.WriteLine("Local: "+ DbConnectionADO.LocalConnectionString);
-            Console.WriteLine("Kraka: " + DbConnectionADO.KrakaConnectionString);
+            Console.WriteLine("Local: "+ new DbConnectionADO().LocalConnectionString());
+            Console.WriteLine("Kraka: " + new DbConnectionADO().KrakaConnectionString());
         }
     }
 }
