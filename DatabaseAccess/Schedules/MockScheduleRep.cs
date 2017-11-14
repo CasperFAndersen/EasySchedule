@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Core;
 
-namespace DatabaseAccess.Schedule
+namespace DatabaseAccess.Schedules
 {
     public class MockScheduleRep : IScheduleRepository
     {

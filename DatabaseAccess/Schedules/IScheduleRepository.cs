@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using Core;
 
-namespace DatabaseAccess.Schedule
+namespace DatabaseAccess.Schedules
 {
     public interface IScheduleRepository
     {
