@@ -36,6 +36,12 @@ namespace DatabaseAccess
             }
         }
 
+        public SqlConnection GetConnection()
+        {
+            connection.Open();
+            return connection;
+        }
+
         public void CloseConnection()
         {
             try

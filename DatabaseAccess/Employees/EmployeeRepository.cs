@@ -12,29 +12,63 @@ namespace DatabaseAccess.Employees
             throw new NotImplementedException();
         }
 
+        //public Employee GetEmployeeByUsername(string username)
+        //{
+        //    Employee empRes = new Employee();
+
+        //    using (DbConnectionADO dbCon = new DbConnectionADO())
+        //    {
+        //        dbCon.OpenConnection();
+        //        SqlCommand selectEmployeeByUsername = new SqlCommand("SELECT FROM Employee WHERE username = @param1");
+        //        selectEmployeeByUsername.Parameters.AddWithValue("@param1", username);
+
+        //        SqlDataReader reader = selectEmployeeByUsername.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+
+        //        while (reader.Read())
+        //        {
+        //            empRes = BuildEmployeeObject(reader);
+        //        }
+
+
+        //        dbCon.CloseConnection();
+
+        //        return empRes;
+        //    }
+        //}
+
+
         public Employee GetEmployeeByUsername(string username)
         {
             Employee empRes = new Employee();
 
-            using (DbConnectionADO dbCon = new DbConnectionADO())
+            using (SqlConnection conn= new DbConnectionADO().GetConnection())
             {
-                dbCon.OpenConnection();
-                SqlCommand selectEmployeeByUsername = new SqlCommand("SELECT FROM Employee WHERE username = @param1");
-                selectEmployeeByUsername.Parameters.AddWithValue("@param1", username);
-                
-                SqlDataReader reader = selectEmployeeByUsername.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-
-                while (reader.Read())
+                using(SqlCommand cmd = conn.CreateCommand())
                 {
-                    empRes = BuildEmployeeObject(reader);
+
+                    cmd.CommandText = "SELECT * FROM Employee WHERE Employee.username = @param1;";
+                    SqlParameter p1 = new SqlParameter(@"param1", System.Data.SqlDbType.NVarChar, 100);
+                    p1.Value = username;
+
+                    cmd.Parameters.Add(p1);
+
+                    SqlDataReader reader = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+
+                    while (reader.Read())
+                    {
+                        empRes = BuildEmployeeObject(reader);
+                    }
+
+
+                    conn.Close();
+
+                    return empRes;
                 }
-
-
-                dbCon.CloseConnection();
-
-                return empRes;
+  
             }
         }
+
+
 
         public Employee BuildEmployeeObject(SqlDataReader reader)
         {
@@ -45,7 +79,7 @@ namespace DatabaseAccess.Employees
             emp.Mail = reader["Email"].ToString();
             emp.Phone = reader["Phone"].ToString();
             emp.NumbOfHours = Convert.ToInt32(reader["NoOfHours"].ToString());
-            emp.IsAdmin = reader.GetBoolean(6);
+            emp.IsAdmin = reader.GetBoolean(5);
             emp.Username = reader["username"].ToString();
             emp.Password = reader["password"].ToString();
 

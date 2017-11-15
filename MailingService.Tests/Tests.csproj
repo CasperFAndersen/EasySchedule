@@ -96,9 +96,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="DataBaseAcces\DBSetUp.cs" />
     <Compile Include="DataBaseAcces\TempScheduleDBTest.cs" />
     <Compile Include="BusinessLogic\TestEmployeeCtrl.cs" />
     <Compile Include="BusinessLogic\TestScheduleCtrl.cs" />
+    <Compile Include="DataBaseAcces\EmployeeDbTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Services\TestService.cs" />

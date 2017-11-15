@@ -17,10 +17,10 @@ namespace Tests.Services
         public void EmployeeServiceTest()
         {
 
-       
-            //ConsoleTest.Service empProxy = new ConsoleTest.Service();
 
-            //Assert.AreEqual("Tobias", empProxy.GetEmployeeByUsername("TobMaster"));
+            Service empProxy = new Service();
+
+            Assert.AreEqual("Tobias", empProxy.GetEmployeeByUsername("TobMaster"));
         }
     }
 }
