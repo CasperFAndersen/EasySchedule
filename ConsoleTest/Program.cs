@@ -12,11 +12,19 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
+            TestEmployeService();
 
-            //Mail mail = new Mail();
-            //mail.SendSimpleMessage();
-            //Console.WriteLine("Mail er sendt-");
-            //Console.ReadLine();
+
+        }
+
+        static void GetConnectionString()
+        {
+            Console.WriteLine("Local: "+ new DbConnectionADO().LocalConnectionString());
+            Console.WriteLine("Kraka: " + new DbConnectionADO().KrakaConnectionString());
+        }
+
+        static void TestEmployeService()
+        {
 
             Service service = new Service();
             Console.WriteLine(service.GetEmployeeByUsername("TobMaster").Name);
@@ -24,10 +32,12 @@ namespace ConsoleTest
             Console.ReadLine();
         }
 
-        static void GetConnectionString()
+        static void TestMailGun()
         {
-            Console.WriteLine("Local: "+ new DbConnectionADO().LocalConnectionString());
-            Console.WriteLine("Kraka: " + new DbConnectionADO().KrakaConnectionString());
+            Mail mail = new Mail();
+            mail.SendSimpleMessage();
+            Console.WriteLine("Mail er sendt-");
+            Console.ReadLine();
         }
     }
 }

@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using Core;
 
 namespace DatabaseAccess.Schedules
 {
     public class MockScheduleRep : IScheduleRepository
     {
+        public Schedule BuildScheduleObject(SqlDataReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
         public Core.Schedule GetScheduleByCurrentDate(DateTime currentDate)
         {
             Employee e1 = new Employee() {Name = "Arne" };

@@ -13,7 +13,15 @@ namespace DatabaseAccess.Schedules
             {
                 dbCon.OpenConnection();
 
-                SqlCommand command = new SqlCommand("")
+                SqlCommand command = new SqlCommand("select * from Shift, Schedule WHERE shift.scheduleId = (SELECT Schedule.id from Schedule WHERE startTime = @param1)");
+                command.Parameters.AddWithValue("@Param1", currentDate);
+
+                SqlDataReader reader = command.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+
+                while (reader.Read())
+                {
+                    schRes = BuildScheduleObject(reader);
+                }
             }
 
             return schRes;
@@ -23,7 +31,7 @@ namespace DatabaseAccess.Schedules
         {
             Schedule schedule = new Schedule();
 
-            
+            return schedule;
         }
     }
 }
