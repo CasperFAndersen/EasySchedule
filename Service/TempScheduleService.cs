@@ -7,21 +7,21 @@ namespace ServiceLibrary
     public class TempScheduleService : ITempScheduleService
     {
         TempScheduleController tempScheduleCtrl = new TempScheduleController();
-        public void AddTempScheduleToDB(TempSchedule tSchedule)
+        public void AddTempScheduleToDB(TemplateSchedule tSchedule)
         {
             tempScheduleCtrl.AddTempScheduleToDB(tSchedule);
         }
 
-        public TempSchedule FindTempScheduleByName(string name)
+        public TemplateSchedule FindTempScheduleByName(string name)
         {
             return tempScheduleCtrl.FindTempScheduleByName(name);
         }
 
-        public IEnumerable<TempSchedule> GetAllTempSchedules()
+        public IEnumerable<TemplateSchedule> GetAllTempSchedules()
         {
            return tempScheduleCtrl.GetAllTempSchedules();
         }
-        public void AddTempShift(TempShift tShift)
+        public void AddTempShift(TemplateShift tShift)
         {
             tempScheduleCtrl.AddTempShift(tShift);
         }

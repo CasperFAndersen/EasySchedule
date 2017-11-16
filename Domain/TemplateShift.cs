@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Core
 {
     [DataContract]
-    public class TempShift
+    public class TemplateShift
     {
         [DataMember]
         public int ID { get; set; }
@@ -17,7 +17,7 @@ namespace Core
         [DataMember]
         public Employee ShiftEmployee { get; set; }
 
-        public TempShift(DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee)
+        public TemplateShift(DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee)
         {
             WeekNumber = weekNumber;
             Hours = hours;
@@ -25,7 +25,7 @@ namespace Core
             ShiftEmployee = shiftEmployee;
         }
 
-        public TempShift(int id, DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee)
+        public TemplateShift(int id, DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee)
         {
             ID = id;
             WeekNumber = weekNumber;

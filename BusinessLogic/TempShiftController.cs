@@ -9,14 +9,14 @@ namespace BusinessLogic
 {
     public class TempShiftController
     {
-        public TempShift CreateTempShift(DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee)
+        public TemplateShift CreateTempShift(DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee)
         {
-            return new TempShift(weekNumber, hours, startTime, shiftEmployee);
+            return new TemplateShift(weekNumber, hours, startTime, shiftEmployee);
         }
 
-        public TempShift FindTempShiftByID(TempSchedule tSchedule, int tempShiftID)
+        public TemplateShift FindTempShiftByID(TemplateSchedule tSchedule, int tempShiftID)
         {
-            TempShift tShift = tSchedule.ListOfTempShift.Where(x => x.ShiftEmployee.Id.Equals(tempShiftID)).FirstOrDefault();
+            TemplateShift tShift = tSchedule.ListOfTempShift.Where(x => x.ShiftEmployee.Id.Equals(tempShiftID)).FirstOrDefault();
             return tShift;
         }
     }

@@ -89,7 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataBaseAcces\TempScheduleDBTest.cs" />
+    <Compile Include="DataBaseAcces\TemplateScheduleDBTest.cs" />
     <Compile Include="BusinessLogic\TestEmployeeCtrl.cs" />
     <Compile Include="BusinessLogic\TestScheduleCtrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

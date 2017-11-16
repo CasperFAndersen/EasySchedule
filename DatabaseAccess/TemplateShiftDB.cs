@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace DatabaseAccess
 {
-    class TempShiftDB
+    class TemplateShiftDB
     {
-        public void AddTempScheduleToDB(List<TempShift> TShift)
+        public void AddTempScheduleToDB(List<TemplateShift> TShift)
         {
             using (DbConnectionADO dBCon = new DbConnectionADO())
             {
                 dBCon.OpenConnection();
                 SqlCommand insertTempShift = new SqlCommand("INSERT INTO TempShift(weekNumber, hours, startTime, shiftEmployee)   VALUES(@param1,@param2,@param3,@param4)");
-                foreach (TempShift ts in TShift)
+                foreach (TemplateShift ts in TShift)
                 {
                     insertTempShift.Parameters.AddWithValue("@param1", ts.WeekNumber);
                     insertTempShift.Parameters.AddWithValue("@param2", ts.Hours);

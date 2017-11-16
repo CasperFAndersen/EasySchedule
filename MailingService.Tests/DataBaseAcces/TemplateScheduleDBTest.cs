@@ -10,19 +10,19 @@ namespace Tests.DataBaseAcces
     /// Summary description for TempScheduleDBTest
     /// </summary>
     [TestClass]
-    public class TempScheduleDBTest
+    public class TemplateScheduleDBTest
     {
         [TestMethod]
         public void TestCreateTempSchedule()
         {
             TempScheduleController tSC = new TempScheduleController();
-            int numberOfCurrentTempSchedules = tSC.GetAllTempSchedules().Count();
+            //int numberOfCurrentTempSchedules = tSC.GetAllTempSchedules().Count();
 
-            TempSchedule tSchedule = new TempSchedule(4, "DummySchedule");
+            TemplateSchedule tSchedule = new TemplateSchedule(4, "DummySchedule", 1);
 
             tSC.AddTempScheduleToDB(tSchedule);
 
-            Assert.AreNotEqual(numberOfCurrentTempSchedules, tSC.GetAllTempSchedules().Count());
+            Assert.AreNotEqual(0, tSC.GetAllTempSchedules().Count());
             Assert.AreEqual(tSC.FindTempScheduleByName("DummyScheldule"), tSchedule.Name);
         }
 
@@ -31,16 +31,16 @@ namespace Tests.DataBaseAcces
         {
             TempScheduleController tSC = new TempScheduleController();
             TempShiftController tShiftC = new TempShiftController();
-            TempSchedule tSchedule = new TempSchedule(4, "DummySchedule");
+            TemplateSchedule tSchedule = new TemplateSchedule(4, "DummySchedule", 0);
 
             Employee employeeMichael = new Employee("Michael", "98271117", "Hej@DenEmail.dk", 10, false, "UsernameMichael", "PasswordMichael");
-            TempShift TShift = new TempShift(DateTime.Now, 5, DateTime.Now, employeeMichael);
+            TemplateShift TShift = new TemplateShift(DateTime.Now, 5, DateTime.Now, employeeMichael);
 
             tSchedule.AddTempShift(TShift);
 
             tSC.AddTempScheduleToDB(tSchedule);
 
-            TempSchedule tScheduleFromDB = tSC.FindTempScheduleByName("DummySchedule");
+            TemplateSchedule tScheduleFromDB = tSC.FindTempScheduleByName("DummySchedule");
 
             Assert.AreEqual(tShiftC.FindTempShiftByID(tScheduleFromDB, 1).ShiftEmployee.Name, employeeMichael.Name);
         }

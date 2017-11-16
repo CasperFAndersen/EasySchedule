@@ -8,15 +8,15 @@ namespace ServiceLibrary
    public interface ITempScheduleService
     {
         [OperationContract]
-        IEnumerable<TempSchedule> GetAllTempSchedules();
+        IEnumerable<TemplateSchedule> GetAllTempSchedules();
 
         [OperationContract]
-        TempSchedule FindTempScheduleByName(string name);
+        TemplateSchedule FindTempScheduleByName(string name);
 
         [OperationContract]
-        void AddTempScheduleToDB(TempSchedule tSchedule);
+        void AddTempScheduleToDB(TemplateSchedule tSchedule);
 
         [OperationContract]
-        void AddTempShift(TempShift tShift);
+        void AddTempShift(TemplateShift tShift);
     }
 }

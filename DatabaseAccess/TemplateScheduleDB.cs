@@ -9,13 +9,13 @@ using System.Data.Common;
 
 namespace DatabaseAccess
 {
-    public class TempScheduleDB
+    public class TemplateScheduleDB
     {
         DbConnectionADO dbConADO = new DbConnectionADO();
 
-        public IEnumerable<TempSchedule> GetAll()
+        public IEnumerable<TemplateSchedule> GetAll()
         {
-            List<TempSchedule> tempList = new List<TempSchedule>();
+            List<TemplateSchedule> tempList = new List<TemplateSchedule>();
             using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
             {
                 dBCon.Open();
@@ -25,7 +25,7 @@ namespace DatabaseAccess
                 {
                     while (reader.Read())
                     {
-                        TempSchedule tempSchedule = new TempSchedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2));
+                        TemplateSchedule tempSchedule = new TemplateSchedule(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetInt32(3));
                         tempList.Add(tempSchedule);
                     }
                 }
@@ -34,35 +34,36 @@ namespace DatabaseAccess
             return tempList;
         }
 
-        public void AddTempScheduleToDB(TempSchedule tSchedule)
+        public void AddTempScheduleToDB(TemplateSchedule tSchedule)
         {
             using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
             {
                 dBCon.Open();
-                SqlCommand insertTempSchedule = new SqlCommand("INSERT INTO TempSchedule (noOfWeeks, name)  VALUES(@param1,@param2)", dBCon);
+                SqlCommand insertTempSchedule = new SqlCommand("INSERT INTO TemplateSchedule (name, NoOfWeeks, departmentID)  VALUES(@param1,@param2,@param3)", dBCon);
                 
-                insertTempSchedule.Parameters.AddWithValue("@param1", tSchedule.NoOfWeeks);
-                insertTempSchedule.Parameters.AddWithValue("@param2", tSchedule.Name);
+                insertTempSchedule.Parameters.AddWithValue("@param1", tSchedule.Name);
+                insertTempSchedule.Parameters.AddWithValue("@param2", tSchedule.NoOfWeeks);
+                insertTempSchedule.Parameters.AddWithValue("@param3", tSchedule.DepartmentID);
                 insertTempSchedule.ExecuteNonQuery();
 
                 dBCon.Close();
             }
         }
 
-        public TempSchedule FindTempScheduleByName(string scheduleName)
+        public TemplateSchedule FindTempScheduleByName(string scheduleName)
         {
-            TempSchedule tSchedule = new TempSchedule();
+            TemplateSchedule tSchedule = new TemplateSchedule();
             using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
             {
                 dBCon.Open();
-                SqlCommand command = new SqlCommand("SELECT TempSchedule FROM TempSchedule WHERE Name = @param1", dBCon);
+                SqlCommand command = new SqlCommand("SELECT TemplateSchedule FROM TemplateSchedule WHERE Name = @param1", dBCon);
                 command.Parameters.AddWithValue("@param1", scheduleName);
 
                 using (DbDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        tSchedule = new TempSchedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2));
+                        tSchedule = new TemplateSchedule(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetInt32(3));
                     }
                 }
                 dBCon.Close();
