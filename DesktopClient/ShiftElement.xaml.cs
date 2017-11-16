@@ -16,24 +16,13 @@ using System.Windows.Shapes;
 namespace DesktopClient
 {
     /// <summary>
-    /// Interaction logic for TimeCell.xaml
+    /// Interaction logic for ShiftElement.xaml
     /// </summary>
-    public partial class TimeCell : UserControl
+    public partial class ShiftElement : UserControl
     {
-        public TimeSpan Time { get; set; }
-        public TimeCell()
+        public ShiftElement()
         {
             InitializeComponent();
-        }
-
-        public Grid GetGrid()
-        {
-            return TimeCellGrid;
-        }
-
-        public void SetToolTipText(string text)
-        {
-            TimeCellGrid.ToolTip = text;
         }
     }
 }

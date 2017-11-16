@@ -6,10 +6,8 @@
              xmlns:local="clr-namespace:DesktopClient"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid Name="CalendarGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition ToolTip="08:00"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -38,7 +36,8 @@
         <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Wednesday" VerticalAlignment="Top" FontSize="18"/>
         <TextBlock Grid.Column="4" HorizontalAlignment="Left" Height="25.771" Margin="10,10,0,0" TextWrapping="Wrap" Text="Thursday" VerticalAlignment="Top" Width="74.291" FontSize="18"/>
         <TextBlock Grid.Column="5" HorizontalAlignment="Left" Height="25.771" Margin="10,10,0,0" TextWrapping="Wrap" Text="Friday" VerticalAlignment="Top" Width="74.291" FontSize="18"/>
-        <local:DayColumn x:Name="TimesColumn" Grid.Row="1" Grid.RowSpan="14"></local:DayColumn>
+        <Grid x:Name="TimesColumn" Grid.Row="1" Grid.RowSpan="12"></Grid>
+
 
     </Grid>
 </UserControl>

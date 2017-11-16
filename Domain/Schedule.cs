@@ -9,7 +9,7 @@ namespace Core
     public class Schedule
     {
         public DateTime StartDate { get; set; }
-        public List<Shift> Shifts { get; set; }
+        public List<TemplateShift> Shifts { get; set; }
 
         public Schedule()
         {
