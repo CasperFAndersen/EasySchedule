@@ -24,5 +24,34 @@ namespace DesktopClient
         {
             InitializeComponent();
         }
+
+        public Grid GetGrid()
+        {
+            return DayColumnGrid;
+        }
+
+        public void BuildDayGrid(TimeSpan start, TimeSpan end, int increments)
+        {
+            TimeSpan timeCount = start;
+            int rowCount = 0;
+            while (timeCount <= end)
+            {
+                DayColumnGrid.RowDefinitions.Add(new RowDefinition());
+                TimeCell tempTimeCell = new TimeCell() { Time = timeCount };
+                TextBlock textBlock = new TextBlock() { Text = timeCount.ToString() };
+
+                tempTimeCell.GetGrid().Children.Add(textBlock);
+                DayColumnGrid.Children.Add(tempTimeCell);
+                Grid.SetRow(tempTimeCell, rowCount);
+
+
+
+                rowCount++;
+                timeCount = timeCount.Add(new TimeSpan(0, increments, 0));
+
+            }
+
+        }
     }
+
 }

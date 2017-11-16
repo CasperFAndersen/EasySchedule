@@ -16,19 +16,19 @@ using System.Windows.Shapes;
 namespace DesktopClient
 {
     /// <summary>
-    /// Interaction logic for Calendar.xaml
+    /// Interaction logic for TimeCell.xaml
     /// </summary>
-    public partial class Calendar : UserControl
+    public partial class TimeCell : UserControl
     {
-        private static readonly TimeSpan STARTTIME = new TimeSpan(8,0,0);
-        private static readonly TimeSpan ENDTIME = new TimeSpan(18, 0, 0);
-        private static readonly int INCREMENT;
-        public Calendar()
+        public TimeSpan Time { get; set; }
+        public TimeCell()
         {
             InitializeComponent();
-            TimesColumn.BuildDayGrid(STARTTIME, ENDTIME, 60);
         }
 
-       
+        public Grid GetGrid()
+        {
+            return TimeCellGrid;
+        }
     }
 }
