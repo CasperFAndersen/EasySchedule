@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Core
 {
     [DataContract]
-    public class TemplateShift
+    public class Shift
     {
         [DataMember]
         public DateTime StartTime { get; set; }
@@ -19,7 +19,7 @@ namespace Core
         [DataMember]
         public Employee Employee { get; set; }
 
-        public TemplateShift()
+        public Shift()
         {
 
         }

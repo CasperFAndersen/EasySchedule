@@ -45,7 +45,7 @@ namespace DesktopClient
             ShiftElement shiftElement = null;
             if (isFirstElement)
             {
-                shiftElement = new ShiftElement(shift, shift.Employee.Name, color);
+                //shiftElement = new ShiftElement(shift, shift.Employee.Name, color);
             }
             else
             {

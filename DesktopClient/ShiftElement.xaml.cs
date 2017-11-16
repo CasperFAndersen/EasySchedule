@@ -23,7 +23,7 @@ namespace DesktopClient
     {
         public bool IsFirstElement { get; set; }
         public bool IsLastElement { get; set; }
-        public ShiftElement(TempShift shift, Color color)
+        public ShiftElement(TemplateShift shift, Color color)
         {
             InitializeComponent();
             DataContext = shift;
@@ -32,7 +32,7 @@ namespace DesktopClient
             button.Visibility = Visibility.Hidden;
         }
 
-        public ShiftElement(TempShift shift, string text, Color color)
+        public ShiftElement(TemplateShift shift, string text, Color color)
         {
             InitializeComponent();
             DataContext = shift;

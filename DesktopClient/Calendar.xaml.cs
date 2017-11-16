@@ -42,7 +42,7 @@ namespace DesktopClient
         {
             foreach (var shift in Shifts)
             {
-                DayColumn dayCol = GetDayCoulmByName(shift.DayOfWeek.ToString());
+                DayColumn dayCol = GetDayCoulmByName(shift.WeekDay.ToString());
                 dayCol.InsertShiftIntoDay(shift);
             }
 
