@@ -26,6 +26,7 @@ namespace DesktopClient
         public TimeCell()
         {
             InitializeComponent();
+            ShiftsInCell = new List<TemplateShift>();
         }
 
         public Grid GetGrid()
@@ -41,11 +42,11 @@ namespace DesktopClient
 
         public void FillCell(TemplateShift shift, bool isFirstElement, bool isLastElement)
         {
-            Color color = Colors.RoyalBlue;
+            Color color = Calendar.EmployeeColors[shift.Employee];
             ShiftElement shiftElement = null;
             if (isFirstElement)
             {
-                //shiftElement = new ShiftElement(shift, shift.Employee.Name, color);
+                shiftElement = new ShiftElement(shift, shift.Employee.Name, color);
             }
             else
             {

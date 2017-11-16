@@ -40,7 +40,7 @@ namespace DesktopClient
             {
                 TimeSpan timeCount = Calendar.STARTTIME;
                 int rowCount = 0;
-                while (timeCount <= Calendar.ENDTIME.Add(new TimeSpan(0, Calendar.INCREMENT, 0)))
+                while (timeCount <= Calendar.ENDTIME.Add(new TimeSpan(0, 60 -Calendar.INCREMENT, 0)))
                 {
                     DayColumnGrid.RowDefinitions.Add(new RowDefinition());
                     TimeCell tempTimeCell = new TimeCell() { Time = timeCount};
@@ -61,7 +61,7 @@ namespace DesktopClient
         public void InsertShiftIntoDay(TemplateShift shift)
         {
             TimeCell timeCell = FindMatchingTimeCell(shift.StartTime);
-            for (int i = 0; i < shift.Hours; i++)
+            for (int i = 0; i < (shift.Hours * (60 / Calendar.INCREMENT)); i++)
             {
                 if (i == 0)
                 {
