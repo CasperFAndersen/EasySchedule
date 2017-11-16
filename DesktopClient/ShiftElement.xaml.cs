@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,25 @@ namespace DesktopClient
     /// </summary>
     public partial class ShiftElement : UserControl
     {
-        public ShiftElement()
+        public bool IsFirstElement { get; set; }
+        public bool IsLastElement { get; set; }
+        public ShiftElement(TempShift shift, Color color)
         {
             InitializeComponent();
+            DataContext = shift;
+            IsLastElement = false;
+            textBox.Background = new SolidColorBrush(color);
+            button.Visibility = Visibility.Hidden;
+        }
+
+        public ShiftElement(TempShift shift, string text, Color color)
+        {
+            InitializeComponent();
+            DataContext = shift;
+            IsLastElement = false;
+            textBox.Background = new SolidColorBrush(color);
+            textBox.Text = text;
+
         }
     }
 }

@@ -25,6 +25,8 @@ namespace DesktopClient
         public static readonly TimeSpan ENDTIME = new TimeSpan(20, 0, 0);
         public static readonly int INCREMENT = 30;
 
+        Color[] colors = { Colors.AliceBlue, Colors.DarkKhaki, Colors.DarkOrange, Colors.LightGreen, Colors.LightPink, Colors.Fuchsia, Colors.RoyalBlue };
+
         public List<DayColumn> DayColumnList { get; set; }
         public List<TemplateShift> Shifts { get; set; }
         public Calendar()
@@ -40,7 +42,7 @@ namespace DesktopClient
         {
             foreach (var shift in Shifts)
             {
-                DayColumn dayCol = GetDayCoulmByName(.ToString());
+                DayColumn dayCol = GetDayCoulmByName(shift.DayOfWeek.ToString());
                 dayCol.InsertShiftIntoDay(shift);
             }
 

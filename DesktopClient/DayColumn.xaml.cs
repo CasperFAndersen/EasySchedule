@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -57,28 +58,46 @@ namespace DesktopClient
             }
         }
 
-        public void BuildDayGrid(TimeSpan start, TimeSpan end, int increments)
+        public void InsertShiftIntoDay(TemplateShift shift)
         {
-            TimeSpan timeCount = start;
-            int rowCount = 0;
-            while (timeCount <= end)
+            TimeCell timeCell = FindMatchingTimeCell(shift.StartTime);
+            for (int i = 0; i < shift.Hours; i++)
             {
-                DayColumnGrid.RowDefinitions.Add(new RowDefinition());
-                TimeCell tempTimeCell = new TimeCell() { Time = timeCount };
-                TextBlock textBlock = new TextBlock() { Text = timeCount.ToString() };
-
-                tempTimeCell.GetGrid().Children.Add(textBlock);
-                DayColumnGrid.Children.Add(tempTimeCell);
-                Grid.SetRow(tempTimeCell, rowCount);
-
-
-
-                rowCount++;
-                timeCount = timeCount.Add(new TimeSpan(0, increments, 0));
+                if (i == 0)
+                {
+                    timeCell.FillCell(shift, true, false);
+                }
+                else if (i == shift.Hours - 1)
+                {
+                    timeCell.FillCell(shift, false, true);
+                }
+                else
+                {
+                    timeCell.FillCell(shift, false, false);
+                }
+                timeCell = GetNextTimeCell(timeCell);
 
             }
-
         }
+
+        public TimeCell FindMatchingTimeCell(TimeSpan time)
+        {
+            return TimeCellList.Find(x => x.Time == time);
+        }
+
+        public TimeCell GetNextTimeCell(TimeCell timeCell)
+        {
+            TimeCell res = timeCell;
+            int index = TimeCellList.IndexOf(timeCell);
+
+            if ((index + 1) < TimeCellList.Count)
+            {
+                res = TimeCellList[index + 1];
+            }
+
+            return res;
+        }
+
     }
 
 }
