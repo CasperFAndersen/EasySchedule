@@ -10,9 +10,9 @@ namespace BusinessLogic
 {
     public class TempShiftController
     {
-        public TemplateShift CreateTempShift(DayOfWeek weekDay, int hours, TimeSpan startTime, int templateScheduleID, int employeeID)
+        public TemplateShift CreateTempShift(DayOfWeek weekDay, int hours, TimeSpan startTime, int templateScheduleID, Employee employee)
         {
-            return new TemplateShift(weekDay, hours, startTime, templateScheduleID, employeeID);
+            return new TemplateShift(weekDay, hours, startTime, templateScheduleID, employee);
         }
 
         public TemplateShift FindTempShiftByID(int tempShiftID)

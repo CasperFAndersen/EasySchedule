@@ -28,7 +28,7 @@ namespace DatabaseAccess
                     insertTempShift.Parameters.AddWithValue("@param2", ts.Hours);
                     insertTempShift.Parameters.AddWithValue("@param3", ts.StartTime);
                     insertTempShift.Parameters.AddWithValue("@param4", tempScheduleIDFromDB);
-                    insertTempShift.Parameters.AddWithValue("@param5", ts.EmployeeID);
+                    insertTempShift.Parameters.AddWithValue("@param5", ts.Employee.Id);
 
                     insertTempShift.ExecuteNonQuery();
                 }
@@ -57,7 +57,8 @@ namespace DatabaseAccess
                                                                         Convert.ToDouble(reader["hours"].ToString()),
                                                                         S,
                                                                         Convert.ToInt32(reader["templateScheduleId"].ToString()),
-                                                                        Convert.ToInt32(reader["employeeId"].ToString()));
+                                                                        new Employee() { Id = Convert.ToInt32(reader["employee"].ToString())});
+                            
                                                                         
                             tempList.Add(tempShift);
                         }
@@ -81,7 +82,7 @@ namespace DatabaseAccess
                 {
                     while (reader.Read())
                     {
-                        tShift = new TemplateShift(reader.GetInt32(0), GetDayOfweekBasedOnString(reader.GetString(1)), reader.GetFloat(2), new TimeSpan(reader.GetDateTime(3).Hour, reader.GetDateTime(3).Minute, reader.GetDateTime(3).Second), reader.GetInt32(4),  reader.GetInt32(5));
+                        tShift = new TemplateShift(reader.GetInt32(0), GetDayOfweekBasedOnString(reader.GetString(1)), reader.GetFloat(2), new TimeSpan(reader.GetDateTime(3).Hour, reader.GetDateTime(3).Minute, reader.GetDateTime(3).Second), reader.GetInt32(4), new Employee() { Id = reader.GetInt32(5) });
                     }
                 }
                 dBCon.Close();

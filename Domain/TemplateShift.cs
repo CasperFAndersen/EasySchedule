@@ -17,24 +17,24 @@ namespace Core
         [DataMember]
         public int TemplateScheduleID { get; set; }
         [DataMember]
-        public int EmployeeID { get; set; }
+        public Employee Employee { get; set; }
 
-        public TemplateShift(DayOfWeek weekDay, double hours, TimeSpan startTime, int TemplateScheduleID, int employeeID)
+        public TemplateShift(DayOfWeek weekDay, double hours, TimeSpan startTime, int TemplateScheduleID, Employee employee)
         {
             WeekDay = weekDay;
             Hours = hours;
             StartTime = startTime;
-            EmployeeID = employeeID;
+            Employee = employee;
         }
 
-        public TemplateShift(int id, DayOfWeek weekDay, double hours, TimeSpan startTime, int templateScheduleID, int employeeID)
+        public TemplateShift(int id, DayOfWeek weekDay, double hours, TimeSpan startTime, int templateScheduleID, Employee employee)
         {
             ID = id;
             WeekDay = weekDay;
             Hours = hours;
             StartTime = startTime;
             TemplateScheduleID = templateScheduleID;
-            EmployeeID = employeeID;
+            Employee = employee;
         }
     }
 }
