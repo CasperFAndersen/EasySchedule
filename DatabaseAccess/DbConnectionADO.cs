@@ -23,6 +23,14 @@ namespace DatabaseAccess
             connection = new SqlConnection(KrakaConnectionString());
         }
 
+        public SqlConnection GetConnection()
+        {
+            connection.Open();
+            return connection;
+
+        }
+
+
         public void OpenConnection()
         {
             try

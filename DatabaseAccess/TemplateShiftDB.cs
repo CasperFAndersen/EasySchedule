@@ -69,6 +69,42 @@ namespace DatabaseAccess
             return tempList;
         }
 
+        public IEnumerable<TemplateShift> getAllShiftsV2()
+        {
+            List<TemplateShift> res = new List<TemplateShift>();
+
+            using (SqlConnection conn = new DbConnectionADO().GetConnection())
+            {
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+
+                    cmd.CommandText = "SELECT * FROM TemplateSchedule";
+                   
+
+                    SqlDataReader reader = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+
+                    while (reader.Read())
+                    {
+                        TemplateShift tempShift = new TemplateShift();
+                        tempShift.ID = Convert.ToInt32(reader["id"].ToString());
+                        tempShift.WeekDay = GetDayOfweekBasedOnString(reader[1].ToString());
+                        tempShift.Hours = Convert.ToDouble(reader[2].ToString());
+                        tempShift.StartTime = TimeSpan.Parse(reader[3].ToString());
+                        //tempShift.TemplateScheduleID = reader.GetInt32(4);
+                        //tempShift.Employee = new Employee() { Id = Convert.ToInt32(reader[5].ToString())};
+
+                        res.Add(tempShift);
+                    }
+
+
+                    conn.Close();
+
+                    return res;
+                }
+
+            }
+        }
+
         public TemplateShift FindTempShiftByID(int tempShiftID)
         {
             TemplateShift tShift = null;

@@ -33,12 +33,12 @@ namespace Tests.DataBaseAcces
             TemplateShiftDB tempShiftDB = new TemplateShiftDB();
             TemplateScheduleDB tempScheduleDB = new TemplateScheduleDB();
             TemplateSchedule tSchedule = new TemplateSchedule(4, "DummySchedule", 1);
-            TemplateShift TShift = new TemplateShift(DayOfWeek.Monday, 5, new TimeSpan(10,0,0), 1, new Employee());
-            int beforeInsert = tempShiftDB.getAllShifts().Count();
+            TemplateShift TShift = new TemplateShift(DayOfWeek.Monday, 5, new TimeSpan(10,0,0), 1, new Employee() { Id=3});
+            int beforeInsert = tempShiftDB.getAllShiftsV2().Count();
             tSchedule.AddTempShift(TShift);
 
             tempScheduleDB.AddTempScheduleToDB(tSchedule);
-            Assert.AreNotEqual(beforeInsert, tempShiftDB.getAllShifts().Count() - 1);
+            Assert.AreEqual(beforeInsert, tempShiftDB.getAllShiftsV2().Count() - 1);
 
         }
     }
