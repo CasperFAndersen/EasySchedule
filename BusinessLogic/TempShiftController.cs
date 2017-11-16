@@ -1,4 +1,5 @@
 ﻿using Core;
+using DatabaseAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,16 @@ namespace BusinessLogic
 {
     public class TempShiftController
     {
-        public TemplateShift CreateTempShift(DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee)
+        public TemplateShift CreateTempShift(DayOfWeek weekDay, int hours, DateTime startTime, int templateScheduleID, int employeeID)
         {
-            return new TemplateShift(weekNumber, hours, startTime, shiftEmployee);
+            return new TemplateShift(weekDay, hours, startTime, templateScheduleID, employeeID);
         }
 
-        public TemplateShift FindTempShiftByID(TemplateSchedule tSchedule, int tempShiftID)
+        public TemplateShift FindTempShiftByID(int tempShiftID)
         {
-            TemplateShift tShift = tSchedule.ListOfTempShift.Where(x => x.ShiftEmployee.Id.Equals(tempShiftID)).FirstOrDefault();
+            TemplateShiftDB tShiftDB = new TemplateShiftDB();
+            //TemplateShift tShift = tSchedule.ListOfTempShifts.Where(x => x.ShiftEmployee.Id.Equals(tempShiftID)).FirstOrDefault();
+            TemplateShift tShift = tShiftDB.FindTempShiftByID(tempShiftID);
             return tShift;
         }
     }

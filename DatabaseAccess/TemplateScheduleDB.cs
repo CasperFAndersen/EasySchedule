@@ -20,7 +20,7 @@ namespace DatabaseAccess
             {
                 dBCon.Open();
 
-                SqlCommand command = new SqlCommand("SELECT * FROM TempSchedule", dBCon);
+                SqlCommand command = new SqlCommand("SELECT * FROM TemplateSchedule", dBCon);
                 using (DbDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -36,27 +36,30 @@ namespace DatabaseAccess
 
         public void AddTempScheduleToDB(TemplateSchedule tSchedule)
         {
+            TemplateShiftDB tempShiftDB = new TemplateShiftDB();
+            int tempScheduleID;
             using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
             {
                 dBCon.Open();
-                SqlCommand insertTempSchedule = new SqlCommand("INSERT INTO TemplateSchedule (name, NoOfWeeks, departmentID)  VALUES(@param1,@param2,@param3)", dBCon);
-                
-                insertTempSchedule.Parameters.AddWithValue("@param1", tSchedule.Name);
-                insertTempSchedule.Parameters.AddWithValue("@param2", tSchedule.NoOfWeeks);
-                insertTempSchedule.Parameters.AddWithValue("@param3", tSchedule.DepartmentID);
-                insertTempSchedule.ExecuteNonQuery();
-
-                dBCon.Close();
+                using (SqlCommand insertTempSchedule = new SqlCommand("INSERT INTO TemplateSchedule (name, NoOfWeeks, departmentID)  VALUES(@param1,@param2,@param3) SELECT SCOPE_IDENTITY()", dBCon))
+                {
+                    insertTempSchedule.Parameters.AddWithValue("@param1", tSchedule.Name);
+                    insertTempSchedule.Parameters.AddWithValue("@param2", tSchedule.NoOfWeeks);
+                    insertTempSchedule.Parameters.AddWithValue("@param3", tSchedule.DepartmentID);
+                    tempScheduleID = Convert.ToInt32(insertTempSchedule.ExecuteScalar());
+                    dBCon.Close();
+                }
+                tempShiftDB.AddTempShiftsFromTempScheduleToDB(tempScheduleID, tSchedule.ListOfTempShifts);
             }
         }
 
         public TemplateSchedule FindTempScheduleByName(string scheduleName)
         {
-            TemplateSchedule tSchedule = new TemplateSchedule();
+            TemplateSchedule tSchedule = null;
             using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
             {
                 dBCon.Open();
-                SqlCommand command = new SqlCommand("SELECT TemplateSchedule FROM TemplateSchedule WHERE Name = @param1", dBCon);
+                SqlCommand command = new SqlCommand("SELECT * FROM TemplateSchedule WHERE Name = @param1", dBCon);
                 command.Parameters.AddWithValue("@param1", scheduleName);
 
                 using (DbDataReader reader = command.ExecuteReader())

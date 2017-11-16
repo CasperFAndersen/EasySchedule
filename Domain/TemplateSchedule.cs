@@ -19,7 +19,9 @@ namespace Core
         [DataMember]
         public int DepartmentID { get; set; }
 
-        public List<TemplateShift> ListOfTempShift { get; }
+        public List<TemplateShift> ListOfTempShifts { get { return listOfTempShifts; } }
+
+        private List<TemplateShift> listOfTempShifts  = new List<TemplateShift>();
 
         public TemplateSchedule(int numberOfWeeks, string name)
         {
@@ -46,7 +48,7 @@ namespace Core
         }
         public void AddTempShift(TemplateShift tShift)
         {
-            ListOfTempShift.Add(tShift);
+            listOfTempShifts.Add(tShift);
         }
     }
 }

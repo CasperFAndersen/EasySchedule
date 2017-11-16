@@ -9,29 +9,32 @@ namespace Core
         [DataMember]
         public int ID { get; set; }
         [DataMember]
-        public DateTime WeekNumber { get; set; }
+        public DayOfWeek WeekDay { get; set; }
         [DataMember]
-        public int Hours { get; set; }
+        public float Hours { get; set; }
         [DataMember]
-        public DateTime StartTime { get; set; }
+        public DateTime StartTime { get; set; }     
         [DataMember]
-        public Employee ShiftEmployee { get; set; }
+        public int TemplateScheduleID { get; set; }
+        [DataMember]
+        public int EmployeeID { get; set; }
 
-        public TemplateShift(DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee)
+        public TemplateShift(DayOfWeek weekDay, float hours, DateTime startTime, int TemplateScheduleID, int employeeID)
         {
-            WeekNumber = weekNumber;
+            WeekDay = weekDay;
             Hours = hours;
             StartTime = startTime;
-            ShiftEmployee = shiftEmployee;
+            EmployeeID = employeeID;
         }
 
-        public TemplateShift(int id, DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee)
+        public TemplateShift(int id, DayOfWeek weekDay, float hours, DateTime startTime, int templateScheduleID, int employeeID)
         {
             ID = id;
-            WeekNumber = weekNumber;
+            WeekDay = weekDay;
             Hours = hours;
             StartTime = startTime;
-            ShiftEmployee = shiftEmployee;
+            TemplateScheduleID = templateScheduleID;
+            EmployeeID = employeeID;
         }
     }
 }

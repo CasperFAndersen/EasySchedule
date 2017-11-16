@@ -33,7 +33,7 @@ namespace Core
 
         }
 
-        public Employee(string name, string s, string hejDenemailDk, int i, bool b, string usernamemichael, string passwordmichael)
+        public Employee(int id, string name, string s, string hejDenemailDk, int i, bool b, string usernamemichael, string passwordmichael)
         {
             
         }
