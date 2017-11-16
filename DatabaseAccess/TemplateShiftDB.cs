@@ -14,6 +14,8 @@ namespace DatabaseAccess
 
         DbConnectionADO dbConADO = new DbConnectionADO();
 
+
+
         public void AddTempShiftsFromTempScheduleToDB(int tempScheduleIDFromDB, List<TemplateShift> TShift)
         {
             using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
@@ -41,13 +43,24 @@ namespace DatabaseAccess
             {
                 dBCon.Open();
 
-                SqlCommand command = new SqlCommand("SELECT * FROM TemplateSchedule", dBCon);
-                using (DbDataReader reader = command.ExecuteReader())
+                using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateSchedule", dBCon))
                 {
-                    while (reader.Read())
+                    using (DbDataReader reader = command.ExecuteReader())
                     {
-                        TemplateShift tempShift = new TemplateShift(reader.GetInt32(0), GetDayOfweekBasedOnString(reader.GetString(1)), reader.GetFloat(2), reader.GetDateTime(3), reader.GetInt32(4), reader.GetInt32(5));
-                        tempList.Add(tempShift);
+                        while (reader.Read())
+                        {
+                            // TimeSpan myTimeSpan = ((SqlDataReader)reader).GetTimeSpan(3);
+                            TimeSpan S = new TimeSpan(1, 2, 3);
+
+                            TemplateShift tempShift = new TemplateShift(Convert.ToInt32(reader["Id"].ToString()),
+                                                                        GetDayOfweekBasedOnString(reader["weekday"].ToString()),
+                                                                        Convert.ToDouble(reader["hours"].ToString()),
+                                                                        S,
+                                                                        Convert.ToInt32(reader["templateScheduleId"].ToString()),
+                                                                        Convert.ToInt32(reader["employeeId"].ToString()));
+                                                                        
+                            tempList.Add(tempShift);
+                        }
                     }
                 }
                 dBCon.Close();
@@ -68,7 +81,7 @@ namespace DatabaseAccess
                 {
                     while (reader.Read())
                     {
-                        tShift = new TemplateShift(reader.GetInt32(0), GetDayOfweekBasedOnString(reader.GetString(1)), reader.GetFloat(2), reader.GetDateTime(3), reader.GetInt32(4),  reader.GetInt32(5));
+                        tShift = new TemplateShift(reader.GetInt32(0), GetDayOfweekBasedOnString(reader.GetString(1)), reader.GetFloat(2), new TimeSpan(reader.GetDateTime(3).Hour, reader.GetDateTime(3).Minute, reader.GetDateTime(3).Second), reader.GetInt32(4),  reader.GetInt32(5));
                     }
                 }
                 dBCon.Close();

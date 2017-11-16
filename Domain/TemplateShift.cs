@@ -11,15 +11,15 @@ namespace Core
         [DataMember]
         public DayOfWeek WeekDay { get; set; }
         [DataMember]
-        public float Hours { get; set; }
+        public double Hours { get; set; }
         [DataMember]
-        public DateTime StartTime { get; set; }     
+        public TimeSpan StartTime { get; set; }     
         [DataMember]
         public int TemplateScheduleID { get; set; }
         [DataMember]
         public int EmployeeID { get; set; }
 
-        public TemplateShift(DayOfWeek weekDay, float hours, DateTime startTime, int TemplateScheduleID, int employeeID)
+        public TemplateShift(DayOfWeek weekDay, double hours, TimeSpan startTime, int TemplateScheduleID, int employeeID)
         {
             WeekDay = weekDay;
             Hours = hours;
@@ -27,7 +27,7 @@ namespace Core
             EmployeeID = employeeID;
         }
 
-        public TemplateShift(int id, DayOfWeek weekDay, float hours, DateTime startTime, int templateScheduleID, int employeeID)
+        public TemplateShift(int id, DayOfWeek weekDay, double hours, TimeSpan startTime, int templateScheduleID, int employeeID)
         {
             ID = id;
             WeekDay = weekDay;

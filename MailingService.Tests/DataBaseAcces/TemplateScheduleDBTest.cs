@@ -33,7 +33,7 @@ namespace Tests.DataBaseAcces
             TemplateShiftDB tempShiftDB = new TemplateShiftDB();
             TemplateScheduleDB tempScheduleDB = new TemplateScheduleDB();
             TemplateSchedule tSchedule = new TemplateSchedule(4, "DummySchedule", 1);
-            TemplateShift TShift = new TemplateShift(DayOfWeek.Friday, 5, DateTime.Now, 1, 1);
+            TemplateShift TShift = new TemplateShift(DayOfWeek.Monday, 5, new TimeSpan(10,0,0), 1, 1);
             int beforeInsert = tempShiftDB.getAllShifts().Count();
             tSchedule.AddTempShift(TShift);
 
