@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Service\ServiceLibrary.csproj">
-      <Project>{D4612C0A-5086-4CFD-800A-D3DC174969A8}</Project>
+      <Project>{d4612c0a-5086-4cfd-800a-d3dc174969a8}</Project>
       <Name>ServiceLibrary</Name>
     </ProjectReference>
   </ItemGroup>

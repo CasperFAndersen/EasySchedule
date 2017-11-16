@@ -94,9 +94,7 @@
     <Compile Include="BusinessLogic\TestScheduleCtrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
-
     <Compile Include="Services\TestService.cs" />
-
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -128,14 +126,17 @@
       <Project>{45c97078-85b1-45fc-bd51-03e9ae73b1ae}</Project>
       <Name>WebServer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServiceHost\ServiceHosting.csproj">
-      <Project>{e55fc70a-c764-4cdc-89bd-ab06090f4813}</Project>
+    <ProjectReference Include="..\ServiceHosting\ServiceHosting.csproj">
+      <Project>{248667a5-de2f-4dee-8e6a-89c436964fff}</Project>
       <Name>ServiceHosting</Name>
     </ProjectReference>
     <ProjectReference Include="..\Service\ServiceLibrary.csproj">
       <Project>{d4612c0a-5086-4cfd-800a-d3dc174969a8}</Project>
       <Name>ServiceLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
