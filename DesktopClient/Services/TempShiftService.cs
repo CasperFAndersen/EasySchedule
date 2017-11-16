@@ -4,30 +4,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core;
 
 namespace DesktopClient.Services
 {
     public class TempShiftService : ITempShiftService
     {
         TempShiftServiceClient proxy = new TempShiftServiceClient();
-        public TempShift CreateTempShift(DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee)
+
+        public TemplateShift CreateTempShift(DayOfWeek weekDay, int hours, TimeSpan startTime, int templateScheduleID, Employee employee)
         {
-            return proxy.CreateTempShift(weekNumber, hours, startTime, shiftEmployee);
+            return proxy.CreateTempShift(weekDay, hours, startTime, templateScheduleID, employee);
         }
 
-        public Task<TempShift> CreateTempShiftAsync(DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee)
+        public Task<TemplateShift> CreateTempShiftAsync(DayOfWeek weekDay, int hours, TimeSpan startTime, int templateScheduleID, Employee employee)
         {
-            return proxy.CreateTempShiftAsync(weekNumber, hours, startTime, shiftEmployee);
+            return proxy.CreateTempShiftAsync(weekDay, hours, startTime, templateScheduleID, employee);
         }
 
-        public TempShift FindTempShiftByID(TempSchedule tSchedule, int tempShiftID)
+        public TemplateShift FindTempShiftByID(int tempShiftID)
         {
-            return proxy.FindTempShiftByID(tSchedule, tempShiftID);
+            return proxy.FindTempShiftByID(tempShiftID);
         }
 
-        public Task<TempShift> FindTempShiftByIDAsync(TempSchedule tSchedule, int tempShiftID)
+        public Task<TemplateShift> FindTempShiftByIDAsync(int tempShiftID)
         {
-            return proxy.FindTempShiftByIDAsync(tSchedule, tempShiftID);
+            return proxy.FindTempShiftByIDAsync(tempShiftID);
         }
+
+
+
     }
 }

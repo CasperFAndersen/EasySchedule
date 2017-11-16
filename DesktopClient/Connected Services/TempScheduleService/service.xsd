@@ -9,7 +9,7 @@
   <xs:element name="GetAllTempSchedulesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetAllTempSchedulesResult" nillable="true" type="q1:ArrayOfTempSchedule" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetAllTempSchedulesResult" nillable="true" type="q1:ArrayOfTemplateSchedule" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -23,14 +23,14 @@
   <xs:element name="FindTempScheduleByNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="FindTempScheduleByNameResult" nillable="true" type="q2:TempSchedule" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="FindTempScheduleByNameResult" nillable="true" type="q2:TemplateSchedule" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddTempScheduleToDB">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="tSchedule" nillable="true" type="q3:TempSchedule" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="tSchedule" nillable="true" type="q3:TemplateSchedule" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -42,7 +42,7 @@
   <xs:element name="AddTempShift">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="tShift" nillable="true" type="q4:TempShift" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="tShift" nillable="true" type="q4:TemplateShift" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

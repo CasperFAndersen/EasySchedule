@@ -9,364 +9,35 @@
 //------------------------------------------------------------------------------
 
 namespace DesktopClient.TempScheduleService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TempSchedule", Namespace="http://schemas.datacontract.org/2004/07/Core")]
-    [System.SerializableAttribute()]
-    public partial class TempSchedule : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int NoOfWeeksField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int NoOfWeeks {
-            get {
-                return this.NoOfWeeksField;
-            }
-            set {
-                if ((this.NoOfWeeksField.Equals(value) != true)) {
-                    this.NoOfWeeksField = value;
-                    this.RaisePropertyChanged("NoOfWeeks");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TempShift", Namespace="http://schemas.datacontract.org/2004/07/Core")]
-    [System.SerializableAttribute()]
-    public partial class TempShift : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int HoursField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DesktopClient.TempScheduleService.Employee ShiftEmployeeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime StartTimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime WeekNumberField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Hours {
-            get {
-                return this.HoursField;
-            }
-            set {
-                if ((this.HoursField.Equals(value) != true)) {
-                    this.HoursField = value;
-                    this.RaisePropertyChanged("Hours");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public DesktopClient.TempScheduleService.Employee ShiftEmployee {
-            get {
-                return this.ShiftEmployeeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ShiftEmployeeField, value) != true)) {
-                    this.ShiftEmployeeField = value;
-                    this.RaisePropertyChanged("ShiftEmployee");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime StartTime {
-            get {
-                return this.StartTimeField;
-            }
-            set {
-                if ((this.StartTimeField.Equals(value) != true)) {
-                    this.StartTimeField = value;
-                    this.RaisePropertyChanged("StartTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime WeekNumber {
-            get {
-                return this.WeekNumberField;
-            }
-            set {
-                if ((this.WeekNumberField.Equals(value) != true)) {
-                    this.WeekNumberField = value;
-                    this.RaisePropertyChanged("WeekNumber");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Employee", Namespace="http://schemas.datacontract.org/2004/07/Core")]
-    [System.SerializableAttribute()]
-    public partial class Employee : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsAdminField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int NumbOfHoursField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PhoneField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsAdmin {
-            get {
-                return this.IsAdminField;
-            }
-            set {
-                if ((this.IsAdminField.Equals(value) != true)) {
-                    this.IsAdminField = value;
-                    this.RaisePropertyChanged("IsAdmin");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Mail {
-            get {
-                return this.MailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MailField, value) != true)) {
-                    this.MailField = value;
-                    this.RaisePropertyChanged("Mail");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int NumbOfHours {
-            get {
-                return this.NumbOfHoursField;
-            }
-            set {
-                if ((this.NumbOfHoursField.Equals(value) != true)) {
-                    this.NumbOfHoursField = value;
-                    this.RaisePropertyChanged("NumbOfHours");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password {
-            get {
-                return this.PasswordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Phone {
-            get {
-                return this.PhoneField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PhoneField, value) != true)) {
-                    this.PhoneField = value;
-                    this.RaisePropertyChanged("Phone");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TempScheduleService.ITempScheduleService")]
     public interface ITempScheduleService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempScheduleService/GetAllTempSchedules", ReplyAction="http://tempuri.org/ITempScheduleService/GetAllTempSchedulesResponse")]
-        DesktopClient.TempScheduleService.TempSchedule[] GetAllTempSchedules();
+        Core.TemplateSchedule[] GetAllTempSchedules();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempScheduleService/GetAllTempSchedules", ReplyAction="http://tempuri.org/ITempScheduleService/GetAllTempSchedulesResponse")]
-        System.Threading.Tasks.Task<DesktopClient.TempScheduleService.TempSchedule[]> GetAllTempSchedulesAsync();
+        System.Threading.Tasks.Task<Core.TemplateSchedule[]> GetAllTempSchedulesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempScheduleService/FindTempScheduleByName", ReplyAction="http://tempuri.org/ITempScheduleService/FindTempScheduleByNameResponse")]
-        DesktopClient.TempScheduleService.TempSchedule FindTempScheduleByName(string name);
+        Core.TemplateSchedule FindTempScheduleByName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempScheduleService/FindTempScheduleByName", ReplyAction="http://tempuri.org/ITempScheduleService/FindTempScheduleByNameResponse")]
-        System.Threading.Tasks.Task<DesktopClient.TempScheduleService.TempSchedule> FindTempScheduleByNameAsync(string name);
+        System.Threading.Tasks.Task<Core.TemplateSchedule> FindTempScheduleByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempScheduleService/AddTempScheduleToDB", ReplyAction="http://tempuri.org/ITempScheduleService/AddTempScheduleToDBResponse")]
-        void AddTempScheduleToDB(DesktopClient.TempScheduleService.TempSchedule tSchedule);
+        void AddTempScheduleToDB(Core.TemplateSchedule tSchedule);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempScheduleService/AddTempScheduleToDB", ReplyAction="http://tempuri.org/ITempScheduleService/AddTempScheduleToDBResponse")]
-        System.Threading.Tasks.Task AddTempScheduleToDBAsync(DesktopClient.TempScheduleService.TempSchedule tSchedule);
+        System.Threading.Tasks.Task AddTempScheduleToDBAsync(Core.TemplateSchedule tSchedule);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempScheduleService/AddTempShift", ReplyAction="http://tempuri.org/ITempScheduleService/AddTempShiftResponse")]
-        void AddTempShift(DesktopClient.TempScheduleService.TempShift tShift);
+        void AddTempShift(Core.TemplateShift tShift);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempScheduleService/AddTempShift", ReplyAction="http://tempuri.org/ITempScheduleService/AddTempShiftResponse")]
-        System.Threading.Tasks.Task AddTempShiftAsync(DesktopClient.TempScheduleService.TempShift tShift);
+        System.Threading.Tasks.Task AddTempShiftAsync(Core.TemplateShift tShift);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -396,35 +67,35 @@ namespace DesktopClient.TempScheduleService {
                 base(binding, remoteAddress) {
         }
         
-        public DesktopClient.TempScheduleService.TempSchedule[] GetAllTempSchedules() {
+        public Core.TemplateSchedule[] GetAllTempSchedules() {
             return base.Channel.GetAllTempSchedules();
         }
         
-        public System.Threading.Tasks.Task<DesktopClient.TempScheduleService.TempSchedule[]> GetAllTempSchedulesAsync() {
+        public System.Threading.Tasks.Task<Core.TemplateSchedule[]> GetAllTempSchedulesAsync() {
             return base.Channel.GetAllTempSchedulesAsync();
         }
         
-        public DesktopClient.TempScheduleService.TempSchedule FindTempScheduleByName(string name) {
+        public Core.TemplateSchedule FindTempScheduleByName(string name) {
             return base.Channel.FindTempScheduleByName(name);
         }
         
-        public System.Threading.Tasks.Task<DesktopClient.TempScheduleService.TempSchedule> FindTempScheduleByNameAsync(string name) {
+        public System.Threading.Tasks.Task<Core.TemplateSchedule> FindTempScheduleByNameAsync(string name) {
             return base.Channel.FindTempScheduleByNameAsync(name);
         }
         
-        public void AddTempScheduleToDB(DesktopClient.TempScheduleService.TempSchedule tSchedule) {
+        public void AddTempScheduleToDB(Core.TemplateSchedule tSchedule) {
             base.Channel.AddTempScheduleToDB(tSchedule);
         }
         
-        public System.Threading.Tasks.Task AddTempScheduleToDBAsync(DesktopClient.TempScheduleService.TempSchedule tSchedule) {
+        public System.Threading.Tasks.Task AddTempScheduleToDBAsync(Core.TemplateSchedule tSchedule) {
             return base.Channel.AddTempScheduleToDBAsync(tSchedule);
         }
         
-        public void AddTempShift(DesktopClient.TempScheduleService.TempShift tShift) {
+        public void AddTempShift(Core.TemplateShift tShift) {
             base.Channel.AddTempShift(tShift);
         }
         
-        public System.Threading.Tasks.Task AddTempShiftAsync(DesktopClient.TempScheduleService.TempShift tShift) {
+        public System.Threading.Tasks.Task AddTempShiftAsync(Core.TemplateShift tShift) {
             return base.Channel.AddTempShiftAsync(tShift);
         }
     }
