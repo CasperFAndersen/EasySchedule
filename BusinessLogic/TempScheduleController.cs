@@ -13,6 +13,11 @@ namespace BusinessLogic
         TemplateScheduleDB tScheduleDB = new TemplateScheduleDB();
         TemplateSchedule tscheduleModel = new TemplateSchedule();
 
+        public TemplateSchedule createTemplateSchedule(int numberOfWeeks, string name)
+        {
+            return new TemplateSchedule(numberOfWeeks, name);
+        }
+
         public IEnumerable<TemplateSchedule> GetAllTempSchedules()
         {
             return tScheduleDB.GetAll();

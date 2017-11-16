@@ -51,6 +51,7 @@ namespace DatabaseAccess
                         {
                             if (reader.HasRows)
                             {
+
                                 TemplateShift tempShift = new TemplateShift();
                                 tempShift.ID = reader.GetOrdinal("Id");
                                 tempShift.WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader.GetOrdinal("weekDay").ToString());
@@ -59,7 +60,18 @@ namespace DatabaseAccess
                                 tempShift.TemplateScheduleID = reader.GetOrdinal("TemplateScheduleId");
                                 tempShift.Employee.Id = reader.GetOrdinal("EmployeeId");
 
-                                tempList.Add(tempShift);
+                                TemplateShift tempShift = new TemplateShift
+                                {
+                                    ID = reader.GetOrdinal("Id"),
+                                    WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader.GetOrdinal("weekDay").ToString()),
+                                    Hours = reader.GetOrdinal("Hours"),
+                                    StartTime = TimeSpan.Parse(reader.GetOrdinal("StartTime").ToString()),
+                                    TemplateScheduleID = reader.GetOrdinal("TemplateScheduleId")
+                                };
+                                tempShift.Employee.Id = reader.GetOrdinal("EmployeeId"); 
+
+
+                            tempList.Add(tempShift);
                             }
                         }
                     }
@@ -137,7 +149,7 @@ namespace DatabaseAccess
                     currentDay = DayOfWeek.Tuesday;
                     break;
                 case "Wednesday":
-                    currentDay = DayOfWeek.Wednesday;
+                    currentDay =  DayOfWeek.Wednesday;
                     break;
                 case "Thursday":
                     currentDay = DayOfWeek.Thursday;
@@ -155,5 +167,5 @@ namespace DatabaseAccess
             return currentDay;
         }
     }
-
+    
 }
