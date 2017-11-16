@@ -16,15 +16,17 @@ namespace Tests.DataBaseAcces
         [TestMethod]
         public void TestCreateTempSchedule()
         {
-            TempScheduleController tSC = new TempScheduleController();
-            int numberOfCurrentTempSchedules = tSC.GetAllTempSchedules().Count();
+            //TempScheduleController tSC = new TempScheduleController();
+            //int numberOfCurrentTempSchedules = tSC.GetAllTempSchedules().Count();
+            TemplateScheduleDB tScheduleDB = new TemplateScheduleDB();
+            int numberOfCurrentTempSchedules = tScheduleDB.GetAll().Count();
 
             TemplateSchedule tSchedule = new TemplateSchedule(4, "DummySchedule", 1);
 
-            tSC.AddTempScheduleToDB(tSchedule);
+            tScheduleDB.AddTempScheduleToDB(tSchedule);
 
-            Assert.AreNotEqual(numberOfCurrentTempSchedules, tSC.GetAllTempSchedules().Count());
-            Assert.AreEqual(tSC.FindTempScheduleByName("DummySchedule").Name, tSchedule.Name);
+            Assert.AreNotEqual(numberOfCurrentTempSchedules, tScheduleDB.GetAll().Count());
+            Assert.AreEqual(tScheduleDB.FindTempScheduleByName("DummySchedule").Name, tSchedule.Name);
         }
 
         [TestMethod]

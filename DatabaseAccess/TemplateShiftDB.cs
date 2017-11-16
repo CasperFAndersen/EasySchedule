@@ -50,14 +50,16 @@ namespace DatabaseAccess
                         while (reader.Read())
                         {
                             if (reader.HasRows)
-                            { 
-                            TemplateShift tempShift = new TemplateShift();
-                            tempShift.ID = reader.GetOrdinal("Id");
-                            tempShift.WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader.GetOrdinal("weekDay").ToString());
-                            tempShift.Hours = reader.GetOrdinal("Hours");
-                            tempShift.StartTime = TimeSpan.Parse(reader.GetOrdinal("StartTime").ToString());
-                            tempShift.TemplateScheduleID = reader.GetOrdinal("TemplateScheduleId");
-                            tempShift.Employee.Id = reader.GetOrdinal("EmployeeId"); 
+                            {
+                                TemplateShift tempShift = new TemplateShift
+                                {
+                                    ID = reader.GetOrdinal("Id"),
+                                    WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader.GetOrdinal("weekDay").ToString()),
+                                    Hours = reader.GetOrdinal("Hours"),
+                                    StartTime = TimeSpan.Parse(reader.GetOrdinal("StartTime").ToString()),
+                                    TemplateScheduleID = reader.GetOrdinal("TemplateScheduleId")
+                                };
+                                tempShift.Employee.Id = reader.GetOrdinal("EmployeeId"); 
 
                             tempList.Add(tempShift);
                             }

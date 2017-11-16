@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\TestTempScheduleCtrl.cs" />
     <Compile Include="DataBaseAcces\TemplateScheduleDBTest.cs" />
     <Compile Include="BusinessLogic\TestEmployeeCtrl.cs" />
     <Compile Include="BusinessLogic\TestScheduleCtrl.cs" />
