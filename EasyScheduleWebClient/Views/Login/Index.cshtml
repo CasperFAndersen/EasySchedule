@@ -1,5 +1,5 @@
-﻿@using Core
-@using EasyScheduleWebClient.Services
+﻿@model EasyScheduleWebClient.Models.Employee
+
 
 @{
     ViewBag.Title = "Index";
@@ -7,23 +7,76 @@
 
 <h2>Login</h2>
 
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        #login-div {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            border: 1px solid #000;
+            padding: 10px 10px;
+        }
+        .field-validation-error{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-div">
+        @using (Html.BeginForm("Authorize","Login", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-decoration:underline"> Enter username and password: </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Username)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Username)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Username)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Password)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" name="name" value="Login" />
+                        <input type="reset" name="name" value="Ryd" />
 
-@{
-    @Html.TextArea("Username", new {rows = 10, cols = 40})
-    <button onclick ="LoginUser", type="submit">Login</button>
+                    </td>
+                </tr>
+            </table>
+        }
 
-    EmployeeProxy empProxy = new EmployeeProxy();
+    </div>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-    Employee e1 = empProxy.GetEmployeeByUsername(Username);
 
-    if (e1 != null)
-    {
-        Session["Employee"] = e1;
-        string tem = Session["Employee"].ToString();
-        //return View("~/Views/Home/Index.html");
-    }S
+</body>
 
-    return null;
-
-}
-
+</html>

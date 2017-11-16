@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
+using EasyScheduleWebClient.Models;
 using EasyScheduleWebClient.Services;
-using Core;
 
 namespace EasyScheduleWebClient.Controllers
 {
@@ -9,23 +9,28 @@ namespace EasyScheduleWebClient.Controllers
         // GET: Login
         public ActionResult Index()
         {
+
             return View();
         }
 
-        public ActionResult LoginUser(string username)
+        [HttpPost]
+        public ActionResult Authorize(Employee employee)
         {
             EmployeeProxy empProxy = new EmployeeProxy();
+            var emp1 = empProxy.GetEmployeeByUsername(employee.Username);
+            Employee e1 = new Employee();
 
-            Employee e1 = empProxy.GetEmployeeByUsername(username);
+            e1.Username = emp1.Username;
+            e1.Password = emp1.Password;
 
-            if (e1 != null)
+            if(e1.Username == null)
             {
-                Session["Employee"] = e1;
-                string tem = Session["Employee"].ToString();
-                //return View("~/Views/Home/Index.html");
-            }
 
-            return null;
+            }
+            
+
+
+            return View();
         }
     }
 }

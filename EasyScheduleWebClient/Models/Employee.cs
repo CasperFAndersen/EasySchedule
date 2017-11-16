@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace EasyScheduleWebClient.Models
 {
@@ -9,5 +7,17 @@ namespace EasyScheduleWebClient.Models
     {
         public int EmployeeID { get; set; }
         public string Name { get; set; }
+
+
+
+        [DisplayName("Username: ")]
+        [Required(ErrorMessage = "This field is required")]
+        public string Username { get; set; }
+
+
+        [Required(ErrorMessage = "This field is required")]
+        [DisplayName("Password: ")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
     }
 }
