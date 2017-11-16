@@ -7,14 +7,14 @@ namespace ServiceLibrary
     public class TempShiftService : ITempShiftService
     {
         TempShiftController tempShiftCtrl = new TempShiftController();
-        public TempShift CreateTempShift(DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee)
+        public TemplateShift CreateTempShift(DayOfWeek weekDay, int hours, DateTime startTime, int templateScheduleID, int employeeID)
         {
-            return tempShiftCtrl.CreateTempShift(weekNumber, hours, startTime, shiftEmployee);
+            return tempShiftCtrl.CreateTempShift(weekDay, hours, startTime, templateScheduleID, employeeID);
         }
 
-        public TempShift FindTempShiftByID(TempSchedule tSchedule, int tempShiftID)
+        public TemplateShift FindTempShiftByID(int tempShiftID)
         {
-            return tempShiftCtrl.FindTempShiftByID(tSchedule, tempShiftID);
+            return tempShiftCtrl.FindTempShiftByID(tempShiftID);
         }
     }
 }

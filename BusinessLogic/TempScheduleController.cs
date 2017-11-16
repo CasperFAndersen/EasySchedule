@@ -10,25 +10,25 @@ namespace BusinessLogic
 {
     public class TempScheduleController
     {
-        TempScheduleDB tScheduleDB = new TempScheduleDB();
-        TempSchedule tscheduleModel = new TempSchedule();
+        TemplateScheduleDB tScheduleDB = new TemplateScheduleDB();
+        TemplateSchedule tscheduleModel = new TemplateSchedule();
 
-        public IEnumerable<TempSchedule> GetAllTempSchedules()
+        public IEnumerable<TemplateSchedule> GetAllTempSchedules()
         {
             return tScheduleDB.GetAll();
         }
 
-        public TempSchedule FindTempScheduleByName(string name)
+        public TemplateSchedule FindTempScheduleByName(string name)
         {
             return tScheduleDB.FindTempScheduleByName(name);
         }
 
-        public void AddTempScheduleToDB(TempSchedule tSchedule)
+        public void AddTempScheduleToDB(TemplateSchedule tSchedule)
         {
             tScheduleDB.AddTempScheduleToDB(tSchedule);
         }
         
-        public void AddTempShift(TempShift tShift)
+        public void AddTempShift(TemplateShift tShift)
         {
             tscheduleModel.AddTempShift(tShift);
         }

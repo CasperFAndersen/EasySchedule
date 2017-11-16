@@ -8,9 +8,9 @@ namespace ServiceLibrary
     public interface ITempShiftService
     {
         [OperationContract]
-        TempShift CreateTempShift(DateTime weekNumber, int hours, DateTime startTime, Employee shiftEmployee);
+        TemplateShift CreateTempShift(DayOfWeek weekDay, int hours, DateTime startTime, int templateScheduleID, int employeeID);
 
         [OperationContract]
-        TempShift FindTempShiftByID(TempSchedule tSchedule, int tempShiftID);
+        TemplateShift FindTempShiftByID(int tempShiftID);
     }
 }
