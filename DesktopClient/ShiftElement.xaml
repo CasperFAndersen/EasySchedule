@@ -9,6 +9,6 @@
     <Grid>
 
         <TextBlock Name="textBox"></TextBlock>
-        <Button Name="button" HorizontalAlignment="Right">x</Button>
+        <Button Name="button" HorizontalAlignment="Right" VerticalAlignment="Top" Height="14" FontSize="6">x</Button>
     </Grid>
 </UserControl>
