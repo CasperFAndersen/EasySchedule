@@ -13,7 +13,7 @@ namespace EasyScheduleWebClient.Controllers
         public ActionResult Index()
         {
             EmployeeRepository empRepo = new EmployeeRepository();
-            var model = empRepo.GetEmployess();
+            var model = empRepo.GetEmployees();
             return View(model);
         }
 
