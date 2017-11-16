@@ -39,7 +39,7 @@ namespace DatabaseAccess.Schedules
 
         public Schedule GetScheduleByCurrentDate(DateTime currentDate)
         {
-            Schedule empRes = new Schedule();
+            Schedule scheRes = new Schedule();
 
             using (SqlConnection conn = new DbConnectionADO().GetConnection())
             {
@@ -57,10 +57,10 @@ namespace DatabaseAccess.Schedules
 
                     while (reader.Read())
                     {
-                        empRes = BuildScheduleObject(reader);
+                        scheRes = BuildScheduleObject(reader);
                     }
 
-                    return empRes;
+                    return scheRes;
                 }
 
             }

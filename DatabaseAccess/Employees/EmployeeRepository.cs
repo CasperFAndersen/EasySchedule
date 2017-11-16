@@ -12,31 +12,6 @@ namespace DatabaseAccess.Employees
             throw new NotImplementedException();
         }
 
-        //public Employee GetEmployeeByUsername(string username)
-        //{
-        //    Employee empRes = new Employee();
-
-        //    using (DbConnectionADO dbCon = new DbConnectionADO())
-        //    {
-        //        dbCon.OpenConnection();
-        //        SqlCommand selectEmployeeByUsername = new SqlCommand("SELECT FROM Employee WHERE username = @param1");
-        //        selectEmployeeByUsername.Parameters.AddWithValue("@param1", username);
-
-        //        SqlDataReader reader = selectEmployeeByUsername.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-
-        //        while (reader.Read())
-        //        {
-        //            empRes = BuildEmployeeObject(reader);
-        //        }
-
-
-        //        dbCon.CloseConnection();
-
-        //        return empRes;
-        //    }
-        //}
-
-
         public Employee GetEmployeeByUsername(string username)
         {
             Employee empRes = new Employee();
@@ -68,6 +43,37 @@ namespace DatabaseAccess.Employees
             }
         }
 
+
+        public Employee FindEmployeeById(int id)
+        {
+            Employee empRes = new Employee();
+
+            using (SqlConnection conn = new DbConnectionADO().GetConnection())
+            {
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+
+                    cmd.CommandText = "SELECT * FROM Employee WHERE Employee.id = @param1;";
+                    SqlParameter p1 = new SqlParameter(@"param1", System.Data.SqlDbType.Int);
+                    p1.Value = id;
+
+                    cmd.Parameters.Add(p1);
+
+                    SqlDataReader reader = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+
+                    while (reader.Read())
+                    {
+                        empRes = BuildEmployeeObject(reader);
+                    }
+
+
+                    conn.Close();
+
+                    return empRes;
+                }
+
+            }
+        }
 
 
         public Employee BuildEmployeeObject(SqlDataReader reader)
