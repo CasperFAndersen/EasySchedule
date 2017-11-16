@@ -66,7 +66,7 @@ insert into Schedule(startDate, templateScheduleId)
 
 --Insert Shift
 
-insert into Shift(date, hours, startTime, scheduleId, employeeId)
-	values ('2017-11-15', 6, '06:30:00', (select id from schedule where startDate='2017-11-14'), (select id from employee where name='Mikkel Paulsen'))
+insert into Shift(startTime, hours, scheduleId, employeeId)
+	values ('2017-11-15 06:30:00', 6, (select id from schedule where startDate='2017-11-14'), (select id from employee where name='Mikkel Paulsen'))
 
 --select * from Shift
