@@ -36,7 +36,7 @@ namespace ConsoleTest
         {
             Mail mail = new Mail();
             mail.SendSimpleMessage();
-            Console.WriteLine("Mail er sendt-");
+            Console.WriteLine("Mail er sendt");
             Console.ReadLine();
         }
     }
