@@ -72,6 +72,7 @@
     <Compile Include="DayColumn.xaml.cs">
       <DependentUpon>DayColumn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Mediator.cs" />
     <Compile Include="Services\TempScheduleProxy.cs" />
     <Compile Include="Services\TempShiftService.cs" />
     <Compile Include="ShiftElement.xaml.cs">
