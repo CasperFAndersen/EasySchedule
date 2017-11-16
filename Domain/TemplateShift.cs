@@ -36,5 +36,9 @@ namespace Core
             TemplateScheduleID = templateScheduleID;
             Employee = employee;
         }
+
+        public TemplateShift()
+        {
+        }
     }
 }

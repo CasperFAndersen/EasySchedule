@@ -49,18 +49,18 @@ namespace DatabaseAccess
                     {
                         while (reader.Read())
                         {
-                            // TimeSpan myTimeSpan = ((SqlDataReader)reader).GetTimeSpan(3);
-                            TimeSpan S = new TimeSpan(1, 2, 3);
+                            if (reader.HasRows)
+                            { 
+                            TemplateShift tempShift = new TemplateShift();
+                            tempShift.ID = reader.GetOrdinal("Id");
+                            tempShift.WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader.GetOrdinal("weekDay").ToString());
+                            tempShift.Hours = reader.GetOrdinal("Hours");
+                            tempShift.StartTime = TimeSpan.Parse(reader.GetOrdinal("StartTime").ToString());
+                            tempShift.TemplateScheduleID = reader.GetOrdinal("TemplateScheduleId");
+                            tempShift.Employee.Id = reader.GetOrdinal("EmployeeId"); 
 
-                            TemplateShift tempShift = new TemplateShift(Convert.ToInt32(reader["Id"].ToString()),
-                                                                        GetDayOfweekBasedOnString(reader["weekday"].ToString()),
-                                                                        Convert.ToDouble(reader["hours"].ToString()),
-                                                                        S,
-                                                                        Convert.ToInt32(reader["templateScheduleId"].ToString()),
-                                                                        new Employee() { Id = Convert.ToInt32(reader["employee"].ToString())});
-                            
-                                                                        
                             tempList.Add(tempShift);
+                            }
                         }
                     }
                 }
