@@ -12,7 +12,7 @@ namespace EasyScheduleWebClient.Services
         public IEnumerable<Employee> GetEmployees()
         {
             List<Employee> employees = new List<Employee>();
-
+            employees = new EmployeeProxy().GetEmployeesByDepartment();
             return employees;
         }
     

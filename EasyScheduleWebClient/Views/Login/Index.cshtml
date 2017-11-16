@@ -1,0 +1,29 @@
+﻿@using Core
+@using EasyScheduleWebClient.Services
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Login</h2>
+
+
+@{
+    @Html.TextArea("Username", new {rows = 10, cols = 40})
+    <button onclick ="LoginUser", type="submit">Login</button>
+
+    EmployeeProxy empProxy = new EmployeeProxy();
+
+    Employee e1 = empProxy.GetEmployeeByUsername(Username);
+
+    if (e1 != null)
+    {
+        Session["Employee"] = e1;
+        string tem = Session["Employee"].ToString();
+        //return View("~/Views/Home/Index.html");
+    }S
+
+    return null;
+
+}
+

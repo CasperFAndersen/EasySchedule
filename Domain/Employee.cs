@@ -27,6 +27,8 @@ namespace Core
         public string Password { get; set; }
         [DataMember]
         public string Mail { get; set; }
+        [DataMember]
+        public int DepartmentId { get; set; }
 
 
         public Employee()
