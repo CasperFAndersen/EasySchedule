@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a239c9e1-ae82-47b6-8aa4-100fbcac1d63" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4a03d21d-551a-4a6b-9314-bb7864ecef64" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -13,19 +13,28 @@
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
-    <ReferencedAssemblies />
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="BusinessLogic" />
+      <ReferencedAssembly AssemblyName="Core" />
+      <ReferencedAssembly AssemblyName="System" />
+      <ReferencedAssembly AssemblyName="System.Core" />
+      <ReferencedAssembly AssemblyName="System.Data" />
+      <ReferencedAssembly AssemblyName="System.Runtime.Serialization" />
+      <ReferencedAssembly AssemblyName="System.ServiceModel" />
+    </ReferencedAssemblies>
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/EmployeeService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:9000/ServiceLibrary/EmployeeService/" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="3d836410-7c50-4294-8a17-bfb32d1e0745" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/EmployeeService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="4d277bb3-8598-4afd-a440-0285bb704e5c" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/EmployeeService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="0efbbec7-e186-4980-9464-9856ed6c8189" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/EmployeeService/mex" />
-    <MetadataFile FileName="Core.xsd" MetadataType="Schema" ID="9acfbad4-e0a8-4de9-9f08-68eada6e8cea" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/EmployeeService/mex" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="e6d74d53-6a4a-4669-8654-60ed5e364e22" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/EmployeeService/?xsd=xsd0" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="186cfecf-4d8d-4506-b33e-b046b96cbb92" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/EmployeeService/?xsd=xsd1" />
+    <MetadataFile FileName="EmployeeService.wsdl" MetadataType="Wsdl" ID="cec0c896-5351-4430-9075-f48b3370e5d6" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/EmployeeService/?wsdl" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="f51d8346-d45d-4ed1-8e08-db570a9d7a3c" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/EmployeeService/?xsd=xsd2" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="dff1ac3f-3f88-4a55-a059-39a58e7383ec" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/EmployeeService/?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

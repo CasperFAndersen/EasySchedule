@@ -113,18 +113,20 @@
     </None>
     <None Include="Connected Services\EmployeeService\configuration.svcinfo" />
     <None Include="Connected Services\EmployeeService\configuration91.svcinfo" />
+    <None Include="Connected Services\EmployeeService\item.disco" />
+    <None Include="Connected Services\EmployeeService\EmployeeService.wsdl" />
+    <None Include="Connected Services\EmployeeService\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EmployeeService\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EmployeeService\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\DataSources\Core.Employee.datasource" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\EmployeeService\Core.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\EmployeeService\service.wsdl" />
-    <None Include="Connected Services\EmployeeService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\EmployeeService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -150,10 +152,6 @@
     <ProjectReference Include="..\MailingService\WebServer.csproj">
       <Project>{45c97078-85b1-45fc-bd51-03e9ae73b1ae}</Project>
       <Name>WebServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ServiceHost\ServiceHosting.csproj">
-      <Project>{e55fc70a-c764-4cdc-89bd-ab06090f4813}</Project>
-      <Name>ServiceHosting</Name>
     </ProjectReference>
     <ProjectReference Include="..\Service\ServiceLibrary.csproj">
       <Project>{d4612c0a-5086-4cfd-800a-d3dc174969a8}</Project>

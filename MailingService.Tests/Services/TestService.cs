@@ -1,8 +1,8 @@
 ﻿using System;
-using MailingService.Services;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ConsoleTest;
-
+using Tests.EmployeeService;
 
 
 namespace Tests.Services
@@ -16,11 +16,15 @@ namespace Tests.Services
         [TestMethod]
         public void EmployeeServiceTest()
         {
+            EmployeeServiceClient client = new EmployeeServiceClient();
 
+            //  EmployeeServiceClient client = new EmployeeServiceClient();
 
-            Service empProxy = new Service();
+            string expected = "Tobias";
+            string actual = client.GetEmployeeByUsername("TobMaster").Name;
 
-            Assert.AreEqual("Tobias", empProxy.GetEmployeeByUsername("TobMaster"));
+            Assert.AreEqual(expected, actual);
+            //
         }
     }
 }
