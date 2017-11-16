@@ -50,16 +50,16 @@ namespace DatabaseAccess
                         while (reader.Read())
                         {
                             if (reader.HasRows)
-                            { 
-                            TemplateShift tempShift = new TemplateShift();
-                            tempShift.ID = reader.GetOrdinal("Id");
-                            tempShift.WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader.GetOrdinal("weekDay").ToString());
-                            tempShift.Hours = reader.GetOrdinal("Hours");
-                            tempShift.StartTime = TimeSpan.Parse(reader.GetOrdinal("StartTime").ToString());
-                            tempShift.TemplateScheduleID = reader.GetOrdinal("TemplateScheduleId");
-                            tempShift.Employee.Id = reader.GetOrdinal("EmployeeId"); 
+                            {
+                                TemplateShift tempShift = new TemplateShift();
+                                tempShift.ID = reader.GetOrdinal("Id");
+                                tempShift.WeekDay = DayOfWeek.Monday; //(DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader["weekDay"].ToString());
+                                tempShift.Hours = reader.GetOrdinal("Hours");
+                                tempShift.StartTime = TimeSpan.Parse(reader.GetOrdinal("StartTime").ToString());
+                                tempShift.TemplateScheduleID = reader.GetOrdinal("TemplateScheduleId");
+                                tempShift.Employee.Id = reader.GetOrdinal("EmployeeId");
 
-                            tempList.Add(tempShift);
+                                tempList.Add(tempShift);
                             }
                         }
                     }
@@ -101,7 +101,7 @@ namespace DatabaseAccess
                     currentDay = DayOfWeek.Tuesday;
                     break;
                 case "Wednesday":
-                    currentDay =  DayOfWeek.Wednesday;
+                    currentDay = DayOfWeek.Wednesday;
                     break;
                 case "Thursday":
                     currentDay = DayOfWeek.Thursday;
@@ -119,5 +119,5 @@ namespace DatabaseAccess
             return currentDay;
         }
     }
-    
+
 }
