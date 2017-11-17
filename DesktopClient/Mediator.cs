@@ -28,12 +28,12 @@ namespace DesktopClient
 
         public event EventHandler<ShiftDropEventArgs> ShiftDropped;
 
-        public void OnShiftDropped(object sender, TemplateShift shift)
+        public void OnShiftDropped(object sender, TemplateShift shift, bool isLastElement)
         {
             var shiftDroppedDelegate = ShiftDropped as EventHandler<ShiftDropEventArgs>;
             if (shiftDroppedDelegate != null)
             {
-                shiftDroppedDelegate(sender, new ShiftDropEventArgs {Shift = shift});
+                shiftDroppedDelegate(sender, new ShiftDropEventArgs {Shift = shift, IsLastElement = isLastElement});
             }
 
         }
@@ -48,5 +48,17 @@ namespace DesktopClient
             }
 
         }
+
+        public event EventHandler<ShiftDropEventArgs> EmployeeDropped;
+        public void OnEmployeeDropped(object sender, TemplateShift shift)
+        {
+            var employeeDroppedDelegate = EmployeeDropped as EventHandler<ShiftDropEventArgs>;
+            if (employeeDroppedDelegate != null)
+            {
+                employeeDroppedDelegate(sender, new ShiftDropEventArgs { Shift = shift });
+            }
+
+        }
+
     }
 }
