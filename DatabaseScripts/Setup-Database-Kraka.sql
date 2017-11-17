@@ -49,6 +49,7 @@ create table Schedule(
 	id int primary key identity(1,1),
 	startDate smalldatetime,
 	templateScheduleId int foreign key references TemplateSchedule(id)
+	departmentId int foreign key references Department(id)
 )
 
 create table Shift(
