@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Core;
 using System.Collections.Generic;
+using DesktopClient.TempScheduleService;
 
 namespace Tests.Services
 {
@@ -11,7 +12,7 @@ namespace Tests.Services
         [TestMethod]
         public void TestAddTempScheduleToDBService()
         {
-            ServiceLibrary.TempScheduleService tempScheduleService = new ServiceLibrary.TempScheduleService();
+            TempScheduleServiceClient tempScheduleService = new TempScheduleServiceClient();
 
             List<TemplateSchedule> beforeAddingTempScheduleList = new List<TemplateSchedule>(tempScheduleService.GetAllTempSchedules());
             TemplateSchedule tSchedule = new TemplateSchedule(4, "DummySchedule", 1);

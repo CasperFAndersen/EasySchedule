@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Core" />
+  <xs:element name="CreateTempShift">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="weekDay" type="q1:DayOfWeek" />
+        <xs:element minOccurs="0" name="hours" type="xs:double" />
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="startTime" type="q2:duration" />
+        <xs:element minOccurs="0" name="templateScheduleID" type="xs:int" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="employee" nillable="true" type="q3:Employee" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateTempShiftResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="CreateTempShiftResult" nillable="true" type="q4:TemplateShift" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindTempShiftByID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tempShiftID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindTempShiftByIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="FindTempShiftByIDResult" nillable="true" type="q5:TemplateShift" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

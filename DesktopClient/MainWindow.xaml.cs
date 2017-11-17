@@ -1,4 +1,5 @@
 ﻿using Core;
+using DesktopClient.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace DesktopClient
 
         //public List<Department> LoadDeparmentList()
         //{
-        //    DeparmentProxy deptProxy = new DepartmentProxy();
+        //    DepartmentProxy deptProxy = new DepartmentProxy();
         //    List<Department> departmentList = deptProxy.GetAllDepartments();
         //}
 
