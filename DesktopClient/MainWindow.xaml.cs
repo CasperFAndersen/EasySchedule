@@ -21,11 +21,13 @@ namespace DesktopClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<Department> departmentList { get; set; }
         public MainWindow()
         {
             InitializeComponent();
 
             LoadEmployeeList(GetListOfEmployees());
+            LoadDeparmentList();
         }
 
         public void LoadEmployeeList(List<Employee> employees)
@@ -47,6 +49,23 @@ namespace DesktopClient
             emps.Add(e2);
 
             return emps;
+        }
+
+        //public List<Deparment> LoadDeparmentList
+        //{
+        //    DeparmentProxy deptProxy = new DepartmentProxy();
+        //    List<Department> departmentList = deptProxy.GetAllDepartments();
+            
+        //}
+
+        private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CBoxDepartment.selec
+        }
+
+        private void BtnSaveTemplateSchedule_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
