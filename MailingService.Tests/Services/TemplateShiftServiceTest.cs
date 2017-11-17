@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ServiceLibrary;
 using Core;
+using DesktopClient.TempShiftService;
 
 namespace Tests.Services
 {
@@ -11,7 +12,7 @@ namespace Tests.Services
         [TestMethod]
         public void TestAddTemplaceShiftService()
         {
-            TempShiftService templaceShiftService = new TempShiftService();
+            TempShiftServiceClient templaceShiftService = new TempShiftServiceClient();
 
             TemplateShift tempShift1 = templaceShiftService.CreateTempShift(DayOfWeek.Friday, 10.0, new TimeSpan(10, 0, 0), 1, new Employee() { Id = 3 });
 

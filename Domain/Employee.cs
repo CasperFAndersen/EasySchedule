@@ -35,10 +35,5 @@ namespace Core
         {
 
         }
-
-        public Employee(int id, string name, string s, string hejDenemailDk, int i, bool b, string usernamemichael, string passwordmichael)
-        {
-
-        }
     }
 }

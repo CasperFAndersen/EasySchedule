@@ -7,7 +7,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="weekDay" type="q1:DayOfWeek" />
-        <xs:element minOccurs="0" name="hours" type="xs:int" />
+        <xs:element minOccurs="0" name="hours" type="xs:double" />
         <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="startTime" type="q2:duration" />
         <xs:element minOccurs="0" name="templateScheduleID" type="xs:int" />
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="employee" nillable="true" type="q3:Employee" />

@@ -9,11 +9,13 @@ using DesktopClient.DepartmentService;
 
 namespace DesktopClient.Services
 {
-    public class DepartmentProxy : IDepartmentService
+    public class DepartmentProxy : DepartmentService.IDepartmentService
     {
+        DepartmentServiceClient proxy = new DepartmentServiceClient();
+
         public Department[] GetAllDepartments()
         {
-            throw new NotImplementedException();
+            return proxy.GetAllDepartments();
         }
 
         public Task<Department[]> GetAllDepartmentsAsync()
