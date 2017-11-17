@@ -58,7 +58,7 @@ insert into TemplateShift(weekday, hours, startTime, templateScheduleId, employe
 
 --Insert Schedule
 
-insert into Schedule(startDate, templateScheduleId) 
+insert into Schedule(startDate, templateScheduleId, departmentId) 
 	values ('2017-11-14', (select id from templateSchedule where name='Test'), 1)
 
 --select * from Schedule
