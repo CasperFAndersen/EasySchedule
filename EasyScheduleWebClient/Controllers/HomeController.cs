@@ -13,7 +13,7 @@ namespace EasyScheduleWebClient.Controllers
         public ActionResult Index()
         {
             EmployeeRepository empRepo = new EmployeeRepository();
-            var model = empRepo.GetEmployees();
+            var model = empRepo.GetEmployeesByDepartmentId(Convert.ToInt32(Session["employeeId"].ToString()));
             return View(model);
         }
 

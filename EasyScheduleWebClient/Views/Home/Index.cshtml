@@ -1,13 +1,18 @@
-﻿@model IEnumerable<EasyScheduleWebClient.Models.Employee>
+﻿@{
+    if (Session["employee"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+@model IEnumerable<EasyScheduleWebClient.Models.Employee>
 @{
     ViewBag.Title = "Full Calendar Test";
 }
 
-
-
 <div id='wrap'>
 
-    <div id='external-events'>
+    @*<div id='external-events'>
         <h4>Employees</h4>
         @foreach (var emp in Model)
         {
@@ -19,7 +24,7 @@
             <input type='checkbox' id='drop-remove' />
             <label for='drop-remove'>remove after drop</label>
         </p>
-    </div>
+    </div>*@
 
     <div id='calendar'></div>
 
@@ -180,7 +185,7 @@
                     drag: function () {
                         confirm('Vil du dragge den hertil');
                     },
-                    droppable: true, // this allows things to be dropped onto the calendar
+                    droppable: false, // this allows things to be dropped onto the calendar
                     drop: function (date) {
                         // is the "remove after drop" checkbox checked?
                         if ($('#drop-remove').is(':checked')) {
