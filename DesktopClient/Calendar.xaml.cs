@@ -22,8 +22,8 @@ namespace DesktopClient
     public partial class Calendar : UserControl
     {
         public static readonly TimeSpan STARTTIME = new TimeSpan(6,0,0);
-        public static readonly TimeSpan ENDTIME = new TimeSpan(18, 0, 0);
-        public static readonly int INCREMENT = 60;
+        public static readonly TimeSpan ENDTIME = new TimeSpan(20, 0, 0);
+        public static readonly int INCREMENT = 30;
 
         Color[] colors = { Colors.IndianRed, Colors.DarkKhaki, Colors.DarkOrange, Colors.LightGreen, Colors.Thistle, Colors.SkyBlue, Colors.RoyalBlue, Colors.Turquoise };
         public static Dictionary<Employee, Color> EmployeeColors { get; set; }
