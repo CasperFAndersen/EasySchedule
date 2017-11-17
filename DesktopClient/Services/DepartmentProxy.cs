@@ -9,7 +9,7 @@ using DesktopClient.DepartmentService;
 
 namespace DesktopClient.Services
 {
-    public class DepartmentProxy : IDepartmentService
+    public class DepartmentProxy : DepartmentService.IDepartmentService
     {
         public Department[] GetAllDepartments()
         {

@@ -113,7 +113,8 @@
     <Compile Include="DatabaseAccess\DatabaseConnectionTest.cs" />
     <Compile Include="Services\TemplateScheduleServiceTest.cs" />
     <Compile Include="Services\TemplateShiftServiceTest.cs" />
-    <Compile Include="Services\TestService.cs" />
+    <Compile Include="Services\EmpServiceTest.cs" />
+    <Compile Include="Services\ScheduleServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
