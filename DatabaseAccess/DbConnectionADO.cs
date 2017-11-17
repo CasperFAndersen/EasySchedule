@@ -10,7 +10,7 @@ using System.Data;
 
 namespace DatabaseAccess
 {
-    public class DbConnectionADO
+    public class DbConnectionADO : IDisposable
     {
         private SqlConnection connection;
         public string Server { get; set; }
@@ -22,6 +22,14 @@ namespace DatabaseAccess
         {
             connection = new SqlConnection(KrakaConnectionString());
         }
+
+        public SqlConnection GetConnection()
+        {
+            connection.Open();
+            return connection;
+
+        }
+
 
         public void OpenConnection()
         {
@@ -59,7 +67,6 @@ namespace DatabaseAccess
             return connection.State == ConnectionState.Closed;
         }
 
-
         public string LocalConnectionString()
         {
             Server = ".\\sqlexpress";
@@ -76,5 +83,9 @@ namespace DatabaseAccess
             return "Data Source=" + Server + "; Initial Catalog=" + Database + ";User Id=" + Username + ";Password=" + Password + ";";
         }
 
+        public void Dispose()
+        {
+            connection.Close();
+        }
     }
 }

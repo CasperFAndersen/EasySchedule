@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Data.SqlClient;
+using Core;
 
-namespace DatabaseAccess
+namespace DatabaseAccess.Employees
 {
     public interface IEmployeeRepository
     {
+        List<Employee> GetAllEmployees();
+        Employee GetEmployeeByUsername(string username);
+        Employee BuildEmployeeObject(SqlDataReader reader);
 
     }
 }

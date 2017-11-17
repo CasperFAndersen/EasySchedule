@@ -12,22 +12,32 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            GetConnectionString();
-            Console.ReadKey();
-        }
+            TestEmployeService();
 
-        void SendMail()
-        {
-            Mail mail = new Mail();
-            mail.SendSimpleMessage();
-            Console.WriteLine("Mail er sendt");
-            Console.ReadLine();
+
         }
 
         static void GetConnectionString()
         {
             Console.WriteLine("Local: "+ new DbConnectionADO().LocalConnectionString());
             Console.WriteLine("Kraka: " + new DbConnectionADO().KrakaConnectionString());
+        }
+
+        static void TestEmployeService()
+        {
+
+            Service service = new Service();
+            Console.WriteLine(service.GetEmployeeByUsername("TobMaster").Name);
+
+            Console.ReadLine();
+        }
+
+        static void TestMailGun()
+        {
+            Mail mail = new Mail();
+            mail.SendSimpleMessage();
+            Console.WriteLine("Mail er sendt");
+            Console.ReadLine();
         }
     }
 }
