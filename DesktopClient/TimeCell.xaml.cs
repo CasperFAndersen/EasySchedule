@@ -30,6 +30,7 @@ namespace DesktopClient
             ShiftsInCell = new List<TemplateShift>();
             SetDropHandler();
             SetCloseClick();
+            SetEmployeeDropped();
         }
 
         public Grid GetGrid()
@@ -68,10 +69,35 @@ namespace DesktopClient
 
         private void OnHandleDrop(object sender, DragEventArgs e)
         {
-            TemplateShift droppedShift = (TemplateShift)e.Data.GetData("Object");
-            droppedShift.StartTime = Time;
-            droppedShift.WeekDay = weekDay;
-            Mediator.GetInstance().OnShiftDropped(sender, droppedShift );
+            object droppedItem = e.Data.GetData("Object");
+
+            if (droppedItem.GetType() == typeof(TemplateShift))
+            {
+                TemplateShift droppedShift = (TemplateShift)e.Data.GetData("Object");
+                bool isLastElement = (bool)e.Data.GetData("IsLastShiftElement");
+                if (isLastElement)
+                {
+                    droppedShift.Hours = Time.Hours - droppedShift.StartTime.Hours;
+                }
+                else
+                {
+                    droppedShift.StartTime = Time;
+                    droppedShift.WeekDay = weekDay;
+                }
+
+                Mediator.GetInstance().OnShiftDropped(sender, droppedShift, isLastElement);
+            }
+
+            else if(droppedItem.GetType() == typeof(Employee))
+            {
+                Employee employee = (Employee)droppedItem;
+                TemplateShift newShift = new TemplateShift() { StartTime = Time, WeekDay = weekDay, Employee = employee, Hours = 3 }; // DEFAULT HOURS = 3
+                Mediator.GetInstance().OnEmployeeDropped(sender, newShift);
+            }
+
+      
+
+           
         }
 
         private void SetDropHandler()
@@ -85,6 +111,14 @@ namespace DesktopClient
         private void SetCloseClick()
         {
             Mediator.GetInstance().ShiftCloseClicked += (s, e) =>
+            {
+                Clear();
+            };
+        }
+
+        private void SetEmployeeDropped()
+        {
+            Mediator.GetInstance().EmployeeDropped += (s, e) =>
             {
                 Clear();
             };

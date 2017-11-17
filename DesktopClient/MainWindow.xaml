@@ -17,5 +17,6 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <local:Calendar x:Name="Calendar" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <ListView Name="EmployeeList" Grid.Column="1"></ListView>
     </Grid>
 </Window>

@@ -41,8 +41,9 @@ namespace DesktopClient
             BuildDayColumns();
             EmployeeColors = new Dictionary<Employee, Color>();
             AddShifts(GetListOfTemplateShifts());
-            SetDropHandler();
+            SetShiftDropHandler();
             SetCloseShiftClicked();
+            SetEmployeeDroppedHandler();
             LoadShiftsIntoCalendar();
         }
 
@@ -122,10 +123,19 @@ namespace DesktopClient
             }
         }
 
-        public void SetDropHandler()
+        public void SetShiftDropHandler()
         {
             Mediator.GetInstance().ShiftDropped += (s, e) =>
             {
+                LoadShiftsIntoCalendar();
+            };
+        }
+
+        public void SetEmployeeDroppedHandler()
+        {
+            Mediator.GetInstance().EmployeeDropped += (s, e) =>
+            {
+                AddShift(e.Shift);
                 LoadShiftsIntoCalendar();
             };
         }
@@ -157,6 +167,7 @@ namespace DesktopClient
 
             return res;
         }
+
 
 
     }
