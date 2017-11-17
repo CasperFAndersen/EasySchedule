@@ -1,0 +1,262 @@
+﻿@model IEnumerable<EasyScheduleWebClient.Models.Employee>
+@{
+    ViewBag.Title = "Full Calendar Test";
+}
+
+
+
+<div id='wrap'>
+
+    <div id='external-events'>
+        <h4>Employees</h4>
+        @foreach (var emp in Model)
+        {
+            <div class='fc-event'>@Html.DisplayFor((modelItem) => emp.Name)</div>
+            //<div class='fc-event'>@Html.DisplayName(emp.Name)</div>
+        }
+
+        <p>
+            <input type='checkbox' id='drop-remove' />
+            <label for='drop-remove'>remove after drop</label>
+        </p>
+    </div>
+
+    <div id='calendar'></div>
+
+    <div style='clear:both'></div>
+
+    @*<div id="dialog" title="dialogBox">
+        Er du sikker på at du vil sætte din vagt til udbud?
+    </div>*@
+
+</div>
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<style>
+    body {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 14px;
+        font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    }
+
+    #wrap {
+        width: 1100px;
+        margin: 0 auto;
+    }
+
+    #external-events {
+        float: left;
+        width: 150px;
+        padding: 0 10px;
+        border: 1px solid #ccc;
+        background: #eee;
+        text-align: left;
+        border-radius: 5px;
+    }
+
+        #external-events h4 {
+            font-size: 16px;
+            margin-top: 0;
+            padding-top: 1em;
+        }
+
+        #external-events .fc-event {
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        #external-events p {
+            margin: 1.5em 0;
+            font-size: 11px;
+            color: #666;
+        }
+
+            #external-events p input {
+                margin: 0;
+                vertical-align: middle;
+            }
+
+    #calendar {
+        float: right;
+        width: 900px;
+    }
+
+
+
+
+</style>
+
+@section scripts{
+
+<script src="~/Scripts/locale-all.js"></script>
+
+    <script>  
+        $(document).ready(function () {
+
+      
+            var events = [];
+            FetchEventAndRenderCalendar();
+          
+
+        function FetchEventAndRenderCalendar() {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetEvents",
+                    success: function (data) {
+                        $.each(data, function (i, v) {
+                            events.push({
+                                eventID: v.EventID,
+                                title: v.Subject,
+                                description: v.Description,
+                                start: moment(v.Start),
+                                end: v.End != null ? moment(v.End) : null,
+                                color: v.ThemeColor,
+                                allDay: v.IsFullDay
+                            });
+                        })
+
+                        GenerateCalendar(events);
+                    },
+                    error: function (error) {
+                        alert('failed');
+                    }
+                })
+            };
+
+            function GenerateCalendar(events) {
+
+                $('#external-events .fc-event').each(function () {
+
+                    // store data so the calendar knows to render an event upon drop
+                    $(this).data('event', {
+                        title: $.trim($(this).text()), // use the element's text as the event title
+                        stick: true // maintain when user navigates (see docs on the renderEvent method)
+                        
+                    });
+
+                    // make the event draggable using jQuery UI
+                    $(this).draggable({
+                        zIndex: 999,
+                        revert: true,      // will cause the event to go back to its
+                        revertDuration: 0  //  original position after the drag
+                    });
+
+                });
+
+
+                $('#calender').fullCalendar('destroy');
+                $('#calendar').fullCalendar({
+                    contentHeight: 500,
+                    defaultDate: new Date(),
+                    //Buttons
+                    customButtons: {
+                        myCustomButton: {
+                            text: 'Save',
+                            click: function () {
+                                Save();
+                            }
+                        }
+                    },
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay,listMonth, myCustomButton'
+                    },
+                    slotDuration: '00:30:00',
+                    buttonIcons: false, // show the prev/next text
+                    weekNumbers: true,
+                    timeFormat: '(hh:mm)a',
+                    defaultView: 'agendaWeek',
+                    navLinks: true, // can click day/week names to navigate views
+                    editable: true,
+                    eventLimit: true, // allow "more" link when too many events
+                    locale: "da",
+                    events: events,
+                    editable: true,
+                    snapDuration: '00:05:00',
+                    forceEventDuration: true,
+                    drag: function () {
+                        confirm('Vil du dragge den hertil');
+                    },
+                    droppable: true, // this allows things to be dropped onto the calendar
+                    drop: function (date) {
+                        // is the "remove after drop" checkbox checked?
+                        if ($('#drop-remove').is(':checked')) {
+                            // if so, remove the element from the "Draggable Events" list
+                            $(this).remove();
+                        }
+                       
+                      
+                    },
+                    eventClick: function (calEvent, jsEvent, view) {
+
+                        //alert('Event: ' + calEvent.title);
+                        //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                        //alert('View: ' + view.name);
+             
+                        //// change the border color just for fun
+                        $(this).css('background-color', 'blue');
+                        confirm('Er du nu sikker?');
+                    }
+
+                })
+
+            }
+
+            function Save() {
+                $.each($('#calendar').fullCalendar('clientEvents'), function (i, v) {
+                    var event = {
+                        EventID: v.eventID,
+                        Subject: v.title,
+                        Start: v.start,
+                        End: v.end,
+                        Description: v.description,
+                        ThemeColor: v.color,
+                        IsFullDay: v.allDay
+                    }
+                    SaveEvent(event);
+                });
+            }
+
+            function SaveEvent(event) {
+                $.ajax({
+                    url: '/Home/SaveEvent',
+                    type: 'POST',
+                    data: JSON.stringify(event),
+                    contentType: 'application/json; charset=utf-8',
+                    async: false,
+                    success: function () {
+                        alert(data);
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+            }
+
+        });
+    
+    </script>
+
+}
+
+             @*theme: true,
+                    header: {
+                        left: 'prev, next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
+                    locale: "da",
+                    contentHeight: 700,
+                    defaultDate: new Date(),
+                    defaultView: 'agendaWeek',
+                    timeFormat: 'h(:mm)a',
+                    editable: true,
+                    allDaySlot: false,
+                    selectable: true,
+                    slotMinutes: 15,
+                    eventLimit: true,
+                    eventColor: '#378006',
+                    events: events,*@

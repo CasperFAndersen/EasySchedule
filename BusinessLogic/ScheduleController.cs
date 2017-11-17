@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Core;
 using DatabaseAccess;
-using DatabaseAccess.Schedule;
+using DatabaseAccess.Schedules;
 
 namespace BusinessLogic
 {

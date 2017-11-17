@@ -1,19 +1,28 @@
 ﻿using System;
-using MailingService.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ConsoleTest;
+using Tests.EmployeeService;
 
-namespace MailingService.Tests.Services
+
+namespace Tests.Services
 {
+    
     [TestClass]
     public class TestService
     {
+        
+        
         [TestMethod]
         public void EmployeeServiceTest()
         {
-            ConsoleTest.Service empProxy = new ConsoleTest.Service();
+            EmployeeServiceClient client = new EmployeeServiceClient();
 
-            Assert.AreEqual("Tobias", empProxy.GetEmployeeByUsername("TobMaster"));
+            //  EmployeeServiceClient client = new EmployeeServiceClient();
+
+            string expected = "Tobias Andersen";
+            string actual = client.GetEmployeeByUsername("TobiAs").Name;
+
+            Assert.AreEqual(expected, actual);
+            //
         }
     }
 }

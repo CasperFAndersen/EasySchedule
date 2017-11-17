@@ -61,14 +61,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbConnectionADO.cs" />
-    <Compile Include="Employees\EmployeeDBContext.cs" />
+    <Compile Include="Departments\DepartmentRepository.cs" />
+    <Compile Include="Departments\IDepartmentRepository.cs" />
+    <Compile Include="Employees\EmployeeRepository.cs" />
     <Compile Include="Employees\IEmployeeRepository.cs" />
     <Compile Include="Employees\MockEmployeeRep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateSchedule\TemplateScheduleDB.cs" />
     <Compile Include="TemplateShift\TemplateShiftDB.cs" />
-    <Compile Include="Schedule\IScheduleRepository.cs" />
-    <Compile Include="Schedule\MockScheduleRep.cs" />
+    <Compile Include="Schedules\ScheduleRepository.cs" />
+    <Compile Include="Shifts\IShiftRepository.cs" />
+    <Compile Include="Shifts\ShiftRepository.cs" />
+    <Compile Include="Schedules\IScheduleRepository.cs" />
+    <Compile Include="Schedules\MockScheduleRep.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

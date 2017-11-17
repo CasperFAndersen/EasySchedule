@@ -5,8 +5,9 @@ namespace Core
     [DataContract]
     public class Employee
     {
+        [DataMember]
         private string name;
-
+        [DataMember]
         public int Id { get; set; }
         [DataMember]
         public string Name
@@ -26,6 +27,8 @@ namespace Core
         public string Password { get; set; }
         [DataMember]
         public string Mail { get; set; }
+        [DataMember]
+        public int DepartmentId { get; set; }
 
 
         public Employee()
@@ -35,7 +38,7 @@ namespace Core
 
         public Employee(int id, string name, string s, string hejDenemailDk, int i, bool b, string usernamemichael, string passwordmichael)
         {
-            
+
         }
     }
 }

@@ -174,6 +174,7 @@ namespace ConsoleTest.ServiceReference1 {
     public partial class EmployeeServiceClient : System.ServiceModel.ClientBase<ConsoleTest.ServiceReference1.IEmployeeService>, ConsoleTest.ServiceReference1.IEmployeeService {
         
         public EmployeeServiceClient() {
+           
         }
         
         public EmployeeServiceClient(string endpointConfigurationName) : 
