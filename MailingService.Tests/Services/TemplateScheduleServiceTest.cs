@@ -9,7 +9,7 @@ namespace Tests.Services
     public class TemplateScheduleServiceTest
     {
         [TestMethod]
-        public void AddTempScheduleToDBServiceTest()
+        public void TestAddTempScheduleToDBService()
         {
             ServiceLibrary.TempScheduleService tempScheduleService = new ServiceLibrary.TempScheduleService();
 

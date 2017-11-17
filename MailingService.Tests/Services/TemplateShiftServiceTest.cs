@@ -9,7 +9,7 @@ namespace Tests.Services
     public class TemplateShiftServiceTest
     {
         [TestMethod]
-        public void AddTemplaceShiftServiceTest()
+        public void TestAddTemplaceShiftService()
         {
             TempShiftService templaceShiftService = new TempShiftService();
 
