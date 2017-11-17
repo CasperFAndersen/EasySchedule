@@ -21,13 +21,17 @@ namespace EasyScheduleWebClient.Controllers
 
             if (loggingIn.Password.Equals(emp1.Password))
             {
-                Session["employee"] = emp1;
+                Session["employeeId"] = emp1.Id;
                 return RedirectToAction("Index", "Home");
             }
-            else
-            {
-                return View();
-            }
+            return View();
+        }
+
+        public ActionResult Logout()
+        {
+            int id = (int)Session["employeeId"];
+            Session.Abandon();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using Core;
+using DatabaseAccess.Shifts;
 
 namespace DatabaseAccess.Schedules
 {
@@ -33,6 +34,9 @@ namespace DatabaseAccess.Schedules
         public Schedule BuildScheduleObject(SqlDataReader reader)
         {
             Schedule schedule = new Schedule();
+
+            schedule.Shifts = new ShiftRepository().GetShiftsByScheduleID(reader.GetInt32(0));
+            schedule.StartDate = reader.GetDateTime(1);
 
             return schedule;
         }
