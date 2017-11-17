@@ -103,6 +103,7 @@
     <Compile Include="BusinessLogic\TestEmployeeCtrl.cs" />
     <Compile Include="BusinessLogic\TestScheduleCtrl.cs" />
     <Compile Include="DataBaseAcces\EmployeeDbTest.cs" />
+    <Compile Include="DataBaseAcces\ScheduleDbTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DatabaseAccess\DatabaseConnectionTest.cs" />
     <Compile Include="Services\TemplateScheduleServiceTest.cs" />
@@ -168,7 +169,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
