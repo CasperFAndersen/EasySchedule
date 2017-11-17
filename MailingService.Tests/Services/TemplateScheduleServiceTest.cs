@@ -2,7 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Core;
 using System.Collections.Generic;
-using DesktopClient.TempScheduleService;
+using Tests.TempScheduleService;
+//using DesktopClient.TempScheduleService;
 
 namespace Tests.Services
 {
