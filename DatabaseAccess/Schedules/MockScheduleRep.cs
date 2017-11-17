@@ -12,6 +12,11 @@ namespace DatabaseAccess.Schedules
             throw new NotImplementedException();
         }
 
+        public Schedule GetCurrentScheduleByDepartmentId(DateTime currentDate, int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Core.Schedule GetScheduleByCurrentDate(DateTime currentDate)
         {
             Employee e1 = new Employee() {Name = "Arne" };

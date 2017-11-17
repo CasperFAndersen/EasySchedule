@@ -11,7 +11,7 @@ namespace BusinessLogic
 {
     public class ScheduleController
     {
-        IScheduleRepository schRep = new MockScheduleRep();
+        IScheduleRepository schRep = new ScheduleRepository();
         public ScheduleController()
         {
 
@@ -23,6 +23,16 @@ namespace BusinessLogic
             DateTime date = new DateTime(currentDate.Year, currentDate.Month, day);
             
             return schRep.GetScheduleByCurrentDate(date);
+        }
+
+        public Schedule GetCurrentScheduleByDepartmentId(int id)
+        {
+            int day = (int)DayOfWeek.Monday;
+            DateTime currentDate = DateTime.Now;
+
+            DateTime date = new DateTime(currentDate.Year, currentDate.Month, day);
+
+            return schRep.GetCurrentScheduleByDepartmentId(date, id);
         }
 
     }
