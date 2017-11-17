@@ -27,7 +27,7 @@ namespace DesktopClient
             InitializeComponent();
 
             LoadEmployeeList(GetListOfEmployees());
-            LoadDeparmentList();
+           // LoadDeparmentList();
         }
 
         public void LoadEmployeeList(List<Employee> employees)
@@ -51,11 +51,11 @@ namespace DesktopClient
             return emps;
         }
 
-        public List<Department> LoadDeparmentList()
-        {
-            DeparmentProxy deptProxy = new DepartmentProxy();
-            List<Department> departmentList = deptProxy.GetAllDepartments();
-        }
+        //public List<Department> LoadDeparmentList()
+        //{
+        //    DeparmentProxy deptProxy = new DepartmentProxy();
+        //    List<Department> departmentList = deptProxy.GetAllDepartments();
+        //}
 
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
