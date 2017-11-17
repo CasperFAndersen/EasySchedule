@@ -95,6 +95,8 @@
     <Compile Include="BusinessLogic\TestScheduleCtrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Services\TemplateScheduleServiceTest.cs" />
+    <Compile Include="Services\TemplateShiftServiceTest.cs" />
     <Compile Include="Services\TestService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +120,10 @@
     <ProjectReference Include="..\DatabaseAccess\DatabaseAccess.csproj">
       <Project>{61dfd29f-5446-4afe-ab42-d80b26e6fdc2}</Project>
       <Name>DatabaseAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DesktopClient\DesktopClient.csproj">
+      <Project>{d9da16d8-a24f-433d-80eb-ffae774bf816}</Project>
+      <Name>DesktopClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Core.csproj">
       <Project>{3e8c167c-bc2d-4ca0-a666-d3c4af3b9db0}</Project>

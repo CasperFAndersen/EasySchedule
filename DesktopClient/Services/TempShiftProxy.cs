@@ -8,7 +8,7 @@ using Core;
 
 namespace DesktopClient.Services
 {
-    public class TempShiftService : ITempShiftService
+    public class TempShiftProxy : ITempShiftService
     {
         TempShiftServiceClient proxy = new TempShiftServiceClient();
 
