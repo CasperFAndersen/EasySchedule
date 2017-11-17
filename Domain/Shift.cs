@@ -11,17 +11,19 @@ namespace Core
     public class Shift
     {
         [DataMember]
+        public int Id { get; set; }
+        [DataMember]
         public DateTime StartTime { get; set; }
 
         [DataMember]
-        public int Hours { get; set; }
+        public double Hours { get; set; }
 
         [DataMember]
         public Employee Employee { get; set; }
 
         public Shift()
         {
-
+            
         }
 
     }

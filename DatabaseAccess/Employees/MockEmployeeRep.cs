@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,10 @@ namespace DatabaseAccess.Employees
 {
     public class MockEmployeeRep : IEmployeeRepository
     {
+        public Employee BuildEmployeeObject(SqlDataReader reader)
+        {
+            throw new NotImplementedException();
+        }
 
         public List<Employee> GetAllEmployees()
         {

@@ -182,10 +182,6 @@
       <Project>{3E8C167C-BC2D-4CA0-A666-D3C4AF3B9DB0}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServiceHosting\ServiceHosting.csproj">
-      <Project>{248667a5-de2f-4dee-8e6a-89c436964fff}</Project>
-      <Name>ServiceHosting</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\TempScheduleService\" />

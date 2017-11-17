@@ -58,11 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TemplateSchedule.cs" />
+    <Compile Include="Department.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateShift.cs" />
     <Compile Include="Schedule.cs" />
     <Compile Include="Shift.cs" />
+    <Compile Include="Workplace.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

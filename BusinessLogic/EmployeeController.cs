@@ -11,7 +11,7 @@ namespace BusinessLogic
 {
     public class EmployeeController
     {
-        IEmployeeRepository empRep = new MockEmployeeRep();
+        IEmployeeRepository empRep = new EmployeeRepository();
         public List<Employee> GetAllEmployees()
         {
             return empRep.GetAllEmployees();
