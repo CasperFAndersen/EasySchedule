@@ -51,21 +51,25 @@ namespace DesktopClient
             return emps;
         }
 
-        //public List<Deparment> LoadDeparmentList
-        //{
-        //    DeparmentProxy deptProxy = new DepartmentProxy();
-        //    List<Department> departmentList = deptProxy.GetAllDepartments();
-            
-        //}
+        public List<Department> LoadDeparmentList()
+        {
+            DeparmentProxy deptProxy = new DepartmentProxy();
+            List<Department> departmentList = deptProxy.GetAllDepartments();
+        }
 
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CBoxDepartment.selec
+            //CBoxDepartment.selec
         }
 
         private void BtnSaveTemplateSchedule_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
     }
+
+    
+    
 }
+

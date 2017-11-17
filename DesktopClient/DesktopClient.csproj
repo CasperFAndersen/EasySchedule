@@ -178,12 +178,6 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Core.csproj">
-      <Project>{3E8C167C-BC2D-4CA0-A666-D3C4AF3B9DB0}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\TempScheduleService\" />
     <WCFMetadataStorage Include="Connected Services\TempShiftService\" />
   </ItemGroup>
@@ -210,6 +204,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Core.csproj">
+      <Project>{3e8c167c-bc2d-4ca0-a666-d3c4af3b9db0}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
