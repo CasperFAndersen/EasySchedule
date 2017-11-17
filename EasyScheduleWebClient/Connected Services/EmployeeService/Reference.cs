@@ -8,6 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using EasyScheduleWebClient.Models;
+
 namespace EasyScheduleWebClient.EmployeeService {
     
     
@@ -55,6 +59,11 @@ namespace EasyScheduleWebClient.EmployeeService {
         
         public System.Threading.Tasks.Task<Core.Employee> GetEmployeeByUsernameAsync(string username) {
             return base.Channel.GetEmployeeByUsernameAsync(username);
+        }
+
+        internal List<Employee> GetEmployeesByDepartmentId(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

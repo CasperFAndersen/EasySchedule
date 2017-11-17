@@ -1,6 +1,5 @@
 ﻿@model Core.Employee
 
-
 @{
     ViewBag.Title = "Index";
 }
@@ -18,14 +17,15 @@
             border: 1px solid #000;
             padding: 10px 10px;
         }
-        .field-validation-error{
-            color:red;
+
+        .field-validation-error {
+            color: red;
         }
     </style>
 </head>
 <body>
     <div id="login-div">
-        @using (Html.BeginForm("Authorize","Login", FormMethod.Post))
+        @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
         {
             <table>
                 <tr>
@@ -75,7 +75,6 @@
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
 
 </body>
 
