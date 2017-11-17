@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using Core;
 
@@ -9,16 +10,33 @@ namespace DatabaseAccess.Employees
     {
         public List<Employee> GetAllEmployees()
         {
-            throw new NotImplementedException();
+            List<Employee> employees = new List<Employee>();
+
+            using (SqlConnection connection = new DbConnectionADO().GetConnection())
+            {
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Employee";
+                    SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+                    while (reader.Read())
+                    {
+                        employees.Add(BuildEmployeeObject(reader));
+                    }
+
+                    connection.Close();
+                }
+            }
+            return employees;
         }
 
         public Employee GetEmployeeByUsername(string username)
         {
             Employee empRes = new Employee();
 
-            using (SqlConnection conn= new DbConnectionADO().GetConnection())
+            using (SqlConnection conn = new DbConnectionADO().GetConnection())
             {
-                using(SqlCommand cmd = conn.CreateCommand())
+                using (SqlCommand cmd = conn.CreateCommand())
                 {
 
                     cmd.CommandText = "SELECT * FROM Employee WHERE Employee.username = @param1;";
@@ -39,7 +57,7 @@ namespace DatabaseAccess.Employees
 
                     return empRes;
                 }
-  
+
             }
         }
 

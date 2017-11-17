@@ -64,6 +64,7 @@
     <Compile Include="TempShift.cs" />
     <Compile Include="Schedule.cs" />
     <Compile Include="Shift.cs" />
+    <Compile Include="Workplace.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

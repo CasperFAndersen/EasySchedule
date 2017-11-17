@@ -18,8 +18,8 @@ namespace Tests.Services
 
             //  EmployeeServiceClient client = new EmployeeServiceClient();
 
-            string expected = "Tobias";
-            string actual = client.GetEmployeeByUsername("TobMaster").Name;
+            string expected = "Tobias Andersen";
+            string actual = client.GetEmployeeByUsername("TobiAs").Name;
 
             Assert.AreEqual(expected, actual);
             //
