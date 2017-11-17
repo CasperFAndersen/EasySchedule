@@ -9,8 +9,6 @@ namespace ServiceLibrary
         [OperationContract]
         Employee GetEmployeeByUsername(string username);
 
-        
-
 
     }
 
