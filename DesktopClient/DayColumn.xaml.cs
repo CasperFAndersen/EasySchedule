@@ -21,13 +21,19 @@ namespace DesktopClient
     /// </summary>
     public partial class DayColumn : UserControl
     {
+
+        
         public List<TimeCell> TimeCellList { get; set; }
-        public DayColumn()
+        public DayOfWeek dayOfWeek { get; set; }
+        public DayColumn(DayOfWeek dayOfWeek)
         {
+            this.dayOfWeek = dayOfWeek;
             InitializeComponent();
             TimeCellList = new List<TimeCell>();
             LoadTimeCells();
         }
+
+
 
         public Grid GetGrid()
         {
@@ -43,7 +49,7 @@ namespace DesktopClient
                 while (timeCount <= Calendar.ENDTIME.Add(new TimeSpan(0, 60 -Calendar.INCREMENT, 0)))
                 {
                     DayColumnGrid.RowDefinitions.Add(new RowDefinition());
-                    TimeCell tempTimeCell = new TimeCell() { Time = timeCount};
+                    TimeCell tempTimeCell = new TimeCell() { Time = timeCount, weekDay = dayOfWeek };
                     tempTimeCell.SetToolTipText(timeCount.ToString());
 
                     DayColumnGrid.Children.Add(tempTimeCell);

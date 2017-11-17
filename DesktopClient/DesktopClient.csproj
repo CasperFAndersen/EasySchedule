@@ -75,6 +75,7 @@
     <Compile Include="Mediator.cs" />
     <Compile Include="Services\TempScheduleProxy.cs" />
     <Compile Include="Services\TempShiftService.cs" />
+    <Compile Include="ShiftDropEventArgs.cs" />
     <Compile Include="ShiftElement.xaml.cs">
       <DependentUpon>ShiftElement.xaml</DependentUpon>
     </Compile>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,44 @@ namespace DesktopClient
 {
     public class Mediator
     {
+        private static Mediator instance;
+
+        private Mediator()
+        {
+
+        }
+
+        public static Mediator GetInstance()
+        {
+            if(instance == null)
+            {
+                instance = new Mediator();
+            }
+
+            return instance;
+        }
+
+        public event EventHandler<ShiftDropEventArgs> ShiftDropped;
+
+        public void OnShiftDropped(object sender, TemplateShift shift)
+        {
+            var shiftDroppedDelegate = ShiftDropped as EventHandler<ShiftDropEventArgs>;
+            if (shiftDroppedDelegate != null)
+            {
+                shiftDroppedDelegate(sender, new ShiftDropEventArgs {Shift = shift});
+            }
+
+        }
+
+        public event EventHandler<ShiftDropEventArgs> ShiftCloseClicked;
+        public void OnShiftCloseClick(object sender, TemplateShift shift)
+        {
+            var shiftCloseDelegate = ShiftCloseClicked as EventHandler<ShiftDropEventArgs>;
+            if (shiftCloseDelegate != null)
+            {
+                shiftCloseDelegate(sender, new ShiftDropEventArgs { Shift = shift });
+            }
+
+        }
     }
 }

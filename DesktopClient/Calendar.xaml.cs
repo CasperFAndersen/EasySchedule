@@ -23,7 +23,7 @@ namespace DesktopClient
     {
         public static readonly TimeSpan STARTTIME = new TimeSpan(6,0,0);
         public static readonly TimeSpan ENDTIME = new TimeSpan(18, 0, 0);
-        public static readonly int INCREMENT = 30;
+        public static readonly int INCREMENT = 60;
 
         Color[] colors = { Colors.IndianRed, Colors.DarkKhaki, Colors.DarkOrange, Colors.LightGreen, Colors.Thistle, Colors.SkyBlue, Colors.RoyalBlue, Colors.Turquoise };
         public static Dictionary<Employee, Color> EmployeeColors { get; set; }
@@ -41,6 +41,8 @@ namespace DesktopClient
             BuildDayColumns();
             EmployeeColors = new Dictionary<Employee, Color>();
             AddShifts(GetListOfTemplateShifts());
+            SetDropHandler();
+            SetCloseShiftClicked();
             LoadShiftsIntoCalendar();
         }
 
@@ -84,12 +86,15 @@ namespace DesktopClient
             while (timeCount <= ENDTIME)
             {
                 TimesColumn.RowDefinitions.Add(new RowDefinition());
-                TimeCell tempTimeCell = new TimeCell() { Time = timeCount };
-                TextBlock textBlock = new TextBlock() { Text = timeCount.ToString() };
+                Border border = new Border() { BorderBrush = new SolidColorBrush(Colors.Black), BorderThickness = new Thickness(0.5,0.5,0.5,0.5)};
+                border.Background = new SolidColorBrush(Colors.LightGray);
+                TextBlock textBlock = new TextBlock() { Text = timeCount.ToString().Substring(0,5), FontSize = 14, FontWeight = FontWeights.Bold};
+                textBlock.Margin = new Thickness(0,-2,5,0);
+                border.Child = textBlock;
                 textBlock.HorizontalAlignment = HorizontalAlignment.Right;
-                tempTimeCell.GetGrid().Children.Add(textBlock);
-                TimesColumn.Children.Add(tempTimeCell);
-                Grid.SetRow(tempTimeCell, rowCount);
+              
+                TimesColumn.Children.Add(border);
+                Grid.SetRow(border, rowCount);
 
                 rowCount++;
                 timeCount = timeCount.Add(new TimeSpan(0, 60, 0));
@@ -99,11 +104,11 @@ namespace DesktopClient
         public void BuildDayColumns()
         {
             int row = 1; int col = 1;
-            int day = 0;
-            while (day <5)
+            int day = 1;
+            while (day <6)
             {
                 string name = Enum.GetName(typeof(DayOfWeek), day);
-                DayColumn dayCol = new DayColumn() { Name = name };
+                DayColumn dayCol = new DayColumn((DayOfWeek)day) {Name = name };
                 CalendarGrid.Children.Add(dayCol);
 
                 Grid.SetColumn(dayCol, col);
@@ -115,6 +120,23 @@ namespace DesktopClient
 
                 DayColumnList.Add(dayCol);
             }
+        }
+
+        public void SetDropHandler()
+        {
+            Mediator.GetInstance().ShiftDropped += (s, e) =>
+            {
+                LoadShiftsIntoCalendar();
+            };
+        }
+
+        public void SetCloseShiftClicked()
+        {
+            Mediator.GetInstance().ShiftCloseClicked+= (s, e) =>
+            {
+                Shifts.Remove(e.Shift);
+                LoadShiftsIntoCalendar();
+            };
         }
 
         public Color GetRandomColor()

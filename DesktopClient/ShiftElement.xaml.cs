@@ -41,5 +41,25 @@ namespace DesktopClient
             textBox.Text = text;
 
         }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                // Package the data.
+                DataObject data = new DataObject();
+                data.SetData("IsLastShiftElement", IsLastElement);
+                data.SetData("Object", DataContext);
+
+                // Inititate the drag-and-drop operation.
+                DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
+            }
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Mediator.GetInstance().OnShiftCloseClick(sender, (TemplateShift)DataContext);
+        }
     }
 }

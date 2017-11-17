@@ -23,10 +23,13 @@ namespace DesktopClient
     {
         public List<TemplateShift> ShiftsInCell { get; set; }
         public TimeSpan Time { get; set; }
+        public DayOfWeek weekDay { get; set; }
         public TimeCell()
         {
             InitializeComponent();
             ShiftsInCell = new List<TemplateShift>();
+            SetDropHandler();
+            SetCloseClick();
         }
 
         public Grid GetGrid()
@@ -63,5 +66,35 @@ namespace DesktopClient
 
         }
 
+        private void OnHandleDrop(object sender, DragEventArgs e)
+        {
+            TemplateShift droppedShift = (TemplateShift)e.Data.GetData("Object");
+            droppedShift.StartTime = Time;
+            droppedShift.WeekDay = weekDay;
+            Mediator.GetInstance().OnShiftDropped(sender, droppedShift );
+        }
+
+        private void SetDropHandler()
+        {
+            Mediator.GetInstance().ShiftDropped += (s, e) =>
+            {
+                Clear();
+            };
+        }
+
+        private void SetCloseClick()
+        {
+            Mediator.GetInstance().ShiftCloseClicked += (s, e) =>
+            {
+                Clear();
+            };
+        }
+
+        public void Clear()
+        {
+            ShiftsInCell = new List<TemplateShift>();
+            TimeCellGrid.Children.Clear();
+            TimeCellGrid.ColumnDefinitions.Clear();
+        }
     }
 }
