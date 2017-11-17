@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Department.cs" />
     <Compile Include="TempSchedule.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

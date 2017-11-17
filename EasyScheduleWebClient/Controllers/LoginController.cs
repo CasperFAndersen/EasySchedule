@@ -14,23 +14,20 @@ namespace EasyScheduleWebClient.Controllers
         }
 
         [HttpPost]
-        public ActionResult Authorize(Employee employee)
+        public ActionResult Authorize(Employee loggingIn)
         {
             EmployeeProxy empProxy = new EmployeeProxy();
-            var emp1 = empProxy.GetEmployeeByUsername(employee.Username);
-            Employee e1 = new Employee();
+            var emp1 = empProxy.GetEmployeeByUsername(loggingIn.Username);
 
-            e1.Username = emp1.Username;
-            e1.Password = emp1.Password;
-
-            if(e1.Username == null)
+            if (loggingIn.Password.Equals(emp1.Password))
             {
-
+                Session["employee"] = emp1;
+                return RedirectToAction("Index", "Home");
             }
-            
-
-
-            return View();
+            else
+            {
+                return View();
+            }
         }
     }
 }

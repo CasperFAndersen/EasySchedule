@@ -91,6 +91,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\TestDepartmentCtrl.cs" />
     <Compile Include="Connected Services\EmployeeService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
