@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>9</zoom_level>
+  <zoom_level>16</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>90</x>
-      <y>504</y>
-      <w>90</w>
-      <h>135</h>
+      <x>400</x>
+      <y>592</y>
+      <w>160</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>Employee
 --
@@ -23,10 +23,10 @@ password</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>90</x>
-      <y>351</y>
-      <w>90</w>
-      <h>90</h>
+      <x>400</x>
+      <y>320</y>
+      <w>160</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>Department
 --
@@ -39,10 +39,10 @@ phone</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>90</x>
-      <y>189</y>
-      <w>90</w>
-      <h>90</h>
+      <x>400</x>
+      <y>32</y>
+      <w>160</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>Workplace
 --
@@ -55,10 +55,10 @@ phone</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>126</x>
-      <y>270</y>
-      <w>63</w>
-      <h>99</h>
+      <x>464</x>
+      <y>176</y>
+      <w>112</w>
+      <h>176</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1..*
@@ -69,10 +69,10 @@ has &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>477</x>
-      <y>351</y>
-      <w>90</w>
-      <h>90</h>
+      <x>1088</x>
+      <y>320</y>
+      <w>160</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>Schedule
 --
@@ -83,10 +83,10 @@ startDate
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>126</x>
-      <y>432</y>
-      <w>45</w>
-      <h>90</h>
+      <x>464</x>
+      <y>464</y>
+      <w>80</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -96,10 +96,10 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>171</x>
-      <y>540</y>
-      <w>144</w>
-      <h>36</h>
+      <x>544</x>
+      <y>656</y>
+      <w>256</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -109,10 +109,10 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>171</x>
-      <y>378</y>
-      <w>126</w>
-      <h>45</h>
+      <x>544</x>
+      <y>368</y>
+      <w>224</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -123,10 +123,10 @@ has &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>477</x>
-      <y>531</y>
-      <w>90</w>
-      <h>72</h>
+      <x>1088</x>
+      <y>640</y>
+      <w>160</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>Shift
 --
@@ -139,10 +139,10 @@ startTime
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>513</x>
-      <y>432</y>
-      <w>45</w>
-      <h>117</h>
+      <x>1152</x>
+      <y>464</y>
+      <w>80</w>
+      <h>208</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=0..1
@@ -152,10 +152,10 @@ m2=0..*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>297</x>
-      <y>531</y>
-      <w>90</w>
-      <h>72</h>
+      <x>768</x>
+      <y>640</y>
+      <w>160</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>TemplateShift
 --
@@ -168,10 +168,10 @@ startTime
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>279</x>
-      <y>351</y>
-      <w>117</w>
-      <h>90</h>
+      <x>736</x>
+      <y>320</y>
+      <w>208</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>TemplateSchedule
 --
@@ -182,10 +182,10 @@ noOfWeeks</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>333</x>
-      <y>432</y>
-      <w>45</w>
-      <h>117</h>
+      <x>832</x>
+      <y>464</y>
+      <w>80</w>
+      <h>208</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -195,10 +195,10 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>171</x>
-      <y>594</y>
-      <w>387</w>
-      <h>54</h>
+      <x>544</x>
+      <y>752</y>
+      <w>688</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -208,10 +208,10 @@ m2=0..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>387</x>
-      <y>378</y>
-      <w>108</w>
-      <h>36</h>
+      <x>928</x>
+      <y>368</y>
+      <w>192</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
