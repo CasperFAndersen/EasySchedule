@@ -30,6 +30,8 @@ namespace Tests.BusinessLogic
 
             Schedule schedule = schCtrl.GetCurrentScheduleByDepartmentId(1);
 
+            Assert.AreEqual(3, schedule.Shifts.Count);
+            Assert.AreEqual("Kolonial", schedule.Department.Name);
             Assert.IsNotNull(schedule);
         }
     }

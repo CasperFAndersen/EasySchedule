@@ -27,8 +27,9 @@ namespace BusinessLogic
 
         public Schedule GetCurrentScheduleByDepartmentId(int id)
         {
-            int day = (int)DayOfWeek.Monday;
+            
             DateTime currentDate = DateTime.Now;
+            int day = currentDate.Day - ((int)currentDate.DayOfWeek -1);
 
             DateTime date = new DateTime(currentDate.Year, currentDate.Month, day);
 
