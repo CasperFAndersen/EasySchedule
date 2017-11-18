@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d3c5001d-8106-482a-8e04-4d555c0c067a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="10a218ce-7c41-48d7-b25f-4ab7dbc8d166" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,13 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:9000/Design_Time_Addresses/Service/DepartmentService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/DepartmentService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="5901bb10-43a3-428a-8838-1bb767f59bce" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/Service/DepartmentService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="cc38c94e-2a14-411b-b7ae-152f51a6f952" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/Service/DepartmentService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="c032bc0c-652a-442c-a959-73d7231eda90" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/Service/DepartmentService/mex" />
-    <MetadataFile FileName="Core.xsd" MetadataType="Schema" ID="a62d7cdf-3389-41dc-84a9-38397a1c3db9" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/Service/DepartmentService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="93ea5029-bb1a-4f5e-ae88-cb83617fa497" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/DepartmentService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="cbccfa99-aff1-48bd-b0da-7471c9e6e52e" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/DepartmentService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="e4390c1e-77bc-485c-8855-8fca516ec5b2" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/DepartmentService/mex" />
+    <MetadataFile FileName="Core.xsd" MetadataType="Schema" ID="7d6f8f91-87d8-427e-944f-2a3f984ad28c" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/DepartmentService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

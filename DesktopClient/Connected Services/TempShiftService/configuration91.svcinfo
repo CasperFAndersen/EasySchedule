@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="tWCg/ykPHj8LIb2DJ5ulD5PWPMc=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="C5ro0dir2pIDy9VAMyHoWAucAMM=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_ITempShiftService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ITempShiftService" contract="TempShiftService.ITempShiftService" bindingType="basicHttpBinding" address="http://localhost:9000/Design_Time_Addresses/Service/TempShiftService/" bindingConfiguration="BasicHttpBinding_ITempShiftService">
+    <endpoint name="BasicHttpBinding_ITempShiftService" contract="TempShiftService.ITempShiftService" bindingType="basicHttpBinding" address="http://localhost:9000/ServiceLibrary/TempShiftService/" bindingConfiguration="BasicHttpBinding_ITempShiftService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:9000/Design_Time_Addresses/Service/TempShiftService/</serializedValue>
+          <serializedValue>http://localhost:9000/ServiceLibrary/TempShiftService/</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

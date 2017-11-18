@@ -2,8 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Core;
 using System.Collections.Generic;
-using Tests.TempScheduleService;
-//using DesktopClient.TempScheduleService;
+using DesktopClient;
 
 namespace Tests.Services
 {
@@ -13,7 +12,7 @@ namespace Tests.Services
         [TestMethod]
         public void TestAddTempScheduleToDBService()
         {
-            TempScheduleServiceClient tempScheduleService = new TempScheduleServiceClient();
+            TempScheduleProxy tempScheduleService = new TempScheduleProxy();
 
             List<TemplateSchedule> beforeAddingTempScheduleList = new List<TemplateSchedule>(tempScheduleService.GetAllTempSchedules());
             TemplateSchedule tSchedule = new TemplateSchedule(4, "DummySchedule", 1);
@@ -24,6 +23,7 @@ namespace Tests.Services
 
             Assert.AreNotEqual(beforeAddingTempScheduleList.Count, afterAddingTempScheduleList.Count);
             Assert.AreEqual(tempScheduleService.FindTempScheduleByName("DummySchedule").Name, tSchedule.Name);
+            
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Domain\Core.csproj", "{3E8C167C-BC2D-4CA0-A666-D3C4AF3B9DB0}"
 EndProject
@@ -12,6 +12,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLibrary", "Service\ServiceLibrary.csproj", "{D4612C0A-5086-4CFD-800A-D3DC174969A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "MailingService.Tests\Tests.csproj", "{879FA0F2-D2CF-4DDA-85DA-146AEC9CEFD5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D4612C0A-5086-4CFD-800A-D3DC174969A8} = {D4612C0A-5086-4CFD-800A-D3DC174969A8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{206B5D10-0DA4-47AB-96F3-D3BC86554CFE}"
 EndProject

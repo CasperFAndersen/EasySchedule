@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="vqY/Jy52fXPVEXL+ywti1OpGx84=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="NwzMg+mZnhsUeFmElAxSHizynPQ=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IDepartmentService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IDepartmentService" contract="DepartmentService.IDepartmentService" bindingType="basicHttpBinding" address="http://localhost:9000/Design_Time_Addresses/Service/DepartmentService/" bindingConfiguration="BasicHttpBinding_IDepartmentService">
+    <endpoint name="BasicHttpBinding_IDepartmentService" contract="DepartmentService.IDepartmentService" bindingType="basicHttpBinding" address="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/DepartmentService/" bindingConfiguration="BasicHttpBinding_IDepartmentService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:9000/Design_Time_Addresses/Service/DepartmentService/</serializedValue>
+          <serializedValue>http://localhost:9000/Design_Time_Addresses/ServiceLibrary/DepartmentService/</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

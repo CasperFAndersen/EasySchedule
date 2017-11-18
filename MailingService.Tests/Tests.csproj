@@ -92,16 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\TestTempScheduleCtrl.cs" />
-    <Compile Include="Connected Services\TempScheduleService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Connected Services\TempShiftService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="DataBaseAcces\TemplateScheduleDBTest.cs" />
     <Compile Include="BusinessLogic\TestDepartmentCtrl.cs" />
     <Compile Include="Connected Services\EmployeeService\Reference.cs">
@@ -122,31 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
-    <None Include="Connected Services\TempScheduleService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Connected Services\TempScheduleService\configuration.svcinfo" />
-    <None Include="Connected Services\TempScheduleService\configuration91.svcinfo" />
-    <None Include="Connected Services\TempScheduleService\Core.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\TempScheduleService\service.wsdl" />
-    <None Include="Connected Services\TempScheduleService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\TempScheduleService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\TempScheduleService\System.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\TempShiftService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Connected Services\TempShiftService\configuration.svcinfo" />
-    <None Include="Connected Services\TempShiftService\configuration91.svcinfo" />
     <None Include="Connected Services\EmployeeService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -162,19 +127,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\EmployeeService\item2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\TempShiftService\Core.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\TempShiftService\service.wsdl" />
-    <None Include="Connected Services\TempShiftService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\TempShiftService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\TempShiftService\System.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\DataSources\Core.Employee.datasource" />
@@ -202,7 +154,7 @@
       <Name>DatabaseAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\DesktopClient\DesktopClient.csproj">
-      <Project>{d9da16d8-a24f-433d-80eb-ffae774bf816}</Project>
+      <Project>{D9DA16D8-A24F-433D-80EB-FFAE774BF816}</Project>
       <Name>DesktopClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Core.csproj">
@@ -213,18 +165,12 @@
       <Project>{e55fc70a-c764-4cdc-89bd-ab06090f4813}</Project>
       <Name>ServiceHosting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Service\ServiceLibrary.csproj">
-      <Project>{d4612c0a-5086-4cfd-800a-d3dc174969a8}</Project>
-      <Name>ServiceLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\EmployeeService\" />
-    <WCFMetadataStorage Include="Connected Services\TempScheduleService\" />
-    <WCFMetadataStorage Include="Connected Services\TempShiftService\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
