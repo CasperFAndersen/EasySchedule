@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace DatabaseAccess.Shifts
 {
-    class ShiftRepository : IShiftRepository
+    public class ShiftRepository : IShiftRepository
     {
         public List<Shift> GetShiftsByScheduleID(int scheduleId)
         {

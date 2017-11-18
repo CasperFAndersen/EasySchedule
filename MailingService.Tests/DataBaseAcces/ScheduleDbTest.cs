@@ -20,5 +20,17 @@ namespace Tests.DataBaseAcces
             Assert.IsNotNull(schedule);
             //Assert.AreEqual(3, schedule.Shifts.Count);
         }
+
+        [TestMethod]
+        public void TestGetCurrentScheduleByDepartmentId()
+        {
+            DateTime currentDate = new DateTime(2017, 11, 13);
+
+            Schedule schedule = schRep.GetCurrentScheduleByDepartmentId(currentDate, 2);
+
+            Assert.IsNotNull(schedule);
+            Assert.AreEqual(schedule.StartDate, currentDate);
+            Assert.AreEqual(3, schedule.Shifts.Count);
+        }
     }
 }
