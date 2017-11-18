@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests.ScheduleService;
 using Core;
+using System.Collections.Generic;
 
 namespace Tests.Services
 {
@@ -14,6 +15,8 @@ namespace Tests.Services
             ScheduleServiceClient client = new ScheduleServiceClient();
 
             Schedule schedule = client.GetCurrentScheduleDepartmentId(1);
+
+            List<Shift> shifts = schedule.Shifts;
 
             Assert.IsNotNull(schedule);
             Assert.AreEqual(new DateTime(2017,11,13), schedule.StartDate);

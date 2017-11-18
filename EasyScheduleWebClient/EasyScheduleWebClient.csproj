@@ -178,6 +178,7 @@
     <Compile Include="Services\EmployeeProxy.cs" />
     <Compile Include="Services\EmployeeRepository.cs" />
     <Compile Include="Services\EventRepository.cs" />
+    <Compile Include="Services\MockShifts.cs" />
     <Compile Include="Services\ScheduleProxy.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -109,9 +109,8 @@ namespace Tests.DataBaseAcces
                                       //Shift
                                       "create table Shift(" +           
                                       "id int primary key identity(1,1), " +
-                                      "date smalldatetime, " +
+                                      "startTime smalldatetime, " +
                                       "hours float, " +
-                                      "startTime time, " +
                                       "scheduleId int foreign key references Schedule(id), " +
                                       "employeeId int foreign key references Employee(id)); ";
 
@@ -190,20 +189,20 @@ namespace Tests.DataBaseAcces
 
                                       +
                                       //Shift
-                                      "insert into Shift(date, hours, startTime, scheduleId, employeeId)" +
-                                      "values ('2017-11-15', 6, '06:30:00', (select id from schedule where startDate='2017-11-13'), (select id from employee where name='Mikkel Paulsen')); " +
+                                      "insert into Shift(startTime, hours, scheduleId, employeeId)" +
+                                      "values ('2017-11-15 08:00', 6, (select id from schedule where startDate='2017-11-13'), (select id from employee where name='Mikkel Paulsen')); " +
 
-                                      "insert into Shift(date, hours, startTime, scheduleId, employeeId)" +
-                                      "values ('2017-11-14', 4, '08:30:00', (select id from schedule where startDate='2017-11-13'), (select id from employee where name='Stefan Krabbe')); " +
+                                      "insert into Shift(startTime, hours, scheduleId, employeeId)" +
+                                      "values ('2017-11-14 09:00', 4, (select id from schedule where startDate='2017-11-13'), (select id from employee where name='Stefan Krabbe')); " +
 
-                                      "insert into Shift(date, hours, startTime, scheduleId, employeeId)" +
-                                      "values ('2017-11-17', 8, '10:00:00', (select id from schedule where startDate='2017-11-13'), (select id from employee where name='Casper Froberg')); "+
+                                      "insert into Shift(startTime, hours, scheduleId, employeeId)" +
+                                      "values ('2017-11-17 10:00', 8, (select id from schedule where startDate='2017-11-13'), (select id from employee where name='Casper Froberg')); "+
 
-                                      "insert into Shift(date, hours, startTime, scheduleId, employeeId)" +
-                                      "values ('2017-11-20', 4, '08:00:00', (select id from schedule where startDate='2017-11-20'), (select id from employee where name='Arne Ralston')); " +
+                                      "insert into Shift(startTime, hours, scheduleId, employeeId)" +
+                                      "values ('2017-11-20', 4, (select id from schedule where startDate='2017-11-20'), (select id from employee where name='Arne Ralston')); " +
 
-                                      "insert into Shift(date, hours, startTime, scheduleId, employeeId)" +
-                                      "values ('2017-11-21', 7, '11:00:00', (select id from schedule where startDate='2017-11-20'), (select id from employee where name='Tobias Andersen')); "
+                                      "insert into Shift(startTime, hours, scheduleId, employeeId)" +
+                                      "values ('2017-11-21', 7, (select id from schedule where startDate='2017-11-20'), (select id from employee where name='Tobias Andersen')); "
 
                     ;
 
