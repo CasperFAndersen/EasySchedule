@@ -26,9 +26,9 @@ namespace DesktopClient
         public MainWindow()
         {
             InitializeComponent();
-
-            LoadEmployeeList(GetListOfEmployees());
-           // LoadDeparmentList();
+            LoadDeparmentList();
+            //LoadEmployeeList(GetListOfEmployees());
+            
         }
 
         public void LoadEmployeeList(List<Employee> employees)
@@ -40,32 +40,39 @@ namespace DesktopClient
         }
 
 
-        public List<Employee> GetListOfEmployees()
+        public List<Employee> GetListOfEmployees(int departmentIndex)
         {
-            List<Employee> emps = new List<Employee>();
-            Employee e = new Employee() { Name = "Fro", };
-            Employee e2 = new Employee() { Name = "Arne", };
-
-            emps.Add(e);
-            emps.Add(e2);
-
-            return emps;
+            Department deparment = departmentList.ElementAt(departmentIndex);
+            DepartmentProxy deptProxy = new DepartmentProxy();
+            return deptProxy.GetAllEmployeesByDepartmentID(deparment);
         }
 
-        //public List<Department> LoadDeparmentList()
-        //{
-        //    DepartmentProxy deptProxy = new DepartmentProxy();
-        //    List<Department> departmentList = deptProxy.GetAllDepartments();
-        //}
+        public List<Department> LoadDeparmentList()
+        {
+            DepartmentProxy deptProxy = new DepartmentProxy();
+            return departmentList = deptProxy.GetAllDepartments().ToList();
+        }
 
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //CBoxDepartment.selec
+            int departmentIndexChoice = CBoxDepartment.SelectedIndex;
+            GetListOfEmployees(departmentIndexChoice);
         }
 
         private void BtnSaveTemplateSchedule_Click(object sender, RoutedEventArgs e)
         {
+            TemplateSchedule tempSchedule = new TemplateSchedule();
 
+            foreach (TemplateShift ts in Calendar.GetListOfTemplateShifts())
+            {
+                tempSchedule.AddTempShift(ts);
+            }
+            //tempSchedule.NoOfWeeks = TxtBoxNoOfWeeks;
+            //get this from a textbox / or smth. Ask arne what he ment
+
+            tempSchedule.Name = TxtBoxTemplateScheduleName.Text;
+            TempScheduleProxy tsProxy = new TempScheduleProxy();
+            tsProxy.AddTempScheduleToDB(tempSchedule);
         }
 
     }

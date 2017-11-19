@@ -64,6 +64,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\EmployeeService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\TempScheduleService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -83,6 +88,7 @@
     </Compile>
     <Compile Include="Mediator.cs" />
     <Compile Include="Services\DepartmentProxy.cs" />
+    <Compile Include="Services\EmployeeProxy.cs" />
     <Compile Include="Services\TempScheduleProxy.cs" />
     <Compile Include="Services\TempShiftProxy.cs" />
     <Compile Include="ShiftDropEventArgs.cs" />
@@ -153,6 +159,16 @@
     <None Include="Connected Services\DepartmentService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\EmployeeService\Core.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EmployeeService\service.wsdl" />
+    <None Include="Connected Services\EmployeeService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EmployeeService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\TempScheduleService\Core.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -180,6 +196,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\DataSources\Core.Department.datasource" />
+    <None Include="Properties\DataSources\Core.Employee.datasource" />
     <None Include="Properties\DataSources\Core.Schedule.datasource" />
     <None Include="Properties\DataSources\Core.TemplateSchedule.datasource" />
     <None Include="Properties\DataSources\Core.TemplateShift.datasource" />
@@ -196,6 +213,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\DepartmentService\" />
+    <WCFMetadataStorage Include="Connected Services\EmployeeService\" />
     <WCFMetadataStorage Include="Connected Services\TempScheduleService\" />
     <WCFMetadataStorage Include="Connected Services\TempShiftService\" />
   </ItemGroup>
@@ -241,6 +259,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\TempScheduleService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmployeeService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmployeeService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmployeeService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
