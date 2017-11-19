@@ -22,9 +22,11 @@ namespace EasyScheduleWebClient.Services
         }
 
 
-        public List<Employee> GetEmployeesByDepartment()
+        public List<Employee> GetEmployeesByDepartmentId(int id)
         {
-            throw new NotImplementedException();
+            EmployeeServiceClient proxy = new EmployeeServiceClient();
+           // return proxy.GetEmployeesByDepartmentId(id);
+            return null;
         }
     }
 }

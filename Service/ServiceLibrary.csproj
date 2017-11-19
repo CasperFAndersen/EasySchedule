@@ -66,6 +66,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DepartmentService.cs" />
+    <Compile Include="IDepartmentService.cs" />
     <Compile Include="ITempScheduleService.cs" />
     <Compile Include="ITempShiftService.cs" />
     <Compile Include="TempScheduleService.cs" />
@@ -99,6 +101,9 @@
       <Project>{3E8C167C-BC2D-4CA0-A666-D3C4AF3B9DB0}</Project>
       <Name>Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
