@@ -8,7 +8,7 @@ using DesktopClient.DepartmentService;
 
 namespace DesktopClient.Services
 {
-    public class DepartmentProxy : DepartmentService.IDepartmentService
+    public class DepartmentProxy : IDepartmentService
     {
         DepartmentServiceClient proxy = new DepartmentServiceClient();
 
@@ -22,9 +22,5 @@ namespace DesktopClient.Services
             throw new NotImplementedException();
         }
 
-        internal List<Employee> GetAllEmployeesByDepartmentID(Department deparment)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

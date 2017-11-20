@@ -97,6 +97,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\EmployeeService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ScheduleService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -112,19 +117,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="DataBaseAcces\TemplateScheduleDBTest.cs" />
+    <Compile Include="DatabaseAccess\TemplateScheduleDBTest.cs" />
     <Compile Include="BusinessLogic\TestDepartmentCtrl.cs" />
-    <Compile Include="Connected Services\EmployeeService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="DataBaseAcces\DBSetUp.cs" />
+    <Compile Include="DatabaseAccess\DBSetUp.cs" />
     <Compile Include="BusinessLogic\TestEmployeeCtrl.cs" />
     <Compile Include="BusinessLogic\TestScheduleCtrl.cs" />
-    <Compile Include="DataBaseAcces\EmployeeDbTest.cs" />
-    <Compile Include="DataBaseAcces\ScheduleDbTest.cs" />
-    <Compile Include="DataBaseAcces\ShiftDbTest.cs" />
+    <Compile Include="DatabaseAccess\EmployeeDbTest.cs" />
+    <Compile Include="DatabaseAccess\ScheduleDbTest.cs" />
+    <Compile Include="DatabaseAccess\ShiftDbTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DatabaseAccess\DatabaseConnectionTest.cs" />
     <Compile Include="Services\TemplateScheduleServiceTest.cs" />
@@ -132,10 +132,21 @@
     <Compile Include="Services\EmpServiceTest.cs" />
     <Compile Include="Services\ScheduleServiceTest.cs" />
     <Compile Include="Services\DepartmentServiceTest.cs" />
-    <Compile Include="WCF\EmployeeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
+    <None Include="Connected Services\ScheduleService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ScheduleService\configuration.svcinfo" />
+    <None Include="Connected Services\ScheduleService\configuration91.svcinfo" />
+    <None Include="Connected Services\EmployeeService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\EmployeeService\configuration.svcinfo" />
+    <None Include="Connected Services\EmployeeService\configuration91.svcinfo" />
     <None Include="Connected Services\DepartmentService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -152,39 +163,14 @@
     <None Include="Connected Services\DepartmentService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempShiftService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Connected Services\TempShiftService\configuration.svcinfo" />
-    <None Include="Connected Services\TempShiftService\configuration91.svcinfo" />
-    <None Include="Connected Services\TempScheduleService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Connected Services\TempScheduleService\configuration.svcinfo" />
-    <None Include="Connected Services\TempScheduleService\configuration91.svcinfo" />
-    <None Include="Connected Services\ScheduleService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Connected Services\ScheduleService\configuration.svcinfo" />
-    <None Include="Connected Services\ScheduleService\configuration91.svcinfo" />
-    <None Include="Connected Services\EmployeeService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Connected Services\EmployeeService\configuration.svcinfo" />
-    <None Include="Connected Services\EmployeeService\configuration91.svcinfo" />
-    <None Include="Connected Services\EmployeeService\item.disco" />
-    <None Include="Connected Services\EmployeeService\EmployeeService.wsdl" />
-    <None Include="Connected Services\EmployeeService\item.xsd">
+    <None Include="Connected Services\EmployeeService\Core.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\EmployeeService\item1.xsd">
+    <None Include="Connected Services\EmployeeService\service.wsdl" />
+    <None Include="Connected Services\EmployeeService\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\EmployeeService\item2.xsd">
+    <None Include="Connected Services\EmployeeService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ScheduleService\Core.xsd">
@@ -197,6 +183,18 @@
     <None Include="Connected Services\ScheduleService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\TempShiftService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\TempShiftService\configuration.svcinfo" />
+    <None Include="Connected Services\TempShiftService\configuration91.svcinfo" />
+    <None Include="Connected Services\TempScheduleService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\TempScheduleService\configuration.svcinfo" />
+    <None Include="Connected Services\TempScheduleService\configuration91.svcinfo" />
     <None Include="Connected Services\TempScheduleService\Core.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -232,9 +230,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{f9f9296a-aef1-4fb7-9aec-da0d2daf8207}</Project>

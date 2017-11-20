@@ -25,7 +25,7 @@ namespace Tests.DataBaseAcces
         [TestMethod]
         public void TestGetCurrentScheduleByDepartmentId()
         {
-            DateTime currentDate = new DateTime(2017, 11, 13);
+            DateTime currentDate = new DateTime(2017, 11, 20);
 
             Schedule schedule = schRep.GetCurrentScheduleByDepartmentId(currentDate, 1);
 
