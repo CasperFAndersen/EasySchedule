@@ -77,7 +77,7 @@
       <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\ServiceLibrary\ServiceLibrary.csproj">
-      <Project>{a9b7a70f-9bbc-4ae2-a459-a82c97ebb708}</Project>
+      <Project>{7a2ed209-f25f-435f-9f5f-85ced99bd530}</Project>
       <Name>ServiceLibrary</Name>
     </ProjectReference>
   </ItemGroup>
