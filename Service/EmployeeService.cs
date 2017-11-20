@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BusinessLogic;
 using Core;
 
@@ -14,6 +15,9 @@ namespace ServiceLibrary
             return empCtrl.GetEmployeeByUsername(username);
         }
 
-   
+        public List<Employee> GetListOfEmployeesByDepartmentID(int departmentID)
+        {
+            return empCtrl.GetListOfEmployeesByDepartmentID(departmentID);
+        }
     }
 }

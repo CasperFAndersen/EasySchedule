@@ -22,6 +22,11 @@ namespace BusinessLogic
             return empRep.GetEmployeeByUsername(username);
         }
 
+        public List<Employee> GetListOfEmployeesByDepartmentID(int departmentID)
+        {
+            return empRep.GetListOfEmployeesByDepartmentID(departmentID);
+        }
+
         public bool ValidatePassword(string username, string password)
         {
             Employee e1 = GetEmployeeByUsername(username);

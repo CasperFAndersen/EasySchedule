@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel;
 using Core;
+using System.Collections.Generic;
 
 namespace ServiceLibrary
 {
@@ -8,10 +9,7 @@ namespace ServiceLibrary
     {
         [OperationContract]
         Employee GetEmployeeByUsername(string username);
-
-        
-
-
+        List<Employee> GetListOfEmployeesByDepartmentID(int departmentID);
     }
 
 }

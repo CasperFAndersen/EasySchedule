@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ServiceLibrary
 {   [ServiceContract]
     public interface IDepartmentService
-    {   
+    {
         [OperationContract]
         List<Department> GetAllDepartments();
     }

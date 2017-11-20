@@ -44,7 +44,8 @@ namespace DesktopClient
         {
             Department deparment = departmentList.ElementAt(departmentIndex);
             DepartmentProxy deptProxy = new DepartmentProxy();
-            return deptProxy.GetAllEmployeesByDepartmentID(deparment);
+            //return deptProxy.GetAllEmployeesByDepartmentID(deparment);
+            return null;
         }
 
         public List<Department> LoadDeparmentList()
@@ -67,14 +68,13 @@ namespace DesktopClient
             {
                 tempSchedule.AddTempShift(ts);
             }
-            //tempSchedule.NoOfWeeks = TxtBoxNoOfWeeks;
+            tempSchedule.NoOfWeeks = Convert.ToInt32(TxtBoxNoOfWeeks.Text);
             //get this from a textbox / or smth. Ask arne what he ment
 
             tempSchedule.Name = TxtBoxTemplateScheduleName.Text;
             TempScheduleProxy tsProxy = new TempScheduleProxy();
             tsProxy.AddTempScheduleToDB(tempSchedule);
         }
-
     }
 
     

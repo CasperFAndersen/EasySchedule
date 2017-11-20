@@ -92,6 +92,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\TestTempScheduleCtrl.cs" />
+    <Compile Include="Connected Services\TempScheduleService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="DataBaseAcces\TemplateScheduleDBTest.cs" />
     <Compile Include="BusinessLogic\TestDepartmentCtrl.cs" />
     <Compile Include="Connected Services\EmployeeService\Reference.cs">
@@ -112,6 +117,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
+    <None Include="Connected Services\TempScheduleService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\TempScheduleService\configuration.svcinfo" />
+    <None Include="Connected Services\TempScheduleService\configuration91.svcinfo" />
     <None Include="Connected Services\EmployeeService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -127,6 +138,19 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\EmployeeService\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TempScheduleService\Core.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TempScheduleService\service.wsdl" />
+    <None Include="Connected Services\TempScheduleService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TempScheduleService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TempScheduleService\System.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\DataSources\Core.Employee.datasource" />
@@ -171,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\EmployeeService\" />
+    <WCFMetadataStorage Include="Connected Services\TempScheduleService\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
