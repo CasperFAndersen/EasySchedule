@@ -80,7 +80,6 @@ namespace ServiceHosting
                 Console.WriteLine("The service is ready.");
                 Console.WriteLine("Press the Enter key to terminate service.");
                 Console.WriteLine(serviceHost.BaseAddresses.ToString());
-                Console.ReadLine();
             }
         }
 
