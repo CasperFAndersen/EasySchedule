@@ -222,10 +222,6 @@
       <Project>{3e8c167c-bc2d-4ca0-a666-d3c4af3b9db0}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SvcLibrary\SvcLibrary.csproj">
-      <Project>{9def89bb-4824-4def-93bb-8a7c641371d9}</Project>
-      <Name>SvcLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\TempShiftService\configuration91.svcinfo" />

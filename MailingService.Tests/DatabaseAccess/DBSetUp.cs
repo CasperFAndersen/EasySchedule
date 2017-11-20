@@ -1,12 +1,8 @@
-﻿using DatabaseAccess;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DatabaseAccess;
 
-namespace Tests.DataBaseAcces
+namespace Tests.DatabaseAccess
 {
     public class DBSetUp
     {
@@ -26,7 +22,7 @@ namespace Tests.DataBaseAcces
         {
             DateTime currentDate = DateTime.Now;
             int day = (currentDate.DayOfWeek == DayOfWeek.Sunday) ? (currentDate.Day - 6) : (currentDate.Day - ((int)currentDate.DayOfWeek - 1));
-            if (numOfDays <5 && numOfDays > 0)
+            if (numOfDays < 5 && numOfDays > 0)
             {
                 day += numOfDays;
             }
@@ -41,12 +37,12 @@ namespace Tests.DataBaseAcces
             {
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "drop table Shift " +
-                                      "drop table Schedule " +
-                                      "drop table TemplateShift " +
-                                      "drop table TemplateSchedule " +
-                                      "drop table Employee " +
-                                      "drop table Department " +
+                    cmd.CommandText = "drop table Shift; " +
+                                      "drop table Schedule; " +
+                                      "drop table TemplateShift; " +
+                                      "drop table TemplateSchedule; " +
+                                      "drop table Employee; " +
+                                      "drop table Department; " +
                                       "drop table Workplace;";
 
                     cmd.ExecuteNonQuery();
@@ -61,11 +57,11 @@ namespace Tests.DataBaseAcces
             {
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "" 
+                    cmd.CommandText = ""
                                       +
 
                                       //WorkPlace
-                                      "create table Workplace(" +               
+                                      "create table Workplace(" +
                                       "id int primary key identity(1,1), " +
                                       "name varchar(50) not null, " +
                                       "address varchar(50) not null, " +
@@ -74,7 +70,7 @@ namespace Tests.DataBaseAcces
 
                                       +
                                       //Department
-                                      "create table Department(" +              
+                                      "create table Department(" +
                                       "id int primary key identity(1,1), " +
                                       "name varchar(50) not null, " +
                                       "address varchar(50) not null, " +
@@ -84,7 +80,7 @@ namespace Tests.DataBaseAcces
 
                                       +
                                       //Employee
-                                      "create table Employee(" +                
+                                      "create table Employee(" +
                                       "id int primary key identity(1,1), " +
                                       "name varchar(50) not null, " +
                                       "email varchar(50) not null, " +
@@ -97,7 +93,7 @@ namespace Tests.DataBaseAcces
 
                                       +
                                       //TemplateSchedule
-                                      "create table TemplateSchedule(" +        
+                                      "create table TemplateSchedule(" +
                                       "id int primary key identity(1,1), " +
                                       "name varchar(50) not null, " +
                                       "noOfWeeks int, " +
@@ -105,7 +101,7 @@ namespace Tests.DataBaseAcces
 
                                       +
                                       //TemplateShift
-                                      "create table TemplateShift(" +           
+                                      "create table TemplateShift(" +
                                       "id int primary key identity(1,1), " +
                                       "weekday varchar(20), " +
                                       "hours float, " +
@@ -115,15 +111,15 @@ namespace Tests.DataBaseAcces
 
                                       +
                                       //Schedule
-                                      "create table Schedule(" +                 
+                                      "create table Schedule(" +
                                       "id int primary key identity(1,1), " +
                                       "startDate smalldatetime, " +
-                                      "templateScheduleId int foreign key references TemplateSchedule(id), "+
+                                      "templateScheduleId int foreign key references TemplateSchedule(id), " +
                                       "departmentId int foreign key references Department(id)); "
 
                                       +
                                       //Shift
-                                      "create table Shift(" +           
+                                      "create table Shift(" +
                                       "id int primary key identity(1,1), " +
                                       "startTime smalldatetime, " +
                                       "hours float, " +
@@ -131,7 +127,6 @@ namespace Tests.DataBaseAcces
                                       "employeeId int foreign key references Employee(id)); ";
 
                     cmd.ExecuteNonQuery();
-
                 }
             }
         }
@@ -185,8 +180,8 @@ namespace Tests.DataBaseAcces
                                       +
                                       //TemplateSchedule
                                       "insert into TemplateSchedule(name, noOfWeeks, departmentId) " +
-                                      "values ('KolonialBasis', 1, (select id from department where name = 'Kolonial')); "+
-                                     
+                                      "values ('KolonialBasis', 1, (select id from department where name = 'Kolonial')); " +
+
                                       "insert into TemplateSchedule(name, noOfWeeks, departmentId) " +
                                       "values ('PakkeCentralJuletid', 1, (select id from department where name = 'Pakkecentral')); "
 
@@ -198,7 +193,7 @@ namespace Tests.DataBaseAcces
                                       +
                                       //Schedule
                                       "insert into Schedule(startDate, templateScheduleId, departmentId) " +
-                                      "values ('"+startTimeWeek1+"', (select id from templateSchedule where name='KolonialBasis'), 1); " +
+                                      "values ('" + startTimeWeek1 + "', (select id from templateSchedule where name='KolonialBasis'), 1); " +
 
                                       "insert into Schedule(startDate, templateScheduleId, departmentId) " +
                                       "values ('" + startTimeWeek1 + "', (select id from templateSchedule where name='PakkeCentralJuletid'), 2); "
@@ -206,7 +201,7 @@ namespace Tests.DataBaseAcces
                                       +
                                       //Shift
                                       "insert into Shift(startTime, hours, scheduleId, employeeId)" +
-                                      "values ('"+GetCurrentStartTimeStringPlusDay(2) +" 08:00', 6, (select id from schedule where startDate='" +startTimeWeek1+ "' AND departmentId = 1), (select id from employee where name='Mikkel Paulsen')); " +
+                                      "values ('" + GetCurrentStartTimeStringPlusDay(2) + " 08:00', 6, (select id from schedule where startDate='" + startTimeWeek1 + "' AND departmentId = 1), (select id from employee where name='Mikkel Paulsen')); " +
 
                                       "insert into Shift(startTime, hours, scheduleId, employeeId)" +
                                       "values ('" + GetCurrentStartTimeStringPlusDay(0) + " 09:00', 4, (select id from schedule where startDate='" + startTimeWeek1 + "' AND departmentId = 1), (select id from employee where name='Stefan Krabbe')); " +
@@ -218,12 +213,8 @@ namespace Tests.DataBaseAcces
                                       "values ('" + GetCurrentStartTimeStringPlusDay(1) + " 12:00', 4, (select id from schedule where startDate='" + startTimeWeek1 + "' AND departmentId = 2), (select id from employee where name='Arne Ralston')); " +
 
                                       "insert into Shift(startTime, hours, scheduleId, employeeId)" +
-                                      "values ('" + GetCurrentStartTimeStringPlusDay(2) +" 14:00', 7, (select id from schedule where startDate='" +startTimeWeek1+ "' AND departmentId = 2), (select id from employee where name='Tobias Andersen')); "
-
-                    ;
-
+                                      "values ('" + GetCurrentStartTimeStringPlusDay(2) + " 14:00', 7, (select id from schedule where startDate='" + startTimeWeek1 + "' AND departmentId = 2), (select id from employee where name='Tobias Andersen')); ";
                     cmd.ExecuteNonQuery();
-
                 }
             }
         }

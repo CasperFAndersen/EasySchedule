@@ -1,10 +1,10 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DatabaseAccess.Schedules;
-using Core;
 using System.Collections.Generic;
+using Core;
+using DatabaseAccess.Schedules;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.DataBaseAcces
+namespace Tests.DatabaseAccess
 {
     [TestClass]
     public class ScheduleDbTest

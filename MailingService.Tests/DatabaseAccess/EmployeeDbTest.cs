@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Core;
 using DatabaseAccess.Employees;
-using Core;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.DataBaseAcces
+namespace Tests.DatabaseAccess
 {
     [TestClass]
     public class EmployeeDbTest
