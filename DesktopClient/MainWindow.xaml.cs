@@ -66,7 +66,7 @@ namespace DesktopClient
 
             foreach (TemplateShift ts in Calendar.GetListOfTemplateShifts())
             {
-                tempSchedule.AddTempShift(ts);
+                tempSchedule.ListOfTempShifts.Add(ts);
             }
             tempSchedule.NoOfWeeks = Convert.ToInt32(TxtBoxNoOfWeeks.Text);
             //get this from a textbox / or smth. Ask arne what he ment

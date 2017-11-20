@@ -10,8 +10,8 @@ namespace ServiceHosting
     {
         static void Main(string[] args)
         {
-            EmployeeHost();
-            TemplateShiftHost();
+          //  EmployeeHost();
+           // TemplateShiftHost();
             TemplateScheduleHost();
         }
 
@@ -28,9 +28,7 @@ namespace ServiceHosting
 
             //ScheHost.Open();
             //Console.WriteLine("Schedule Service is now running");
-
             Console.ReadLine();
-
             EmpHost.Close();
             // ScheHost.Close();
         }
@@ -49,6 +47,7 @@ namespace ServiceHosting
                 Console.WriteLine("Press the Enter key to terminate service.");
                 Console.WriteLine(serviceHost.BaseAddresses.ToString());
                 Console.ReadLine();
+
             }
         }
         static void TemplateShiftHost()
@@ -64,7 +63,7 @@ namespace ServiceHosting
                 Console.WriteLine("The service is ready.");
                 Console.WriteLine("Press the Enter key to terminate service.");
                 Console.WriteLine(serviceHost.BaseAddresses.ToString());
-                Console.ReadLine();
+              
             }
         }
 

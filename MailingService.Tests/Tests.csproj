@@ -92,8 +92,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\TestTempScheduleCtrl.cs" />
-    <Compile Include="Connected Services\TempScheduleService\Reference.cs">
     <Compile Include="Connected Services\ScheduleService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\TempScheduleService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -117,6 +121,7 @@
     <Compile Include="Services\TemplateShiftServiceTest.cs" />
     <Compile Include="Services\EmpServiceTest.cs" />
     <Compile Include="Services\ScheduleServiceTest.cs" />
+    <Compile Include="WCF\EmployeeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -149,6 +154,16 @@
     <None Include="Connected Services\EmployeeService\item2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ScheduleService\Core.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ScheduleService\service.wsdl" />
+    <None Include="Connected Services\ScheduleService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ScheduleService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\TempScheduleService\Core.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -160,14 +175,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\TempScheduleService\System.xsd">
-    <None Include="Connected Services\ScheduleService\Core.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ScheduleService\service.wsdl" />
-    <None Include="Connected Services\ScheduleService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ScheduleService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\DataSources\Core.Employee.datasource" />
@@ -180,7 +187,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="WCF\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
@@ -195,17 +201,9 @@
       <Project>{61dfd29f-5446-4afe-ab42-d80b26e6fdc2}</Project>
       <Name>DatabaseAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DesktopClient\DesktopClient.csproj">
-      <Project>{D9DA16D8-A24F-433D-80EB-FFAE774BF816}</Project>
-      <Name>DesktopClient</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Domain\Core.csproj">
       <Project>{3e8c167c-bc2d-4ca0-a666-d3c4af3b9db0}</Project>
       <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ServiceHost\ServiceHosting.csproj">
-      <Project>{e55fc70a-c764-4cdc-89bd-ab06090f4813}</Project>
-      <Name>ServiceHosting</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -213,8 +211,8 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\EmployeeService\" />
-    <WCFMetadataStorage Include="Connected Services\TempScheduleService\" />
     <WCFMetadataStorage Include="Connected Services\ScheduleService\" />
+    <WCFMetadataStorage Include="Connected Services\TempScheduleService\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

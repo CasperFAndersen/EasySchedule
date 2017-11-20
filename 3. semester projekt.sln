@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Domain\Core.csproj", "{3E8C167C-BC2D-4CA0-A666-D3C4AF3B9DB0}"
 EndProject
@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyScheduleWebClient", "Ea
 	ProjectSection(ProjectDependencies) = postProject
 		{D4612C0A-5086-4CFD-800A-D3DC174969A8} = {D4612C0A-5086-4CFD-800A-D3DC174969A8}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvcLibrary", "SvcLibrary\SvcLibrary.csproj", "{9DEF89BB-4824-4DEF-93BB-8A7C641371D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,6 +74,10 @@ Global
 		{A0BA2954-4A39-45C1-A329-F942E52082B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0BA2954-4A39-45C1-A329-F942E52082B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0BA2954-4A39-45C1-A329-F942E52082B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DEF89BB-4824-4DEF-93BB-8A7C641371D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DEF89BB-4824-4DEF-93BB-8A7C641371D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DEF89BB-4824-4DEF-93BB-8A7C641371D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DEF89BB-4824-4DEF-93BB-8A7C641371D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

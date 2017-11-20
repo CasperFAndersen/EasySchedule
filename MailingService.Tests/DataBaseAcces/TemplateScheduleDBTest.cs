@@ -37,7 +37,7 @@ namespace Tests.DataBaseAcces
             TemplateSchedule tSchedule = new TemplateSchedule(4, "DummySchedule", 1);
             TemplateShift TShift = new TemplateShift(DayOfWeek.Monday, 5, new TimeSpan(10,0,0), 1, new Employee() { Id=3});
             int beforeInsert = tempShiftDB.getAllShifts().Count();
-            tSchedule.AddTempShift(TShift);
+            tSchedule.ListOfTempShifts.Add(TShift);
 
             tempScheduleDB.AddTempScheduleToDB(tSchedule);
             Assert.AreEqual(beforeInsert, tempShiftDB.getAllShifts().Count() - 1);
