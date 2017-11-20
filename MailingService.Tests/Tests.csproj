@@ -92,12 +92,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\TestTempScheduleCtrl.cs" />
+    <Compile Include="Connected Services\DepartmentService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ScheduleService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\TempScheduleService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\TempShiftService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -121,10 +131,33 @@
     <Compile Include="Services\TemplateShiftServiceTest.cs" />
     <Compile Include="Services\EmpServiceTest.cs" />
     <Compile Include="Services\ScheduleServiceTest.cs" />
+    <Compile Include="Services\DepartmentServiceTest.cs" />
     <Compile Include="WCF\EmployeeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
+    <None Include="Connected Services\DepartmentService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\DepartmentService\configuration.svcinfo" />
+    <None Include="Connected Services\DepartmentService\configuration91.svcinfo" />
+    <None Include="Connected Services\DepartmentService\Core.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DepartmentService\service.wsdl" />
+    <None Include="Connected Services\DepartmentService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DepartmentService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TempShiftService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\TempShiftService\configuration.svcinfo" />
+    <None Include="Connected Services\TempShiftService\configuration91.svcinfo" />
     <None Include="Connected Services\TempScheduleService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -177,6 +210,20 @@
     <None Include="Connected Services\TempScheduleService\System.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\TempShiftService\Core.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TempShiftService\service.wsdl" />
+    <None Include="Connected Services\TempShiftService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TempShiftService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TempShiftService\System.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\DataSources\Core.Department.datasource" />
     <None Include="Properties\DataSources\Core.Employee.datasource" />
     <None Include="Properties\DataSources\Core.TemplateSchedule.datasource" />
     <None Include="Properties\DataSources\Core.TemplateShift.datasource" />
@@ -210,9 +257,11 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\DepartmentService\" />
     <WCFMetadataStorage Include="Connected Services\EmployeeService\" />
     <WCFMetadataStorage Include="Connected Services\ScheduleService\" />
     <WCFMetadataStorage Include="Connected Services\TempScheduleService\" />
+    <WCFMetadataStorage Include="Connected Services\TempShiftService\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
