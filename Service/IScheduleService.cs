@@ -9,5 +9,8 @@ namespace ServiceLibrary
     {
         [OperationContract]
         Schedule GetScheduleByCurrentDate(DateTime currentDate);
+
+        [OperationContract]
+        Schedule GetCurrentScheduleDepartmentId(int depId);
     }
 }

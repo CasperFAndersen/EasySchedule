@@ -25,7 +25,8 @@ namespace EasyScheduleWebClient.Services
         public List<Employee> GetEmployeesByDepartmentId(int id)
         {
             EmployeeServiceClient proxy = new EmployeeServiceClient();
-            return proxy.GetEmployeesByDepartmentId(id);
+           // return proxy.GetEmployeesByDepartmentId(id);
+            return null;
         }
     }
 }

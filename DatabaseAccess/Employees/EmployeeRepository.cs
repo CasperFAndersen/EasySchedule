@@ -106,6 +106,7 @@ namespace DatabaseAccess.Employees
             emp.IsAdmin = reader.GetBoolean(5);
             emp.Username = reader["username"].ToString();
             emp.Password = reader["password"].ToString();
+            emp.DepartmentId = Convert.ToInt32(reader["departmentId"].ToString());
 
             return emp;
 

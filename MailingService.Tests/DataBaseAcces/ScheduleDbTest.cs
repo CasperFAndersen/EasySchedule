@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DatabaseAccess.Schedules;
 using Core;
+using System.Collections.Generic;
 
 namespace Tests.DataBaseAcces
 {
@@ -19,6 +20,21 @@ namespace Tests.DataBaseAcces
 
             Assert.IsNotNull(schedule);
             //Assert.AreEqual(3, schedule.Shifts.Count);
+        }
+
+        [TestMethod]
+        public void TestGetCurrentScheduleByDepartmentId()
+        {
+            DateTime currentDate = new DateTime(2017, 11, 13);
+
+            Schedule schedule = schRep.GetCurrentScheduleByDepartmentId(currentDate, 1);
+
+            List<Shift> shifts = schedule.Shifts;
+
+            Assert.IsNotNull(schedule);
+            Assert.AreEqual(schedule.StartDate, currentDate);
+            Assert.AreEqual(3, schedule.Shifts.Count);
+            Assert.AreEqual("Kolonial", schedule.Department.Name);
         }
     }
 }

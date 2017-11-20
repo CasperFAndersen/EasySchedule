@@ -11,7 +11,6 @@ namespace ServiceHosting
         static void Main(string[] args)
         {
             EmployeeHost();
-
             TemplateShiftHost();
             TemplateScheduleHost();
         }

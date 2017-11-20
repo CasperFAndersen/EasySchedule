@@ -9,5 +9,6 @@ namespace DatabaseAccess.Schedules
         Schedule GetScheduleByCurrentDate(DateTime currentDate);
 
         Schedule BuildScheduleObject(SqlDataReader reader);
+        Schedule GetCurrentScheduleByDepartmentId(DateTime currentDate, int id);
     }
 }

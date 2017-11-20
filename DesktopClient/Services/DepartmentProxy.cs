@@ -21,5 +21,10 @@ namespace DesktopClient.Services
         {
             throw new NotImplementedException();
         }
+
+        internal List<Employee> GetAllEmployeesByDepartmentID(Department deparment)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
