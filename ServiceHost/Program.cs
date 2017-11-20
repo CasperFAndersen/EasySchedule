@@ -8,49 +8,64 @@ namespace ServiceHosting
 {
     class Program
     {
+        private static ServiceHost ScheHost = new ServiceHost(typeof(ScheduleService));
+
+        private static ServiceHost EmpHost = new ServiceHost(typeof(EmployeeService));
+
+        private static ServiceHost TempScheduleHost = new ServiceHost(typeof(TempScheduleService));
+
+
         static void Main(string[] args)
         {
+            Console.WriteLine("WCF Services are now running.");
+
             EmployeeHost();
 
             TemplateShiftHost();
+            ScheduleHost();
+
             TemplateScheduleHost();
+
+            Console.ReadLine();
+
+            CloseAllHosts();
+        }
+
+        private static void CloseAllHosts()
+        {
+            ScheHost.Close();
+            EmpHost.Close();
+            TempScheduleHost.Close();
+        }
+
+        private static void ScheduleHost()
+        {
+            
+            ScheHost.Open();
+            Console.WriteLine("Schedule Service is now running");
         }
 
         static void EmployeeHost()
         {
-            Console.WriteLine("WCF Services is now running.");
-
-            ServiceHost EmpHost = new ServiceHost(typeof(EmployeeService));
-            // ServiceHost ScheHost = new ServiceHost(typeof(ScheduleService));
 
             EmpHost.Open();
             Console.WriteLine("Employee Service is now running");
 
-
-            //ScheHost.Open();
-            //Console.WriteLine("Schedule Service is now running");
-
-            Console.ReadLine();
-
-            EmpHost.Close();
-            // ScheHost.Close();
         }
 
         static void TemplateScheduleHost()
         {
-            Console.WriteLine("TemplateScheduleHost Console Based WCF Host");
-            using (ServiceHost serviceHost = new ServiceHost(typeof(TempScheduleService)))
+            //open the host and start listening for incoming messages                 
+            TempScheduleHost.Open();
+            Console.WriteLine("TemplateScheduleService is now running");
+            // Kan laves for Services
+            //DisplayHostInfo(TempScheduleHost);
+            ////keep the service running until the Enter key is pressed                 
+            //Console.WriteLine("The service is ready.");
+            //Console.WriteLine("Press the Enter key to terminate service.");
+            //Console.WriteLine(TempScheduleHost.BaseAddresses.ToString());
 
-            {
-                //open the host and start listening for incoming messages                 
-                serviceHost.Open();
-                DisplayHostInfo(serviceHost);
-                //keep the service running until the Enter key is pressed                 
-                Console.WriteLine("The service is ready.");
-                Console.WriteLine("Press the Enter key to terminate service.");
-                Console.WriteLine(serviceHost.BaseAddresses.ToString());
-                Console.ReadLine();
-            }
+
         }
         static void TemplateShiftHost()
         {

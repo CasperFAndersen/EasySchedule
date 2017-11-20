@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EasyScheduleWebClient.Services;
+using EasyScheduleWebClient.Models;
 
 
 namespace EasyScheduleWebClient.Controllers
@@ -13,15 +14,18 @@ namespace EasyScheduleWebClient.Controllers
         public ActionResult Index()
         {
             EmployeeRepository empRepo = new EmployeeRepository();
-            var model = empRepo.GetEmployeesByDepartmentId(Convert.ToInt32(Session["employeeId"].ToString()));
-            return View(model);
+            //var model = empRepo.GetEmployeesByDepartmentId(Convert.ToInt32(Session["employeeId"].ToString()));
+            //var model = empRepo.GetEmployeesByDepartmentId(Convert.ToInt32(Session["employeeId"].ToString()));
+            return View();
         }
 
         public ActionResult GetEvents()
         {
-            EventRepository eventRepo = new EventRepository();
-            List<Event> events = eventRepo.GetEvents().ToList();
-            return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            ScheduleProxy scheduleProxy = new ScheduleProxy();
+            Core.Employee emp = (Core.Employee)Session["employee"];
+            List<Core.Shift> shifts = scheduleProxy.GetCurrentScheduleDepartmentId(emp.DepartmentId).Shifts;
+
+            return new JsonResult { Data = shifts, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         [HttpPost]
@@ -35,4 +39,6 @@ namespace EasyScheduleWebClient.Controllers
 
 
     }
+
+   
 }

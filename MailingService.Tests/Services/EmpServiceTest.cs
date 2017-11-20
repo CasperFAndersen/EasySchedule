@@ -7,7 +7,7 @@ namespace Tests.Services
 {
     
     [TestClass]
-    public class TestService
+    public class EmpServiceTest
     {
         
         

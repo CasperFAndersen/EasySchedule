@@ -20,7 +20,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("EmployeeId:" + @Session["employeeId"], "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("EasySchedule", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.Label(@Session["employeeId"].ToString())*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

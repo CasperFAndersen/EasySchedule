@@ -199,9 +199,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Connected Services\ScheduleService\EasyScheduleWebClient.ScheduleService.Schedule.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Connected Services\ScheduleService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -231,6 +228,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Properties\DataSources\Core.Employee.datasource" />
+    <Content Include="Properties\DataSources\Core.Schedule.datasource" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />

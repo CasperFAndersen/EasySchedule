@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EasyScheduleWebClient.ScheduleService {
+namespace Tests.ScheduleService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -29,12 +29,12 @@ namespace EasyScheduleWebClient.ScheduleService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IScheduleServiceChannel : EasyScheduleWebClient.ScheduleService.IScheduleService, System.ServiceModel.IClientChannel {
+    public interface IScheduleServiceChannel : Tests.ScheduleService.IScheduleService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ScheduleServiceClient : System.ServiceModel.ClientBase<EasyScheduleWebClient.ScheduleService.IScheduleService>, EasyScheduleWebClient.ScheduleService.IScheduleService {
+    public partial class ScheduleServiceClient : System.ServiceModel.ClientBase<Tests.ScheduleService.IScheduleService>, Tests.ScheduleService.IScheduleService {
         
         public ScheduleServiceClient() {
         }

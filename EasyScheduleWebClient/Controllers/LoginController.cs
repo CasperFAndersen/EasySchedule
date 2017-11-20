@@ -17,11 +17,11 @@ namespace EasyScheduleWebClient.Controllers
         public ActionResult Authorize(Employee loggingIn)
         {
             EmployeeProxy empProxy = new EmployeeProxy();
-            var emp1 = empProxy.GetEmployeeByUsername(loggingIn.Username);
+            var emp = empProxy.GetEmployeeByUsername(loggingIn.Username);
 
-            if (loggingIn.Password.Equals(emp1.Password))
+            if (loggingIn.Password.Equals(emp.Password))
             {
-                Session["employeeId"] = emp1.Id;
+                Session["employee"] = emp;
                 return RedirectToAction("Index", "Home");
             }
             return View();
@@ -29,7 +29,7 @@ namespace EasyScheduleWebClient.Controllers
 
         public ActionResult Logout()
         {
-            int id = (int)Session["employeeId"];
+            //int id = (int)Session["employeeId"];
             Session.Abandon();
             return RedirectToAction("Index", "Login");
         }

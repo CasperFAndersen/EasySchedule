@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using Core;
 using EasyScheduleWebClient.ScheduleService;
 
 namespace EasyScheduleWebClient.Services
@@ -15,6 +16,22 @@ namespace EasyScheduleWebClient.Services
         {
             return proxy.GetScheduleByCurrentDate(currentDate);
         }
+
+        Task<Schedule> IScheduleService.GetScheduleByCurrentDateAsync(DateTime currentDate)
+        {
+            return GetScheduleByCurrentDateAsync(currentDate);
+        }
+
+        public Schedule GetCurrentScheduleDepartmentId(int depId)
+        {
+            return proxy.GetCurrentScheduleDepartmentId(depId);
+        }
+
+        public Task<Schedule> GetCurrentScheduleDepartmentIdAsync(int depId)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public Task<Schedule> GetScheduleByCurrentDateAsync(DateTime currentDate)
         {
