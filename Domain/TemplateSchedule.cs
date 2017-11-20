@@ -34,6 +34,7 @@ namespace Core
         }
         public TemplateSchedule(int id, string name, int numberOfWeeks, int departmentID)
         {
+            ListOfTempShifts = new List<TemplateShift>();
             ID = id;
             NoOfWeeks = numberOfWeeks;
             Name = name;
@@ -42,6 +43,7 @@ namespace Core
         }
         public TemplateSchedule(int numberOfWeeks, string name, int departmentID)
         {
+            ListOfTempShifts = new List<TemplateShift>();
             NoOfWeeks = numberOfWeeks;
             Name = name;
             DepartmentID = departmentID;
@@ -49,6 +51,7 @@ namespace Core
         }
         public TemplateSchedule()
         {
+            ListOfTempShifts = new List<TemplateShift>();
         }
     }
 }
