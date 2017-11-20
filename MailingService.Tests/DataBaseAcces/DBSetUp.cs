@@ -11,11 +11,27 @@ namespace Tests.DataBaseAcces
     public class DBSetUp
     {
 
+        public static string startTimeWeek1;
+
         public static void SetUpDB()
         {
+            startTimeWeek1 = GetCurrentStartTimeStringPlusDay(0);
+
             DropTables();
             CreateTables();
             InsertTestData();
+        }
+
+        public static string GetCurrentStartTimeStringPlusDay(int numOfDays)
+        {
+            DateTime currentDate = DateTime.Now;
+            int day = (currentDate.DayOfWeek == DayOfWeek.Sunday) ? (currentDate.Day - 6) : (currentDate.Day - ((int)currentDate.DayOfWeek - 1));
+            if (numOfDays <5 && numOfDays > 0)
+            {
+                day += numOfDays;
+            }
+
+            return string.Format("{0}-{1}-{2}", currentDate.Year.ToString(), currentDate.Month.ToString(), day);
         }
 
         public static void DropTables()
@@ -182,27 +198,27 @@ namespace Tests.DataBaseAcces
                                       +
                                       //Schedule
                                       "insert into Schedule(startDate, templateScheduleId, departmentId) " +
-                                      "values ('2017-11-13', (select id from templateSchedule where name='KolonialBasis'), 1); " +
+                                      "values ('"+startTimeWeek1+"', (select id from templateSchedule where name='KolonialBasis'), 1); " +
 
                                       "insert into Schedule(startDate, templateScheduleId, departmentId) " +
-                                      "values ('2017-11-20', (select id from templateSchedule where name='PakkeCentralJuletid'), 2); "
+                                      "values ('" + startTimeWeek1 + "', (select id from templateSchedule where name='PakkeCentralJuletid'), 2); "
 
                                       +
                                       //Shift
                                       "insert into Shift(startTime, hours, scheduleId, employeeId)" +
-                                      "values ('2017-11-15 08:00', 6, (select id from schedule where startDate='2017-11-13'), (select id from employee where name='Mikkel Paulsen')); " +
+                                      "values ('"+GetCurrentStartTimeStringPlusDay(2) +" 08:00', 6, (select id from schedule where startDate='" +startTimeWeek1+ "' AND departmentId = 1), (select id from employee where name='Mikkel Paulsen')); " +
 
                                       "insert into Shift(startTime, hours, scheduleId, employeeId)" +
-                                      "values ('2017-11-14 09:00', 4, (select id from schedule where startDate='2017-11-13'), (select id from employee where name='Stefan Krabbe')); " +
+                                      "values ('" + GetCurrentStartTimeStringPlusDay(0) + " 09:00', 4, (select id from schedule where startDate='" + startTimeWeek1 + "' AND departmentId = 1), (select id from employee where name='Stefan Krabbe')); " +
 
                                       "insert into Shift(startTime, hours, scheduleId, employeeId)" +
-                                      "values ('2017-11-17 10:00', 8, (select id from schedule where startDate='2017-11-13'), (select id from employee where name='Casper Froberg')); "+
+                                      "values ('" + GetCurrentStartTimeStringPlusDay(4) + " 10:00', 8, (select id from schedule where startDate='" + startTimeWeek1 + "' AND departmentId = 1), (select id from employee where name='Casper Froberg')); " +
 
                                       "insert into Shift(startTime, hours, scheduleId, employeeId)" +
-                                      "values ('2017-11-20', 4, (select id from schedule where startDate='2017-11-20'), (select id from employee where name='Arne Ralston')); " +
+                                      "values ('" + GetCurrentStartTimeStringPlusDay(1) + " 12:00', 4, (select id from schedule where startDate='" + startTimeWeek1 + "' AND departmentId = 2), (select id from employee where name='Arne Ralston')); " +
 
                                       "insert into Shift(startTime, hours, scheduleId, employeeId)" +
-                                      "values ('2017-11-21', 7, (select id from schedule where startDate='2017-11-20'), (select id from employee where name='Tobias Andersen')); "
+                                      "values ('" + GetCurrentStartTimeStringPlusDay(2) +" 14:00', 7, (select id from schedule where startDate='" +startTimeWeek1+ "' AND departmentId = 2), (select id from employee where name='Tobias Andersen')); "
 
                     ;
 
