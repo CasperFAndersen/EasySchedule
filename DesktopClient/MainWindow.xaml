@@ -18,9 +18,12 @@
         </Grid.ColumnDefinitions>
         <local:Calendar x:Name="Calendar" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
         <ListView Name="EmployeeList" Grid.Column="1"></ListView>
-        <Button x:Name="BtnSaveTemplateSchedule" Content="Button" HorizontalAlignment="Left" Margin="565,308,0,0" VerticalAlignment="Top" Width="75" Click="BtnSaveTemplateSchedule_Click"/>
+        <Button x:Name="BtnSaveTemplateSchedule" Content="Save" HorizontalAlignment="Left" Margin="565,308,0,0" VerticalAlignment="Top" Width="75" Click="BtnSaveTemplateSchedule_Click"/>
         <ComboBox x:Name="CBoxDepartment" ItemsSource="{Binding departmentList}" HorizontalAlignment="Left" Margin="133,158,0,0" VerticalAlignment="Top" Width="130" Height="26" SelectionChanged="CBoxDepartment_SelectionChanged"/>
-        <TextBox x:Name="TxtBoxTemplateScheduleName" HorizontalAlignment="Left" Height="22" Margin="133,110,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TxtBoxNoOfWeeks" HorizontalAlignment="Left" Height="23" Margin="46,314,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="TxtBoxTemplateScheduleName" HorizontalAlignment="Left" Height="22" Margin="133,110,0,0" TextWrapping="Wrap" Text="Navn..." VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TxtBoxNoOfWeeks" HorizontalAlignment="Left" Height="23" Margin="91,318,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" TextChanged="TxtBoxNoOfWeeks_TextChanged"/>
+        <Label Content="Basisplan Navn:" HorizontalAlignment="Left" Margin="36,106,0,0" VerticalAlignment="Top"/>
+        <Label Content="Afdeling:" HorizontalAlignment="Left" Margin="36,158,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Antal af uger:" HorizontalAlignment="Left" Margin="10,315,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

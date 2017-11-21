@@ -76,6 +76,12 @@ namespace DesktopClient
             tempSchedule.DepartmentID = departmentList.ElementAt(CBoxDepartment.SelectedIndex).Id;
             TempScheduleProxy tsProxy = new TempScheduleProxy();
             tsProxy.AddTempScheduleToDB(tempSchedule);
+            MessageBox.Show("Basis planen er blevet gemt!");
+        }
+
+        private void TxtBoxNoOfWeeks_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 
