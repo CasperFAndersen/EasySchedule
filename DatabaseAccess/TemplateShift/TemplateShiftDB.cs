@@ -22,26 +22,22 @@ namespace DatabaseAccess
             using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
             {
                 dBCon.Open();
+                SqlCommand insertTempShift = new SqlCommand("INSERT INTO TemplateShift(weekDay, hours, startTime, templateScheduleId, employeeId)   VALUES(@param1,@param2,@param3,@param4,@param5)", dBCon);
                 foreach (TemplateShift ts in TShift)
                 {
-                    using (SqlCommand insertTempShift = new SqlCommand("INSERT INTO TemplateShift(weekDay, hours, startTime, templateScheduleId, employeeId) VALUES (@param1, @param2, @param3, @param4, @param5)", dBCon))
-                    {
+                    insertTempShift.Parameters.AddWithValue("@param1", ts.WeekDay.ToString());
+                    insertTempShift.Parameters.AddWithValue("@param2", ts.Hours);
+                    insertTempShift.Parameters.AddWithValue("@param3", ts.StartTime);
+                    insertTempShift.Parameters.AddWithValue("@param4", tempScheduleIDFromDB);
+                    insertTempShift.Parameters.AddWithValue("@param5", ts.Employee.Id);
 
-                        insertTempShift.Parameters.AddWithValue("@param1", ts.WeekDay.ToString());
-                        insertTempShift.Parameters.AddWithValue("@param2", ts.Hours);
-                        insertTempShift.Parameters.AddWithValue("@param3", ts.StartTime);
-                        insertTempShift.Parameters.AddWithValue("@param4", tempScheduleIDFromDB);
-                        insertTempShift.Parameters.AddWithValue("@param5", ts.Employee.Id);
-
-                        insertTempShift.ExecuteNonQuery();
-                    }
-
+                    insertTempShift.ExecuteNonQuery();
                 }
                 dBCon.Close();
             }
         }
 
-        public IEnumerable<TemplateShift> GetAllShifts()
+        public IEnumerable<TemplateShift> getAllShifts()
         {
             List<TemplateShift> tempList = new List<TemplateShift>();
             using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
@@ -50,7 +46,8 @@ namespace DatabaseAccess
 
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateShift", dBCon))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+
+                    using (DbDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -58,12 +55,14 @@ namespace DatabaseAccess
                             {
 
                                 TemplateShift tempShift = new TemplateShift();
-                                tempShift.ID = Convert.ToInt32(reader["Id"].ToString());
-                                tempShift.WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader["weekDay"].ToString());
-                                tempShift.Hours = Convert.ToDouble(reader["Hours"].ToString());
-                                tempShift.StartTime = TimeSpan.Parse(reader["StartTime"].ToString());
-                                tempShift.TemplateScheduleID = Convert.ToInt32(reader["TemplateScheduleId"].ToString());
-                                tempShift.Employee = new EmployeeRepository().GetEmployeeById(Convert.ToInt32(reader["employeeId"].ToString()));
+                                tempShift.ID = reader.GetOrdinal("Id");
+                                tempShift.WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader.GetOrdinal("weekDay").ToString());
+                                tempShift.Hours = reader.GetOrdinal("Hours");
+                                tempShift.StartTime = TimeSpan.Parse(reader.GetOrdinal("StartTime").ToString());
+                                tempShift.TemplateScheduleID = reader.GetOrdinal("TemplateScheduleId");
+                                tempShift.Employee = new Employee() { Id =reader.GetOrdinal("EmployeeId") };
+
+
                                 tempList.Add(tempShift);
                             }
                         }

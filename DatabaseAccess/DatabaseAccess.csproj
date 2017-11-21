@@ -63,7 +63,6 @@
     <Compile Include="DbConnectionADO.cs" />
     <Compile Include="Departments\DepartmentRepository.cs" />
     <Compile Include="Departments\IDepartmentRepository.cs" />
-    <Compile Include="Departments\MockDepartmentRepository.cs" />
     <Compile Include="Employees\EmployeeRepository.cs" />
     <Compile Include="Employees\IEmployeeRepository.cs" />
     <Compile Include="Employees\MockEmployeeRep.cs" />
