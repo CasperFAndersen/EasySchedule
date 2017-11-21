@@ -40,7 +40,7 @@ namespace DesktopClient
             BuildTimesGrid();
             BuildDayColumns();
             EmployeeColors = new Dictionary<Employee, Color>();
-            AddShifts(GetListOfTemplateShifts());
+            //AddShifts(GetListOfTemplateShifts());
             SetShiftDropHandler();
             SetCloseShiftClicked();
             SetEmployeeDroppedHandler();
