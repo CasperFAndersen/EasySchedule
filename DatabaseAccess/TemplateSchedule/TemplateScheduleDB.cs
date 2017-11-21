@@ -21,7 +21,7 @@ namespace DatabaseAccess
                 dBCon.Open();
 
                 SqlCommand command = new SqlCommand("SELECT * FROM TemplateSchedule", dBCon);
-                using (DbDataReader reader = command.ExecuteReader())
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -62,7 +62,7 @@ namespace DatabaseAccess
                 SqlCommand command = new SqlCommand("SELECT * FROM TemplateSchedule WHERE Name = @param1", dBCon);
                 command.Parameters.AddWithValue("@param1", scheduleName);
 
-                using (DbDataReader reader = command.ExecuteReader())
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
