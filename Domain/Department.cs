@@ -23,5 +23,9 @@ namespace Core
         [DataMember]
         public int WorkplaceId { get; set; }
 
+        public Department()
+        {
+
+        }
     }
 }
