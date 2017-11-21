@@ -26,7 +26,6 @@ namespace DatabaseAccess
                 {
                     using (SqlCommand insertTempShift = new SqlCommand("INSERT INTO TemplateShift(weekDay, hours, startTime, templateScheduleId, employeeId) VALUES (@param1, @param2, @param3, @param4, @param5)", dBCon))
                     {
-
                         insertTempShift.Parameters.AddWithValue("@param1", ts.WeekDay.ToString());
                         insertTempShift.Parameters.AddWithValue("@param2", ts.Hours);
                         insertTempShift.Parameters.AddWithValue("@param3", ts.StartTime);
@@ -35,7 +34,6 @@ namespace DatabaseAccess
 
                         insertTempShift.ExecuteNonQuery();
                     }
-
                 }
                 dBCon.Close();
             }
