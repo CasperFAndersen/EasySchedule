@@ -30,9 +30,10 @@ namespace DesktopClient
             BindData();
         }
 
-        private void BindData()
+        private async void BindData()
         {
-            ChooseSchedule.ItemsSource = tempProxy.GetAllTempSchedules();
+            List<TemplateSchedule> tempSchedules = await tempProxy.GetAllTempSchedulesAsync();
+            ChooseSchedule.ItemsSource = tempSchedules;
             ChooseSchedule.DisplayMemberPath = "Name";
         }
 

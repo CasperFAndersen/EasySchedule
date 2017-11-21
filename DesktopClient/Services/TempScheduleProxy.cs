@@ -42,15 +42,15 @@ namespace DesktopClient
             return proxy.FindTempScheduleByNameAsync(name);
         }
 
-        public TemplateSchedule[] GetAllTempSchedules()
+
+        public List<TemplateSchedule> GetAllTempSchedules()
         {
             return proxy.GetAllTempSchedules();
         }
 
-        public Task<TemplateSchedule[]> GetAllTempSchedulesAsync()
+        public Task<List<TemplateSchedule>> GetAllTempSchedulesAsync()
         {
             return proxy.GetAllTempSchedulesAsync();
         }
-
     }
 }
