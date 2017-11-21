@@ -22,18 +22,20 @@ namespace DatabaseAccess
             using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
             {
                 dBCon.Open();
-                SqlCommand insertTempShift = new SqlCommand("INSERT INTO TemplateShift(weekDay, hours, startTime, templateScheduleId, employeeId)   VALUES(@param1,@param2,@param3,@param4,@param5)", dBCon);
-                foreach (TemplateShift ts in TShift)
+                using (SqlCommand insertTempShift = new SqlCommand("INSERT INTO TemplateShift(weekDay, hours, startTime, templateScheduleId, employeeId)   VALUES(@param1,@param2,@param3,@param4,@param5)", dBCon))
                 {
-                    insertTempShift.Parameters.AddWithValue("@param1", ts.WeekDay.ToString());
-                    insertTempShift.Parameters.AddWithValue("@param2", ts.Hours);
-                    insertTempShift.Parameters.AddWithValue("@param3", ts.StartTime);
-                    insertTempShift.Parameters.AddWithValue("@param4", tempScheduleIDFromDB);
-                    insertTempShift.Parameters.AddWithValue("@param5", ts.Employee.Id);
+                    foreach (TemplateShift ts in TShift)
+                    {
+                        insertTempShift.Parameters.AddWithValue("@param1", ts.WeekDay.ToString());
+                        insertTempShift.Parameters.AddWithValue("@param2", ts.Hours);
+                        insertTempShift.Parameters.AddWithValue("@param3", ts.StartTime);
+                        insertTempShift.Parameters.AddWithValue("@param4", tempScheduleIDFromDB);
+                        insertTempShift.Parameters.AddWithValue("@param5", ts.Employee.Id);
 
-                    insertTempShift.ExecuteNonQuery();
+                        insertTempShift.ExecuteNonQuery();
+                    }
+                    dBCon.Close();
                 }
-                dBCon.Close();
             }
         }
 

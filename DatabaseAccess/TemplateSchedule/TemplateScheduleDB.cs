@@ -37,7 +37,7 @@ namespace DatabaseAccess
         public void AddTempScheduleToDB(TemplateSchedule tSchedule)
         {
             TemplateShiftDB tempShiftDB = new TemplateShiftDB();
-            int tempScheduleID;
+            int tempScheduleID = 0;
             using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
             {
                 dBCon.Open();
@@ -46,10 +46,9 @@ namespace DatabaseAccess
                     insertTempSchedule.Parameters.AddWithValue("@param1", tSchedule.Name);
                     insertTempSchedule.Parameters.AddWithValue("@param2", tSchedule.NoOfWeeks);
                     insertTempSchedule.Parameters.AddWithValue("@param3", tSchedule.DepartmentID);
-                    tempScheduleID = (int)insertTempSchedule.ExecuteScalar();
+                    tempScheduleID = Convert.ToInt32(insertTempSchedule.ExecuteScalar());
                     dBCon.Close();
                 }
-                int employeeId = tSchedule.ListOfTempShifts[0].Employee.Id;
                 tempShiftDB.AddTempShiftsFromTempScheduleToDB(tempScheduleID, tSchedule.ListOfTempShifts);
             }
         }
