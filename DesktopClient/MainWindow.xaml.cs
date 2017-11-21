@@ -27,12 +27,14 @@ namespace DesktopClient
         {
             InitializeComponent();
             LoadDeparmentList();
+            SetOnDepartmentSelected();
             //LoadEmployeeList(GetListOfEmployees());
             
         }
 
         public void LoadEmployeeList(List<Employee> employees)
         {
+            EmployeeList.Items.Clear();
             foreach (Employee e in employees)
             {
                 EmployeeList.Items.Add(new EmployeeListItem(e));
@@ -74,6 +76,25 @@ namespace DesktopClient
             tempSchedule.Name = TxtBoxTemplateScheduleName.Text;
             TempScheduleProxy tsProxy = new TempScheduleProxy();
             tsProxy.AddTempScheduleToDB(tempSchedule);
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ControlPanel.Children.Clear();
+            ControlPanel.Children.Add(new ViewEditTemplateSchedule());
+        }
+
+        public void SetOnDepartmentSelected()
+        {
+            Mediator.GetInstance().DepartmentSelected += (s, e) =>
+            {
+                          
+                EmployeeProxy employeeProxy = new EmployeeProxy();
+                LoadEmployeeList(employeeProxy.GetListOfEmployeeByDepartmentId(e.TempSchedule.DepartmentID));
+
+            };
+            
+
         }
     }
 

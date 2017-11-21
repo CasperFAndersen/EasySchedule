@@ -20,6 +20,12 @@ namespace DesktopClient.EmployeeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeeByUsername", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeeByUsernameResponse")]
         System.Threading.Tasks.Task<Core.Employee> GetEmployeeByUsernameAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentIdResponse")]
+        System.Collections.Generic.List<Core.Employee> GetListOfEmployeeByDepartmentId(int depId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentIdResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetListOfEmployeeByDepartmentIdAsync(int depId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +61,14 @@ namespace DesktopClient.EmployeeService {
         
         public System.Threading.Tasks.Task<Core.Employee> GetEmployeeByUsernameAsync(string username) {
             return base.Channel.GetEmployeeByUsernameAsync(username);
+        }
+        
+        public System.Collections.Generic.List<Core.Employee> GetListOfEmployeeByDepartmentId(int depId) {
+            return base.Channel.GetListOfEmployeeByDepartmentId(depId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetListOfEmployeeByDepartmentIdAsync(int depId) {
+            return base.Channel.GetListOfEmployeeByDepartmentIdAsync(depId);
         }
     }
 }

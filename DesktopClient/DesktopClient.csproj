@@ -82,6 +82,7 @@
     <Compile Include="DayColumn.xaml.cs">
       <DependentUpon>DayColumn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DepartmentSelectedArgs.cs" />
     <Compile Include="EmployeeDropEventArgs.cs" />
     <Compile Include="EmployeeListItem.xaml.cs">
       <DependentUpon>EmployeeListItem.xaml</DependentUpon>
@@ -97,6 +98,9 @@
     </Compile>
     <Compile Include="TimeCell.xaml.cs">
       <DependentUpon>TimeCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEditTemplateSchedule.xaml.cs">
+      <DependentUpon>ViewEditTemplateSchedule.xaml</DependentUpon>
     </Compile>
     <Page Include="Calendar.xaml">
       <SubType>Designer</SubType>
@@ -130,6 +134,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ViewEditTemplateSchedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -159,14 +167,14 @@
     <None Include="Connected Services\DepartmentService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\EmployeeService\Core.xsd">
+    <None Include="Connected Services\EmployeeService\EmployeeService.wsdl" />
+    <None Include="Connected Services\EmployeeService\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\EmployeeService\service.wsdl" />
-    <None Include="Connected Services\EmployeeService\service.xsd">
+    <None Include="Connected Services\EmployeeService\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\EmployeeService\service1.xsd">
+    <None Include="Connected Services\EmployeeService\item2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\TempScheduleService\Core.xsd">
@@ -248,18 +256,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\EmployeeService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\EmployeeService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\EmployeeService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Connected Services\DepartmentService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -267,6 +263,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\DepartmentService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmployeeService\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmployeeService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmployeeService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmployeeService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

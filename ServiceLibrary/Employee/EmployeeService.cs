@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BusinessLogic;
+using Core;
 
 namespace ServiceLibrary.Employee
 {
@@ -11,6 +12,11 @@ namespace ServiceLibrary.Employee
         public Core.Employee GetEmployeeByUsername(string username)
         {
             return empCtrl.GetEmployeeByUsername(username);
+        }
+
+        public List<Core.Employee> GetListOfEmployeeByDepartmentId(int depId)
+        {
+            return empCtrl.GetListOfEmployeesByDepartmentID(depId);
         }
 
         public List<Core.Employee> GetListOfEmployeesByDepartmentID(int departmentID)

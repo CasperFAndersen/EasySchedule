@@ -25,5 +25,16 @@ namespace Tests.Services
             Assert.AreEqual(tempScheduleService.FindTempScheduleByName("DummySchedule").Name, tSchedule.Name);
 
         }
+
+        [TestMethod]
+        public void TestGetAllSchedules()
+        {
+            TempScheduleServiceClient tempScheduleService = new TempScheduleServiceClient();
+           
+            List<TemplateSchedule> tempSchedules = tempScheduleService.GetAllTempSchedules();
+
+            Assert.IsNotNull(tempSchedules);
+            
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using Core;
 using DatabaseAccess;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace Tests.DatabaseAccess
 {
@@ -40,6 +41,15 @@ namespace Tests.DatabaseAccess
 
             tempScheduleDB.AddTempScheduleToDB(tSchedule);
             Assert.AreEqual(beforeInsert, tempShiftDB.getAllShifts().Count() - 1);
+
+        }
+
+        [TestMethod]
+        public void TestGetAllSchedules()
+        {
+            TemplateScheduleDB tempScheduleDB = new TemplateScheduleDB();
+            List<TemplateSchedule> tempSchedules = tempScheduleDB.GetAll().ToList();
+            Assert.IsNotNull(tempScheduleDB);
 
         }
     }

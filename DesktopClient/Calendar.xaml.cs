@@ -40,10 +40,11 @@ namespace DesktopClient
             BuildTimesGrid();
             BuildDayColumns();
             EmployeeColors = new Dictionary<Employee, Color>();
-            AddShifts(GetListOfTemplateShifts());
+            //AddShifts(GetListOfTemplateShifts());
             SetShiftDropHandler();
             SetCloseShiftClicked();
             SetEmployeeDroppedHandler();
+            SetDepartmentSelected();
             LoadShiftsIntoCalendar();
         }
 
@@ -145,6 +146,16 @@ namespace DesktopClient
             Mediator.GetInstance().ShiftCloseClicked+= (s, e) =>
             {
                 Shifts.Remove(e.Shift);
+                LoadShiftsIntoCalendar();
+            };
+        }
+
+        public void SetDepartmentSelected()
+        {
+            Mediator.GetInstance().DepartmentSelected += (s, e) =>
+            {
+                Shifts.Clear();
+                AddShifts(e.TempSchedule.ListOfTempShifts);
                 LoadShiftsIntoCalendar();
             };
         }

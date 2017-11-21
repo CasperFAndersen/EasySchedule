@@ -20,5 +20,17 @@ namespace DesktopClient.Services
         {
             return proxy.GetEmployeeByUsernameAsync(username);
         }
+
+
+
+        public List<Employee> GetListOfEmployeeByDepartmentId(int depId)
+        {
+            return proxy.GetListOfEmployeeByDepartmentId(depId);
+        }
+
+        Task<List<Employee>> IEmployeeService.GetListOfEmployeeByDepartmentIdAsync(int depId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

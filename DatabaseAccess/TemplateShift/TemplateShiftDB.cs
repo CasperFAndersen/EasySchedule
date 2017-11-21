@@ -1,4 +1,5 @@
 ﻿using Core;
+using DatabaseAccess.Employees;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -45,6 +46,7 @@ namespace DatabaseAccess
 
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateShift", dBCon))
                 {
+
                     using (DbDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -70,6 +72,55 @@ namespace DatabaseAccess
             }
             return tempList;
         }
+
+        public List<TemplateShift> GetTempShiftsByTempScheduleID(int tempScheduleId)
+        {
+            List<TemplateShift> tempList = new List<TemplateShift>();
+            using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
+            {
+                dBCon.Open();
+
+                using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateShift WHERE templateScheduleId = @param1", dBCon))
+                {
+                    SqlParameter p1 = new SqlParameter(@"param1", System.Data.SqlDbType.Int, 100);
+                    p1.Value = tempScheduleId;
+
+                    command.Parameters.Add(p1);
+                    
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+
+                                TemplateShift tempShift = BuildTempShiftObject(reader);
+
+
+                                tempList.Add(tempShift);
+                  
+                        }
+                    }
+                }
+                dBCon.Close();
+            }
+            return tempList;
+
+        }
+
+        public TemplateShift BuildTempShiftObject(SqlDataReader reader)
+        {
+            TemplateShift tempShift = new TemplateShift();
+            tempShift.ID = reader.GetInt32(0);
+            tempShift.WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader.GetString(1));
+            tempShift.Hours = reader.GetDouble(2);
+            tempShift.StartTime = reader.GetTimeSpan(3);
+            tempShift.TemplateScheduleID = reader.GetInt32(4);
+            tempShift.Employee = new EmployeeRepository().FindEmployeeById(reader.GetInt32(5));
+
+            return tempShift;
+        }
+
+        
 
 
 

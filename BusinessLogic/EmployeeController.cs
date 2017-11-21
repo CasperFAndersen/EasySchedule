@@ -33,5 +33,10 @@ namespace BusinessLogic
             return e1.Password == password;
         }
 
+        public List<Employee> GetListOfEmployees(int depId)
+        {
+            return empRep.GetListOfEmployeesByDepartmentID(depId);
+        }
+
     }
 }

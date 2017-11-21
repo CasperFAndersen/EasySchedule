@@ -20,6 +20,12 @@ namespace DesktopClient.DepartmentService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetAllDepartments", ReplyAction="http://tempuri.org/IDepartmentService/GetAllDepartmentsResponse")]
         System.Threading.Tasks.Task<Core.Department[]> GetAllDepartmentsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetDepartmentById", ReplyAction="http://tempuri.org/IDepartmentService/GetDepartmentByIdResponse")]
+        Core.Department GetDepartmentById(int depId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetDepartmentById", ReplyAction="http://tempuri.org/IDepartmentService/GetDepartmentByIdResponse")]
+        System.Threading.Tasks.Task<Core.Department> GetDepartmentByIdAsync(int depId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +61,14 @@ namespace DesktopClient.DepartmentService {
         
         public System.Threading.Tasks.Task<Core.Department[]> GetAllDepartmentsAsync() {
             return base.Channel.GetAllDepartmentsAsync();
+        }
+        
+        public Core.Department GetDepartmentById(int depId) {
+            return base.Channel.GetDepartmentById(depId);
+        }
+        
+        public System.Threading.Tasks.Task<Core.Department> GetDepartmentByIdAsync(int depId) {
+            return base.Channel.GetDepartmentByIdAsync(depId);
         }
     }
 }
