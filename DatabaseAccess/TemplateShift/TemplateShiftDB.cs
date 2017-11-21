@@ -39,7 +39,7 @@ namespace DatabaseAccess
             }
         }
 
-        public IEnumerable<TemplateShift> getAllShifts()
+        public IEnumerable<TemplateShift> GetAllShifts()
         {
             List<TemplateShift> tempList = new List<TemplateShift>();
             using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
@@ -48,7 +48,7 @@ namespace DatabaseAccess
 
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateShift", dBCon))
                 {
-                    using (DbDataReader reader = command.ExecuteReader())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -56,12 +56,12 @@ namespace DatabaseAccess
                             {
 
                                 TemplateShift tempShift = new TemplateShift();
-                                tempShift.ID = reader.GetOrdinal("Id");
-                                tempShift.WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader.GetOrdinal("weekDay").ToString());
-                                tempShift.Hours = reader.GetOrdinal("Hours");
-                                tempShift.StartTime = TimeSpan.Parse(reader.GetOrdinal("StartTime").ToString());
-                                tempShift.TemplateScheduleID = reader.GetOrdinal("TemplateScheduleId");
-                                tempShift.Employee = new EmployeeRepository().GetEmployeeById(reader.GetOrdinal("employeeId"));
+                                tempShift.ID = Convert.ToInt32(reader["Id"].ToString());
+                                tempShift.WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader["weekDay"].ToString());
+                                tempShift.Hours = Convert.ToDouble(reader["Hours"].ToString());
+                                tempShift.StartTime = TimeSpan.Parse(reader["StartTime"].ToString());
+                                tempShift.TemplateScheduleID = Convert.ToInt32(reader["TemplateScheduleId"].ToString());
+                                tempShift.Employee = new EmployeeRepository().GetEmployeeById(Convert.ToInt32(reader["employeeId"].ToString()));
                                 tempList.Add(tempShift);
                             }
                         }

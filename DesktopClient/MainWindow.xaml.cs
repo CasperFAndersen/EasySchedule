@@ -27,7 +27,7 @@ namespace DesktopClient
         {
             InitializeComponent();
             LoadDeparmentList();
-            
+
         }
 
         public void LoadEmployeeList(List<Employee> employees)
@@ -44,16 +44,15 @@ namespace DesktopClient
             int deparmentId = departmentList.ElementAt(departmentIndex).Id;
             EmployeeProxy empProxy = new EmployeeProxy();
             List<Employee> listOfEmployees = new List<Employee>(empProxy.GetListOfEmployeesByDepartmentID(deparmentId).ToList());
-                LoadEmployeeList(listOfEmployees);
+            LoadEmployeeList(listOfEmployees);
         }
 
-        public List<Department> LoadDeparmentList()
+        public void LoadDeparmentList()
         {
             DepartmentProxy deptProxy = new DepartmentProxy();
             departmentList = deptProxy.GetAllDepartments().ToList();
             CBoxDepartment.ItemsSource = departmentList;
             CBoxDepartment.DisplayMemberPath = "Name";
-            return departmentList;
         }
 
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -72,7 +71,7 @@ namespace DesktopClient
                 tempSchedule.ListOfTempShifts.Add(ts);
             }
             tempSchedule.NoOfWeeks = Convert.ToInt32(TxtBoxNoOfWeeks.Text);
-            
+
             tempSchedule.Name = TxtBoxTemplateScheduleName.Text;
             tempSchedule.DepartmentID = departmentList.ElementAt(CBoxDepartment.SelectedIndex).Id;
             TempScheduleProxy tsProxy = new TempScheduleProxy();
@@ -80,7 +79,7 @@ namespace DesktopClient
         }
     }
 
-    
-    
+
+
 }
 
