@@ -66,7 +66,7 @@ namespace DesktopClient
         {
             TemplateSchedule tempSchedule = new TemplateSchedule();
 
-            foreach (TemplateShift ts in Calendar.GetListOfTemplateShifts())
+            foreach (TemplateShift ts in Calendar.Shifts)
             {
                 tempSchedule.ListOfTempShifts.Add(ts);
             }
