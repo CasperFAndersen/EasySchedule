@@ -20,5 +20,15 @@ namespace DesktopClient.Services
         {
             return proxy.GetEmployeeByUsernameAsync(username);
         }
+
+        public Employee[] GetListOfEmployeesByDepartmentID(int departmentID)
+        {
+            return proxy.GetListOfEmployeesByDepartmentID(departmentID);
+        }
+
+        public Task<Employee[]> GetListOfEmployeesByDepartmentIDAsync(int departmentID)
+        {
+            return proxy.GetListOfEmployeesByDepartmentIDAsync(departmentID);
+        }
     }
 }

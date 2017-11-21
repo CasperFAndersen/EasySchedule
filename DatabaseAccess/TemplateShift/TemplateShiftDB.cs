@@ -1,4 +1,5 @@
 ﻿using Core;
+using DatabaseAccess.Employees;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -58,9 +59,7 @@ namespace DatabaseAccess
                                 tempShift.Hours = reader.GetOrdinal("Hours");
                                 tempShift.StartTime = TimeSpan.Parse(reader.GetOrdinal("StartTime").ToString());
                                 tempShift.TemplateScheduleID = reader.GetOrdinal("TemplateScheduleId");
-                                tempShift.Employee = new Employee() { Id =reader.GetOrdinal("EmployeeId") };
-
-
+                                tempShift.Employee = new EmployeeRepository().GetEmployeeById(reader.GetOrdinal("employeeId"));
                                 tempList.Add(tempShift);
                             }
                         }
