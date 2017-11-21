@@ -13,7 +13,7 @@ namespace BusinessLogic
         TemplateScheduleDB tScheduleDB = new TemplateScheduleDB();
         TemplateSchedule tscheduleModel = new TemplateSchedule();
 
-        public TemplateSchedule createTemplateSchedule(int numberOfWeeks, string name)
+        public TemplateSchedule CreateTemplateSchedule(int numberOfWeeks, string name)
         {
             return new TemplateSchedule(numberOfWeeks, name);
         }
@@ -35,7 +35,7 @@ namespace BusinessLogic
         
         public void AddTempShift(TemplateShift tShift)
         {
-            tscheduleModel.AddTempShift(tShift);
+            tscheduleModel.ListOfTempShifts.Add(tShift);
         }
     }
 }

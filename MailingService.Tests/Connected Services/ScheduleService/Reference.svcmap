@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="43792ff0-06b0-4a5b-b2f9-a8d61498edb4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="799d4790-eef1-4fe8-b6b4-13e44d6a6c83" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -17,7 +17,6 @@
     <ReferencedAssemblies>
       <ReferencedAssembly AssemblyName="BusinessLogic" />
       <ReferencedAssembly AssemblyName="Core" />
-      <ReferencedAssembly AssemblyName="DatabaseAccess" />
       <ReferencedAssembly AssemblyName="System" />
       <ReferencedAssembly AssemblyName="System.Runtime.Serialization" />
       <ReferencedAssembly AssemblyName="System.ServiceModel" />
@@ -26,13 +25,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/ScheduleService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:9000/ServiceLibrary/ScheduleService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="7a0b0831-9367-4f94-ae15-7cf9e237a73c" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/ScheduleService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="b8f37bbd-a774-4756-9fa2-d9aa7b804349" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/ScheduleService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="6c5c86fc-0570-4cd8-bb3b-6c1dd1766a86" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/ScheduleService/mex" />
-    <MetadataFile FileName="Core.xsd" MetadataType="Schema" ID="487fbd2d-5373-449e-842a-63fdb62bb27f" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/ScheduleService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="7186fd1b-3516-4a2d-a3a8-a6a24ddb935c" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="1d0c16f5-7eee-46a8-894e-317b870a8e04" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="8ed296fb-57a7-4c45-94d5-420b0072e9d1" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/mex" />
+    <MetadataFile FileName="Core.xsd" MetadataType="Schema" ID="3054e124-da90-4865-a3e0-32b7ba4ad01d" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

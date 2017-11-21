@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ServiceLibrary;
 using Core;
+using Tests.TempShiftService;
 
 namespace Tests.Services
 {
@@ -11,11 +11,11 @@ namespace Tests.Services
         [TestMethod]
         public void TestAddTemplaceShiftService()
         {
-            TempShiftService templaceShiftService = new TempShiftService();
+            TempShiftServiceClient tempShiftServiceClient = new TempShiftServiceClient();
 
-            TemplateShift tempShift1 = templaceShiftService.CreateTempShift(DayOfWeek.Friday, 10.0, new TimeSpan(10, 0, 0), 1, new Employee() { Id = 3 });
+            TemplateShift tempShift1 = tempShiftServiceClient.CreateTempShift(TempShiftService.DayOfWeek.Friday, 10.0, new TimeSpan(10, 0, 0), 1, new Employee() { Id = 3 });
 
-            Assert.AreEqual(DayOfWeek.Friday, tempShift1.WeekDay);
+            Assert.AreEqual(TempShiftService.DayOfWeek.Friday.ToString(), tempShift1.WeekDay.ToString());
             Assert.AreNotEqual(TimeSpan.FromHours(5), tempShift1.StartTime);
         }
     }

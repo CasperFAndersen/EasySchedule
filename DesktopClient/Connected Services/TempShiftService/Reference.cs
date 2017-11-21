@@ -16,10 +16,10 @@ namespace DesktopClient.TempShiftService {
     public interface ITempShiftService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempShiftService/CreateTempShift", ReplyAction="http://tempuri.org/ITempShiftService/CreateTempShiftResponse")]
-        Core.TemplateShift CreateTempShift(System.DayOfWeek weekDay, int hours, System.TimeSpan startTime, int templateScheduleID, Core.Employee employee);
+        Core.TemplateShift CreateTempShift(System.DayOfWeek weekDay, double hours, System.TimeSpan startTime, int templateScheduleID, Core.Employee employee);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempShiftService/CreateTempShift", ReplyAction="http://tempuri.org/ITempShiftService/CreateTempShiftResponse")]
-        System.Threading.Tasks.Task<Core.TemplateShift> CreateTempShiftAsync(System.DayOfWeek weekDay, int hours, System.TimeSpan startTime, int templateScheduleID, Core.Employee employee);
+        System.Threading.Tasks.Task<Core.TemplateShift> CreateTempShiftAsync(System.DayOfWeek weekDay, double hours, System.TimeSpan startTime, int templateScheduleID, Core.Employee employee);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempShiftService/FindTempShiftByID", ReplyAction="http://tempuri.org/ITempShiftService/FindTempShiftByIDResponse")]
         Core.TemplateShift FindTempShiftByID(int tempShiftID);
@@ -55,11 +55,11 @@ namespace DesktopClient.TempShiftService {
                 base(binding, remoteAddress) {
         }
         
-        public Core.TemplateShift CreateTempShift(System.DayOfWeek weekDay, int hours, System.TimeSpan startTime, int templateScheduleID, Core.Employee employee) {
+        public Core.TemplateShift CreateTempShift(System.DayOfWeek weekDay, double hours, System.TimeSpan startTime, int templateScheduleID, Core.Employee employee) {
             return base.Channel.CreateTempShift(weekDay, hours, startTime, templateScheduleID, employee);
         }
         
-        public System.Threading.Tasks.Task<Core.TemplateShift> CreateTempShiftAsync(System.DayOfWeek weekDay, int hours, System.TimeSpan startTime, int templateScheduleID, Core.Employee employee) {
+        public System.Threading.Tasks.Task<Core.TemplateShift> CreateTempShiftAsync(System.DayOfWeek weekDay, double hours, System.TimeSpan startTime, int templateScheduleID, Core.Employee employee) {
             return base.Channel.CreateTempShiftAsync(weekDay, hours, startTime, templateScheduleID, employee);
         }
         

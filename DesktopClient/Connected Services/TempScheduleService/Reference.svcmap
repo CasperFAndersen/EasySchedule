@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="956f8f61-bbbf-43a4-b42a-c97c66f6e541" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7087963e-75aa-4bd0-9d6a-047baf01cab5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:9000/Design_Time_Addresses/Service/TempScheduleService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:9000/ServiceLibrary/TempScheduleService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="61469710-9fe4-4b7f-be68-ece293280f26" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/Service/TempScheduleService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="e9bcca42-8429-45bd-b310-3a924eba5e10" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/Service/TempScheduleService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="89f788ea-1ab1-4a2d-97cf-1cbb632cd841" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/Service/TempScheduleService/mex" />
-    <MetadataFile FileName="Core.xsd" MetadataType="Schema" ID="b87793c5-9077-4300-8bce-28df0cc669b8" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/Service/TempScheduleService/mex" />
-    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="b2329d37-e59a-4556-bdfe-fe2008fc96f9" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/Service/TempScheduleService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="765484ab-b1c9-4a62-934a-0ce682c2d3ca" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempScheduleService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="9bb4473e-4b85-4371-9670-552f372ced1f" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempScheduleService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="c3032ef9-14da-44ce-a403-df7c4a146fc1" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempScheduleService/mex" />
+    <MetadataFile FileName="Core.xsd" MetadataType="Schema" ID="518b8906-e208-47f3-82d8-bc94552b8d17" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempScheduleService/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="2b35cd79-70ec-4cd0-80fc-39ae1e284f0f" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempScheduleService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

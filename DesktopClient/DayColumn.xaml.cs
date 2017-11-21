@@ -72,8 +72,13 @@ namespace DesktopClient
                 if (i == 0)
                 {
                     timeCell.FillCell(shift, true, false);
+                    Grid.SetRowSpan(timeCell, 2);
                 }
-                else if (i == shift.Hours - 1)
+                else if (i == 1)
+                {
+
+                }
+                else if (i == (shift.Hours * (60 / Calendar.INCREMENT)) - 1)
                 {
                     timeCell.FillCell(shift, false, true);
                 }

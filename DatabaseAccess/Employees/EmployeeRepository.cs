@@ -111,5 +111,35 @@ namespace DatabaseAccess.Employees
             return emp;
 
         }
+
+        public List<Employee> GetListOfEmployeesByDepartmentID(int departmentID)
+        {
+            List<Employee> empList = new List<Employee>();
+
+            using (SqlConnection conn = new DbConnectionADO().GetConnection())
+            {
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+
+                    cmd.CommandText = "SELECT * FROM Employee WHERE Employee.DepartmentId = @param1;";
+                    SqlParameter p1 = new SqlParameter(@"param1", System.Data.SqlDbType.Int, 100);
+                    p1.Value = departmentID;
+
+                    cmd.Parameters.Add(p1);
+
+                    SqlDataReader reader = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+
+                    while (reader.Read())
+                    {
+                        Employee e = BuildEmployeeObject(reader);
+                        empList.Add(e);
+                    }
+                    conn.Close();
+
+                    return empList;
+                }
+
+            }
+        }
     }
 }

@@ -8,9 +8,13 @@
              AllowDrop="True"
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <Border BorderBrush="Black" BorderThickness="0.4">
-        <Grid Name="TimeCellGrid" Drop="OnHandleDrop" Background="White">
-            
+    <Border Name="Border"  BorderBrush="Black" BorderThickness="0.1">
+        <Grid Name="TimeCellGrid" Margin="0,0,0,-1" Drop="OnHandleDrop">
+            <Grid.Background>
+                <SolidColorBrush Color="White" Opacity="0"/>
+            </Grid.Background>
+
+
         </Grid>
     </Border>
 

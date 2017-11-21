@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f55691c9-ac52-480c-a458-1eb21be47064" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="BusinessLogic" />
+      <ReferencedAssembly AssemblyName="Core" />
+      <ReferencedAssembly AssemblyName="System" />
+      <ReferencedAssembly AssemblyName="System.Runtime.Serialization" />
+      <ReferencedAssembly AssemblyName="System.ServiceModel" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9000/ServiceLibrary/TempScheduleService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="fc1ed158-9792-46cc-b755-e096a9204920" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempScheduleService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="d5bf6fb2-dbe8-4904-b5d2-db636c4563da" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempScheduleService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="c5a8d5c4-6bac-443e-94c2-373316191533" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempScheduleService/mex" />
+    <MetadataFile FileName="Core.xsd" MetadataType="Schema" ID="7d8f2dea-5dd6-43fd-8ec0-29391e65bd4b" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempScheduleService/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="9d751f7b-f0e1-4ac5-b2e2-3b6caab3d739" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempScheduleService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

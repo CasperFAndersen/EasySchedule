@@ -64,6 +64,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\EmployeeService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\TempScheduleService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -83,6 +88,7 @@
     </Compile>
     <Compile Include="Mediator.cs" />
     <Compile Include="Services\DepartmentProxy.cs" />
+    <Compile Include="Services\EmployeeProxy.cs" />
     <Compile Include="Services\TempScheduleProxy.cs" />
     <Compile Include="Services\TempShiftProxy.cs" />
     <Compile Include="ShiftDropEventArgs.cs" />
@@ -153,6 +159,16 @@
     <None Include="Connected Services\DepartmentService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\EmployeeService\Core.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EmployeeService\service.wsdl" />
+    <None Include="Connected Services\EmployeeService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EmployeeService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\TempScheduleService\Core.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -180,6 +196,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\DataSources\Core.Department.datasource" />
+    <None Include="Properties\DataSources\Core.Employee.datasource" />
     <None Include="Properties\DataSources\Core.Schedule.datasource" />
     <None Include="Properties\DataSources\Core.TemplateSchedule.datasource" />
     <None Include="Properties\DataSources\Core.TemplateShift.datasource" />
@@ -196,20 +213,15 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\DepartmentService\" />
+    <WCFMetadataStorage Include="Connected Services\EmployeeService\" />
     <WCFMetadataStorage Include="Connected Services\TempScheduleService\" />
     <WCFMetadataStorage Include="Connected Services\TempShiftService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\TempScheduleService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\TempScheduleService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\TempScheduleService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <ProjectReference Include="..\Domain\Core.csproj">
+      <Project>{3e8c167c-bc2d-4ca0-a666-d3c4af3b9db0}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\TempShiftService\configuration91.svcinfo" />
@@ -224,14 +236,28 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Core.csproj">
-      <Project>{3e8c167c-bc2d-4ca0-a666-d3c4af3b9db0}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Service\ServiceLibrary.csproj">
-      <Project>{d4612c0a-5086-4cfd-800a-d3dc174969a8}</Project>
-      <Name>ServiceLibrary</Name>
-    </ProjectReference>
+    <None Include="Connected Services\TempScheduleService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TempScheduleService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TempScheduleService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmployeeService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmployeeService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmployeeService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\DepartmentService\configuration91.svcinfo" />

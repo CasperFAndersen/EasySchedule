@@ -1,10 +1,10 @@
-﻿using DesktopClient.TempShiftService;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core;
+using DesktopClient.TempShiftService;
 
 namespace DesktopClient.Services
 {
@@ -12,12 +12,12 @@ namespace DesktopClient.Services
     {
         TempShiftServiceClient proxy = new TempShiftServiceClient();
 
-        public TemplateShift CreateTempShift(DayOfWeek weekDay, int hours, TimeSpan startTime, int templateScheduleID, Employee employee)
+        public TemplateShift CreateTempShift(DayOfWeek weekDay, double hours, TimeSpan startTime, int templateScheduleID, Employee employee)
         {
             return proxy.CreateTempShift(weekDay, hours, startTime, templateScheduleID, employee);
         }
 
-        public Task<TemplateShift> CreateTempShiftAsync(DayOfWeek weekDay, int hours, TimeSpan startTime, int templateScheduleID, Employee employee)
+        public Task<TemplateShift> CreateTempShiftAsync(DayOfWeek weekDay, double hours, TimeSpan startTime, int templateScheduleID, Employee employee)
         {
             return proxy.CreateTempShiftAsync(weekDay, hours, startTime, templateScheduleID, employee);
         }

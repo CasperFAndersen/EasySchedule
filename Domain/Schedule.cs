@@ -19,7 +19,7 @@ namespace Core
 
         public Schedule()
         {
-
+            Shifts = new List<Shift>();
         }
     }
 }

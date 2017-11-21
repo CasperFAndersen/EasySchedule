@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cccdcb7e-67e6-4928-bbe8-8961fa121bc9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b55d8ca4-d358-4a2d-850c-4fdb56fb5f42" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:9000/Design_Time_Addresses/Service/TempShiftService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:9000/ServiceLibrary/TempShiftService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="6a48463a-398a-46ae-a44d-2507d7ad4802" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/Service/TempShiftService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="58ad69be-ccfa-4a91-9913-0008edd1f50e" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/Service/TempShiftService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="0f3cfea6-dcc9-4978-9ecd-c0e19207a8f3" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/Service/TempShiftService/mex" />
-    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="9b74857a-f4da-4836-96d5-f668c12bbd63" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/Service/TempShiftService/mex" />
-    <MetadataFile FileName="Core.xsd" MetadataType="Schema" ID="b3ef1767-7963-4ca2-af7c-7a4cfce088fb" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/Service/TempShiftService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="dc3da8c5-f5f3-413a-9686-7492af3a7866" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempShiftService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="eed30cf5-d797-4240-ac62-4e71e68adf81" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempShiftService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="635e8d01-665a-42cd-92e9-b8c17c6e63f6" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempShiftService/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="8e91f0c1-fd8b-4c15-873b-c3a0abd1e6ae" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempShiftService/mex" />
+    <MetadataFile FileName="Core.xsd" MetadataType="Schema" ID="f4a019b1-983c-40e5-b699-51b50135004e" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TempShiftService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

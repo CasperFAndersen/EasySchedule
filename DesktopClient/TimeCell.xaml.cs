@@ -51,11 +51,20 @@ namespace DesktopClient
             if (isFirstElement)
             {
                 shiftElement = new ShiftElement(shift, shift.Employee.Name, color);
+                Border.BorderThickness = new Thickness(0.1, 0.1, 0.1, 0);
+               
+             
             }
-            else
+            else if (isLastElement)
             {
                 shiftElement = new ShiftElement(shift, color);
                 shiftElement.IsLastElement = true;
+                Border.BorderThickness = new Thickness(0.1, 0, 0.1, 0.1);
+            }
+            else // Middle Element 
+            {
+                shiftElement = new ShiftElement(shift, color);
+                Border.BorderThickness = new Thickness(0.1, 0, 0.1, 0);
             }
 
             TimeCellGrid.ColumnDefinitions.Add(new ColumnDefinition());
@@ -88,16 +97,16 @@ namespace DesktopClient
                 Mediator.GetInstance().OnShiftDropped(sender, droppedShift, isLastElement);
             }
 
-            else if(droppedItem.GetType() == typeof(Employee))
+            else if (droppedItem.GetType() == typeof(Employee))
             {
                 Employee employee = (Employee)droppedItem;
                 TemplateShift newShift = new TemplateShift() { StartTime = Time, WeekDay = weekDay, Employee = employee, Hours = 3 }; // DEFAULT HOURS = 3
                 Mediator.GetInstance().OnEmployeeDropped(sender, newShift);
             }
 
-      
 
-           
+
+
         }
 
         private void SetDropHandler()
@@ -129,6 +138,7 @@ namespace DesktopClient
             ShiftsInCell = new List<TemplateShift>();
             TimeCellGrid.Children.Clear();
             TimeCellGrid.ColumnDefinitions.Clear();
+            Border.BorderThickness = new Thickness(0.1, 0.1, 0.1, 0.1);
         }
     }
 }
