@@ -38,11 +38,11 @@ namespace DatabaseAccess
         public void AddTempScheduleToDB(TemplateSchedule tSchedule)
         {
             TemplateShiftDB tempShiftDB = new TemplateShiftDB();
-            int tempScheduleID;
+            int tempScheduleID = 0;
             using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
             {
                 dBCon.Open();
-                using (SqlCommand insertTempSchedule = new SqlCommand("INSERT INTO TemplateSchedule (name, NoOfWeeks, departmentID)  VALUES(@param1,@param2,@param3) SELECT SCOPE_IDENTITY()", dBCon))
+                using (SqlCommand insertTempSchedule = new SqlCommand("INSERT INTO TemplateSchedule (name, noOfWeeks, departmentId) VALUES (@param1,@param2,@param3) SELECT SCOPE_IDENTITY()", dBCon))
                 {
                     insertTempSchedule.Parameters.AddWithValue("@param1", tSchedule.Name);
                     insertTempSchedule.Parameters.AddWithValue("@param2", tSchedule.NoOfWeeks);

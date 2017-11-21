@@ -31,6 +31,14 @@ namespace DesktopClient.Services
         Task<List<Employee>> IEmployeeService.GetListOfEmployeeByDepartmentIdAsync(int depId)
         {
             throw new NotImplementedException();
+        public Employee[] GetListOfEmployeesByDepartmentID(int departmentID)
+        {
+            return proxy.GetListOfEmployeesByDepartmentID(departmentID);
+        }
+
+        public Task<Employee[]> GetListOfEmployeesByDepartmentIDAsync(int departmentID)
+        {
+            return proxy.GetListOfEmployeesByDepartmentIDAsync(departmentID);
         }
     }
 }

@@ -27,9 +27,6 @@ namespace DesktopClient
         {
             InitializeComponent();
             LoadDeparmentList();
-            SetOnDepartmentSelected();
-            //LoadEmployeeList(GetListOfEmployees());
-            
         }
 
         public void LoadEmployeeList(List<Employee> employees)
@@ -42,23 +39,26 @@ namespace DesktopClient
         }
 
 
-        public List<Employee> GetListOfEmployees(int departmentIndex)
+        public void GetListOfEmployees(int departmentIndex)
         {
-            Department deparment = departmentList.ElementAt(departmentIndex);
-            DepartmentProxy deptProxy = new DepartmentProxy();
-            //return deptProxy.GetAllEmployeesByDepartmentID(deparment);
-            return null;
+            int deparmentId = departmentList.ElementAt(departmentIndex).Id;
+            EmployeeProxy empProxy = new EmployeeProxy();
+            List<Employee> listOfEmployees = new List<Employee>(empProxy.GetListOfEmployeesByDepartmentID(deparmentId).ToList());
+            LoadEmployeeList(listOfEmployees);
         }
 
-        public List<Department> LoadDeparmentList()
+        public void LoadDeparmentList()
         {
             DepartmentProxy deptProxy = new DepartmentProxy();
-            return departmentList = deptProxy.GetAllDepartments().ToList();
+            departmentList = deptProxy.GetAllDepartments().ToList();
+            CBoxDepartment.ItemsSource = departmentList;
+            CBoxDepartment.DisplayMemberPath = "Name";
         }
 
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int departmentIndexChoice = CBoxDepartment.SelectedIndex;
+            EmployeeList.Items.Clear();
             GetListOfEmployees(departmentIndexChoice);
         }
 
@@ -66,14 +66,14 @@ namespace DesktopClient
         {
             TemplateSchedule tempSchedule = new TemplateSchedule();
 
-            foreach (TemplateShift ts in Calendar.GetListOfTemplateShifts())
+            foreach (TemplateShift ts in Calendar.Shifts)
             {
                 tempSchedule.ListOfTempShifts.Add(ts);
             }
             tempSchedule.NoOfWeeks = Convert.ToInt32(TxtBoxNoOfWeeks.Text);
-            //get this from a textbox / or smth. Ask arne what he ment
 
             tempSchedule.Name = TxtBoxTemplateScheduleName.Text;
+            tempSchedule.DepartmentID = departmentList.ElementAt(CBoxDepartment.SelectedIndex).Id;
             TempScheduleProxy tsProxy = new TempScheduleProxy();
             tsProxy.AddTempScheduleToDB(tempSchedule);
         }
@@ -98,7 +98,7 @@ namespace DesktopClient
         }
     }
 
-    
-    
+
+
 }
 
