@@ -54,6 +54,8 @@ namespace DatabaseAccess
             }
         }
 
+        
+
         public TemplateSchedule FindTempScheduleByName(string scheduleName)
         {
             TemplateSchedule tSchedule = null;
