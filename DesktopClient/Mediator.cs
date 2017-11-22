@@ -83,6 +83,28 @@ namespace DesktopClient
             }
         }
 
+        public delegate void DepartmentBoxChangedHandler(List<Employee> employees);
+        public event DepartmentBoxChangedHandler DepartmentBoxChanged;
+
+        public void OnDepartmentBoxSelected(List<Employee> employees)
+        {
+            if(DepartmentBoxChanged != null)
+            {
+                DepartmentBoxChanged(employees);
+            }
+        }
+
+        public delegate void CreateTemplateScheduleButtonClickedHandler(TemplateSchedule templateSchedule);
+        public event CreateTemplateScheduleButtonClickedHandler CreateTemplateScheduleButtonClicked;
+
+        public void OnCreateTemplateScheduleButtonClicked(TemplateSchedule templateSchedule)
+        {
+            if(CreateTemplateScheduleButtonClicked != null)
+            {
+                CreateTemplateScheduleButtonClicked(templateSchedule);
+            }
+        }
+
 
 
     }
