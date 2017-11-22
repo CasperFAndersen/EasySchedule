@@ -11,10 +11,10 @@ namespace BusinessLogic
 {
     public class ScheduleController
     {
-        IScheduleRepository schRep = new ScheduleRepository();
-        public ScheduleController()
+        private readonly IScheduleRepository _scheduleRepository;
+        public ScheduleController(IScheduleRepository scheduleRepository)
         {
-
+            _scheduleRepository = scheduleRepository;
         }
 
         public Schedule GetScheduleByCurrentDate(DateTime currentDate)
@@ -22,7 +22,7 @@ namespace BusinessLogic
             int day = (int)DayOfWeek.Monday;
             DateTime date = new DateTime(currentDate.Year, currentDate.Month, day);
 
-            return schRep.GetScheduleByCurrentDate(date);
+            return _scheduleRepository.GetScheduleByCurrentDate(date);
         }
 
         public Schedule GetCurrentScheduleByDepartmentId(int id)
@@ -33,7 +33,7 @@ namespace BusinessLogic
             int day = (currentDate.DayOfWeek == DayOfWeek.Sunday) ? (currentDate.Day - 6) : (currentDate.Day - ((int)currentDate.DayOfWeek - 1));
             DateTime date = new DateTime(currentDate.Year, currentDate.Month, day);
 
-            return schRep.GetCurrentScheduleByDepartmentId(date, id);
+            return _scheduleRepository.GetCurrentScheduleByDepartmentId(date, id);
         }
 
     }

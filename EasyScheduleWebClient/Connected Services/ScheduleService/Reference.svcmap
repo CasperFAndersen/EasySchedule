@@ -19,13 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/ScheduleService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:9000/ServiceLibrary/ScheduleService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="0a92597c-c229-4784-95d9-856a1650665f" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/ScheduleService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="de321ea9-ab15-42c8-bb23-d66d83f022e5" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/ScheduleService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="5a483d18-9811-4d35-80a3-ee943afaaddf" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/ScheduleService/mex" />
-    <MetadataFile FileName="Core.xsd" MetadataType="Schema" ID="cc9edcd1-62c3-4e8e-9053-5e2a3046b94f" SourceId="1" SourceUrl="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/ScheduleService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="0a92597c-c229-4784-95d9-856a1650665f" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="de321ea9-ab15-42c8-bb23-d66d83f022e5" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="5a483d18-9811-4d35-80a3-ee943afaaddf" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/mex" />
+    <MetadataFile FileName="Core.xsd" MetadataType="Schema" ID="cc9edcd1-62c3-4e8e-9053-5e2a3046b94f" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

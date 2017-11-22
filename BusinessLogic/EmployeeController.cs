@@ -11,31 +11,32 @@ namespace BusinessLogic
 {
     public class EmployeeController
     {
-        IEmployeeRepository empRep = new EmployeeRepository();
+        private readonly IEmployeeRepository _employeeRepository;
+
+        public EmployeeController(IEmployeeRepository employeeRepository)
+        {
+            _employeeRepository = employeeRepository;
+        }
+
         public List<Employee> GetAllEmployees()
         {
-            return empRep.GetAllEmployees();
+            return _employeeRepository.GetAllEmployees();
         }
 
         public Employee GetEmployeeByUsername(string username)
         {
-            return empRep.GetEmployeeByUsername(username);
+            return _employeeRepository.GetEmployeeByUsername(username);
         }
 
-        public List<Employee> GetListOfEmployeesByDepartmentID(int departmentID)
+        public List<Employee> GetListOfEmployeesByDepartmentId(int departmentId)
         {
-            return empRep.GetListOfEmployeesByDepartmentID(departmentID);
+            return _employeeRepository.GetListOfEmployeesByDepartmentID(departmentId);
         }
 
         public bool ValidatePassword(string username, string password)
         {
             Employee e1 = GetEmployeeByUsername(username);
             return e1.Password == password;
-        }
-
-        public List<Employee> GetListOfEmployees(int depId)
-        {
-            return empRep.GetListOfEmployeesByDepartmentID(depId);
         }
 
     }

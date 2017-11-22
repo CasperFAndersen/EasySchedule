@@ -8,6 +8,12 @@ namespace DatabaseAccess.Employees
 {
     public class EmployeeRepository : IEmployeeRepository
     {
+
+        public void AddEmployeeToDatabase(Employee employee)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Employee> GetAllEmployees()
         {
             List<Employee> employees = new List<Employee>();
@@ -60,7 +66,6 @@ namespace DatabaseAccess.Employees
 
             }
         }
-
 
         public Employee FindEmployeeById(int id)
         {

@@ -6,16 +6,26 @@ namespace BusinessLogic
 {
     public class DepartmentController
     {
-        IDepartmentRepository departmentRepository = new DepartmentRepository();
+        private readonly IDepartmentRepository _departmentRepository;
+
+        public DepartmentController(IDepartmentRepository departmentRepository)
+        {
+            this._departmentRepository = departmentRepository;
+        }
+
+        public DepartmentController()
+        {
+            
+        }
 
         public List<Department> GetAllDepartments()
         {
-            return departmentRepository.GetAllDepartments();
+            return _departmentRepository.GetAllDepartments();
         }
 
         public Department GetDepartmentById(int id)
         {
-            return departmentRepository.GetDepartmentById(id);
+            return _departmentRepository.GetDepartmentById(id);
         }
     }
 }

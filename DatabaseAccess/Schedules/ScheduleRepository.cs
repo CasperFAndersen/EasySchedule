@@ -9,7 +9,7 @@ namespace DatabaseAccess.Schedules
 {
     public class ScheduleRepository : IScheduleRepository
     {
-       
+    
         public Schedule BuildScheduleObject(SqlDataReader reader)
         {
             Schedule schedule = new Schedule();

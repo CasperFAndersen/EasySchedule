@@ -33,7 +33,7 @@
   </wsdl:binding>
   <wsdl:service name="EmployeeService">
     <wsdl:port name="BasicHttpBinding_IEmployeeService" binding="tns:BasicHttpBinding_IEmployeeService">
-      <soap:address location="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/EmployeeService/" />
+      <soap:address location="http://localhost:9000/ServiceLibrary/EmployeeService/" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
