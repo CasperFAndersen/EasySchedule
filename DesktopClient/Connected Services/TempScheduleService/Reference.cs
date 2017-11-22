@@ -16,10 +16,10 @@ namespace DesktopClient.TempScheduleService {
     public interface ITempScheduleService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempScheduleService/GetAllTempSchedules", ReplyAction="http://tempuri.org/ITempScheduleService/GetAllTempSchedulesResponse")]
-        Core.TemplateSchedule[] GetAllTempSchedules();
+        System.Collections.Generic.List<Core.TemplateSchedule> GetAllTempSchedules();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempScheduleService/GetAllTempSchedules", ReplyAction="http://tempuri.org/ITempScheduleService/GetAllTempSchedulesResponse")]
-        System.Threading.Tasks.Task<Core.TemplateSchedule[]> GetAllTempSchedulesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.TemplateSchedule>> GetAllTempSchedulesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempScheduleService/FindTempScheduleByName", ReplyAction="http://tempuri.org/ITempScheduleService/FindTempScheduleByNameResponse")]
         Core.TemplateSchedule FindTempScheduleByName(string name);
@@ -67,11 +67,11 @@ namespace DesktopClient.TempScheduleService {
                 base(binding, remoteAddress) {
         }
         
-        public Core.TemplateSchedule[] GetAllTempSchedules() {
+        public System.Collections.Generic.List<Core.TemplateSchedule> GetAllTempSchedules() {
             return base.Channel.GetAllTempSchedules();
         }
         
-        public System.Threading.Tasks.Task<Core.TemplateSchedule[]> GetAllTempSchedulesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.TemplateSchedule>> GetAllTempSchedulesAsync() {
             return base.Channel.GetAllTempSchedulesAsync();
         }
         

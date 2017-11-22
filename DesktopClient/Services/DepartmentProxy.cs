@@ -22,5 +22,14 @@ namespace DesktopClient.Services
             throw new NotImplementedException();
         }
 
+        public Department GetDepartmentById(int depId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Department> GetDepartmentByIdAsync(int depId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

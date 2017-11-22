@@ -27,11 +27,14 @@ namespace DesktopClient
         {
             InitializeComponent();
             LoadDeparmentList();
-
+            SetOnDepartmentSelected();
+            //LoadEmployeeList(GetListOfEmployees());
+            
         }
 
         public void LoadEmployeeList(List<Employee> employees)
         {
+            EmployeeList.Items.Clear();
             foreach (Employee e in employees)
             {
                 EmployeeList.Items.Add(new EmployeeListItem(e));
@@ -39,26 +42,23 @@ namespace DesktopClient
         }
 
 
-        public void GetListOfEmployees(int departmentIndex)
+        public List<Employee> GetListOfEmployees(int departmentIndex)
         {
-            int deparmentId = departmentList.ElementAt(departmentIndex).Id;
-            EmployeeProxy empProxy = new EmployeeProxy();
-            List<Employee> listOfEmployees = new List<Employee>(empProxy.GetListOfEmployeesByDepartmentID(deparmentId).ToList());
-            LoadEmployeeList(listOfEmployees);
+            Department deparment = departmentList.ElementAt(departmentIndex);
+            DepartmentProxy deptProxy = new DepartmentProxy();
+            //return deptProxy.GetAllEmployeesByDepartmentID(deparment);
+            return null;
         }
 
-        public void LoadDeparmentList()
+        public List<Department> LoadDeparmentList()
         {
             DepartmentProxy deptProxy = new DepartmentProxy();
-            departmentList = deptProxy.GetAllDepartments().ToList();
-            CBoxDepartment.ItemsSource = departmentList;
-            CBoxDepartment.DisplayMemberPath = "Name";
+            return departmentList = deptProxy.GetAllDepartments().ToList();
         }
 
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int departmentIndexChoice = CBoxDepartment.SelectedIndex;
-            EmployeeList.Items.Clear();
             GetListOfEmployees(departmentIndexChoice);
         }
 
@@ -66,14 +66,14 @@ namespace DesktopClient
         {
             TemplateSchedule tempSchedule = new TemplateSchedule();
 
-            foreach (TemplateShift ts in Calendar.Shifts)
+            foreach (TemplateShift ts in Calendar.GetListOfTemplateShifts())
             {
                 tempSchedule.ListOfTempShifts.Add(ts);
             }
             tempSchedule.NoOfWeeks = Convert.ToInt32(TxtBoxNoOfWeeks.Text);
+            //get this from a textbox / or smth. Ask arne what he ment
 
             tempSchedule.Name = TxtBoxTemplateScheduleName.Text;
-            tempSchedule.DepartmentID = departmentList.ElementAt(CBoxDepartment.SelectedIndex).Id;
             TempScheduleProxy tsProxy = new TempScheduleProxy();
             tsProxy.AddTempScheduleToDB(tempSchedule);
             MessageBox.Show("Basis planen er blevet gemt!");
@@ -83,9 +83,28 @@ namespace DesktopClient
         {
 
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ControlPanel.Children.Clear();
+            ControlPanel.Children.Add(new ViewEditTemplateSchedule());
+        }
+
+        public void SetOnDepartmentSelected()
+        {
+            Mediator.GetInstance().DepartmentSelected += (s, e) =>
+            {
+                          
+                EmployeeProxy employeeProxy = new EmployeeProxy();
+                LoadEmployeeList(employeeProxy.GetListOfEmployeeByDepartmentId(e.TempSchedule.DepartmentID));
+
+            };
+            
+
+        }
     }
 
-
-
+    
+    
 }
 

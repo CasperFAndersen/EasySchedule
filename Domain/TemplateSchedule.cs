@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace Core
 {
+    public class TSchedule
+    {
+        [DataMember]
+        public int ID { get; set; }
+    }
+
     [DataContract]
     public class TemplateSchedule
     {

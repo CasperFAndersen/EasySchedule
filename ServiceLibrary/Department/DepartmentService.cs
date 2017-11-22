@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BusinessLogic;
+using Core;
 
 namespace ServiceLibrary.Department
 {
@@ -10,6 +11,10 @@ namespace ServiceLibrary.Department
         {
             return deptCtrl.GetAllDepartments();
         }
-        
+
+        public Core.Department GetDepartmentById(int depId)
+        {
+            return deptCtrl.GetDepartmentById(depId);
+        }
     }
 }

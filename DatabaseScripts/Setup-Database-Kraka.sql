@@ -48,14 +48,14 @@ create table TemplateShift(
 create table Schedule(
 	id int primary key identity(1,1),
 	startDate smalldatetime,
-	templateScheduleId int foreign key references TemplateSchedule(id)
+	templateScheduleId int foreign key references TemplateSchedule(id),
+	departmentId int foreign key references Department(id)
 )
 
 create table Shift(
 	id int primary key identity(1,1),
-	date smalldatetime,
+	startTime smalldatetime,
 	hours float,
-	startTime time,
 	scheduleId int foreign key references Schedule(id),
 	employeeId int foreign key references Employee(id)
 )

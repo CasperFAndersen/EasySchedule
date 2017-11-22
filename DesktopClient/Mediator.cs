@@ -60,5 +60,18 @@ namespace DesktopClient
 
         }
 
+        public event EventHandler<DepartmentSelectedArgs> DepartmentSelected;
+        public void OnDepartmentSelected(object sender, TemplateSchedule tempSchedule)
+        {
+            var departmentSelectedDelegate = DepartmentSelected as EventHandler<DepartmentSelectedArgs>;
+            if (departmentSelectedDelegate != null)
+            {
+                departmentSelectedDelegate(sender, new DepartmentSelectedArgs { TempSchedule = tempSchedule});
+            }
+
+        }
+
+
+
     }
 }

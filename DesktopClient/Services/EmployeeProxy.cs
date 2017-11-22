@@ -21,14 +21,16 @@ namespace DesktopClient.Services
             return proxy.GetEmployeeByUsernameAsync(username);
         }
 
-        public Employee[] GetListOfEmployeesByDepartmentID(int departmentID)
+
+
+        public List<Employee> GetListOfEmployeeByDepartmentId(int depId)
         {
-            return proxy.GetListOfEmployeesByDepartmentID(departmentID);
+            return proxy.GetListOfEmployeeByDepartmentId(depId);
         }
 
-        public Task<Employee[]> GetListOfEmployeesByDepartmentIDAsync(int departmentID)
+        Task<List<Employee>> IEmployeeService.GetListOfEmployeeByDepartmentIdAsync(int depId)
         {
-            return proxy.GetListOfEmployeesByDepartmentIDAsync(departmentID);
+            throw new NotImplementedException();
         }
     }
 }

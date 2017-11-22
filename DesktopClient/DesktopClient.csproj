@@ -82,6 +82,7 @@
     <Compile Include="DayColumn.xaml.cs">
       <DependentUpon>DayColumn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DepartmentSelectedArgs.cs" />
     <Compile Include="EmployeeDropEventArgs.cs" />
     <Compile Include="EmployeeListItem.xaml.cs">
       <DependentUpon>EmployeeListItem.xaml</DependentUpon>
@@ -97,6 +98,9 @@
     </Compile>
     <Compile Include="TimeCell.xaml.cs">
       <DependentUpon>TimeCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEditTemplateSchedule.xaml.cs">
+      <DependentUpon>ViewEditTemplateSchedule.xaml</DependentUpon>
     </Compile>
     <Page Include="Calendar.xaml">
       <SubType>Designer</SubType>
@@ -127,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TimeCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewEditTemplateSchedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
