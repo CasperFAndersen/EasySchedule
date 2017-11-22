@@ -43,7 +43,7 @@ namespace DesktopClient
             int[] weeks = { 1, 2, 3, 4 };
             Weeks.ItemsSource = weeks;
             Weeks.SelectedItem = tempSchedule.NoOfWeeks;
-            Mediator.GetInstance().OnDepartmentSelected(sender, tempSchedule);
+            Mediator.GetInstance().OnTemplateScheduleSelected(sender, tempSchedule);
         }
     }
 }

@@ -94,7 +94,7 @@ namespace DesktopClient
 
         public void SetOnDepartmentSelected()
         {
-            Mediator.GetInstance().DepartmentSelected += (s, e) =>
+            Mediator.GetInstance().TempScheduleSelected += (s, e) =>
             {
                           
                 EmployeeProxy employeeProxy = new EmployeeProxy();

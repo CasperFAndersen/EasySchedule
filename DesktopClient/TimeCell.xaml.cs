@@ -31,6 +31,7 @@ namespace DesktopClient
             SetDropHandler();
             SetCloseClick();
             SetEmployeeDropped();
+            SetTemplateScheduleSelected();
         }
 
         public Grid GetGrid()
@@ -133,6 +134,15 @@ namespace DesktopClient
             };
         }
 
+        private void SetTemplateScheduleSelected()
+        {
+            Mediator.GetInstance().TempScheduleSelected += (s, e) =>
+            {
+                Clear();
+            };
+        }
+
+
         public void Clear()
         {
             ShiftsInCell = new List<TemplateShift>();
@@ -140,5 +150,6 @@ namespace DesktopClient
             TimeCellGrid.ColumnDefinitions.Clear();
             Border.BorderThickness = new Thickness(0.1, 0.1, 0.1, 0.1);
         }
+
     }
 }

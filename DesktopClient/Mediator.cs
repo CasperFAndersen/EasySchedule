@@ -60,13 +60,13 @@ namespace DesktopClient
 
         }
 
-        public event EventHandler<DepartmentSelectedArgs> DepartmentSelected;
-        public void OnDepartmentSelected(object sender, TemplateSchedule tempSchedule)
+        public event EventHandler<TemplateSelectedArgs> TempScheduleSelected;
+        public void OnTemplateScheduleSelected(object sender, TemplateSchedule tempSchedule)
         {
-            var departmentSelectedDelegate = DepartmentSelected as EventHandler<DepartmentSelectedArgs>;
-            if (departmentSelectedDelegate != null)
+            var templateScheduleSelected = TempScheduleSelected as EventHandler<TemplateSelectedArgs>;
+            if (templateScheduleSelected != null)
             {
-                departmentSelectedDelegate(sender, new DepartmentSelectedArgs { TempSchedule = tempSchedule});
+                templateScheduleSelected(sender, new TemplateSelectedArgs { TempSchedule = tempSchedule});
             }
 
         }

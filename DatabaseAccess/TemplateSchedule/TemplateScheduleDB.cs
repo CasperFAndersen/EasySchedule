@@ -76,5 +76,18 @@ namespace DatabaseAccess
             }
             return tSchedule;
         }
+
+        public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)
+        {
+            using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
+            {
+                dBCon.Open();
+                SqlCommand command = new SqlCommand("UPDATE TemplateSchedule SET noOfWeeks = @param1", dBCon);
+                command.Parameters.AddWithValue("@param1", templateSchedule.NoOfWeeks);
+                command.ExecuteNonQuery();
+
+                dBCon.Close();
+            }
+        }
     }
 }

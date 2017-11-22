@@ -44,7 +44,7 @@ namespace DesktopClient
             SetShiftDropHandler();
             SetCloseShiftClicked();
             SetEmployeeDroppedHandler();
-            SetDepartmentSelected();
+            SetTemplateScheduleSelected();
             LoadShiftsIntoCalendar();
         }
 
@@ -150,11 +150,12 @@ namespace DesktopClient
             };
         }
 
-        public void SetDepartmentSelected()
+        public void SetTemplateScheduleSelected()
         {
-            Mediator.GetInstance().DepartmentSelected += (s, e) =>
+            Mediator.GetInstance().TempScheduleSelected += (s, e) =>
             {
                 Shifts.Clear();
+                EmployeeColors.Clear();
                 AddShifts(e.TempSchedule.ListOfTempShifts);
                 LoadShiftsIntoCalendar();
             };

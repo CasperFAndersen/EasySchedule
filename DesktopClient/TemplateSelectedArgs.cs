@@ -2,7 +2,7 @@
 
 namespace DesktopClient
 {
-    public class DepartmentSelectedArgs
+    public class TemplateSelectedArgs
     {
         public TemplateSchedule TempSchedule { get; set; }
     }

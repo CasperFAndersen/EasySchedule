@@ -39,6 +39,28 @@ namespace DatabaseAccess
             }
         }
 
+        public void UpdateTemplateScheduleShift(int tempScheduleIDFromDB, List<TemplateShift> TShift)
+        {
+            using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
+            {
+                dBCon.Open();
+                SqlCommand updateTemplateShift = new SqlCommand("INSERT INTO TemplateShift(weekDay, hours, startTime, templateScheduleId, employeeId)   VALUES(@param1,@param2,@param3,@param4,@param5)", dBCon);
+                foreach (TemplateShift ts in TShift)
+                {
+                    {
+                        updateTemplateShift.Parameters.AddWithValue("@param1", ts.WeekDay.ToString());
+                        updateTemplateShift.Parameters.AddWithValue("@param2", ts.Hours);
+                        updateTemplateShift.Parameters.AddWithValue("@param3", ts.StartTime);
+                        updateTemplateShift.Parameters.AddWithValue("@param4", tempScheduleIDFromDB);
+                        updateTemplateShift.Parameters.AddWithValue("@param5", ts.Employee.Id);
+
+                        updateTemplateShift.ExecuteNonQuery();
+                    }
+                }
+                dBCon.Close();
+            }
+        }
+
         public IEnumerable<TemplateShift> getAllShifts()
         {
             List<TemplateShift> tempList = new List<TemplateShift>();
@@ -121,6 +143,7 @@ namespace DatabaseAccess
 
             return tempShift;
         }
+
 
         
 
