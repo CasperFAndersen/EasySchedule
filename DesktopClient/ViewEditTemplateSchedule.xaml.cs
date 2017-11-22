@@ -28,10 +28,12 @@ namespace DesktopClient
 
             InitializeComponent();
             BindData();
+            EventChangesListener();
         }
 
         private async void BindData()
         {
+            
             List<TemplateSchedule> tempSchedules = await tempProxy.GetAllTempSchedulesAsync();
             ChooseSchedule.ItemsSource = tempSchedules;
             ChooseSchedule.DisplayMemberPath = "Name";
@@ -44,6 +46,33 @@ namespace DesktopClient
             Weeks.ItemsSource = weeks;
             Weeks.SelectedItem = tempSchedule.NoOfWeeks;
             Mediator.GetInstance().OnTemplateScheduleSelected(sender, tempSchedule);
+        }
+
+        private void EventChangesListener()
+        {
+            Mediator.GetInstance().EmployeeDropped += (s, e) =>
+            {
+                BtnSaveUpdatedTemplateSchedule.IsEnabled = true;
+            };
+
+            Mediator.GetInstance().ShiftDropped += (s, e) =>
+            {
+                BtnSaveUpdatedTemplateSchedule.IsEnabled = true;
+            };
+
+            Mediator.GetInstance().ShiftCloseClicked += (s, e) =>
+            {
+                BtnSaveUpdatedTemplateSchedule.IsEnabled = true;
+            };
+
+        }
+
+        private void BtnSaveUpdatedTemplateSchedule_Click(object sender, RoutedEventArgs e)
+        {
+            TemplateSchedule tempSchedule = (TemplateSchedule)ChooseSchedule.SelectedItem;
+            Mediator.GetInstance().OnTemplateScheduleUpdateButtonClicked(sender, tempSchedule);
+            MessageBox.Show("Changes to: " + tempSchedule.Name + " have been saved to database ");
+           // BindData();
         }
     }
 }

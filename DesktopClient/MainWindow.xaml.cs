@@ -28,6 +28,7 @@ namespace DesktopClient
             InitializeComponent();
             LoadDeparmentList();
             SetOnDepartmentSelected();
+            SetOnTemplateScheduleUpdateClicked();
             //LoadEmployeeList(GetListOfEmployees());
             
         }
@@ -41,14 +42,15 @@ namespace DesktopClient
             }
         }
 
-
-        public List<Employee> GetListOfEmployees(int departmentIndex)
+        public void GetListOfEmployees(int departmentIndex)
         {
-            Department deparment = departmentList.ElementAt(departmentIndex);
-            DepartmentProxy deptProxy = new DepartmentProxy();
-            //return deptProxy.GetAllEmployeesByDepartmentID(deparment);
-            return null;
+            int deparmentId = departmentList.ElementAt(departmentIndex).Id;
+            EmployeeProxy empProxy = new EmployeeProxy();
+            List<Employee> listOfEmployees = new List<Employee>(empProxy.GetListOfEmployeeByDepartmentId(deparmentId).ToList());
+            LoadEmployeeList(listOfEmployees);
         }
+
+
 
         public void LoadDeparmentList()
         {
@@ -61,6 +63,7 @@ namespace DesktopClient
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int departmentIndexChoice = CBoxDepartment.SelectedIndex;
+            EmployeeList.Items.Clear();
             GetListOfEmployees(departmentIndexChoice);
         }
 
@@ -68,14 +71,14 @@ namespace DesktopClient
         {
             TemplateSchedule tempSchedule = new TemplateSchedule();
 
-            foreach (TemplateShift ts in Calendar.GetListOfTemplateShifts())
+            foreach (TemplateShift ts in Calendar.Shifts)
             {
                 tempSchedule.ListOfTempShifts.Add(ts);
             }
             tempSchedule.NoOfWeeks = Convert.ToInt32(TxtBoxNoOfWeeks.Text);
-            //get this from a textbox / or smth. Ask arne what he ment
 
             tempSchedule.Name = TxtBoxTemplateScheduleName.Text;
+            tempSchedule.DepartmentID = departmentList.ElementAt(CBoxDepartment.SelectedIndex).Id;
             TempScheduleProxy tsProxy = new TempScheduleProxy();
             tsProxy.AddTempScheduleToDB(tempSchedule);
             MessageBox.Show("Basis planen er blevet gemt!");
@@ -101,8 +104,16 @@ namespace DesktopClient
                 LoadEmployeeList(employeeProxy.GetListOfEmployeeByDepartmentId(e.TempSchedule.DepartmentID));
 
             };
-            
+        }
 
+        private void SetOnTemplateScheduleUpdateClicked()
+        {
+            Mediator.GetInstance().TempScheduleUpdateClicked += (s, e) =>
+            {
+                ControlPanel.Children.Clear();
+                ControlPanel.Children.Add(new ViewEditTemplateSchedule());
+                EmployeeList.Items.Clear();
+            };
         }
     }
 

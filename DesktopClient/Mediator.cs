@@ -61,14 +61,26 @@ namespace DesktopClient
         }
 
         public event EventHandler<TemplateSelectedArgs> TempScheduleSelected;
-        public void OnTemplateScheduleSelected(object sender, TemplateSchedule tempSchedule)
+        public void OnTemplateScheduleSelected(object sender, TemplateSchedule templateSchedule)
         {
             var templateScheduleSelected = TempScheduleSelected as EventHandler<TemplateSelectedArgs>;
             if (templateScheduleSelected != null)
             {
-                templateScheduleSelected(sender, new TemplateSelectedArgs { TempSchedule = tempSchedule});
+                templateScheduleSelected(sender, new TemplateSelectedArgs { TempSchedule = templateSchedule });
             }
 
+        }
+
+
+        public event EventHandler<TemplateSelectedArgs> TempScheduleUpdateClicked;
+
+        public void OnTemplateScheduleUpdateButtonClicked(object sender, TemplateSchedule templateSchedule)
+        {
+            var tempScheduleUpdateClicked = TempScheduleUpdateClicked as EventHandler<TemplateSelectedArgs>;
+            if (tempScheduleUpdateClicked != null)
+            {
+                tempScheduleUpdateClicked(sender, new TemplateSelectedArgs { TempSchedule = templateSchedule });
+            }
         }
 
 

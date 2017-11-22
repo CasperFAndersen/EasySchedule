@@ -99,6 +99,9 @@
     <Compile Include="TimeCell.xaml.cs">
       <DependentUpon>TimeCell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewCreateTemplateSchedule.xaml.cs">
+      <DependentUpon>ViewCreateTemplateSchedule.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewEditTemplateSchedule.xaml.cs">
       <DependentUpon>ViewEditTemplateSchedule.xaml</DependentUpon>
     </Compile>
@@ -131,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TimeCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewCreateTemplateSchedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

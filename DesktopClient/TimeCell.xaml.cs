@@ -22,6 +22,7 @@ namespace DesktopClient
     public partial class TimeCell : UserControl
     {
         public List<TemplateShift> ShiftsInCell { get; set; }
+        public TemplateSchedule TemplateSchedule { get; set; }
         public TimeSpan Time { get; set; }
         public DayOfWeek weekDay { get; set; }
         public TimeCell()
@@ -32,6 +33,7 @@ namespace DesktopClient
             SetCloseClick();
             SetEmployeeDropped();
             SetTemplateScheduleSelected();
+            SetOnTemplateScheduleUpdateClicked();
         }
 
         public Grid GetGrid()
@@ -102,6 +104,10 @@ namespace DesktopClient
             {
                 Employee employee = (Employee)droppedItem;
                 TemplateShift newShift = new TemplateShift() { StartTime = Time, WeekDay = weekDay, Employee = employee, Hours = 3 }; // DEFAULT HOURS = 3
+                if (TemplateSchedule != null)
+                {
+                    newShift.TemplateScheduleID = TemplateSchedule.ID;
+                }
                 Mediator.GetInstance().OnEmployeeDropped(sender, newShift);
             }
 
@@ -138,6 +144,15 @@ namespace DesktopClient
         {
             Mediator.GetInstance().TempScheduleSelected += (s, e) =>
             {
+                TemplateSchedule = e.TempSchedule;
+                Clear();
+            };
+        }
+
+        private void SetOnTemplateScheduleUpdateClicked()
+        {
+            Mediator.GetInstance().TempScheduleUpdateClicked += (s, e) =>
+            {
                 Clear();
             };
         }
@@ -145,6 +160,7 @@ namespace DesktopClient
 
         public void Clear()
         {
+            //TemplateSchedule = null;
             ShiftsInCell = new List<TemplateShift>();
             TimeCellGrid.Children.Clear();
             TimeCellGrid.ColumnDefinitions.Clear();

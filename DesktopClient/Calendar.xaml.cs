@@ -46,6 +46,7 @@ namespace DesktopClient
             SetEmployeeDroppedHandler();
             SetTemplateScheduleSelected();
             LoadShiftsIntoCalendar();
+            SetTemplateScheduleUpdateClicked();
         }
 
         private void AddShifts(List<TemplateShift> list)
@@ -161,23 +162,19 @@ namespace DesktopClient
             };
         }
 
+        private void SetTemplateScheduleUpdateClicked()
+        {
+            Mediator.GetInstance().TempScheduleUpdateClicked += (s, e) =>
+            {
+                e.TempSchedule.ListOfTempShifts = Shifts;
+                TempScheduleProxy tempScheduleProxy = new TempScheduleProxy();
+                tempScheduleProxy.UpdateTemplateSchedule(e.TempSchedule);
+            };
+        }
+
         public Color GetRandomColor()
         {
             return colors[rnd.Next(colors.Length)];
-        }
-
-        public List<TemplateShift> GetListOfTemplateShifts()
-        {
-            List<TemplateShift> res = new List<TemplateShift>();
-            TemplateShift ts1 = new TemplateShift() { StartTime = new TimeSpan(10, 0, 0),WeekDay = DayOfWeek.Thursday, Employee = new Employee() { Name = "Hanne" }, Hours =3 };
-            TemplateShift ts2= new TemplateShift() { StartTime = new TimeSpan(10, 0, 0), WeekDay = DayOfWeek.Monday, Employee = new Employee() { Name = "Ole" }, Hours = 6};
-            TemplateShift ts3 = new TemplateShift() { StartTime = new TimeSpan(10, 0, 0),WeekDay = DayOfWeek.Wednesday, Employee = new Employee() { Name = "Bendy" }, Hours = 4 };
-
-            res.Add(ts1);
-            res.Add(ts2);
-            res.Add(ts3);
-
-            return res;
         }
 
 

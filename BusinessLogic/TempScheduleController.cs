@@ -37,5 +37,10 @@ namespace BusinessLogic
         {
             tscheduleModel.ListOfTempShifts.Add(tShift);
         }
+
+        public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)
+        {
+            tScheduleDB.UpdateTemplateSchedule(templateSchedule);
+        }
     }
 }

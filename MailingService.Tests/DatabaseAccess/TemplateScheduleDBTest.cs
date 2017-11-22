@@ -4,6 +4,7 @@ using Core;
 using DatabaseAccess;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using DatabaseAccess.Employees;
 
 namespace Tests.DatabaseAccess
 {
@@ -50,6 +51,33 @@ namespace Tests.DatabaseAccess
             TemplateScheduleDB tempScheduleDB = new TemplateScheduleDB();
             List<TemplateSchedule> tempSchedules = tempScheduleDB.GetAll().ToList();
             Assert.IsNotNull(tempScheduleDB);
+
+        }
+
+        [TestMethod]
+        public void TestUpdateTempSchedule()
+        {
+            DBSetUp.SetUpDB();
+            TemplateScheduleDB tScheduleDB = new TemplateScheduleDB();
+            TemplateSchedule templateSchedule = tScheduleDB.FindTempScheduleByName("KolonialBasis");
+            TemplateShift tempShift1 = templateSchedule.ListOfTempShifts[0];
+            tempShift1.StartTime = new TimeSpan(8, 0, 0);
+            tempShift1.Hours = 8;
+
+            TemplateShift tempShift2 = new TemplateShift() { StartTime = new TimeSpan(12, 0, 0), Hours = 6, Employee = new EmployeeRepository().FindEmployeeById(5), TemplateScheduleID = templateSchedule.ID };
+            templateSchedule.ListOfTempShifts.Add(tempShift2);
+
+            tScheduleDB.UpdateTemplateSchedule(templateSchedule);
+
+            templateSchedule = tScheduleDB.FindTempScheduleByName("KolonialBasis");
+
+            Assert.IsNotNull(templateSchedule);
+            Assert.AreEqual(2, templateSchedule.ListOfTempShifts.Count);
+            Assert.AreEqual(new TimeSpan(8, 0, 0), templateSchedule.ListOfTempShifts[0].StartTime);
+            Assert.AreEqual(new TimeSpan(12, 0, 0), templateSchedule.ListOfTempShifts[1].StartTime);
+            Assert.AreEqual(8, templateSchedule.ListOfTempShifts[0].Hours);
+            Assert.AreEqual(6, templateSchedule.ListOfTempShifts[1].Hours);
+            DBSetUp.SetUpDB();
 
         }
     }

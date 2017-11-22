@@ -70,6 +70,7 @@ namespace DatabaseAccess
                     while (reader.Read())
                     {
                         tSchedule = new TemplateSchedule(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetInt32(3));
+                        tSchedule.ListOfTempShifts = new TemplateShiftDB().GetTempShiftsByTempScheduleID(tSchedule.ID);
                     }
                 }
                 dBCon.Close();
@@ -85,6 +86,9 @@ namespace DatabaseAccess
                 SqlCommand command = new SqlCommand("UPDATE TemplateSchedule SET noOfWeeks = @param1", dBCon);
                 command.Parameters.AddWithValue("@param1", templateSchedule.NoOfWeeks);
                 command.ExecuteNonQuery();
+
+                TemplateShiftDB templateShiftDB = new TemplateShiftDB();
+                templateShiftDB.AddTempShiftsFromTempScheduleToDB(templateSchedule.ID, templateSchedule.ListOfTempShifts);
 
                 dBCon.Close();
             }

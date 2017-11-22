@@ -22,9 +22,11 @@ namespace DatabaseAccess
             using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
             {
                 dBCon.Open();
-                SqlCommand insertTempShift = new SqlCommand("INSERT INTO TemplateShift(weekDay, hours, startTime, templateScheduleId, employeeId)   VALUES(@param1,@param2,@param3,@param4,@param5)", dBCon);
+                
                 foreach (TemplateShift ts in TShift)
                 {
+                    SqlCommand insertTempShift = new SqlCommand("INSERT INTO TemplateShift(weekDay, hours, startTime, templateScheduleId, employeeId)   VALUES(@param1,@param2,@param3,@param4,@param5)", dBCon);
+                    if (ts.ID == 0)
                     {
                         insertTempShift.Parameters.AddWithValue("@param1", ts.WeekDay.ToString());
                         insertTempShift.Parameters.AddWithValue("@param2", ts.Hours);
@@ -34,29 +36,34 @@ namespace DatabaseAccess
 
                         insertTempShift.ExecuteNonQuery();
                     }
+
+                    else
+                    {
+                        UpdateTemplateScheduleShift(ts);
+                    }
+
+
                 }
                 dBCon.Close();
             }
         }
 
-        public void UpdateTemplateScheduleShift(int tempScheduleIDFromDB, List<TemplateShift> TShift)
+        public void UpdateTemplateScheduleShift(TemplateShift templateShift)
         {
             using (SqlConnection dBCon = new SqlConnection(dbConADO.KrakaConnectionString()))
             {
                 dBCon.Open();
-                SqlCommand updateTemplateShift = new SqlCommand("INSERT INTO TemplateShift(weekDay, hours, startTime, templateScheduleId, employeeId)   VALUES(@param1,@param2,@param3,@param4,@param5)", dBCon);
-                foreach (TemplateShift ts in TShift)
-                {
-                    {
-                        updateTemplateShift.Parameters.AddWithValue("@param1", ts.WeekDay.ToString());
-                        updateTemplateShift.Parameters.AddWithValue("@param2", ts.Hours);
-                        updateTemplateShift.Parameters.AddWithValue("@param3", ts.StartTime);
-                        updateTemplateShift.Parameters.AddWithValue("@param4", tempScheduleIDFromDB);
-                        updateTemplateShift.Parameters.AddWithValue("@param5", ts.Employee.Id);
+                SqlCommand updateTemplateShift = new SqlCommand("UPDATE TemplateShift SET weekday = @param1, hours = @param2, startTime = @param3 WHERE id = @param4", dBCon);
 
-                        updateTemplateShift.ExecuteNonQuery();
-                    }
-                }
+
+                updateTemplateShift.Parameters.AddWithValue("@param1", templateShift.WeekDay.ToString());
+                updateTemplateShift.Parameters.AddWithValue("@param2", templateShift.Hours);
+                updateTemplateShift.Parameters.AddWithValue("@param3", templateShift.StartTime);
+                updateTemplateShift.Parameters.AddWithValue("@param4", templateShift.ID);
+
+
+                updateTemplateShift.ExecuteNonQuery();
+
                 dBCon.Close();
             }
         }
@@ -84,7 +91,7 @@ namespace DatabaseAccess
                                 tempShift.Hours = reader.GetOrdinal("Hours");
                                 tempShift.StartTime = TimeSpan.Parse(reader.GetOrdinal("StartTime").ToString());
                                 tempShift.TemplateScheduleID = reader.GetOrdinal("TemplateScheduleId");
-                                tempShift.Employee = new Employee() { Id =reader.GetOrdinal("EmployeeId") };
+                                tempShift.Employee = new Employee() { Id = reader.GetOrdinal("EmployeeId") };
 
 
                                 tempList.Add(tempShift);
@@ -110,18 +117,18 @@ namespace DatabaseAccess
                     p1.Value = tempScheduleId;
 
                     command.Parameters.Add(p1);
-                    
+
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
 
 
-                                TemplateShift tempShift = BuildTempShiftObject(reader);
+                            TemplateShift tempShift = BuildTempShiftObject(reader);
 
 
-                                tempList.Add(tempShift);
-                  
+                            tempList.Add(tempShift);
+
                         }
                     }
                 }
@@ -145,7 +152,7 @@ namespace DatabaseAccess
         }
 
 
-        
+
 
 
 

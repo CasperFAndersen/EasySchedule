@@ -52,5 +52,15 @@ namespace DesktopClient
         {
             return proxy.GetAllTempSchedulesAsync();
         }
+
+        public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)
+        {
+            proxy.UpdateTemplateSchedule(templateSchedule);
+        }
+
+        public Task UpdateTemplateScheduleAsync(TemplateSchedule templateSchedule)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

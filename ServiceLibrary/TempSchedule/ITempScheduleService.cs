@@ -18,5 +18,8 @@ namespace ServiceLibrary.TempSchedule
 
         [OperationContract]
         void AddTempShift(TemplateShift tShift);
+
+        [OperationContract]
+        void UpdateTemplateSchedule(TemplateSchedule templateSchedule);
     }
 }

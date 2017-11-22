@@ -25,5 +25,10 @@ namespace ServiceLibrary.TempSchedule
         {
             tempScheduleCtrl.AddTempShift(tShift);
         }
+
+        public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)
+        {
+            tempScheduleCtrl.UpdateTemplateSchedule(templateSchedule);
+        }
     }
 }
