@@ -83,14 +83,14 @@ namespace DesktopClient
             }
         }
 
-        public delegate void DepartmentBoxChangedHandler(List<Employee> employees);
+        public delegate void DepartmentBoxChangedHandler(List<Employee> employees, Department department);
         public event DepartmentBoxChangedHandler DepartmentBoxChanged;
 
-        public void OnDepartmentBoxSelected(List<Employee> employees)
+        public void OnDepartmentBoxSelected(List<Employee> employees, Department department)
         {
             if(DepartmentBoxChanged != null)
             {
-                DepartmentBoxChanged(employees);
+                DepartmentBoxChanged(employees, department);
             }
         }
 
@@ -102,6 +102,16 @@ namespace DesktopClient
             if(CreateTemplateScheduleButtonClicked != null)
             {
                 CreateTemplateScheduleButtonClicked(templateSchedule);
+            }
+        }
+
+        public delegate void MenuItemChangedHandler();
+        public event MenuItemChangedHandler MenuItemChanged;
+        public void OnMenuItemChanged()
+        {
+            if (MenuItemChanged != null)
+            {
+                MenuItemChanged();
             }
         }
 

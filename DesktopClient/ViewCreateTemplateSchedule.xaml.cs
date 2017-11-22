@@ -51,7 +51,7 @@ namespace DesktopClient
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             List<Employee> employees = GetListOfEmployees((Department)CBoxDepartment.SelectedItem);
-            Mediator.GetInstance().OnDepartmentBoxSelected(employees);
+            Mediator.GetInstance().OnDepartmentBoxSelected(employees, (Department)CBoxDepartment.SelectedItem);
         }
 
         private void BtnSaveTemplateSchedule_Click(object sender, RoutedEventArgs e)

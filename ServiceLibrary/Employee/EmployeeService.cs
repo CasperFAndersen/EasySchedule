@@ -9,6 +9,11 @@ namespace ServiceLibrary.Employee
     {
         EmployeeController empCtrl = new EmployeeController();
 
+        public List<Core.Employee> GetAllEmployees()
+        {
+            return empCtrl.GetAllEmployees();
+        }
+
         public Core.Employee GetEmployeeByUsername(string username)
         {
             return empCtrl.GetEmployeeByUsername(username);

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:DesktopClient"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Cursor="Hand">
+    <Grid Cursor="Hand" ToolTip="Drag Employee Onto Calendar">
         <TextBlock x:Name="empBox" Text="{Binding Name}" TextAlignment="Center" FontSize="18" Background="RoyalBlue"/>
     </Grid>
 </UserControl>

@@ -11,6 +11,17 @@ namespace DesktopClient.Services
     public class EmployeeProxy : IEmployeeService
     {
         EmployeeServiceClient proxy = new EmployeeServiceClient();
+
+        public List<Employee> GetAllEmployees()
+        {
+            return proxy.GetAllEmployees();
+        }
+
+        public Task<List<Employee>> GetAllEmployeesAsync()
+        {
+            return proxy.GetAllEmployeesAsync();
+        }
+
         public Employee GetEmployeeByUsername(string username)
         {
             return proxy.GetEmployeeByUsername(username);

@@ -23,12 +23,15 @@ namespace DesktopClient
     {
         public bool IsFirstElement { get; set; }
         public bool IsLastElement { get; set; }
-        public ShiftElement(TemplateShift shift, Color color)
+        public ShiftElement(TemplateShift shift, Color color, bool isLastElement)
         {
             InitializeComponent();
             DataContext = shift;
-            IsLastElement = false;
+            IsLastElement = isLastElement;
             textBox.Background = new SolidColorBrush(color);
+            SetCursor();
+
+           
             button.Visibility = Visibility.Hidden;
         }
 
@@ -39,6 +42,7 @@ namespace DesktopClient
             IsLastElement = false;
             textBox.Background = new SolidColorBrush(color);
             textBox.Text = text;
+            SetCursor();
 
         }
 
@@ -54,6 +58,18 @@ namespace DesktopClient
 
                 // Inititate the drag-and-drop operation.
                 DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
+            }
+        }
+
+        public void SetCursor()
+        {
+            if (IsLastElement)
+            {
+                Grid.Cursor = Cursors.SizeNS;
+            }
+            else
+            {
+                Grid.Cursor = Cursors.Hand;
             }
         }
 

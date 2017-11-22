@@ -11,6 +11,8 @@ namespace ServiceLibrary.Employee
         List<Core.Employee> GetListOfEmployeesByDepartmentID(int departmentID);
         [OperationContract]
         List<Core.Employee> GetListOfEmployeeByDepartmentId(int depId);
+        [OperationContract]
+        List<Core.Employee> GetAllEmployees();
     }
 
 }

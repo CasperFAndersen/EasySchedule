@@ -34,6 +34,7 @@ namespace DesktopClient
             SetEmployeeDropped();
             SetTemplateScheduleSelected();
             SetOnTemplateScheduleUpdateClicked();
+            SetOnMenuItemChanged();
         }
 
         public Grid GetGrid()
@@ -49,25 +50,25 @@ namespace DesktopClient
 
         public void FillCell(TemplateShift shift, bool isFirstElement, bool isLastElement)
         {
-            Color color = Calendar.EmployeeColors[shift.Employee];
+            Color color = MainWindow.EmployeeColors[shift.Employee.Name];
+            
             ShiftElement shiftElement = null;
             if (isFirstElement)
             {
                 shiftElement = new ShiftElement(shift, shift.Employee.Name, color);
-                Border.BorderThickness = new Thickness(0.1, 0.1, 0.1, 0);
-               
+                
+               // Border.BorderThickness = new Thickness(0.1, 0.1, 0.1, 0);
              
             }
             else if (isLastElement)
             {
-                shiftElement = new ShiftElement(shift, color);
-                shiftElement.IsLastElement = true;
-                Border.BorderThickness = new Thickness(0.1, 0, 0.1, 0.1);
+                shiftElement = new ShiftElement(shift, color, true);
+                //Border.BorderThickness = new Thickness(0.1, 0, 0.1, 0.1);
             }
             else // Middle Element 
             {
-                shiftElement = new ShiftElement(shift, color);
-                Border.BorderThickness = new Thickness(0.1, 0, 0.1, 0);
+                shiftElement = new ShiftElement(shift, color, false);
+               // Border.BorderThickness = new Thickness(0.1, 0, 0.1, 0);
             }
 
             TimeCellGrid.ColumnDefinitions.Add(new ColumnDefinition());
@@ -89,7 +90,7 @@ namespace DesktopClient
                 bool isLastElement = (bool)e.Data.GetData("IsLastShiftElement");
                 if (isLastElement)
                 {
-                    droppedShift.Hours = Time.Hours - droppedShift.StartTime.Hours;
+                    droppedShift.Hours = (Time.Subtract(droppedShift.StartTime).TotalHours);//.Add(new TimeSpan(0, Calendar.INCREMENT, 0)).TotalHours);
                 }
                 else
                 {
@@ -157,14 +158,22 @@ namespace DesktopClient
             };
         }
 
+        private void SetOnMenuItemChanged()
+        {
+            Mediator.GetInstance().MenuItemChanged += () =>
+            {
+                Clear();
+            };
+        }
+
 
         public void Clear()
         {
-            //TemplateSchedule = null;
+            TemplateSchedule = null;
             ShiftsInCell = new List<TemplateShift>();
             TimeCellGrid.Children.Clear();
             TimeCellGrid.ColumnDefinitions.Clear();
-            Border.BorderThickness = new Thickness(0.1, 0.1, 0.1, 0.1);
+           // Border.BorderThickness = new Thickness(0.1, 0.1, 0.1, 0.1);
         }
 
     }
