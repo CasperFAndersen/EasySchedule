@@ -22,26 +22,61 @@ namespace DesktopClient
     /// </summary>
     public partial class ViewCreateTemplateSchedule : UserControl
     {
-        private List<Department> departmentList { get; set; }
+        private List<Department> DepartmentList { get; set; }
         public ViewCreateTemplateSchedule()
         {
             InitializeComponent();
+            LoadDeparmentList();
+            NoOfWeeks.ItemsSource = new int[] {1,2,3,4 };
         }
 
-        //public void LoadDeparmentList()
-        //{
-        //    DepartmentProxy deptProxy = new DepartmentProxy();
-        //    departmentList = deptProxy.GetAllDepartments().ToList();
-        //    CBoxDepartment.ItemsSource = departmentList;
-        //    CBoxDepartment.DisplayMemberPath = "Name";
-        //}
+        public List<Employee> GetListOfEmployees(Department department)
+        {
+            EmployeeProxy empProxy = new EmployeeProxy();
+            List<Employee> listOfEmployees = new List<Employee>(empProxy.GetListOfEmployeeByDepartmentId(department.Id).ToList());
+            return listOfEmployees;
+        }
 
-        //public List<Employee> GetListOfEmployees(int departmentIndex)
-        //{
-        //    Department deparment = departmentList.ElementAt(departmentIndex);
-        //    DepartmentProxy deptProxy = new DepartmentProxy();
-        //    //return deptProxy.GetAllEmployeesByDepartmentID(deparment);
-        //    return null;
-        //}
+
+
+        public void LoadDeparmentList()
+        {
+            DepartmentProxy deptProxy = new DepartmentProxy();
+            DepartmentList = deptProxy.GetAllDepartments().ToList();
+            CBoxDepartment.ItemsSource = DepartmentList;
+            CBoxDepartment.DisplayMemberPath = "Name";
+
+        }
+
+        private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            List<Employee> employees = GetListOfEmployees((Department)CBoxDepartment.SelectedItem);
+            Mediator.GetInstance().OnDepartmentBoxSelected(employees);
+        }
+
+        private void BtnSaveTemplateSchedule_Click(object sender, RoutedEventArgs e)
+        {
+            if (TxtBoxTemplateScheduleName.Text.Length == 0)
+            {
+                MessageBox.Show("Please enter name");
+            }
+            else if (NoOfWeeks.SelectedItem == null)
+            {
+                MessageBox.Show("Please choose number of weeks!");
+            }
+            else
+            {
+                TemplateSchedule tempSchedule = new TemplateSchedule();
+                Department selectedDep = (Department)CBoxDepartment.SelectedItem;
+                tempSchedule.DepartmentID = selectedDep.Id;
+                tempSchedule.NoOfWeeks = (int)NoOfWeeks.SelectedItem;
+                tempSchedule.Name = TxtBoxTemplateScheduleName.Text;
+                Mediator.GetInstance().OnCreateTemplateScheduleButtonClicked(tempSchedule);
+            }
+
+        
+        }
+
+
     }
 }

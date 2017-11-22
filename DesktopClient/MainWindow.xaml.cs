@@ -26,11 +26,12 @@ namespace DesktopClient
         public MainWindow()
         {
             InitializeComponent();
-            LoadDeparmentList();
+           // LoadDeparmentList();
             SetOnDepartmentSelected();
             SetOnTemplateScheduleUpdateClicked();
+            SetOnDepartmentBoxSelected();
             //LoadEmployeeList(GetListOfEmployees());
-            
+
         }
 
         public void LoadEmployeeList(List<Employee> employees)
@@ -52,37 +53,26 @@ namespace DesktopClient
 
 
 
-        public void LoadDeparmentList()
-        {
-            DepartmentProxy deptProxy = new DepartmentProxy();
-            departmentList = deptProxy.GetAllDepartments().ToList();
-            CBoxDepartment.ItemsSource = departmentList;
-            CBoxDepartment.DisplayMemberPath = "Name";
-        }
 
-        private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int departmentIndexChoice = CBoxDepartment.SelectedIndex;
-            EmployeeList.Items.Clear();
-            GetListOfEmployees(departmentIndexChoice);
-        }
 
-        private void BtnSaveTemplateSchedule_Click(object sender, RoutedEventArgs e)
-        {
-            TemplateSchedule tempSchedule = new TemplateSchedule();
+  
 
-            foreach (TemplateShift ts in Calendar.Shifts)
-            {
-                tempSchedule.ListOfTempShifts.Add(ts);
-            }
-            tempSchedule.NoOfWeeks = Convert.ToInt32(TxtBoxNoOfWeeks.Text);
+        //private void BtnSaveTemplateSchedule_Click(object sender, RoutedEventArgs e)
+        //{
+        //    TemplateSchedule tempSchedule = new TemplateSchedule();
 
-            tempSchedule.Name = TxtBoxTemplateScheduleName.Text;
-            tempSchedule.DepartmentID = departmentList.ElementAt(CBoxDepartment.SelectedIndex).Id;
-            TempScheduleProxy tsProxy = new TempScheduleProxy();
-            tsProxy.AddTempScheduleToDB(tempSchedule);
-            MessageBox.Show("Basis planen er blevet gemt!");
-        }
+        //    foreach (TemplateShift ts in Calendar.Shifts)
+        //    {
+        //        tempSchedule.ListOfTempShifts.Add(ts);
+        //    }
+        //    tempSchedule.NoOfWeeks = Convert.ToInt32(TxtBoxNoOfWeeks.Text);
+
+        //    tempSchedule.Name = TxtBoxTemplateScheduleName.Text;
+        //    tempSchedule.DepartmentID = departmentList.ElementAt(CBoxDepartment.SelectedIndex).Id;
+        //    TempScheduleProxy tsProxy = new TempScheduleProxy();
+        //    tsProxy.AddTempScheduleToDB(tempSchedule);
+        //    MessageBox.Show("Basis planen er blevet gemt!");
+        //}
 
         private void TxtBoxNoOfWeeks_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -94,6 +84,8 @@ namespace DesktopClient
             ControlPanel.Children.Clear();
             ControlPanel.Children.Add(new ViewEditTemplateSchedule());
         }
+
+
 
         public void SetOnDepartmentSelected()
         {
@@ -114,6 +106,20 @@ namespace DesktopClient
                 ControlPanel.Children.Add(new ViewEditTemplateSchedule());
                 EmployeeList.Items.Clear();
             };
+        }
+
+        private void SetOnDepartmentBoxSelected()
+        {
+            Mediator.GetInstance().DepartmentBoxChanged += (e) =>
+            {
+                LoadEmployeeList(e);
+            };
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            ControlPanel.Children.Clear();
+            ControlPanel.Children.Add(new ViewCreateTemplateSchedule());
         }
     }
 

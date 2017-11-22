@@ -47,8 +47,10 @@ namespace DesktopClient
             SetTemplateScheduleSelected();
             LoadShiftsIntoCalendar();
             SetTemplateScheduleUpdateClicked();
+            SetCreateTemplateScheduleClicked();
         }
 
+ 
         private void AddShifts(List<TemplateShift> list)
         {
             list.ForEach(x => Shifts.Add(x));
@@ -171,6 +173,27 @@ namespace DesktopClient
                 tempScheduleProxy.UpdateTemplateSchedule(e.TempSchedule);
             };
         }
+
+        private void SetCreateTemplateScheduleClicked()
+        {
+            Mediator.GetInstance().CreateTemplateScheduleButtonClicked += (t) =>
+            {
+                if (Shifts.Count == 0)
+                {
+                    MessageBox.Show("No shifts has been added!");
+                }
+                else
+                {
+                    TempScheduleProxy tempScheduleProxy = new TempScheduleProxy();
+                    t.ListOfTempShifts = Shifts;
+                    tempScheduleProxy.AddTempScheduleToDB(t);
+                    MessageBox.Show("Template schedule is now saved onto database");
+                }
+
+            };
+            
+        }
+
 
         public Color GetRandomColor()
         {
