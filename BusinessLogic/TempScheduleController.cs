@@ -10,8 +10,13 @@ namespace BusinessLogic
 {
     public class TempScheduleController
     {
-        TemplateScheduleDB tScheduleDB = new TemplateScheduleDB();
+        TemplateScheduleRepository _tScheduleRepository = new TemplateScheduleRepository();
         TemplateSchedule tscheduleModel = new TemplateSchedule();
+
+        public TempScheduleController()
+        {
+            
+        }
 
         public TemplateSchedule CreateTemplateSchedule(int numberOfWeeks, string name)
         {
@@ -20,17 +25,17 @@ namespace BusinessLogic
 
         public IEnumerable<TemplateSchedule> GetAllTempSchedules()
         {
-            return tScheduleDB.GetAll();
+            return _tScheduleRepository.GetAll();
         }
 
         public TemplateSchedule FindTempScheduleByName(string name)
         {
-            return tScheduleDB.FindTempScheduleByName(name);
+            return _tScheduleRepository.FindTempScheduleByName(name);
         }
 
-        public void AddTempScheduleToDB(TemplateSchedule tSchedule)
+        public void AddTempScheduleToDb(TemplateSchedule tSchedule)
         {
-            tScheduleDB.AddTempScheduleToDB(tSchedule);
+            _tScheduleRepository.AddTempScheduleToDB(tSchedule);
         }
         
         public void AddTempShift(TemplateShift tShift)
@@ -40,7 +45,7 @@ namespace BusinessLogic
 
         public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)
         {
-            tScheduleDB.UpdateTemplateSchedule(templateSchedule);
+            _tScheduleRepository.UpdateTemplateSchedule(templateSchedule);
         }
     }
 }

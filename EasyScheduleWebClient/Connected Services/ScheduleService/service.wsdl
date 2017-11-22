@@ -52,7 +52,7 @@
   </wsdl:binding>
   <wsdl:service name="ScheduleService">
     <wsdl:port name="BasicHttpBinding_IScheduleService" binding="tns:BasicHttpBinding_IScheduleService">
-      <soap:address location="http://localhost:9000/Design_Time_Addresses/ServiceLibrary/ScheduleService/" />
+      <soap:address location="http://localhost:9000/ServiceLibrary/ScheduleService/" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

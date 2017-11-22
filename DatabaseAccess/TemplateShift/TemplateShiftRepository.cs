@@ -10,12 +10,10 @@ using System.Threading.Tasks;
 
 namespace DatabaseAccess
 {
-    public class TemplateShiftDB
+    public class TemplateShiftRepository
     {
 
         DbConnectionADO dbConADO = new DbConnectionADO();
-
-
 
         public void AddTempShiftsFromTempScheduleToDB(int tempScheduleIDFromDB, List<TemplateShift> TShift)
         {

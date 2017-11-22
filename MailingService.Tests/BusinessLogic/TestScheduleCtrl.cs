@@ -10,7 +10,7 @@ namespace Tests.BusinessLogic
     public class TestScheduleCtrl
     {
         
-        ScheduleController schCtrl = new ScheduleController();
+        ScheduleController schCtrl = new ScheduleController(new ScheduleRepository());
 
         [TestMethod]
         public void TestGetSchedueleByCurrentDate()

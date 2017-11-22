@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using BusinessLogic;
 using Core;
+using DatabaseAccess.Employees;
 
 namespace ServiceLibrary.Employee
 {
 
     public class EmployeeService : IEmployeeService
     {
-        EmployeeController empCtrl = new EmployeeController();
+        EmployeeController empCtrl = new EmployeeController(new EmployeeRepository());
 
         public Core.Employee GetEmployeeByUsername(string username)
         {
@@ -16,12 +17,12 @@ namespace ServiceLibrary.Employee
 
         public List<Core.Employee> GetListOfEmployeeByDepartmentId(int depId)
         {
-            return empCtrl.GetListOfEmployeesByDepartmentID(depId);
+            return empCtrl.GetListOfEmployeesByDepartmentId(depId);
         }
 
         public List<Core.Employee> GetListOfEmployeesByDepartmentID(int departmentID)
         {
-            return empCtrl.GetListOfEmployeesByDepartmentID(departmentID);
+            return empCtrl.GetListOfEmployeesByDepartmentId(departmentID);
         }
     }
 }

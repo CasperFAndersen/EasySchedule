@@ -9,7 +9,7 @@ namespace ServiceLibrary.TempSchedule
         TempScheduleController tempScheduleCtrl = new TempScheduleController();
         public void AddTempScheduleToDB(TemplateSchedule tSchedule)
         {
-            tempScheduleCtrl.AddTempScheduleToDB(tSchedule);
+            tempScheduleCtrl.AddTempScheduleToDb(tSchedule);
         }
 
         public TemplateSchedule FindTempScheduleByName(string name)

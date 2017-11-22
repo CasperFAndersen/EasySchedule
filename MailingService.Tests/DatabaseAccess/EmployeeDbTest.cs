@@ -1,6 +1,7 @@
 ﻿using Core;
 using DatabaseAccess.Employees;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rhino.Mocks;
 
 namespace Tests.DatabaseAccess
 {
@@ -10,10 +11,9 @@ namespace Tests.DatabaseAccess
         [TestMethod]
         public void TestGetEmployeeByUsername()
         {
-            EmployeeRepository empRes = new EmployeeRepository();
+            IEmployeeRepository empRes = new EmployeeRepository();
             Employee emp = empRes.GetEmployeeByUsername("MikkelP");
             Assert.AreEqual("Mikkel Paulsen", empRes.GetEmployeeByUsername("MikkelP").Name);
-
         }
 
     }

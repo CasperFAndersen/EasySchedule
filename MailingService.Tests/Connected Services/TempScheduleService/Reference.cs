@@ -65,6 +65,12 @@ namespace Tests.TempScheduleService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempScheduleService/AddTempShift", ReplyAction="http://tempuri.org/ITempScheduleService/AddTempShiftResponse")]
         System.Threading.Tasks.Task AddTempShiftAsync(Core.TemplateShift tShift);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempScheduleService/UpdateTemplateSchedule", ReplyAction="http://tempuri.org/ITempScheduleService/UpdateTemplateScheduleResponse")]
+        void UpdateTemplateSchedule(Core.TemplateSchedule templateSchedule);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITempScheduleService/UpdateTemplateSchedule", ReplyAction="http://tempuri.org/ITempScheduleService/UpdateTemplateScheduleResponse")]
+        System.Threading.Tasks.Task UpdateTemplateScheduleAsync(Core.TemplateSchedule templateSchedule);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -124,6 +130,14 @@ namespace Tests.TempScheduleService {
         
         public System.Threading.Tasks.Task AddTempShiftAsync(Core.TemplateShift tShift) {
             return base.Channel.AddTempShiftAsync(tShift);
+        }
+        
+        public void UpdateTemplateSchedule(Core.TemplateSchedule templateSchedule) {
+            base.Channel.UpdateTemplateSchedule(templateSchedule);
+        }
+        
+        public System.Threading.Tasks.Task UpdateTemplateScheduleAsync(Core.TemplateSchedule templateSchedule) {
+            return base.Channel.UpdateTemplateScheduleAsync(templateSchedule);
         }
     }
 }
