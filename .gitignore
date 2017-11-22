@@ -263,3 +263,4 @@ Diverse filer som ikke er en del af programmet/Publish Schedule.png
 *.png
 MailingService.Tests/DataBaseAcces/DBSetUp.cs
 MailingService.Tests/DataBaseAcces/DBSetUp.cs
+DatabaseAccess/TemplateShift/TemplateShiftDB.cs
