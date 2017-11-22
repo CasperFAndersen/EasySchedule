@@ -50,10 +50,12 @@ namespace DesktopClient
             return null;
         }
 
-        public List<Department> LoadDeparmentList()
+        public void LoadDeparmentList()
         {
             DepartmentProxy deptProxy = new DepartmentProxy();
-            return departmentList = deptProxy.GetAllDepartments().ToList();
+            departmentList = deptProxy.GetAllDepartments().ToList();
+            CBoxDepartment.ItemsSource = departmentList;
+            CBoxDepartment.DisplayMemberPath = "Name";
         }
 
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)

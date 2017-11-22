@@ -188,7 +188,10 @@ namespace Tests.DatabaseAccess
                                       +
                                       //TemplateShift
                                       "insert into TemplateShift(weekday, hours, startTime, templateScheduleId, employeeId) " +
-                                      "values ('Tuesday', 10, '06:30:00', (select id from templateSchedule where name='Test'), (select id from Employee where name='Mikkel Paulsen')); "
+                                      "values ('Tuesday', 10, '06:30:00', (select id from templateSchedule where name='KolonialBasis'), (select id from Employee where name='Mikkel Paulsen')); "
+                                      + 
+                                      "insert into TemplateShift(weekday, hours, startTime, templateScheduleId, employeeId) " +
+                                      "values ('Tuesday', 10, '06:30:00', (select id from templateSchedule where name='PakkeCentralJuletid'), (select id from Employee where name='Tobias Andersen')); "
 
                                       +
                                       //Schedule

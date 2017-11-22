@@ -21,12 +21,12 @@
         <local:Calendar x:Name="Calendar" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"/>
         <ListView Name="EmployeeList" Grid.Column="1" Grid.Row="1"></ListView>
         <Button x:Name="BtnSaveTemplateSchedule" Grid.Row="1" Content="Save" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" RenderTransformOrigin="0.773,1.7" Click="BtnSaveTemplateSchedule_Click"/>
-        <ComboBox x:Name="CBoxDepartment" Grid.Row="1" ItemsSource="{Binding departmentList}" HorizontalAlignment="Left" Margin="133,158,0,0" VerticalAlignment="Top" Width="130" Height="26" SelectionChanged="CBoxDepartment_SelectionChanged"/>
-        <TextBox x:Name="TxtBoxTemplateScheduleName" Grid.Row="1" HorizontalAlignment="Left" Height="22" Margin="133,110,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TxtBoxNoOfWeeks" Grid.Row="1" HorizontalAlignment="Left" Height="23" Margin="86,0,0,10" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Bottom" Width="60"/>
-        <Label Content="Basisplan navn:" HorizontalAlignment="Left" Margin="36,106,0,0" VerticalAlignment="Top"></Label>
-        <Label Content="Afdeling:" HorizontalAlignment="Left" Margin="36,158,0,0" VerticalAlignment="Top"></Label>
-        <Label Content="Antal af uger:" HorizontalAlignment="Left" Margin="5,0,0,7" VerticalAlignment="Bottom" RenderTransformOrigin="0.494,-0.154"></Label>
+        <ComboBox x:Name="CBoxDepartment" Grid.Row="1" ItemsSource="{Binding departmentList}" HorizontalAlignment="Left" Margin="116,158,0,0" VerticalAlignment="Top" Width="147" Height="26" SelectionChanged="CBoxDepartment_SelectionChanged"/>
+        <TextBox x:Name="TxtBoxTemplateScheduleName" Grid.Row="1" HorizontalAlignment="Left" Height="22" Margin="116,110,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="147"/>
+        <TextBox x:Name="TxtBoxNoOfWeeks" Grid.Row="1" HorizontalAlignment="Left" Height="23" Margin="203,211,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="60"/>
+        <Label Content="Basisplan navn:" HorizontalAlignment="Left" Margin="26,108,0,0" VerticalAlignment="Top" Height="24" Grid.Row="1"></Label>
+        <Label Content="Afdeling:" Grid.Row="1" Margin="26,158,597,66.6" />
+        <Label Content="Antal af uger:" Margin="26,207,572,20.6" RenderTransformOrigin="0.494,-0.154" Grid.Row="1"/>
 
         <Menu  Grid.Row="0" Grid.ColumnSpan="2">
             <MenuItem Header="Basisplan">
