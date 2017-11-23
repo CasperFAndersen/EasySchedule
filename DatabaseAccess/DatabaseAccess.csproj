@@ -66,6 +66,7 @@
     <Compile Include="Employees\EmployeeRepository.cs" />
     <Compile Include="Employees\IEmployeeRepository.cs" />
     <Compile Include="Employees\MockEmployeeRep.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateSchedule\TemplateScheduleRepository.cs" />
     <Compile Include="TemplateShift\TemplateShiftRepository.cs" />

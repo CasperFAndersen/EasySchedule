@@ -187,6 +187,7 @@ namespace DesktopClient
                     TempScheduleProxy tempScheduleProxy = new TempScheduleProxy();
                     t.ListOfTempShifts = Shifts;
                     tempScheduleProxy.AddTempScheduleToDB(t);
+                    Shifts.Clear();
                     MessageBox.Show("Template schedule is now saved onto database");
                 }
 

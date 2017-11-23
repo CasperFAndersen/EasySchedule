@@ -169,6 +169,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\MailingServiceContext.cs" />

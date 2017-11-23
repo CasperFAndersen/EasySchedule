@@ -6,21 +6,20 @@
         xmlns:local="clr-namespace:DesktopClient"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="MainWindow" Height="768" Width="1366">
+        Title="Main" Height="768" Width="1366">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Name="MenuRow" Height="20"/>
-            <RowDefinition Name="Title" Height="*"/>
+            <RowDefinition Name="TitleRow" Height="*"/>
             <RowDefinition Name="CotrolsRow" Height="6*"/>
             <RowDefinition Name="CalendarRow" Height="10*"/>
-            <!--<RowDefinition Name="ButtonRow"/>-->
+           
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <local:Calendar x:Name="Calendar" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
-        <ListView Name="EmployeeList" Grid.Column="1" Grid.Row="2" Width="363" HorizontalAlignment="Right" Margin="0,72,317,30.6" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
 
         <Label Name="LblTitle" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" />
 
@@ -35,8 +34,22 @@
 
         </StackPanel>
         <StackPanel Name="ControlPanel" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-
-        <Label Content="Employees :" Grid.Column="1" HorizontalAlignment="Right" Margin="0,44,587,0" Grid.Row="2" VerticalAlignment="Top" Width="93" FontSize="16" Height="32"/>
-        <Label Name="DepartmentName" Content="" Grid.Column="1" HorizontalAlignment="Right" Margin="0,44,460,0" Grid.Row="2" VerticalAlignment="Top" Width="127" RenderTransformOrigin="0.145,1" FontSize="16" FontWeight="Bold" Height="32"/>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Employees :"  Grid.Row="0" Grid.Column="1" Width="93" FontSize="16" Height="32" VerticalAlignment="Bottom"/>
+            <Label x:Name="DepartmentName" Content="" Grid.Column="2" FontSize="16" FontWeight="Bold" Height="32"  VerticalAlignment="Bottom" />
+            <ListView x:Name="EmployeeList" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1"/>
+        </Grid>
     </Grid>
 </Window>
