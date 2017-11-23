@@ -90,7 +90,8 @@ namespace DesktopClient
                 bool isLastElement = (bool)e.Data.GetData("IsLastShiftElement");
                 if (isLastElement)
                 {
-                    droppedShift.Hours = (Time.Subtract(droppedShift.StartTime).TotalHours);//.Add(new TimeSpan(0, Calendar.INCREMENT, 0)).TotalHours);
+                    TimeCellGrid.Background = new SolidColorBrush(Colors.White);
+                    droppedShift.Hours = (Time.Subtract(droppedShift.StartTime).Add(new TimeSpan(0, Calendar.INCREMENT, 0)).TotalHours);
                 }
                 else
                 {
@@ -176,5 +177,16 @@ namespace DesktopClient
            // Border.BorderThickness = new Thickness(0.1, 0.1, 0.1, 0.1);
         }
 
+        private void Border_DragEnter(object sender, DragEventArgs e)
+        {
+            Background = new SolidColorBrush(Colors.LightGray);
+        }
+
+        private void Border_DragLeave(object sender, DragEventArgs e)
+        {
+            Background = null;
+        }
+
+   
     }
 }

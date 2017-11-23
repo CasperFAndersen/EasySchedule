@@ -45,6 +45,8 @@ namespace DesktopClient
             int[] weeks = { 1, 2, 3, 4 };
             Weeks.ItemsSource = weeks;
             Weeks.SelectedItem = tempSchedule.NoOfWeeks;
+            Department dep = new DepartmentProxy().GetDepartmentById(tempSchedule.DepartmentID);
+            TxtBoxTemplateScheduleName.Text = dep.Name;
             Mediator.GetInstance().OnTemplateScheduleSelected(sender, tempSchedule);
         }
 

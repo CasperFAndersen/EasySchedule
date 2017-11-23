@@ -6,10 +6,10 @@
              xmlns:local="clr-namespace:DesktopClient"
              mc:Ignorable="d" 
              AllowDrop="True"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"   >
 
-    <Border Name="Border"  BorderBrush="Black" BorderThickness="0.1">
-        <Grid Name="TimeCellGrid" Margin="0,0,0,-1" Drop="OnHandleDrop">
+    <Border Name="Border"  BorderBrush="Black" BorderThickness="0.1" >
+        <Grid Name="TimeCellGrid" Margin="0,0,0,-1" Drop="OnHandleDrop" DragEnter="Border_DragEnter" DragLeave="Border_DragLeave" >
             <Grid.Background>
                 <SolidColorBrush Color="White" Opacity="0"/>
             </Grid.Background>

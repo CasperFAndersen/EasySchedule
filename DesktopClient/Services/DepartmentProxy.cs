@@ -24,7 +24,7 @@ namespace DesktopClient.Services
 
         public Department GetDepartmentById(int depId)
         {
-            throw new NotImplementedException();
+            return proxy.GetDepartmentById(depId);
         }
 
         public Task<Department> GetDepartmentByIdAsync(int depId)
