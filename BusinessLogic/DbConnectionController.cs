@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
-    public class DBConnectionControllercs
+    public class DbConnectionController
     {
-        public bool DBConnectionStatus()
+        public bool DbConnectionStatus()
         {
             DbConnectionADO dbConADO = new DbConnectionADO();
             bool status = false;
