@@ -1,5 +1,4 @@
-﻿using Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,20 +16,18 @@ using System.Windows.Shapes;
 namespace DesktopClient
 {
     /// <summary>
-    /// Interaction logic for CreateEmployeeView.xaml
+    /// Interaction logic for UpdateEmployeeView.xaml
     /// </summary>
-    public partial class CreateEmployeeView : UserControl
+    public partial class UpdateEmployeeView : UserControl
     {
-
-        public CreateEmployeeView()
+        public UpdateEmployeeView()
         {
             InitializeComponent();
-            
         }
 
-        private void BtnSaveEmployee_Click(object sender, RoutedEventArgs e)
+        private void BtnUpdateEmployee_Click(object sender, RoutedEventArgs e)
         {
-            Mediator.GetInstance().OnCreateEmployeeClicked();
+            Mediator.GetInstance().OnUpdateEmployeeClicked();
         }
     }
 }

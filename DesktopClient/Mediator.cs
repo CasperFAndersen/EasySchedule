@@ -33,7 +33,7 @@ namespace DesktopClient
             var shiftDroppedDelegate = ShiftDropped as EventHandler<ShiftDropEventArgs>;
             if (shiftDroppedDelegate != null)
             {
-                shiftDroppedDelegate(sender, new ShiftDropEventArgs {Shift = shift, IsLastElement = isLastElement});
+                shiftDroppedDelegate(sender, new ShiftDropEventArgs { Shift = shift, IsLastElement = isLastElement });
             }
 
         }
@@ -112,6 +112,26 @@ namespace DesktopClient
             if (MenuItemChanged != null)
             {
                 MenuItemChanged();
+            }
+        }
+
+        public delegate void CreateEmployeeClickedHandler();
+        public event CreateEmployeeClickedHandler CreateEmployeeClicked;
+        internal void OnCreateEmployeeClicked()
+        {
+            if (CreateEmployeeClicked != null)
+            {
+                CreateEmployeeClicked();
+            }
+        }
+
+        public delegate void UpdateEmployeeClickedHandler();
+        public event UpdateEmployeeClickedHandler UpdateEmployeeClicked;
+        internal void OnUpdateEmployeeClicked()
+        {
+            if(UpdateEmployeeClicked != null)
+            {
+                UpdateEmployeeClicked();
             }
         }
 
