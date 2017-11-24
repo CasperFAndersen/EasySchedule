@@ -19,6 +19,8 @@ namespace Tests.DatabaseAccess
             DBSetUp.SetUpDB();
         }
 
+
+
         [TestMethod]
         public void TestGetEmployeeByUsername()
         {
@@ -60,6 +62,12 @@ namespace Tests.DatabaseAccess
             Assert.IsNotNull(emp);
             Assert.AreEqual("Mikkel Hansen", emp.Name);
 
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            DBSetUp.SetUpDB();
         }
 
     }

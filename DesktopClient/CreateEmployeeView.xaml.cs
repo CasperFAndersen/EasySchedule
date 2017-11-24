@@ -39,7 +39,7 @@ namespace DesktopClient
 
         private void LoadDeparmentList()
         {
-            List<Department> listOfDepartments = new DepartmentEvents()
+            List<Department> listOfDepartments = new DepartmentEvents();
         }
 
         private void btnSaveEmployee_Click(object sender, RoutedEventArgs e)
