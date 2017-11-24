@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="DesktopClient.EmployeeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DesktopClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label  Grid.Row="0" Grid.Column="0" Content="Name:"></Label>
+        <TextBox x:Name="txtName" Grid.Row="0" Grid.Column="1"></TextBox>
+        <Label Grid.Row="1" Grid.Column="0" Content="Email:"></Label>
+        <TextBox x:Name="txtEmail" Grid.Row="1" Grid.Column="1"></TextBox>
+        <Label Grid.Row="2" Grid.Column="0" Content="Phone number:"></Label>
+        <TextBox x:Name="txtPhone" Grid.Row="2" Grid.Column="1"></TextBox>
+        <Label Grid.Row="3" Grid.Column="0" Content="Number of hours per week:"></Label>
+        <TextBox x:Name="txtNoOfHours" Grid.Row="3" Grid.Column="1"></TextBox>
+        <Label Grid.Row="4" Grid.Column="0" Content="Admin rights:"></Label>
+        <CheckBox x:Name="chkIsAdmin" Grid.Row="4" Grid.Column="1" IsChecked="False"></CheckBox>
+        <Label Grid.Row="5" Grid.Column="0" Content="Is active:"></Label>
+        <CheckBox x:Name="chkIsActive" Grid.Row="5" Grid.Column="1" IsChecked="True"></CheckBox>
+        <Label Grid.Row="6" Grid.Column="0" Content="Username:"></Label>
+        <TextBox x:Name="txtUsername" Grid.Row="6" Grid.Column="1"></TextBox>
+        <Label Grid.Row="7" Grid.Column="0" Content="Password:"></Label>
+        <TextBox x:Name="txtPassword" Grid.Row="7" Grid.Column="1"></TextBox>
+        <Label Grid.Row="8" Grid.Column="0" Content="Department:"></Label>
+        <ComboBox x:Name="cBoxDepartment" Grid.Row="8" Grid.Column="1" ></ComboBox>
+    </Grid>
+</UserControl>

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="DesktopClient.CreateEmployeeView"
+﻿<UserControl x:Class="DesktopClient.UpdateEmployeeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -14,10 +14,9 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
+        <local:EmployeeView Grid.Row="0">
 
-        <local:EmployeeView>
-            
         </local:EmployeeView>
-        <Button x:Name="BtnSaveEmployee" Content="Save" Grid.Row="2" Grid.Column="0" Click="BtnSaveEmployee_Click"></Button>
+        <Button x:Name="BtnUpdateEmployee" Content="Update" Grid.Row="1" Grid.Column="0" Click="BtnUpdateEmployee_Click"></Button>
     </Grid>
 </UserControl>
