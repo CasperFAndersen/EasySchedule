@@ -47,5 +47,12 @@ namespace Tests.BusinessLogic
             //Assert.IsTrue(isPasswordCorrect);
             //Assert.IsFalse(isPasswordIncorrect);
         }
+
+        [TestMethod]
+        public void TestInsertEmployee()
+        {
+            mockEmployeeRepository.GetEmployeeByUsername("test");
+            mockEmployeeRepository.AssertWasCalled(x => x.GetEmployeeByUsername("test"));
+        }
     }
 }

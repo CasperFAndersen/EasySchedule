@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core;
+using DatabaseAccess.Employees;
 
 namespace DatabaseAccess.Departments
 {
@@ -71,6 +72,7 @@ namespace DatabaseAccess.Departments
             department.Email = reader["email"].ToString();
             department.Phone = reader["phone"].ToString();
             department.WorkplaceId = Convert.ToInt32(reader["workplaceId"].ToString());
+            department.Employees = new EmployeeRepository().GetListOfEmployeesByDepartmentID(department.Id);
             return department;
         }
     }

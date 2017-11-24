@@ -14,7 +14,7 @@ namespace EasyScheduleWebClient.Controllers
         }
 
         [HttpPost]
-        public ActionResult Authorize(Employee loggingIn)
+        public ActionResult Authorize(EmployeeModel loggingIn)
         {
             EmployeeProxy empProxy = new EmployeeProxy();
             var emp = empProxy.GetEmployeeByUsername(loggingIn.Username);

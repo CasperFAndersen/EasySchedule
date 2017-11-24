@@ -22,6 +22,8 @@ namespace Core
         public string Phone { get; set; }
         [DataMember]
         public int WorkplaceId { get; set; }
+        [DataMember]
+        public List<Employee> Employees { get; set; }
 
     }
 }

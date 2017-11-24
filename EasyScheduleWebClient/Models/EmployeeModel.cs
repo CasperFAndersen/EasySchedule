@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EasyScheduleWebClient.Models
 {
-    public class Employee
+    public class EmployeeModel
     {
         public int EmployeeID { get; set; }
         public string Name { get; set; }

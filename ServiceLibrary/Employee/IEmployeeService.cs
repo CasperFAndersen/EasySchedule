@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
+using Core;
 
 namespace ServiceLibrary.Employee
 {
@@ -13,6 +14,11 @@ namespace ServiceLibrary.Employee
         List<Core.Employee> GetListOfEmployeeByDepartmentId(int depId);
         [OperationContract]
         List<Core.Employee> GetAllEmployees();
+        [OperationContract]
+        void InsertEmployee(Core.Employee employee);
+        [OperationContract]
+        void UpdateEmployee(Core.Employee employee);
+
     }
 
 }

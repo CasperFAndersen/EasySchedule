@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using EasyScheduleWebClient.Models;
+using Core;
 
 namespace EasyScheduleWebClient.Services
 {

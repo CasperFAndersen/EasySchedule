@@ -10,7 +10,7 @@ namespace EasyScheduleWebClient.Models
         public int Id { get; set; }
         public DateTime StartTime { get; set; }
         public double Hours { get; set; }
-        public Employee Employee { get; set; }
+        public EmployeeModel Employee { get; set; }
     
     }
 }

@@ -89,7 +89,8 @@ namespace Tests.DatabaseAccess
                                       "isAdmin bit, " +
                                       "username varchar(40), " +
                                       "password varchar(40), " +
-                                      "departmentId int foreign key references Department(id)); "
+                                      "departmentId int foreign key references Department(id), " +
+                                      "isEmployed bit not null); "
 
                                       +
                                       //TemplateSchedule
@@ -162,20 +163,20 @@ namespace Tests.DatabaseAccess
 
                                       +
                                       //Employee
-                                      "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId) " +
-                                      "values ('Mikkel Paulsen', 'mikkelpaulsen@gmail.com', '12345678', 9, 0, 'MikkelP', 'hardToCrack', (select id from department where name='Kolonial')); " +
+                                      "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId, isEmployed) " +
+                                      "values ('Mikkel Paulsen', 'mikkelpaulsen@gmail.com', '12345678', 9, 0, 'MikkelP', 'hardToCrack', (select id from department where name='Kolonial'), 1); " +
 
-                                      "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId) " +
-                                      "	values ('Casper Froberg', 'casperfroberg@gmail.com', '87654321', 14, 1, 'FroBro', 'hejhej', (select id from department where name='Kolonial')); " +
+                                      "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId, isEmployed) " +
+                                      "	values ('Casper Froberg', 'casperfroberg@gmail.com', '87654321', 14, 1, 'FroBro', 'hejhej', (select id from department where name='Kolonial'), 1); " +
 
-                                      "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId) " +
-                                      "	values ('Arne Ralston', 'arnegr@gmail.com', '23456789', 12, 0, 'ArneGR', 'JegErUngOgVildEndnu', (select id from department where name='PakkeCentral')); " +
+                                      "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId, isEmployed) " +
+                                      "	values ('Arne Ralston', 'arnegr@gmail.com', '23456789', 12, 0, 'ArneGR', 'JegErUngOgVildEndnu', (select id from department where name='PakkeCentral'), 1); " +
 
-                                      "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId) " +
-                                      "	values ('Tobias Andersen', 'tobiasandersen@gmail.com', '98765432', 10, 1, 'TobiAs', 'CanYouGuessMyPass', (select id from department where name='Pakkecentral')); " +
+                                      "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId, isEmployed) " +
+                                      "	values ('Tobias Andersen', 'tobiasandersen@gmail.com', '98765432', 10, 1, 'TobiAs', 'CanYouGuessMyPass', (select id from department where name='Pakkecentral'), 1); " +
 
-                                      "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId)" +
-                                      "values ('Stefan Krabbe', 'stefankrabbe@gmail.com', '12093847', 30, 1, 'SKrabbe', 'ItsaHardHardLife', (select id from department where name='Kolonial')); "
+                                      "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId, isEmployed)" +
+                                      "values ('Stefan Krabbe', 'stefankrabbe@gmail.com', '12093847', 30, 1, 'SKrabbe', 'ItsaHardHardLife', (select id from department where name='Kolonial'), 1); "
 
                                       +
                                       //TemplateSchedule

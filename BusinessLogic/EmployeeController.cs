@@ -39,5 +39,15 @@ namespace BusinessLogic
             return e1.Password == password;
         }
 
+        public void InsertEmployee(Employee employee)
+        {
+            _employeeRepository.InsertEmployee(employee);
+        }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            _employeeRepository.UpdateEmployee(employee);
+        }
+
     }
 }

@@ -41,5 +41,15 @@ namespace DatabaseAccess.Employees
         {
             throw new NotImplementedException();
         }
+
+        public void InsertEmployee(Employee employee)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

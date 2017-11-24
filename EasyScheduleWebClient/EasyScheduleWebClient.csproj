@@ -171,7 +171,7 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\Email.cs" />
-    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\MailingServiceContext.cs" />
     <Compile Include="Models\Shift.cs" />
     <Compile Include="Models\ViewModel\EmailViewModel.cs" />

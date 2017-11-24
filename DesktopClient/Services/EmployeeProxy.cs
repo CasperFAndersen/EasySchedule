@@ -39,6 +39,26 @@ namespace DesktopClient.Services
             return proxy.GetListOfEmployeeByDepartmentId(depId);
         }
 
+        public void InsertEmployee(Employee employee)
+        {
+            proxy.InsertEmployee(employee);
+        }
+
+        public Task InsertEmployeeAsync(Employee employee)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            proxy.UpdateEmployee(employee);
+        }
+
+        public Task UpdateEmployeeAsync(Employee employee)
+        {
+            throw new NotImplementedException();
+        }
+
         Task<List<Employee>> IEmployeeService.GetListOfEmployeeByDepartmentIdAsync(int depId)
         {
             throw new NotImplementedException();

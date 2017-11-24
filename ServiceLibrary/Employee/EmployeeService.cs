@@ -29,5 +29,15 @@ namespace ServiceLibrary.Employee
         {
             return empCtrl.GetListOfEmployeesByDepartmentId(departmentID);
         }
+
+        public void InsertEmployee(Core.Employee employee)
+        {
+            empCtrl.InsertEmployee(employee);
+        }
+
+        public void UpdateEmployee(Core.Employee employee)
+        {
+            empCtrl.UpdateEmployee(employee);
+        }
     }
 }

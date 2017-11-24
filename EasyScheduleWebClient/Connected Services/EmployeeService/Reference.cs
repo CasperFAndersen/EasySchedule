@@ -20,6 +20,30 @@ namespace EasyScheduleWebClient.EmployeeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeeByUsername", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeeByUsernameResponse")]
         System.Threading.Tasks.Task<Core.Employee> GetEmployeeByUsernameAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentIdResponse")]
+        System.Collections.Generic.List<Core.Employee> GetListOfEmployeeByDepartmentId(int depId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentIdResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetListOfEmployeeByDepartmentIdAsync(int depId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetAllEmployees", ReplyAction="http://tempuri.org/IEmployeeService/GetAllEmployeesResponse")]
+        System.Collections.Generic.List<Core.Employee> GetAllEmployees();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetAllEmployees", ReplyAction="http://tempuri.org/IEmployeeService/GetAllEmployeesResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetAllEmployeesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/InsertEmployee", ReplyAction="http://tempuri.org/IEmployeeService/InsertEmployeeResponse")]
+        void InsertEmployee(Core.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/InsertEmployee", ReplyAction="http://tempuri.org/IEmployeeService/InsertEmployeeResponse")]
+        System.Threading.Tasks.Task InsertEmployeeAsync(Core.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/UpdateEmployee", ReplyAction="http://tempuri.org/IEmployeeService/UpdateEmployeeResponse")]
+        void UpdateEmployee(Core.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/UpdateEmployee", ReplyAction="http://tempuri.org/IEmployeeService/UpdateEmployeeResponse")]
+        System.Threading.Tasks.Task UpdateEmployeeAsync(Core.Employee employee);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +79,38 @@ namespace EasyScheduleWebClient.EmployeeService {
         
         public System.Threading.Tasks.Task<Core.Employee> GetEmployeeByUsernameAsync(string username) {
             return base.Channel.GetEmployeeByUsernameAsync(username);
+        }
+        
+        public System.Collections.Generic.List<Core.Employee> GetListOfEmployeeByDepartmentId(int depId) {
+            return base.Channel.GetListOfEmployeeByDepartmentId(depId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetListOfEmployeeByDepartmentIdAsync(int depId) {
+            return base.Channel.GetListOfEmployeeByDepartmentIdAsync(depId);
+        }
+        
+        public System.Collections.Generic.List<Core.Employee> GetAllEmployees() {
+            return base.Channel.GetAllEmployees();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetAllEmployeesAsync() {
+            return base.Channel.GetAllEmployeesAsync();
+        }
+        
+        public void InsertEmployee(Core.Employee employee) {
+            base.Channel.InsertEmployee(employee);
+        }
+        
+        public System.Threading.Tasks.Task InsertEmployeeAsync(Core.Employee employee) {
+            return base.Channel.InsertEmployeeAsync(employee);
+        }
+        
+        public void UpdateEmployee(Core.Employee employee) {
+            base.Channel.UpdateEmployee(employee);
+        }
+        
+        public System.Threading.Tasks.Task UpdateEmployeeAsync(Core.Employee employee) {
+            return base.Channel.UpdateEmployeeAsync(employee);
         }
     }
 }
