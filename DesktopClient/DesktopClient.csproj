@@ -79,10 +79,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="CreateEmployeeView.xaml.cs">
+      <DependentUpon>CreateEmployeeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DayColumn.xaml.cs">
       <DependentUpon>DayColumn.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="DepartmentEvents.cs" />
     <Compile Include="TemplateSelectedArgs.cs" />
     <Compile Include="EmployeeDropEventArgs.cs" />
     <Compile Include="EmployeeListItem.xaml.cs">
@@ -107,6 +110,10 @@
       <DependentUpon>ViewEditTemplateSchedule.xaml</DependentUpon>
     </Compile>
     <Page Include="Calendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateEmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
