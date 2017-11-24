@@ -41,11 +41,9 @@ namespace DesktopClient
 
         public void LoadDeparmentList()
         {
-            DepartmentProxy deptProxy = new DepartmentProxy();
-            DepartmentList = deptProxy.GetAllDepartments().ToList();
-            CBoxDepartment.ItemsSource = DepartmentList;
+            List<Department> departmens = new DepartmentEvents().LoadDeparmentList();
+            CBoxDepartment.ItemsSource = departmens;
             CBoxDepartment.DisplayMemberPath = "Name";
-
         }
 
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
