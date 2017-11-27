@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <Grid  Background="White" Margin="0,37,0,0" >
+    <Grid  Background="White" Margin="0,0,0,0" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -15,16 +15,14 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition MinHeight="20"/>
-            <RowDefinition/>
+
             <RowDefinition MinHeight="20"/>
             <RowDefinition/>
             <RowDefinition MinHeight="20"/>
             <RowDefinition/>
             <RowDefinition MinHeight="20"/>
-            <RowDefinition/>
-            <RowDefinition/>
+
             <RowDefinition MinHeight="70"/>
-            <RowDefinition/>
 
         </Grid.RowDefinitions>
         <Line Grid.ColumnSpan="2" Fill="Black"></Line>

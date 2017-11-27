@@ -18,6 +18,8 @@ namespace Core
         public int TemplateScheduleID { get; set; }
         [DataMember]
         public Employee Employee { get; set; }
+        [DataMember]
+        public int WeekNumber { get; set; }
 
         public TemplateShift(DayOfWeek weekDay, double hours, TimeSpan startTime, int TemplateScheduleID, Employee employee)
         {

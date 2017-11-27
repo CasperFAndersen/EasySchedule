@@ -7,22 +7,17 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="Main" Height="768" Width="1366">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Name="MenuRow" Height="20"/>
             <RowDefinition Name="TitleRow" Height="*"/>
-            <RowDefinition Name="CotrolsRow" Height="6*"/>
-            <RowDefinition Name="CalendarRow" Height="10*"/>
+
            
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <local:Calendar x:Name="Calendar" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
-
-        <Label Name="LblTitle" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" />
-
         <Menu  Grid.Row="0" Grid.ColumnSpan="2" Background="#FFF0F0F0">
             <MenuItem Header="Template Schedule">
                 <MenuItem Name="CreateTempSchedule" Header="Create Template Schedule" Click="CreateTempScheduleMenuItimClicked"/>
@@ -33,6 +28,12 @@
                 <MenuItem Name="CreateEmployee" Header="Create Employee" Click="CreateEmployeeMenuItemClicked"></MenuItem>
             </MenuItem>
         </Menu>
+        <Frame Name="frame" Grid.Row="1"></Frame>
+        <!--<local:Calendar x:Name="Calendar" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
+
+        <Label Name="LblTitle" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" />
+        
+
         <StackPanel Name="ButtonPanel" Grid.Column="2" Grid.Row="3">
 
         </StackPanel>
@@ -40,7 +41,9 @@
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -50,9 +53,9 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Content="Employees :"  Grid.Row="0" Grid.Column="1" Width="93" FontSize="16" Height="32" VerticalAlignment="Bottom"/>
+            <Label Content="Employees :"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Width="93" FontSize="16" Height="32" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
             <Label x:Name="DepartmentName" Content="" Grid.Column="2" FontSize="16" FontWeight="Bold" Height="32"  VerticalAlignment="Bottom" />
-            <ListView x:Name="EmployeeList" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1"/>
-        </Grid>
+            <ListView x:Name="EmployeeList" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" Padding="0" ScrollViewer.CanContentScroll="False"/>
+        </Grid>-->
     </Grid>
 </Window>

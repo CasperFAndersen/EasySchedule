@@ -50,7 +50,7 @@ namespace DesktopClient
 
         public void FillCell(TemplateShift shift, bool isFirstElement, bool isLastElement)
         {
-            Color color = MainWindow.EmployeeColors[shift.Employee.Name];
+            Color color = TemplateScheduleCalendarView.EmployeeColors[shift.Employee.Name];
             
             ShiftElement shiftElement = null;
             if (isFirstElement)
@@ -91,7 +91,7 @@ namespace DesktopClient
                 if (isLastElement)
                 {
                     TimeCellGrid.Background = new SolidColorBrush(Colors.White);
-                    droppedShift.Hours = (Time.Subtract(droppedShift.StartTime).Add(new TimeSpan(0, Calendar.INCREMENT, 0)).TotalHours);
+                    droppedShift.Hours = (Time.Subtract(droppedShift.StartTime).Add(new TimeSpan(0, TemplateScheduleCalendar.INCREMENT, 0)).TotalHours);
                 }
                 else
                 {

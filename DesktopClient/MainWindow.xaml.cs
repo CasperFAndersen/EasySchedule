@@ -23,113 +23,47 @@ namespace DesktopClient
     public partial class MainWindow : Window
     {
 
-        Color[] colors = { Colors.IndianRed, Colors.DarkKhaki, Colors.DarkOrange, Colors.LightGreen, Colors.Thistle, Colors.SkyBlue, Colors.RoyalBlue, Colors.Turquoise };
-        public static Dictionary<string, Color> EmployeeColors { get; set; }
-        Random rnd = new Random();
         public MainWindow()
         {
             InitializeComponent();
-            SetOnDepartmentSelected();
-            SetOnTemplateScheduleUpdateClicked();
-            SetOnDepartmentBoxSelected();
-            LoadEmployeeColors();
-
-        }
-
-        private async void LoadEmployeeColors()
-        {
-            EmployeeColors = new Dictionary<string, Color>();
-            List<Employee> employees = await new EmployeeProxy().GetAllEmployeesAsync();
-            foreach (var emp in employees)
-            {
-                EmployeeColors.Add(emp.Name, Color.FromRgb((byte)rnd.Next(256), (byte)rnd.Next(256), (byte)rnd.Next(256)));
-
-            };
-        }
-
-        public void LoadEmployeeList(List<Employee> employees)
-        {
-            EmployeeList.Items.Clear();
-            foreach (Employee e in employees)
-            {
-                EmployeeList.Items.Add(new EmployeeListItem(e));
-            }
-            EmployeeList.BorderThickness = new Thickness(1, 1, 1, 1);
-        }
-
-        public Color GetRandomColor()
-        {
-            Color color = colors[rnd.Next(colors.Length)];
-            bool isUniqeColorFound = false;
-            while (!isUniqeColorFound)
-            {
-                if (!EmployeeColors.Values.Contains(color))
-                {
-                    isUniqeColorFound = true;
-                }
-                else
-                {
-                    color = colors[rnd.Next(colors.Length)];
-                }
-            }
-            return color;
         }
 
         private void ViewEditTempScheduleMenuItimClicked(object sender, RoutedEventArgs e)
         {
             TempScheduleMenuItem(new ViewEditTemplateSchedule(), "View / Edit Template Schedule");
+            TemplateScheduleCalendarView templateScheduleCalendar = new TemplateScheduleCalendarView();
+            templateScheduleCalendar.ControlPanel.Content = new ViewEditTemplateSchedule();
+            frame.Content = templateScheduleCalendar;
         }
 
         private void CreateTempScheduleMenuItimClicked(object sender, RoutedEventArgs e)
         {
             TempScheduleMenuItem(new ViewCreateTemplateSchedule(), "Create Template Schedule");
+            TemplateScheduleCalendarView templateScheduleCalendar = new TemplateScheduleCalendarView();
+            templateScheduleCalendar.ControlPanel.Content = new ViewCreateTemplateSchedule();
+            frame.Content = templateScheduleCalendar;
         }
 
         private void TempScheduleMenuItem(UserControl view, string title)
         {
-            ControlPanel.Children.Clear();
-            ControlPanel.Children.Add(view);
-            EmployeeList.Items.Clear();
-            DepartmentName.Content = "";
-            LblTitle.Content = title;
-            Mediator.GetInstance().OnMenuItemChanged();
+            //ControlPanel.Children.Clear();
+            //ControlPanel.Children.Add(view);
+            //EmployeeList.Items.Clear();
+            //DepartmentName.Content = "";
+            //LblTitle.Content = title;
+            //Mediator.GetInstance().OnMenuItemChanged();
         }
 
         private void CreateEmployeeMenuItemClicked(object sender, RoutedEventArgs e)
         {
-            ControlPanel.Children.Clear();
-            ControlPanel.Children.Add(new CreateEmployeeView());
+            //ControlPanel.Children.Clear();
+            //ControlPanel.Children.Add(new CreateEmployeeView());
+            frame.Content = new CreateEmployeeView();
 
         }
 
-        public void SetOnDepartmentSelected()
-        {
-            Mediator.GetInstance().TempScheduleSelected += (s, e) =>
-            {
-                EmployeeProxy employeeProxy = new EmployeeProxy();
-                LoadEmployeeList(employeeProxy.GetListOfEmployeeByDepartmentId(e.TempSchedule.DepartmentID));
 
-            };
-        }
 
-        private void SetOnTemplateScheduleUpdateClicked()
-        {
-            Mediator.GetInstance().TempScheduleUpdateClicked += (s, e) =>
-            {
-                ControlPanel.Children.Clear();
-                ControlPanel.Children.Add(new ViewEditTemplateSchedule());
-                EmployeeList.Items.Clear();
-            };
-        }
-
-        private void SetOnDepartmentBoxSelected()
-        {
-            Mediator.GetInstance().DepartmentBoxChanged += (e, d) =>
-            {
-                LoadEmployeeList(e);
-                DepartmentName.Content = d.Name;
-            };
-        }
 
     }
 }

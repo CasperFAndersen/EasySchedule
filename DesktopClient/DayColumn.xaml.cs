@@ -42,11 +42,11 @@ namespace DesktopClient
 
         public void LoadTimeCells()
         {
-            if (60 % Calendar.INCREMENT == 0)
+            if (60 % TemplateScheduleCalendar.INCREMENT == 0)
             {
-                TimeSpan timeCount = Calendar.STARTTIME;
+                TimeSpan timeCount = TemplateScheduleCalendar.STARTTIME;
                 int rowCount = 0;
-                while (timeCount <= Calendar.ENDTIME.Add(new TimeSpan(0, 60 -Calendar.INCREMENT, 0)))
+                while (timeCount <= TemplateScheduleCalendar.ENDTIME.Add(new TimeSpan(0, 60 - TemplateScheduleCalendar.INCREMENT, 0)))
                 {
                     DayColumnGrid.RowDefinitions.Add(new RowDefinition());
                     TimeCell tempTimeCell = new TimeCell() { Time = timeCount, weekDay = dayOfWeek };
@@ -58,7 +58,7 @@ namespace DesktopClient
                     TimeCellList.Add(tempTimeCell);
 
                     rowCount++;
-                    timeCount = timeCount.Add(new TimeSpan(0, Calendar.INCREMENT, 0));
+                    timeCount = timeCount.Add(new TimeSpan(0, TemplateScheduleCalendar.INCREMENT, 0));
                 }
 
             }
@@ -67,7 +67,7 @@ namespace DesktopClient
         public void InsertShiftIntoDay(TemplateShift shift)
         {
             TimeCell timeCell = FindMatchingTimeCell(shift.StartTime);
-            for (int i = 0; i < (shift.Hours * (60 / Calendar.INCREMENT)); i++)
+            for (int i = 0; i < (shift.Hours * (60 / TemplateScheduleCalendar.INCREMENT)); i++)
             {
                 if (i == 0)
                 {
@@ -75,7 +75,7 @@ namespace DesktopClient
                     
                 }
 
-                else if (i == (shift.Hours * (60 / Calendar.INCREMENT)) - 1)
+                else if (i == (shift.Hours * (60 / TemplateScheduleCalendar.INCREMENT)) - 1)
                 {
                     timeCell.FillCell(shift, false, true);
                 }
@@ -106,6 +106,10 @@ namespace DesktopClient
             return res;
         }
 
+        internal void Clear()
+        {
+            TimeCellList.ForEach(x => x.Clear());
+        }
     }
 
 }

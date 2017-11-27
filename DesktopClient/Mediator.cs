@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace DesktopClient
 {
@@ -134,6 +135,17 @@ namespace DesktopClient
                 UpdateEmployeeClicked();
             }
         }
+
+        public delegate void NumOfWeekBoxChangedHandler(int numOfWeeks, ComboBox numOfWeeksBox, int prevSelection);
+        public event NumOfWeekBoxChangedHandler NumOfWeekBoxChanged;
+        public void OnNumOfWeekBoxChanged(int numOfWeeks, ComboBox numOfWeeksBox, int prevSelection)
+        {
+            if (NumOfWeekBoxChanged != null)
+            {
+                NumOfWeekBoxChanged(numOfWeeks, numOfWeeksBox, prevSelection);
+            }
+        }
+
 
 
 

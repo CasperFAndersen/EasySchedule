@@ -1,0 +1,51 @@
+﻿<Page x:Class="DesktopClient.TemplateScheduleCalendarView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DesktopClient"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="TemplateScheduleCalendar">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Name="TitleRow" Height="*"/>
+            <RowDefinition Name="CotrolsRow" Height="6*"/>
+            <RowDefinition Name="CalendarRow" Height="10*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <local:TemplateScheduleCalendar x:Name="Calendar" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
+
+        <Label Name="LblTitle" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" />
+
+        
+        <!--<StackPanel Name="ButtonPanel" Grid.Column="2" Grid.Row="3">
+
+        </StackPanel>-->
+        <Frame Name="ControlPanel" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Employees :"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Width="93" FontSize="16" Height="32" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+            <Label x:Name="DepartmentName" Content="" Grid.Column="2" FontSize="16" FontWeight="Bold" Height="32"  VerticalAlignment="Bottom" />
+            <ListView x:Name="EmployeeList" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" Padding="0" ScrollViewer.CanContentScroll="False"/>
+        </Grid>
+    </Grid>
+</Page>

@@ -56,8 +56,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Calendar.xaml.cs">
-      <DependentUpon>Calendar.xaml</DependentUpon>
+    <Compile Include="TemplateScheduleCalendar.xaml.cs">
+      <DependentUpon>TemplateScheduleCalendar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\DepartmentService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -99,6 +99,9 @@
       <DependentUpon>ManageEmployeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\ScheduleProxy.cs" />
+    <Compile Include="TemplateScheduleCalendarView.xaml.cs">
+      <DependentUpon>TemplateScheduleCalendarView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TemplateSelectedArgs.cs" />
     <Compile Include="EmployeeDropEventArgs.cs" />
     <Compile Include="EmployeeListItem.xaml.cs">
@@ -125,7 +128,7 @@
     <Compile Include="ViewEditTemplateSchedule.xaml.cs">
       <DependentUpon>ViewEditTemplateSchedule.xaml</DependentUpon>
     </Compile>
-    <Page Include="Calendar.xaml">
+    <Page Include="TemplateScheduleCalendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ShiftElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TemplateScheduleCalendarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

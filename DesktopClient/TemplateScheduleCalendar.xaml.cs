@@ -19,7 +19,7 @@ namespace DesktopClient
     /// <summary>
     /// Interaction logic for Calendar.xaml
     /// </summary>
-    public partial class Calendar : UserControl
+    public partial class TemplateScheduleCalendar : UserControl
     {
         public static readonly TimeSpan STARTTIME = new TimeSpan(6,0,0);
         public static readonly TimeSpan ENDTIME = new TimeSpan(20, 0, 0);
@@ -29,14 +29,18 @@ namespace DesktopClient
         public static Dictionary<Employee, Color> EmployeeColors { get; set; }
 
         Random rnd = new Random();
-
+        private int numOfWeeks = 1;
         public List<DayColumn> DayColumnList { get; set; }
         public List<TemplateShift> Shifts { get; set; }
-        public Calendar()
+        public static int WeekNumber { get; set; }
+        public TemplateScheduleCalendar()
         {
             InitializeComponent();
             DayColumnList = new List<DayColumn>();
             Shifts = new List<TemplateShift>();
+            WeekNumber = 1;
+            btnNextWeek.IsEnabled = false;
+            btnPrevWeek.IsEnabled = false;
             BuildTimesGrid();
             BuildDayColumns();
             EmployeeColors = new Dictionary<Employee, Color>();
@@ -48,6 +52,7 @@ namespace DesktopClient
             LoadShiftsIntoCalendar();
             SetTemplateScheduleUpdateClicked();
             SetCreateTemplateScheduleClicked();
+            SetOnNumOfWeeksBoxChanged();
         }
 
  
@@ -72,8 +77,12 @@ namespace DesktopClient
         {
             foreach (var shift in Shifts)
             {
-                DayColumn dayCol = GetDayCoulmByName(shift.WeekDay.ToString());
-                dayCol.InsertShiftIntoDay(shift);
+                if (shift.WeekNumber == Convert.ToInt32(txtWeekNum.Text))
+                {
+                    DayColumn dayCol = GetDayCoulmByName(shift.WeekDay.ToString());
+                    dayCol.InsertShiftIntoDay(shift);
+                }
+
             }
 
         }
@@ -108,7 +117,7 @@ namespace DesktopClient
 
         public void BuildDayColumns()
         {
-            int row = 1; int col = 1;
+            int row = 2; int col = 1;
             int day = 1;
             while (day <6)
             {
@@ -139,6 +148,7 @@ namespace DesktopClient
         {
             Mediator.GetInstance().EmployeeDropped += (s, e) =>
             {
+                e.Shift.WeekNumber = WeekNumber;
                 AddShift(e.Shift);
                 LoadShiftsIntoCalendar();
             };
@@ -195,13 +205,100 @@ namespace DesktopClient
             
         }
 
+        private void SetOnNumOfWeeksBoxChanged()
+        {
+            Mediator.GetInstance().NumOfWeekBoxChanged += (n,b,p) =>
+            {
+                numOfWeeks = n;
+                if (numOfWeeks > WeekNumber)
+                {
+                    btnNextWeek.IsEnabled = true;
+                }
+                else if (numOfWeeks == WeekNumber)
+                {
+                    btnNextWeek.IsEnabled = false;
+                }
+                else if (n < WeekNumber)
+                {
+                    btnNextWeek.IsEnabled = false;
+                    bool noShiftsWillBeLost = Shifts.TrueForAll(x => x.WeekNumber < n);
+                    if (!noShiftsWillBeLost)
+                    {
+                        MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Shifts placed in higher week numbers will be lost. Are you sure?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+                        if (messageBoxResult == MessageBoxResult.Yes)
+                        {
+                            Shifts.RemoveAll(x => x.WeekNumber > n);
+                            txtWeekNum.Text = n.ToString();
+                            WeekNumber = n;
+                            btnNextWeek.IsEnabled = false;
+                            Clear();
+                            LoadShiftsIntoCalendar();
+                        }
+                        else if (messageBoxResult == MessageBoxResult.No)
+                        {
+                            b.SelectedIndex = p;
+                        }
+                    }
+                    else
+                    {
+                        WeekNumber = n;
+                        txtWeekNum.Text = n.ToString();
+                    }
+                    if (n == 1)
+                    {
+                        btnPrevWeek.IsEnabled = false;
+                    }
+               
+
+
+                }
+            };
+        }
+
 
         public Color GetRandomColor()
         {
             return colors[rnd.Next(colors.Length)];
         }
 
+        private void NextWeek_Click(object sender, RoutedEventArgs e)
+        {
+            if (WeekNumber < numOfWeeks)
+            {
+                WeekNumber++;
+                txtWeekNum.Text = WeekNumber.ToString();
+                Clear();
+                btnPrevWeek.IsEnabled = true;
+                if (WeekNumber == numOfWeeks)
+                {
+                    btnNextWeek.IsEnabled = false;
+                }
+                LoadShiftsIntoCalendar();
+            }
+
+        }
 
 
+        private void PrevWeek_Click(object sender, RoutedEventArgs e)
+        {
+            if (WeekNumber != 1)
+            {
+                WeekNumber--;
+                txtWeekNum.Text = WeekNumber.ToString();
+                Clear();
+                LoadShiftsIntoCalendar();
+                if (WeekNumber == 1)
+                {
+                    btnPrevWeek.IsEnabled = false;
+                }
+                btnNextWeek.IsEnabled = true;
+            }
+
+        }
+
+        private void Clear()
+        {
+            DayColumnList.ForEach(x => x.Clear());
+        }
     }
 }

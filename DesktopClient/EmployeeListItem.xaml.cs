@@ -25,7 +25,7 @@ namespace DesktopClient
         {
             InitializeComponent();
             DataContext = employee;
-            empBox.Background = new SolidColorBrush(MainWindow.EmployeeColors[employee.Name]);
+            empBox.Background = new SolidColorBrush(TemplateScheduleCalendarView.EmployeeColors[employee.Name]);
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
