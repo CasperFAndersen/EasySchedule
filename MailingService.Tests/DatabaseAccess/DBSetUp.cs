@@ -114,8 +114,8 @@ namespace Tests.DatabaseAccess
                                       //Schedule
                                       "create table Schedule(" +
                                       "id int primary key identity(1,1), " +
-                                      "startDate smalldatetime, " +
-                                      "templateScheduleId int foreign key references TemplateSchedule(id), " +
+                                      "startDate datetime, " +
+                                    //  "templateScheduleId int foreign key references TemplateSchedule(id), " +
                                       "departmentId int foreign key references Department(id)); "
 
                                       +
@@ -126,6 +126,7 @@ namespace Tests.DatabaseAccess
                                       "hours float, " +
                                       "scheduleId int foreign key references Schedule(id), " +
                                       "employeeId int foreign key references Employee(id)); ";
+
 
                     cmd.ExecuteNonQuery();
                 }
@@ -196,11 +197,11 @@ namespace Tests.DatabaseAccess
 
                                       +
                                       //Schedule
-                                      "insert into Schedule(startDate, templateScheduleId, departmentId) " +
-                                      "values ('" + startTimeWeek1 + "', (select id from templateSchedule where name='KolonialBasis'), 1); " +
+                                      "insert into Schedule(startDate, departmentId) " +
+                                      "values ('" + startTimeWeek1 + "', 1); " +
 
-                                      "insert into Schedule(startDate, templateScheduleId, departmentId) " +
-                                      "values ('" + startTimeWeek1 + "', (select id from templateSchedule where name='PakkeCentralJuletid'), 2); "
+                                      "insert into Schedule(startDate, departmentId) " +
+                                      "values ('" + startTimeWeek1 + "', 2); "
 
                                       +
                                       //Shift
@@ -219,7 +220,7 @@ namespace Tests.DatabaseAccess
                                       "insert into Shift(startTime, hours, scheduleId, employeeId)" +
                                       "values ('" + GetCurrentStartTimeStringPlusDay(2) + " 14:00', 7, (select id from schedule where startDate='" + startTimeWeek1 + "' AND departmentId = 2), (select id from employee where name='Tobias Andersen')); ";
 
-                    //string timeTest = GetCurrentStartTimeStringPlusDay(4);
+                    
                     cmd.ExecuteNonQuery();
                 }
             }

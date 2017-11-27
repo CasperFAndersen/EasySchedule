@@ -26,6 +26,12 @@ namespace Tests.ScheduleService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetCurrentScheduleDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetCurrentScheduleDepartmentIdResponse")]
         System.Threading.Tasks.Task<Core.Schedule> GetCurrentScheduleDepartmentIdAsync(int depId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/InsertScheduleIntoDb", ReplyAction="http://tempuri.org/IScheduleService/InsertScheduleIntoDbResponse")]
+        void InsertScheduleIntoDb(Core.Schedule schedule);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/InsertScheduleIntoDb", ReplyAction="http://tempuri.org/IScheduleService/InsertScheduleIntoDbResponse")]
+        System.Threading.Tasks.Task InsertScheduleIntoDbAsync(Core.Schedule schedule);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +75,14 @@ namespace Tests.ScheduleService {
         
         public System.Threading.Tasks.Task<Core.Schedule> GetCurrentScheduleDepartmentIdAsync(int depId) {
             return base.Channel.GetCurrentScheduleDepartmentIdAsync(depId);
+        }
+        
+        public void InsertScheduleIntoDb(Core.Schedule schedule) {
+            base.Channel.InsertScheduleIntoDb(schedule);
+        }
+        
+        public System.Threading.Tasks.Task InsertScheduleIntoDbAsync(Core.Schedule schedule) {
+            return base.Channel.InsertScheduleIntoDbAsync(schedule);
         }
     }
 }

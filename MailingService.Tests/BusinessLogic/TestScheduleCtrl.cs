@@ -3,6 +3,7 @@ using BusinessLogic;
 using Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DatabaseAccess.Schedules;
+using Rhino.Mocks;
 
 namespace Tests.BusinessLogic
 {
@@ -11,6 +12,14 @@ namespace Tests.BusinessLogic
     {
         
         ScheduleController schCtrl = new ScheduleController(new ScheduleRepository());
+        private IScheduleRepository mockScheduleRepository;
+
+        [TestInitialize]
+        public void InitializeTest()
+        {
+            mockScheduleRepository = MockRepository.GenerateMock<IScheduleRepository>();
+            schCtrl = new ScheduleController(mockScheduleRepository);
+        }
 
         [TestMethod]
         public void TestGetSchedueleByCurrentDate()
@@ -34,6 +43,14 @@ namespace Tests.BusinessLogic
             Assert.AreEqual(3, schedule.Shifts.Count);
             Assert.AreEqual("Kolonial", schedule.Department.Name);
             Assert.IsNotNull(schedule);
+        }
+
+        [TestMethod]
+        public void TestInsertScheduleIntoDb()
+        {
+            Schedule s = new Schedule();
+            mockScheduleRepository.InsertScheduleIntoDb(s);
+            mockScheduleRepository.AssertWasCalled(x => x.InsertScheduleIntoDb(s));
         }
     }
 }

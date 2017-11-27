@@ -1,26 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using Core;
-using EasyScheduleWebClient.ScheduleService;
+using DesktopClient.ScheduleService;
 
-namespace EasyScheduleWebClient.Services
+namespace DesktopClient.Services
 {
     public class ScheduleProxy : IScheduleService
     {
-        IScheduleService proxy = new ScheduleServiceClient();
-
-        public Schedule GetScheduleByCurrentDate(DateTime currentDate)
-        {
-            return proxy.GetScheduleByCurrentDate(currentDate);
-        }
-
-        Task<Schedule> IScheduleService.GetScheduleByCurrentDateAsync(DateTime currentDate)
-        {
-            return GetScheduleByCurrentDateAsync(currentDate);
-        }
+        ScheduleServiceClient proxy = new ScheduleServiceClient();
 
         public Schedule GetCurrentScheduleDepartmentId(int depId)
         {
@@ -32,6 +22,10 @@ namespace EasyScheduleWebClient.Services
             throw new NotImplementedException();
         }
 
+        public Schedule GetScheduleByCurrentDate(DateTime currentDate)
+        {
+            return proxy.GetScheduleByCurrentDate(currentDate);
+        }
 
         public Task<Schedule> GetScheduleByCurrentDateAsync(DateTime currentDate)
         {

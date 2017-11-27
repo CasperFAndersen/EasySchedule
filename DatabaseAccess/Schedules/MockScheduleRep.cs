@@ -35,6 +35,9 @@ namespace DatabaseAccess.Schedules
 
         }
 
-   
+        public void InsertScheduleIntoDb(Schedule schedule)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

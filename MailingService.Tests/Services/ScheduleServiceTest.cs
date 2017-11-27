@@ -3,12 +3,24 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests.ScheduleService;
 using Core;
 using System.Collections.Generic;
+using DatabaseAccess.Employees;
+using DatabaseAccess.Departments;
+using Tests.DatabaseAccess;
 
 namespace Tests.Services
 {
     [TestClass]
     public class ScheduleServiceTest
     {
+        ScheduleServiceClient client;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            DBSetUp.SetUpDB();
+            client = new ScheduleServiceClient();
+        }
+
         [TestMethod]
         public void TestGetScheduleByDepartmentId()
         {
@@ -31,6 +43,30 @@ namespace Tests.Services
             //Assert.AreEqual("Pakkecentral", schedule2.Department.Name);
 
 
+        }
+
+        [TestMethod]
+        public void TestInsertScheduleService()
+        {
+            Shift shift1 = new Shift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2017, 11, 28, 8, 0, 0) };
+            Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(3), StartDate = new DateTime(2017, 11, 27, 0, 0, 0, DateTimeKind.Utc) };
+            schedule.Shifts.Add(shift1);
+
+            client.InsertScheduleIntoDb(schedule);
+
+            schedule = client.GetCurrentScheduleDepartmentId(3);
+
+            Assert.IsNotNull(schedule);
+            Assert.AreEqual(1, schedule.Shifts.Count);
+            Assert.AreEqual("Mikkel Paulsen", schedule.Shifts[0].Employee.Name);
+            Assert.AreEqual("Elektronik", schedule.Department.Name);
+
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            DBSetUp.SetUpDB();
         }
     }
 }

@@ -13,5 +13,6 @@ namespace DatabaseAccess.Shifts
         List<Shift> GetShiftsByScheduleID(int scheduleId);
         List<Shift> GetShiftsByEmployeeId(int employeeId);
         Shift BuildShiftObject(SqlDataReader reader);
+        
     }
 }

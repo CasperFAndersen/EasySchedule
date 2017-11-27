@@ -2,7 +2,9 @@
 using DatabaseAccess.Employees;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Transactions;
 
 namespace DatabaseAccess.Shifts
 {
@@ -64,6 +66,54 @@ namespace DatabaseAccess.Shifts
 
                     return shiftList; ;
                 }
+            }
+        }
+
+        public void InsertShiftsIntoDb(List<Shift> shifts, int scheduleId, SqlConnection conn)
+        {
+            try
+            {
+
+                using (conn)
+                {
+                    foreach (var shift in shifts)
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+
+                            cmd.CommandText = "INSERT INTO Shift (startTime, hours, scheduleId, employeeId)" +
+                                              " VALUES (@param1, @param2, @param3, @param4);";
+
+                            SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.SmallDateTime, 100);
+                            SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.Int, 100);
+                            SqlParameter p3 = new SqlParameter(@"param3", SqlDbType.Int, 100);
+                            SqlParameter p4 = new SqlParameter(@"param4", SqlDbType.Int, 100);
+
+
+                            p1.Value = shift.StartTime;
+                            p2.Value = shift.Hours;
+                            p3.Value = scheduleId;
+                            p4.Value = shift.Employee.Id;
+
+                            cmd.Parameters.Add(p1);
+                            cmd.Parameters.Add(p2);
+                            cmd.Parameters.Add(p3);
+                            cmd.Parameters.Add(p4);
+
+
+                            cmd.ExecuteNonQuery();
+
+                        }
+
+                    }
+
+                }
+
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("" + e.Message + e.StackTrace);
             }
         }
 

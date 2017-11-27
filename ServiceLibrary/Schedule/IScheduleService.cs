@@ -11,5 +11,8 @@ namespace ServiceLibrary.Schedule
 
         [OperationContract]
         Core.Schedule GetCurrentScheduleDepartmentId(int depId);
+
+        [OperationContract]
+        void InsertScheduleIntoDb(Core.Schedule schedule);
     }
 }

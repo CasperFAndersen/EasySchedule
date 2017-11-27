@@ -69,6 +69,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ScheduleService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\TempScheduleService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -93,6 +98,7 @@
     <Compile Include="ManageEmployeeView.xaml.cs">
       <DependentUpon>ManageEmployeeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\ScheduleProxy.cs" />
     <Compile Include="TemplateSelectedArgs.cs" />
     <Compile Include="EmployeeDropEventArgs.cs" />
     <Compile Include="EmployeeListItem.xaml.cs">
@@ -214,6 +220,16 @@
     <None Include="Connected Services\EmployeeService\item2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ScheduleService\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ScheduleService\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ScheduleService\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ScheduleService\ScheduleService.wsdl" />
     <None Include="Connected Services\TempScheduleService\Core.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -259,6 +275,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\DepartmentService\" />
     <WCFMetadataStorage Include="Connected Services\EmployeeService\" />
+    <WCFMetadataStorage Include="Connected Services\ScheduleService\" />
     <WCFMetadataStorage Include="Connected Services\TempScheduleService\" />
     <WCFMetadataStorage Include="Connected Services\TempShiftService\" />
   </ItemGroup>
@@ -315,6 +332,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\EmployeeService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ScheduleService\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ScheduleService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ScheduleService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ScheduleService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

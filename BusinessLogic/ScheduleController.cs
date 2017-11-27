@@ -36,5 +36,10 @@ namespace BusinessLogic
             return _scheduleRepository.GetCurrentScheduleByDepartmentId(date, id);
         }
 
+        public void InsertSchedule(Schedule schedule)
+        {
+            _scheduleRepository.InsertScheduleIntoDb(schedule);
+        }
+
     }
 }

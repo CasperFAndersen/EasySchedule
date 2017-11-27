@@ -47,22 +47,28 @@ namespace Tests.DatabaseAccess
             Assert.AreEqual("Kolonial", schedule.Department.Name);
         }
 
-        //[TestMethod]
-        //public void TestInsertSchedule()
-        //{
-        //    Shift shift1 = new Shift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2017, 11, 28, 8, 0, 0) };
-        //    Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(1), };
+        [TestMethod]
+        public void TestInsertSchedule()
+        {
+            Shift shift1 = new Shift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2017, 11, 28, 8, 0, 0) };
+            Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(3), StartDate = new DateTime(2017,11,27, 0, 0, 0, DateTimeKind.Utc)};
+            schedule.Shifts.Add(shift1);
 
-        //    int id = schRep.InsertScheduleIntoDb(schedule);
+            schRep.InsertScheduleIntoDb(schedule);
 
-        //    schedule = schRep.GetCurrentScheduleByDepartmentId(DateTime.Now, 1);
-            
-        //}
+            schedule = schRep.GetCurrentScheduleByDepartmentId(new DateTime(2017,11,27), 3);
+
+            Assert.IsNotNull(schedule);
+            Assert.AreEqual(1, schedule.Shifts.Count);
+            Assert.AreEqual("Mikkel Paulsen", schedule.Shifts[0].Employee.Name);
+            Assert.AreEqual("Elektronik", schedule.Department.Name);
+
+        }
 
         [TestCleanup]
         public void TestCleanup()
         {
-            DBSetUp.SetUpDB();
+           DBSetUp.SetUpDB();
         }
     }
 }

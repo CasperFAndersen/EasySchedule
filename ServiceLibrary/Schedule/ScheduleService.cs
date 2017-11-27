@@ -1,5 +1,6 @@
 ﻿using System;
 using BusinessLogic;
+using Core;
 using DatabaseAccess.Schedules;
 
 namespace ServiceLibrary.Schedule
@@ -16,6 +17,11 @@ namespace ServiceLibrary.Schedule
         public Core.Schedule GetScheduleByCurrentDate(DateTime currentDate)
         {
             return schCtrl.GetScheduleByCurrentDate(currentDate);
+        }
+
+        public void InsertScheduleIntoDb(Core.Schedule schedule)
+        {
+            schCtrl.InsertSchedule(schedule);
         }
     }
 }

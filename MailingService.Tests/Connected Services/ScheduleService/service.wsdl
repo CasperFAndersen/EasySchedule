@@ -19,6 +19,12 @@
   <wsdl:message name="IScheduleService_GetCurrentScheduleDepartmentId_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCurrentScheduleDepartmentIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IScheduleService_InsertScheduleIntoDb_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertScheduleIntoDb" />
+  </wsdl:message>
+  <wsdl:message name="IScheduleService_InsertScheduleIntoDb_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertScheduleIntoDbResponse" />
+  </wsdl:message>
   <wsdl:portType name="IScheduleService">
     <wsdl:operation name="GetScheduleByCurrentDate">
       <wsdl:input wsaw:Action="http://tempuri.org/IScheduleService/GetScheduleByCurrentDate" message="tns:IScheduleService_GetScheduleByCurrentDate_InputMessage" />
@@ -27,6 +33,10 @@
     <wsdl:operation name="GetCurrentScheduleDepartmentId">
       <wsdl:input wsaw:Action="http://tempuri.org/IScheduleService/GetCurrentScheduleDepartmentId" message="tns:IScheduleService_GetCurrentScheduleDepartmentId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IScheduleService/GetCurrentScheduleDepartmentIdResponse" message="tns:IScheduleService_GetCurrentScheduleDepartmentId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertScheduleIntoDb">
+      <wsdl:input wsaw:Action="http://tempuri.org/IScheduleService/InsertScheduleIntoDb" message="tns:IScheduleService_InsertScheduleIntoDb_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IScheduleService/InsertScheduleIntoDbResponse" message="tns:IScheduleService_InsertScheduleIntoDb_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IScheduleService" type="tns:IScheduleService">
@@ -42,6 +52,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetCurrentScheduleDepartmentId">
       <soap:operation soapAction="http://tempuri.org/IScheduleService/GetCurrentScheduleDepartmentId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertScheduleIntoDb">
+      <soap:operation soapAction="http://tempuri.org/IScheduleService/InsertScheduleIntoDb" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
