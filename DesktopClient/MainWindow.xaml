@@ -29,6 +29,9 @@
                 <MenuItem Name="ViewEditTempSchedule" Header="View/Edit Template Schedule" Click="ViewEditTempScheduleMenuItimClicked" />
             </MenuItem>
             <MenuItem Header="VagtPlan"/>
+            <MenuItem Header="Employees">
+                <MenuItem Name="CreateEmployee" Header="Create Employee" Click="CreateEmployeeMenuItemClicked"></MenuItem>
+            </MenuItem>
         </Menu>
         <StackPanel Name="ButtonPanel" Grid.Column="2" Grid.Row="3">
 

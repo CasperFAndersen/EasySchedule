@@ -33,7 +33,7 @@ namespace DesktopClient
             SetOnTemplateScheduleUpdateClicked();
             SetOnDepartmentBoxSelected();
             LoadEmployeeColors();
-           
+
         }
 
         private async void LoadEmployeeColors()
@@ -43,7 +43,7 @@ namespace DesktopClient
             foreach (var emp in employees)
             {
                 EmployeeColors.Add(emp.Name, Color.FromRgb((byte)rnd.Next(256), (byte)rnd.Next(256), (byte)rnd.Next(256)));
-                
+
             };
         }
 
@@ -62,7 +62,7 @@ namespace DesktopClient
             Color color = colors[rnd.Next(colors.Length)];
             bool isUniqeColorFound = false;
             while (!isUniqeColorFound)
-            {       
+            {
                 if (!EmployeeColors.Values.Contains(color))
                 {
                     isUniqeColorFound = true;
@@ -75,37 +75,37 @@ namespace DesktopClient
             return color;
         }
 
-
-
-
         private void ViewEditTempScheduleMenuItimClicked(object sender, RoutedEventArgs e)
         {
-            ControlPanel.Children.Clear();
-            ControlPanel.Children.Add(new ViewEditTemplateSchedule());
-            EmployeeList.Items.Clear();
-            DepartmentName.Content = "";
-            LblTitle.Content = "View / Edit Template Schedule";
-            Mediator.GetInstance().OnMenuItemChanged();
+            TempScheduleMenuItem(new ViewEditTemplateSchedule(), "View / Edit Template Schedule");
         }
-
 
         private void CreateTempScheduleMenuItimClicked(object sender, RoutedEventArgs e)
         {
+            TempScheduleMenuItem(new ViewCreateTemplateSchedule(), "Create Template Schedule");
+        }
+
+        private void TempScheduleMenuItem(UserControl view, string title)
+        {
             ControlPanel.Children.Clear();
-            ControlPanel.Children.Add(new ViewCreateTemplateSchedule());
+            ControlPanel.Children.Add(view);
             EmployeeList.Items.Clear();
             DepartmentName.Content = "";
-            LblTitle.Content = "Create Template Schedule";
+            LblTitle.Content = title;
             Mediator.GetInstance().OnMenuItemChanged();
         }
 
+        private void CreateEmployeeMenuItemClicked(object sender, RoutedEventArgs e)
+        {
+            ControlPanel.Children.Clear();
+            ControlPanel.Children.Add(new CreateEmployeeView());
 
+        }
 
         public void SetOnDepartmentSelected()
         {
             Mediator.GetInstance().TempScheduleSelected += (s, e) =>
             {
-                          
                 EmployeeProxy employeeProxy = new EmployeeProxy();
                 LoadEmployeeList(employeeProxy.GetListOfEmployeeByDepartmentId(e.TempSchedule.DepartmentID));
 
@@ -124,7 +124,7 @@ namespace DesktopClient
 
         private void SetOnDepartmentBoxSelected()
         {
-            Mediator.GetInstance().DepartmentBoxChanged += (e,d) =>
+            Mediator.GetInstance().DepartmentBoxChanged += (e, d) =>
             {
                 LoadEmployeeList(e);
                 DepartmentName.Content = d.Name;
@@ -132,8 +132,5 @@ namespace DesktopClient
         }
 
     }
-
-    
-    
 }
 

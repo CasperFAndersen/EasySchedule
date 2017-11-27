@@ -21,7 +21,6 @@ namespace DesktopClient
     /// </summary>
     public partial class CreateEmployeeView : UserControl
     {
-
         public CreateEmployeeView()
         {
             InitializeComponent();

@@ -18,6 +18,6 @@
         <local:EmployeeView>
             
         </local:EmployeeView>
-        <Button x:Name="BtnSaveEmployee" Content="Save" Grid.Row="2" Grid.Column="0" Click="BtnSaveEmployee_Click"></Button>
+        <Button x:Name="BtnSaveEmployee" Content="Save" Grid.Row="1" Grid.Column="0" Click="BtnSaveEmployee_Click"></Button>
     </Grid>
 </UserControl>
