@@ -28,6 +28,7 @@ namespace DesktopClient
         public TemplateScheduleCalendarView()
         {
             InitializeComponent();
+            LoadEmployeeColors();
             SetOnDepartmentSelected();
             SetOnTemplateScheduleUpdateClicked();
             SetOnDepartmentBoxSelected();
