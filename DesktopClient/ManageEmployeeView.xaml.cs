@@ -37,7 +37,7 @@ namespace DesktopClient
 
         private void CbDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            List<Employee> employees = new 
+           // List<Employee> employees = new 
         }
     }
 }

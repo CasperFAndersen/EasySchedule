@@ -19,7 +19,7 @@ namespace Tests.Services
             List<Shift> shifts = schedule.Shifts;
 
             Assert.IsNotNull(schedule);
-            Assert.AreEqual(new DateTime(2017,11,20), schedule.StartDate);
+            Assert.AreEqual(new DateTime(2017,11,27), schedule.StartDate);
             Assert.AreEqual(3, schedule.Shifts.Count);
             Assert.AreEqual("Kolonial", schedule.Department.Name);
 

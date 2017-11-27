@@ -211,13 +211,15 @@ namespace Tests.DatabaseAccess
                                       "values ('" + GetCurrentStartTimeStringPlusDay(0) + " 09:00', 4, (select id from schedule where startDate='" + startTimeWeek1 + "' AND departmentId = 1), (select id from employee where name='Stefan Krabbe')); " +
 
                                       "insert into Shift(startTime, hours, scheduleId, employeeId)" +
-                                      "values ('" + GetCurrentStartTimeStringPlusDay(4) + " 10:00', 8, (select id from schedule where startDate='" + startTimeWeek1 + "' AND departmentId = 1), (select id from employee where name='Casper Froberg')); " +
+                                      "values ('" + GetCurrentStartTimeStringPlusDay(2) + " 10:00', 8, (select id from schedule where startDate='" + startTimeWeek1 + "' AND departmentId = 1), (select id from employee where name='Casper Froberg')); " +
 
                                       "insert into Shift(startTime, hours, scheduleId, employeeId)" +
                                       "values ('" + GetCurrentStartTimeStringPlusDay(1) + " 12:00', 4, (select id from schedule where startDate='" + startTimeWeek1 + "' AND departmentId = 2), (select id from employee where name='Arne Ralston')); " +
 
                                       "insert into Shift(startTime, hours, scheduleId, employeeId)" +
                                       "values ('" + GetCurrentStartTimeStringPlusDay(2) + " 14:00', 7, (select id from schedule where startDate='" + startTimeWeek1 + "' AND departmentId = 2), (select id from employee where name='Tobias Andersen')); ";
+
+                    //string timeTest = GetCurrentStartTimeStringPlusDay(4);
                     cmd.ExecuteNonQuery();
                 }
             }
