@@ -22,6 +22,7 @@ namespace DesktopClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool VisibilityConverter { get; set; }
 
         Color[] colors = { Colors.IndianRed, Colors.DarkKhaki, Colors.DarkOrange, Colors.LightGreen, Colors.Thistle, Colors.SkyBlue, Colors.RoyalBlue, Colors.Turquoise };
         public static Dictionary<string, Color> EmployeeColors { get; set; }
@@ -33,7 +34,6 @@ namespace DesktopClient
             SetOnTemplateScheduleUpdateClicked();
             SetOnDepartmentBoxSelected();
             LoadEmployeeColors();
-
         }
 
         private async void LoadEmployeeColors()

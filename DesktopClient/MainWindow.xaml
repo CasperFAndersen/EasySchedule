@@ -7,13 +7,14 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="Main" Height="768" Width="1366">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Name="MenuRow" Height="20"/>
             <RowDefinition Name="TitleRow" Height="*"/>
             <RowDefinition Name="CotrolsRow" Height="6*"/>
             <RowDefinition Name="CalendarRow" Height="10*"/>
-           
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -53,4 +54,5 @@
             <ListView x:Name="EmployeeList" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1"/>
         </Grid>
     </Grid>
+
 </Window>

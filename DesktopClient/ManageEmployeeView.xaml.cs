@@ -22,12 +22,12 @@ namespace DesktopClient
     public partial class ManageEmployeeView : UserControl
     {
         List<Employee> employeeList = new List<Employee>();
+        Window window;
 
         public ManageEmployeeView()
         {
             InitializeComponent();
             LoadDepartmentList();
-
         }
 
         public void LoadDepartmentList()
@@ -37,15 +37,31 @@ namespace DesktopClient
             CbDepartment.DisplayMemberPath = "Name";
         }
 
+        internal void CloseWindow()
+        {
+            window.Hide();
+        }
+
         private void CbDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-          employeeList = EmployeeEvents().GetListOfEmployees((Department)CbDepartment.SelectedItem);
+            employeeList = new EmployeeEvents().GetListOfEmployees((Department)CbDepartment.SelectedItem);
             Mediator.GetInstance().OnDepartmentBoxSelected(employeeList, (Department)CbDepartment.SelectedItem);
 
             EmployeeListView.ItemsSource = employeeList;
         }
 
-        
+        private void BtnCreateEmployee_Clicked(object sender, EventArgs e)
+        {
+            CreateEmployeeView cw = new CreateEmployeeView();
+
+            window = new Window
+            {
+                Content = cw
+            };
+            window.ShowDialog();
+            
+        }
+
+
     }
 }

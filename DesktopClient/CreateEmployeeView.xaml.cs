@@ -29,6 +29,8 @@ namespace DesktopClient
         private void BtnSaveEmployee_Click(object sender, RoutedEventArgs e)
         {
             Mediator.GetInstance().OnCreateEmployeeClicked();
+            MessageBox.Show("A new Employee has been created!", "Employee Created");
+            
         }
     }
 }

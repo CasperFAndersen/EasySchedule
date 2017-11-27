@@ -1,4 +1,5 @@
 ﻿using Core;
+using DesktopClient.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace DesktopClient
         {
             InitializeComponent();
             LoadDepartmentList();
+            CreateEmployeeClicked();
+            UpdateEmployeeClicked();
 
         }
 
@@ -35,11 +38,13 @@ namespace DesktopClient
             cBoxDepartment.DisplayMemberPath = "Name";
         }
 
-        public void CreateEmployeeclicked()
+        public void CreateEmployeeClicked()
         {
             Mediator.GetInstance().CreateEmployeeClicked += () =>
             {
                 Employee emp = new Employee();
+                EmployeeProxy empProxy = new EmployeeProxy();
+
                 emp.Name = txtName.Text;
                 emp.Mail = txtEmail.Text;
                 emp.Phone = txtPhone.Text;
@@ -50,7 +55,8 @@ namespace DesktopClient
                 emp.Password = txtPassword.Text;
                 Department selectedDepartment = (Department)cBoxDepartment.SelectedItem;
                 emp.DepartmentId = selectedDepartment.Id;
-                //TODO Make the client call the service.
+
+                empProxy.InsertEmployee(emp);
             };
         }
 
@@ -58,9 +64,10 @@ namespace DesktopClient
         {
             Mediator.GetInstance().UpdateEmployeeClicked += () =>
             {
-                //TODO
-                //Call proxy and retrieve an employee based on name
+                EmployeeProxy empProxy = new EmployeeProxy();
                 Employee emp = new Employee();
+
+               
                 emp.Name = txtName.Text;
                 emp.Mail = txtEmail.Text;
                 emp.Phone = txtPhone.Text;
@@ -71,6 +78,8 @@ namespace DesktopClient
                 emp.Password = txtPassword.Text;
                 Department selectedDepartment = (Department)cBoxDepartment.SelectedItem;
                 emp.DepartmentId = selectedDepartment.Id;
+
+                
             };
 
         }
