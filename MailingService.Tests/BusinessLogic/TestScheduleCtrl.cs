@@ -36,7 +36,6 @@ namespace Tests.BusinessLogic
         [TestMethod]
         public void TestGetCurrentScheduleByDepartmentId()
         {
-            DateTime currentDate = new DateTime(2017, 11, 20);
 
             Schedule schedule = schCtrl.GetCurrentScheduleByDepartmentId(1);
 

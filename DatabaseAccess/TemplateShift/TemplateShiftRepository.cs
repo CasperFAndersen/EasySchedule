@@ -23,14 +23,15 @@ namespace DatabaseAccess
                 
                 foreach (TemplateShift ts in TShift)
                 {
-                    SqlCommand insertTempShift = new SqlCommand("INSERT INTO TemplateShift(weekDay, hours, startTime, templateScheduleId, employeeId)   VALUES(@param1,@param2,@param3,@param4,@param5)", dBCon);
+                    SqlCommand insertTempShift = new SqlCommand("INSERT INTO TemplateShift(weekDay, hours, startTime, weekNumber, templateScheduleId, employeeId)   VALUES(@param1,@param2,@param3,@param4,@param5,@Param6)", dBCon);
                     if (ts.ID == 0)
                     {
                         insertTempShift.Parameters.AddWithValue("@param1", ts.WeekDay.ToString());
                         insertTempShift.Parameters.AddWithValue("@param2", ts.Hours);
                         insertTempShift.Parameters.AddWithValue("@param3", ts.StartTime);
-                        insertTempShift.Parameters.AddWithValue("@param4", tempScheduleIDFromDB);
-                        insertTempShift.Parameters.AddWithValue("@param5", ts.Employee.Id);
+                        insertTempShift.Parameters.AddWithValue("@param4", ts.WeekNumber);
+                        insertTempShift.Parameters.AddWithValue("@param5", tempScheduleIDFromDB);
+                        insertTempShift.Parameters.AddWithValue("@param6", ts.Employee.Id);
 
                         insertTempShift.ExecuteNonQuery();
                     }
@@ -76,20 +77,14 @@ namespace DatabaseAccess
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateShift", dBCon))
                 {
 
-                    using (DbDataReader reader = command.ExecuteReader())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             if (reader.HasRows)
                             {
 
-                                TemplateShift tempShift = new TemplateShift();
-                                tempShift.ID = reader.GetOrdinal("Id");
-                                tempShift.WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader.GetOrdinal("weekDay").ToString());
-                                tempShift.Hours = reader.GetOrdinal("Hours");
-                                tempShift.StartTime = TimeSpan.Parse(reader.GetOrdinal("StartTime").ToString());
-                                tempShift.TemplateScheduleID = reader.GetOrdinal("TemplateScheduleId");
-                                tempShift.Employee = new Employee() { Id = reader.GetOrdinal("EmployeeId") };
+                                TemplateShift tempShift = BuildTempShiftObject(reader);
 
 
                                 tempList.Add(tempShift);
@@ -143,8 +138,9 @@ namespace DatabaseAccess
             tempShift.WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader.GetString(1));
             tempShift.Hours = reader.GetDouble(2);
             tempShift.StartTime = reader.GetTimeSpan(3);
-            tempShift.TemplateScheduleID = reader.GetInt32(4);
-            tempShift.Employee = new EmployeeRepository().FindEmployeeById(reader.GetInt32(5));
+            tempShift.WeekNumber = reader.GetInt32(4);
+            tempShift.TemplateScheduleID = reader.GetInt32(5);
+            tempShift.Employee = new EmployeeRepository().FindEmployeeById(reader.GetInt32(6));
 
             return tempShift;
         }
@@ -163,11 +159,11 @@ namespace DatabaseAccess
                 SqlCommand command = new SqlCommand("SELECT * FROM TemplateShift WHERE ID = @param1", dBCon);
                 command.Parameters.AddWithValue("@param1", tempShiftID);
 
-                using (DbDataReader reader = command.ExecuteReader())
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        tShift = new TemplateShift(reader.GetInt32(0), GetDayOfweekBasedOnString(reader.GetString(1)), reader.GetFloat(2), new TimeSpan(reader.GetDateTime(3).Hour, reader.GetDateTime(3).Minute, reader.GetDateTime(3).Second), reader.GetInt32(4), new Employee() { Id = reader.GetInt32(5) });
+                        tShift = BuildTempShiftObject(reader);
                     }
                 }
                 dBCon.Close();

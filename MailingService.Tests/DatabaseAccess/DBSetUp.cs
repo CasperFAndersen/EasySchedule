@@ -107,6 +107,7 @@ namespace Tests.DatabaseAccess
                                       "weekday varchar(20), " +
                                       "hours float, " +
                                       "startTime time, " +
+                                      "weekNumber int, " +
                                       "templateScheduleId int foreign key references TemplateSchedule(id), " +
                                       "employeeId int foreign key references Employee(id)); "
 
@@ -189,11 +190,11 @@ namespace Tests.DatabaseAccess
 
                                       +
                                       //TemplateShift
-                                      "insert into TemplateShift(weekday, hours, startTime, templateScheduleId, employeeId) " +
-                                      "values ('Tuesday', 10, '06:30:00', (select id from templateSchedule where name='KolonialBasis'), (select id from Employee where name='Mikkel Paulsen')); "
+                                      "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                                      "values ('Tuesday', 10, '06:30:00', 1, (select id from templateSchedule where name='KolonialBasis'), (select id from Employee where name='Mikkel Paulsen')); "
                                       + 
-                                      "insert into TemplateShift(weekday, hours, startTime, templateScheduleId, employeeId) " +
-                                      "values ('Tuesday', 10, '06:30:00', (select id from templateSchedule where name='PakkeCentralJuletid'), (select id from Employee where name='Tobias Andersen')); "
+                                      "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                                      "values ('Tuesday', 10, '06:30:00', 1, (select id from templateSchedule where name='PakkeCentralJuletid'), (select id from Employee where name='Tobias Andersen')); "
 
                                       +
                                       //Schedule
