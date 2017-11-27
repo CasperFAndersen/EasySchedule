@@ -27,17 +27,8 @@ namespace DesktopClient
         {
             InitializeComponent();
             LoadDeparmentList();
-            NoOfWeeks.ItemsSource = new int[] {1,2,3,4 };
+            NoOfWeeks.ItemsSource = new int[] { 1, 2, 3, 4 };
         }
-
-        public List<Employee> GetListOfEmployees(Department department)
-        {
-            EmployeeProxy empProxy = new EmployeeProxy();
-            List<Employee> listOfEmployees = new List<Employee>(empProxy.GetListOfEmployeeByDepartmentId(department.Id).ToList());
-            return listOfEmployees;
-        }
-
-
 
         public void LoadDeparmentList()
         {
@@ -48,7 +39,7 @@ namespace DesktopClient
 
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            List<Employee> employees = GetListOfEmployees((Department)CBoxDepartment.SelectedItem);
+            List<Employee> employees = new EmployeeEvents().GetListOfEmployees((Department)CBoxDepartment.SelectedItem);
             Mediator.GetInstance().OnDepartmentBoxSelected(employees, (Department)CBoxDepartment.SelectedItem);
         }
 
@@ -72,7 +63,7 @@ namespace DesktopClient
                 Mediator.GetInstance().OnCreateTemplateScheduleButtonClicked(tempSchedule);
             }
 
-        
+
         }
 
 

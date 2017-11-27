@@ -86,6 +86,7 @@
       <DependentUpon>DayColumn.xaml</DependentUpon>
     </Compile>
     <Compile Include="DepartmentEvents.cs" />
+    <Compile Include="EmployeeEvents.cs" />
     <Compile Include="EmployeeView.xaml.cs">
       <DependentUpon>EmployeeView.xaml</DependentUpon>
     </Compile>
