@@ -90,6 +90,9 @@
     <Compile Include="EmployeeView.xaml.cs">
       <DependentUpon>EmployeeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManageEmployeeView.xaml.cs">
+      <DependentUpon>ManageEmployeeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TemplateSelectedArgs.cs" />
     <Compile Include="EmployeeDropEventArgs.cs" />
     <Compile Include="EmployeeListItem.xaml.cs">
@@ -148,6 +151,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ManageEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ShiftElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
