@@ -95,11 +95,14 @@ namespace DesktopClient
             Mediator.GetInstance().OnMenuItemChanged();
         }
 
-        private void CreateEmployeeMenuItemClicked(object sender, RoutedEventArgs e)
+        private void ManageEmployeesMenuItemClicked(object sender, RoutedEventArgs e)
         {
             ControlPanel.Children.Clear();
-            ControlPanel.Children.Add(new CreateEmployeeView());
-
+            ControlPanel.Children.Add(new ManageEmployeeView());
+            EmployeeList.Items.Clear();
+            DepartmentName.Content = "";
+            LblTitle.Content = "Manage Employees";
+            Mediator.GetInstance().OnMenuItemChanged();
         }
 
         public void SetOnDepartmentSelected()

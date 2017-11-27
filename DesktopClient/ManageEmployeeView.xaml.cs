@@ -21,6 +21,8 @@ namespace DesktopClient
     /// </summary>
     public partial class ManageEmployeeView : UserControl
     {
+        List<Employee> employeeList = new List<Employee>();
+
         public ManageEmployeeView()
         {
             InitializeComponent();
@@ -37,7 +39,13 @@ namespace DesktopClient
 
         private void CbDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            List<Employee> employees = new 
+            
+          employeeList = EmployeeEvents().GetListOfEmployees((Department)CbDepartment.SelectedItem);
+            Mediator.GetInstance().OnDepartmentBoxSelected(employeeList, (Department)CbDepartment.SelectedItem);
+
+            EmployeeListView.ItemsSource = employeeList;
         }
+
+        
     }
 }

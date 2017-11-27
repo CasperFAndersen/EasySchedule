@@ -21,9 +21,23 @@
         <Button Grid.Row="0" Grid.Column="1" x:Name="BtnCreateEmployee"></Button>
         <Button Grid.Row="1" Grid.Column="1" x:Name="BtnUpdateEmployee"></Button>
         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="SpEmployeeList">
-            
+            <ContentControl Content="{Binding employeeList}">
+            </ContentControl>
         </StackPanel>
-        
-           
+
+        <ListView x:Name="EmployeeListView">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="id" DisplayMemberBinding="{Binding id}"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}"/>
+                    <GridViewColumn Header="Number of Hours" DisplayMemberBinding="{Binding NoOFHours}"/>
+                    <GridViewColumn Header="Username" DisplayMemberBinding="{Binding Username}"/>
+                    <GridViewColumn Header="Mail" DisplayMemberBinding="{Binding Mail}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
     </Grid>
 </UserControl>
