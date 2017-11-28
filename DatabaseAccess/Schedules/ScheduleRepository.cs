@@ -62,15 +62,15 @@ namespace DatabaseAccess.Schedules
 
                     cmd.CommandText = "select * from Schedule WHERE Schedule.departmentId = @param1 AND Schedule.startDate = @param2";
 
-                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.Int);
-                    SqlParameter p2 = new SqlParameter(@"param2", System.Data.SqlDbType.DateTime2, 100);
+                    SqlParameter p1 = new SqlParameter("@param1", SqlDbType.Int);
+                    SqlParameter p2 = new SqlParameter("@param2", System.Data.SqlDbType.DateTime2, 100);
                     p1.Value = id;
                     p2.Value = currentDate;
 
                     cmd.Parameters.Add(p1);
                     cmd.Parameters.Add(p2);
 
-                    SqlDataReader reader = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                    SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
