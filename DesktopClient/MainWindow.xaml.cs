@@ -27,6 +27,7 @@ namespace DesktopClient
         ViewCreateTemplateSchedule viewCreateTemplateSchedule;
         ViewEditTemplateSchedule viewEditTemplateSchedule;
         CreateEmployeeView createEmployeeView;
+        UpdateEmployeeView updateEmployeeView;
         ScheduleCalendarView scheduleCalendarView;
 
         public MainWindow()
@@ -36,6 +37,7 @@ namespace DesktopClient
             viewCreateTemplateSchedule = new ViewCreateTemplateSchedule();
             viewEditTemplateSchedule = new ViewEditTemplateSchedule();
             createEmployeeView = new CreateEmployeeView();
+            updateEmployeeView = new UpdateEmployeeView();
             scheduleCalendarView = new ScheduleCalendarView();
         }
 
@@ -66,9 +68,10 @@ namespace DesktopClient
             frame.Content = createEmployeeView;
         }
 
-
-
-
+        private void UpdateEmployeeMenuItemClicked(object sender, RoutedEventArgs e)
+        {
+            frame.Content = updateEmployeeView;
+        }
     }
 }
 
