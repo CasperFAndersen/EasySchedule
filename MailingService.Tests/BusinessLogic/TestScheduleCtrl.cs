@@ -36,8 +36,8 @@ namespace Tests.BusinessLogic
         [TestMethod]
         public void TestGetCurrentScheduleByDepartmentId()
         {
-
-            Schedule schedule = schCtrl.GetCurrentScheduleByDepartmentId(1);
+            ScheduleController sCtrl = new ScheduleController(new ScheduleRepository());
+            Schedule schedule = sCtrl.GetCurrentScheduleByDepartmentId(1);
 
             Assert.AreEqual(3, schedule.Shifts.Count);
             Assert.AreEqual("Kolonial", schedule.Department.Name);

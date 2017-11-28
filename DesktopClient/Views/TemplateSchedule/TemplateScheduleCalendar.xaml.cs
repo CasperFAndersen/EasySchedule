@@ -170,6 +170,11 @@ namespace DesktopClient
                 Shifts.Clear();
                 EmployeeColors.Clear();
                 AddShifts(e.TempSchedule.ListOfTempShifts);
+                if (e.TempSchedule.NoOfWeeks > 1)
+                {
+                    btnNextWeek.IsEnabled = true;
+                }
+                numOfWeeks = e.TempSchedule.NoOfWeeks;
                 LoadShiftsIntoCalendar();
             };
         }
@@ -207,6 +212,7 @@ namespace DesktopClient
 
         private void SetOnNumOfWeeksBoxChanged()
         {
+           
             Mediator.GetInstance().NumOfWeekBoxChanged += (n,b,p) =>
             {
                 numOfWeeks = n;
@@ -296,7 +302,7 @@ namespace DesktopClient
 
         }
 
-        private void Clear()
+        public void Clear()
         {
             DayColumnList.ForEach(x => x.Clear());
         }

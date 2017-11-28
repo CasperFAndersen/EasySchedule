@@ -32,6 +32,7 @@
       <xs:element minOccurs="0" name="StartTime" type="ser:duration" />
       <xs:element minOccurs="0" name="TemplateScheduleID" type="xs:int" />
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="WeekDay" type="q1:DayOfWeek" />
+      <xs:element minOccurs="0" name="WeekNumber" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TemplateShift" nillable="true" type="tns:TemplateShift" />
@@ -40,6 +41,7 @@
       <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IsAdmin" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsEmployed" type="xs:boolean" />
       <xs:element minOccurs="0" name="Mail" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NumbOfHours" type="xs:int" />

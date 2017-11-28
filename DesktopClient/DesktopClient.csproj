@@ -56,7 +56,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="TemplateScheduleCalendar.xaml.cs">
+    <Compile Include="Views\Schedule\DateBox.xaml.cs">
+      <DependentUpon>DateBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Schedule\ScheduleCalendar.xaml.cs">
+      <DependentUpon>ScheduleCalendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Schedule\ScheduleCalendarView.xaml.cs">
+      <DependentUpon>ScheduleCalendarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Schedule\ScheduleDayColumn.xaml.cs">
+      <DependentUpon>ScheduleDayColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Schedule\ScheduleTimeCell.xaml.cs">
+      <DependentUpon>ScheduleTimeCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Schedule\ScheduleShiftElement.xaml.cs">
+      <DependentUpon>ScheduleShiftElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TemplateSchedule\TemplateScheduleCalendar.xaml.cs">
       <DependentUpon>TemplateScheduleCalendar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\DepartmentService\Reference.cs">
@@ -84,27 +102,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="CreateEmployeeView.xaml.cs">
+    <Compile Include="Views\Employee\CreateEmployeeView.xaml.cs">
       <DependentUpon>CreateEmployeeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DayColumn.xaml.cs">
+    <Compile Include="Views\TemplateSchedule\DayColumn.xaml.cs">
       <DependentUpon>DayColumn.xaml</DependentUpon>
     </Compile>
     <Compile Include="DepartmentEvents.cs" />
     <Compile Include="EmployeeEvents.cs" />
-    <Compile Include="EmployeeView.xaml.cs">
+    <Compile Include="Views\Employee\EmployeeView.xaml.cs">
       <DependentUpon>EmployeeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ManageEmployeeView.xaml.cs">
+    <Compile Include="Views\Employee\ManageEmployeeView.xaml.cs">
       <DependentUpon>ManageEmployeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\ScheduleProxy.cs" />
-    <Compile Include="TemplateScheduleCalendarView.xaml.cs">
+    <Compile Include="Views\TemplateSchedule\TemplateScheduleCalendarView.xaml.cs">
       <DependentUpon>TemplateScheduleCalendarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="TemplateSelectedArgs.cs" />
     <Compile Include="EmployeeDropEventArgs.cs" />
-    <Compile Include="EmployeeListItem.xaml.cs">
+    <Compile Include="Views\EmployeeListItem.xaml.cs">
       <DependentUpon>EmployeeListItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mediator.cs" />
@@ -113,38 +131,62 @@
     <Compile Include="Services\TempScheduleProxy.cs" />
     <Compile Include="Services\TempShiftProxy.cs" />
     <Compile Include="ShiftDropEventArgs.cs" />
-    <Compile Include="ShiftElement.xaml.cs">
+    <Compile Include="Views\TemplateSchedule\ShiftElement.xaml.cs">
       <DependentUpon>ShiftElement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TimeCell.xaml.cs">
+    <Compile Include="Views\TemplateSchedule\TimeCell.xaml.cs">
       <DependentUpon>TimeCell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UpdateEmployeeView.xaml.cs">
+    <Compile Include="Views\Employee\UpdateEmployeeView.xaml.cs">
       <DependentUpon>UpdateEmployeeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewCreateTemplateSchedule.xaml.cs">
+    <Compile Include="Views\TemplateSchedule\ViewCreateTemplateSchedule.xaml.cs">
       <DependentUpon>ViewCreateTemplateSchedule.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewEditTemplateSchedule.xaml.cs">
+    <Compile Include="Views\TemplateSchedule\ViewEditTemplateSchedule.xaml.cs">
       <DependentUpon>ViewEditTemplateSchedule.xaml</DependentUpon>
     </Compile>
-    <Page Include="TemplateScheduleCalendar.xaml">
+    <Page Include="Views\Schedule\DateBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CreateEmployeeView.xaml">
+    <Page Include="Views\Schedule\ScheduleCalendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DayColumn.xaml">
+    <Page Include="Views\Schedule\ScheduleCalendarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EmployeeListItem.xaml">
+    <Page Include="Views\Schedule\ScheduleDayColumn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EmployeeView.xaml">
+    <Page Include="Views\Schedule\ScheduleTimeCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Schedule\ScheduleShiftElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TemplateSchedule\TemplateScheduleCalendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Employee\CreateEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TemplateSchedule\DayColumn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EmployeeListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Employee\EmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,31 +202,31 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ManageEmployeeView.xaml">
+    <Page Include="Views\Employee\ManageEmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ShiftElement.xaml">
+    <Page Include="Views\TemplateSchedule\ShiftElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TemplateScheduleCalendarView.xaml">
+    <Page Include="Views\TemplateSchedule\TemplateScheduleCalendarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TimeCell.xaml">
+    <Page Include="Views\TemplateSchedule\TimeCell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UpdateEmployeeView.xaml">
+    <Page Include="Views\Employee\UpdateEmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewCreateTemplateSchedule.xaml">
+    <Page Include="Views\TemplateSchedule\ViewCreateTemplateSchedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewEditTemplateSchedule.xaml">
+    <Page Include="Views\TemplateSchedule\ViewEditTemplateSchedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

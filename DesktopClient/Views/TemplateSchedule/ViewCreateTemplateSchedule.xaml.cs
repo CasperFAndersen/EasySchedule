@@ -68,6 +68,7 @@ namespace DesktopClient
 
         private void NoOfWeeks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             int prevSelection = -1;
             if (e.RemovedItems.Count != 0)
             {

@@ -1,5 +1,6 @@
 ﻿using Core;
 using DesktopClient.Services;
+using DesktopClient.Views.Schedule;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,44 +23,47 @@ namespace DesktopClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        TemplateScheduleCalendarView templateScheduleCalendarView;
+        ViewCreateTemplateSchedule viewCreateTemplateSchedule;
+        ViewEditTemplateSchedule viewEditTemplateSchedule;
+        CreateEmployeeView createEmployeeView;
+        ScheduleCalendarView scheduleCalendarView;
 
         public MainWindow()
         {
             InitializeComponent();
+            templateScheduleCalendarView = new TemplateScheduleCalendarView();
+            viewCreateTemplateSchedule = new ViewCreateTemplateSchedule();
+            viewEditTemplateSchedule = new ViewEditTemplateSchedule();
+            createEmployeeView = new CreateEmployeeView();
+            scheduleCalendarView = new ScheduleCalendarView();
         }
 
         private void ViewEditTempScheduleMenuItimClicked(object sender, RoutedEventArgs e)
         {
-            TempScheduleMenuItem(new ViewEditTemplateSchedule(), "View / Edit Template Schedule");
-            TemplateScheduleCalendarView templateScheduleCalendar = new TemplateScheduleCalendarView();
-            templateScheduleCalendar.ControlPanel.Content = new ViewEditTemplateSchedule();
-            frame.Content = templateScheduleCalendar;
+            templateScheduleCalendarView.ControlPanel.Content = viewEditTemplateSchedule;
+            templateScheduleCalendarView.Calendar.Clear();
+            templateScheduleCalendarView.EmployeeList.Items.Clear();
+            frame.Content = templateScheduleCalendarView;
         }
 
         private void CreateTempScheduleMenuItimClicked(object sender, RoutedEventArgs e)
         {
-            TempScheduleMenuItem(new ViewCreateTemplateSchedule(), "Create Template Schedule");
-            TemplateScheduleCalendarView templateScheduleCalendar = new TemplateScheduleCalendarView();
-            templateScheduleCalendar.ControlPanel.Content = new ViewCreateTemplateSchedule();
-            frame.Content = templateScheduleCalendar;
+            templateScheduleCalendarView.Calendar.Clear();
+            templateScheduleCalendarView.ControlPanel.Content = viewCreateTemplateSchedule;
+            templateScheduleCalendarView.EmployeeList.Items.Clear();
+            frame.Content = templateScheduleCalendarView;
         }
 
-        private void TempScheduleMenuItem(UserControl view, string title)
+        private void ViewScheduleMenuItemClicked(object sender, RoutedEventArgs e)
         {
-            //ControlPanel.Children.Clear();
-            //ControlPanel.Children.Add(view);
-            //EmployeeList.Items.Clear();
-            //DepartmentName.Content = "";
-            //LblTitle.Content = title;
-            //Mediator.GetInstance().OnMenuItemChanged();
+            frame.Content = scheduleCalendarView;
         }
+
 
         private void CreateEmployeeMenuItemClicked(object sender, RoutedEventArgs e)
         {
-            //ControlPanel.Children.Clear();
-            //ControlPanel.Children.Add(new CreateEmployeeView());
-            frame.Content = new CreateEmployeeView();
-
+            frame.Content = createEmployeeView;
         }
 
 

@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="Main" Height="768" Width="1366">
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Name="MenuRow" Height="20"/>
             <RowDefinition Name="TitleRow" Height="*"/>
 
-           
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -23,7 +23,9 @@
                 <MenuItem Name="CreateTempSchedule" Header="Create Template Schedule" Click="CreateTempScheduleMenuItimClicked"/>
                 <MenuItem Name="ViewEditTempSchedule" Header="View/Edit Template Schedule" Click="ViewEditTempScheduleMenuItimClicked" />
             </MenuItem>
-            <MenuItem Header="VagtPlan"/>
+            <MenuItem Header="VagtPlan">
+                <MenuItem Name="ViewSchedule" Header="View Schedule" Click="ViewScheduleMenuItemClicked"/>
+            </MenuItem>
             <MenuItem Header="Employees">
                 <MenuItem Name="CreateEmployee" Header="Create Employee" Click="CreateEmployeeMenuItemClicked"></MenuItem>
             </MenuItem>

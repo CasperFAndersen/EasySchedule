@@ -33,7 +33,8 @@ namespace BusinessLogic
             int day = (currentDate.DayOfWeek == DayOfWeek.Sunday) ? (currentDate.Day - 6) : (currentDate.Day - ((int)currentDate.DayOfWeek - 1));
             DateTime date = new DateTime(currentDate.Year, currentDate.Month, day);
 
-            return _scheduleRepository.GetCurrentScheduleByDepartmentId(date, id);
+            Schedule res = _scheduleRepository.GetCurrentScheduleByDepartmentId(date, id);
+            return res;
         }
 
         public void InsertSchedule(Schedule schedule)
