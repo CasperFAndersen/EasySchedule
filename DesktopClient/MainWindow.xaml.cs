@@ -68,7 +68,7 @@ namespace DesktopClient
             frame.Content = createEmployeeView;
         }
 
-        private void UpdateEmployeeMenuItemClicked(object sender, RoutedEventArgs e)
+        public void UpdateEmployeeMenuItemClicked(object sender, RoutedEventArgs e)
         {
             frame.Content = updateEmployeeView;
         }
