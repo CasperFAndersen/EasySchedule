@@ -19,7 +19,7 @@ namespace Tests.DatabaseAccess
             DBSetUp.SetUpDB();
             schRep = new ScheduleRepository();
         }
-        
+
 
         [TestMethod]
         public void TestGetScheduleByCurrentDate()
@@ -35,7 +35,7 @@ namespace Tests.DatabaseAccess
         [TestMethod]
         public void TestGetCurrentScheduleByDepartmentId()
         {
-            DateTime currentDate = new DateTime(2017,11,27);
+            DateTime currentDate = new DateTime(2017, 11, 27);
 
             Schedule schedule = schRep.GetCurrentScheduleByDepartmentId(currentDate, 1);
 
@@ -51,12 +51,12 @@ namespace Tests.DatabaseAccess
         public void TestInsertSchedule()
         {
             Shift shift1 = new Shift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2017, 11, 28, 8, 0, 0) };
-            Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(3), StartDate = new DateTime(2017,11,27, 0, 0, 0, DateTimeKind.Utc)};
+            Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(3), StartDate = new DateTime(2017, 11, 27, 0, 0, 0, DateTimeKind.Utc) };
             schedule.Shifts.Add(shift1);
 
             schRep.InsertScheduleIntoDb(schedule);
 
-            schedule = schRep.GetCurrentScheduleByDepartmentId(new DateTime(2017,11,27), 3);
+            schedule = schRep.GetCurrentScheduleByDepartmentId(new DateTime(2017, 11, 27), 3);
 
             Assert.IsNotNull(schedule);
             Assert.AreEqual(1, schedule.Shifts.Count);
@@ -65,10 +65,35 @@ namespace Tests.DatabaseAccess
 
         }
 
+        [TestMethod]
+        private void TestUpdateSchedule()
+        {
+            ScheduleRepository scheduleRepository = new ScheduleRepository();
+            Schedule schedule = scheduleRepository.GetCurrentScheduleByDepartmentId(new DateTime(2017, 11, 27), 1);
+            Shift s1 = schedule.Shifts[0];
+
+            s1.StartTime = new DateTime(2017, 11, 27);
+            s1.Hours = 6;
+
+            Shift s2 = new Shift() { StartTime = new DateTime(2017, 11, 28), Hours = 7, Employee = new EmployeeRepository().FindEmployeeById(2), };
+            schedule.Shifts.Add(s2);
+
+            scheduleRepository.UpdateSchedule(schedule, 1);
+            
+            schedule = scheduleRepository.GetCurrentScheduleByDepartmentId(new DateTime(2017, 11, 27), 1);
+
+            Assert.IsNotNull(schedule);
+            Assert.AreEqual(2, schedule.Shifts.Count);
+
+            
+        }
+
         [TestCleanup]
         public void TestCleanup()
         {
-           DBSetUp.SetUpDB();
+            DBSetUp.SetUpDB();
         }
+
     }
 }
+
