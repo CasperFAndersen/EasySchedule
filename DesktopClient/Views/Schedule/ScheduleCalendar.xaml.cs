@@ -21,11 +21,14 @@ namespace DesktopClient.Views.Schedule
     /// </summary>
     public partial class ScheduleCalendar : UserControl
     {
+        public DateTime SelectedWeekStartDate { get; set; }
+        public List<DateBox> DateBoxes { get; set; }
         public ScheduleCalendar()
         {
             InitializeComponent();
             DayColumnList = new List<DayColumn>();
             Shifts = new List<Shift>();
+            DateBoxes = new List<DateBox>();
             WeekNumber = 1;
             btnNextWeek.IsEnabled = false;
             btnPrevWeek.IsEnabled = false;
@@ -33,6 +36,9 @@ namespace DesktopClient.Views.Schedule
             BuildDayColumns();
             EmployeeColors = new Dictionary<Employee, Color>();
             BuildDateBoxes();
+            btnNextWeek.IsEnabled = true;
+            btnPrevWeek.IsEnabled = true;
+            SetSelectedStartDate(DateTime.Now);
 
 
             
@@ -161,8 +167,16 @@ namespace DesktopClient.Views.Schedule
                 
                 day++;
                 col++;
+                DateBoxes.Add(dBox);
+            }
+        }
 
-
+        public void UpdateDateBoxes()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                DateBox curr = DateBoxes[i];
+                curr.UpdateDate(SelectedWeekStartDate.AddDays(i));
             }
         }
 
@@ -171,12 +185,32 @@ namespace DesktopClient.Views.Schedule
         private void NavCalendar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            DateTime selectedDate = (DateTime)NavCalendar.SelectedDate;
-            selectedDate = new DateTime(selectedDate.Year, selectedDate.Month, (int)NavCalendar.FirstDayOfWeek);
+            NavCalendar.DataContext = SelectFullWeek();
+        }
+
+        private void NavCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+
+            SetSelectedStartDate((DateTime)NavCalendar.SelectedDate);
+            NavCalendar.SelectedDate = SelectedWeekStartDate;
+            UpdateDateBoxes();
+           
+        }
+
+        public void SetSelectedStartDate(DateTime date)
+        {
+            SelectedWeekStartDate = (date.DayOfWeek == DayOfWeek.Sunday) ? (date.AddDays(-6)) : (date.AddDays(-(int)date.DayOfWeek + 1));
+        }
+
+        private List<DateTime> SelectFullWeek()
+        {
+            List<DateTime> res = new List<DateTime>();
             for (int i = 0; i < 5; i++)
             {
-                NavCalendar.SelectedDates.Add(selectedDate.AddDays(i));
+                res.Add(new DateTime(SelectedWeekStartDate.Year, SelectedWeekStartDate.Month, SelectedWeekStartDate.Day + i));
             }
+            return res;
         }
 
         //    public void SetShiftDropHandler()
@@ -310,40 +344,20 @@ namespace DesktopClient.Views.Schedule
         //        return colors[rnd.Next(colors.Length)];
         //    }
 
-        //    private void NextWeek_Click(object sender, RoutedEventArgs e)
-        //    {
-        //        if (WeekNumber < numOfWeeks)
-        //        {
-        //            WeekNumber++;
-        //            txtWeekNum.Text = WeekNumber.ToString();
-        //            Clear();
-        //            btnPrevWeek.IsEnabled = true;
-        //            if (WeekNumber == numOfWeeks)
-        //            {
-        //                btnNextWeek.IsEnabled = false;
-        //            }
-        //            LoadShiftsIntoCalendar();
-        //        }
-
-        //    }
+        private void NextWeek_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedWeekStartDate = SelectedWeekStartDate.AddDays(7);
+            UpdateDateBoxes();
+            NavCalendar.SelectedDate = SelectedWeekStartDate;
+        }
 
 
-        //    private void PrevWeek_Click(object sender, RoutedEventArgs e)
-        //    {
-        //        if (WeekNumber != 1)
-        //        {
-        //            WeekNumber--;
-        //            txtWeekNum.Text = WeekNumber.ToString();
-        //            Clear();
-        //            LoadShiftsIntoCalendar();
-        //            if (WeekNumber == 1)
-        //            {
-        //                btnPrevWeek.IsEnabled = false;
-        //            }
-        //            btnNextWeek.IsEnabled = true;
-        //        }
-
-        //    }
+        private void PrevWeek_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedWeekStartDate = SelectedWeekStartDate.AddDays(-7);
+            UpdateDateBoxes();
+            NavCalendar.SelectedDate = SelectedWeekStartDate;
+        }
 
         //    public void Clear()
         //    {

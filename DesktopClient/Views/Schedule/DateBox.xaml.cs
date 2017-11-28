@@ -28,5 +28,12 @@ namespace DesktopClient.Views.Schedule
             txtBox.Text = string.Format("{0}-{1}/{2}", date.DayOfWeek.ToString(),date.Day.ToString(), date.Month.ToString());
             Date = date;
         }
+
+        public void UpdateDate(DateTime newDate)
+        {
+            DataContext = newDate;
+            Date = newDate;
+            txtBox.Text = string.Format("{0}-{1}/{2}", Date.DayOfWeek.ToString(), Date.Day.ToString(), Date.Month.ToString());
+        }
     }
 }
