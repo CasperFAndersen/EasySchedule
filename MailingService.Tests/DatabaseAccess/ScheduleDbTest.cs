@@ -72,7 +72,7 @@ namespace Tests.DatabaseAccess
             Schedule schedule = scheduleRepository.GetCurrentScheduleByDepartmentId(new DateTime(2017, 11, 27), 1);
             Shift s1 = schedule.Shifts[0];
 
-            s1.StartTime = new DateTime(2017, 11, 27);
+            s1.StartTime = new DateTime(2017, 11, 30);
             s1.Hours = 6;
 
             Shift s2 = new Shift() { StartTime = new DateTime(2017, 11, 28), Hours = 7, Employee = new EmployeeRepository().FindEmployeeById(2), };
@@ -84,8 +84,10 @@ namespace Tests.DatabaseAccess
 
             Assert.IsNotNull(schedule);
             Assert.AreEqual(2, schedule.Shifts.Count);
-
-            
+            Assert.AreEqual(new DateTime(2017,11,27), schedule.Shifts[0] );
+            Assert.AreEqual(new DateTime(2017,11,30), schedule.Shifts[1] );
+            Assert.AreEqual(6, schedule.Shifts[0].Hours);
+            Assert.AreEqual(7, schedule.Shifts[1].Hours);
         }
 
         [TestCleanup]
