@@ -11,5 +11,6 @@ namespace DatabaseAccess.Schedules
         Schedule BuildScheduleObject(SqlDataReader reader);
         Schedule GetCurrentScheduleByDepartmentId(DateTime currentDate, int id);
         void InsertScheduleIntoDb(Schedule schedule);
+        void UpdateSchedule(Schedule schedule, int id);
     }
 }

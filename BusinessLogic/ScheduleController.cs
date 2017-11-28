@@ -41,5 +41,10 @@ namespace BusinessLogic
             _scheduleRepository.InsertScheduleIntoDb(schedule);
         }
 
+        public void UpdateSchedule(Schedule schedule, int id)
+        {
+            _scheduleRepository.UpdateSchedule(schedule, id);
+        }
+
     }
 }
