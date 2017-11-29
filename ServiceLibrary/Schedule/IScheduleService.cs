@@ -6,11 +6,9 @@ namespace ServiceLibrary.Schedule
     [ServiceContract]
     public interface IScheduleService
     {
-        [OperationContract]
-        Core.Schedule GetScheduleByCurrentDate(DateTime currentDate);
 
         [OperationContract]
-        Core.Schedule GetCurrentScheduleDepartmentId(int depId);
+        Core.Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date);
 
         [OperationContract]
         void InsertScheduleIntoDb(Core.Schedule schedule);

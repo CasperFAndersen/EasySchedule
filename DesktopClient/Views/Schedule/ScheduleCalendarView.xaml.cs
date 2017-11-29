@@ -40,7 +40,7 @@ namespace DesktopClient.Views.Schedule
 
         private void SetOnCBoxSelectionChanged()
         {
-            Mediator.GetInstance().CBoxDepartmentChanged += (d) =>
+            Mediator.GetInstance().CBoxDepartmentChanged += (d,s) =>
             {
                 List<Employee> employees = new EmployeeProxy().GetListOfEmployeeByDepartmentId(d.Id);
                 LoadEmployeeList(employees);

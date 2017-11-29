@@ -9,14 +9,9 @@ namespace ServiceLibrary.Schedule
     {
         ScheduleController schCtrl = new ScheduleController(new ScheduleRepository());
 
-        public Core.Schedule GetCurrentScheduleDepartmentId(int depId)
+        public Core.Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
         {
-            return schCtrl.GetCurrentScheduleByDepartmentId(depId);
-        }
-
-        public Core.Schedule GetScheduleByCurrentDate(DateTime currentDate)
-        {
-            return schCtrl.GetScheduleByCurrentDate(currentDate);
+            return schCtrl.GetScheduleByDepartmentIdAndDate(departmentId, date);
         }
 
         public void InsertScheduleIntoDb(Core.Schedule schedule)

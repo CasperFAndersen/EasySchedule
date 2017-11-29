@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Core;
 using DatabaseAccess;
 using DatabaseAccess.Schedules;
+using DatabaseAccess.Shifts;
 
 namespace BusinessLogic
 {
@@ -17,29 +18,20 @@ namespace BusinessLogic
             _scheduleRepository = scheduleRepository;
         }
 
-        public Schedule GetScheduleByCurrentDate(DateTime currentDate)
-        {
-            int day = (int)DayOfWeek.Monday;
-            DateTime date = new DateTime(currentDate.Year, currentDate.Month, day);
-
-            return _scheduleRepository.GetScheduleByCurrentDate(date);
-        }
-
-        public Schedule GetCurrentScheduleByDepartmentId(int id)
-        {
-            
-            DateTime currentDate = DateTime.Now;
-            //int day = currentDate.Day - ((int)currentDate.DayOfWeek -1);
-            int day = (currentDate.DayOfWeek == DayOfWeek.Sunday) ? (currentDate.Day - 6) : (currentDate.Day - ((int)currentDate.DayOfWeek - 1));
-            DateTime date = new DateTime(currentDate.Year, currentDate.Month, day);
-
-            Schedule res = _scheduleRepository.GetCurrentScheduleByDepartmentId(date, id);
-            return res;
-        }
-
         public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
         {
-            return null;
+            Schedule scheduleRes = null;
+            List<Schedule> schedules = _scheduleRepository.GetSchedulesByDepartmentId(departmentId);
+            foreach (Schedule schedule in schedules)
+            {
+                if (date.CompareTo(schedule.StartDate) > 0 && date.CompareTo(schedule.EndDate) < 0)
+                {
+                    scheduleRes = schedule;
+                }
+            }
+            scheduleRes.Shifts = new ShiftRepository().GetShiftsByScheduleID(scheduleRes.Id);
+
+            return scheduleRes;           
         }
 
         public void InsertSchedule(Schedule schedule)

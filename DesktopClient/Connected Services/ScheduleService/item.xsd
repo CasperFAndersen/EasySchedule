@@ -4,6 +4,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Department" nillable="true" type="tns:Department" />
       <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Shifts" nillable="true" type="tns:ArrayOfScheduleShift" />
       <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
     </xs:sequence>

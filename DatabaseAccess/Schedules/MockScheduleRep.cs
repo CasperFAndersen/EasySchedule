@@ -35,6 +35,11 @@ namespace DatabaseAccess.Schedules
 
         }
 
+        public List<Schedule> GetSchedulesByDepartmentId(int departmentId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void InsertScheduleIntoDb(Schedule schedule)
         {
             throw new NotImplementedException();

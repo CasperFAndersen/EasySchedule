@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Data.SqlClient;
 using Core;
+using System.Collections.Generic;
 
 namespace DatabaseAccess.Schedules
 {
     public interface IScheduleRepository
     {
-        Schedule GetScheduleByCurrentDate(DateTime currentDate);
-
         Schedule BuildScheduleObject(SqlDataReader reader);
-        Schedule GetCurrentScheduleByDepartmentId(DateTime currentDate, int id);
         void InsertScheduleIntoDb(Schedule schedule);
+        List<Schedule> GetSchedulesByDepartmentId(int departmentId);
+
     }
 }

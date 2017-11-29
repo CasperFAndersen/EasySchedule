@@ -12,24 +12,14 @@ namespace DesktopClient.Services
     {
         ScheduleServiceClient proxy = new ScheduleServiceClient();
 
-        public Schedule GetCurrentScheduleDepartmentId(int depId)
+        public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
         {
-            return proxy.GetCurrentScheduleDepartmentId(depId);
+            return proxy.GetScheduleByDepartmentIdAndDate(departmentId, date);
         }
 
-        public Task<Schedule> GetCurrentScheduleDepartmentIdAsync(int depId)
+        public Task<Schedule> GetScheduleByDepartmentIdAndDateAsync(int departmentId, DateTime date)
         {
-            throw new NotImplementedException();
-        }
-
-        public Schedule GetScheduleByCurrentDate(DateTime currentDate)
-        {
-            return proxy.GetScheduleByCurrentDate(currentDate);
-        }
-
-        public Task<Schedule> GetScheduleByCurrentDateAsync(DateTime currentDate)
-        {
-            throw new NotImplementedException();
+            return proxy.GetScheduleByDepartmentIdAndDateAsync(departmentId, date);
         }
 
         public void InsertScheduleIntoDb(Schedule schedule)

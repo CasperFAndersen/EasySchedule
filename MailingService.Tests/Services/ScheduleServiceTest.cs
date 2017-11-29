@@ -22,26 +22,25 @@ namespace Tests.Services
         }
 
         [TestMethod]
-        public void TestGetScheduleByDepartmentId()
+        public void TestGetSchedulesByDepartmentIdAndDate()
         {
             ScheduleServiceClient client = new ScheduleServiceClient();
 
-            Schedule schedule = client.GetCurrentScheduleDepartmentId(1);
+            Schedule schedule = client.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 10, 31));
 
             List<ScheduleShift> shifts = schedule.Shifts;
 
             Assert.IsNotNull(schedule);
-            Assert.AreEqual(new DateTime(2017,11,27), schedule.StartDate);
+            Assert.AreEqual(new DateTime(2017, 10, 30), schedule.StartDate);
             Assert.AreEqual(3, schedule.Shifts.Count);
             Assert.AreEqual("Kolonial", schedule.Department.Name);
 
-           // Schedule schedule2 = client.GetCurrentScheduleDepartmentId(2);
+            // Schedule schedule2 = client.GetCurrentScheduleDepartmentId(2);
 
             //Assert.IsNotNull(schedule);
             //Assert.AreEqual(new DateTime(2017, 11, 20), schedule2.StartDate);
             //Assert.AreEqual(2, schedule2.Shifts.Count);
             //Assert.AreEqual("Pakkecentral", schedule2.Department.Name);
-
 
         }
 
@@ -49,12 +48,12 @@ namespace Tests.Services
         public void TestInsertScheduleService()
         {
             ScheduleShift shift1 = new ScheduleShift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2017, 11, 28, 8, 0, 0) };
-            Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(3), StartDate = new DateTime(2017, 11, 27, 0, 0, 0, DateTimeKind.Utc) };
+            Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(3), StartDate = new DateTime(2017, 11, 27, 0, 0, 0, DateTimeKind.Utc), EndDate = new DateTime(2017, 12, 15) };
             schedule.Shifts.Add(shift1);
 
             client.InsertScheduleIntoDb(schedule);
 
-            schedule = client.GetCurrentScheduleDepartmentId(3);
+            schedule = client.GetScheduleByDepartmentIdAndDate(3, new DateTime(2017, 11, 28, 0, 0, 0));
 
             Assert.IsNotNull(schedule);
             Assert.AreEqual(1, schedule.Shifts.Count);

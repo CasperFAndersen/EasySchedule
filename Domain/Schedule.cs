@@ -11,6 +11,8 @@ namespace Core
     public class Schedule
     {
         [DataMember]
+        public int Id { get; set; }
+        [DataMember]
         public DateTime StartDate { get; set; }
         [DataMember]
         public DateTime EndDate { get; set; }

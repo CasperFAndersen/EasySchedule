@@ -40,7 +40,8 @@ namespace DesktopClient.Views.Schedule
             btnNextWeek.IsEnabled = true;
             btnPrevWeek.IsEnabled = true;
             SetSelectedStartDate(DateTime.Now);
-           // Shifts = GetListOfTestShifts();
+            // Shifts = GetListOfTestShifts();
+            SetOnDepartmentSelected();
             LoadShiftsIntoCalendar();
 
 
@@ -257,6 +258,25 @@ namespace DesktopClient.Views.Schedule
                 Shifts.Remove((ScheduleShift)e.Shift);
                 LoadShiftsIntoCalendar();
             };
+        }
+
+        public void SetOnDepartmentSelected()
+        {
+            Mediator.GetInstance().CBoxDepartmentChanged += (d, s) =>
+            {
+                if (s != null)
+                {
+                    Shifts = s.Shifts;
+                    LoadShiftsIntoCalendar();
+                }
+                else
+                {
+                    Shifts.Clear();
+                }
+               
+                
+            };
+
         }
 
         //    public void SetTemplateScheduleSelected()

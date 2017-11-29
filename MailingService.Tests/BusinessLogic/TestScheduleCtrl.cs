@@ -10,8 +10,8 @@ namespace Tests.BusinessLogic
     [TestClass]
     public class TestScheduleCtrl
     {
-        
-        ScheduleController schCtrl = new ScheduleController(new ScheduleRepository());
+
+        ScheduleController schCtrl;
         private IScheduleRepository mockScheduleRepository;
 
         [TestInitialize]
@@ -33,16 +33,6 @@ namespace Tests.BusinessLogic
 
         }
 
-        [TestMethod]
-        public void TestGetCurrentScheduleByDepartmentId()
-        {
-            ScheduleController sCtrl = new ScheduleController(new ScheduleRepository());
-            Schedule schedule = sCtrl.GetCurrentScheduleByDepartmentId(1);
-
-            Assert.AreEqual(3, schedule.Shifts.Count);
-            Assert.AreEqual("Kolonial", schedule.Department.Name);
-            Assert.IsNotNull(schedule);
-        }
 
         [TestMethod]
         public void TestInsertScheduleIntoDb()
@@ -50,6 +40,19 @@ namespace Tests.BusinessLogic
             Schedule s = new Schedule();
             mockScheduleRepository.InsertScheduleIntoDb(s);
             mockScheduleRepository.AssertWasCalled(x => x.InsertScheduleIntoDb(s));
+        }
+
+        [TestMethod()]
+        public void GetScheduleByDepartmentIdAndDateTest()
+        {
+            schCtrl = new ScheduleController(new ScheduleRepository());
+
+            Schedule schedule = schCtrl.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
+            Assert.IsNotNull(schedule);
+            Assert.AreEqual(new DateTime(2017, 10, 30), schedule.StartDate);
+            Assert.AreEqual(new DateTime(2017, 11, 26), schedule.EndDate);
+            Assert.AreNotEqual(0, schedule.Shifts.Count);
+
         }
     }
 }

@@ -22,6 +22,7 @@ namespace DesktopClient.Views.Schedule
     /// </summary>
     public partial class ViewScheduleView : Page
     {
+        ScheduleProxy scheduleProxy = new ScheduleProxy();
         public ViewScheduleView()
         {
             InitializeComponent();
@@ -38,7 +39,20 @@ namespace DesktopClient.Views.Schedule
 
         private void cBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Mediator.GetInstance().OnCBoxSelectionChanged((Department)cBoxDepartment.SelectedItem);
+            Core.Schedule schedule = null;
+            Department department = (Department)cBoxDepartment.SelectedItem;
+            try
+            {
+                schedule = scheduleProxy.GetScheduleByDepartmentIdAndDate(department.Id, DateTime.Now);
+               
+                txtNoSchedule.Text = "";
+            }
+            catch (Exception)
+            {
+                txtNoSchedule.Text = "There is no schedelue for the selected time period";
+            }
+
+            Mediator.GetInstance().OnCBoxSelectionChanged(department, schedule);
         }
     }
 }

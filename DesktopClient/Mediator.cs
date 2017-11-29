@@ -95,14 +95,14 @@ namespace DesktopClient
             }
         }
 
-        public delegate void CBoxDepartmentChangedHandler(Department department);
+        public delegate void CBoxDepartmentChangedHandler(Department department, Schedule schedule);
         public event CBoxDepartmentChangedHandler CBoxDepartmentChanged;
 
-        public void OnCBoxSelectionChanged(Department department)
+        public void OnCBoxSelectionChanged(Department department, Schedule schedule)
         {
             if (DepartmentBoxChanged != null)
             {
-                CBoxDepartmentChanged(department);
+                CBoxDepartmentChanged(department, schedule);
             }
         }
 
