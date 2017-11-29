@@ -284,6 +284,23 @@ namespace DesktopClient.Views.Schedule
 
         }
 
+        public void SetOnEditScheduleClicked()
+        {
+            Mediator.GetInstance().EditScheduleClicked += () =>
+            {
+                try
+                {
+                    ScheduleProxy scheduleProxy = new ScheduleProxy();
+                    
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            };
+        }
+
         //    public void SetTemplateScheduleSelected()
         //    {
         //        Mediator.GetInstance().TempScheduleSelected += (s, e) =>
@@ -426,7 +443,6 @@ namespace DesktopClient.Views.Schedule
             Mediator.GetInstance().OnNextOrPreviousButtonClicked(Schedule);
 
         }
-
 
         private void PrevWeek_Click(object sender, RoutedEventArgs e)
         {

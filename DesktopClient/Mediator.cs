@@ -85,6 +85,17 @@ namespace DesktopClient
         }
 
         public delegate void DepartmentBoxChangedHandler(List<Employee> employees, Department department);
+
+        public delegate void EditScheduleClickedHandler();
+        public event EditScheduleClickedHandler EditScheduleClicked;
+        public void OnEditScheduleClicked()
+        {
+            if(EditScheduleClicked != null)
+            {
+                EditScheduleClicked();
+            }
+        }
+
         public event DepartmentBoxChangedHandler DepartmentBoxChanged;
 
         public void OnDepartmentBoxSelected(List<Employee> employees, Department department)

@@ -28,6 +28,8 @@ namespace DesktopClient.Views.Schedule
             InitializeComponent();
             BindComboBoxData();
             SetOnNextOrPrevClicked();
+            EventChangesListener();
+            
         }
 
         private async void BindComboBoxData()
@@ -71,6 +73,28 @@ namespace DesktopClient.Views.Schedule
             };
         }
 
-        
+        private void EventChangesListener()
+        {
+            Mediator.GetInstance().EmployeeDropped += (e, tod, dow) =>
+            {
+                btnSave.IsEnabled = true;
+            };
+
+            Mediator.GetInstance().ShiftDropped += (s, e) =>
+            {
+                btnSave.IsEnabled = true;
+            };
+
+            Mediator.GetInstance().ShiftCloseClicked += (s, e) =>
+            {
+                btnSave.IsEnabled = true;
+            };
+
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            Mediator.GetInstance().OnEditScheduleClicked();
+        }
     }
 }
