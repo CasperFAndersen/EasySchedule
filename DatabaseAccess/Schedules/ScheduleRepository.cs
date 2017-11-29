@@ -94,8 +94,6 @@ namespace DatabaseAccess.Schedules
                     }
 
                 }
-
-
             }
             catch (Exception e)
             {
