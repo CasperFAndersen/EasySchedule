@@ -44,5 +44,18 @@ namespace BusinessLogic
             _scheduleRepository.UpdateSchedule(schedule);
         }
 
+        public Schedule GetShiftsFromTemplateShift(TemplateSchedule templateSchedule, DateTime startTime)
+        {
+            Schedule schedule = new Schedule();
+            foreach (TemplateShift ts in templateSchedule.ListOfTempShifts)
+            {
+                ScheduleShift shift = new ScheduleShift();
+                shift.Employee = ts.Employee;
+                shift.Hours = ts.Hours;
+                shift.StartTime = startTime.AddDays(((int)ts.WeekDay -1) + (ts.WeekNumber -1) * 7);
+                schedule.Shifts.Add(shift);
+            }
+            return schedule;
+        }
     }
 }
