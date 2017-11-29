@@ -94,14 +94,17 @@ namespace DatabaseAccess.Schedules
                     }
 
                 }
-
-
             }
             catch (Exception e)
             {
-
                 throw new Exception("Something went wrong! Schedule not added to database." + e.Message);
             }
+        }
+
+        public void UpdateSchedule(Schedule schedule, int id)
+        {
+            ShiftRepository shiftRepository = new ShiftRepository();
+            shiftRepository.AddShiftsFromScheduleToDb(id, schedule.Shifts);
         }
     }
 }

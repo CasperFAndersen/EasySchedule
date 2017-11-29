@@ -10,7 +10,6 @@ namespace Tests.BusinessLogic
     [TestClass]
     public class TestScheduleCtrl
     {
-
         ScheduleController schCtrl;
         private IScheduleRepository mockScheduleRepository;
         TempScheduleController tempSchCtrl = new TempScheduleController();
