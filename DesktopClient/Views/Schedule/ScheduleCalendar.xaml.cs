@@ -53,6 +53,7 @@ namespace DesktopClient.Views.Schedule
             SetShiftDropHandler();
             SetCloseShiftClicked();
             SetEmployeeDroppedHandler();
+            SetOnEditScheduleClicked();
             //    SetTemplateScheduleSelected();
             //    LoadShiftsIntoCalendar();
             //    SetTemplateScheduleUpdateClicked();

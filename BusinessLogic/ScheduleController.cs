@@ -31,7 +31,7 @@ namespace BusinessLogic
             }
             scheduleRes.Shifts = new ShiftRepository().GetShiftsByScheduleID(scheduleRes.Id);
 
-            return scheduleRes;           
+            return scheduleRes;
         }
 
         public void InsertSchedule(Schedule schedule)
@@ -52,7 +52,7 @@ namespace BusinessLogic
                 ScheduleShift shift = new ScheduleShift();
                 shift.Employee = ts.Employee;
                 shift.Hours = ts.Hours;
-                shift.StartTime = startTime.AddDays(((int)ts.WeekDay -1) + (ts.WeekNumber -1) * 7);
+                shift.StartTime = startTime.AddDays(((int)ts.WeekDay - 1) + (ts.WeekNumber - 1) * 7);
                 schedule.Shifts.Add(shift);
             }
             return schedule;

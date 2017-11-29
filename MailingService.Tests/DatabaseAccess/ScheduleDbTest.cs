@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DatabaseAccess.Departments;
 using DatabaseAccess.Employees;
 using System.Transactions;
+using BusinessLogic;
 
 namespace Tests.DatabaseAccess
 {
@@ -46,6 +47,30 @@ namespace Tests.DatabaseAccess
             List<Schedule> schedules = schRep.GetSchedulesByDepartmentId(1);
             Assert.IsNotNull(schedules);
             Assert.AreNotEqual(0, schedules.Count);
+        }
+
+        [TestMethod()]
+        public void TestUpdateSchedule()
+        {
+            Schedule schedule = new ScheduleController(schRep).GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
+
+            ScheduleShift scheduleShift = schedule.Shifts[0];
+            scheduleShift.StartTime = scheduleShift.StartTime.AddDays(1);
+            Employee emp = new Employee { Id = 1 };
+            ScheduleShift scheduleShift2 = new ScheduleShift() { StartTime = new DateTime(2017, 11, 16, 8, 0, 0), Employee = emp, Hours = 5 };
+            int shiftsBeforeInsert = schedule.Shifts.Count;
+            int shiftsAfterInsert = 0;
+            schedule.Shifts.Add(scheduleShift2);
+          
+            schRep.UpdateSchedule(schedule);
+
+            schedule = new ScheduleController(schRep).GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
+            shiftsAfterInsert = schedule.Shifts.Count;
+
+            Assert.AreNotEqual(shiftsBeforeInsert, shiftsAfterInsert);
+            Assert.AreEqual(shiftsBeforeInsert, shiftsAfterInsert - 1);
+
+            
         }
 
         [TestCleanup]

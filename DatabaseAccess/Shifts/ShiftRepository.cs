@@ -121,8 +121,8 @@ namespace DatabaseAccess.Shifts
         {
             try
             {
-                using (TransactionScope scope = new TransactionScope())
-                {
+                //using (TransactionScope scope = new TransactionScope())
+                //{
 
                     using (SqlConnection conn = new DbConnectionADO().GetConnection())
                     {
@@ -134,15 +134,21 @@ namespace DatabaseAccess.Shifts
                                 cmd.CommandText = "INSERT INTO Shift(startTime, hours, scheduleId, employeeId) VALUES (@param1, @param2, @param3, @param4)";
                                 if (shift.Id == 0)
                                 {
-                                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.DateTime, 100);
-                                    SqlParameter p2 = new SqlParameter(@"param1", SqlDbType.Int, 100);
-                                    SqlParameter p3 = new SqlParameter(@"param1", SqlDbType.Int, 100);
-                                    SqlParameter p4 = new SqlParameter(@"param1", SqlDbType.Int, 100);
+                                    SqlParameter p1 = new SqlParameter("@param1", SqlDbType.DateTime);
+                                    SqlParameter p2 = new SqlParameter("@param2", SqlDbType.Float);
+                                    SqlParameter p3 = new SqlParameter("@param3", SqlDbType.Int);
+                                    SqlParameter p4 = new SqlParameter("@param4", SqlDbType.Int);
 
                                     p1.Value = shift.StartTime;
                                     p2.Value = shift.Hours;
                                     p3.Value = schedule.Id;
                                     p4.Value = shift.Employee.Id;
+
+                                    cmd.Parameters.Add(p1);
+                                    cmd.Parameters.Add(p2);
+                                    cmd.Parameters.Add(p3);
+                                    cmd.Parameters.Add(p4);
+
 
                                     cmd.ExecuteNonQuery();
                                 }
@@ -155,19 +161,19 @@ namespace DatabaseAccess.Shifts
                             }
 
 
-                            scope.Complete();
+                            //scope.Complete();
                         }
 
                     }
 
-                }
+              //  }
 
 
             }
             catch (Exception e)
             {
 
-                throw new Exception("Something went wrong!" + e.Message);
+                throw new Exception("Something went wrong In AddShiftsFromScheduleToDB!" + e.Message);
             }
 
         }
@@ -176,37 +182,32 @@ namespace DatabaseAccess.Shifts
         {
             try
             {
-                using (TransactionScope scope = new TransactionScope())
+                using (SqlCommand cmd = conn.CreateCommand())
                 {
+                    cmd.CommandText = "UPDATE shift SET startTime = @param1, hours = @param2, scheduleId = @param3, employeeId = @param4";
 
-                    using (conn)
-                    {
-                        using (SqlCommand cmd = conn.CreateCommand())
-                        {
-                            cmd.CommandText = "UPDATE shift SET startTime = @param1, hours = @param2, scheduleId = @param3, employeeId = param4";
+                    SqlParameter p1 = new SqlParameter("@param1", SqlDbType.DateTime, 100);
+                    SqlParameter p2 = new SqlParameter("@param2", SqlDbType.Float);
+                    SqlParameter p3 = new SqlParameter("@param3", SqlDbType.Int);
+                    SqlParameter p4 = new SqlParameter("@param4", SqlDbType.Int);
 
-                            SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.DateTime, 100);
-                            SqlParameter p2 = new SqlParameter(@"param1", SqlDbType.Int, 100);
-                            SqlParameter p3 = new SqlParameter(@"param1", SqlDbType.Int, 100);
-                            SqlParameter p4 = new SqlParameter(@"param1", SqlDbType.Int, 100);
+                    p1.Value = shift.StartTime;
+                    p2.Value = shift.Hours;
+                    p3.Value = scheduleId;
+                    p4.Value = shift.Employee.Id;
 
-                            p1.Value = shift.StartTime;
-                            p2.Value = shift.Hours;
-                            p3.Value = scheduleId;
-                            p4.Value = shift.Employee.Id;
+                    cmd.Parameters.Add(p1);
+                    cmd.Parameters.Add(p2);
+                    cmd.Parameters.Add(p3);
+                    cmd.Parameters.Add(p4);
 
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    scope.Complete();
+                    cmd.ExecuteNonQuery();
                 }
-
             }
             catch (Exception e)
             {
 
-                throw new Exception("Something went wrong!" + e.Message);
+                throw new Exception("Something went wrong in UpdateShifts!" + e.Message);
             }
         }
 
@@ -214,7 +215,7 @@ namespace DatabaseAccess.Shifts
         {
             ScheduleShift s1 = new ScheduleShift();
 
-            s1.Id = Convert.ToInt32(reader["Id"].ToString());
+            s1.Id = reader.GetInt32(0);
             s1.Employee = new EmployeeRepository().FindEmployeeById(Convert.ToInt32(reader["EmployeeId"].ToString()));
             s1.StartTime = Convert.ToDateTime(reader["Starttime"].ToString());
             s1.Hours = Convert.ToDouble(reader["Hours"].ToString());
