@@ -75,7 +75,7 @@ namespace Tests.DatabaseAccess
             s1.StartTime = new DateTime(2017, 11, 30);
             s1.Hours = 6;
 
-            Shift s2 = new Shift() { StartTime = new DateTime(2017, 11, 28), Hours = 7, Employee = new EmployeeRepository().FindEmployeeById(2), };
+            Shift s2 = new Shift() { StartTime = new DateTime(2017, 11, 28), Hours = 7, Employee = new EmployeeRepository().FindEmployeeById(2) };
             schedule.Shifts.Add(s2);
 
             scheduleRepository.UpdateSchedule(schedule, 1);
