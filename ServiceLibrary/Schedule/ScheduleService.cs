@@ -18,10 +18,5 @@ namespace ServiceLibrary.Schedule
         {
             schCtrl.InsertSchedule(schedule);
         }
-
-        public void UpdateSchedule(Core.Schedule schedule, int id)
-        {
-            schCtrl.UpdateSchedule(schedule, id);
-        }
     }
 }

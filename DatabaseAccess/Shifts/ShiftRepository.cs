@@ -117,7 +117,6 @@ namespace DatabaseAccess.Shifts
             }
         }
 
-
         public void AddShiftsFromScheduleToDb(int scheduleId, List<Shift> shifts)
         {
             try

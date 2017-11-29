@@ -44,11 +44,5 @@ namespace DatabaseAccess.Schedules
         {
             throw new NotImplementedException();
         }
-
-        public void UpdateSchedule(Schedule schedule, int id)
-        {
-            
-        }
-
     }
 }

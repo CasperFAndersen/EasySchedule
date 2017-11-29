@@ -41,22 +41,8 @@ namespace DatabaseAccess.Schedules
             {
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-<<<<<<< HEAD
                     cmd.CommandText = "select * from Schedule WHERE departmentId = @param1";
                     cmd.Parameters.AddWithValue("@param1", departmentId);
-=======
-
-                    cmd.CommandText = "select * from Schedule WHERE Schedule.departmentId = @param1 AND Schedule.startDate = @param2";
-
-                    SqlParameter p1 = new SqlParameter("@param1", SqlDbType.Int);
-                    SqlParameter p2 = new SqlParameter("@param2", System.Data.SqlDbType.DateTime2, 100);
-                    p1.Value = id;
-                    p2.Value = currentDate;
-
-                    cmd.Parameters.Add(p1);
-                    cmd.Parameters.Add(p2);
-
->>>>>>> EPIC-Opret_Vagtplan_MaybeTheNewest
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
@@ -108,8 +94,6 @@ namespace DatabaseAccess.Schedules
                     }
 
                 }
-
-
             }
             catch (Exception e)
             {
@@ -117,12 +101,5 @@ namespace DatabaseAccess.Schedules
                 throw new Exception("Something went wrong! Schedule not added to database." + e.Message);
             }
         }
-
-        public void UpdateSchedule(Schedule schedule, int id)
-        {
-            ShiftRepository shiftRepository = new ShiftRepository();
-            shiftRepository.AddShiftsFromScheduleToDb(id, schedule.Shifts);
-        }
-
     }
 }

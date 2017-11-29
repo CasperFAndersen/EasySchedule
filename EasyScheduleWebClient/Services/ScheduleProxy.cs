@@ -47,15 +47,5 @@ namespace EasyScheduleWebClient.Services
         {
             throw new NotImplementedException();
         }
-
-        public void UpdateSchedule(Schedule schedule, int id)
-        {
-            proxy.UpdateSchedule(schedule, id);
-        }
-
-        public Task UpdateScheduleAsync(Schedule schedule, int id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
