@@ -116,6 +116,7 @@ namespace Tests.DatabaseAccess
                                       "create table Schedule(" +
                                       "id int primary key identity(1,1), " +
                                       "startDate datetime, " +
+                                      "endDate datetime, " +
                                     //  "templateScheduleId int foreign key references TemplateSchedule(id), " +
                                       "departmentId int foreign key references Department(id)); "
 
@@ -198,11 +199,11 @@ namespace Tests.DatabaseAccess
 
                                       +
                                       //Schedule
-                                      "insert into Schedule(startDate, departmentId) " +
-                                      "values ('" + startTimeWeek1 + "', 1); " +
+                                      "insert into Schedule(startDate, endDate, departmentId) " +
+                                      "values ('2017-10-30', '2017-11-26', 1); " +
 
-                                      "insert into Schedule(startDate, departmentId) " +
-                                      "values ('" + startTimeWeek1 + "', 2); "
+                                      "insert into Schedule(startDate, endDate,  departmentId) " +
+                                      "values ('2017-11-27', '2017-12-18', 2); "
 
                                       +
                                       //Shift

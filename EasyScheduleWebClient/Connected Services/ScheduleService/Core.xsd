@@ -3,7 +3,8 @@
   <xs:complexType name="Schedule">
     <xs:sequence>
       <xs:element minOccurs="0" name="Department" nillable="true" type="tns:Department" />
-      <xs:element minOccurs="0" name="Shifts" nillable="true" type="tns:ArrayOfShift" />
+      <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Shifts" nillable="true" type="tns:ArrayOfScheduleShift" />
       <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
     </xs:sequence>
   </xs:complexType>
@@ -42,18 +43,27 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Employee" nillable="true" type="tns:Employee" />
-  <xs:complexType name="ArrayOfShift">
+  <xs:complexType name="ArrayOfScheduleShift">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Shift" nillable="true" type="tns:Shift" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ScheduleShift" nillable="true" type="tns:ScheduleShift" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfShift" nillable="true" type="tns:ArrayOfShift" />
+  <xs:element name="ArrayOfScheduleShift" nillable="true" type="tns:ArrayOfScheduleShift" />
+  <xs:complexType name="ScheduleShift">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Shift">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ScheduleShift" nillable="true" type="tns:ScheduleShift" />
   <xs:complexType name="Shift">
     <xs:sequence>
       <xs:element minOccurs="0" name="Employee" nillable="true" type="tns:Employee" />
       <xs:element minOccurs="0" name="Hours" type="xs:double" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Shift" nillable="true" type="tns:Shift" />

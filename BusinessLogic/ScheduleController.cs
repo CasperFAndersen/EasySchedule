@@ -37,6 +37,11 @@ namespace BusinessLogic
             return res;
         }
 
+        public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
+        {
+            return null;
+        }
+
         public void InsertSchedule(Schedule schedule)
         {
             _scheduleRepository.InsertScheduleIntoDb(schedule);
