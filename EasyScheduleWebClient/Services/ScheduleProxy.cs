@@ -12,28 +12,12 @@ namespace EasyScheduleWebClient.Services
     {
         IScheduleService proxy = new ScheduleServiceClient();
 
-        public Schedule GetScheduleByCurrentDate(DateTime currentDate)
+        public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
         {
-            return proxy.GetScheduleByCurrentDate(currentDate);
+            return proxy.GetScheduleByDepartmentIdAndDate(departmentId, date);
         }
 
-        Task<Schedule> IScheduleService.GetScheduleByCurrentDateAsync(DateTime currentDate)
-        {
-            return GetScheduleByCurrentDateAsync(currentDate);
-        }
-
-        public Schedule GetCurrentScheduleDepartmentId(int depId)
-        {
-            return proxy.GetCurrentScheduleDepartmentId(depId);
-        }
-
-        public Task<Schedule> GetCurrentScheduleDepartmentIdAsync(int depId)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public Task<Schedule> GetScheduleByCurrentDateAsync(DateTime currentDate)
+        public Task<Schedule> GetScheduleByDepartmentIdAndDateAsync(int departmentId, DateTime date)
         {
             throw new NotImplementedException();
         }
@@ -44,6 +28,16 @@ namespace EasyScheduleWebClient.Services
         }
 
         public Task InsertScheduleIntoDbAsync(Schedule schedule)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateSchedule(Schedule schedule)
+        {
+            proxy.UpdateSchedule(schedule);
+        }
+
+        public Task UpdateScheduleAsync(Schedule schedule)
         {
             throw new NotImplementedException();
         }

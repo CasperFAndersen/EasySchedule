@@ -12,5 +12,8 @@ namespace ServiceLibrary.Schedule
 
         [OperationContract]
         void InsertScheduleIntoDb(Core.Schedule schedule);
+
+        [OperationContract]
+        void UpdateSchedule(Core.Schedule schedule);
     }
 }

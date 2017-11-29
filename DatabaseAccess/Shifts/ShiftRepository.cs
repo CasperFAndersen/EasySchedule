@@ -117,7 +117,7 @@ namespace DatabaseAccess.Shifts
             }
         }
 
-        public void AddShiftsFromScheduleToDb(int scheduleId, List<ScheduleShift> shifts)
+        public void AddShiftsFromScheduleToDb(Schedule schedule)
         {
             try
             {
@@ -129,7 +129,7 @@ namespace DatabaseAccess.Shifts
                         using (SqlCommand cmd = conn.CreateCommand())
                         {
 
-                            foreach (ScheduleShift shift in shifts)
+                            foreach (ScheduleShift shift in schedule.Shifts)
                             {
                                 cmd.CommandText = "INSERT INTO Shift(startTime, hours, scheduleId, employeeId) VALUES (@param1, @param2, @param3, @param4)";
                                 if (shift.Id == 0)
@@ -141,14 +141,14 @@ namespace DatabaseAccess.Shifts
 
                                     p1.Value = shift.StartTime;
                                     p2.Value = shift.Hours;
-                                    p3.Value = scheduleId;
+                                    p3.Value = schedule.Id;
                                     p4.Value = shift.Employee.Id;
 
                                     cmd.ExecuteNonQuery();
                                 }
                                 else
                                 {
-                                    UpdateScheduleShift(shift, scheduleId, conn);
+                                    UpdateScheduleShift(shift, schedule.Id, conn);
                                 }
 
 

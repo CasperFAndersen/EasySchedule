@@ -15,23 +15,23 @@ namespace EasyScheduleWebClient.ScheduleService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ScheduleService.IScheduleService")]
     public interface IScheduleService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetScheduleByCurrentDate", ReplyAction="http://tempuri.org/IScheduleService/GetScheduleByCurrentDateResponse")]
-        Core.Schedule GetScheduleByCurrentDate(System.DateTime currentDate);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetScheduleByDepartmentIdAndDate", ReplyAction="http://tempuri.org/IScheduleService/GetScheduleByDepartmentIdAndDateResponse")]
+        Core.Schedule GetScheduleByDepartmentIdAndDate(int departmentId, System.DateTime date);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetScheduleByCurrentDate", ReplyAction="http://tempuri.org/IScheduleService/GetScheduleByCurrentDateResponse")]
-        System.Threading.Tasks.Task<Core.Schedule> GetScheduleByCurrentDateAsync(System.DateTime currentDate);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetCurrentScheduleDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetCurrentScheduleDepartmentIdResponse")]
-        Core.Schedule GetCurrentScheduleDepartmentId(int depId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetCurrentScheduleDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetCurrentScheduleDepartmentIdResponse")]
-        System.Threading.Tasks.Task<Core.Schedule> GetCurrentScheduleDepartmentIdAsync(int depId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetScheduleByDepartmentIdAndDate", ReplyAction="http://tempuri.org/IScheduleService/GetScheduleByDepartmentIdAndDateResponse")]
+        System.Threading.Tasks.Task<Core.Schedule> GetScheduleByDepartmentIdAndDateAsync(int departmentId, System.DateTime date);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/InsertScheduleIntoDb", ReplyAction="http://tempuri.org/IScheduleService/InsertScheduleIntoDbResponse")]
         void InsertScheduleIntoDb(Core.Schedule schedule);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/InsertScheduleIntoDb", ReplyAction="http://tempuri.org/IScheduleService/InsertScheduleIntoDbResponse")]
         System.Threading.Tasks.Task InsertScheduleIntoDbAsync(Core.Schedule schedule);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/UpdateSchedule", ReplyAction="http://tempuri.org/IScheduleService/UpdateScheduleResponse")]
+        void UpdateSchedule(Core.Schedule schedule);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/UpdateSchedule", ReplyAction="http://tempuri.org/IScheduleService/UpdateScheduleResponse")]
+        System.Threading.Tasks.Task UpdateScheduleAsync(Core.Schedule schedule);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -61,20 +61,12 @@ namespace EasyScheduleWebClient.ScheduleService {
                 base(binding, remoteAddress) {
         }
         
-        public Core.Schedule GetScheduleByCurrentDate(System.DateTime currentDate) {
-            return base.Channel.GetScheduleByCurrentDate(currentDate);
+        public Core.Schedule GetScheduleByDepartmentIdAndDate(int departmentId, System.DateTime date) {
+            return base.Channel.GetScheduleByDepartmentIdAndDate(departmentId, date);
         }
         
-        public System.Threading.Tasks.Task<Core.Schedule> GetScheduleByCurrentDateAsync(System.DateTime currentDate) {
-            return base.Channel.GetScheduleByCurrentDateAsync(currentDate);
-        }
-        
-        public Core.Schedule GetCurrentScheduleDepartmentId(int depId) {
-            return base.Channel.GetCurrentScheduleDepartmentId(depId);
-        }
-        
-        public System.Threading.Tasks.Task<Core.Schedule> GetCurrentScheduleDepartmentIdAsync(int depId) {
-            return base.Channel.GetCurrentScheduleDepartmentIdAsync(depId);
+        public System.Threading.Tasks.Task<Core.Schedule> GetScheduleByDepartmentIdAndDateAsync(int departmentId, System.DateTime date) {
+            return base.Channel.GetScheduleByDepartmentIdAndDateAsync(departmentId, date);
         }
         
         public void InsertScheduleIntoDb(Core.Schedule schedule) {
@@ -83,6 +75,14 @@ namespace EasyScheduleWebClient.ScheduleService {
         
         public System.Threading.Tasks.Task InsertScheduleIntoDbAsync(Core.Schedule schedule) {
             return base.Channel.InsertScheduleIntoDbAsync(schedule);
+        }
+        
+        public void UpdateSchedule(Core.Schedule schedule) {
+            base.Channel.UpdateSchedule(schedule);
+        }
+        
+        public System.Threading.Tasks.Task UpdateScheduleAsync(Core.Schedule schedule) {
+            return base.Channel.UpdateScheduleAsync(schedule);
         }
     }
 }

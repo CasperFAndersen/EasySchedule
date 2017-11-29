@@ -101,10 +101,10 @@ namespace DatabaseAccess.Schedules
             }
         }
 
-        public void UpdateSchedule(Schedule schedule, int id)
+        public void UpdateSchedule(Schedule schedule)
         {
             ShiftRepository shiftRepository = new ShiftRepository();
-            shiftRepository.AddShiftsFromScheduleToDb(id, schedule.Shifts);
+            shiftRepository.AddShiftsFromScheduleToDb(schedule);
         }
     }
 }

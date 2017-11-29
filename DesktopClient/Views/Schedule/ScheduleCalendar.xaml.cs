@@ -291,6 +291,11 @@ namespace DesktopClient.Views.Schedule
                 try
                 {
                     ScheduleProxy scheduleProxy = new ScheduleProxy();
+                    if (Schedule != null)
+                    {
+                        scheduleProxy.UpdateSchedule(Schedule);
+                    }
+                   
                     
                     
                 }

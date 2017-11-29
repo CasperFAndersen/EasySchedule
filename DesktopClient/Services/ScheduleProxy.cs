@@ -31,5 +31,15 @@ namespace DesktopClient.Services
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateSchedule(Schedule schedule)
+        {
+            proxy.UpdateSchedule(schedule);
+        }
+
+        public Task UpdateScheduleAsync(Schedule schedule)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
