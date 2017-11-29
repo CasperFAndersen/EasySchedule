@@ -26,8 +26,9 @@ namespace DesktopClient.Views.Schedule
         public ScheduleCalendar()
         {
             InitializeComponent();
+            Shifts = new List<ScheduleShift>();
             DayColumnList = new List<DayColumn>();
-            Shifts = new List<Shift>();
+            //Shifts = TestShift.GetListOfTestShifts();
             DateBoxes = new List<DateBox>();
             WeekNumber = 1;
             btnNextWeek.IsEnabled = false;
@@ -39,13 +40,15 @@ namespace DesktopClient.Views.Schedule
             btnNextWeek.IsEnabled = true;
             btnPrevWeek.IsEnabled = true;
             SetSelectedStartDate(DateTime.Now);
+           // Shifts = GetListOfTestShifts();
+            LoadShiftsIntoCalendar();
 
 
-            
 
-            //    SetShiftDropHandler();
-            //    SetCloseShiftClicked();
-            //    SetEmployeeDroppedHandler();
+
+            SetShiftDropHandler();
+            SetCloseShiftClicked();
+            SetEmployeeDroppedHandler();
             //    SetTemplateScheduleSelected();
             //    LoadShiftsIntoCalendar();
             //    SetTemplateScheduleUpdateClicked();
@@ -54,6 +57,7 @@ namespace DesktopClient.Views.Schedule
         }
         public static readonly TimeSpan STARTTIME = new TimeSpan(6, 0, 0);
         public static readonly TimeSpan ENDTIME = new TimeSpan(20, 0, 0);
+        public static readonly double DEFAULTSHIFTLENGTH = 3;
         public static readonly int INCREMENT = 30;
 
         Color[] colors = { Colors.IndianRed, Colors.DarkKhaki, Colors.DarkOrange, Colors.LightGreen, Colors.Thistle, Colors.SkyBlue, Colors.RoyalBlue, Colors.Turquoise };
@@ -62,7 +66,7 @@ namespace DesktopClient.Views.Schedule
         Random rnd = new Random();
         private int numOfWeeks = 1;
         public List<DayColumn> DayColumnList { get; set; }
-        public List<Shift> Shifts { get; set; }
+        public List<ScheduleShift> Shifts { get; set; }
         public static int WeekNumber { get; set; }
 
 
@@ -83,19 +87,23 @@ namespace DesktopClient.Views.Schedule
 
         //}
 
-        //public void LoadShiftsIntoCalendar()
-        //{
-        //    foreach (var shift in Shifts)
-        //    {
-        //        if (shift.StartTime. == Convert.ToInt32(txtWeekNum.Text))
-        //        {
-        //            DayColumn dayCol = GetDayCoulmByName(shift.WeekDay.ToString());
-        //            dayCol.InsertShiftIntoDay(shift);
-        //        }
+        public void LoadShiftsIntoCalendar()
+        {
+            foreach (var shift in Shifts)
+            {
+                ScheduleShift s = (ScheduleShift)shift;
+                foreach (var dbox in DateBoxes)
+                {
+                    if (dbox.Date.Day == s.StartTime.Day && dbox.Date.Month == s.StartTime.Month)
+                    {
+                        DayColumn dayCol = GetDayCoulmByName(s.StartTime.DayOfWeek.ToString());
+                        dayCol.InsertShiftIntoDay(shift);
+                    }
+                }
 
-        //    }
+            }
 
-        //}
+        }
 
         public DayColumn GetDayCoulmByName(string name)
         {
@@ -143,7 +151,7 @@ namespace DesktopClient.Views.Schedule
                 col++;
 
                 DayColumnList.Add(dayCol);
-             
+
             }
         }
 
@@ -163,8 +171,6 @@ namespace DesktopClient.Views.Schedule
                 Grid.SetColumn(dBox, col);
                 Grid.SetRow(dBox, row);
 
-                //NavCalendar.SelectedDates.Add(date.AddDays(day));
-                
                 day++;
                 col++;
                 DateBoxes.Add(dBox);
@@ -184,18 +190,14 @@ namespace DesktopClient.Views.Schedule
 
         private void NavCalendar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
             NavCalendar.DataContext = SelectFullWeek();
         }
 
         private void NavCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-
-
             SetSelectedStartDate((DateTime)NavCalendar.SelectedDate);
             NavCalendar.SelectedDate = SelectedWeekStartDate;
             UpdateDateBoxes();
-           
         }
 
         public void SetSelectedStartDate(DateTime date)
@@ -213,32 +215,49 @@ namespace DesktopClient.Views.Schedule
             return res;
         }
 
-        //    public void SetShiftDropHandler()
-        //    {
-        //        Mediator.GetInstance().ShiftDropped += (s, e) =>
-        //        {
-        //            LoadShiftsIntoCalendar();
-        //        };
-        //    }
+        public void SetShiftDropHandler()
+        {
+            Mediator.GetInstance().ShiftDropped += (s, e) =>
+            {
+                if (!e.IsLastElement && this.IsVisible)
+                {
+                    ScheduleShift ss = (ScheduleShift)e.Shift;
+                    DateBox db = DateBoxes[ss.StartTime.Day - 1];
+                    DateTime dt = new DateTime(db.Date.Year, db.Date.Month, db.Date.Day, ss.StartTime.Hour, ss.StartTime.Minute, 0);
+                    ss.StartTime = dt;                  
+                }
+                LoadShiftsIntoCalendar();
+            };
+        }
 
-        //    public void SetEmployeeDroppedHandler()
-        //    {
-        //        Mediator.GetInstance().EmployeeDropped += (s, e) =>
-        //        {
-        //            e.Shift.WeekNumber = WeekNumber;
-        //            AddShift(e.Shift);
-        //            LoadShiftsIntoCalendar();
-        //        };
-        //    }
+        public void SetEmployeeDroppedHandler()
+        {
+            Mediator.GetInstance().EmployeeDropped += (e, tod, dow) =>
+            {
+                if (this.IsVisible)
+                {
+                    ScheduleShift ss = new ScheduleShift();
+                    DateBox db = DateBoxes[(int)dow - 1];
+                    DateTime dt = new DateTime(db.Date.Year, db.Date.Month, db.Date.Day, tod.Hours, tod.Minutes, 0);
+                    ss.StartTime = dt;
+                    ss.Employee = e;
+                    ss.Hours = DEFAULTSHIFTLENGTH;
+                    Shifts.Add(ss);
+                    LoadShiftsIntoCalendar();
+                }
+                
 
-        //    public void SetCloseShiftClicked()
-        //    {
-        //        Mediator.GetInstance().ShiftCloseClicked += (s, e) =>
-        //        {
-        //            Shifts.Remove(e.Shift);
-        //            LoadShiftsIntoCalendar();
-        //        };
-        //    }
+            };
+        }
+
+        public void SetCloseShiftClicked()
+        {
+            Mediator.GetInstance().ShiftCloseClicked += (s, e) =>
+            {
+                Shifts.Remove((ScheduleShift)e.Shift);
+                LoadShiftsIntoCalendar();
+            };
+        }
 
         //    public void SetTemplateScheduleSelected()
         //    {
@@ -349,6 +368,8 @@ namespace DesktopClient.Views.Schedule
             SelectedWeekStartDate = SelectedWeekStartDate.AddDays(7);
             UpdateDateBoxes();
             NavCalendar.SelectedDate = SelectedWeekStartDate;
+            Clear();
+            LoadShiftsIntoCalendar();
         }
 
 
@@ -357,12 +378,27 @@ namespace DesktopClient.Views.Schedule
             SelectedWeekStartDate = SelectedWeekStartDate.AddDays(-7);
             UpdateDateBoxes();
             NavCalendar.SelectedDate = SelectedWeekStartDate;
+            Clear();
+            LoadShiftsIntoCalendar();
         }
 
-        //    public void Clear()
-        //    {
-        //        DayColumnList.ForEach(x => x.Clear());
-        //    }
-        //}
+        public void Clear()
+        {
+            DayColumnList.ForEach(x => x.Clear());
+        }
+
+
+        public static List<ScheduleShift> GetListOfTestShifts()
+        {
+            List<ScheduleShift> res = new List<ScheduleShift>();
+            ScheduleShift ts = new ScheduleShift() { StartTime = new DateTime(2017, 11, 28, 15, 0, 0), Hours = 6, Employee = new Employee() { Name = "Holger" } };
+            res.Add(ts);
+
+            return res;
+        }
+
+
     }
+
+
 }

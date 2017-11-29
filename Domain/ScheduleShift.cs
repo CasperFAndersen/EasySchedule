@@ -8,14 +8,17 @@ using System.Threading.Tasks;
 namespace Core
 {
     [DataContract]
-    public abstract class Shift
+    public class ScheduleShift : Shift
     {
+
         [DataMember]
-        public int Id { get; set; }
-        [DataMember]
-        public Employee Employee { get; set; }
-        [DataMember]
-        public double Hours { get; set; }
+        public DateTime StartTime { get; set; }
+
+
+        public ScheduleShift()
+        {
+            
+        }
 
     }
 }

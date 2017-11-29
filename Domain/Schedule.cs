@@ -13,13 +13,13 @@ namespace Core
         [DataMember]
         public DateTime StartDate { get; set; }
         [DataMember]
-        public List<Shift> Shifts { get; set; }
+        public List<ScheduleShift> Shifts { get; set; }
         [DataMember]
         public Department Department { get; set; }
 
         public Schedule()
         {
-            Shifts = new List<Shift>();
+            Shifts = new List<ScheduleShift>();
         }
     }
 }

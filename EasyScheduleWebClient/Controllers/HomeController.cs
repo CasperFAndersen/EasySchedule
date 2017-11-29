@@ -23,7 +23,7 @@ namespace EasyScheduleWebClient.Controllers
         {
             ScheduleProxy scheduleProxy = new ScheduleProxy();
             Core.Employee emp = (Core.Employee)Session["employee"];
-            List<Core.Shift> shifts = scheduleProxy.GetCurrentScheduleDepartmentId(emp.DepartmentId).Shifts;
+            List<Core.ScheduleShift> shifts = scheduleProxy.GetCurrentScheduleDepartmentId(emp.DepartmentId).Shifts;
 
             return new JsonResult { Data = shifts, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }

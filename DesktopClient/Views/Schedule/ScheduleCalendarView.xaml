@@ -27,7 +27,7 @@
         <!--<StackPanel Name="ButtonPanel" Grid.Column="2" Grid.Row="3">
 
         </StackPanel>-->
-        <Frame Name="ControlPanel" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+        <Frame Name="ControlPanel" Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden"/>
         <Grid Grid.Row="0" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>

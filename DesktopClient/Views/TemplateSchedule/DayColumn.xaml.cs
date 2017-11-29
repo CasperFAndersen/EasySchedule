@@ -64,9 +64,20 @@ namespace DesktopClient
             }
         }
 
-        public void InsertShiftIntoDay(TemplateShift shift)
+        public void InsertShiftIntoDay(Shift shift)
         {
-            TimeCell timeCell = FindMatchingTimeCell(shift.StartTime);
+            TimeCell timeCell = new TimeCell();
+            if (shift.GetType() == typeof(TemplateShift))
+            {
+                TemplateShift ts = (TemplateShift)shift;
+                timeCell = FindMatchingTimeCell(ts.StartTime);
+            }
+            else if (shift.GetType() == typeof(ScheduleShift))
+            {
+                ScheduleShift ss = (ScheduleShift)shift;
+                timeCell = FindMatchingTimeCell(new TimeSpan(ss.StartTime.Hour, ss.StartTime.Minute, ss.StartTime.Second));
+            }
+            
             for (int i = 0; i < (shift.Hours * (60 / TemplateScheduleCalendar.INCREMENT)); i++)
             {
                 if (i == 0)

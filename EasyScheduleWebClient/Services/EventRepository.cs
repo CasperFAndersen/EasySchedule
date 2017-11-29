@@ -13,10 +13,10 @@ namespace EasyScheduleWebClient.Services
         {
             List<Event> events = new List<Event>();
 
-            List<Shift> tempShift = new List<Shift>();
+            List<ScheduleShift> tempShift = new List<ScheduleShift>();
             //TODO: Get shifts based on department and employee
             int id = 0;
-            foreach (Shift shift in tempShift)
+            foreach (ScheduleShift shift in tempShift)
             {
                 events.Add(new Event()
                 {

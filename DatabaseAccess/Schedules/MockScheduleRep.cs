@@ -20,11 +20,11 @@ namespace DatabaseAccess.Schedules
         public Schedule GetScheduleByCurrentDate(DateTime currentDate)
         {
             Employee e1 = new Employee() {Name = "Arne" };
-            Shift s1 = new Shift() { StartTime = new DateTime(2017, 11, 13, 9, 0, 0), Hours = 5, Employee = e1};
-            Shift s2 = new Shift() { StartTime = new DateTime(2017, 11, 14, 11, 0, 0), Hours = 7, Employee = e1 };
-            Shift s3 = new Shift() { StartTime = new DateTime(2017, 11, 17, 10, 0, 0), Hours = 3, Employee = e1 };
+            ScheduleShift s1 = new ScheduleShift() { StartTime = new DateTime(2017, 11, 13, 9, 0, 0), Hours = 5, Employee = e1};
+            ScheduleShift s2 = new ScheduleShift() { StartTime = new DateTime(2017, 11, 14, 11, 0, 0), Hours = 7, Employee = e1 };
+            ScheduleShift s3 = new ScheduleShift() { StartTime = new DateTime(2017, 11, 17, 10, 0, 0), Hours = 3, Employee = e1 };
 
-            Schedule schedule = new Schedule() {Shifts = new List<Shift>() };
+            Schedule schedule = new Schedule() {Shifts = new List<ScheduleShift>() };
 
             schedule.Shifts.Add(s1);
             schedule.Shifts.Add(s2);

@@ -23,6 +23,7 @@ namespace DesktopClient
     {
         public static readonly TimeSpan STARTTIME = new TimeSpan(6,0,0);
         public static readonly TimeSpan ENDTIME = new TimeSpan(20, 0, 0);
+        public static readonly double DEFAULTSHIFTLENGTH = 3;
         public static readonly int INCREMENT = 30;
 
         Color[] colors = { Colors.IndianRed, Colors.DarkKhaki, Colors.DarkOrange, Colors.LightGreen, Colors.Thistle, Colors.SkyBlue, Colors.RoyalBlue, Colors.Turquoise };
@@ -138,6 +139,7 @@ namespace DesktopClient
 
         public void SetShiftDropHandler()
         {
+            
             Mediator.GetInstance().ShiftDropped += (s, e) =>
             {
                 LoadShiftsIntoCalendar();
@@ -146,11 +148,14 @@ namespace DesktopClient
 
         public void SetEmployeeDroppedHandler()
         {
-            Mediator.GetInstance().EmployeeDropped += (s, e) =>
+            Mediator.GetInstance().EmployeeDropped += (e, tod, dow) =>
             {
-                e.Shift.WeekNumber = WeekNumber;
-                AddShift(e.Shift);
-                LoadShiftsIntoCalendar();
+                if (this.IsVisible)
+                {
+                    AddShift(new TemplateShift() { Employee = e, StartTime = tod, WeekDay = dow, WeekNumber = WeekNumber, Hours = DEFAULTSHIFTLENGTH });
+                    LoadShiftsIntoCalendar();
+                }
+
             };
         }
 
@@ -158,7 +163,12 @@ namespace DesktopClient
         {
             Mediator.GetInstance().ShiftCloseClicked+= (s, e) =>
             {
-                Shifts.Remove(e.Shift);
+                if (e.Shift.GetType() == typeof(TemplateShift))
+                {
+                    TemplateShift ts = (TemplateShift)e.Shift;
+                    Shifts.Remove(ts);
+                }
+                
                 LoadShiftsIntoCalendar();
             };
         }
@@ -167,15 +177,19 @@ namespace DesktopClient
         {
             Mediator.GetInstance().TempScheduleSelected += (s, e) =>
             {
-                Shifts.Clear();
-                EmployeeColors.Clear();
-                AddShifts(e.TempSchedule.ListOfTempShifts);
-                if (e.TempSchedule.NoOfWeeks > 1)
+                if (this.IsVisible)
                 {
-                    btnNextWeek.IsEnabled = true;
+                    Shifts.Clear();
+                    EmployeeColors.Clear();
+                    AddShifts(e.TempSchedule.ListOfTempShifts);
+                    if (e.TempSchedule.NoOfWeeks > 1)
+                    {
+                        btnNextWeek.IsEnabled = true;
+                    }
+                    numOfWeeks = e.TempSchedule.NoOfWeeks;
+                    LoadShiftsIntoCalendar();
                 }
-                numOfWeeks = e.TempSchedule.NoOfWeeks;
-                LoadShiftsIntoCalendar();
+     
             };
         }
 
@@ -304,6 +318,7 @@ namespace DesktopClient
 
         public void Clear()
         {
+            //Shifts.Clear();
             DayColumnList.ForEach(x => x.Clear());
         }
     }

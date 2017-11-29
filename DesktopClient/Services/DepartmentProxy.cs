@@ -12,16 +12,6 @@ namespace DesktopClient.Services
     {
         DepartmentServiceClient proxy = new DepartmentServiceClient();
 
-        public Department[] GetAllDepartments()
-        {
-            return proxy.GetAllDepartments();
-        }
-
-        public Task<Department[]> GetAllDepartmentsAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public Department GetDepartmentById(int depId)
         {
             return proxy.GetDepartmentById(depId);
@@ -30,6 +20,16 @@ namespace DesktopClient.Services
         public Task<Department> GetDepartmentByIdAsync(int depId)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Department> GetAllDepartments()
+        {
+            return proxy.GetAllDepartments();
+        }
+
+        public Task<List<Department>> GetAllDepartmentsAsync()
+        {
+            return proxy.GetAllDepartmentsAsync();
         }
     }
 }

@@ -23,41 +23,67 @@ namespace DesktopClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        TemplateScheduleCalendarView templateScheduleCalendarView;
+        TemplateScheduleCalendarView templateScheduleCalendarView1;
+        TemplateScheduleCalendarView templateScheduleCalendarView2;
         ViewCreateTemplateSchedule viewCreateTemplateSchedule;
         ViewEditTemplateSchedule viewEditTemplateSchedule;
         CreateEmployeeView createEmployeeView;
         ScheduleCalendarView scheduleCalendarView;
+        EmployeeColors empCol;
 
         public MainWindow()
         {
             InitializeComponent();
-            templateScheduleCalendarView = new TemplateScheduleCalendarView();
+            empCol = new EmployeeColors();
+            templateScheduleCalendarView1 = new TemplateScheduleCalendarView();
+            templateScheduleCalendarView2 = new TemplateScheduleCalendarView();
             viewCreateTemplateSchedule = new ViewCreateTemplateSchedule();
             viewEditTemplateSchedule = new ViewEditTemplateSchedule();
             createEmployeeView = new CreateEmployeeView();
             scheduleCalendarView = new ScheduleCalendarView();
+
         }
 
         private void ViewEditTempScheduleMenuItimClicked(object sender, RoutedEventArgs e)
         {
-            templateScheduleCalendarView.ControlPanel.Content = viewEditTemplateSchedule;
-            templateScheduleCalendarView.Calendar.Clear();
-            templateScheduleCalendarView.EmployeeList.Items.Clear();
-            frame.Content = templateScheduleCalendarView;
+            templateScheduleCalendarView2.Calendar.Clear();
+            templateScheduleCalendarView1.ControlPanel.Content = viewEditTemplateSchedule;
+            viewCreateTemplateSchedule.CBoxDepartment.SelectedIndex = 0;
+            templateScheduleCalendarView1.Calendar.Clear();
+            templateScheduleCalendarView1.EmployeeList.Items.Clear();
+            frame.Content = templateScheduleCalendarView1;
+            templateScheduleCalendarView1.Calendar.LoadShiftsIntoCalendar();
+
+            //TemplateScheduleCalendarView tscv = new TemplateScheduleCalendarView();
+            //ViewEditTemplateSchedule vets = new ViewEditTemplateSchedule();
+            //tscv.ControlPanel.Content = vets;
+            //frame.Content = tscv;
         }
 
         private void CreateTempScheduleMenuItimClicked(object sender, RoutedEventArgs e)
         {
-            templateScheduleCalendarView.Calendar.Clear();
-            templateScheduleCalendarView.ControlPanel.Content = viewCreateTemplateSchedule;
-            templateScheduleCalendarView.EmployeeList.Items.Clear();
-            frame.Content = templateScheduleCalendarView;
+            templateScheduleCalendarView2.Calendar.Clear();
+            templateScheduleCalendarView1.Calendar.Clear();
+            templateScheduleCalendarView2.ControlPanel.Content = viewCreateTemplateSchedule;
+            templateScheduleCalendarView2.EmployeeList.Items.Clear();
+            frame.Content = templateScheduleCalendarView2;
+            templateScheduleCalendarView2.Calendar.LoadShiftsIntoCalendar();
+
+            //TemplateScheduleCalendarView tscv = new TemplateScheduleCalendarView();
+            //ViewCreateTemplateSchedule vcts = new ViewCreateTemplateSchedule();
+            //tscv.ControlPanel.Content = vcts;
+            //frame.Content = tscv;
         }
 
         private void ViewScheduleMenuItemClicked(object sender, RoutedEventArgs e)
         {
+            scheduleCalendarView.ControlPanel.Content = new ViewScheduleView();
             frame.Content = scheduleCalendarView;
+            
+            //ScheduleCalendarView scv = new ScheduleCalendarView();
+            //ViewScheduleView vsv = new ViewScheduleView();
+            //scv.ControlPanel.Content = vsv;
+            //frame.Content = scv;
         }
 
 

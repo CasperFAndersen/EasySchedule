@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Core;
+using DesktopClient.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,27 @@ namespace DesktopClient.Views.Schedule
         public ScheduleCalendarView()
         {
             InitializeComponent();
+            SetOnCBoxSelectionChanged();
+        }
+
+        public void LoadEmployeeList(List<Employee> employees)
+        {
+            EmployeeList.Items.Clear();
+            foreach (Employee e in employees)
+            {
+                EmployeeList.Items.Add(new EmployeeListItem(e));
+            }
+            EmployeeList.BorderThickness = new Thickness(1, 1, 1, 1);
+        }
+
+        private void SetOnCBoxSelectionChanged()
+        {
+            Mediator.GetInstance().CBoxDepartmentChanged += (d) =>
+            {
+                List<Employee> employees = new EmployeeProxy().GetListOfEmployeeByDepartmentId(d.Id);
+                LoadEmployeeList(employees);
+            };
+            
         }
     }
 }

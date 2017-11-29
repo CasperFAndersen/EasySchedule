@@ -52,7 +52,7 @@ namespace DesktopClient
 
         private void EventChangesListener()
         {
-            Mediator.GetInstance().EmployeeDropped += (s, e) =>
+            Mediator.GetInstance().EmployeeDropped += (e, tod, dow) =>
             {
                 BtnSaveUpdatedTemplateSchedule.IsEnabled = true;
             };

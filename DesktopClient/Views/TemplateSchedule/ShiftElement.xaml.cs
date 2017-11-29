@@ -23,7 +23,7 @@ namespace DesktopClient
     {
         public bool IsFirstElement { get; set; }
         public bool IsLastElement { get; set; }
-        public ShiftElement(TemplateShift shift, Color color, bool isLastElement)
+        public ShiftElement(Shift shift, Color color, bool isLastElement)
         {
             InitializeComponent();
             DataContext = shift;
@@ -35,7 +35,7 @@ namespace DesktopClient
             button.Visibility = Visibility.Hidden;
         }
 
-        public ShiftElement(TemplateShift shift, string text, Color color)
+        public ShiftElement(Shift shift, string text, Color color)
         {
             InitializeComponent();
             DataContext = shift;
@@ -75,7 +75,7 @@ namespace DesktopClient
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            Mediator.GetInstance().OnShiftCloseClick(sender, (TemplateShift)DataContext);
+            Mediator.GetInstance().OnShiftCloseClick(sender, (Shift)DataContext);
         }
     }
 }

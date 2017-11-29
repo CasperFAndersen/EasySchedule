@@ -10,9 +10,9 @@ namespace DatabaseAccess.Shifts
 {
     public class ShiftRepository : IShiftRepository
     {
-        public List<Shift> GetShiftsByScheduleID(int scheduleId)
+        public List<ScheduleShift> GetShiftsByScheduleID(int scheduleId)
         {
-            List<Shift> shiftList = new List<Shift>();
+            List<ScheduleShift> shiftList = new List<ScheduleShift>();
 
             using (SqlConnection conn = new DbConnectionADO().GetConnection())
             {
@@ -42,9 +42,9 @@ namespace DatabaseAccess.Shifts
 
         }
 
-        public List<Shift> GetShiftsByEmployeeId(int employeeId)
+        public List<ScheduleShift> GetShiftsByEmployeeId(int employeeId)
         {
-            List<Shift> shiftList = new List<Shift>();
+            List<ScheduleShift> shiftList = new List<ScheduleShift>();
 
             using (SqlConnection conn = new DbConnectionADO().GetConnection())
             {
@@ -69,7 +69,7 @@ namespace DatabaseAccess.Shifts
             }
         }
 
-        public void InsertShiftsIntoDb(List<Shift> shifts, int scheduleId, SqlConnection conn)
+        public void InsertShiftsIntoDb(List<ScheduleShift> shifts, int scheduleId, SqlConnection conn)
         {
             try
             {
@@ -117,9 +117,9 @@ namespace DatabaseAccess.Shifts
             }
         }
 
-        public Shift BuildShiftObject(SqlDataReader reader)
+        public ScheduleShift BuildShiftObject(SqlDataReader reader)
         {
-            Shift s1 = new Shift();
+            ScheduleShift s1 = new ScheduleShift();
 
             s1.Id = Convert.ToInt32(reader["Id"].ToString());
             s1.Employee = new EmployeeRepository().FindEmployeeById(Convert.ToInt32(reader["EmployeeId"].ToString()));

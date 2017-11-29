@@ -21,14 +21,14 @@ namespace DesktopClient
     /// </summary>
     public partial class TimeCell : UserControl
     {
-        public List<TemplateShift> ShiftsInCell { get; set; }
+        public List<Shift> ShiftsInCell { get; set; }
         public TemplateSchedule TemplateSchedule { get; set; }
         public TimeSpan Time { get; set; }
         public DayOfWeek weekDay { get; set; }
         public TimeCell()
         {
             InitializeComponent();
-            ShiftsInCell = new List<TemplateShift>();
+            ShiftsInCell = new List<Shift>();
             SetDropHandler();
             SetCloseClick();
             SetEmployeeDropped();
@@ -48,9 +48,9 @@ namespace DesktopClient
         }
 
 
-        public void FillCell(TemplateShift shift, bool isFirstElement, bool isLastElement)
+        public void FillCell(Shift shift, bool isFirstElement, bool isLastElement)
         {
-            Color color = TemplateScheduleCalendarView.EmployeeColors[shift.Employee.Name];
+            Color color = EmployeeColors.EmpColors[shift.Employee.Name];
             
             ShiftElement shiftElement = null;
             if (isFirstElement)
@@ -84,19 +84,44 @@ namespace DesktopClient
         {
             object droppedItem = e.Data.GetData("Object");
 
-            if (droppedItem.GetType() == typeof(TemplateShift))
+            if (droppedItem.GetType().IsSubclassOf(typeof(Shift)))
             {
-                TemplateShift droppedShift = (TemplateShift)e.Data.GetData("Object");
+                Shift droppedShift = (Shift)e.Data.GetData("Object");
+               
+                
                 bool isLastElement = (bool)e.Data.GetData("IsLastShiftElement");
                 if (isLastElement)
                 {
                     TimeCellGrid.Background = new SolidColorBrush(Colors.White);
-                    droppedShift.Hours = (Time.Subtract(droppedShift.StartTime).Add(new TimeSpan(0, TemplateScheduleCalendar.INCREMENT, 0)).TotalHours);
+                    if (droppedShift.GetType() == typeof(TemplateShift))
+                    {
+                        TemplateShift ts = (TemplateShift)droppedShift;
+                        ts.Hours = (Time.Subtract(ts.StartTime).Add(new TimeSpan(0, TemplateScheduleCalendar.INCREMENT, 0)).TotalHours);
+                    }
+                    else if (droppedShift.GetType() == typeof(ScheduleShift))
+                    {
+                        ScheduleShift ss = (ScheduleShift)droppedShift;
+                        droppedShift.Hours = (Time.Hours - (ss.StartTime.Hour)); //+ TemplateScheduleCalendar.INCREMENT);
+                    }
+                    
                 }
                 else
                 {
-                    droppedShift.StartTime = Time;
-                    droppedShift.WeekDay = weekDay;
+                    if (droppedShift.GetType() == typeof(TemplateShift))
+                    {
+                        TemplateShift ts = (TemplateShift)droppedShift;
+                        ts.StartTime = Time;
+                        ts.WeekDay = weekDay;
+                        droppedShift = ts;
+                    }
+                    else if (droppedShift.GetType() == typeof(ScheduleShift))
+                    {
+                        ScheduleShift ss = (ScheduleShift)droppedShift;
+                        DateTime dt = new DateTime(ss.StartTime.Year, ss.StartTime.Month, (int)weekDay, Time.Hours, Time.Minutes, 0);
+                        ss.StartTime = dt;
+                        droppedShift = ss;
+                    }
+              
                 }
 
                 Mediator.GetInstance().OnShiftDropped(sender, droppedShift, isLastElement);
@@ -105,12 +130,8 @@ namespace DesktopClient
             else if (droppedItem.GetType() == typeof(Employee))
             {
                 Employee employee = (Employee)droppedItem;
-                TemplateShift newShift = new TemplateShift() { StartTime = Time, WeekDay = weekDay, Employee = employee, Hours = 3 }; // DEFAULT HOURS = 3
-                if (TemplateSchedule != null)
-                {
-                    newShift.TemplateScheduleID = TemplateSchedule.ID;
-                }
-                Mediator.GetInstance().OnEmployeeDropped(sender, newShift);
+                Mediator.GetInstance().OnEmployeeDropped(employee, Time, weekDay);
+                       
             }
 
 
@@ -136,7 +157,7 @@ namespace DesktopClient
 
         private void SetEmployeeDropped()
         {
-            Mediator.GetInstance().EmployeeDropped += (s, e) =>
+            Mediator.GetInstance().EmployeeDropped += (e, tod, dow) =>
             {
                 Clear();
             };
@@ -171,7 +192,7 @@ namespace DesktopClient
         public void Clear()
         {
             TemplateSchedule = null;
-            ShiftsInCell = new List<TemplateShift>();
+            ShiftsInCell = new List<Shift>();
             TimeCellGrid.Children.Clear();
             TimeCellGrid.ColumnDefinitions.Clear();
            // Border.BorderThickness = new Thickness(0.1, 0.1, 0.1, 0.1);

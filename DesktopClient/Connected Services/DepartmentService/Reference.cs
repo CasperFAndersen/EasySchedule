@@ -16,10 +16,10 @@ namespace DesktopClient.DepartmentService {
     public interface IDepartmentService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetAllDepartments", ReplyAction="http://tempuri.org/IDepartmentService/GetAllDepartmentsResponse")]
-        Core.Department[] GetAllDepartments();
+        System.Collections.Generic.List<Core.Department> GetAllDepartments();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetAllDepartments", ReplyAction="http://tempuri.org/IDepartmentService/GetAllDepartmentsResponse")]
-        System.Threading.Tasks.Task<Core.Department[]> GetAllDepartmentsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Department>> GetAllDepartmentsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetDepartmentById", ReplyAction="http://tempuri.org/IDepartmentService/GetDepartmentByIdResponse")]
         Core.Department GetDepartmentById(int depId);
@@ -55,11 +55,11 @@ namespace DesktopClient.DepartmentService {
                 base(binding, remoteAddress) {
         }
         
-        public Core.Department[] GetAllDepartments() {
+        public System.Collections.Generic.List<Core.Department> GetAllDepartments() {
             return base.Channel.GetAllDepartments();
         }
         
-        public System.Threading.Tasks.Task<Core.Department[]> GetAllDepartmentsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Department>> GetAllDepartmentsAsync() {
             return base.Channel.GetAllDepartmentsAsync();
         }
         

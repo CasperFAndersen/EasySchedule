@@ -19,15 +19,24 @@
   </xs:complexType>
   <xs:element name="Employee" nillable="true" type="tns:Employee" />
   <xs:complexType name="TemplateShift">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Shift">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StartTime" type="ser:duration" />
+          <xs:element minOccurs="0" name="TemplateScheduleID" type="xs:int" />
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="WeekDay" type="q1:DayOfWeek" />
+          <xs:element minOccurs="0" name="WeekNumber" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TemplateShift" nillable="true" type="tns:TemplateShift" />
+  <xs:complexType name="Shift">
     <xs:sequence>
       <xs:element minOccurs="0" name="Employee" nillable="true" type="tns:Employee" />
       <xs:element minOccurs="0" name="Hours" type="xs:double" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="StartTime" type="ser:duration" />
-      <xs:element minOccurs="0" name="TemplateScheduleID" type="xs:int" />
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="WeekDay" type="q1:DayOfWeek" />
-      <xs:element minOccurs="0" name="WeekNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="TemplateShift" nillable="true" type="tns:TemplateShift" />
+  <xs:element name="Shift" nillable="true" type="tns:Shift" />
 </xs:schema>

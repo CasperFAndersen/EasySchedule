@@ -24,7 +24,7 @@ namespace DatabaseAccess
                 foreach (TemplateShift ts in TShift)
                 {
                     SqlCommand insertTempShift = new SqlCommand("INSERT INTO TemplateShift(weekDay, hours, startTime, weekNumber, templateScheduleId, employeeId)   VALUES(@param1,@param2,@param3,@param4,@param5,@Param6)", dBCon);
-                    if (ts.ID == 0)
+                    if (ts.Id == 0)
                     {
                         insertTempShift.Parameters.AddWithValue("@param1", ts.WeekDay.ToString());
                         insertTempShift.Parameters.AddWithValue("@param2", ts.Hours);
@@ -58,7 +58,7 @@ namespace DatabaseAccess
                 updateTemplateShift.Parameters.AddWithValue("@param1", templateShift.WeekDay.ToString());
                 updateTemplateShift.Parameters.AddWithValue("@param2", templateShift.Hours);
                 updateTemplateShift.Parameters.AddWithValue("@param3", templateShift.StartTime);
-                updateTemplateShift.Parameters.AddWithValue("@param4", templateShift.ID);
+                updateTemplateShift.Parameters.AddWithValue("@param4", templateShift.Id);
 
 
                 updateTemplateShift.ExecuteNonQuery();
@@ -134,7 +134,7 @@ namespace DatabaseAccess
         public TemplateShift BuildTempShiftObject(SqlDataReader reader)
         {
             TemplateShift tempShift = new TemplateShift();
-            tempShift.ID = reader.GetInt32(0);
+            tempShift.Id = reader.GetInt32(0);
             tempShift.WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader.GetString(1));
             tempShift.Hours = reader.GetDouble(2);
             tempShift.StartTime = reader.GetTimeSpan(3);

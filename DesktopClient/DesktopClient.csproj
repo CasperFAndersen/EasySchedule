@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EmployeeColors.cs" />
     <Compile Include="Views\Schedule\DateBox.xaml.cs">
       <DependentUpon>DateBox.xaml</DependentUpon>
     </Compile>
@@ -73,6 +74,9 @@
     </Compile>
     <Compile Include="Views\Schedule\ScheduleShiftElement.xaml.cs">
       <DependentUpon>ScheduleShiftElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Schedule\ViewScheduleView.xaml.cs">
+      <DependentUpon>ViewScheduleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TemplateSchedule\TemplateScheduleCalendar.xaml.cs">
       <DependentUpon>TemplateScheduleCalendar.xaml</DependentUpon>
@@ -169,6 +173,10 @@
     <Page Include="Views\Schedule\ScheduleShiftElement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Schedule\ViewScheduleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TemplateSchedule\TemplateScheduleCalendar.xaml">
       <SubType>Designer</SubType>

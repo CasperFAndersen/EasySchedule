@@ -39,7 +39,7 @@ namespace Tests.DatabaseAccess
 
             Schedule schedule = schRep.GetCurrentScheduleByDepartmentId(currentDate, 1);
 
-            List<Shift> shifts = schedule.Shifts;
+            List<ScheduleShift> shifts = schedule.Shifts;
 
             Assert.IsNotNull(schedule);
             Assert.AreEqual(schedule.StartDate, currentDate);
@@ -50,7 +50,7 @@ namespace Tests.DatabaseAccess
         [TestMethod]
         public void TestInsertSchedule()
         {
-            Shift shift1 = new Shift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2017, 11, 28, 8, 0, 0) };
+            ScheduleShift shift1 = new ScheduleShift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2017, 11, 28, 8, 0, 0) };
             Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(3), StartDate = new DateTime(2017,11,27, 0, 0, 0, DateTimeKind.Utc)};
             schedule.Shifts.Add(shift1);
 

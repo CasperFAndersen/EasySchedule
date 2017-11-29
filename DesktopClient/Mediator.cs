@@ -29,7 +29,7 @@ namespace DesktopClient
 
         public event EventHandler<ShiftDropEventArgs> ShiftDropped;
 
-        public void OnShiftDropped(object sender, TemplateShift shift, bool isLastElement)
+        public void OnShiftDropped(object sender, Shift shift, bool isLastElement)
         {
             var shiftDroppedDelegate = ShiftDropped as EventHandler<ShiftDropEventArgs>;
             if (shiftDroppedDelegate != null)
@@ -40,7 +40,7 @@ namespace DesktopClient
         }
 
         public event EventHandler<ShiftDropEventArgs> ShiftCloseClicked;
-        public void OnShiftCloseClick(object sender, TemplateShift shift)
+        public void OnShiftCloseClick(object sender, Shift shift)
         {
             var shiftCloseDelegate = ShiftCloseClicked as EventHandler<ShiftDropEventArgs>;
             if (shiftCloseDelegate != null)
@@ -50,13 +50,13 @@ namespace DesktopClient
 
         }
 
-        public event EventHandler<ShiftDropEventArgs> EmployeeDropped;
-        public void OnEmployeeDropped(object sender, TemplateShift shift)
+        public delegate void EmployeeDroppedHandler(Employee employee, TimeSpan timeOfDay, DayOfWeek dayOfWeek); 
+        public event EmployeeDroppedHandler EmployeeDropped;
+        public void OnEmployeeDropped(Employee employee, TimeSpan timeOfDay, DayOfWeek dayOfWeek)
         {
-            var employeeDroppedDelegate = EmployeeDropped as EventHandler<ShiftDropEventArgs>;
-            if (employeeDroppedDelegate != null)
+            if (EmployeeDropped != null)
             {
-                employeeDroppedDelegate(sender, new ShiftDropEventArgs { Shift = shift });
+                EmployeeDropped(employee, timeOfDay, dayOfWeek);
             }
 
         }
@@ -92,6 +92,17 @@ namespace DesktopClient
             if(DepartmentBoxChanged != null)
             {
                 DepartmentBoxChanged(employees, department);
+            }
+        }
+
+        public delegate void CBoxDepartmentChangedHandler(Department department);
+        public event CBoxDepartmentChangedHandler CBoxDepartmentChanged;
+
+        public void OnCBoxSelectionChanged(Department department)
+        {
+            if (DepartmentBoxChanged != null)
+            {
+                CBoxDepartmentChanged(department);
             }
         }
 

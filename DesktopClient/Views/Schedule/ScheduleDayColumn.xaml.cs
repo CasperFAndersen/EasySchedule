@@ -20,9 +20,15 @@ namespace DesktopClient.Views.Schedule
     /// </summary>
     public partial class ScheduleDayColumn : UserControl
     {
+        public string Name { get; set; }
         public ScheduleDayColumn()
         {
             InitializeComponent();
+
         }
+
+       
+
+      
     }
 }

@@ -4,20 +4,17 @@ using System.Runtime.Serialization;
 namespace Core
 {
     [DataContract]
-    public class TemplateShift
+    public class TemplateShift : Shift
     {
-        [DataMember]
-        public int ID { get; set; }
+
         [DataMember]
         public DayOfWeek WeekDay { get; set; }
-        [DataMember]
-        public double Hours { get; set; }
+
         [DataMember]
         public TimeSpan StartTime { get; set; }     
         [DataMember]
         public int TemplateScheduleID { get; set; }
-        [DataMember]
-        public Employee Employee { get; set; }
+
         [DataMember]
         public int WeekNumber { get; set; }
 
@@ -31,7 +28,7 @@ namespace Core
 
         public TemplateShift(int id, DayOfWeek weekDay, double hours, TimeSpan startTime, int templateScheduleID, Employee employee)
         {
-            ID = id;
+            base.Id = id;
             WeekDay = weekDay;
             Hours = hours;
             StartTime = startTime;
