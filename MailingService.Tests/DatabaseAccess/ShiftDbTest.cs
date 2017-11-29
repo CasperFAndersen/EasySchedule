@@ -10,8 +10,6 @@ namespace Tests.DatabaseAccess
     {
         IShiftRepository shiftRep = new ShiftRepository(); 
 
-        
-        
         [TestMethod]
         public void TestGetAllShiftsByScheduleId()
         {
@@ -20,7 +18,7 @@ namespace Tests.DatabaseAccess
             List<ScheduleShift> shifts = shiftRep.GetShiftsByScheduleID(1);
 
             Assert.IsNotNull(shifts);
-            Assert.AreEqual(3, shifts.Count);
+            Assert.AreNotEqual(0, shifts.Count);
         }
     }
 }

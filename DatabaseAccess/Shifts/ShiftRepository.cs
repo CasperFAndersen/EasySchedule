@@ -117,7 +117,7 @@ namespace DatabaseAccess.Shifts
             }
         }
 
-        public void AddShiftsFromScheduleToDb(int scheduleId, List<Shift> shifts)
+        public void AddShiftsFromScheduleToDb(int scheduleId, List<ScheduleShift> shifts)
         {
             try
             {
@@ -129,7 +129,7 @@ namespace DatabaseAccess.Shifts
                         using (SqlCommand cmd = conn.CreateCommand())
                         {
 
-                            foreach (Shift shift in shifts)
+                            foreach (ScheduleShift shift in shifts)
                             {
                                 cmd.CommandText = "INSERT INTO Shift(startTime, hours, scheduleId, employeeId) VALUES (@param1, @param2, @param3, @param4)";
                                 if (shift.Id == 0)
@@ -172,7 +172,7 @@ namespace DatabaseAccess.Shifts
 
         }
 
-        public void UpdateScheduleShift(Shift shift, int scheduleId, SqlConnection conn)
+        public void UpdateScheduleShift(ScheduleShift shift, int scheduleId, SqlConnection conn)
         {
             try
             {
@@ -210,7 +210,7 @@ namespace DatabaseAccess.Shifts
             }
         }
 
-        public Shift BuildShiftObject(SqlDataReader reader)
+        public ScheduleShift BuildShiftObject(SqlDataReader reader)
         {
             ScheduleShift s1 = new ScheduleShift();
 

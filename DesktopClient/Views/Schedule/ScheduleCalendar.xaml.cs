@@ -292,6 +292,7 @@ namespace DesktopClient.Views.Schedule
                 {
                     ScheduleProxy scheduleProxy = new ScheduleProxy();
                     
+                    
                 }
                 catch (Exception)
                 {
