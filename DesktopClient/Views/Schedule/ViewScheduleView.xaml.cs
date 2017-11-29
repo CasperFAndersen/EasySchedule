@@ -27,6 +27,7 @@ namespace DesktopClient.Views.Schedule
         {
             InitializeComponent();
             BindComboBoxData();
+            SetOnNextOrPrevClicked();
         }
 
         private async void BindComboBoxData()
@@ -54,5 +55,22 @@ namespace DesktopClient.Views.Schedule
 
             Mediator.GetInstance().OnCBoxSelectionChanged(department, schedule);
         }
+
+        private void SetOnNextOrPrevClicked()
+        {
+            Mediator.GetInstance().NextOrPrevClicked += (s) =>
+            {
+                if (s != null)
+                {
+                    txtNoSchedule.Text = "";
+                }
+                else
+                {
+                    txtNoSchedule.Text = "There is no schedelue for the selected time period";
+                }
+            };
+        }
+
+        
     }
 }

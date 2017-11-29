@@ -1,4 +1,5 @@
 ﻿using Core;
+using DesktopClient.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace DesktopClient.Views.Schedule
     /// </summary>
     public partial class ScheduleCalendar : UserControl
     {
+        public Core.Schedule Schedule { get; set; }
+        public int DepartmentId { get; set; }
         public DateTime SelectedWeekStartDate { get; set; }
         public List<DateBox> DateBoxes { get; set; }
         public ScheduleCalendar()
@@ -225,7 +228,7 @@ namespace DesktopClient.Views.Schedule
                     ScheduleShift ss = (ScheduleShift)e.Shift;
                     DateBox db = DateBoxes[ss.StartTime.Day - 1];
                     DateTime dt = new DateTime(db.Date.Year, db.Date.Month, db.Date.Day, ss.StartTime.Hour, ss.StartTime.Minute, 0);
-                    ss.StartTime = dt;                  
+                    ss.StartTime = dt;
                 }
                 LoadShiftsIntoCalendar();
             };
@@ -246,7 +249,7 @@ namespace DesktopClient.Views.Schedule
                     Shifts.Add(ss);
                     LoadShiftsIntoCalendar();
                 }
-                
+
 
             };
         }
@@ -267,14 +270,16 @@ namespace DesktopClient.Views.Schedule
                 if (s != null)
                 {
                     Shifts = s.Shifts;
+                    Schedule = s;
                     LoadShiftsIntoCalendar();
                 }
                 else
                 {
                     Shifts.Clear();
+                    Schedule = null;
+                    Clear();
                 }
-               
-                
+                DepartmentId = d.Id;
             };
 
         }
@@ -389,7 +394,37 @@ namespace DesktopClient.Views.Schedule
             UpdateDateBoxes();
             NavCalendar.SelectedDate = SelectedWeekStartDate;
             Clear();
+
+            if (Schedule != null && Schedule.EndDate.CompareTo(DateBoxes[0].Date) < 0)
+            {
+                try
+                {
+                    Schedule = new ScheduleProxy().GetScheduleByDepartmentIdAndDate(DepartmentId, DateBoxes[0].Date);
+                    Shifts = Schedule.Shifts;
+                }
+                catch (Exception)
+                {
+
+                    Schedule = null;
+                }
+
+            }
+            else if(Schedule == null)
+            {
+                try
+                {
+                    Schedule = new ScheduleProxy().GetScheduleByDepartmentIdAndDate(DepartmentId, DateBoxes[0].Date);
+                    Shifts = Schedule.Shifts;
+                }
+                catch (Exception)
+                {
+
+                    Schedule = null;
+                }
+            }
             LoadShiftsIntoCalendar();
+            Mediator.GetInstance().OnNextOrPreviousButtonClicked(Schedule);
+
         }
 
 
@@ -399,6 +434,35 @@ namespace DesktopClient.Views.Schedule
             UpdateDateBoxes();
             NavCalendar.SelectedDate = SelectedWeekStartDate;
             Clear();
+            if (Schedule != null && Schedule.StartDate.CompareTo(DateBoxes[0].Date) >= 0)
+            {
+                try
+                {
+                    Schedule = new ScheduleProxy().GetScheduleByDepartmentIdAndDate(DepartmentId, DateBoxes[0].Date);
+                    Shifts = Schedule.Shifts;
+                }
+                catch (Exception)
+                {
+
+                    Schedule = null;
+                }
+
+            }
+            else if(Schedule == null)
+            {
+                try
+                {
+                    Schedule = new ScheduleProxy().GetScheduleByDepartmentIdAndDate(DepartmentId, DateBoxes[0].Date);
+                    Shifts = Schedule.Shifts;
+                }
+                catch (Exception)
+                {
+
+                    Schedule = null;
+                }
+            }
+            
+            Mediator.GetInstance().OnNextOrPreviousButtonClicked(Schedule);
             LoadShiftsIntoCalendar();
         }
 

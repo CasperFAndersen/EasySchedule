@@ -157,8 +157,14 @@ namespace DesktopClient
             }
         }
 
-
-
-
+        public delegate void NextOrPrevClickedHandler(Schedule schedule);
+        public event NextOrPrevClickedHandler NextOrPrevClicked;
+        public void OnNextOrPreviousButtonClicked(Schedule schedule)
+        {
+            if (NextOrPrevClicked != null)
+            {
+                NextOrPrevClicked(schedule);
+            }
+        }
     }
 }
