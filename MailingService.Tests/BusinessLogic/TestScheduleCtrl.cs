@@ -13,6 +13,8 @@ namespace Tests.BusinessLogic
 
         ScheduleController schCtrl;
         private IScheduleRepository mockScheduleRepository;
+        TempScheduleController tempSchCtrl = new TempScheduleController();
+        TempShiftController tempShiftCtrl = new TempShiftController();
 
         [TestInitialize]
         public void InitializeTest()
@@ -53,6 +55,22 @@ namespace Tests.BusinessLogic
             Assert.AreEqual(new DateTime(2017, 11, 26), schedule.EndDate);
             Assert.AreNotEqual(0, schedule.Shifts.Count);
 
+        }
+
+        [TestMethod]
+        public void GetShiftsFromTemplateShiftTest()
+        {
+            schCtrl = new ScheduleController(new ScheduleRepository());
+            Employee e = new Employee();
+            TemplateSchedule tSchedule = tempSchCtrl.CreateTemplateSchedule(10, "basicSchedule");
+            TemplateShift tempShift1 = tempShiftCtrl.CreateTempShift(DayOfWeek.Friday, 10.0, new TimeSpan(10, 0, 0), 1, e);
+            TemplateShift tempShift2 = tempShiftCtrl.CreateTempShift(DayOfWeek.Monday, 15.0, new TimeSpan(3, 1, 2), 2, e);
+            tSchedule.ListOfTempShifts.Add(tempShift1);
+            tSchedule.ListOfTempShifts.Add(tempShift2);
+
+            Schedule schedule = schCtrl.GetShiftsFromTemplateShift(tSchedule, DateTime.Now);
+            Assert.AreEqual(tSchedule.ListOfTempShifts.Count, schedule.Shifts.Count);
+            Assert.AreEqual(schedule.Shifts[1].Hours, tSchedule.ListOfTempShifts[1].Hours);
         }
     }
 }
