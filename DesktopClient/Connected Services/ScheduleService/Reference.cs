@@ -32,6 +32,22 @@ namespace DesktopClient.ScheduleService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/UpdateSchedule", ReplyAction="http://tempuri.org/IScheduleService/UpdateScheduleResponse")]
         System.Threading.Tasks.Task UpdateScheduleAsync(Core.Schedule schedule);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentIdResponse")]
+        System.Collections.Generic.List<Core.Schedule> GetSchedulesByDepartmentId(int departmentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentIdResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Schedule>> GetSchedulesByDepartmentIdAsync(int departmentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
+            "ate", ReplyAction="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
+            "ateResponse")]
+        Core.Schedule GenerateScheduleFromTemplateScheduleAndStartDate(Core.TemplateSchedule tempSchedule, System.DateTime startTime);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
+            "ate", ReplyAction="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
+            "ateResponse")]
+        System.Threading.Tasks.Task<Core.Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(Core.TemplateSchedule tempSchedule, System.DateTime startTime);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +99,22 @@ namespace DesktopClient.ScheduleService {
         
         public System.Threading.Tasks.Task UpdateScheduleAsync(Core.Schedule schedule) {
             return base.Channel.UpdateScheduleAsync(schedule);
+        }
+        
+        public System.Collections.Generic.List<Core.Schedule> GetSchedulesByDepartmentId(int departmentId) {
+            return base.Channel.GetSchedulesByDepartmentId(departmentId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Schedule>> GetSchedulesByDepartmentIdAsync(int departmentId) {
+            return base.Channel.GetSchedulesByDepartmentIdAsync(departmentId);
+        }
+        
+        public Core.Schedule GenerateScheduleFromTemplateScheduleAndStartDate(Core.TemplateSchedule tempSchedule, System.DateTime startTime) {
+            return base.Channel.GenerateScheduleFromTemplateScheduleAndStartDate(tempSchedule, startTime);
+        }
+        
+        public System.Threading.Tasks.Task<Core.Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(Core.TemplateSchedule tempSchedule, System.DateTime startTime) {
+            return base.Channel.GenerateScheduleFromTemplateScheduleAndStartDateAsync(tempSchedule, startTime);
         }
     }
 }

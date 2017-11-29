@@ -41,7 +41,7 @@
             <Button Name="btnNextWeek" Content="Next" Click="NextWeek_Click" HorizontalAlignment="Left" MinWidth="150" Margin="50,0,0,0"/>
 
         </StackPanel>
-        <Calendar Name="NavCalendar" Grid.RowSpan="14" FirstDayOfWeek="Monday"  SelectionMode="SingleRange" MouseDown="NavCalendar_MouseLeftButtonDown" SelectedDatesChanged="NavCalendar_SelectedDatesChanged"/>
+        <Calendar Name="NavCalendar" Grid.Row="4" Grid.RowSpan="6" FirstDayOfWeek="Monday"  SelectionMode="SingleRange" MouseDown="NavCalendar_MouseLeftButtonDown" SelectedDatesChanged="NavCalendar_SelectedDatesChanged"/>
 
 
 

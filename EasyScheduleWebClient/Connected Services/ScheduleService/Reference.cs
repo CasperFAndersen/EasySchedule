@@ -32,6 +32,12 @@ namespace EasyScheduleWebClient.ScheduleService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/UpdateSchedule", ReplyAction="http://tempuri.org/IScheduleService/UpdateScheduleResponse")]
         System.Threading.Tasks.Task UpdateScheduleAsync(Core.Schedule schedule);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentIdResponse")]
+        Core.Schedule[] GetSchedulesByDepartmentId(int departmentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentIdResponse")]
+        System.Threading.Tasks.Task<Core.Schedule[]> GetSchedulesByDepartmentIdAsync(int departmentId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +89,14 @@ namespace EasyScheduleWebClient.ScheduleService {
         
         public System.Threading.Tasks.Task UpdateScheduleAsync(Core.Schedule schedule) {
             return base.Channel.UpdateScheduleAsync(schedule);
+        }
+        
+        public Core.Schedule[] GetSchedulesByDepartmentId(int departmentId) {
+            return base.Channel.GetSchedulesByDepartmentId(departmentId);
+        }
+        
+        public System.Threading.Tasks.Task<Core.Schedule[]> GetSchedulesByDepartmentIdAsync(int departmentId) {
+            return base.Channel.GetSchedulesByDepartmentIdAsync(departmentId);
         }
     }
 }

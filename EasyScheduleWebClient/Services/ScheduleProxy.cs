@@ -22,6 +22,16 @@ namespace EasyScheduleWebClient.Services
             throw new NotImplementedException();
         }
 
+        public Schedule[] GetSchedulesByDepartmentId(int departmentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Schedule[]> GetSchedulesByDepartmentIdAsync(int departmentId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void InsertScheduleIntoDb(Schedule schedule)
         {
             proxy.InsertScheduleIntoDb(schedule);

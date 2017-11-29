@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/Core" />
+  <xs:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/Core" />
   <xs:element name="GetScheduleByDepartmentIdAndDate">
     <xs:complexType>
       <xs:sequence>
@@ -38,6 +38,20 @@
   <xs:element name="UpdateScheduleResponse">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSchedulesByDepartmentId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSchedulesByDepartmentIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetSchedulesByDepartmentIdResult" nillable="true" type="q4:ArrayOfSchedule" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

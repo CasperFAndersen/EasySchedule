@@ -68,4 +68,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Shift" nillable="true" type="tns:Shift" />
+  <xs:complexType name="ArrayOfSchedule">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Schedule" nillable="true" type="tns:Schedule" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSchedule" nillable="true" type="tns:ArrayOfSchedule" />
 </xs:schema>

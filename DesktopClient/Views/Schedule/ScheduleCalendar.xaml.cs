@@ -31,7 +31,6 @@ namespace DesktopClient.Views.Schedule
             InitializeComponent();
             Shifts = new List<ScheduleShift>();
             DayColumnList = new List<DayColumn>();
-            //Shifts = TestShift.GetListOfTestShifts();
             DateBoxes = new List<DateBox>();
             WeekNumber = 1;
             btnNextWeek.IsEnabled = false;
@@ -43,22 +42,13 @@ namespace DesktopClient.Views.Schedule
             btnNextWeek.IsEnabled = true;
             btnPrevWeek.IsEnabled = true;
             SetSelectedStartDate(DateTime.Now);
-            // Shifts = GetListOfTestShifts();
             SetOnDepartmentSelected();
             LoadShiftsIntoCalendar();
-
-
-
-
             SetShiftDropHandler();
             SetCloseShiftClicked();
             SetEmployeeDroppedHandler();
             SetOnEditScheduleClicked();
-            //    SetTemplateScheduleSelected();
-            //    LoadShiftsIntoCalendar();
-            //    SetTemplateScheduleUpdateClicked();
-            //    SetCreateTemplateScheduleClicked();
-            //    SetOnNumOfWeeksBoxChanged();
+            SetOnGenerateScheduleButtonClicked();
         }
         public static readonly TimeSpan STARTTIME = new TimeSpan(6, 0, 0);
         public static readonly TimeSpan ENDTIME = new TimeSpan(20, 0, 0);
@@ -69,28 +59,11 @@ namespace DesktopClient.Views.Schedule
         public static Dictionary<Employee, Color> EmployeeColors { get; set; }
 
         Random rnd = new Random();
-        private int numOfWeeks = 1;
         public List<DayColumn> DayColumnList { get; set; }
         public List<ScheduleShift> Shifts { get; set; }
         public static int WeekNumber { get; set; }
 
 
-        //private void AddShifts(List<Shift> list)
-        //{
-        //    list.ForEach(x => Shifts.Add(x));
-        //    Shifts.ForEach(x => EmployeeColors.Add(x.Employee, GetRandomColor()));
-        //}
-
-        //public void AddShift(Shift shift)
-        //{
-
-        //    if (!EmployeeColors.ContainsKey(shift.Employee))
-        //    {
-        //        EmployeeColors.Add(shift.Employee, GetRandomColor());
-        //    }
-        //    Shifts.Add(shift);
-
-        //}
 
         public void LoadShiftsIntoCalendar()
         {
@@ -203,6 +176,8 @@ namespace DesktopClient.Views.Schedule
             SetSelectedStartDate((DateTime)NavCalendar.SelectedDate);
             NavCalendar.SelectedDate = SelectedWeekStartDate;
             UpdateDateBoxes();
+            Clear();
+            LoadShiftsIntoCalendar();
         }
 
         public void SetSelectedStartDate(DateTime date)
@@ -296,8 +271,8 @@ namespace DesktopClient.Views.Schedule
                     {
                         scheduleProxy.UpdateSchedule(Schedule);
                     }
-                   
-                    
+
+                    MessageBox.Show("Schedule for " + Schedule.Department.Name + " Saved sucessfully");
                     
                 }
                 catch (Exception)
@@ -308,109 +283,17 @@ namespace DesktopClient.Views.Schedule
             };
         }
 
-        //    public void SetTemplateScheduleSelected()
-        //    {
-        //        Mediator.GetInstance().TempScheduleSelected += (s, e) =>
-        //        {
-        //            Shifts.Clear();
-        //            EmployeeColors.Clear();
-        //            AddShifts(e.TempSchedule.ListOfTempShifts);
-        //            if (e.TempSchedule.NoOfWeeks > 1)
-        //            {
-        //                btnNextWeek.IsEnabled = true;
-        //            }
-        //            numOfWeeks = e.TempSchedule.NoOfWeeks;
-        //            LoadShiftsIntoCalendar();
-        //        };
-        //    }
+        private void SetOnGenerateScheduleButtonClicked()
+        {
+            Mediator.GetInstance().GenerateScheduleButtonClicked += (s) =>
+            {
+                Schedule = s;
+                Shifts = s.Shifts;
+                LoadShiftsIntoCalendar();
+            };
 
-        //    private void SetTemplateScheduleUpdateClicked()
-        //    {
-        //        Mediator.GetInstance().TempScheduleUpdateClicked += (s, e) =>
-        //        {
-        //            e.TempSchedule.ListOfTempShifts = Shifts;
-        //            TempScheduleProxy tempScheduleProxy = new TempScheduleProxy();
-        //            tempScheduleProxy.UpdateTemplateSchedule(e.TempSchedule);
-        //        };
-        //    }
+        }
 
-        //    private void SetCreateTemplateScheduleClicked()
-        //    {
-        //        Mediator.GetInstance().CreateTemplateScheduleButtonClicked += (t) =>
-        //        {
-        //            if (Shifts.Count == 0)
-        //            {
-        //                MessageBox.Show("No shifts has been added!");
-        //            }
-        //            else
-        //            {
-        //                TempScheduleProxy tempScheduleProxy = new TempScheduleProxy();
-        //                t.ListOfTempShifts = Shifts;
-        //                tempScheduleProxy.AddTempScheduleToDB(t);
-        //                Shifts.Clear();
-        //                MessageBox.Show("Template schedule is now saved onto database");
-        //            }
-
-        //        };
-
-        //    }
-
-        //    private void SetOnNumOfWeeksBoxChanged()
-        //    {
-
-        //        Mediator.GetInstance().NumOfWeekBoxChanged += (n, b, p) =>
-        //        {
-        //            numOfWeeks = n;
-        //            if (numOfWeeks > WeekNumber)
-        //            {
-        //                btnNextWeek.IsEnabled = true;
-        //            }
-        //            else if (numOfWeeks == WeekNumber)
-        //            {
-        //                btnNextWeek.IsEnabled = false;
-        //            }
-        //            else if (n < WeekNumber)
-        //            {
-        //                btnNextWeek.IsEnabled = false;
-        //                bool noShiftsWillBeLost = Shifts.TrueForAll(x => x.WeekNumber < n);
-        //                if (!noShiftsWillBeLost)
-        //                {
-        //                    MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Shifts placed in higher week numbers will be lost. Are you sure?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
-        //                    if (messageBoxResult == MessageBoxResult.Yes)
-        //                    {
-        //                        Shifts.RemoveAll(x => x.WeekNumber > n);
-        //                        txtWeekNum.Text = n.ToString();
-        //                        WeekNumber = n;
-        //                        btnNextWeek.IsEnabled = false;
-        //                        Clear();
-        //                        LoadShiftsIntoCalendar();
-        //                    }
-        //                    else if (messageBoxResult == MessageBoxResult.No)
-        //                    {
-        //                        b.SelectedIndex = p;
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    WeekNumber = n;
-        //                    txtWeekNum.Text = n.ToString();
-        //                }
-        //                if (n == 1)
-        //                {
-        //                    btnPrevWeek.IsEnabled = false;
-        //                }
-
-
-
-        //            }
-        //        };
-        //    }
-
-
-        //    public Color GetRandomColor()
-        //    {
-        //        return colors[rnd.Next(colors.Length)];
-        //    }
 
         private void NextWeek_Click(object sender, RoutedEventArgs e)
         {

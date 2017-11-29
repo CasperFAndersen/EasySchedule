@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace ServiceLibrary.Schedule
@@ -15,5 +16,9 @@ namespace ServiceLibrary.Schedule
 
         [OperationContract]
         void UpdateSchedule(Core.Schedule schedule);
+        [OperationContract]
+        List<Core.Schedule> GetSchedulesByDepartmentId(int departmentId);
+        [OperationContract]
+        Core.Schedule GenerateScheduleFromTemplateScheduleAndStartDate(Core.TemplateSchedule tempSchedule, DateTime startTime);
     }
 }

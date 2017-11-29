@@ -96,6 +96,16 @@ namespace DesktopClient
             }
         }
 
+        public delegate void GenerateScheduleButtonClickedHandler(Schedule schedule);
+        public event GenerateScheduleButtonClickedHandler GenerateScheduleButtonClicked;
+        public void OnGenerateScheduleButtonClicked(Schedule schedule)
+        {
+            if(GenerateScheduleButtonClicked != null)
+            {
+                GenerateScheduleButtonClicked(schedule);
+            }
+        }
+
         public event DepartmentBoxChangedHandler DepartmentBoxChanged;
 
         public void OnDepartmentBoxSelected(List<Employee> employees, Department department)

@@ -60,6 +60,9 @@
     <Compile Include="Views\EmployeeViews\ListOfEmployeeView.xaml.cs">
       <DependentUpon>ListOfEmployeeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Schedule\CreateScheduleView.xaml.cs">
+      <DependentUpon>CreateScheduleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Schedule\DateBox.xaml.cs">
       <DependentUpon>DateBox.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,10 @@
       <DependentUpon>ViewEditTemplateSchedule.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\EmployeeViews\ListOfEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Schedule\CreateScheduleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -291,6 +298,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ScheduleService\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ScheduleService\item3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ScheduleService\ScheduleService.wsdl" />

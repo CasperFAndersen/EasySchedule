@@ -9,7 +9,9 @@
     <GenerateInternalTypes>false</GenerateInternalTypes>
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
-    <CollectionMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
@@ -22,11 +24,12 @@
     <MetadataSource Address="http://localhost:9000/ServiceLibrary/ScheduleService/" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="08ba4c1b-0837-45d9-95ee-a9ac0ba9dd0a" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/?xsd=xsd3" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="ee1c7735-8704-4020-9ab4-c6001bd34434" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/?xsd=xsd1" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="14ebae6e-f9ce-496b-94da-67b9c2bfc1bd" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/?xsd=xsd0" />
     <MetadataFile FileName="item.disco" MetadataType="Disco" ID="d1faa9da-72c8-4482-b21f-32a85fd2ad16" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/?disco" />
     <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="1d32b0d5-5104-4c0a-adf8-d4ed42d5c777" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/?xsd=xsd2" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="ee1c7735-8704-4020-9ab4-c6001bd34434" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/?xsd=xsd1" />
     <MetadataFile FileName="ScheduleService.wsdl" MetadataType="Wsdl" ID="110962a1-e868-4b5d-ad4f-d3789ec1f1a2" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/?wsdl" />
-    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="14ebae6e-f9ce-496b-94da-67b9c2bfc1bd" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleService/?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

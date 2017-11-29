@@ -29,7 +29,9 @@ namespace DesktopClient
         ViewEditTemplateSchedule viewEditTemplateSchedule;
         CreateEmployeeView createEmployeeView;
         UpdateEmployeeView updateEmployeeView;
-        ScheduleCalendarView scheduleCalendarView;
+        ScheduleCalendarView scheduleCalendarViewEdit;
+        ScheduleCalendarView scheduleCalendarCreate;
+        CreateScheduleView createScheduleView;
         EmployeeColors empCol;
 
         public MainWindow()
@@ -42,7 +44,10 @@ namespace DesktopClient
             viewEditTemplateSchedule = new ViewEditTemplateSchedule();
             createEmployeeView = new CreateEmployeeView();
             updateEmployeeView = new UpdateEmployeeView();
-            scheduleCalendarView = new ScheduleCalendarView();
+            scheduleCalendarViewEdit = new ScheduleCalendarView();
+            scheduleCalendarCreate = new ScheduleCalendarView();
+            createScheduleView = new CreateScheduleView();
+            createEmployeeView = new CreateEmployeeView();
 
         }
 
@@ -79,8 +84,8 @@ namespace DesktopClient
 
         private void ViewScheduleMenuItemClicked(object sender, RoutedEventArgs e)
         {
-            scheduleCalendarView.ControlPanel.Content = new ViewScheduleView();
-            frame.Content = scheduleCalendarView;
+            scheduleCalendarViewEdit.ControlPanel.Content = new ViewScheduleView();
+            frame.Content = scheduleCalendarViewEdit;
             
             //ScheduleCalendarView scv = new ScheduleCalendarView();
             //ViewScheduleView vsv = new ViewScheduleView();
@@ -97,6 +102,13 @@ namespace DesktopClient
         public void UpdateEmployeeMenuItemClicked(object sender, RoutedEventArgs e)
         {
             frame.Content = updateEmployeeView;
+        }
+
+        private void CreateScheduleMenuItemClicked(object sender, RoutedEventArgs e)
+        {
+            scheduleCalendarCreate.ControlPanel.Content = createScheduleView;
+            
+            frame.Content = scheduleCalendarCreate;
         }
     }
 }

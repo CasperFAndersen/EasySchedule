@@ -12,6 +12,16 @@ namespace DesktopClient.Services
     {
         ScheduleServiceClient proxy = new ScheduleServiceClient();
 
+        public Schedule GenerateScheduleFromTemplateScheduleAndStartDate(TemplateSchedule tempSchedule, DateTime startTime)
+        {
+            return proxy.GenerateScheduleFromTemplateScheduleAndStartDate(tempSchedule, startTime);
+        }
+
+        public Task<Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(TemplateSchedule tempSchedule, DateTime startTime)
+        {
+            return proxy.GenerateScheduleFromTemplateScheduleAndStartDateAsync(tempSchedule, startTime);
+        }
+
         public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
         {
             return proxy.GetScheduleByDepartmentIdAndDate(departmentId, date);
@@ -20,6 +30,16 @@ namespace DesktopClient.Services
         public Task<Schedule> GetScheduleByDepartmentIdAndDateAsync(int departmentId, DateTime date)
         {
             return proxy.GetScheduleByDepartmentIdAndDateAsync(departmentId, date);
+        }
+
+        public List<Schedule> GetSchedulesByDepartmentId(int departmentId)
+        {
+            return proxy.GetSchedulesByDepartmentId(departmentId);
+        }
+
+        public Task<List<Schedule>> GetSchedulesByDepartmentIdAsync(int departmentId)
+        {
+            return proxy.GetSchedulesByDepartmentIdAsync(departmentId);
         }
 
         public void InsertScheduleIntoDb(Schedule schedule)
