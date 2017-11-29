@@ -11,5 +11,6 @@ namespace DatabaseAccess.Schedules
         void InsertScheduleIntoDb(Schedule schedule);
         List<Schedule> GetSchedulesByDepartmentId(int departmentId);
 
+        void UpdateSchedule(Schedule schedule, int id);
     }
 }

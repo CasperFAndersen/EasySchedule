@@ -32,6 +32,12 @@ namespace EasyScheduleWebClient.ScheduleService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/InsertScheduleIntoDb", ReplyAction="http://tempuri.org/IScheduleService/InsertScheduleIntoDbResponse")]
         System.Threading.Tasks.Task InsertScheduleIntoDbAsync(Core.Schedule schedule);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/UpdateSchedule", ReplyAction="http://tempuri.org/IScheduleService/UpdateScheduleResponse")]
+        void UpdateSchedule(Core.Schedule schedule, int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/UpdateSchedule", ReplyAction="http://tempuri.org/IScheduleService/UpdateScheduleResponse")]
+        System.Threading.Tasks.Task UpdateScheduleAsync(Core.Schedule schedule, int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +89,14 @@ namespace EasyScheduleWebClient.ScheduleService {
         
         public System.Threading.Tasks.Task InsertScheduleIntoDbAsync(Core.Schedule schedule) {
             return base.Channel.InsertScheduleIntoDbAsync(schedule);
+        }
+        
+        public void UpdateSchedule(Core.Schedule schedule, int id) {
+            base.Channel.UpdateSchedule(schedule, id);
+        }
+        
+        public System.Threading.Tasks.Task UpdateScheduleAsync(Core.Schedule schedule, int id) {
+            return base.Channel.UpdateScheduleAsync(schedule, id);
         }
     }
 }

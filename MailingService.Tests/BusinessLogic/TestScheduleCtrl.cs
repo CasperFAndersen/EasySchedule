@@ -10,7 +10,11 @@ namespace Tests.BusinessLogic
     [TestClass]
     public class TestScheduleCtrl
     {
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> EPIC-Opret_Vagtplan_MaybeTheNewest
         ScheduleController schCtrl;
         private IScheduleRepository mockScheduleRepository;
 
