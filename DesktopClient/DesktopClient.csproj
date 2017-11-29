@@ -57,6 +57,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="EmployeeColors.cs" />
+    <Compile Include="Views\EmployeeViews\ListOfEmployeeView.xaml.cs">
+      <DependentUpon>ListOfEmployeeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Schedule\DateBox.xaml.cs">
       <DependentUpon>DateBox.xaml</DependentUpon>
     </Compile>
@@ -106,7 +109,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Views\Employee\CreateEmployeeView.xaml.cs">
+    <Compile Include="Views\EmployeeViews\CreateEmployeeView.xaml.cs">
       <DependentUpon>CreateEmployeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TemplateSchedule\DayColumn.xaml.cs">
@@ -114,10 +117,10 @@
     </Compile>
     <Compile Include="DepartmentEvents.cs" />
     <Compile Include="EmployeeEvents.cs" />
-    <Compile Include="Views\Employee\EmployeeView.xaml.cs">
+    <Compile Include="Views\EmployeeViews\EmployeeView.xaml.cs">
       <DependentUpon>EmployeeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Employee\ManageEmployeeView.xaml.cs">
+    <Compile Include="Views\EmployeeViews\ManageEmployeeView.xaml.cs">
       <DependentUpon>ManageEmployeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\ScheduleProxy.cs" />
@@ -141,7 +144,7 @@
     <Compile Include="Views\TemplateSchedule\TimeCell.xaml.cs">
       <DependentUpon>TimeCell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Employee\UpdateEmployeeView.xaml.cs">
+    <Compile Include="Views\EmployeeViews\UpdateEmployeeView.xaml.cs">
       <DependentUpon>UpdateEmployeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TemplateSchedule\ViewCreateTemplateSchedule.xaml.cs">
@@ -150,6 +153,10 @@
     <Compile Include="Views\TemplateSchedule\ViewEditTemplateSchedule.xaml.cs">
       <DependentUpon>ViewEditTemplateSchedule.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\EmployeeViews\ListOfEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Schedule\DateBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -182,7 +189,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Employee\CreateEmployeeView.xaml">
+    <Page Include="Views\EmployeeViews\CreateEmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,7 +201,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Employee\EmployeeView.xaml">
+    <Page Include="Views\EmployeeViews\EmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -210,7 +217,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Employee\ManageEmployeeView.xaml">
+    <Page Include="Views\EmployeeViews\ManageEmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,7 +233,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Employee\UpdateEmployeeView.xaml">
+    <Page Include="Views\EmployeeViews\UpdateEmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

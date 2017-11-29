@@ -28,6 +28,7 @@
             </MenuItem>
             <MenuItem Header="Employees">
                 <MenuItem Name="CreateEmployee" Header="Create Employee" Click="CreateEmployeeMenuItemClicked"></MenuItem>
+                <MenuItem Name="UpdateEmployee" Header="Update Employee" Click="UpdateEmployeeMenuItemClicked"></MenuItem>
             </MenuItem>
         </Menu>
         <Frame Name="frame" Grid.Row="1"></Frame>
