@@ -51,7 +51,7 @@ namespace Tests.Services
             Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(3), StartDate = new DateTime(2017, 11, 27, 0, 0, 0, DateTimeKind.Utc), EndDate = new DateTime(2017, 12, 15) };
             schedule.Shifts.Add(shift1);
 
-            client.InsertScheduleIntoDb(schedule);
+            client.InsertScheduleToDb(schedule);
 
             schedule = client.GetScheduleByDepartmentIdAndDate(3, new DateTime(2017, 11, 28, 0, 0, 0));
 

@@ -7,7 +7,7 @@ namespace BusinessLogic
     public interface IScheduleController
     {
         Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date);
-        void InsertSchedule(Schedule schedule);
+        void InsertScheduleToDb(Schedule schedule);
         void UpdateSchedule(Schedule schedule);
         List<Schedule> GetSchedulesByDepartmentId(int departmentId);
         Schedule GetShiftsFromTemplateShift(TemplateSchedule templateSchedule, DateTime startTime);

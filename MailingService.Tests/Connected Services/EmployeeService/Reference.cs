@@ -8,6 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Core;
+
 namespace Tests.EmployeeService {
     
     
@@ -21,17 +25,23 @@ namespace Tests.EmployeeService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeeByUsername", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeeByUsernameResponse")]
         System.Threading.Tasks.Task<Core.Employee> GetEmployeeByUsernameAsync(string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentIdResponse")]
-        System.Collections.Generic.List<Core.Employee> GetListOfEmployeeByDepartmentId(int depId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetListOfEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetListOfEmployeesByDepartmentIdResponse")]
+        Core.Employee[] GetListOfEmployeesByDepartmentId(int departmentId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentIdResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetListOfEmployeeByDepartmentIdAsync(int depId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetListOfEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetListOfEmployeesByDepartmentIdResponse")]
+        System.Threading.Tasks.Task<Core.Employee[]> GetListOfEmployeesByDepartmentIdAsync(int departmentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentIdResponse")]
+        Core.Employee[] GetEmployeesByDepartmentId(int depId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentIdResponse")]
+        System.Threading.Tasks.Task<Core.Employee[]> GetEmployeesByDepartmentIdAsync(int depId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetAllEmployees", ReplyAction="http://tempuri.org/IEmployeeService/GetAllEmployeesResponse")]
-        System.Collections.Generic.List<Core.Employee> GetAllEmployees();
+        List<Employee> GetAllEmployees();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetAllEmployees", ReplyAction="http://tempuri.org/IEmployeeService/GetAllEmployeesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetAllEmployeesAsync();
+        Task<List<Employee>> GetAllEmployeesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/InsertEmployee", ReplyAction="http://tempuri.org/IEmployeeService/InsertEmployeeResponse")]
         void InsertEmployee(Core.Employee employee);
@@ -81,19 +91,27 @@ namespace Tests.EmployeeService {
             return base.Channel.GetEmployeeByUsernameAsync(username);
         }
         
-        public System.Collections.Generic.List<Core.Employee> GetListOfEmployeeByDepartmentId(int depId) {
-            return base.Channel.GetListOfEmployeeByDepartmentId(depId);
+        public Core.Employee[] GetListOfEmployeesByDepartmentId(int departmentId) {
+            return base.Channel.GetListOfEmployeesByDepartmentId(departmentId);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetListOfEmployeeByDepartmentIdAsync(int depId) {
-            return base.Channel.GetListOfEmployeeByDepartmentIdAsync(depId);
+        public System.Threading.Tasks.Task<Core.Employee[]> GetListOfEmployeesByDepartmentIdAsync(int departmentId) {
+            return base.Channel.GetListOfEmployeesByDepartmentIdAsync(departmentId);
         }
         
-        public System.Collections.Generic.List<Core.Employee> GetAllEmployees() {
+        public Core.Employee[] GetEmployeesByDepartmentId(int depId) {
+            return base.Channel.GetEmployeesByDepartmentId(depId);
+        }
+        
+        public System.Threading.Tasks.Task<Core.Employee[]> GetEmployeesByDepartmentIdAsync(int depId) {
+            return base.Channel.GetEmployeesByDepartmentIdAsync(depId);
+        }
+        
+        public List<Employee> GetAllEmployees() {
             return base.Channel.GetAllEmployees();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetAllEmployeesAsync() {
+        public System.Threading.Tasks.Task<List<Employee>> GetAllEmployeesAsync() {
             return base.Channel.GetAllEmployeesAsync();
         }
         

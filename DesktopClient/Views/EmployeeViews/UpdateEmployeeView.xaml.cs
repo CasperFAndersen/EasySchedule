@@ -1,21 +1,11 @@
-﻿using Core;
-using DesktopClient.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Core;
+using DesktopClient.Services;
 
-namespace DesktopClient
+namespace DesktopClient.Views.EmployeeViews
 {
     /// <summary>
     /// Interaction logic for UpdateEmployeeView.xaml
@@ -37,8 +27,8 @@ namespace DesktopClient
         private void LoadDepartmentList()
         {
             List<Department> listOfDepartments = new DepartmentEvents().LoadDeparmentList();
-            cBoxDepartment.ItemsSource = listOfDepartments;
-            cBoxDepartment.DisplayMemberPath = "Name";
+            CBoxDepartment.ItemsSource = listOfDepartments;
+            CBoxDepartment.DisplayMemberPath = "Name";
         }
 
         private void LoadEmployeeList(Department department)
@@ -57,15 +47,15 @@ namespace DesktopClient
                     EmployeeProxy empProxy = new EmployeeProxy();
 
                     Employee emp = (Employee)EmployeeListBox.SelectedItem;
-                    emp.Name = txtName.Text;
-                    emp.Mail = txtEmail.Text;
-                    emp.Phone = txtPhone.Text;
-                    emp.NumbOfHours = Convert.ToInt32(txtNoOfHours.Text);
-                    emp.IsAdmin = Convert.ToBoolean(chkIsAdmin.IsChecked);
-                    emp.IsEmployed = Convert.ToBoolean(chkIsActive.IsChecked);
-                    emp.Username = txtUsername.Text;
-                    emp.Password = txtPassword.Text;
-                    //Department selectedDepartment = (Department)cBoxDepartment.SelectedItem;
+                    emp.Name = TxtName.Text;
+                    emp.Mail = TxtEmail.Text;
+                    emp.Phone = TxtPhone.Text;
+                    emp.NumbOfHours = Convert.ToInt32(TxtNoOfHours.Text);
+                    emp.IsAdmin = Convert.ToBoolean(ChkIsAdmin.IsChecked);
+                    emp.IsEmployed = Convert.ToBoolean(ChkIsActive.IsChecked);
+                    emp.Username = TxtUsername.Text;
+                    emp.Password = TxtPassword.Text;
+                    //Department selectedDepartment = (Department)CBoxDepartment.SelectedItem;
                     //emp.DepartmentId = selectedDepartment.Id;
 
                     empProxy.UpdateEmployee(emp);
@@ -86,20 +76,20 @@ namespace DesktopClient
 
         public void ClearEmployeeView()
         {
-            txtName.Clear();
-            txtEmail.Clear();
-            txtPhone.Clear();
-            txtNoOfHours.Clear();
-            chkIsAdmin.IsChecked = false;
-            chkIsActive.IsChecked = true;
-            txtUsername.Clear();
-            txtPassword.Clear();
+            TxtName.Clear();
+            TxtEmail.Clear();
+            TxtPhone.Clear();
+            TxtNoOfHours.Clear();
+            ChkIsAdmin.IsChecked = false;
+            ChkIsActive.IsChecked = true;
+            TxtUsername.Clear();
+            TxtPassword.Clear();
         }
 
         private void cBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ClearEmployeeView();
-            Department tempDept = (Department)cBoxDepartment.SelectedItem;
+            Department tempDept = (Department)CBoxDepartment.SelectedItem;
             if(tempDept != null)
             {
                 LoadEmployeeList(tempDept);
@@ -117,14 +107,14 @@ namespace DesktopClient
             Employee emp = (Employee)EmployeeListBox.SelectedItem;
             if (emp != null)
             {
-                txtName.Text = emp.Name;
-                txtEmail.Text = emp.Mail;
-                txtPhone.Text = emp.Phone;
-                txtNoOfHours.Text = emp.NumbOfHours.ToString();
-                chkIsAdmin.IsChecked = emp.IsAdmin;
-                chkIsActive.IsChecked = emp.IsEmployed;
-                txtUsername.Text = emp.Username;
-                txtPassword.Text = emp.Password;
+                TxtName.Text = emp.Name;
+                TxtEmail.Text = emp.Mail;
+                TxtPhone.Text = emp.Phone;
+                TxtNoOfHours.Text = emp.NumbOfHours.ToString();
+                ChkIsAdmin.IsChecked = emp.IsAdmin;
+                ChkIsActive.IsChecked = emp.IsEmployed;
+                TxtUsername.Text = emp.Username;
+                TxtPassword.Text = emp.Password;
             }
             else
             {

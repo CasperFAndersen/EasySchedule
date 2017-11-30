@@ -10,16 +10,16 @@ namespace Tests.BusinessLogic
     [TestClass]
     public class TestScheduleController
     {
-        ScheduleController schCtrl;
+        ScheduleController scheduleController;
         private IScheduleRepository mockScheduleRepository;
-        TemplateScheduleController tempSchCtrl = new TemplateScheduleController();
-        TemplateShiftController tempShiftCtrl = new TemplateShiftController();
+        TemplateScheduleController templateScheduleController = new TemplateScheduleController();
+        TemplateShiftController templateShiftController = new TemplateShiftController();
 
         [TestInitialize]
         public void InitializeTest()
         {
             mockScheduleRepository = MockRepository.GenerateMock<IScheduleRepository>();
-            schCtrl = new ScheduleController(mockScheduleRepository);
+            scheduleController = new ScheduleController(mockScheduleRepository);
         }
 
         [TestMethod]
@@ -31,45 +31,41 @@ namespace Tests.BusinessLogic
 
             Assert.IsNotNull(schedule);
             Assert.AreEqual(3, schedule.Shifts.Count);
-
         }
-
 
         [TestMethod]
         public void TestInsertScheduleIntoDb()
         {
             Schedule s = new Schedule();
-            mockScheduleRepository.InsertScheduleIntoDb(s);
-            mockScheduleRepository.AssertWasCalled(x => x.InsertScheduleIntoDb(s));
+            mockScheduleRepository.InsertSchedule(s);
+            mockScheduleRepository.AssertWasCalled(x => x.InsertSchedule(s));
         }
 
         [TestMethod()]
         public void GetScheduleByDepartmentIdAndDateTest()
         {
-            schCtrl = new ScheduleController(new ScheduleRepository());
-
-            Schedule schedule = schCtrl.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
+            scheduleController = new ScheduleController(new ScheduleRepository());
+            Schedule schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
             Assert.IsNotNull(schedule);
             Assert.AreEqual(new DateTime(2017, 10, 30), schedule.StartDate);
             Assert.AreEqual(new DateTime(2017, 11, 26), schedule.EndDate);
             Assert.AreNotEqual(0, schedule.Shifts.Count);
-
         }
 
         [TestMethod]
         public void GetShiftsFromTemplateShiftTest()
         {
-            schCtrl = new ScheduleController(new ScheduleRepository());
-            Employee e = new Employee();
-            TemplateSchedule tSchedule = tempSchCtrl.CreateTemplateSchedule(10, "basicSchedule");
-            TemplateShift tempShift1 = tempShiftCtrl.CreateTempShift(DayOfWeek.Friday, 10.0, new TimeSpan(10, 0, 0), 1, e);
-            TemplateShift tempShift2 = tempShiftCtrl.CreateTempShift(DayOfWeek.Monday, 15.0, new TimeSpan(3, 1, 2), 2, e);
-            tSchedule.ListOfTempShifts.Add(tempShift1);
-            tSchedule.ListOfTempShifts.Add(tempShift2);
+            scheduleController = new ScheduleController(new ScheduleRepository());
+            Employee employee = new Employee();
+            TemplateSchedule templateSchedule = templateScheduleController.CreateTemplateSchedule(10, "basicSchedule");
+            TemplateShift templateShift = templateShiftController.CreateTemplateShift(DayOfWeek.Friday, 10.0, new TimeSpan(10, 0, 0), 1, employee);
+            TemplateShift templateShift2 = templateShiftController.CreateTemplateShift(DayOfWeek.Monday, 15.0, new TimeSpan(3, 1, 2), 2, employee);
+            templateSchedule.TemplateShifts.Add(templateShift);
+            templateSchedule.TemplateShifts.Add(templateShift2);
 
-            Schedule schedule = schCtrl.GetShiftsFromTemplateShift(tSchedule, DateTime.Now);
-            Assert.AreEqual(tSchedule.ListOfTempShifts.Count, schedule.Shifts.Count);
-            Assert.AreEqual(schedule.Shifts[1].Hours, tSchedule.ListOfTempShifts[1].Hours);
+            Schedule schedule = scheduleController.GetShiftsFromTemplateShift(templateSchedule, DateTime.Now);
+            Assert.AreEqual(templateSchedule.TemplateShifts.Count, schedule.Shifts.Count);
+            Assert.AreEqual(schedule.Shifts[1].Hours, templateSchedule.TemplateShifts[1].Hours);
         }
     }
 }

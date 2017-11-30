@@ -15,7 +15,7 @@ namespace DatabaseAccess.Schedules
         {
             Schedule schedule = new Schedule();
             schedule.Id = reader.GetInt32(0);
-            schedule.Shifts = new ShiftRepository().GetShiftsByScheduleID(schedule.Id);
+            schedule.Shifts = new ShiftRepository().GetShiftsByScheduleId(schedule.Id);
             schedule.StartDate = reader.GetDateTime(1);
             schedule.EndDate = reader.GetDateTime(2);
             schedule.Department = new DepartmentRepository().GetDepartmentById(reader.GetInt32(3));
@@ -41,20 +41,20 @@ namespace DatabaseAccess.Schedules
                 {
                     command.CommandText = "select * from Schedule WHERE departmentId = @param1";
                     command.Parameters.AddWithValue("@param1", departmentId);
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    while (reader.Read())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        Schedule schedule = BuildScheduleWithoutShifts(reader);
-                        schedules.Add(schedule);
+                        while (reader.Read())
+                        {
+                            Schedule schedule = BuildScheduleWithoutShifts(reader);
+                            schedules.Add(schedule);
+                        }
                     }
-                    return schedules;
                 }
             }
+            return schedules;
         }
 
-
-        public void InsertScheduleIntoDb(Schedule schedule)
+        public void InsertSchedule(Schedule schedule)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace DatabaseAccess.Schedules
                             int id = Convert.ToInt32(command.ExecuteScalar());
 
                             ShiftRepository shiftRep = new ShiftRepository();
-                            shiftRep.InsertShiftsIntoDb(schedule.Shifts, id, connection);
+                            shiftRep.InsertShifts(schedule.Shifts, id, connection);
 
                             scope.Complete();
                         }
@@ -98,7 +98,7 @@ namespace DatabaseAccess.Schedules
         public void UpdateSchedule(Schedule schedule)
         {
             ShiftRepository shiftRepository = new ShiftRepository();
-            shiftRepository.AddShiftsFromScheduleToDb(schedule);
+            shiftRepository.AddShiftsFromSchedule(schedule);
         }
     }
 }

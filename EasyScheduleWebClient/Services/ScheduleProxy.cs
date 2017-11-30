@@ -12,6 +12,16 @@ namespace EasyScheduleWebClient.Services
     {
         IScheduleService proxy = new ScheduleServiceClient();
 
+        public Schedule GenerateScheduleFromTemplateScheduleAndStartDate(TemplateSchedule templateSchedule, DateTime startTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(TemplateSchedule templateSchedule, DateTime startTime)
+        {
+            throw new NotImplementedException();
+        }
+
         public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
         {
             return proxy.GetScheduleByDepartmentIdAndDate(departmentId, date);
@@ -32,12 +42,12 @@ namespace EasyScheduleWebClient.Services
             throw new NotImplementedException();
         }
 
-        public void InsertScheduleIntoDb(Schedule schedule)
+        public void InsertSchedule(Schedule schedule)
         {
-            proxy.InsertScheduleIntoDb(schedule);
+            proxy.InsertSchedule(schedule);
         }
 
-        public Task InsertScheduleIntoDbAsync(Schedule schedule)
+        public Task InsertScheduleAsync(Schedule schedule)
         {
             throw new NotImplementedException();
         }

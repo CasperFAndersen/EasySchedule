@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DatabaseAccess.TemplateSchedule;
+using DatabaseAccess.TemplateSchedules;
 
 namespace BusinessLogic
 {
@@ -25,24 +25,24 @@ namespace BusinessLogic
             return new TemplateSchedule(numberOfWeeks, name);
         }
 
-        public IEnumerable<TemplateSchedule> GetAllTempSchedules()
+        public IEnumerable<TemplateSchedule> GetAllTemplateSchedules()
         {
-            return _templateScheduleRepository.GetAll();
+            return _templateScheduleRepository.GetAllTemplateSchedules();
         }
 
-        public TemplateSchedule FindTempScheduleByName(string name)
+        public TemplateSchedule FindTemplateScheduleByName(string name)
         {
-            return _templateScheduleRepository.FindTempScheduleByName(name);
+            return _templateScheduleRepository.FindTemplateScheduleByName(name);
         }
 
-        public void AddTempScheduleToDb(TemplateSchedule templateSchedule)
+        public void AddTemplateScheduleToDb(TemplateSchedule templateSchedule)
         {
-            _templateScheduleRepository.AddTempScheduleToDb(templateSchedule);
+            _templateScheduleRepository.AddTemplateScheduleToDatabase(templateSchedule);
         }
 
-        public void AddTempShift(TemplateShift templateShift)
+        public void AddTemplateShift(TemplateShift templateShift)
         {
-            _templateSchedule.ListOfTempShifts.Add(templateShift);
+            _templateSchedule.TemplateShifts.Add(templateShift);
         }
 
         public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)

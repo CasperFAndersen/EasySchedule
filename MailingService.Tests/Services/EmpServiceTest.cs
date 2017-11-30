@@ -36,7 +36,7 @@ namespace Tests.Services
         [TestMethod]
         public void TestEmployeeServiceInsertEmployee()
         {
-            Employee emp = new Employee()
+            Employee employee = new Employee()
             {
                 Name = "Anders Andersen",
                 IsAdmin = false,
@@ -49,15 +49,15 @@ namespace Tests.Services
                 Password = "GotMilk?"
             };
 
-            client.InsertEmployee(emp);
+            client.InsertEmployee(employee);
 
-            emp = client.GetEmployeeByUsername("AAndersen");
-            List<Employee> emps = client.GetAllEmployees();
+            employee = client.GetEmployeeByUsername("AAndersen");
+            List<Employee> employees = client.GetAllEmployees();
 
-            Assert.IsNotNull(emp);
-            Assert.AreEqual("Anders Andersen", emp.Name);
-            Assert.AreEqual(6, emp.Id);
-            Assert.AreEqual(emps.Count, 6);
+            Assert.IsNotNull(employee);
+            Assert.AreEqual("Anders Andersen", employee.Name);
+            Assert.AreEqual(6, employee.Id);
+            Assert.AreEqual(employees.Count, 6);
 
         }
 

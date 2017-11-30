@@ -120,12 +120,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\TempScheduleService\Reference.cs">
+    <Compile Include="Connected Services\TemplateScheduleService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\TempShiftService\Reference.cs">
+    <Compile Include="Connected Services\TemplateShiftService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -150,12 +150,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
+    <None Include="Connected Services\TemplateShiftService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\TemplateShiftService\configuration.svcinfo" />
+    <None Include="Connected Services\TemplateShiftService\configuration91.svcinfo" />
+    <None Include="Connected Services\TemplateShiftService\item.disco" />
+    <None Include="Connected Services\TemplateScheduleService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\TemplateScheduleService\configuration.svcinfo" />
+    <None Include="Connected Services\TemplateScheduleService\configuration91.svcinfo" />
+    <None Include="Connected Services\TemplateScheduleService\item.disco" />
     <None Include="Connected Services\ScheduleService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Connected Services\ScheduleService\configuration.svcinfo" />
     <None Include="Connected Services\ScheduleService\configuration91.svcinfo" />
+    <None Include="Connected Services\ScheduleService\item.disco" />
     <None Include="Connected Services\EmployeeService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -168,14 +183,15 @@
     </None>
     <None Include="Connected Services\DepartmentService\configuration.svcinfo" />
     <None Include="Connected Services\DepartmentService\configuration91.svcinfo" />
-    <None Include="Connected Services\DepartmentService\Core.xsd">
+    <None Include="Connected Services\DepartmentService\DepartmentService.wsdl" />
+    <None Include="Connected Services\DepartmentService\item.disco" />
+    <None Include="Connected Services\DepartmentService\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DepartmentService\service.wsdl" />
-    <None Include="Connected Services\DepartmentService\service.xsd">
+    <None Include="Connected Services\DepartmentService\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DepartmentService\service1.xsd">
+    <None Include="Connected Services\DepartmentService\item2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\EmployeeService\Core.xsd">
@@ -188,54 +204,45 @@
     <None Include="Connected Services\EmployeeService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ScheduleService\Core.xsd">
+    <None Include="Connected Services\ScheduleService\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ScheduleService\service.wsdl" />
-    <None Include="Connected Services\ScheduleService\service.xsd">
+    <None Include="Connected Services\ScheduleService\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ScheduleService\service1.xsd">
+    <None Include="Connected Services\ScheduleService\item2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempShiftService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Connected Services\TempShiftService\configuration.svcinfo" />
-    <None Include="Connected Services\TempShiftService\configuration91.svcinfo" />
-    <None Include="Connected Services\TempScheduleService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Connected Services\TempScheduleService\configuration.svcinfo" />
-    <None Include="Connected Services\TempScheduleService\configuration91.svcinfo" />
-    <None Include="Connected Services\TempScheduleService\Core.xsd">
+    <None Include="Connected Services\ScheduleService\item3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempScheduleService\service.wsdl" />
-    <None Include="Connected Services\TempScheduleService\service.xsd">
+    <None Include="Connected Services\ScheduleService\ScheduleService.wsdl" />
+    <None Include="Connected Services\TemplateScheduleService\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempScheduleService\service1.xsd">
+    <None Include="Connected Services\TemplateScheduleService\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempScheduleService\System.xsd">
+    <None Include="Connected Services\TemplateScheduleService\item2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempShiftService\Core.xsd">
+    <None Include="Connected Services\TemplateScheduleService\item3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempShiftService\service.wsdl" />
-    <None Include="Connected Services\TempShiftService\service.xsd">
+    <None Include="Connected Services\TemplateScheduleService\TemplateScheduleService.wsdl" />
+    <None Include="Connected Services\TemplateShiftService\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempShiftService\service1.xsd">
+    <None Include="Connected Services\TemplateShiftService\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempShiftService\System.xsd">
+    <None Include="Connected Services\TemplateShiftService\item2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\TemplateShiftService\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TemplateShiftService\TemplateShiftService.wsdl" />
     <None Include="Properties\DataSources\Core.Department.datasource" />
     <None Include="Properties\DataSources\Core.Employee.datasource" />
     <None Include="Properties\DataSources\Core.TemplateSchedule.datasource" />
@@ -267,8 +274,8 @@
     <WCFMetadataStorage Include="Connected Services\DepartmentService\" />
     <WCFMetadataStorage Include="Connected Services\EmployeeService\" />
     <WCFMetadataStorage Include="Connected Services\ScheduleService\" />
-    <WCFMetadataStorage Include="Connected Services\TempScheduleService\" />
-    <WCFMetadataStorage Include="Connected Services\TempShiftService\" />
+    <WCFMetadataStorage Include="Connected Services\TemplateScheduleService\" />
+    <WCFMetadataStorage Include="Connected Services\TemplateShiftService\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

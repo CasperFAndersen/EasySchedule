@@ -28,9 +28,9 @@ namespace BusinessLogic
             return _employeeRepository.GetEmployeeByUsername(username);
         }
 
-        public List<Employee> GetListOfEmployeesByDepartmentId(int departmentId)
+        public List<Employee> GetEmployeesByDepartmentId(int departmentId)
         {
-            return _employeeRepository.GetListOfEmployeesByDepartmentId(departmentId);
+            return _employeeRepository.GetEmployeesByDepartmentId(departmentId);
         }
 
         public bool ValidatePassword(string username, string password)

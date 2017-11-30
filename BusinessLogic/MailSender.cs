@@ -22,11 +22,10 @@ namespace BusinessLogic
             RestRequest request = new RestRequest();
             request.AddParameter("domain", "mailgun.itkrabbe.dk", ParameterType.UrlSegment);
             request.Resource = "{domain}/messages";
-            request.AddParameter("from", "Excited User <mailgun@itkrabbe.dk>");
+            request.AddParameter("from", "EasySchedule <mailgun@itkrabbe.dk>");
             request.AddParameter("to", "rivercola9800@gmail.com");
-            request.AddParameter("to", "stefankrabbe54@gmail.com");
-            request.AddParameter("subject", "Hello");
-            request.AddParameter("text", "Arne er sej!!!!!!");
+            request.AddParameter("subject", "Test subject");
+            request.AddParameter("text", "Test message");
             request.Method = Method.POST;
             return client.Execute(request);
         }
@@ -41,7 +40,7 @@ namespace BusinessLogic
             RestRequest request = new RestRequest();
             request.AddParameter("domain", "mailgun.itkrabbe.dk", ParameterType.UrlSegment);
             request.Resource = "{domain}/messages";
-            request.AddParameter("from", "Excited User <mailgun@itkrabbe.dk>");
+            request.AddParameter("from", "EasySchedule <mailgun@itkrabbe.dk>");
             request.AddParameter("to", recieverEmail);
             request.AddParameter("subject", subject);
             request.AddParameter("text", message);

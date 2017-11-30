@@ -5,79 +5,80 @@ using DatabaseAccess;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using DatabaseAccess.Employees;
-using DatabaseAccess.TemplateSchedule;
+using DatabaseAccess.TemplateSchedules;
+using DatabaseAccess.TemplateShifts;
 
 namespace Tests.DatabaseAccess
 {
     /// <summary>
-    /// Summary description for TempScheduleDBTest
+    /// Summary description for TemplateScheduleDBTest
     /// </summary>
     [TestClass]
     public class TemplateScheduleRepositoryTest
     {
         [TestMethod]
-        public void TestCreateTempSchedule()
+        public void CreateTemplateScheduleTest()
         {
-            //TempScheduleController tSC = new TempScheduleController();
-            //int numberOfCurrentTempSchedules = tSC.GetAllTempSchedules().Count();
-            TemplateScheduleRepository tScheduleRepository = new TemplateScheduleRepository();
-            int numberOfCurrentTempSchedules = tScheduleRepository.GetAll().Count();
+            //TemplateScheduleController tSC = new TemplateScheduleController();
+            //int numberOfCurrentTemplateSchedules = tSC.GetAllTemplateSchedules().Count();
+            TemplateScheduleRepository templateScheduleRepository = new TemplateScheduleRepository();
+            int numberOfCurrentTemplateSchedules = templateScheduleRepository.GetAllTemplateSchedules().Count();
 
-            TemplateSchedule tSchedule = new TemplateSchedule(4, "DummySchedule", 1);
+            TemplateSchedule templateSchedule = new TemplateSchedule(4, "DummySchedule", 1);
 
-            tScheduleRepository.AddTempScheduleToDb(tSchedule);
+            templateScheduleRepository.AddTemplateScheduleToDatabase(templateSchedule);
 
-            Assert.AreNotEqual(numberOfCurrentTempSchedules, tScheduleRepository.GetAll().Count());
-            Assert.AreEqual(tScheduleRepository.FindTempScheduleByName("DummySchedule").Name, tSchedule.Name);
+            Assert.AreNotEqual(numberOfCurrentTemplateSchedules, templateScheduleRepository.GetAllTemplateSchedules().Count());
+            Assert.AreEqual(templateScheduleRepository.FindTemplateScheduleByName("DummySchedule").Name, templateSchedule.Name);
         }
 
         [TestMethod]
-        public void TestAddTempShiftToTempScheldule()
+        public void TestAddTemplateShiftToTemplateScheldule()
         {
-            TemplateShiftRepository tempShiftRepository = new TemplateShiftRepository();
-            TemplateScheduleRepository tempScheduleRepository = new TemplateScheduleRepository();
-            TemplateSchedule tSchedule = new TemplateSchedule(4, "DummySchedule", 1);
-            TemplateShift TShift = new TemplateShift(DayOfWeek.Monday, 5, new TimeSpan(10,0,0), 1, new Employee() { Id=3});
-            int beforeInsert = tempShiftRepository.GetAllShifts().Count();
-            tSchedule.ListOfTempShifts.Add(TShift);
+            TemplateShiftRepository templateShiftRepository = new TemplateShiftRepository();
+            TemplateScheduleRepository templateScheduleRepository = new TemplateScheduleRepository();
+            TemplateSchedule templateSchedule = new TemplateSchedule(4, "DummySchedule", 1);
+            TemplateShift templateShift = new TemplateShift(DayOfWeek.Monday, 5, new TimeSpan(10, 0, 0), 1, new Employee() { Id = 3 });
+            int beforeInsert = templateShiftRepository.GetAllTemplateShifts().Count();
+            templateSchedule.TemplateShifts.Add(templateShift);
 
-            tempScheduleRepository.AddTempScheduleToDb(tSchedule);
-            Assert.AreEqual(beforeInsert, tempShiftRepository.GetAllShifts().Count() - 1);
+            templateScheduleRepository.AddTemplateScheduleToDatabase(templateSchedule);
+            Assert.AreEqual(beforeInsert, templateShiftRepository.GetAllTemplateShifts().Count() - 1);
 
         }
 
         [TestMethod]
         public void TestGetAllSchedules()
         {
-            TemplateScheduleRepository tempScheduleRepository = new TemplateScheduleRepository();
-            List<TemplateSchedule> tempSchedules = tempScheduleRepository.GetAll().ToList();
-            Assert.IsNotNull(tempScheduleRepository);
+            TemplateScheduleRepository templateScheduleRepository = new TemplateScheduleRepository();
+            List<TemplateSchedule> templateSchedules = templateScheduleRepository.GetAllTemplateSchedules().ToList();
+            Assert.IsNotNull(templateScheduleRepository);
 
         }
 
         [TestMethod]
-        public void TestUpdateTempSchedule()
+        public void TestUpdateTemplateSchedule()
         {
             DBSetUp.SetUpDB();
             TemplateScheduleRepository tScheduleRepository = new TemplateScheduleRepository();
-            TemplateSchedule templateSchedule = tScheduleRepository.FindTempScheduleByName("KolonialBasis");
-            TemplateShift tempShift1 = templateSchedule.ListOfTempShifts[0];
-            tempShift1.StartTime = new TimeSpan(8, 0, 0);
-            tempShift1.Hours = 8;
+            TemplateSchedule templateSchedule = tScheduleRepository.FindTemplateScheduleByName("KolonialBasis");
+            TemplateShift templateShift = templateSchedule.TemplateShifts[0];
+            templateShift.StartTime = new TimeSpan(8, 0, 0);
+            templateShift.Hours = 8;
 
-            TemplateShift tempShift2 = new TemplateShift() { StartTime = new TimeSpan(12, 0, 0), WeekNumber = 1 ,Hours = 6, Employee = new EmployeeRepository().FindEmployeeById(5), TemplateScheduleId = templateSchedule.Id };
-            templateSchedule.ListOfTempShifts.Add(tempShift2);
+            TemplateShift templateShift2 = new TemplateShift() { StartTime = new TimeSpan(12, 0, 0), WeekNumber = 1, Hours = 6, Employee = new EmployeeRepository().FindEmployeeById(5), TemplateScheduleId = templateSchedule.Id };
+            templateSchedule.TemplateShifts.Add(templateShift2);
 
             tScheduleRepository.UpdateTemplateSchedule(templateSchedule);
 
-            templateSchedule = tScheduleRepository.FindTempScheduleByName("KolonialBasis");
+            templateSchedule = tScheduleRepository.FindTemplateScheduleByName("KolonialBasis");
 
             Assert.IsNotNull(templateSchedule);
-            Assert.AreEqual(2, templateSchedule.ListOfTempShifts.Count);
-            Assert.AreEqual(new TimeSpan(8, 0, 0), templateSchedule.ListOfTempShifts[0].StartTime);
-            Assert.AreEqual(new TimeSpan(12, 0, 0), templateSchedule.ListOfTempShifts[1].StartTime);
-            Assert.AreEqual(8, templateSchedule.ListOfTempShifts[0].Hours);
-            Assert.AreEqual(6, templateSchedule.ListOfTempShifts[1].Hours);
+            Assert.AreEqual(2, templateSchedule.TemplateShifts.Count);
+            Assert.AreEqual(new TimeSpan(8, 0, 0), templateSchedule.TemplateShifts[0].StartTime);
+            Assert.AreEqual(new TimeSpan(12, 0, 0), templateSchedule.TemplateShifts[1].StartTime);
+            Assert.AreEqual(8, templateSchedule.TemplateShifts[0].Hours);
+            Assert.AreEqual(6, templateSchedule.TemplateShifts[1].Hours);
             DBSetUp.SetUpDB();
 
         }

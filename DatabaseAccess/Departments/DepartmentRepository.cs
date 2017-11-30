@@ -18,18 +18,17 @@ namespace DatabaseAccess.Departments
 
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                using (SqlCommand cmd = connection.CreateCommand())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT * FROM Department";
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
+                    command.CommandText = "SELECT * FROM Department";
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        departments.Add(BuildDepartmentObject(reader));
+                        while (reader.Read())
+                        {
+                            Department department = BuildDepartmentObject(reader);
+                            departments.Add(department);
+                        }
                     }
-
-                    connection.Close();
-
                 }
             }
             return departments;
@@ -38,25 +37,21 @@ namespace DatabaseAccess.Departments
         public Department GetDepartmentById(int id)
         {
             Department department = new Department();
-
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                using (SqlCommand cmd = connection.CreateCommand())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT * FROM Department WHERE Department.id = @param1;";
+                    command.CommandText = "SELECT * FROM Department WHERE Department.id = @param1;";
                     SqlParameter param1 = new SqlParameter("@param1", SqlDbType.Int);
                     param1.Value = id;
-
-                    cmd.Parameters.Add(param1);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
+                    command.Parameters.Add(param1);
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        department = BuildDepartmentObject(reader);
+                        while (reader.Read())
+                        {
+                            department = BuildDepartmentObject(reader);
+                        }
                     }
-
-                    connection.Close();
                 }
             }
             return department;
@@ -71,7 +66,7 @@ namespace DatabaseAccess.Departments
             department.Email = reader["email"].ToString();
             department.Phone = reader["phone"].ToString();
             department.WorkplaceId = Convert.ToInt32(reader["workplaceId"].ToString());
-            department.Employees = new EmployeeRepository().GetListOfEmployeesByDepartmentId(department.Id);
+            department.Employees = new EmployeeRepository().GetEmployeesByDepartmentId(department.Id);
             return department;
         }
     }

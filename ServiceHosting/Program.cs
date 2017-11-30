@@ -1,11 +1,11 @@
 using ServiceLibrary;
 using System;
 using System.ServiceModel;
-using ServiceLibrary.Department;
-using ServiceLibrary.Employee;
-using ServiceLibrary.Schedule;
-using ServiceLibrary.TemplateSchedule;
-using ServiceLibrary.TemplateShift;
+using ServiceLibrary.Departments;
+using ServiceLibrary.Employees;
+using ServiceLibrary.Schedules;
+using ServiceLibrary.TemplateSchedules;
+using ServiceLibrary.TemplateShifts;
 
 namespace ServiceHosting
 {
@@ -13,8 +13,8 @@ namespace ServiceHosting
     {
         static ServiceHost employeeHost = new ServiceHost(typeof(EmployeeService));
         static ServiceHost scheduleHost = new ServiceHost(typeof(ScheduleService));
-        static ServiceHost tempScheduleHost = new ServiceHost(typeof(TemplateScheduleService));
-        static ServiceHost tempShiftHost = new ServiceHost(typeof(TemplateShiftService));
+        static ServiceHost templateScheduleHost = new ServiceHost(typeof(TemplateScheduleService));
+        static ServiceHost templateShiftHost = new ServiceHost(typeof(TemplateShiftService));
         static ServiceHost departmentHost = new ServiceHost(typeof(DepartmentService));
 
         static void Main(string[] args)
@@ -35,10 +35,10 @@ namespace ServiceHosting
 
         static void CloseConnections()
         {
-            tempShiftHost.Close();
+            templateShiftHost.Close();
             employeeHost.Close();
             scheduleHost.Close();
-            tempScheduleHost.Close();
+            templateScheduleHost.Close();
             departmentHost.Close();
         }
 
@@ -58,24 +58,23 @@ namespace ServiceHosting
 
         static void TemplateScheduleHost()
         {
-            Console.WriteLine("TemplateScheduleHost Console Based WCF Host");
-            tempScheduleHost.Open();
-            DisplayHostInfo(tempScheduleHost);
+            templateScheduleHost.Open();
+            DisplayHostInfo(templateScheduleHost);
+            Console.WriteLine("Template Schedule Service is now running");
         }
 
         static void TemplateShiftHost()
         {
-            Console.WriteLine("TemplateShiftHost Console Based WCF Host");
-            tempShiftHost.Open();
-            DisplayHostInfo(tempShiftHost);
+            templateShiftHost.Open();
+            DisplayHostInfo(templateShiftHost);
+            Console.WriteLine("Template Shift Service is now running");
 
         }
         static void DepartmentHost()
         {
-            Console.WriteLine("TemplateShiftHost Console Based WCF Host");
             departmentHost.Open();
             DisplayHostInfo(departmentHost);
-
+            Console.WriteLine("Department Service is now running");
         }
 
         static void DisplayHostInfo(ServiceHost host)

@@ -35,7 +35,7 @@ namespace Tests.DatabaseAccess
             int beforeInsert = schRep.GetSchedulesByDepartmentId(3).Count;
             int afterInsert = 0;
 
-            schRep.InsertScheduleIntoDb(schedule);
+            schRep.InsertSchedule(schedule);
             afterInsert = schRep.GetSchedulesByDepartmentId(3).Count;
             Assert.AreEqual(beforeInsert, afterInsert - 1);
 

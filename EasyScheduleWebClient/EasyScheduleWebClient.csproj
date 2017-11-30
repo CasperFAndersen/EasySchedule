@@ -194,13 +194,13 @@
     </None>
     <None Include="Connected Services\ScheduleService\configuration91.svcinfo" />
     <None Include="Connected Services\ScheduleService\configuration.svcinfo" />
-    <None Include="Connected Services\EmployeeService\configuration91.svcinfo" />
-    <None Include="Connected Services\EmployeeService\configuration.svcinfo" />
-    <None Include="Connected Services\EmployeeService\Reference.svcmap">
+    <None Include="Connected Services\ScheduleService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Connected Services\ScheduleService\Reference.svcmap">
+    <None Include="Connected Services\EmployeeService\configuration91.svcinfo" />
+    <None Include="Connected Services\EmployeeService\configuration.svcinfo" />
+    <None Include="Connected Services\EmployeeService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -230,6 +230,9 @@
     </None>
     <Content Include="Properties\DataSources\Core.Employee.datasource" />
     <Content Include="Properties\DataSources\Core.Schedule.datasource" />
+    <None Include="Connected Services\ScheduleService\System.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />

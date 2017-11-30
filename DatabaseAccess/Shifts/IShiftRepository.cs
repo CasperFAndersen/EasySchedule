@@ -10,7 +10,7 @@ namespace DatabaseAccess.Shifts
 {
     public interface IShiftRepository
     {
-        List<ScheduleShift> GetShiftsByScheduleID(int scheduleId);
+        List<ScheduleShift> GetShiftsByScheduleId(int scheduleId);
         List<ScheduleShift> GetShiftsByEmployeeId(int employeeId);
         ScheduleShift BuildShiftObject(SqlDataReader reader);
     }

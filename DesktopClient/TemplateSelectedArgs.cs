@@ -4,6 +4,6 @@ namespace DesktopClient
 {
     public class TemplateSelectedArgs
     {
-        public TemplateSchedule TempSchedule { get; set; }
+        public TemplateSchedule TemplateSchedule { get; set; }
     }
 }

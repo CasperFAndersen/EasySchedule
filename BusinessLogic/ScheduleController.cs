@@ -30,14 +30,14 @@ namespace BusinessLogic
                     schedule = temporarySchedule;
                 }
             }
-            schedule.Shifts = new ShiftRepository().GetShiftsByScheduleID(schedule.Id);
+            schedule.Shifts = new ShiftRepository().GetShiftsByScheduleId(schedule.Id);
 
             return schedule;
         }
 
-        public void InsertSchedule(Schedule schedule)
+        public void InsertScheduleToDb(Schedule schedule)
         {
-            _scheduleRepository.InsertScheduleIntoDb(schedule);
+            _scheduleRepository.InsertSchedule(schedule);
         }
 
         public void UpdateSchedule(Schedule schedule)
@@ -53,7 +53,7 @@ namespace BusinessLogic
         public Schedule GetShiftsFromTemplateShift(TemplateSchedule templateSchedule, DateTime startTime)
         {
             Schedule schedule = new Schedule();
-            foreach (TemplateShift templateShift in templateSchedule.ListOfTempShifts)
+            foreach (TemplateShift templateShift in templateSchedule.TemplateShifts)
             {
                 ScheduleShift shift = new ScheduleShift();
                 shift.Employee = templateShift.Employee;

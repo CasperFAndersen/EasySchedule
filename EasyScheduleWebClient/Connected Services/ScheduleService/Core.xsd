@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Core" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Core" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Core" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Core" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/System" />
   <xs:complexType name="Schedule">
     <xs:sequence>
       <xs:element minOccurs="0" name="Department" nillable="true" type="tns:Department" />
@@ -40,7 +42,6 @@
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Employee" nillable="true" type="tns:Employee" />
@@ -74,4 +75,33 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfSchedule" nillable="true" type="tns:ArrayOfSchedule" />
+  <xs:complexType name="TemplateSchedule">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="TemplateShifts" nillable="true" type="tns:ArrayOfTemplateShift" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NoOfWeeks" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TemplateSchedule" nillable="true" type="tns:TemplateSchedule" />
+  <xs:complexType name="ArrayOfTemplateShift">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateShift" nillable="true" type="tns:TemplateShift" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTemplateShift" nillable="true" type="tns:ArrayOfTemplateShift" />
+  <xs:complexType name="TemplateShift">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Shift">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StartTime" type="ser:duration" />
+          <xs:element minOccurs="0" name="TemplateScheduleId" type="xs:int" />
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="WeekDay" type="q1:DayOfWeek" />
+          <xs:element minOccurs="0" name="WeekNumber" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TemplateShift" nillable="true" type="tns:TemplateShift" />
 </xs:schema>

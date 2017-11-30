@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="DesktopClient.Views.TemplateScheduleViews.ViewCreateTemplateSchedule"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DesktopClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid  Background="White" Margin="0,0,0,0" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+            <RowDefinition MinHeight="20"/>
+            <RowDefinition/>
+            <RowDefinition MinHeight="20"/>
+            <RowDefinition/>
+            <RowDefinition MinHeight="20"/>
+            <RowDefinition/>
+            <RowDefinition MinHeight="20"/>
+
+            <RowDefinition MinHeight="70"/>
+
+
+        </Grid.RowDefinitions>
+        <Line Grid.ColumnSpan="2" Fill="Black"></Line>
+        <ComboBox Name="CBoxDepartment" Grid.Column="1" Grid.Row="4" SelectionChanged="CBoxDepartment_SelectionChanged">
+            <ComboBox.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FFF0F0F0" Offset="0.16"/>
+                    <GradientStop Color="#FFE5E5E5" Offset="0.686"/>
+                    <GradientStop Color="#FFEDEDED" Offset="0.401"/>
+                    <GradientStop Color="#FFE8E8E8" Offset="0.462"/>
+                    <GradientStop Color="#FFB9AFAF" Offset="0.551"/>
+                </RadialGradientBrush>
+            </ComboBox.Background>
+        </ComboBox>
+        <TextBox x:Name="TxtBoxTemplateScheduleName" Text=""  Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="Department:" Grid.Row="4" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"  FontWeight="Bold" FontFamily="Segoe UI Black"/>
+        <Label Content="TemplateSchedule Name:" Grid.Row="2" VerticalAlignment="Center" Height="33" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Segoe UI Black" FontWeight="Bold" Margin="0,0.4,0.4,0.2" />
+        <ComboBox Name="NoOfWeeks" SelectedIndex="0" Grid.Column="1" Grid.Row="6" SelectionChanged="NoOfWeeks_SelectionChanged"></ComboBox>
+        <Label Content="Weeks:"  Grid.Row="6"   FontFamily="Segoe UI Black" FontWeight="Bold" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Button x:Name="BtnSaveTemplateSchedule" Content="Save" Grid.Row="10" Click="BtnSaveTemplateSchedule_Click" Grid.Column="1" MaxWidth="150" MaxHeight="30" HorizontalContentAlignment="Center" Margin="0,10,0,0" HorizontalAlignment="Right" MinWidth="86"/>
+        <!--<ComboBox Name="CBoxDepartment" MaxHeight="20" SelectionChanged="CBoxDepartment_SelectionChanged"  HorizontalAlignment="Left" Margin="150,68,0,113.1" Width="150" Grid.ColumnSpan="2"/>
+        <Button x:Name="BtnSaveTemplateSchedule" Content="Save" Margin="64.6,182,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.773,1.7" Click="BtnSaveTemplateSchedule_Click" Grid.Column="1" Grid.RowSpan="2"/>
+        <TextBox x:Name="TxtBoxTemplateScheduleName" HorizontalAlignment="Right" Height="22" Margin="0,22,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="147" Grid.Column="1"/>
+        -->
+        <!--<TextBox x:Name="TxtBoxNoOfWeeks" HorizontalAlignment="Left" Height="23" Margin="89.6,106,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="60" Grid.Column="1"/>-->
+        <!--
+        <ComboBox Name="NoOfWeeks" HorizontalAlignment="Left" Height="23" Margin="89.6,106,0,0"  Text="TextBox" VerticalAlignment="Top" Width="60" Grid.Column="1"></ComboBox>
+        <Label Content="Basisplan navn:" Margin="43,22,17.4,0" VerticalAlignment="Top" Height="24"/>
+        <Label Content="Afdeling:" Margin="70,68,17.4,58" Grid.RowSpan="2" />
+        <Label Content="Antal af uger:" Margin="50,106,0.4,16" RenderTransformOrigin="0.494,-0.154" Grid.RowSpan="2"/>-->
+    </Grid>
+</UserControl>

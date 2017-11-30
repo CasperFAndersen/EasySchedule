@@ -32,11 +32,9 @@ namespace DesktopClient.Services
             return proxy.GetEmployeeByUsernameAsync(username);
         }
 
-
-
-        public List<Employee> GetListOfEmployeeByDepartmentId(int depId)
+        public List<Employee> GetEmployeesByDepartmentId(int depId)
         {
-            return proxy.GetListOfEmployeeByDepartmentId(depId);
+            return proxy.GetEmployeesByDepartmentId(depId);
         }
 
         public void InsertEmployee(Employee employee)
@@ -59,7 +57,7 @@ namespace DesktopClient.Services
             throw new NotImplementedException();
         }
 
-        Task<List<Employee>> IEmployeeService.GetListOfEmployeeByDepartmentIdAsync(int depId)
+        Task<List<Employee>> IEmployeeService.GetEmployeesByDepartmentIdAsync(int depId)
         {
             throw new NotImplementedException();
         }

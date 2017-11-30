@@ -15,7 +15,7 @@ namespace Tests.DatabaseAccess
         {
             DBSetUp.SetUpDB();
 
-            List<ScheduleShift> shifts = shiftRep.GetShiftsByScheduleID(1);
+            List<ScheduleShift> shifts = shiftRep.GetShiftsByScheduleId(1);
 
             Assert.IsNotNull(shifts);
             Assert.AreNotEqual(0, shifts.Count);

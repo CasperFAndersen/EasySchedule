@@ -4,6 +4,6 @@ namespace BusinessLogic
 {
     public interface ITemplateShiftControlller
     {
-        TemplateShift FindTempShiftById(int tempShiftId);
+        TemplateShift FindTemplateShiftById(int templateShiftId);
     }
 }
