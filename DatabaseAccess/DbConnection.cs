@@ -10,32 +10,31 @@ using System.Data;
 
 namespace DatabaseAccess
 {
-    public class DbConnectionADO : IDisposable
+    public class DbConnection : IDisposable
     {
-        private SqlConnection connection;
+        private readonly SqlConnection _connection;
         public string Server { get; set; }
         public string Database { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
 
-        public DbConnectionADO()
+        public DbConnection()
         {
-            connection = new SqlConnection(KrakaConnectionString());
+            _connection = new SqlConnection(KrakaConnectionString());
         }
 
         public SqlConnection GetConnection()
         {
-            connection.Open();
-            return connection;
+            _connection.Open();
+            return _connection;
 
         }
-
 
         public void OpenConnection()
         {
             try
             {
-                connection.Open();
+                _connection.Open();
             }
             catch (SqlException e)
             {
@@ -48,7 +47,7 @@ namespace DatabaseAccess
         {
             try
             {
-                connection.Close();
+                _connection.Close();
             }
             catch (SqlException e)
             {
@@ -59,12 +58,12 @@ namespace DatabaseAccess
 
         public bool IsConnected()
         {
-            return connection.State == ConnectionState.Open;
+            return _connection.State == ConnectionState.Open;
         }
 
         public bool IsDisconnected()
         {
-            return connection.State == ConnectionState.Closed;
+            return _connection.State == ConnectionState.Closed;
         }
 
         public string LocalConnectionString()
@@ -85,7 +84,7 @@ namespace DatabaseAccess
 
         public void Dispose()
         {
-            connection.Close();
+            _connection.Close();
         }
     }
 }

@@ -10,15 +10,12 @@ namespace Core
     [DataContract]
     public class ScheduleShift : Shift
     {
-
         [DataMember]
         public DateTime StartTime { get; set; }
-
 
         public ScheduleShift()
         {
             
         }
-
     }
 }

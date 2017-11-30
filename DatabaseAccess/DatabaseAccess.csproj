@@ -61,7 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbConnectionADO.cs" />
+    <Compile Include="DbConnection.cs" />
     <Compile Include="Departments\DepartmentRepository.cs" />
     <Compile Include="Departments\IDepartmentRepository.cs" />
     <Compile Include="Employees\EmployeeRepository.cs" />

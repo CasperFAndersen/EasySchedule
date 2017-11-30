@@ -12,12 +12,16 @@ namespace Core
     {
         [DataMember]
         public int Id { get; set; }
+
         [DataMember]
         public DateTime StartDate { get; set; }
+
         [DataMember]
         public DateTime EndDate { get; set; }
+
         [DataMember]
         public List<ScheduleShift> Shifts { get; set; }
+
         [DataMember]
         public Department Department { get; set; }
 

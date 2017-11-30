@@ -9,7 +9,7 @@ namespace Tests.DatabaseAccess
         [TestMethod]
         public void ConnectToDatabase()
         {
-           DbConnectionADO dbConnection = new DbConnectionADO();
+           DbConnection dbConnection = new DbConnection();
             dbConnection.OpenConnection();
             Assert.IsTrue(dbConnection.IsConnected());
             Assert.IsNotNull(dbConnection);
@@ -19,7 +19,7 @@ namespace Tests.DatabaseAccess
         [TestMethod]
         public void DisconnectFromDatabase()
         {
-            DbConnectionADO dbConnection = new DbConnectionADO();
+            DbConnection dbConnection = new DbConnection();
             dbConnection.OpenConnection();
             dbConnection.CloseConnection();
             Assert.IsTrue(dbConnection.IsDisconnected());

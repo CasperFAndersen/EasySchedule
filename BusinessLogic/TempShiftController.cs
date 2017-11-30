@@ -19,7 +19,7 @@ namespace BusinessLogic
         {
             TemplateShiftRepository tShiftRepository = new TemplateShiftRepository();
             //TemplateShift tShift = tSchedule.ListOfTempShifts.Where(x => x.ShiftEmployee.Id.Equals(tempShiftID)).FirstOrDefault();
-            TemplateShift tShift = tShiftRepository.FindTempShiftByID(tempShiftID);
+            TemplateShift tShift = tShiftRepository.FindTempShiftById(tempShiftID);
             return tShift;
         }
     }

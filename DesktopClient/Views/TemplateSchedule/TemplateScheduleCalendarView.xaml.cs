@@ -90,7 +90,7 @@ namespace DesktopClient
             Mediator.GetInstance().TempScheduleSelected += (s, e) =>
             {
                 EmployeeProxy employeeProxy = new EmployeeProxy();
-                LoadEmployeeList(employeeProxy.GetListOfEmployeeByDepartmentId(e.TempSchedule.DepartmentID));
+                LoadEmployeeList(employeeProxy.GetListOfEmployeeByDepartmentId(e.TempSchedule.DepartmentId));
 
             };
         }

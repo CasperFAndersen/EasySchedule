@@ -10,7 +10,6 @@ namespace DatabaseAccess.Schedules
         Schedule BuildScheduleObject(SqlDataReader reader);
         void InsertScheduleIntoDb(Schedule schedule);
         List<Schedule> GetSchedulesByDepartmentId(int departmentId);
-
         void UpdateSchedule(Schedule schedule);
     }
 }

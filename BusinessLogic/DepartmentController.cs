@@ -13,11 +13,6 @@ namespace BusinessLogic
             this._departmentRepository = departmentRepository;
         }
 
-        public DepartmentController()
-        {
-            
-        }
-
         public List<Department> GetAllDepartments()
         {
             return _departmentRepository.GetAllDepartments();

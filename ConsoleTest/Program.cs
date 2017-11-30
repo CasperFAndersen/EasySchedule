@@ -19,8 +19,8 @@ namespace ConsoleTest
 
         static void GetConnectionString()
         {
-            Console.WriteLine("Local: "+ new DbConnectionADO().LocalConnectionString());
-            Console.WriteLine("Kraka: " + new DbConnectionADO().KrakaConnectionString());
+            Console.WriteLine("Local: "+ new DbConnection().LocalConnectionString());
+            Console.WriteLine("Kraka: " + new DbConnection().KrakaConnectionString());
         }
 
         static void TestEmployeService()

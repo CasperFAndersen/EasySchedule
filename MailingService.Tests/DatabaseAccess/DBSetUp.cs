@@ -33,7 +33,7 @@ namespace Tests.DatabaseAccess
         public static void DropTables()
         {
 
-            using (SqlConnection conn = new DbConnectionADO().GetConnection())
+            using (SqlConnection conn = new DbConnection().GetConnection())
             {
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
@@ -53,7 +53,7 @@ namespace Tests.DatabaseAccess
 
         public static void CreateTables()
         {
-            using (SqlConnection conn = new DbConnectionADO().GetConnection())
+            using (SqlConnection conn = new DbConnection().GetConnection())
             {
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
@@ -137,7 +137,7 @@ namespace Tests.DatabaseAccess
 
         public static void InsertTestData()
         {
-            using (SqlConnection conn = new DbConnectionADO().GetConnection())
+            using (SqlConnection conn = new DbConnection().GetConnection())
             {
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
