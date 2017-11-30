@@ -48,10 +48,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedule\IScheduleService.cs" />
     <Compile Include="Schedule\ScheduleService.cs" />
-    <Compile Include="TempSchedule\ITempScheduleService.cs" />
-    <Compile Include="TempSchedule\TempScheduleService.cs" />
-    <Compile Include="TempShift\ITempShiftService.cs" />
-    <Compile Include="TempShift\TempShiftService.cs" />
+    <Compile Include="TemplateSchedule\ITemplateScheduleService.cs" />
+    <Compile Include="TemplateSchedule\TemplateScheduleService.cs" />
+    <Compile Include="TemplateShift\ITemplateShiftService.cs" />
+    <Compile Include="TemplateShift\TemplateShiftService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">

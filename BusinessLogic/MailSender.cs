@@ -10,7 +10,7 @@ using DatabaseAccess.Employees;
 
 namespace BusinessLogic
 {
-    public class Mail
+    public class MailSender
     {
         public IRestResponse SendSimpleMessage()
         {

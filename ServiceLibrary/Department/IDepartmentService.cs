@@ -10,6 +10,6 @@ namespace ServiceLibrary.Department
         List<Core.Department> GetAllDepartments();
 
         [OperationContract]
-        Core.Department GetDepartmentById(int depId);
+        Core.Department GetDepartmentById(int departmentId);
     }
 }

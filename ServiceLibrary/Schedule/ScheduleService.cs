@@ -8,31 +8,31 @@ namespace ServiceLibrary.Schedule
 {
     public class ScheduleService : IScheduleService
     {
-        ScheduleController schCtrl = new ScheduleController(new ScheduleRepository());
+        IScheduleController scheduleController = new ScheduleController(new ScheduleRepository());
 
-        public Core.Schedule GenerateScheduleFromTemplateScheduleAndStartDate(TemplateSchedule tempSchedule, DateTime startTime)
+        public Core.Schedule GenerateScheduleFromTemplateScheduleAndStartDate(Core.TemplateSchedule tempSchedule, DateTime startTime)
         {
-            return schCtrl.GetShiftsFromTemplateShift(tempSchedule, startTime);
+            return scheduleController.GetShiftsFromTemplateShift(tempSchedule, startTime);
         }
 
         public Core.Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
         {
-            return schCtrl.GetScheduleByDepartmentIdAndDate(departmentId, date);
+            return scheduleController.GetScheduleByDepartmentIdAndDate(departmentId, date);
         }
 
         public List<Core.Schedule> GetSchedulesByDepartmentId(int departmentId)
         {
-            return schCtrl.GetSchedulesByDepartmentId(departmentId);
+            return scheduleController.GetSchedulesByDepartmentId(departmentId);
         }
 
         public void InsertScheduleIntoDb(Core.Schedule schedule)
         {
-            schCtrl.InsertSchedule(schedule);
+            scheduleController.InsertSchedule(schedule);
         }
 
         public void UpdateSchedule(Core.Schedule schedule)
         {
-            schCtrl.UpdateSchedule(schedule);
+            scheduleController.UpdateSchedule(schedule);
         }
     }
 }

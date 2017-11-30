@@ -4,8 +4,8 @@ using System.ServiceModel;
 using ServiceLibrary.Department;
 using ServiceLibrary.Employee;
 using ServiceLibrary.Schedule;
-using ServiceLibrary.TempSchedule;
-using ServiceLibrary.TempShift;
+using ServiceLibrary.TemplateSchedule;
+using ServiceLibrary.TemplateShift;
 
 namespace ServiceHosting
 {
@@ -13,8 +13,8 @@ namespace ServiceHosting
     {
         static ServiceHost employeeHost = new ServiceHost(typeof(EmployeeService));
         static ServiceHost scheduleHost = new ServiceHost(typeof(ScheduleService));
-        static ServiceHost tempScheduleHost = new ServiceHost(typeof(TempScheduleService));
-        static ServiceHost tempShiftHost = new ServiceHost(typeof(TempShiftService));
+        static ServiceHost tempScheduleHost = new ServiceHost(typeof(TemplateScheduleService));
+        static ServiceHost tempShiftHost = new ServiceHost(typeof(TemplateShiftService));
         static ServiceHost departmentHost = new ServiceHost(typeof(DepartmentService));
 
         static void Main(string[] args)

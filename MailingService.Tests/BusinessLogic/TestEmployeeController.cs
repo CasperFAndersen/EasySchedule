@@ -8,7 +8,7 @@ using Rhino.Mocks;
 namespace Tests.BusinessLogic
 {
     [TestClass]
-    public class TestEmployeeCtrl
+    public class TestEmployeeController
     {
         private EmployeeController empCtrl;
         private IEmployeeRepository mockEmployeeRepository;

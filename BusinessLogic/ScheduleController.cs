@@ -11,7 +11,7 @@ using DatabaseAccess.Departments;
 
 namespace BusinessLogic
 {
-    public class ScheduleController
+    public class ScheduleController : IScheduleController
     {
         private readonly IScheduleRepository _scheduleRepository;
         public ScheduleController(IScheduleRepository scheduleRepository)

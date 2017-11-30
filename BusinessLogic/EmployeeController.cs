@@ -9,7 +9,7 @@ using DatabaseAccess.Employees;
 
 namespace BusinessLogic
 {
-    public class EmployeeController
+    public class EmployeeController : IEmployeeController
     {
         private readonly IEmployeeRepository _employeeRepository;
 

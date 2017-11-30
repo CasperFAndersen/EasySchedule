@@ -8,12 +8,12 @@ using Rhino.Mocks;
 namespace Tests.BusinessLogic
 {
     [TestClass]
-    public class TestScheduleCtrl
+    public class TestScheduleController
     {
         ScheduleController schCtrl;
         private IScheduleRepository mockScheduleRepository;
         TemplateScheduleController tempSchCtrl = new TemplateScheduleController();
-        TempShiftController tempShiftCtrl = new TempShiftController();
+        TemplateShiftController tempShiftCtrl = new TemplateShiftController();
 
         [TestInitialize]
         public void InitializeTest()

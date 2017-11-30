@@ -13,7 +13,7 @@ namespace Tests.DatabaseAccess
     /// Summary description for TempScheduleDBTest
     /// </summary>
     [TestClass]
-    public class TemplateScheduleDBTest
+    public class TemplateScheduleRepositoryTest
     {
         [TestMethod]
         public void TestCreateTempSchedule()

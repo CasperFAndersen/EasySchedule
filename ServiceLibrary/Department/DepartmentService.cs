@@ -7,15 +7,16 @@ namespace ServiceLibrary.Department
 {
     public class DepartmentService : IDepartmentService
     {
-         DepartmentController deptCtrl = new DepartmentController(new DepartmentRepository());
+         IDepartmentController departmentController = new DepartmentController(new DepartmentRepository());
+
         public List<Core.Department> GetAllDepartments()
         {
-            return deptCtrl.GetAllDepartments();
+            return departmentController.GetAllDepartments();
         }
 
-        public Core.Department GetDepartmentById(int depId)
+        public Core.Department GetDepartmentById(int departmentId)
         {
-            return deptCtrl.GetDepartmentById(depId);
+            return departmentController.GetDepartmentById(departmentId);
         }
     }
 }

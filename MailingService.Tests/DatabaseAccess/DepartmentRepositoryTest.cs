@@ -8,7 +8,7 @@ namespace Tests.DatabaseAccess
 {
 
     [TestClass]
-    public class DepartmentDbTest
+    public class DepartmentRepositoryTest
     {
         DepartmentRepository depDb;
         [TestInitialize]

@@ -8,36 +8,36 @@ namespace ServiceLibrary.Employee
 
     public class EmployeeService : IEmployeeService
     {
-        EmployeeController empCtrl = new EmployeeController(new EmployeeRepository());
+        IEmployeeController employeeController = new EmployeeController(new EmployeeRepository());
 
         public List<Core.Employee> GetAllEmployees()
         {
-            return empCtrl.GetAllEmployees();
+            return employeeController.GetAllEmployees();
         }
 
         public Core.Employee GetEmployeeByUsername(string username)
         {
-            return empCtrl.GetEmployeeByUsername(username);
+            return employeeController.GetEmployeeByUsername(username);
         }
 
         public List<Core.Employee> GetListOfEmployeeByDepartmentId(int depId)
         {
-            return empCtrl.GetListOfEmployeesByDepartmentId(depId);
+            return employeeController.GetListOfEmployeesByDepartmentId(depId);
         }
 
-        public List<Core.Employee> GetListOfEmployeesByDepartmentID(int departmentID)
+        public List<Core.Employee> GetListOfEmployeesByDepartmentId(int departmentId)
         {
-            return empCtrl.GetListOfEmployeesByDepartmentId(departmentID);
+            return employeeController.GetListOfEmployeesByDepartmentId(departmentId);
         }
 
         public void InsertEmployee(Core.Employee employee)
         {
-            empCtrl.InsertEmployee(employee);
+            employeeController.InsertEmployee(employee);
         }
 
         public void UpdateEmployee(Core.Employee employee)
         {
-            empCtrl.UpdateEmployee(employee);
+            employeeController.UpdateEmployee(employee);
         }
     }
 }

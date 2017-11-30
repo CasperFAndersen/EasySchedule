@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tests.DatabaseAccess
 {
     [TestClass]
-    public class ShiftDbTest
+    public class ShiftRepositoryTest
     {
         IShiftRepository shiftRep = new ShiftRepository(); 
 

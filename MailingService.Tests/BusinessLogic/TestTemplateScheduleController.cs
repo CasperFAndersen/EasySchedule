@@ -6,10 +6,10 @@ using Core;
 namespace Tests.BusinessLogic
 {
     [TestClass]
-    public class TestTempScheduleCtrl
+    public class TestTemplateScheduleController
     {
         TemplateScheduleController tempSchCtrl = new TemplateScheduleController();
-        TempShiftController tempShiftCtrl = new TempShiftController();
+        TemplateShiftController tempShiftCtrl = new TemplateShiftController();
 
         [TestMethod]
         public void TestCreateTemplateSchedule()

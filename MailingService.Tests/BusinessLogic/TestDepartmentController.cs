@@ -7,15 +7,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tests.BusinessLogic
 {
     [TestClass]
-    public class TestDepartmentCtrl
+    public class TestDepartmentController
     {
-        private IDepartmentRepository DepartmentRepository = new DepartmentRepository();
+        private IDepartmentRepository _departmentRepository = new DepartmentRepository();
 
         [TestMethod]
         public void GetAllDepartmentsTest()
         {
-            List<Department> departments = DepartmentRepository.GetAllDepartments();
-
+            List<Department> departments = _departmentRepository.GetAllDepartments();
             Assert.IsNotNull(departments);
             Assert.AreNotEqual(departments.Count, 0);
         }
@@ -23,8 +22,7 @@ namespace Tests.BusinessLogic
         [TestMethod]
         public void GetDepartmentById()
         {
-            Department department = DepartmentRepository.GetDepartmentById(1);
-
+            Department department = _departmentRepository.GetDepartmentById(1);
             Assert.IsNotNull(department);
         }
     }

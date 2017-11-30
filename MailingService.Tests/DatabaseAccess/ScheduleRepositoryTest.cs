@@ -11,7 +11,7 @@ using BusinessLogic;
 namespace Tests.DatabaseAccess
 {
     [TestClass]
-    public class ScheduleDbTest
+    public class ScheduleRepositoryTest
     {
         ScheduleRepository schRep;
 

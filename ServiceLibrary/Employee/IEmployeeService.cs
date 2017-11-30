@@ -9,7 +9,7 @@ namespace ServiceLibrary.Employee
     {
         [OperationContract]
         Core.Employee GetEmployeeByUsername(string username);
-        List<Core.Employee> GetListOfEmployeesByDepartmentID(int departmentID);
+        List<Core.Employee> GetListOfEmployeesByDepartmentId(int departmentId);
         [OperationContract]
         List<Core.Employee> GetListOfEmployeeByDepartmentId(int depId);
         [OperationContract]
