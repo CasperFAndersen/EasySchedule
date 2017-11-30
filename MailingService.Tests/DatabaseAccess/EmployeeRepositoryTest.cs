@@ -15,7 +15,6 @@ namespace Tests.DatabaseAccess
         public void TestInitialize()
         {
             employeeRepository = new EmployeeRepository();
-            DBSetUp.SetUpDB();
         }
 
         [TestMethod]
@@ -26,13 +25,13 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestInsertEmployeeIntoDB()
+        public void TestInsertEmployeeIntoDb()
         {
             Employee emp = new Employee()
             {
                 Name = "Anders Andersen",
                 IsAdmin = false,
-                Mail = "andersen@bøgs.dk",
+                Mail = "andersen@bos.dk",
                 Phone = "98901349",
                 NumbOfHours = 37,
                 IsEmployed = true,

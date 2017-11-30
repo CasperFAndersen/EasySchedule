@@ -11,7 +11,7 @@ namespace Tests.Services
     public class DepartmentServiceTest
     {
         [TestMethod]
-        public void DepServiceTest()
+        public void TestDepartmentService()
         {
             DepartmentServiceClient departmentServiceClient = new DepartmentServiceClient();
 

@@ -13,15 +13,11 @@ namespace Tests.Services
     {
         EmployeeServiceClient client;
 
-
         [TestInitialize]
         public void TestInitialize()
         {
             client = new EmployeeServiceClient();
-            DBSetUp.SetUpDB();
         }
-
-   
 
         [TestMethod]
         public void TestEmployeeServiceGetEmployeeByUsername()

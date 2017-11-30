@@ -13,17 +13,13 @@ namespace Tests.DatabaseAccess
     [TestClass]
     public class ScheduleRepositoryTest
     {
-        ScheduleRepository schRep;
+        ScheduleRepository scheduleRepository;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            DBSetUp.SetUpDB();
-            schRep = new ScheduleRepository();
+            scheduleRepository = new ScheduleRepository();
         }
-
-
-
 
         [TestMethod]
         public void TestInsertSchedule()
@@ -32,20 +28,20 @@ namespace Tests.DatabaseAccess
             Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(3), StartDate = new DateTime(2017, 11, 27, 0, 0, 0, DateTimeKind.Utc), EndDate = new DateTime(2017, 12, 18, 0, 0, 0, DateTimeKind.Utc) };
             schedule.Shifts.Add(shift1);
 
-            int beforeInsert = schRep.GetSchedulesByDepartmentId(3).Count;
+            int beforeInsert = scheduleRepository.GetSchedulesByDepartmentId(3).Count;
             int afterInsert = 0;
 
-            schRep.InsertSchedule(schedule);
-            afterInsert = schRep.GetSchedulesByDepartmentId(3).Count;
+            scheduleRepository.InsertSchedule(schedule);
+            afterInsert = scheduleRepository.GetSchedulesByDepartmentId(3).Count;
             Assert.AreEqual(beforeInsert, afterInsert - 1);
 
 
         }
 
         [TestMethod()]
-        public void GetSchedulesByDepartmentIdTest()
+        public void TestGetSchedulesByDepartmentId()
         {
-            List<Schedule> schedules = schRep.GetSchedulesByDepartmentId(1);
+            List<Schedule> schedules = scheduleRepository.GetSchedulesByDepartmentId(1);
             Assert.IsNotNull(schedules);
             Assert.AreNotEqual(0, schedules.Count);
         }
@@ -53,7 +49,7 @@ namespace Tests.DatabaseAccess
         [TestMethod()]
         public void TestUpdateSchedule()
         {
-            Schedule schedule = new ScheduleController(schRep).GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
+            Schedule schedule = new ScheduleController(scheduleRepository).GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
 
             ScheduleShift scheduleShift = schedule.Shifts[0];
             scheduleShift.StartTime = scheduleShift.StartTime.AddDays(1);
@@ -64,9 +60,9 @@ namespace Tests.DatabaseAccess
             ScheduleShift shift1BeforeInsert = schedule.Shifts[0];
             schedule.Shifts.Add(scheduleShift2);
           
-            schRep.UpdateSchedule(schedule);
+            scheduleRepository.UpdateSchedule(schedule);
 
-            schedule = new ScheduleController(schRep).GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
+            schedule = new ScheduleController(scheduleRepository).GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
 
             shiftsAfterInsert = schedule.Shifts.Count;
 

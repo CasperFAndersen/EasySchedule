@@ -42,7 +42,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod()]
-        public void GetScheduleByDepartmentIdAndDateTest()
+        public void TestGetScheduleByDepartmentIdAndDate()
         {
             scheduleController = new ScheduleController(new ScheduleRepository());
             Schedule schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
@@ -53,7 +53,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void GetShiftsFromTemplateShiftTest()
+        public void TestGetShiftsFromTemplateShift()
         {
             scheduleController = new ScheduleController(new ScheduleRepository());
             Employee employee = new Employee();

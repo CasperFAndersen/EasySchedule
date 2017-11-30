@@ -17,7 +17,6 @@ namespace Tests.Services
         [TestInitialize]
         public void TestInitialize()
         {
-            DBSetUp.SetUpDB();
             client = new ScheduleServiceClient();
         }
 

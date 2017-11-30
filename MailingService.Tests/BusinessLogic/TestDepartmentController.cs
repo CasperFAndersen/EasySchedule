@@ -12,7 +12,7 @@ namespace Tests.BusinessLogic
         private IDepartmentRepository _departmentRepository = new DepartmentRepository();
 
         [TestMethod]
-        public void GetAllDepartmentsTest()
+        public void TestGetAllDepartments()
         {
             List<Department> departments = _departmentRepository.GetAllDepartments();
             Assert.IsNotNull(departments);
@@ -20,7 +20,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void GetDepartmentById()
+        public void TestGetDepartmentById()
         {
             Department department = _departmentRepository.GetDepartmentById(1);
             Assert.IsNotNull(department);

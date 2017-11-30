@@ -17,7 +17,7 @@ namespace Tests.DatabaseAccess
     public class TemplateScheduleRepositoryTest
     {
         [TestMethod]
-        public void CreateTemplateScheduleTest()
+        public void TestCreateTemplateSchedule()
         {
             //TemplateScheduleController tSC = new TemplateScheduleController();
             //int numberOfCurrentTemplateSchedules = tSC.GetAllTemplateSchedules().Count();
@@ -48,7 +48,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestGetAllSchedules()
+        public void TestGetAllTemplateSchedules()
         {
             TemplateScheduleRepository templateScheduleRepository = new TemplateScheduleRepository();
             List<TemplateSchedule> templateSchedules = templateScheduleRepository.GetAllTemplateSchedules().ToList();
@@ -59,7 +59,6 @@ namespace Tests.DatabaseAccess
         [TestMethod]
         public void TestUpdateTemplateSchedule()
         {
-            DBSetUp.SetUpDB();
             TemplateScheduleRepository tScheduleRepository = new TemplateScheduleRepository();
             TemplateSchedule templateSchedule = tScheduleRepository.FindTemplateScheduleByName("KolonialBasis");
             TemplateShift templateShift = templateSchedule.TemplateShifts[0];

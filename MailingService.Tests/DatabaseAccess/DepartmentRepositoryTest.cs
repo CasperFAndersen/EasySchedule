@@ -15,7 +15,6 @@ namespace Tests.DatabaseAccess
         public void TestInitialize()
         {
             depDb = new DepartmentRepository();
-            DBSetUp.SetUpDB();
         }
 
         [TestMethod]

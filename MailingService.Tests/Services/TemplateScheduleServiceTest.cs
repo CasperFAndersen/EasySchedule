@@ -11,29 +11,23 @@ namespace Tests.Services
     public class TemplateScheduleServiceTest
     {
         [TestMethod]
-        public void AddTemplateScheduleToDbServiceTest()
+        public void TestAddTemplateScheduleToDbService()
         {
             TemplateScheduleServiceClient templateScheduleService = new TemplateScheduleServiceClient();
             List<TemplateSchedule> beforeAddingTemplateScheduleList = new List<TemplateSchedule>(templateScheduleService.GetAllTemplateSchedules());
             TemplateSchedule templateSchedule = new TemplateSchedule(4, "DummySchedule", 1);
-
             templateScheduleService.AddTemplateScheduleToDb(templateSchedule);
-
             List<TemplateSchedule> afterAddingTemplateScheduleList = new List<TemplateSchedule>(templateScheduleService.GetAllTemplateSchedules());
-
             Assert.AreNotEqual(beforeAddingTemplateScheduleList.Count, afterAddingTemplateScheduleList.Count);
             Assert.AreEqual(templateScheduleService.FindTemplateScheduleByName("DummySchedule").Name, templateSchedule.Name);
         }
 
         [TestMethod]
-        public void TestGetAllSchedules()
+        public void TestGetAllTemplateSchedules()
         {
             TemplateScheduleServiceClient templateScheduleService = new TemplateScheduleServiceClient();
-
             List<TemplateSchedule> templateSchedules = templateScheduleService.GetAllTemplateSchedules().ToList();
-
             Assert.IsNotNull(templateSchedules);
-
         }
     }
 }

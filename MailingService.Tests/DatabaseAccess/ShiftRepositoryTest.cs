@@ -8,14 +8,14 @@ namespace Tests.DatabaseAccess
     [TestClass]
     public class ShiftRepositoryTest
     {
-        IShiftRepository shiftRep = new ShiftRepository(); 
+        IShiftRepository shiftRepository = new ShiftRepository(); 
 
         [TestMethod]
         public void TestGetAllShiftsByScheduleId()
         {
             DBSetUp.SetUpDB();
 
-            List<ScheduleShift> shifts = shiftRep.GetShiftsByScheduleId(1);
+            List<ScheduleShift> shifts = shiftRepository.GetShiftsByScheduleId(1);
 
             Assert.IsNotNull(shifts);
             Assert.AreNotEqual(0, shifts.Count);
