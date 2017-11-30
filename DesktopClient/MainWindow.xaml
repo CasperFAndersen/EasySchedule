@@ -23,7 +23,7 @@
                 <MenuItem Name="CreateTempSchedule" Header="Create Template Schedule" Click="CreateTempScheduleMenuItimClicked"/>
                 <MenuItem Name="ViewEditTempSchedule" Header="View/Edit Template Schedule" Click="ViewEditTempScheduleMenuItimClicked" />
             </MenuItem>
-            <MenuItem Header="VagtPlan">
+            <MenuItem Header="Schedule">
                 <MenuItem Name="ViewSchedule" Header="View/Edit Schedule" Click="ViewScheduleMenuItemClicked"/>
                 <MenuItem Name="CreateSchedule" Header="Create Schedule" Click="CreateScheduleMenuItemClicked"/>
             </MenuItem>
