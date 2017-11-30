@@ -273,7 +273,7 @@ namespace DesktopClient.Views.Schedule
                         scheduleProxy.UpdateSchedule(Schedule);
                     }
 
-                   // MessageBox.Show("Schedule for " + Schedule.Department.Name + " Saved sucessfully");
+                    MessageBox.Show("Schedule for " + Schedule.Department.Name + " Saved sucessfully");
                     
                 }
                 catch (Exception)
