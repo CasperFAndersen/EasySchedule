@@ -49,6 +49,7 @@ namespace DesktopClient.Views.Schedule
             SetEmployeeDroppedHandler();
             SetOnEditScheduleClicked();
             SetOnGenerateScheduleButtonClicked();
+            //SetOnCreateScheduleClicked();
         }
         public static readonly TimeSpan STARTTIME = new TimeSpan(6, 0, 0);
         public static readonly TimeSpan ENDTIME = new TimeSpan(20, 0, 0);
@@ -294,17 +295,17 @@ namespace DesktopClient.Views.Schedule
 
         }
 
-        private void SetOnCreateScheduleClicked()
+        public void SetOnCreateScheduleClicked()
         {
             Mediator.GetInstance().CreateScheduleClicked += () =>
             {
-                if (Schedule != null)
-                {
-                    ScheduleProxy scheduleProxy = new ScheduleProxy();
-                    scheduleProxy.InsertScheduleIntoDb(Schedule);
-                }
-               
 
+                    if (Schedule != null)
+                    {
+                        ScheduleProxy scheduleProxy = new ScheduleProxy();
+                        scheduleProxy.InsertScheduleIntoDb(Schedule);
+                    }
+                
             };
         }
 

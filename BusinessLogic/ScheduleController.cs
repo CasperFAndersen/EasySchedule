@@ -7,6 +7,7 @@ using Core;
 using DatabaseAccess;
 using DatabaseAccess.Schedules;
 using DatabaseAccess.Shifts;
+using DatabaseAccess.Departments;
 
 namespace BusinessLogic
 {
@@ -62,6 +63,9 @@ namespace BusinessLogic
                 shift.StartTime = shift.StartTime.AddMinutes(ts.StartTime.Minutes);
                 schedule.Shifts.Add(shift);
             }
+            schedule.Department = new DepartmentRepository().GetDepartmentById(templateSchedule.DepartmentID);
+            schedule.StartDate = startTime;
+            schedule.EndDate = startTime.AddDays(7 * templateSchedule.NoOfWeeks);
             return schedule;
         }
     }

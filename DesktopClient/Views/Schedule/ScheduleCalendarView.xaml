@@ -20,7 +20,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <local:ScheduleCalendar Grid.Row="1" Grid.ColumnSpan="2"></local:ScheduleCalendar>
+        <local:ScheduleCalendar x:Name="Calendar" Grid.Row="1" Grid.ColumnSpan="2"></local:ScheduleCalendar>
         <Label Name="LblTitle" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" />
 
 

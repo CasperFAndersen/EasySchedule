@@ -107,7 +107,7 @@ namespace DesktopClient
         private void CreateScheduleMenuItemClicked(object sender, RoutedEventArgs e)
         {
             scheduleCalendarCreate.ControlPanel.Content = createScheduleView;
-            
+            scheduleCalendarCreate.Calendar.SetOnCreateScheduleClicked();
             frame.Content = scheduleCalendarCreate;
         }
     }
