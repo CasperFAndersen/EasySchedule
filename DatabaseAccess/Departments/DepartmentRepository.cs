@@ -21,7 +21,7 @@ namespace DatabaseAccess.Departments
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
                     cmd.CommandText = "SELECT * FROM Department";
-                    SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                    SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
@@ -32,7 +32,6 @@ namespace DatabaseAccess.Departments
 
                 }
             }
-
             return departments;
         }
 
@@ -45,12 +44,12 @@ namespace DatabaseAccess.Departments
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
                     cmd.CommandText = "SELECT * FROM Department WHERE Department.id = @param1;";
-                    SqlParameter param1 = new SqlParameter("@param1", System.Data.SqlDbType.Int);
+                    SqlParameter param1 = new SqlParameter("@param1", SqlDbType.Int);
                     param1.Value = id;
 
                     cmd.Parameters.Add(param1);
 
-                    SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                    SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
@@ -72,7 +71,7 @@ namespace DatabaseAccess.Departments
             department.Email = reader["email"].ToString();
             department.Phone = reader["phone"].ToString();
             department.WorkplaceId = Convert.ToInt32(reader["workplaceId"].ToString());
-            department.Employees = new EmployeeRepository().GetListOfEmployeesByDepartmentID(department.Id);
+            department.Employees = new EmployeeRepository().GetListOfEmployeesByDepartmentId(department.Id);
             return department;
         }
     }

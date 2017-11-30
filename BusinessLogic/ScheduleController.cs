@@ -21,18 +21,18 @@ namespace BusinessLogic
 
         public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
         {
-            Schedule scheduleRes = null;
+            Schedule schedule = null;
             List<Schedule> schedules = _scheduleRepository.GetSchedulesByDepartmentId(departmentId);
-            foreach (Schedule schedule in schedules)
+            foreach (Schedule temporarySchedule in schedules)
             {
-                if (date.CompareTo(schedule.StartDate) > 0 && date.CompareTo(schedule.EndDate) < 0)
+                if (date.CompareTo(temporarySchedule.StartDate) > 0 && date.CompareTo(temporarySchedule.EndDate) < 0)
                 {
-                    scheduleRes = schedule;
+                    schedule = temporarySchedule;
                 }
             }
-            scheduleRes.Shifts = new ShiftRepository().GetShiftsByScheduleID(scheduleRes.Id);
+            schedule.Shifts = new ShiftRepository().GetShiftsByScheduleID(schedule.Id);
 
-            return scheduleRes;
+            return schedule;
         }
 
         public void InsertSchedule(Schedule schedule)
@@ -53,14 +53,14 @@ namespace BusinessLogic
         public Schedule GetShiftsFromTemplateShift(TemplateSchedule templateSchedule, DateTime startTime)
         {
             Schedule schedule = new Schedule();
-            foreach (TemplateShift ts in templateSchedule.ListOfTempShifts)
+            foreach (TemplateShift templateShift in templateSchedule.ListOfTempShifts)
             {
                 ScheduleShift shift = new ScheduleShift();
-                shift.Employee = ts.Employee;
-                shift.Hours = ts.Hours;
-                shift.StartTime = startTime.AddDays(((int)ts.WeekDay - 1) + (ts.WeekNumber - 1) * 7);
-                shift.StartTime = shift.StartTime.AddHours(ts.StartTime.Hours);
-                shift.StartTime = shift.StartTime.AddMinutes(ts.StartTime.Minutes);
+                shift.Employee = templateShift.Employee;
+                shift.Hours = templateShift.Hours;
+                shift.StartTime = startTime.AddDays(((int)templateShift.WeekDay - 1) + (templateShift.WeekNumber - 1) * 7);
+                shift.StartTime = shift.StartTime.AddHours(templateShift.StartTime.Hours);
+                shift.StartTime = shift.StartTime.AddMinutes(templateShift.StartTime.Minutes);
                 schedule.Shifts.Add(shift);
             }
             schedule.Department = new DepartmentRepository().GetDepartmentById(templateSchedule.DepartmentId);

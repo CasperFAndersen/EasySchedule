@@ -5,6 +5,7 @@ using DatabaseAccess;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using DatabaseAccess.Employees;
+using DatabaseAccess.TemplateSchedule;
 
 namespace Tests.DatabaseAccess
 {
@@ -24,7 +25,7 @@ namespace Tests.DatabaseAccess
 
             TemplateSchedule tSchedule = new TemplateSchedule(4, "DummySchedule", 1);
 
-            tScheduleRepository.AddTempScheduleToDB(tSchedule);
+            tScheduleRepository.AddTempScheduleToDb(tSchedule);
 
             Assert.AreNotEqual(numberOfCurrentTempSchedules, tScheduleRepository.GetAll().Count());
             Assert.AreEqual(tScheduleRepository.FindTempScheduleByName("DummySchedule").Name, tSchedule.Name);
@@ -37,11 +38,11 @@ namespace Tests.DatabaseAccess
             TemplateScheduleRepository tempScheduleRepository = new TemplateScheduleRepository();
             TemplateSchedule tSchedule = new TemplateSchedule(4, "DummySchedule", 1);
             TemplateShift TShift = new TemplateShift(DayOfWeek.Monday, 5, new TimeSpan(10,0,0), 1, new Employee() { Id=3});
-            int beforeInsert = tempShiftRepository.getAllShifts().Count();
+            int beforeInsert = tempShiftRepository.GetAllShifts().Count();
             tSchedule.ListOfTempShifts.Add(TShift);
 
-            tempScheduleRepository.AddTempScheduleToDB(tSchedule);
-            Assert.AreEqual(beforeInsert, tempShiftRepository.getAllShifts().Count() - 1);
+            tempScheduleRepository.AddTempScheduleToDb(tSchedule);
+            Assert.AreEqual(beforeInsert, tempShiftRepository.GetAllShifts().Count() - 1);
 
         }
 

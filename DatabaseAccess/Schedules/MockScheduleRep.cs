@@ -19,20 +19,18 @@ namespace DatabaseAccess.Schedules
 
         public Schedule GetScheduleByCurrentDate(DateTime currentDate)
         {
-            Employee e1 = new Employee() {Name = "Arne" };
-            ScheduleShift s1 = new ScheduleShift() { StartTime = new DateTime(2017, 11, 13, 9, 0, 0), Hours = 5, Employee = e1};
-            ScheduleShift s2 = new ScheduleShift() { StartTime = new DateTime(2017, 11, 14, 11, 0, 0), Hours = 7, Employee = e1 };
-            ScheduleShift s3 = new ScheduleShift() { StartTime = new DateTime(2017, 11, 17, 10, 0, 0), Hours = 3, Employee = e1 };
+            Employee employee = new Employee() {Name = "Arne" };
+            ScheduleShift scheduleShift1 = new ScheduleShift() { StartTime = new DateTime(2017, 11, 13, 9, 0, 0), Hours = 5, Employee = employee};
+            ScheduleShift scheduleShift2 = new ScheduleShift() { StartTime = new DateTime(2017, 11, 14, 11, 0, 0), Hours = 7, Employee = employee };
+            ScheduleShift scheduleShift3 = new ScheduleShift() { StartTime = new DateTime(2017, 11, 17, 10, 0, 0), Hours = 3, Employee = employee };
 
             Schedule schedule = new Schedule() {Shifts = new List<ScheduleShift>() };
 
-            schedule.Shifts.Add(s1);
-            schedule.Shifts.Add(s2);
-            schedule.Shifts.Add(s3);
+            schedule.Shifts.Add(scheduleShift1);
+            schedule.Shifts.Add(scheduleShift2);
+            schedule.Shifts.Add(scheduleShift3);
 
             return schedule;
-
-
         }
 
         public List<Schedule> GetSchedulesByDepartmentId(int departmentId)

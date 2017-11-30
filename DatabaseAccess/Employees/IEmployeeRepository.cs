@@ -9,7 +9,7 @@ namespace DatabaseAccess.Employees
         List<Employee> GetAllEmployees();
         Employee GetEmployeeByUsername(string username);
         Employee BuildEmployeeObject(SqlDataReader reader);
-        List<Employee> GetListOfEmployeesByDepartmentID(int departmentID);
+        List<Employee> GetListOfEmployeesByDepartmentId(int departmentID);
         void InsertEmployee(Employee employee);
         void UpdateEmployee(Employee employee);
     }

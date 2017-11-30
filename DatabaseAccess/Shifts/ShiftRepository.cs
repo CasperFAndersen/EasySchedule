@@ -12,76 +12,61 @@ namespace DatabaseAccess.Shifts
     {
         public List<ScheduleShift> GetShiftsByScheduleID(int scheduleId)
         {
-            List<ScheduleShift> shiftList = new List<ScheduleShift>();
+            List<ScheduleShift> scheduleShifts = new List<ScheduleShift>();
 
-            using (SqlConnection conn = new DbConnection().GetConnection())
+            using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                using (SqlCommand cmd = conn.CreateCommand())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-
-                    cmd.CommandText = "SELECT * FROM shift WHERE shift.scheduleId = @param1;";
-                    SqlParameter p1 = new SqlParameter(@"param1", System.Data.SqlDbType.Int);
+                    command.CommandText = "SELECT * FROM shift WHERE shift.scheduleId = @param1;";
+                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.Int);
                     p1.Value = scheduleId;
-
-                    cmd.Parameters.Add(p1);
-
-                    SqlDataReader reader = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-
+                    command.Parameters.Add(p1);
+                    SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        shiftList.Add(BuildShiftObject(reader));
+                        scheduleShifts.Add(BuildShiftObject(reader));
                     }
-
-
-                    conn.Close();
-
-                    return shiftList;
+                    connection.Close();
+                    return scheduleShifts;
                 }
-
             }
-
         }
 
         public List<ScheduleShift> GetShiftsByEmployeeId(int employeeId)
         {
-            List<ScheduleShift> shiftList = new List<ScheduleShift>();
+            List<ScheduleShift> scheduleShifts = new List<ScheduleShift>();
 
-            using (SqlConnection conn = new DbConnection().GetConnection())
+            using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                using (SqlCommand cmd = conn.CreateCommand())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT * FROM shift WHERE shift.employeeId = @param1;";
-                    SqlParameter p1 = new SqlParameter(@"param1", System.Data.SqlDbType.Int);
+                    command.CommandText = "SELECT * FROM shift WHERE shift.employeeId = @param1;";
+                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.Int);
                     p1.Value = employeeId;
-
-                    cmd.Parameters.Add(p1);
-
-                    SqlDataReader reader = cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-
+                    command.Parameters.Add(p1);
+                    SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        shiftList.Add(BuildShiftObject(reader));
+                        scheduleShifts.Add(BuildShiftObject(reader));
                     }
-                    conn.Close();
-
-                    return shiftList; ;
+                    connection.Close();
+                    return scheduleShifts; ;
                 }
             }
         }
 
-        public void InsertShiftsIntoDb(List<ScheduleShift> shifts, int scheduleId, SqlConnection conn)
+        public void InsertShiftsIntoDb(List<ScheduleShift> shifts, int scheduleId, SqlConnection connection)
         {
             try
             {
-
-                using (conn)
+                using (connection)
                 {
                     foreach (var shift in shifts)
                     {
-                        using (SqlCommand cmd = conn.CreateCommand())
+                        using (SqlCommand command = connection.CreateCommand())
                         {
-
-                            cmd.CommandText = "INSERT INTO Shift (startTime, hours, scheduleId, employeeId)" +
+                            command.CommandText = "INSERT INTO Shift (startTime, hours, scheduleId, employeeId)" +
                                               " VALUES (@param1, @param2, @param3, @param4);";
 
                             SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.SmallDateTime, 100);
@@ -89,30 +74,23 @@ namespace DatabaseAccess.Shifts
                             SqlParameter p3 = new SqlParameter(@"param3", SqlDbType.Int, 100);
                             SqlParameter p4 = new SqlParameter(@"param4", SqlDbType.Int, 100);
 
-
                             p1.Value = shift.StartTime;
                             p2.Value = shift.Hours;
                             p3.Value = scheduleId;
                             p4.Value = shift.Employee.Id;
 
-                            cmd.Parameters.Add(p1);
-                            cmd.Parameters.Add(p2);
-                            cmd.Parameters.Add(p3);
-                            cmd.Parameters.Add(p4);
+                            command.Parameters.Add(p1);
+                            command.Parameters.Add(p2);
+                            command.Parameters.Add(p3);
+                            command.Parameters.Add(p4);
 
-
-                            cmd.ExecuteNonQuery();
-
+                            command.ExecuteNonQuery();
                         }
-
                     }
-
                 }
-
             }
             catch (Exception e)
             {
-
                 throw new Exception("" + e.Message + e.StackTrace);
             }
         }
@@ -121,20 +99,16 @@ namespace DatabaseAccess.Shifts
         {
             try
             {
-                //using (TransactionScope scope = new TransactionScope())
-                //{
-
-                using (SqlConnection conn = new DbConnectionADO().GetConnection())
+                using (SqlConnection conn = new DbConnection().GetConnection())
                 {
-
                     foreach (ScheduleShift shift in schedule.Shifts)
                     {
                         if (shift.Id == 0)
                         {
                             using (SqlCommand cmd = conn.CreateCommand())
                             {
-
-                                cmd.CommandText = "INSERT INTO Shift(startTime, hours, scheduleId, employeeId) VALUES (@param1, @param2, @param3, @param4)";
+                                cmd.CommandText = "INSERT INTO Shift(startTime, hours, scheduleId, employeeId) " +
+                                                        "VALUES (@param1, @param2, @param3, @param4)";
 
                                 SqlParameter p1 = new SqlParameter("@param1", SqlDbType.DateTime);
                                 SqlParameter p2 = new SqlParameter("@param2", SqlDbType.Float);
@@ -151,7 +125,6 @@ namespace DatabaseAccess.Shifts
                                 cmd.Parameters.Add(p3);
                                 cmd.Parameters.Add(p4);
 
-
                                 cmd.ExecuteNonQuery();
                             }
                         }
@@ -159,26 +132,13 @@ namespace DatabaseAccess.Shifts
                         {
                             UpdateScheduleShift(shift, schedule.Id, conn);
                         }
-
-
                     }
-
-
-                    //scope.Complete();
                 }
-
-
-
-                //  }
-
-
             }
             catch (Exception e)
             {
-
                 throw new Exception("Something went wrong In AddShiftsFromScheduleToDB!" + e.Message);
             }
-
         }
 
         public void UpdateScheduleShift(ScheduleShift shift, int scheduleId, SqlConnection conn)
@@ -209,22 +169,18 @@ namespace DatabaseAccess.Shifts
             }
             catch (Exception e)
             {
-
                 throw new Exception("Something went wrong in UpdateShifts!" + e.Message);
             }
         }
 
         public ScheduleShift BuildShiftObject(SqlDataReader reader)
         {
-            ScheduleShift s1 = new ScheduleShift();
-
-            s1.Id = reader.GetInt32(0);
-            s1.Employee = new EmployeeRepository().FindEmployeeById(Convert.ToInt32(reader["EmployeeId"].ToString()));
-            //  s1.StartTime = Convert.ToDateTime(reader["Starttime"].ToString());
-            s1.StartTime = reader.GetDateTime(1);
-            s1.Hours = Convert.ToDouble(reader["Hours"].ToString());
-
-            return s1;
+            ScheduleShift scheduleShift = new ScheduleShift();
+            scheduleShift.Id = reader.GetInt32(0);
+            scheduleShift.Employee = new EmployeeRepository().FindEmployeeById(Convert.ToInt32(reader["EmployeeId"].ToString()));
+            scheduleShift.StartTime = reader.GetDateTime(1);
+            scheduleShift.Hours = Convert.ToDouble(reader["Hours"].ToString());
+            return scheduleShift;
         }
     }
 }

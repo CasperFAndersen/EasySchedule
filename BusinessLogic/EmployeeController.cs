@@ -30,13 +30,13 @@ namespace BusinessLogic
 
         public List<Employee> GetListOfEmployeesByDepartmentId(int departmentId)
         {
-            return _employeeRepository.GetListOfEmployeesByDepartmentID(departmentId);
+            return _employeeRepository.GetListOfEmployeesByDepartmentId(departmentId);
         }
 
         public bool ValidatePassword(string username, string password)
         {
-            Employee e1 = GetEmployeeByUsername(username);
-            return e1.Password == password;
+            Employee employee = GetEmployeeByUsername(username);
+            return employee.Password == password;
         }
 
         public void InsertEmployee(Employee employee)

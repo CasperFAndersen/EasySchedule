@@ -5,15 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DatabaseAccess.TemplateSchedule;
 
 namespace BusinessLogic
 {
-    public class TempScheduleController
+    public class TemplateScheduleController
     {
-        TemplateScheduleRepository _tScheduleRepository = new TemplateScheduleRepository();
+        TemplateScheduleRepository _templateScheduleRepository = new TemplateScheduleRepository();
         TemplateSchedule tscheduleModel = new TemplateSchedule();
 
-        public TempScheduleController()
+        public TemplateScheduleController()
         {
             
         }
@@ -25,17 +26,17 @@ namespace BusinessLogic
 
         public IEnumerable<TemplateSchedule> GetAllTempSchedules()
         {
-            return _tScheduleRepository.GetAll();
+            return _templateScheduleRepository.GetAll();
         }
 
         public TemplateSchedule FindTempScheduleByName(string name)
         {
-            return _tScheduleRepository.FindTempScheduleByName(name);
+            return _templateScheduleRepository.FindTempScheduleByName(name);
         }
 
         public void AddTempScheduleToDb(TemplateSchedule tSchedule)
         {
-            _tScheduleRepository.AddTempScheduleToDB(tSchedule);
+            _templateScheduleRepository.AddTempScheduleToDb(tSchedule);
         }
         
         public void AddTempShift(TemplateShift tShift)
@@ -45,7 +46,7 @@ namespace BusinessLogic
 
         public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)
         {
-            _tScheduleRepository.UpdateTemplateSchedule(templateSchedule);
+            _templateScheduleRepository.UpdateTemplateSchedule(templateSchedule);
         }
     }
 }

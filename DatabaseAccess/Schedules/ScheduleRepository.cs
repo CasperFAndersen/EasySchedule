@@ -11,7 +11,6 @@ namespace DatabaseAccess.Schedules
 {
     public class ScheduleRepository : IScheduleRepository
     {
-
         public Schedule BuildScheduleObject(SqlDataReader reader)
         {
             Schedule schedule = new Schedule();
@@ -20,7 +19,6 @@ namespace DatabaseAccess.Schedules
             schedule.StartDate = reader.GetDateTime(1);
             schedule.EndDate = reader.GetDateTime(2);
             schedule.Department = new DepartmentRepository().GetDepartmentById(reader.GetInt32(3));
-
             return schedule;
         }
 
@@ -37,13 +35,13 @@ namespace DatabaseAccess.Schedules
         public List<Schedule> GetSchedulesByDepartmentId(int departmentId)
         {
             List<Schedule> schedules = new List<Schedule>();
-            using (SqlConnection conn = new DbConnection().GetConnection())
+            using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                using (SqlCommand cmd = conn.CreateCommand())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    cmd.CommandText = "select * from Schedule WHERE departmentId = @param1";
-                    cmd.Parameters.AddWithValue("@param1", departmentId);
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    command.CommandText = "select * from Schedule WHERE departmentId = @param1";
+                    command.Parameters.AddWithValue("@param1", departmentId);
+                    SqlDataReader reader = command.ExecuteReader();
 
                     while (reader.Read())
                     {
@@ -62,12 +60,11 @@ namespace DatabaseAccess.Schedules
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    using (SqlConnection conn = new DbConnection().GetConnection())
+                    using (SqlConnection connection = new DbConnection().GetConnection())
                     {
-                        using (SqlCommand cmd = conn.CreateCommand())
+                        using (SqlCommand command = connection.CreateCommand())
                         {
-
-                            cmd.CommandText = "INSERT INTO Schedule (startDate, endDate, departmentId)" +
+                            command.CommandText = "INSERT INTO Schedule (startDate, endDate, departmentId)" +
                                               " VALUES (@param1, @param2, @param3) SELECT SCOPE_IDENTITY();";
 
                             SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.DateTime, 100);
@@ -78,21 +75,18 @@ namespace DatabaseAccess.Schedules
                             p2.Value = schedule.EndDate;
                             p3.Value = schedule.Department.Id;
 
+                            command.Parameters.Add(p1);
+                            command.Parameters.Add(p2);
+                            command.Parameters.Add(p3);
 
-                            cmd.Parameters.Add(p1);
-                            cmd.Parameters.Add(p2);
-                            cmd.Parameters.Add(p3);
-
-                            int id = Convert.ToInt32(cmd.ExecuteScalar());
+                            int id = Convert.ToInt32(command.ExecuteScalar());
 
                             ShiftRepository shiftRep = new ShiftRepository();
-                            shiftRep.InsertShiftsIntoDb(schedule.Shifts, id, conn);
+                            shiftRep.InsertShiftsIntoDb(schedule.Shifts, id, connection);
 
                             scope.Complete();
                         }
-
                     }
-
                 }
             }
             catch (Exception e)

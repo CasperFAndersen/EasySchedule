@@ -30,7 +30,6 @@ namespace DatabaseAccess
 
         }
 
-
         public void OpenConnection()
         {
             try

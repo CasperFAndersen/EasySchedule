@@ -6,7 +6,7 @@ namespace ServiceLibrary.TempSchedule
 {
     public class TempScheduleService : ITempScheduleService
     {
-        TempScheduleController tempScheduleCtrl = new TempScheduleController();
+        TemplateScheduleController tempScheduleCtrl = new TemplateScheduleController();
         public void AddTempScheduleToDB(TemplateSchedule tSchedule)
         {
             tempScheduleCtrl.AddTempScheduleToDb(tSchedule);

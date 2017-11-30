@@ -8,7 +8,7 @@ namespace Tests.BusinessLogic
     [TestClass]
     public class TestTempScheduleCtrl
     {
-        TempScheduleController tempSchCtrl = new TempScheduleController();
+        TemplateScheduleController tempSchCtrl = new TemplateScheduleController();
         TempShiftController tempShiftCtrl = new TempShiftController();
 
         [TestMethod]

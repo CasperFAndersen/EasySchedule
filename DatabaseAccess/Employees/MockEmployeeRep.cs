@@ -32,12 +32,11 @@ namespace DatabaseAccess.Employees
 
         public Employee GetEmployeeByUsername(string username)
         {
-            Employee e1 = new Employee() {Username = "TobMaster", Name = "Tobias", Password = "1234"};
-
-            return e1;
+            Employee employee = new Employee() {Username = "TobMaster", Name = "Tobias", Password = "1234"};
+            return employee;
         }
 
-        public List<Employee> GetListOfEmployeesByDepartmentID(int departmentID)
+        public List<Employee> GetListOfEmployeesByDepartmentId(int departmentId)
         {
             throw new NotImplementedException();
         }
