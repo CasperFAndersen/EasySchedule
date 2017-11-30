@@ -11,7 +11,7 @@ namespace DatabaseAccess
 {
     public class TemplateScheduleRepository
     {
-        DbConnectionADO dbConADO = new DbConnectionADO();
+        DbConnection dbConADO = new DbConnection();
 
         public IEnumerable<TemplateSchedule> GetAll()
         {
@@ -26,7 +26,7 @@ namespace DatabaseAccess
                     while (reader.Read())
                     {
                         TemplateSchedule tempSchedule = new TemplateSchedule(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetInt32(3));
-                        tempSchedule.ListOfTempShifts = new TemplateShiftRepository().GetTempShiftsByTempScheduleID(tempSchedule.ID);
+                        tempSchedule.ListOfTempShifts = new TemplateShiftRepository().GetTempShiftsByTempScheduleID(tempSchedule.Id);
                         tempList.Add(tempSchedule);
                     }
                 }
@@ -46,7 +46,7 @@ namespace DatabaseAccess
                 {
                     insertTempSchedule.Parameters.AddWithValue("@param1", tSchedule.Name);
                     insertTempSchedule.Parameters.AddWithValue("@param2", tSchedule.NoOfWeeks);
-                    insertTempSchedule.Parameters.AddWithValue("@param3", tSchedule.DepartmentID);
+                    insertTempSchedule.Parameters.AddWithValue("@param3", tSchedule.DepartmentId);
                     tempScheduleID = Convert.ToInt32(insertTempSchedule.ExecuteScalar());
                     dBCon.Close();
                 }
@@ -70,7 +70,7 @@ namespace DatabaseAccess
                     while (reader.Read())
                     {
                         tSchedule = new TemplateSchedule(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetInt32(3));
-                        tSchedule.ListOfTempShifts = new TemplateShiftRepository().GetTempShiftsByTempScheduleID(tSchedule.ID);
+                        tSchedule.ListOfTempShifts = new TemplateShiftRepository().GetTempShiftsByTempScheduleID(tSchedule.Id);
                     }
                 }
                 dBCon.Close();
@@ -88,7 +88,7 @@ namespace DatabaseAccess
                 command.ExecuteNonQuery();
 
                 TemplateShiftRepository templateShiftRepository = new TemplateShiftRepository();
-                templateShiftRepository.AddTempShiftsFromTempScheduleToDB(templateSchedule.ID, templateSchedule.ListOfTempShifts);
+                templateShiftRepository.AddTempShiftsFromTempScheduleToDB(templateSchedule.Id, templateSchedule.ListOfTempShifts);
 
                 dBCon.Close();
             }

@@ -14,7 +14,7 @@ namespace DatabaseAccess.Shifts
         {
             List<ScheduleShift> shiftList = new List<ScheduleShift>();
 
-            using (SqlConnection conn = new DbConnectionADO().GetConnection())
+            using (SqlConnection conn = new DbConnection().GetConnection())
             {
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
@@ -46,7 +46,7 @@ namespace DatabaseAccess.Shifts
         {
             List<ScheduleShift> shiftList = new List<ScheduleShift>();
 
-            using (SqlConnection conn = new DbConnectionADO().GetConnection())
+            using (SqlConnection conn = new DbConnection().GetConnection())
             {
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
@@ -124,7 +124,7 @@ namespace DatabaseAccess.Shifts
                 //using (TransactionScope scope = new TransactionScope())
                 //{
 
-                    using (SqlConnection conn = new DbConnectionADO().GetConnection())
+                    using (SqlConnection conn = new DbConnection().GetConnection())
                     {
                         using (SqlCommand cmd = conn.CreateCommand())
                         {

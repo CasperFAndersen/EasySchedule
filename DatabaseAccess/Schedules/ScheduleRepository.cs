@@ -37,7 +37,7 @@ namespace DatabaseAccess.Schedules
         public List<Schedule> GetSchedulesByDepartmentId(int departmentId)
         {
             List<Schedule> schedules = new List<Schedule>();
-            using (SqlConnection conn = new DbConnectionADO().GetConnection())
+            using (SqlConnection conn = new DbConnection().GetConnection())
             {
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
@@ -62,7 +62,7 @@ namespace DatabaseAccess.Schedules
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    using (SqlConnection conn = new DbConnectionADO().GetConnection())
+                    using (SqlConnection conn = new DbConnection().GetConnection())
                     {
                         using (SqlCommand cmd = conn.CreateCommand())
                         {

@@ -64,7 +64,7 @@ namespace Tests.DatabaseAccess
             tempShift1.StartTime = new TimeSpan(8, 0, 0);
             tempShift1.Hours = 8;
 
-            TemplateShift tempShift2 = new TemplateShift() { StartTime = new TimeSpan(12, 0, 0), WeekNumber = 1 ,Hours = 6, Employee = new EmployeeRepository().FindEmployeeById(5), TemplateScheduleID = templateSchedule.ID };
+            TemplateShift tempShift2 = new TemplateShift() { StartTime = new TimeSpan(12, 0, 0), WeekNumber = 1 ,Hours = 6, Employee = new EmployeeRepository().FindEmployeeById(5), TemplateScheduleId = templateSchedule.Id };
             templateSchedule.ListOfTempShifts.Add(tempShift2);
 
             tScheduleRepository.UpdateTemplateSchedule(templateSchedule);

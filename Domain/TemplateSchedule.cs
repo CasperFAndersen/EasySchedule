@@ -7,23 +7,21 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public class TSchedule
-    {
-        [DataMember]
-        public int ID { get; set; }
-    }
-
     [DataContract]
     public class TemplateSchedule
     {
         [DataMember]
-        public int ID { get; set; }
+        public int Id { get; set; }
+
         [DataMember]
         public int NoOfWeeks { get; set; }
+
         [DataMember]
         public string Name { get; set; }
+
         [DataMember]
-        public int DepartmentID { get; set; }
+        public int DepartmentId { get; set; }
+
         [DataMember]
         public List<TemplateShift> ListOfTempShifts { get; set; }
 
@@ -33,25 +31,25 @@ namespace Core
             Name = name;
             ListOfTempShifts = new List<TemplateShift>();
         }
-        public TemplateSchedule(int id, string name, int numberOfWeeks, int departmentID)
+        public TemplateSchedule(int id, string name, int numberOfWeeks, int departmentId)
         {
             ListOfTempShifts = new List<TemplateShift>();
-            ID = id;
+            Id = id;
             NoOfWeeks = numberOfWeeks;
             Name = name;
-            DepartmentID = departmentID;
+            DepartmentId = departmentId;
             ListOfTempShifts = new List<TemplateShift>();
-
         }
-        public TemplateSchedule(int numberOfWeeks, string name, int departmentID)
+
+        public TemplateSchedule(int numberOfWeeks, string name, int departmentId)
         {
             ListOfTempShifts = new List<TemplateShift>();
             NoOfWeeks = numberOfWeeks;
             Name = name;
-            DepartmentID = departmentID;
+            DepartmentId = departmentId;
             ListOfTempShifts = new List<TemplateShift>();
-
         }
+
         public TemplateSchedule()
         {
             ListOfTempShifts = new List<TemplateShift>();

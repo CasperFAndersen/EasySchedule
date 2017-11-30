@@ -48,7 +48,7 @@ namespace DesktopClient.Views.Schedule
             List<TemplateSchedule> allTempSchedules =await new TempScheduleProxy().GetAllTempSchedulesAsync();
             foreach (TemplateSchedule ts in allTempSchedules)
             {
-                if (ts.DepartmentID == departmentId)
+                if (ts.DepartmentId == departmentId)
                 {
                     temSchedulesForChoosenDepartment.Add(ts);
                 }

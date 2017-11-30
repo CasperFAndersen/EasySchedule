@@ -19,7 +19,7 @@ namespace DatabaseAccess.Employees
         {
             List<Employee> employees = new List<Employee>();
 
-            using (SqlConnection connection = new DbConnectionADO().GetConnection())
+            using (SqlConnection connection = new DbConnection().GetConnection())
             {
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
@@ -41,7 +41,7 @@ namespace DatabaseAccess.Employees
         {
             Employee empRes = new Employee();
 
-            using (SqlConnection conn = new DbConnectionADO().GetConnection())
+            using (SqlConnection conn = new DbConnection().GetConnection())
             {
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
@@ -72,7 +72,7 @@ namespace DatabaseAccess.Employees
         {
             Employee empRes = new Employee();
 
-            using (SqlConnection conn = new DbConnectionADO().GetConnection())
+            using (SqlConnection conn = new DbConnection().GetConnection())
             {
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
@@ -104,7 +104,7 @@ namespace DatabaseAccess.Employees
         {
             List<Employee> empList = new List<Employee>();
 
-            using (SqlConnection conn = new DbConnectionADO().GetConnection())
+            using (SqlConnection conn = new DbConnection().GetConnection())
             {
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
@@ -137,7 +137,7 @@ namespace DatabaseAccess.Employees
                 using (TransactionScope scope = new TransactionScope())
                 {
 
-                    using (SqlConnection conn = new DbConnectionADO().GetConnection())
+                    using (SqlConnection conn = new DbConnection().GetConnection())
                     {
                         using (SqlCommand cmd = conn.CreateCommand())
                         {
@@ -198,7 +198,7 @@ namespace DatabaseAccess.Employees
                 using (TransactionScope scope = new TransactionScope())
                 {
 
-                    using (SqlConnection conn = new DbConnectionADO().GetConnection())
+                    using (SqlConnection conn = new DbConnection().GetConnection())
                     {
                         using (SqlCommand cmd = conn.CreateCommand())
                         {

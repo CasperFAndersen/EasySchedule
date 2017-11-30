@@ -57,7 +57,7 @@ namespace DesktopClient
             {
                 TemplateSchedule tempSchedule = new TemplateSchedule();
                 Department selectedDep = (Department)CBoxDepartment.SelectedItem;
-                tempSchedule.DepartmentID = selectedDep.Id;
+                tempSchedule.DepartmentId = selectedDep.Id;
                 tempSchedule.NoOfWeeks = (int)NoOfWeeks.SelectedItem;
                 tempSchedule.Name = TxtBoxTemplateScheduleName.Text;
                 Mediator.GetInstance().OnCreateTemplateScheduleButtonClicked(tempSchedule);

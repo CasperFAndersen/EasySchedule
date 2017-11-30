@@ -63,7 +63,7 @@ namespace BusinessLogic
                 shift.StartTime = shift.StartTime.AddMinutes(ts.StartTime.Minutes);
                 schedule.Shifts.Add(shift);
             }
-            schedule.Department = new DepartmentRepository().GetDepartmentById(templateSchedule.DepartmentID);
+            schedule.Department = new DepartmentRepository().GetDepartmentById(templateSchedule.DepartmentId);
             schedule.StartDate = startTime;
             schedule.EndDate = startTime.AddDays(7 * templateSchedule.NoOfWeeks);
             return schedule;

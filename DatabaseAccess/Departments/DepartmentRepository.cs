@@ -16,7 +16,7 @@ namespace DatabaseAccess.Departments
         {
             List<Department> departments = new List<Department>();
 
-            using (SqlConnection connection = new DbConnectionADO().GetConnection())
+            using (SqlConnection connection = new DbConnection().GetConnection())
             {
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
@@ -40,7 +40,7 @@ namespace DatabaseAccess.Departments
         {
             Department department = new Department();
 
-            using (SqlConnection connection = new DbConnectionADO().GetConnection())
+            using (SqlConnection connection = new DbConnection().GetConnection())
             {
                 using (SqlCommand cmd = connection.CreateCommand())
                 {

@@ -13,7 +13,7 @@ namespace DatabaseAccess
     public class TemplateShiftRepository
     {
 
-        DbConnectionADO dbConADO = new DbConnectionADO();
+        DbConnection dbConADO = new DbConnection();
 
         public void AddTempShiftsFromTempScheduleToDB(int tempScheduleIDFromDB, List<TemplateShift> TShift)
         {
@@ -139,7 +139,7 @@ namespace DatabaseAccess
             tempShift.Hours = reader.GetDouble(2);
             tempShift.StartTime = reader.GetTimeSpan(3);
             tempShift.WeekNumber = reader.GetInt32(4);
-            tempShift.TemplateScheduleID = reader.GetInt32(5);
+            tempShift.TemplateScheduleId = reader.GetInt32(5);
             tempShift.Employee = new EmployeeRepository().FindEmployeeById(reader.GetInt32(6));
 
             return tempShift;
