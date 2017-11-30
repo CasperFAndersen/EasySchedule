@@ -98,6 +98,17 @@ namespace DesktopClient
 
         public delegate void GenerateScheduleButtonClickedHandler(Schedule schedule);
         public event GenerateScheduleButtonClickedHandler GenerateScheduleButtonClicked;
+
+        public delegate void CreateScheduleClickedHandler();
+        public event CreateScheduleClickedHandler CreateScheduleClicked;
+        public void OnCreateScheduleButtonClicked()
+        {
+            if (CreateScheduleClicked !=null)
+            {
+                CreateScheduleClicked();
+            }
+        }
+
         public void OnGenerateScheduleButtonClicked(Schedule schedule)
         {
             if(GenerateScheduleButtonClicked != null)

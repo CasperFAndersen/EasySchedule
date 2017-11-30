@@ -82,5 +82,10 @@ namespace DesktopClient.Views.Schedule
                 Mediator.GetInstance().OnGenerateScheduleButtonClicked(schedule);
             }
         }
+
+        private void btnPublishSchedule_Click(object sender, RoutedEventArgs e)
+        {
+            Mediator.GetInstance().OnCreateScheduleButtonClicked();
+        }
     }
 }

@@ -294,6 +294,20 @@ namespace DesktopClient.Views.Schedule
 
         }
 
+        private void SetOnCreateScheduleClicked()
+        {
+            Mediator.GetInstance().CreateScheduleClicked += () =>
+            {
+                if (Schedule != null)
+                {
+                    ScheduleProxy scheduleProxy = new ScheduleProxy();
+                    scheduleProxy.InsertScheduleIntoDb(Schedule);
+                }
+               
+
+            };
+        }
+
 
         private void NextWeek_Click(object sender, RoutedEventArgs e)
         {

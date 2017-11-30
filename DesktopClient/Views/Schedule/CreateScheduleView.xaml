@@ -29,6 +29,6 @@
         <ListView Name="listTempSchedule" Grid.Column="1" Grid.Row="3"></ListView>
         <DatePicker Name="datePicker" Grid.Column="2" Grid.Row="3"/>
         <Button Name="btnGenerateSchedule" Content="Generate" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Click="btnGenerateSchedule_Click"/>
-        <Button Name="btnPublishSchedule" Content="Publish" Grid.Column="2" Grid.Row="7" />
+        <Button Name="btnPublishSchedule" Content="Publish" Grid.Column="2" Grid.Row="7" Click="btnPublishSchedule_Click" />
     </Grid>
 </Page>
