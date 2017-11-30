@@ -39,6 +39,7 @@ namespace Tests.DatabaseAccess
             afterInsert = schRep.GetSchedulesByDepartmentId(3).Count;
             Assert.AreEqual(beforeInsert, afterInsert - 1);
 
+
         }
 
         [TestMethod()]
@@ -60,15 +61,18 @@ namespace Tests.DatabaseAccess
             ScheduleShift scheduleShift2 = new ScheduleShift() { StartTime = new DateTime(2017, 11, 16, 8, 0, 0), Employee = emp, Hours = 5 };
             int shiftsBeforeInsert = schedule.Shifts.Count;
             int shiftsAfterInsert = 0;
+            ScheduleShift shift1BeforeInsert = schedule.Shifts[0];
             schedule.Shifts.Add(scheduleShift2);
           
             schRep.UpdateSchedule(schedule);
 
             schedule = new ScheduleController(schRep).GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
+
             shiftsAfterInsert = schedule.Shifts.Count;
 
             Assert.AreNotEqual(shiftsBeforeInsert, shiftsAfterInsert);
             Assert.AreEqual(shiftsBeforeInsert, shiftsAfterInsert - 1);
+            Assert.AreEqual(schedule.Shifts[0].StartTime, shift1BeforeInsert.StartTime);
 
             
         }
