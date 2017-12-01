@@ -76,7 +76,6 @@ namespace DatabaseAccess.TemplateShifts
                             TemplateShift templateShift = BuildTemplateShiftObject(reader);
                             templateShifts.Add(templateShift);
                         }
-                        connection.Close();
                     }
                 }
             }
