@@ -41,7 +41,7 @@ namespace Tests.DatabaseAccess
             List<ScheduleShift> shifts = shiftRepository.GetShiftsByScheduleId(1);
             foreach(ScheduleShift s in shifts)
             {
-                s.IsForSale = false;
+                s.IsForSale = false
             }
         }
     }
