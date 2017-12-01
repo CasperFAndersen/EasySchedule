@@ -12,6 +12,8 @@ namespace Core
     {
         [DataMember]
         public DateTime StartTime { get; set; }
+        [DataMember]
+        public bool IsForSale { get; set; }
 
         public ScheduleShift()
         {
