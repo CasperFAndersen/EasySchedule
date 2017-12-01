@@ -130,8 +130,8 @@ namespace DesktopClient.Views.ScheduleViews
         public void BuildDateBoxes()
         {
             DateTime currentDate = DateTime.Now;
-            int thisMonday = (currentDate.DayOfWeek == DayOfWeek.Sunday) ? (currentDate.Day - 6) : (currentDate.Day - ((int)currentDate.DayOfWeek - 1));
-            DateTime date = new DateTime(currentDate.Year, currentDate.Month, thisMonday);
+           // int thisMonday = (currentDate.DayOfWeek == DayOfWeek.Sunday) ? (currentDate.AddDays(-6)) : (currentDate.AddDays(((int)currentDate.DayOfWeek - 1)));
+            DateTime date = (currentDate.DayOfWeek == DayOfWeek.Sunday) ? (currentDate.AddDays(-6)) : (currentDate.AddDays(((int)currentDate.DayOfWeek - 1)));
 
             int row = 1; int col = 2;
             int day = 0;
