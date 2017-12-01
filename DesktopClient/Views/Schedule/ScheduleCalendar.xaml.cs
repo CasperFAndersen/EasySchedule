@@ -271,9 +271,10 @@ namespace DesktopClient.Views.Schedule
                     if (Schedule != null)
                     {
                         scheduleProxy.UpdateSchedule(Schedule);
+                        MessageBox.Show("Schedule for " + Schedule.Department.Name + " Saved sucessfully");
                     }
 
-                    MessageBox.Show("Schedule for " + Schedule.Department.Name + " Saved sucessfully");
+                   
                     
                 }
                 catch (Exception)

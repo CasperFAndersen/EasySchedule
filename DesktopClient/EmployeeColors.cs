@@ -28,7 +28,7 @@ namespace DesktopClient
             List<Employee> employees = await new EmployeeProxy().GetAllEmployeesAsync();
             foreach (var emp in employees)
             {
-                EmpColors.Add(emp.Name, Color.FromRgb((byte)(rnd.Next(56)+200), (byte)(rnd.Next(56)+200), (byte)(rnd.Next(56)+200)));
+                EmpColors.Add(emp.Name, Color.FromRgb((byte)(rnd.Next(156)+100), (byte)(rnd.Next(156)+100), (byte)(rnd.Next(156)+100)));
 
             };
         }
