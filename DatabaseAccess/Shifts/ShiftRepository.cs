@@ -68,23 +68,26 @@ namespace DatabaseAccess.Shifts
                     {
                         using (SqlCommand command = connection.CreateCommand())
                         {
-                            command.CommandText = "INSERT INTO Shift (startTime, hours, scheduleId, employeeId)" +
-                                              " VALUES (@param1, @param2, @param3, @param4);";
+                            command.CommandText = "INSERT INTO Shift (startTime, hours, scheduleId, employeeId, isForSale)" +
+                                              " VALUES (@param1, @param2, @param3, @param4, @param5)";
 
                             SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.SmallDateTime, 100);
                             SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.Int, 100);
                             SqlParameter p3 = new SqlParameter(@"param3", SqlDbType.Int, 100);
                             SqlParameter p4 = new SqlParameter(@"param4", SqlDbType.Int, 100);
+                            SqlParameter p5 = new SqlParameter(@"param5", SqlDbType.Bit);
 
                             p1.Value = shift.StartTime;
                             p2.Value = shift.Hours;
                             p3.Value = scheduleId;
                             p4.Value = shift.Employee.Id;
+                            p5.Value = shift.IsForSale;
 
                             command.Parameters.Add(p1);
                             command.Parameters.Add(p2);
                             command.Parameters.Add(p3);
                             command.Parameters.Add(p4);
+                            command.Parameters.Add(p5);
 
                             command.ExecuteNonQuery();
                         }
@@ -109,23 +112,26 @@ namespace DatabaseAccess.Shifts
                         {
                             using (SqlCommand command = connection.CreateCommand())
                             {
-                                command.CommandText = "INSERT INTO Shift(startTime, hours, scheduleId, employeeId) " +
-                                                        "VALUES (@param1, @param2, @param3, @param4)";
+                                command.CommandText = "INSERT INTO Shift(startTime, hours, scheduleId, employeeId, isForSale) " +
+                                                        "VALUES (@param1, @param2, @param3, @param4, @param5)";
 
                                 SqlParameter p1 = new SqlParameter("@param1", SqlDbType.DateTime);
                                 SqlParameter p2 = new SqlParameter("@param2", SqlDbType.Float);
                                 SqlParameter p3 = new SqlParameter("@param3", SqlDbType.Int);
-                                SqlParameter p4 = new SqlParameter("@param4", SqlDbType.Int);
+                                SqlParameter p4 = new SqlParameter("@param5", SqlDbType.Int);
+                                SqlParameter p5 = new SqlParameter("@param4", SqlDbType.Bit);
 
                                 p1.Value = shift.StartTime;
                                 p2.Value = shift.Hours;
                                 p3.Value = schedule.Id;
                                 p4.Value = shift.Employee.Id;
+                                p5.Value = shift.IsForSale;
 
                                 command.Parameters.Add(p1);
                                 command.Parameters.Add(p2);
                                 command.Parameters.Add(p3);
                                 command.Parameters.Add(p4);
+                                command.Parameters.Add(p5);
 
                                 command.ExecuteNonQuery();
                             }
@@ -149,22 +155,25 @@ namespace DatabaseAccess.Shifts
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "UPDATE shift SET startTime = @param1, hours = @param2, scheduleId = @param3 WHERE shift.id = @param4";
+                    command.CommandText = "UPDATE shift SET startTime = @param1, hours = @param2, scheduleId = @param3, IsForSale = @param4 WHERE shift.id = @param5";
 
                     SqlParameter p1 = new SqlParameter("@param1", SqlDbType.DateTime, 100);
                     SqlParameter p2 = new SqlParameter("@param2", SqlDbType.Float);
                     SqlParameter p3 = new SqlParameter("@param3", SqlDbType.Int);
-                    SqlParameter p4 = new SqlParameter("@param4", SqlDbType.Int);
+                    SqlParameter p4 = new SqlParameter("@param4", SqlDbType.Bit);
+                    SqlParameter p5 = new SqlParameter("@param5", SqlDbType.Int);
 
                     p1.Value = shift.StartTime;
                     p2.Value = shift.Hours;
                     p3.Value = scheduleId;
-                    p4.Value = shift.Id;
+                    p4.Value = shift.IsForSale;
+                    p5.Value = shift.Id;
 
                     command.Parameters.Add(p1);
                     command.Parameters.Add(p2);
                     command.Parameters.Add(p3);
                     command.Parameters.Add(p4);
+                    command.Parameters.Add(p5);
 
                     command.ExecuteNonQuery();
                 }
@@ -214,6 +223,7 @@ namespace DatabaseAccess.Shifts
             scheduleShift.Employee = new EmployeeRepository().FindEmployeeById(Convert.ToInt32(reader["EmployeeId"].ToString()));
             scheduleShift.StartTime = reader.GetDateTime(1);
             scheduleShift.Hours = Convert.ToDouble(reader["Hours"].ToString());
+            scheduleShift.IsForSale = Convert.ToBoolean(reader["IsForSale"]);
             return scheduleShift;
         }
     }

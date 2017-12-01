@@ -39,10 +39,23 @@ namespace Tests.DatabaseAccess
         public void TestIfShiftIsForSale()
         {
             List<ScheduleShift> shifts = shiftRepository.GetShiftsByScheduleId(1);
+            List<ScheduleShift> shiftsForSale = new List<ScheduleShift>();
             foreach(ScheduleShift s in shifts)
             {
-                s.IsForSale = false
+                if(s.IsForSale)
+                {
+                    shiftsForSale.Add(s);
+                }
             }
+            Assert.AreEqual(2, shiftsForSale.Count);
+        }
+
+        [TestMethod]
+        public void TestSetShiftForSale()
+        {
+            List<ScheduleShift> shifts = shiftRepository.GetShiftsByScheduleId(1);
+            ScheduleShift tempScheduleShift = shifts[1];
+            tempScheduleShift.
         }
     }
 }
