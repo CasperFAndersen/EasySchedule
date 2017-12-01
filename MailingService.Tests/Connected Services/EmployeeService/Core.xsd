@@ -12,7 +12,6 @@
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Employee" nillable="true" type="tns:Employee" />

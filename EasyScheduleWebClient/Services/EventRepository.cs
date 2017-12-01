@@ -8,7 +8,6 @@ namespace EasyScheduleWebClient.Services
 {
     public class EventRepository
     {
-
         public IEnumerable<Event> GetEvents()
         {
             List<Event> events = new List<Event>();

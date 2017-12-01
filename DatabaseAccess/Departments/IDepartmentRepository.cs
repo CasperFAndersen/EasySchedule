@@ -8,6 +8,5 @@ namespace DatabaseAccess.Departments
     {
         List<Department> GetAllDepartments();
         Department GetDepartmentById(int id);
-        Department BuildDepartmentObject(SqlDataReader reader);
     }
 }

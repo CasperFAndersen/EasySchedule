@@ -13,11 +13,17 @@
   <wsdl:message name="IEmployeeService_GetEmployeeByUsername_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEmployeeByUsernameResponse" />
   </wsdl:message>
-  <wsdl:message name="IEmployeeService_GetListOfEmployeeByDepartmentId_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetListOfEmployeeByDepartmentId" />
+  <wsdl:message name="IEmployeeService_GetListOfEmployeesByDepartmentId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListOfEmployeesByDepartmentId" />
   </wsdl:message>
-  <wsdl:message name="IEmployeeService_GetListOfEmployeeByDepartmentId_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetListOfEmployeeByDepartmentIdResponse" />
+  <wsdl:message name="IEmployeeService_GetListOfEmployeesByDepartmentId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListOfEmployeesByDepartmentIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_GetEmployeesByDepartmentId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeesByDepartmentId" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_GetEmployeesByDepartmentId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeesByDepartmentIdResponse" />
   </wsdl:message>
   <wsdl:message name="IEmployeeService_GetAllEmployees_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllEmployees" />
@@ -42,9 +48,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetEmployeeByUsername" message="tns:IEmployeeService_GetEmployeeByUsername_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetEmployeeByUsernameResponse" message="tns:IEmployeeService_GetEmployeeByUsername_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetListOfEmployeeByDepartmentId">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentId" message="tns:IEmployeeService_GetListOfEmployeeByDepartmentId_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentIdResponse" message="tns:IEmployeeService_GetListOfEmployeeByDepartmentId_OutputMessage" />
+    <wsdl:operation name="GetListOfEmployeesByDepartmentId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetListOfEmployeesByDepartmentId" message="tns:IEmployeeService_GetListOfEmployeesByDepartmentId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetListOfEmployeesByDepartmentIdResponse" message="tns:IEmployeeService_GetListOfEmployeesByDepartmentId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeesByDepartmentId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId" message="tns:IEmployeeService_GetEmployeesByDepartmentId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentIdResponse" message="tns:IEmployeeService_GetEmployeesByDepartmentId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllEmployees">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetAllEmployees" message="tns:IEmployeeService_GetAllEmployees_InputMessage" />
@@ -70,8 +80,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetListOfEmployeeByDepartmentId">
-      <soap:operation soapAction="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentId" style="document" />
+    <wsdl:operation name="GetListOfEmployeesByDepartmentId">
+      <soap:operation soapAction="http://tempuri.org/IEmployeeService/GetListOfEmployeesByDepartmentId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeesByDepartmentId">
+      <soap:operation soapAction="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="468e1bdf-39e3-4388-9cdf-28a13ceff6d6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="Core" />
+      <ReferencedAssembly AssemblyName="System" />
+      <ReferencedAssembly AssemblyName="System.Runtime.Serialization" />
+      <ReferencedAssembly AssemblyName="System.ServiceModel" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9000/ServiceLibrary/TemplateShiftService/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TemplateShiftService.wsdl" MetadataType="Wsdl" ID="31ef8c64-83d1-474a-b374-47c66d2d9e89" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TemplateShiftService/?wsdl" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="e967bdfd-391f-45c7-b0f5-b119c897d3c1" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TemplateShiftService/?xsd=xsd3" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="e4362fd9-d122-4e8e-81f9-ea8188e0c623" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TemplateShiftService/?xsd=xsd2" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="a4a0d4f0-288d-40cb-8bfb-98a4af9bd1ba" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TemplateShiftService/?xsd=xsd1" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="633358f9-bc92-4291-a420-bc5bdccb3f73" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TemplateShiftService/?xsd=xsd0" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="03605e61-707e-4cd9-b6b8-0b17933a3dfc" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TemplateShiftService/?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

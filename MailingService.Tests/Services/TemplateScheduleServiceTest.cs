@@ -2,7 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Core;
 using System.Collections.Generic;
-using Tests.TempScheduleService;
+using System.Linq;
+using Tests.TemplateScheduleService;
 
 namespace Tests.Services
 {
@@ -10,31 +11,23 @@ namespace Tests.Services
     public class TemplateScheduleServiceTest
     {
         [TestMethod]
-        public void TestAddTempScheduleToDBService()
+        public void TestAddTemplateScheduleToDbService()
         {
-            //TempScheduleProxy tempScheduleService = new TempScheduleProxy();
-            TempScheduleServiceClient tempScheduleService = new TempScheduleServiceClient();
-            List<TemplateSchedule> beforeAddingTempScheduleList = new List<TemplateSchedule>(tempScheduleService.GetAllTempSchedules());
-            TemplateSchedule tSchedule = new TemplateSchedule(4, "DummySchedule", 1);
-
-            tempScheduleService.AddTempScheduleToDB(tSchedule);
-
-            List<TemplateSchedule> afterAddingTempScheduleList = new List<TemplateSchedule>(tempScheduleService.GetAllTempSchedules());
-
-            Assert.AreNotEqual(beforeAddingTempScheduleList.Count, afterAddingTempScheduleList.Count);
-            Assert.AreEqual(tempScheduleService.FindTempScheduleByName("DummySchedule").Name, tSchedule.Name);
-
+            TemplateScheduleServiceClient templateScheduleService = new TemplateScheduleServiceClient();
+            List<TemplateSchedule> beforeAddingTemplateScheduleList = new List<TemplateSchedule>(templateScheduleService.GetAllTemplateSchedules());
+            TemplateSchedule templateSchedule = new TemplateSchedule(4, "DummySchedule", 1);
+            templateScheduleService.AddTemplateScheduleToDb(templateSchedule);
+            List<TemplateSchedule> afterAddingTemplateScheduleList = new List<TemplateSchedule>(templateScheduleService.GetAllTemplateSchedules());
+            Assert.AreNotEqual(beforeAddingTemplateScheduleList.Count, afterAddingTemplateScheduleList.Count);
+            Assert.AreEqual(templateScheduleService.FindTemplateScheduleByName("DummySchedule").Name, templateSchedule.Name);
         }
 
         [TestMethod]
-        public void TestGetAllSchedules()
+        public void TestGetAllTemplateSchedules()
         {
-            TempScheduleServiceClient tempScheduleService = new TempScheduleServiceClient();
-           
-            List<TemplateSchedule> tempSchedules = tempScheduleService.GetAllTempSchedules();
-
-            Assert.IsNotNull(tempSchedules);
-            
+            TemplateScheduleServiceClient templateScheduleService = new TemplateScheduleServiceClient();
+            List<TemplateSchedule> templateSchedules = templateScheduleService.GetAllTemplateSchedules().ToList();
+            Assert.IsNotNull(templateSchedules);
         }
     }
 }

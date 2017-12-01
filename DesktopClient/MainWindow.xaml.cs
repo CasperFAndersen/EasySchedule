@@ -1,6 +1,6 @@
 ﻿using Core;
 using DesktopClient.Services;
-using DesktopClient.Views.Schedule;
+using DesktopClient.Views.ScheduleViews;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,43 +15,46 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DesktopClient.Views.TemplateScheduleViews;
+using CreateScheduleView = DesktopClient.Views.ScheduleViews.CreateScheduleView;
+using ScheduleCalendarView = DesktopClient.Views.ScheduleViews.ScheduleCalendarView;
+using TemplateScheduleCalendarView = DesktopClient.Views.TemplateScheduleViews.TemplateScheduleCalendarView;
+using ViewCreateTemplateSchedule = DesktopClient.Views.TemplateScheduleViews.ViewCreateTemplateSchedule;
+using ViewEditTemplateSchedule = DesktopClient.Views.TemplateScheduleViews.ViewEditTemplateSchedule;
+using ViewScheduleView = DesktopClient.Views.ScheduleViews.ViewScheduleView;
 
 namespace DesktopClient
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         TemplateScheduleCalendarView templateScheduleCalendarView1;
         TemplateScheduleCalendarView templateScheduleCalendarView2;
         ViewCreateTemplateSchedule viewCreateTemplateSchedule;
         ViewEditTemplateSchedule viewEditTemplateSchedule;
-        CreateEmployeeView createEmployeeView;
-        UpdateEmployeeView updateEmployeeView;
+        Views.EmployeeViews.CreateEmployeeView createEmployeeView;
+        Views.EmployeeViews.UpdateEmployeeView updateEmployeeView;
         ScheduleCalendarView scheduleCalendarViewEdit;
         ScheduleCalendarView scheduleCalendarCreate;
         CreateScheduleView createScheduleView;
-        EmployeeColors empCol;
+        EmployeeColors employeeColors;
 
         public MainWindow()
         {
             InitializeComponent();
-            empCol = new EmployeeColors();
+            employeeColors = new EmployeeColors();
             templateScheduleCalendarView1 = new TemplateScheduleCalendarView();
             templateScheduleCalendarView2 = new TemplateScheduleCalendarView();
             viewCreateTemplateSchedule = new ViewCreateTemplateSchedule();
             viewEditTemplateSchedule = new ViewEditTemplateSchedule();
-            createEmployeeView = new CreateEmployeeView();
-            updateEmployeeView = new UpdateEmployeeView();
+            createEmployeeView = new Views.EmployeeViews.CreateEmployeeView();
+            updateEmployeeView = new Views.EmployeeViews.UpdateEmployeeView();
             scheduleCalendarViewEdit = new ScheduleCalendarView();
             scheduleCalendarCreate = new ScheduleCalendarView();
             createScheduleView = new CreateScheduleView();
-            createEmployeeView = new CreateEmployeeView();
-
+            createEmployeeView = new Views.EmployeeViews.CreateEmployeeView();
         }
 
-        private void ViewEditTempScheduleMenuItimClicked(object sender, RoutedEventArgs e)
+        private void ViewEditTemplateScheduleMenuItimClicked(object sender, RoutedEventArgs e)
         {
             templateScheduleCalendarView2.Calendar.Clear();
             templateScheduleCalendarView1.ControlPanel.Content = viewEditTemplateSchedule;
@@ -67,7 +70,7 @@ namespace DesktopClient
             //frame.Content = tscv;
         }
 
-        private void CreateTempScheduleMenuItimClicked(object sender, RoutedEventArgs e)
+        private void CreateTemplateScheduleMenuItimClicked(object sender, RoutedEventArgs e)
         {
             templateScheduleCalendarView2.Calendar.Clear();
             templateScheduleCalendarView1.Calendar.Clear();

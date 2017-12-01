@@ -21,11 +21,11 @@ namespace Tests.DepartmentService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetAllDepartments", ReplyAction="http://tempuri.org/IDepartmentService/GetAllDepartmentsResponse")]
         System.Threading.Tasks.Task<Core.Department[]> GetAllDepartmentsAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetDepartmentById", ReplyAction="http://tempuri.org/IDepartmentService/GetDepartmentByIdResponse")]
-        Core.Department GetDepartmentById(int depId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/TestGetDepartmentById", ReplyAction="http://tempuri.org/IDepartmentService/GetDepartmentByIdResponse")]
+        Core.Department GetDepartmentById(int departmentId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetDepartmentById", ReplyAction="http://tempuri.org/IDepartmentService/GetDepartmentByIdResponse")]
-        System.Threading.Tasks.Task<Core.Department> GetDepartmentByIdAsync(int depId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/TestGetDepartmentById", ReplyAction="http://tempuri.org/IDepartmentService/GetDepartmentByIdResponse")]
+        System.Threading.Tasks.Task<Core.Department> GetDepartmentByIdAsync(int departmentId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -63,12 +63,12 @@ namespace Tests.DepartmentService {
             return base.Channel.GetAllDepartmentsAsync();
         }
         
-        public Core.Department GetDepartmentById(int depId) {
-            return base.Channel.GetDepartmentById(depId);
+        public Core.Department GetDepartmentById(int departmentId) {
+            return base.Channel.GetDepartmentById(departmentId);
         }
         
-        public System.Threading.Tasks.Task<Core.Department> GetDepartmentByIdAsync(int depId) {
-            return base.Channel.GetDepartmentByIdAsync(depId);
+        public System.Threading.Tasks.Task<Core.Department> GetDepartmentByIdAsync(int departmentId) {
+            return base.Channel.GetDepartmentByIdAsync(departmentId);
         }
     }
 }

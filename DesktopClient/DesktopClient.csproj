@@ -56,43 +56,53 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="EmployeeColors.cs" />
-    <Compile Include="Views\EmployeeViews\ListOfEmployeeView.xaml.cs">
-      <DependentUpon>ListOfEmployeeView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Schedule\CreateScheduleView.xaml.cs">
-      <DependentUpon>CreateScheduleView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Schedule\DateBox.xaml.cs">
-      <DependentUpon>DateBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Schedule\ScheduleCalendar.xaml.cs">
-      <DependentUpon>ScheduleCalendar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Schedule\ScheduleCalendarView.xaml.cs">
-      <DependentUpon>ScheduleCalendarView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Schedule\ScheduleDayColumn.xaml.cs">
-      <DependentUpon>ScheduleDayColumn.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Schedule\ScheduleTimeCell.xaml.cs">
-      <DependentUpon>ScheduleTimeCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Schedule\ScheduleShiftElement.xaml.cs">
-      <DependentUpon>ScheduleShiftElement.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Schedule\ViewScheduleView.xaml.cs">
-      <DependentUpon>ViewScheduleView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TemplateSchedule\TemplateScheduleCalendar.xaml.cs">
-      <DependentUpon>TemplateScheduleCalendar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Connected Services\DepartmentService\Reference.cs">
+    <Compile Include="Connected Services\EmployeeService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\EmployeeService\Reference.cs">
+    <Compile Include="Connected Services\TemplateScheduleService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\TemplateShiftService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeColors.cs" />
+    <Compile Include="Views\EmployeeViews\ListOfEmployeeView.xaml.cs">
+      <DependentUpon>ListOfEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScheduleViews\CreateScheduleView.xaml.cs">
+      <DependentUpon>CreateScheduleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScheduleViews\DateBox.xaml.cs">
+      <DependentUpon>DateBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScheduleViews\ScheduleCalendar.xaml.cs">
+      <DependentUpon>ScheduleCalendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScheduleViews\ScheduleCalendarView.xaml.cs">
+      <DependentUpon>ScheduleCalendarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScheduleViews\ScheduleDayColumn.xaml.cs">
+      <DependentUpon>ScheduleDayColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScheduleViews\ScheduleTimeCell.xaml.cs">
+      <DependentUpon>ScheduleTimeCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScheduleViews\ScheduleShiftElement.xaml.cs">
+      <DependentUpon>ScheduleShiftElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScheduleViews\ViewScheduleView.xaml.cs">
+      <DependentUpon>ViewScheduleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TemplateScheduleViews\TemplateScheduleCalendar.xaml.cs">
+      <DependentUpon>TemplateScheduleCalendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\DepartmentService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -102,20 +112,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\TempScheduleService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Connected Services\TempShiftService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Views\EmployeeViews\CreateEmployeeView.xaml.cs">
       <DependentUpon>CreateEmployeeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TemplateSchedule\DayColumn.xaml.cs">
+    <Compile Include="Views\TemplateScheduleViews\DayColumn.xaml.cs">
       <DependentUpon>DayColumn.xaml</DependentUpon>
     </Compile>
     <Compile Include="DepartmentEvents.cs" />
@@ -127,7 +127,7 @@
       <DependentUpon>ManageEmployeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\ScheduleProxy.cs" />
-    <Compile Include="Views\TemplateSchedule\TemplateScheduleCalendarView.xaml.cs">
+    <Compile Include="Views\TemplateScheduleViews\TemplateScheduleCalendarView.xaml.cs">
       <DependentUpon>TemplateScheduleCalendarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="TemplateSelectedArgs.cs" />
@@ -138,61 +138,61 @@
     <Compile Include="Mediator.cs" />
     <Compile Include="Services\DepartmentProxy.cs" />
     <Compile Include="Services\EmployeeProxy.cs" />
-    <Compile Include="Services\TempScheduleProxy.cs" />
+    <Compile Include="Services\TemplateScheduleProxy.cs" />
     <Compile Include="Services\TempShiftProxy.cs" />
     <Compile Include="ShiftDropEventArgs.cs" />
-    <Compile Include="Views\TemplateSchedule\ShiftElement.xaml.cs">
+    <Compile Include="Views\TemplateScheduleViews\ShiftElement.xaml.cs">
       <DependentUpon>ShiftElement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TemplateSchedule\TimeCell.xaml.cs">
+    <Compile Include="Views\TemplateScheduleViews\TimeCell.xaml.cs">
       <DependentUpon>TimeCell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EmployeeViews\UpdateEmployeeView.xaml.cs">
       <DependentUpon>UpdateEmployeeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TemplateSchedule\ViewCreateTemplateSchedule.xaml.cs">
+    <Compile Include="Views\TemplateScheduleViews\ViewCreateTemplateSchedule.xaml.cs">
       <DependentUpon>ViewCreateTemplateSchedule.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TemplateSchedule\ViewEditTemplateSchedule.xaml.cs">
+    <Compile Include="Views\TemplateScheduleViews\ViewEditTemplateSchedule.xaml.cs">
       <DependentUpon>ViewEditTemplateSchedule.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\EmployeeViews\ListOfEmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Schedule\CreateScheduleView.xaml">
+    <Page Include="Views\ScheduleViews\CreateScheduleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Schedule\DateBox.xaml">
+    <Page Include="Views\ScheduleViews\DateBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Schedule\ScheduleCalendar.xaml">
+    <Page Include="Views\ScheduleViews\ScheduleCalendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Schedule\ScheduleCalendarView.xaml">
+    <Page Include="Views\ScheduleViews\ScheduleCalendarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Schedule\ScheduleDayColumn.xaml">
+    <Page Include="Views\ScheduleViews\ScheduleDayColumn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Schedule\ScheduleTimeCell.xaml">
+    <Page Include="Views\ScheduleViews\ScheduleTimeCell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Schedule\ScheduleShiftElement.xaml">
+    <Page Include="Views\ScheduleViews\ScheduleShiftElement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Schedule\ViewScheduleView.xaml">
+    <Page Include="Views\ScheduleViews\ViewScheduleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TemplateSchedule\TemplateScheduleCalendar.xaml">
+    <Page Include="Views\TemplateScheduleViews\TemplateScheduleCalendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -200,7 +200,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TemplateSchedule\DayColumn.xaml">
+    <Page Include="Views\TemplateScheduleViews\DayColumn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -228,15 +228,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TemplateSchedule\ShiftElement.xaml">
+    <Page Include="Views\TemplateScheduleViews\ShiftElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TemplateSchedule\TemplateScheduleCalendarView.xaml">
+    <Page Include="Views\TemplateScheduleViews\TemplateScheduleCalendarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TemplateSchedule\TimeCell.xaml">
+    <Page Include="Views\TemplateScheduleViews\TimeCell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -244,11 +244,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TemplateSchedule\ViewCreateTemplateSchedule.xaml">
+    <Page Include="Views\TemplateScheduleViews\ViewCreateTemplateSchedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TemplateSchedule\ViewEditTemplateSchedule.xaml">
+    <Page Include="Views\TemplateScheduleViews\ViewEditTemplateSchedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -281,14 +281,14 @@
     <None Include="Connected Services\DepartmentService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\EmployeeService\EmployeeService.wsdl" />
-    <None Include="Connected Services\EmployeeService\item.xsd">
+    <None Include="Connected Services\EmployeeService\Core.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\EmployeeService\item1.xsd">
+    <None Include="Connected Services\EmployeeService\service.wsdl" />
+    <None Include="Connected Services\EmployeeService\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\EmployeeService\item2.xsd">
+    <None Include="Connected Services\EmployeeService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ScheduleService\item.xsd">
@@ -304,32 +304,32 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ScheduleService\ScheduleService.wsdl" />
-    <None Include="Connected Services\TempScheduleService\Core.xsd">
+    <None Include="Connected Services\TemplateScheduleService\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempScheduleService\service.wsdl" />
-    <None Include="Connected Services\TempScheduleService\service.xsd">
+    <None Include="Connected Services\TemplateScheduleService\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempScheduleService\service1.xsd">
+    <None Include="Connected Services\TemplateScheduleService\item2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempScheduleService\System.xsd">
+    <None Include="Connected Services\TemplateScheduleService\item3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempShiftService\Core.xsd">
+    <None Include="Connected Services\TemplateScheduleService\TemplateScheduleService.wsdl" />
+    <None Include="Connected Services\TemplateShiftService\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempShiftService\service.wsdl" />
-    <None Include="Connected Services\TempShiftService\service.xsd">
+    <None Include="Connected Services\TemplateShiftService\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempShiftService\service1.xsd">
+    <None Include="Connected Services\TemplateShiftService\item2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TempShiftService\System.xsd">
+    <None Include="Connected Services\TemplateShiftService\item3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\TemplateShiftService\TemplateShiftService.wsdl" />
     <None Include="Properties\DataSources\Core.Department.datasource" />
     <None Include="Properties\DataSources\Core.Employee.datasource" />
     <None Include="Properties\DataSources\Core.Schedule.datasource" />
@@ -350,38 +350,14 @@
     <WCFMetadataStorage Include="Connected Services\DepartmentService\" />
     <WCFMetadataStorage Include="Connected Services\EmployeeService\" />
     <WCFMetadataStorage Include="Connected Services\ScheduleService\" />
-    <WCFMetadataStorage Include="Connected Services\TempScheduleService\" />
-    <WCFMetadataStorage Include="Connected Services\TempShiftService\" />
+    <WCFMetadataStorage Include="Connected Services\TemplateScheduleService\" />
+    <WCFMetadataStorage Include="Connected Services\TemplateShiftService\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Core.csproj">
       <Project>{3e8c167c-bc2d-4ca0-a666-d3c4af3b9db0}</Project>
       <Name>Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\TempShiftService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\TempShiftService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\TempShiftService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\TempScheduleService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\TempScheduleService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\TempScheduleService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\DepartmentService\configuration91.svcinfo" />
@@ -391,21 +367,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\DepartmentService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\EmployeeService\item.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\EmployeeService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\EmployeeService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\EmployeeService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -421,6 +382,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ScheduleService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TemplateShiftService\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TemplateShiftService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TemplateShiftService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TemplateShiftService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TemplateScheduleService\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TemplateScheduleService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TemplateScheduleService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TemplateScheduleService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmployeeService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmployeeService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmployeeService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

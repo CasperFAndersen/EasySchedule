@@ -21,11 +21,11 @@ namespace DesktopClient.ScheduleService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetScheduleByDepartmentIdAndDate", ReplyAction="http://tempuri.org/IScheduleService/GetScheduleByDepartmentIdAndDateResponse")]
         System.Threading.Tasks.Task<Core.Schedule> GetScheduleByDepartmentIdAndDateAsync(int departmentId, System.DateTime date);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/InsertScheduleIntoDb", ReplyAction="http://tempuri.org/IScheduleService/InsertScheduleIntoDbResponse")]
-        void InsertScheduleIntoDb(Core.Schedule schedule);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/InsertScheduleToDb", ReplyAction="http://tempuri.org/IScheduleService/InsertScheduleToDbResponse")]
+        void InsertScheduleToDb(Core.Schedule schedule);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/InsertScheduleIntoDb", ReplyAction="http://tempuri.org/IScheduleService/InsertScheduleIntoDbResponse")]
-        System.Threading.Tasks.Task InsertScheduleIntoDbAsync(Core.Schedule schedule);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/InsertScheduleToDb", ReplyAction="http://tempuri.org/IScheduleService/InsertScheduleToDbResponse")]
+        System.Threading.Tasks.Task InsertScheduleToDbAsync(Core.Schedule schedule);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/UpdateSchedule", ReplyAction="http://tempuri.org/IScheduleService/UpdateScheduleResponse")]
         void UpdateSchedule(Core.Schedule schedule);
@@ -42,12 +42,12 @@ namespace DesktopClient.ScheduleService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
             "ate", ReplyAction="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
             "ateResponse")]
-        Core.Schedule GenerateScheduleFromTemplateScheduleAndStartDate(Core.TemplateSchedule tempSchedule, System.DateTime startTime);
+        Core.Schedule GenerateScheduleFromTemplateScheduleAndStartDate(Core.TemplateSchedule templateSchedule, System.DateTime startTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
             "ate", ReplyAction="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
             "ateResponse")]
-        System.Threading.Tasks.Task<Core.Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(Core.TemplateSchedule tempSchedule, System.DateTime startTime);
+        System.Threading.Tasks.Task<Core.Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(Core.TemplateSchedule templateSchedule, System.DateTime startTime);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -85,12 +85,12 @@ namespace DesktopClient.ScheduleService {
             return base.Channel.GetScheduleByDepartmentIdAndDateAsync(departmentId, date);
         }
         
-        public void InsertScheduleIntoDb(Core.Schedule schedule) {
-            base.Channel.InsertScheduleIntoDb(schedule);
+        public void InsertScheduleToDb(Core.Schedule schedule) {
+            base.Channel.InsertScheduleToDb(schedule);
         }
         
-        public System.Threading.Tasks.Task InsertScheduleIntoDbAsync(Core.Schedule schedule) {
-            return base.Channel.InsertScheduleIntoDbAsync(schedule);
+        public System.Threading.Tasks.Task InsertScheduleToDbAsync(Core.Schedule schedule) {
+            return base.Channel.InsertScheduleToDbAsync(schedule);
         }
         
         public void UpdateSchedule(Core.Schedule schedule) {
@@ -109,12 +109,12 @@ namespace DesktopClient.ScheduleService {
             return base.Channel.GetSchedulesByDepartmentIdAsync(departmentId);
         }
         
-        public Core.Schedule GenerateScheduleFromTemplateScheduleAndStartDate(Core.TemplateSchedule tempSchedule, System.DateTime startTime) {
-            return base.Channel.GenerateScheduleFromTemplateScheduleAndStartDate(tempSchedule, startTime);
+        public Core.Schedule GenerateScheduleFromTemplateScheduleAndStartDate(Core.TemplateSchedule templateSchedule, System.DateTime startTime) {
+            return base.Channel.GenerateScheduleFromTemplateScheduleAndStartDate(templateSchedule, startTime);
         }
         
-        public System.Threading.Tasks.Task<Core.Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(Core.TemplateSchedule tempSchedule, System.DateTime startTime) {
-            return base.Channel.GenerateScheduleFromTemplateScheduleAndStartDateAsync(tempSchedule, startTime);
+        public System.Threading.Tasks.Task<Core.Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(Core.TemplateSchedule templateSchedule, System.DateTime startTime) {
+            return base.Channel.GenerateScheduleFromTemplateScheduleAndStartDateAsync(templateSchedule, startTime);
         }
     }
 }

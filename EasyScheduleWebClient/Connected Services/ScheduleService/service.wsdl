@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/Core" />
+      <xsd:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IScheduleService_GetScheduleByDepartmentIdAndDate_InputMessage">
@@ -13,11 +14,11 @@
   <wsdl:message name="IScheduleService_GetScheduleByDepartmentIdAndDate_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetScheduleByDepartmentIdAndDateResponse" />
   </wsdl:message>
-  <wsdl:message name="IScheduleService_InsertScheduleIntoDb_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertScheduleIntoDb" />
+  <wsdl:message name="IScheduleService_InsertScheduleToDb_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertScheduleToDb" />
   </wsdl:message>
-  <wsdl:message name="IScheduleService_InsertScheduleIntoDb_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertScheduleIntoDbResponse" />
+  <wsdl:message name="IScheduleService_InsertScheduleToDb_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertScheduleToDbResponse" />
   </wsdl:message>
   <wsdl:message name="IScheduleService_UpdateSchedule_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateSchedule" />
@@ -31,14 +32,20 @@
   <wsdl:message name="IScheduleService_GetSchedulesByDepartmentId_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSchedulesByDepartmentIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IScheduleService_GenerateScheduleFromTemplateScheduleAndStartDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateScheduleFromTemplateScheduleAndStartDate" />
+  </wsdl:message>
+  <wsdl:message name="IScheduleService_GenerateScheduleFromTemplateScheduleAndStartDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateScheduleFromTemplateScheduleAndStartDateResponse" />
+  </wsdl:message>
   <wsdl:portType name="IScheduleService">
     <wsdl:operation name="GetScheduleByDepartmentIdAndDate">
       <wsdl:input wsaw:Action="http://tempuri.org/IScheduleService/GetScheduleByDepartmentIdAndDate" message="tns:IScheduleService_GetScheduleByDepartmentIdAndDate_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IScheduleService/GetScheduleByDepartmentIdAndDateResponse" message="tns:IScheduleService_GetScheduleByDepartmentIdAndDate_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="InsertScheduleIntoDb">
-      <wsdl:input wsaw:Action="http://tempuri.org/IScheduleService/InsertScheduleIntoDb" message="tns:IScheduleService_InsertScheduleIntoDb_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IScheduleService/InsertScheduleIntoDbResponse" message="tns:IScheduleService_InsertScheduleIntoDb_OutputMessage" />
+    <wsdl:operation name="InsertScheduleToDb">
+      <wsdl:input wsaw:Action="http://tempuri.org/IScheduleService/InsertScheduleToDb" message="tns:IScheduleService_InsertScheduleToDb_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IScheduleService/InsertScheduleToDbResponse" message="tns:IScheduleService_InsertScheduleToDb_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateSchedule">
       <wsdl:input wsaw:Action="http://tempuri.org/IScheduleService/UpdateSchedule" message="tns:IScheduleService_UpdateSchedule_InputMessage" />
@@ -47,6 +54,10 @@
     <wsdl:operation name="GetSchedulesByDepartmentId">
       <wsdl:input wsaw:Action="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentId" message="tns:IScheduleService_GetSchedulesByDepartmentId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentIdResponse" message="tns:IScheduleService_GetSchedulesByDepartmentId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateScheduleFromTemplateScheduleAndStartDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartDate" message="tns:IScheduleService_GenerateScheduleFromTemplateScheduleAndStartDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartDateResponse" message="tns:IScheduleService_GenerateScheduleFromTemplateScheduleAndStartDate_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IScheduleService" type="tns:IScheduleService">
@@ -60,8 +71,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="InsertScheduleIntoDb">
-      <soap:operation soapAction="http://tempuri.org/IScheduleService/InsertScheduleIntoDb" style="document" />
+    <wsdl:operation name="InsertScheduleToDb">
+      <soap:operation soapAction="http://tempuri.org/IScheduleService/InsertScheduleToDb" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -80,6 +91,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetSchedulesByDepartmentId">
       <soap:operation soapAction="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateScheduleFromTemplateScheduleAndStartDate">
+      <soap:operation soapAction="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartDate" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

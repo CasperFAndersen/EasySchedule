@@ -15,17 +15,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetListOfEmployeeByDepartmentId">
+  <xs:element name="GetListOfEmployeesByDepartmentId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetListOfEmployeesByDepartmentIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetListOfEmployeesByDepartmentIdResult" nillable="true" type="q2:ArrayOfEmployee" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEmployeesByDepartmentId">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="depId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetListOfEmployeeByDepartmentIdResponse">
+  <xs:element name="GetEmployeesByDepartmentIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetListOfEmployeeByDepartmentIdResult" nillable="true" type="q2:ArrayOfEmployee" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetEmployeesByDepartmentIdResult" nillable="true" type="q3:ArrayOfEmployee" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -37,14 +51,14 @@
   <xs:element name="GetAllEmployeesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetAllEmployeesResult" nillable="true" type="q3:ArrayOfEmployee" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetAllEmployeesResult" nillable="true" type="q4:ArrayOfEmployee" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="InsertEmployee">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="employee" nillable="true" type="q4:Employee" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="employee" nillable="true" type="q5:Employee" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -56,7 +70,7 @@
   <xs:element name="UpdateEmployee">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="employee" nillable="true" type="q5:Employee" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="employee" nillable="true" type="q6:Employee" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

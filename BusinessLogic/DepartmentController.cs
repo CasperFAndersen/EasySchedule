@@ -4,7 +4,7 @@ using DatabaseAccess.Departments;
 
 namespace BusinessLogic
 {
-    public class DepartmentController
+    public class DepartmentController : IDepartmentController
     {
         private readonly IDepartmentRepository _departmentRepository;
 

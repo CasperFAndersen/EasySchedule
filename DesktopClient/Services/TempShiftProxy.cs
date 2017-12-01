@@ -4,32 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core;
-using DesktopClient.TempShiftService;
+using DesktopClient.TemplateShiftService;
 
 namespace DesktopClient.Services
 {
-    public class TempShiftProxy : ITempShiftService
+    public class TemplateShiftProxy : ITemplateShiftService
     {
-        TempShiftServiceClient proxy = new TempShiftServiceClient();
+        TemplateShiftServiceClient proxy = new TemplateShiftServiceClient();
 
-        public TemplateShift CreateTempShift(DayOfWeek weekDay, double hours, TimeSpan startTime, int templateScheduleID, Employee employee)
+        public TemplateShift CreateTemplateShift(TemplateShiftService.DayOfWeek weekDay, double hours, TimeSpan startTime, int templateScheduleId, Employee employee)
         {
-            return proxy.CreateTempShift(weekDay, hours, startTime, templateScheduleID, employee);
+            return proxy.CreateTemplateShift(weekDay, hours, startTime, templateScheduleId, employee);
         }
 
-        public Task<TemplateShift> CreateTempShiftAsync(DayOfWeek weekDay, double hours, TimeSpan startTime, int templateScheduleID, Employee employee)
+        public Task<TemplateShift> CreateTemplateShiftAsync(TemplateShiftService.DayOfWeek weekDay, double hours, TimeSpan startTime, int templateScheduleId, Employee employee)
         {
-            return proxy.CreateTempShiftAsync(weekDay, hours, startTime, templateScheduleID, employee);
+            return proxy.CreateTemplateShiftAsync(weekDay, hours, startTime, templateScheduleId, employee);
         }
 
-        public TemplateShift FindTempShiftByID(int tempShiftID)
+        public TemplateShift FindTemplateShiftById(int templateShiftId)
         {
-            return proxy.FindTempShiftByID(tempShiftID);
+            return proxy.FindTemplateShiftById(templateShiftId);
         }
 
-        public Task<TemplateShift> FindTempShiftByIDAsync(int tempShiftID)
+        public Task<TemplateShift> FindTemplateShiftByIdAsync(int templateShiftId)
         {
-            return proxy.FindTempShiftByIDAsync(tempShiftID);
+            return proxy.FindTemplateShiftByIdAsync(templateShiftId);
         }
 
 
