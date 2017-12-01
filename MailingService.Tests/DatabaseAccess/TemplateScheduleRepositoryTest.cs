@@ -59,8 +59,8 @@ namespace Tests.DatabaseAccess
         [TestMethod]
         public void TestUpdateTemplateSchedule()
         {
-            TemplateScheduleRepository tScheduleRepository = new TemplateScheduleRepository();
-            TemplateSchedule templateSchedule = tScheduleRepository.FindTemplateScheduleByName("KolonialBasis");
+            TemplateScheduleRepository templateScheduleRepository = new TemplateScheduleRepository();
+            TemplateSchedule templateSchedule = templateScheduleRepository.FindTemplateScheduleByName("KolonialBasis");
             TemplateShift templateShift = templateSchedule.TemplateShifts[0];
             templateShift.StartTime = new TimeSpan(8, 0, 0);
             templateShift.Hours = 8;
@@ -68,9 +68,9 @@ namespace Tests.DatabaseAccess
             TemplateShift templateShift2 = new TemplateShift() { StartTime = new TimeSpan(12, 0, 0), WeekNumber = 1, Hours = 6, Employee = new EmployeeRepository().FindEmployeeById(5), TemplateScheduleId = templateSchedule.Id };
             templateSchedule.TemplateShifts.Add(templateShift2);
 
-            tScheduleRepository.UpdateTemplateSchedule(templateSchedule);
+            templateScheduleRepository.UpdateTemplateSchedule(templateSchedule);
 
-            templateSchedule = tScheduleRepository.FindTemplateScheduleByName("KolonialBasis");
+            templateSchedule = templateScheduleRepository.FindTemplateScheduleByName("KolonialBasis");
 
             Assert.IsNotNull(templateSchedule);
             Assert.AreEqual(2, templateSchedule.TemplateShifts.Count);

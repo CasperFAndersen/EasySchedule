@@ -22,12 +22,12 @@ namespace DatabaseAccess.TemplateSchedules
                         {
                             TemplateSchedule templateSchedule = new TemplateSchedule(reader.GetInt32(0), reader.GetString(1),
                                                                                  reader.GetInt32(2), reader.GetInt32(3));
-                            //connection.Close();
                             templateSchedule.TemplateShifts = new TemplateShiftRepository().GetTemplateShiftsByTemplateScheduleId(templateSchedule.Id);
                             templateSchedules.Add(templateSchedule);
                         }
                     }
                 }
+                connection.Close();
             }
             return templateSchedules;
         }
@@ -48,11 +48,9 @@ namespace DatabaseAccess.TemplateSchedules
                     command.Parameters.AddWithValue("@param2", templateSchedule.NoOfWeeks);
                     command.Parameters.AddWithValue("@param3", templateSchedule.DepartmentId);
                     templateScheduleId = Convert.ToInt32(command.ExecuteScalar());
-                    connection.Close();
-                    templateShiftRepository.AddTemplateShiftsFromTemplateSchedule(templateScheduleId, templateSchedule.TemplateShifts);
                 }
-
             }
+            templateShiftRepository.AddTemplateShiftsFromTemplateSchedule(templateScheduleId, templateSchedule.TemplateShifts);
         }
 
         public TemplateSchedule FindTemplateScheduleByName(string scheduleName)
@@ -73,6 +71,7 @@ namespace DatabaseAccess.TemplateSchedules
                         }
                     }
                 }
+                connection.Close();
             }
             return templateSchedule;
         }
@@ -86,9 +85,10 @@ namespace DatabaseAccess.TemplateSchedules
                 {
                     command.Parameters.AddWithValue("@param1", templateSchedule.NoOfWeeks);
                     command.ExecuteNonQuery();
-                    TemplateShiftRepository templateShiftRepository = new TemplateShiftRepository();
-                    templateShiftRepository.AddTemplateShiftsFromTemplateSchedule(templateSchedule.Id, templateSchedule.TemplateShifts);
                 }
+                TemplateShiftRepository templateShiftRepository = new TemplateShiftRepository();
+                templateShiftRepository.AddTemplateShiftsFromTemplateSchedule(templateSchedule.Id, templateSchedule.TemplateShifts);
+                connection.Close();
             }
         }
     }
