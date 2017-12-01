@@ -175,6 +175,44 @@ namespace DatabaseAccess.Shifts
             }
         }
 
+        public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
+        {
+            try
+            {
+                using (SqlConnection connection = new DbConnection().GetConnection())
+                {
+
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = "";
+
+                        SqlParameter p1 = new SqlParameter("@param1", SqlDbType.DateTime);
+                        SqlParameter p2 = new SqlParameter("@param2", SqlDbType.Float);
+                        SqlParameter p3 = new SqlParameter("@param3", SqlDbType.Int);
+                        SqlParameter p4 = new SqlParameter("@param4", SqlDbType.Int);
+
+                        p1.Value = shift.StartTime;
+                        p2.Value = shift.Hours;
+                       // p3.Value = schedule.Id;
+                        p4.Value = shift.Employee.Id;
+
+                        command.Parameters.Add(p1);
+                        command.Parameters.Add(p2);
+                        command.Parameters.Add(p3);
+                        command.Parameters.Add(p4);
+
+                        command.ExecuteNonQuery();
+                    }
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong In AddShiftsFromScheduleToDB!" + e.Message);
+            }
+        }
+
         public ScheduleShift BuildShiftObject(SqlDataReader reader)
         {
             ScheduleShift scheduleShift = new ScheduleShift();

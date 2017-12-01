@@ -117,7 +117,7 @@ namespace Tests.DatabaseAccess
                                       "id int primary key identity(1,1), " +
                                       "startDate datetime, " +
                                       "endDate datetime, " +
-                                    //  "templateScheduleId int foreign key references TemplateSchedule(id), " +
+                                      //  "templateScheduleId int foreign key references TemplateSchedule(id), " +
                                       "departmentId int foreign key references Department(id)); "
 
                                       +
@@ -127,7 +127,8 @@ namespace Tests.DatabaseAccess
                                       "startTime smalldatetime, " +
                                       "hours float, " +
                                       "scheduleId int foreign key references Schedule(id), " +
-                                      "employeeId int foreign key references Employee(id)); ";
+                                      "employeeId int foreign key references Employee(id), " +
+                                      "forSale bit); ";
 
 
                     cmd.ExecuteNonQuery();
@@ -208,106 +209,106 @@ namespace Tests.DatabaseAccess
                                       +
                                       //Shift
 
-                                      "insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-06 15:00', 5, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
-                    "insert into shift(starttime, hours, scheduleid, employeeid)" + " values('2017-11-24 17:00', 3, 1,  (select id from employee where name = 'mikkel paulsen')); " +
-                    "insert into shift(starttime, hours, scheduleid, employeeid)" + " values('2017-11-17 15:00', 5, 1,  (select id from employee where name = 'mikkel paulsen')); " +
-                    "insert into shift(starttime, hours, scheduleid, employeeid)" + " values('2017-11-16 12:00', 7, 1,  (select id from employee where name = 'mikkel paulsen')); " +
-                    "insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-30 09:00', 2, 1,  (select id from employee where name = 'Mikkel Paulsen')); ";
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-19 16:00', 9, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-09 10:00', 3, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-01 16:00', 4, 1, (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-18 15:00', 5, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-25 08:00', 12, 1, (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-05 08:00', 8, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-17 13:00', 3, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-12 11:00', 8, 1, (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-02 07:00', 9, 1, (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-04 17:00', 1, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-17 10:00', 5, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-07 14:00', 6, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-20 16:00', 1, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-25 13:00', 7, 1, (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-05 14:00', 4, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-06 11:00', 7, 1, (select id from employee where name = 'Mikkel Paulsen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-06 14:00', 6, 1, (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-16 15:00', 5, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-06 15:00', 3, 1, (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-03 06:00', 10, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-29 10:00', 8, 1, (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-26 07:00', 8, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-22 07:00', 7, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-14 09:00', 4, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-12 08:00', 6, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-21 16:00', 4, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-06 06:00', 6, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-17 08:00', 4, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-25 10:00', 8, 1, (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-02 17:00', 3, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-09 10:00', 6, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-25 08:00', 9, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-18 08:00', 6, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-10 17:00', 3, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-26 12:00', 8, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-05 15:00', 5, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-29 16:00', 4, 1, (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-10 16:00', 4, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-03 14:00', 6, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-17 13:00', 7, 1, (select id from employee where name = 'Casper Froberg')); ";
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-17 17:00', 3, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-16 08:00', 8, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-12 14:00', 6, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-24 14:00', 4, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-14 15:00', 5, 1, (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-22 15:00', 3, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-03 10:00', 8, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-13 09:00', 6, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-16 17:00', 3, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-16 13:00', 6, 1, (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-22 11:00', 7, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-23 11:00', 6, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-05 15:00', 4, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-29 15:00', 2, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-20 10:00', 4, 1,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-18 07:00', 9, 2,  (select id from employee where name = 'Casper Froberg')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-18 11:00', 5, 2, (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-01 10:00', 10,2, (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-04 17:00', 3, 2, (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-23 15:00', 3, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-09 11:00', 7, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-08 09:00', 7, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-09 17:00', 3, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-28 10:00', 5, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-22 09:00', 6, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-24 11:00', 6, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-19 17:00', 3, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-07 08:00', 7, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-06 06:00', 5, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-26 08:00', 10,2, (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-04 09:00', 6, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-08 17:00', 3, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-13 13:00', 6, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-30 15:00', 5, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-28 12:00', 8, 2, (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-06 11:00', 6, 2,  (select id from employee where name = 'Arne Ralston')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-14 14:00', 6, 2,  (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-18 10:00', 9, 2,  (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-15 14:00', 4, 2,  (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-06 11:00', 7, 2,  (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-09 16:00', 4, 2, (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-03 09:00', 3, 2,  (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-06 09:00', 3, 2,  (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-21 12:00', 3, 2,  (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-19 16:00', 4, 2,  (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-06 09:00', 9, 2, (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-03 11:00', 7, 2,  (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-28 16:00', 4, 2,  (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-15 16:00', 3, 2, (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-17 14:00', 4, 2,  (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-01 15:00', 5, 2, (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-19 13:00', 4, 2,  (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-24 09:00', 7, 2,  (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-07 07:00', 10,2, (select id from employee where name = 'Tobias Andersen')); " +
-                    //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-04 12:00', 8, 2,  (select id from employee where name = 'Tobias Andersen')); ";
+                                      "insert into Shift(startTime, hours, scheduleId, employeeId, forSale)" + " values('2017-11-06 15:00', 5, 1,  (select id from employee where name = 'Mikkel Paulsen'), 0); " +
+                                      "insert into shift(starttime, hours, scheduleid, employeeid, forSale)" + " values('2017-11-24 17:00', 3, 1,  (select id from employee where name = 'mikkel paulsen'), 0); " +
+                                      "insert into shift(starttime, hours, scheduleid, employeeid, forSale)" + " values('2017-11-17 15:00', 5, 1,  (select id from employee where name = 'mikkel paulsen'), 0); " +
+                                      "insert into shift(starttime, hours, scheduleid, employeeid, forSale)" + " values('2017-11-16 12:00', 7, 1,  (select id from employee where name = 'mikkel paulsen'), 0); " +
+                                      "insert into Shift(startTime, hours, scheduleId, employeeId, forSale)" + " values('2017-10-30 09:00', 2, 1,  (select id from employee where name = 'Mikkel Paulsen'), 0); ";
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-19 16:00', 9, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-09 10:00', 3, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-01 16:00', 4, 1, (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-18 15:00', 5, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-25 08:00', 12, 1, (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-05 08:00', 8, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-17 13:00', 3, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-12 11:00', 8, 1, (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-02 07:00', 9, 1, (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-04 17:00', 1, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-17 10:00', 5, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-07 14:00', 6, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-20 16:00', 1, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-25 13:00', 7, 1, (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-05 14:00', 4, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-06 11:00', 7, 1, (select id from employee where name = 'Mikkel Paulsen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-06 14:00', 6, 1, (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-16 15:00', 5, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-06 15:00', 3, 1, (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-03 06:00', 10, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-29 10:00', 8, 1, (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-26 07:00', 8, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-22 07:00', 7, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-14 09:00', 4, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-12 08:00', 6, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-21 16:00', 4, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-06 06:00', 6, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-17 08:00', 4, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-25 10:00', 8, 1, (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-02 17:00', 3, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-09 10:00', 6, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-25 08:00', 9, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-18 08:00', 6, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-10 17:00', 3, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-26 12:00', 8, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-05 15:00', 5, 1,  (select id from employee where name = 'Stefan Krabbe')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-29 16:00', 4, 1, (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-10 16:00', 4, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-03 14:00', 6, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-17 13:00', 7, 1, (select id from employee where name = 'Casper Froberg')); ";
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-17 17:00', 3, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-16 08:00', 8, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-12 14:00', 6, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-24 14:00', 4, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-14 15:00', 5, 1, (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-22 15:00', 3, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-03 10:00', 8, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-13 09:00', 6, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-16 17:00', 3, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-16 13:00', 6, 1, (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-22 11:00', 7, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-23 11:00', 6, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-05 15:00', 4, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-29 15:00', 2, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-20 10:00', 4, 1,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-18 07:00', 9, 2,  (select id from employee where name = 'Casper Froberg')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-18 11:00', 5, 2, (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-01 10:00', 10,2, (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-04 17:00', 3, 2, (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-23 15:00', 3, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-09 11:00', 7, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-08 09:00', 7, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-09 17:00', 3, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-28 10:00', 5, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-22 09:00', 6, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-24 11:00', 6, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-19 17:00', 3, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-07 08:00', 7, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-06 06:00', 5, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-26 08:00', 10,2, (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-04 09:00', 6, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-08 17:00', 3, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-13 13:00', 6, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-30 15:00', 5, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-28 12:00', 8, 2, (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-06 11:00', 6, 2,  (select id from employee where name = 'Arne Ralston')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-14 14:00', 6, 2,  (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-18 10:00', 9, 2,  (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-15 14:00', 4, 2,  (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-06 11:00', 7, 2,  (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-09 16:00', 4, 2, (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-03 09:00', 3, 2,  (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-06 09:00', 3, 2,  (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-21 12:00', 3, 2,  (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-19 16:00', 4, 2,  (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-06 09:00', 9, 2, (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-03 11:00', 7, 2,  (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-28 16:00', 4, 2,  (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-15 16:00', 3, 2, (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-17 14:00', 4, 2,  (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-01 15:00', 5, 2, (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-19 13:00', 4, 2,  (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-24 09:00', 7, 2,  (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-07 07:00', 10,2, (select id from employee where name = 'Tobias Andersen')); " +
+                                      //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-04 12:00', 8, 2,  (select id from employee where name = 'Tobias Andersen')); ";
 
 
                     cmd.ExecuteNonQuery();
