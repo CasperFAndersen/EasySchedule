@@ -2,6 +2,7 @@
 using Core;
 using DatabaseAccess.Shifts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DatabaseAccess;
 
 namespace Tests.DatabaseAccess
 {
@@ -40,9 +41,9 @@ namespace Tests.DatabaseAccess
         {
             List<ScheduleShift> shifts = shiftRepository.GetShiftsByScheduleId(1);
             List<ScheduleShift> shiftsForSale = new List<ScheduleShift>();
-            foreach(ScheduleShift s in shifts)
+            foreach (ScheduleShift s in shifts)
             {
-                if(s.IsForSale)
+                if (s.IsForSale)
                 {
                     shiftsForSale.Add(s);
                 }
@@ -53,9 +54,14 @@ namespace Tests.DatabaseAccess
         [TestMethod]
         public void TestSetShiftForSale()
         {
-            List<ScheduleShift> shifts = shiftRepository.GetShiftsByScheduleId(1);
-            ScheduleShift tempScheduleShift = shifts[1];
-            tempScheduleShift.
+            int scheduleId = 1;
+            List<ScheduleShift> shifts = shiftRepository.GetShiftsByScheduleId(scheduleId);
+            ScheduleShift scheduleShift = shifts[1];
+            Assert.IsFalse(scheduleShift.IsForSale);
+            scheduleShift.IsForSale = true;
+            shiftRepository.UpdateScheduleShift(scheduleShift, scheduleId, new DbConnection().GetConnection());
+            List<ScheduleShift> shiftsAfterUpdate = shiftRepository.GetShiftsByScheduleId(scheduleId);
+            Assert.IsTrue(shiftsAfterUpdate[1].IsForSale);
         }
     }
 }
