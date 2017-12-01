@@ -184,7 +184,7 @@ namespace DatabaseAccess.Shifts
 
                     using (SqlCommand command = connection.CreateCommand())
                     {
-                        command.CommandText = "";
+                        command.CommandText = "UPDATE Shifts SET";
 
                         SqlParameter p1 = new SqlParameter("@param1", SqlDbType.DateTime);
                         SqlParameter p2 = new SqlParameter("@param2", SqlDbType.Float);
