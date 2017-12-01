@@ -21,11 +21,11 @@ namespace EasyScheduleWebClient.ScheduleService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetScheduleByDepartmentIdAndDate", ReplyAction="http://tempuri.org/IScheduleService/GetScheduleByDepartmentIdAndDateResponse")]
         System.Threading.Tasks.Task<Core.Schedule> GetScheduleByDepartmentIdAndDateAsync(int departmentId, System.DateTime date);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/InsertScheduleIntoDb", ReplyAction="http://tempuri.org/IScheduleService/InsertScheduleIntoDbResponse")]
-        void InsertScheduleIntoDb(Core.Schedule schedule);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/InsertScheduleToDb", ReplyAction="http://tempuri.org/IScheduleService/InsertScheduleResponse")]
+        void InsertSchedule(Core.Schedule schedule);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/InsertScheduleIntoDb", ReplyAction="http://tempuri.org/IScheduleService/InsertScheduleIntoDbResponse")]
-        System.Threading.Tasks.Task InsertScheduleIntoDbAsync(Core.Schedule schedule);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/InsertScheduleToDb", ReplyAction="http://tempuri.org/IScheduleService/InsertScheduleResponse")]
+        System.Threading.Tasks.Task InsertScheduleAsync(Core.Schedule schedule);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/UpdateSchedule", ReplyAction="http://tempuri.org/IScheduleService/UpdateScheduleResponse")]
         void UpdateSchedule(Core.Schedule schedule);
@@ -38,6 +38,16 @@ namespace EasyScheduleWebClient.ScheduleService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentIdResponse")]
         System.Threading.Tasks.Task<Core.Schedule[]> GetSchedulesByDepartmentIdAsync(int departmentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
+            "ate", ReplyAction="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
+            "ateResponse")]
+        Core.Schedule GenerateScheduleFromTemplateScheduleAndStartDate(Core.TemplateSchedule templateSchedule, System.DateTime startTime);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
+            "ate", ReplyAction="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
+            "ateResponse")]
+        System.Threading.Tasks.Task<Core.Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(Core.TemplateSchedule templateSchedule, System.DateTime startTime);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -75,12 +85,12 @@ namespace EasyScheduleWebClient.ScheduleService {
             return base.Channel.GetScheduleByDepartmentIdAndDateAsync(departmentId, date);
         }
         
-        public void InsertScheduleIntoDb(Core.Schedule schedule) {
-            base.Channel.InsertScheduleIntoDb(schedule);
+        public void InsertSchedule(Core.Schedule schedule) {
+            base.Channel.InsertSchedule(schedule);
         }
         
-        public System.Threading.Tasks.Task InsertScheduleIntoDbAsync(Core.Schedule schedule) {
-            return base.Channel.InsertScheduleIntoDbAsync(schedule);
+        public System.Threading.Tasks.Task InsertScheduleAsync(Core.Schedule schedule) {
+            return base.Channel.InsertScheduleAsync(schedule);
         }
         
         public void UpdateSchedule(Core.Schedule schedule) {
@@ -97,6 +107,14 @@ namespace EasyScheduleWebClient.ScheduleService {
         
         public System.Threading.Tasks.Task<Core.Schedule[]> GetSchedulesByDepartmentIdAsync(int departmentId) {
             return base.Channel.GetSchedulesByDepartmentIdAsync(departmentId);
+        }
+        
+        public Core.Schedule GenerateScheduleFromTemplateScheduleAndStartDate(Core.TemplateSchedule templateSchedule, System.DateTime startTime) {
+            return base.Channel.GenerateScheduleFromTemplateScheduleAndStartDate(templateSchedule, startTime);
+        }
+        
+        public System.Threading.Tasks.Task<Core.Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(Core.TemplateSchedule templateSchedule, System.DateTime startTime) {
+            return base.Channel.GenerateScheduleFromTemplateScheduleAndStartDateAsync(templateSchedule, startTime);
         }
     }
 }

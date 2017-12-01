@@ -14,8 +14,8 @@ namespace DesktopClient
         public List<Employee> GetListOfEmployees(Department department)
         {
             EmployeeProxy empProxy = new EmployeeProxy();
-            List<Employee> listOfEmployees = new List<Employee>(empProxy.GetListOfEmployeeByDepartmentId(department.Id).ToList());
-            return listOfEmployees;
+            List<Employee> employees = new List<Employee>(empProxy.GetEmployeesByDepartmentId(department.Id).ToList());
+            return employees;
         }
 
     }

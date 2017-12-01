@@ -23,36 +23,36 @@ namespace Core
         public int DepartmentId { get; set; }
 
         [DataMember]
-        public List<TemplateShift> ListOfTempShifts { get; set; }
+        public List<TemplateShift> TemplateShifts { get; set; }
 
         public TemplateSchedule(int numberOfWeeks, string name)
         {
             NoOfWeeks = numberOfWeeks;
             Name = name;
-            ListOfTempShifts = new List<TemplateShift>();
+            TemplateShifts = new List<TemplateShift>();
         }
         public TemplateSchedule(int id, string name, int numberOfWeeks, int departmentId)
         {
-            ListOfTempShifts = new List<TemplateShift>();
+            TemplateShifts = new List<TemplateShift>();
             Id = id;
             NoOfWeeks = numberOfWeeks;
             Name = name;
             DepartmentId = departmentId;
-            ListOfTempShifts = new List<TemplateShift>();
+            TemplateShifts = new List<TemplateShift>();
         }
 
         public TemplateSchedule(int numberOfWeeks, string name, int departmentId)
         {
-            ListOfTempShifts = new List<TemplateShift>();
+            TemplateShifts = new List<TemplateShift>();
             NoOfWeeks = numberOfWeeks;
             Name = name;
             DepartmentId = departmentId;
-            ListOfTempShifts = new List<TemplateShift>();
+            TemplateShifts = new List<TemplateShift>();
         }
 
         public TemplateSchedule()
         {
-            ListOfTempShifts = new List<TemplateShift>();
+            TemplateShifts = new List<TemplateShift>();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace EasyScheduleWebClient.Controllers
         public ActionResult Index([Bind(Include = "Email,Subject,Message")] EmailViewModel form)
         {
 
-            Mail mail = new Mail();
+            MailSender mail = new MailSender();
             mail.SendSimpleMessage(form.Email, form.Subject, form.Message);
             //if (ModelState.IsValid)
             //{

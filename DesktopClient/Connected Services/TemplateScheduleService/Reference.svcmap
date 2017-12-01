@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="79aabf2e-4810-415e-a69d-4a85f2452aaa" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="Core" />
+      <ReferencedAssembly AssemblyName="System" />
+      <ReferencedAssembly AssemblyName="System.Runtime.Serialization" />
+      <ReferencedAssembly AssemblyName="System.ServiceModel" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9000/ServiceLibrary/TemplateScheduleService/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="7018e124-92c9-4dfc-8be8-532a670bd3e4" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TemplateScheduleService/?xsd=xsd1" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="4c6d506c-39ba-4f2d-8494-353698854bf0" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TemplateScheduleService/?disco" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="3584639e-b0e8-44b7-bcd3-7fc41e7f8513" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TemplateScheduleService/?xsd=xsd2" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="f542e5b7-b3c9-4e31-995a-7d9dee16f6a3" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TemplateScheduleService/?xsd=xsd3" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="79aa18e9-56b4-451e-8b37-c02c191f34a1" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TemplateScheduleService/?xsd=xsd0" />
+    <MetadataFile FileName="TemplateScheduleService.wsdl" MetadataType="Wsdl" ID="67d1b5ee-dc7b-4840-a3bb-6fb16e69ecad" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/TemplateScheduleService/?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

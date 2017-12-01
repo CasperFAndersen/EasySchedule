@@ -36,7 +36,7 @@ namespace DatabaseAccess.Employees
             return employee;
         }
 
-        public List<Employee> GetListOfEmployeesByDepartmentId(int departmentId)
+        public List<Employee> GetEmployeesByDepartmentId(int departmentId)
         {
             throw new NotImplementedException();
         }

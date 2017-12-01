@@ -15,7 +15,6 @@ namespace DesktopClient
         Random rnd = new Random();
         Color[] colors = { Colors.IndianRed, Colors.DarkKhaki, Colors.DarkOrange, Colors.LightGreen, Colors.Thistle, Colors.SkyBlue, Colors.RoyalBlue, Colors.Turquoise };
 
-
         public EmployeeColors()
         {
             EmpColors = new Dictionary<string, Color>();
@@ -28,8 +27,7 @@ namespace DesktopClient
             List<Employee> employees = await new EmployeeProxy().GetAllEmployeesAsync();
             foreach (var emp in employees)
             {
-                EmpColors.Add(emp.Name, Color.FromRgb((byte)(rnd.Next(156)+100), (byte)(rnd.Next(156)+100), (byte)(rnd.Next(156)+100)));
-
+                EmpColors.Add(emp.Name, Color.FromRgb((byte)(rnd.Next(56)+200), (byte)(rnd.Next(56)+200), (byte)(rnd.Next(56)+200)));
             };
         }
 

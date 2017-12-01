@@ -10,7 +10,7 @@ namespace DesktopClient
 {
     public class Mediator
     {
-        private static Mediator instance;
+        private static Mediator _instance;
 
         private Mediator()
         {
@@ -19,12 +19,12 @@ namespace DesktopClient
 
         public static Mediator GetInstance()
         {
-            if(instance == null)
+            if (_instance == null)
             {
-                instance = new Mediator();
+                _instance = new Mediator();
             }
 
-            return instance;
+            return _instance;
         }
 
         public event EventHandler<ShiftDropEventArgs> ShiftDropped;
@@ -36,7 +36,6 @@ namespace DesktopClient
             {
                 shiftDroppedDelegate(sender, new ShiftDropEventArgs { Shift = shift, IsLastElement = isLastElement });
             }
-
         }
 
         public event EventHandler<ShiftDropEventArgs> ShiftCloseClicked;
@@ -47,10 +46,9 @@ namespace DesktopClient
             {
                 shiftCloseDelegate(sender, new ShiftDropEventArgs { Shift = shift });
             }
-
         }
 
-        public delegate void EmployeeDroppedHandler(Employee employee, TimeSpan timeOfDay, DayOfWeek dayOfWeek); 
+        public delegate void EmployeeDroppedHandler(Employee employee, TimeSpan timeOfDay, DayOfWeek dayOfWeek);
         public event EmployeeDroppedHandler EmployeeDropped;
         public void OnEmployeeDropped(Employee employee, TimeSpan timeOfDay, DayOfWeek dayOfWeek)
         {
@@ -58,29 +56,25 @@ namespace DesktopClient
             {
                 EmployeeDropped(employee, timeOfDay, dayOfWeek);
             }
-
         }
 
-        public event EventHandler<TemplateSelectedArgs> TempScheduleSelected;
+        public event EventHandler<TemplateSelectedArgs> TemplateScheduleSelected;
         public void OnTemplateScheduleSelected(object sender, TemplateSchedule templateSchedule)
         {
-            var templateScheduleSelected = TempScheduleSelected as EventHandler<TemplateSelectedArgs>;
+            var templateScheduleSelected = TemplateScheduleSelected as EventHandler<TemplateSelectedArgs>;
             if (templateScheduleSelected != null)
             {
-                templateScheduleSelected(sender, new TemplateSelectedArgs { TempSchedule = templateSchedule });
+                templateScheduleSelected(sender, new TemplateSelectedArgs { TemplateSchedule = templateSchedule });
             }
-
         }
 
-
-        public event EventHandler<TemplateSelectedArgs> TempScheduleUpdateClicked;
-
+        public event EventHandler<TemplateSelectedArgs> TemplateScheduleUpdateClicked;
         public void OnTemplateScheduleUpdateButtonClicked(object sender, TemplateSchedule templateSchedule)
         {
-            var tempScheduleUpdateClicked = TempScheduleUpdateClicked as EventHandler<TemplateSelectedArgs>;
-            if (tempScheduleUpdateClicked != null)
+            var templateScheduleUpdateClicked = TemplateScheduleUpdateClicked as EventHandler<TemplateSelectedArgs>;
+            if (templateScheduleUpdateClicked != null)
             {
-                tempScheduleUpdateClicked(sender, new TemplateSelectedArgs { TempSchedule = templateSchedule });
+                templateScheduleUpdateClicked(sender, new TemplateSelectedArgs { TemplateSchedule = templateSchedule });
             }
         }
 
@@ -90,7 +84,7 @@ namespace DesktopClient
         public event EditScheduleClickedHandler EditScheduleClicked;
         public void OnEditScheduleClicked()
         {
-            if(EditScheduleClicked != null)
+            if (EditScheduleClicked != null)
             {
                 EditScheduleClicked();
             }
@@ -103,7 +97,7 @@ namespace DesktopClient
         public event CreateScheduleClickedHandler CreateScheduleClicked;
         public void OnCreateScheduleButtonClicked()
         {
-            if (CreateScheduleClicked !=null)
+            if (CreateScheduleClicked != null)
             {
                 CreateScheduleClicked();
             }
@@ -111,7 +105,7 @@ namespace DesktopClient
 
         public void OnGenerateScheduleButtonClicked(Schedule schedule)
         {
-            if(GenerateScheduleButtonClicked != null)
+            if (GenerateScheduleButtonClicked != null)
             {
                 GenerateScheduleButtonClicked(schedule);
             }
@@ -121,7 +115,7 @@ namespace DesktopClient
 
         public void OnDepartmentBoxSelected(List<Employee> employees, Department department)
         {
-            if(DepartmentBoxChanged != null)
+            if (DepartmentBoxChanged != null)
             {
                 DepartmentBoxChanged(employees, department);
             }
@@ -129,7 +123,6 @@ namespace DesktopClient
 
         public delegate void CBoxDepartmentChangedHandler(Department department, Schedule schedule);
         public event CBoxDepartmentChangedHandler CBoxDepartmentChanged;
-
         public void OnCBoxSelectionChanged(Department department, Schedule schedule)
         {
             if (DepartmentBoxChanged != null)
@@ -143,7 +136,7 @@ namespace DesktopClient
 
         public void OnCreateTemplateScheduleButtonClicked(TemplateSchedule templateSchedule)
         {
-            if(CreateTemplateScheduleButtonClicked != null)
+            if (CreateTemplateScheduleButtonClicked != null)
             {
                 CreateTemplateScheduleButtonClicked(templateSchedule);
             }
@@ -173,7 +166,7 @@ namespace DesktopClient
         public event UpdateEmployeeClickedHandler UpdateEmployeeClicked;
         internal void OnUpdateEmployeeClicked()
         {
-            if(UpdateEmployeeClicked != null)
+            if (UpdateEmployeeClicked != null)
             {
                 UpdateEmployeeClicked();
             }

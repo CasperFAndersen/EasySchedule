@@ -34,7 +34,7 @@ namespace DesktopClient.Views.EmployeeViews
         public void GetListOfEmployeesBasedOnDepartment(int departmentId)
         {
             EmployeeProxy empProxy = new EmployeeProxy();
-            List<Employee> employeeList = empProxy.GetListOfEmployeeByDepartmentId(departmentId);
+            List<Employee> employeeList = empProxy.GetEmployeesByDepartmentId(departmentId);
         }
     }
 }

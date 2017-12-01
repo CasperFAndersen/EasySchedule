@@ -7,7 +7,7 @@ namespace Tests.DatabaseAccess
     public class DatabaseConnectionTest
     {
         [TestMethod]
-        public void ConnectToDatabase()
+        public void TestConnectToDatabase()
         {
            DbConnection dbConnection = new DbConnection();
             dbConnection.OpenConnection();
@@ -17,7 +17,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void DisconnectFromDatabase()
+        public void TestDisconnectFromDatabase()
         {
             DbConnection dbConnection = new DbConnection();
             dbConnection.OpenConnection();

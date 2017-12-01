@@ -11,60 +11,60 @@ namespace EasyScheduleWebClient.Services
     {
         EmployeeServiceClient proxy = new EmployeeServiceClient();
 
-        public List<Core.Employee> GetAllEmployees()
+        public List<Employee> GetAllEmployees()
         {
-           return proxy.GetAllEmployees();
+            return proxy.GetAllEmployees();
         }
 
-        public Task<List<Core.Employee>> GetAllEmployeesAsync()
+        public Task<List<Employee>> GetAllEmployeesAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Core.Employee GetEmployeeByUsername(string username)
-        {        
+        public Employee GetEmployeeByUsername(string username)
+        {
             return proxy.GetEmployeeByUsername(username);
         }
 
-        public Task<Core.Employee> GetEmployeeByUsernameAsync(string username)
+        public Task<Employee> GetEmployeeByUsernameAsync(string username)
         {
             return proxy.GetEmployeeByUsernameAsync(username);
         }
 
 
-        public List<Core.Employee> GetEmployeesByDepartmentId(int id)
+        public List<Employee> GetEmployeesByDepartmentId(int id)
         {
-           // return proxy.GetEmployeesByDepartmentId(id);
+            // return proxy.GetEmployeesByDepartmentId(id);
             return null;
         }
 
-        public List<Core.Employee> GetListOfEmployeeByDepartmentId(int depId)
+        public List<Employee> GetListOfEmployeeByDepartmentId(int depId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<Core.Employee>> GetListOfEmployeeByDepartmentIdAsync(int depId)
+        public Task<List<Employee>> GetListOfEmployeeByDepartmentIdAsync(int depId)
         {
             throw new NotImplementedException();
         }
 
-        public void InsertEmployee(Core.Employee employee)
+        public void InsertEmployee(Employee employee)
         {
             proxy.InsertEmployee(employee);
         }
 
-        public Task InsertEmployeeAsync(Core.Employee employee)
+        public Task InsertEmployeeAsync(Employee employee)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateEmployee(Core.Employee employee)
+        public void UpdateEmployee(Employee employee)
         {
-            
+
             proxy.UpdateEmployee(employee);
         }
 
-        public Task UpdateEmployeeAsync(Core.Employee employee)
+        public Task UpdateEmployeeAsync(Employee employee)
         {
             throw new NotImplementedException();
         }
