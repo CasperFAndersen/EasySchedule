@@ -184,22 +184,16 @@ namespace DatabaseAccess.Shifts
 
                     using (SqlCommand command = connection.CreateCommand())
                     {
-                        command.CommandText = "UPDATE Shifts SET";
+                        command.CommandText = "UPDATE Shift SET employeeId = @param1, isForSale = 0 WHERE id = @param2;";
 
-                        SqlParameter p1 = new SqlParameter("@param1", SqlDbType.DateTime);
-                        SqlParameter p2 = new SqlParameter("@param2", SqlDbType.Float);
-                        SqlParameter p3 = new SqlParameter("@param3", SqlDbType.Int);
-                        SqlParameter p4 = new SqlParameter("@param4", SqlDbType.Int);
+                        SqlParameter p1 = new SqlParameter("@param1", SqlDbType.Int);
+                        SqlParameter p2 = new SqlParameter("@param2", SqlDbType.Int);
 
-                        p1.Value = shift.StartTime;
-                        p2.Value = shift.Hours;
-                       // p3.Value = schedule.Id;
-                        p4.Value = shift.Employee.Id;
+                        p1.Value = employee.Id;
+                        p2.Value = shift.Id;
 
                         command.Parameters.Add(p1);
                         command.Parameters.Add(p2);
-                        command.Parameters.Add(p3);
-                        command.Parameters.Add(p4);
 
                         command.ExecuteNonQuery();
                     }
@@ -209,7 +203,7 @@ namespace DatabaseAccess.Shifts
             }
             catch (Exception e)
             {
-                throw new Exception("Something went wrong In AddShiftsFromScheduleToDB!" + e.Message);
+                throw new Exception("Something went wrong accepting shift" + e.Message);
             }
         }
 
