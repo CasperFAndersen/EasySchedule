@@ -13,7 +13,7 @@ namespace DatabaseAccess.TemplateSchedules
             List<TemplateSchedule> templateSchedules = new List<TemplateSchedule>();
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                connection.Open();
+               // connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateSchedule", connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -27,7 +27,7 @@ namespace DatabaseAccess.TemplateSchedules
                         }
                     }
                 }
-                connection.Close();
+               // connection.Close();
             }
             return templateSchedules;
         }
@@ -39,7 +39,7 @@ namespace DatabaseAccess.TemplateSchedules
 
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                connection.Open();
+                //connection.Open();
                 using (SqlCommand command = new SqlCommand(
                     "INSERT INTO TemplateSchedule (name, NoOfWeeks, departmentID) " +
                     "VALUES (@param1,@param2,@param3) SELECT SCOPE_IDENTITY()", connection))
@@ -58,7 +58,7 @@ namespace DatabaseAccess.TemplateSchedules
             TemplateSchedule templateSchedule = null;
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                connection.Open();
+                //connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateSchedule WHERE Name = @param1", connection))
                 {
                     command.Parameters.AddWithValue("@param1", scheduleName);
@@ -71,7 +71,7 @@ namespace DatabaseAccess.TemplateSchedules
                         }
                     }
                 }
-                connection.Close();
+                //connection.Close();
             }
             return templateSchedule;
         }
@@ -80,7 +80,7 @@ namespace DatabaseAccess.TemplateSchedules
         {
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                connection.Open();
+               // connection.Open();
                 using (SqlCommand command = new SqlCommand("UPDATE TemplateSchedule SET noOfWeeks = @param1", connection))
                 {
                     command.Parameters.AddWithValue("@param1", templateSchedule.NoOfWeeks);
@@ -88,7 +88,7 @@ namespace DatabaseAccess.TemplateSchedules
                 }
                 TemplateShiftRepository templateShiftRepository = new TemplateShiftRepository();
                 templateShiftRepository.AddTemplateShiftsFromTemplateSchedule(templateSchedule.Id, templateSchedule.TemplateShifts);
-                connection.Close();
+                //connection.Close();
             }
         }
     }

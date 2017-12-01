@@ -25,7 +25,7 @@ namespace DatabaseAccess
 
         public SqlConnection GetConnection()
         {
-            //_connection.Open();
+            _connection.Open();
             return _connection;
 
         }

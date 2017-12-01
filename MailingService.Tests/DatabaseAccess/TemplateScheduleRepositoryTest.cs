@@ -16,6 +16,12 @@ namespace Tests.DatabaseAccess
     [TestClass]
     public class TemplateScheduleRepositoryTest
     {
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            //DBSetUp.SetUpDB();
+        }
+
         [TestMethod]
         public void TestCreateTemplateSchedule()
         {
@@ -78,8 +84,14 @@ namespace Tests.DatabaseAccess
             Assert.AreEqual(new TimeSpan(12, 0, 0), templateSchedule.TemplateShifts[1].StartTime);
             Assert.AreEqual(8, templateSchedule.TemplateShifts[0].Hours);
             Assert.AreEqual(6, templateSchedule.TemplateShifts[1].Hours);
-            DBSetUp.SetUpDB();
+        
 
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            //DBSetUp.SetUpDB();
         }
     }
 }

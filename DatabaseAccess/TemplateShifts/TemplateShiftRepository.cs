@@ -13,7 +13,7 @@ namespace DatabaseAccess.TemplateShifts
         {
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                connection.Open();
+               // connection.Open();
                 foreach (TemplateShift templateShift in templateShifts)
                 {
                     using (SqlCommand insertTemplateShift = new SqlCommand("INSERT INTO TemplateShift " +
@@ -44,7 +44,7 @@ namespace DatabaseAccess.TemplateShifts
         {
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                connection.Open();
+                //connection.Open();
                 using (SqlCommand updateTemplateShift = new SqlCommand("UPDATE TemplateShift SET " +
                                                                        "weekday = @param1, hours = @param2, " +
                                                                        "startTime = @param3 WHERE id = @param4",
@@ -65,7 +65,7 @@ namespace DatabaseAccess.TemplateShifts
             List<TemplateShift> templateShifts = new List<TemplateShift>();
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                connection.Open();
+               // connection.Open();
 
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateShift", connection))
                 {
@@ -87,7 +87,7 @@ namespace DatabaseAccess.TemplateShifts
             List<TemplateShift> templateShifts = new List<TemplateShift>();
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                connection.Open();
+               // connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateShift WHERE templateScheduleId = @param1", connection))
                 {
                     SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.Int);
@@ -124,7 +124,7 @@ namespace DatabaseAccess.TemplateShifts
             TemplateShift templateShift = null;
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                connection.Open();
+                //connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateShift WHERE ID = @param1", connection))
                 {
                     command.Parameters.AddWithValue("@param1", templateShiftId);

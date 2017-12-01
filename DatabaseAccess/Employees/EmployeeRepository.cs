@@ -59,6 +59,7 @@ namespace DatabaseAccess.Employees
             Employee empRes = new Employee();
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
+                //connection.Open();
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     command.CommandText = "SELECT * FROM Employee WHERE Employee.id = @param1;";
@@ -82,6 +83,7 @@ namespace DatabaseAccess.Employees
             List<Employee> employees = new List<Employee>();
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
+                //connection.Open();
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     command.CommandText = "SELECT * FROM Employee WHERE Employee.DepartmentId = @param1;";
