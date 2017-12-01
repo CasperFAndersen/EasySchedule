@@ -41,6 +41,41 @@ namespace Tests.BusinessLogic
             mockScheduleRepository.AssertWasCalled(x => x.InsertSchedule(s));
         }
 
+        [TestMethod]
+        public void TestAcceptAvailableShift()
+        {
+            ScheduleShift shift = new ScheduleShift()
+            {
+                StartTime = DateTime.Now.AddDays(-1),
+                Hours = 4,
+                Employee = new Employee(),
+                IsForSale = false,
+            };
+            try
+            {
+                scheduleController.AcceptAvailableShift(shift, new Employee());
+                Assert.Fail();
+            }
+            catch (Exception)
+            {
+               
+               
+            }
+            try
+            {
+                shift.IsForSale = true;
+                scheduleController.AcceptAvailableShift(shift, new Employee());
+             
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        
+
+        }
+
         [TestMethod()]
         public void TestGetScheduleByDepartmentIdAndDate()
         {

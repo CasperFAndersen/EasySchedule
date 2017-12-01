@@ -14,9 +14,11 @@ namespace BusinessLogic
     public class ScheduleController : IScheduleController
     {
         private readonly IScheduleRepository _scheduleRepository;
+        private IShiftRepository _shiftRepository;
         public ScheduleController(IScheduleRepository scheduleRepository)
         {
             _scheduleRepository = scheduleRepository;
+            _shiftRepository = new ShiftRepository();
         }
 
         public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
@@ -67,6 +69,20 @@ namespace BusinessLogic
             schedule.StartDate = startTime;
             schedule.EndDate = startTime.AddDays(7 * templateSchedule.NoOfWeeks);
             return schedule;
+        }
+
+        public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
+        {
+            
+            if(shift.StartTime < DateTime.Now && shift.IsForSale)
+            {
+                
+                _shiftRepository.AcceptAvailableShift(shift, employee);
+            }
+            else
+            {
+                throw new Exception("The shift you are trying to accept, has already passed.");
+            }
         }
     }
 }

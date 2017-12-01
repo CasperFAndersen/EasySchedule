@@ -2,6 +2,7 @@
 using Core;
 using DatabaseAccess.Shifts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DatabaseAccess.Employees;
 
 namespace Tests.DatabaseAccess
 {
@@ -41,8 +42,23 @@ namespace Tests.DatabaseAccess
             List<ScheduleShift> shifts = shiftRepository.GetShiftsByScheduleId(1);
             foreach(ScheduleShift s in shifts)
             {
-                s.IsForSale = false
+                s.IsForSale = false;
             }
+        }
+
+        [TestMethod]
+        public void TestAcceptAvailableShift()
+        {
+            ScheduleShift shift = shiftRepository.GetShiftById(1);
+            Employee employee = new EmployeeRepository().FindEmployeeById(5);
+            Assert.AreNotEqual(shift.Employee, employee);
+
+            shiftRepository.AcceptAvailableShift(shift, employee);
+
+            shift = shiftRepository.GetShiftById(1);
+
+            Assert.AreEqual(shift.Employee.Name, employee.Name);
+            Assert.AreEqual(shift.IsForSale, false);
         }
     }
 }

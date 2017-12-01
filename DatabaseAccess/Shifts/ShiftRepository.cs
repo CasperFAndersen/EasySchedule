@@ -10,6 +10,31 @@ namespace DatabaseAccess.Shifts
 {
     public class ShiftRepository : IShiftRepository
     {
+
+        public ScheduleShift GetShiftById(int id)
+        {
+            ScheduleShift shift = new ScheduleShift();
+            using (SqlConnection connection = new DbConnection().GetConnection())
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT * FROM shift WHERE id= @param1;";
+                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.Int);
+                    p1.Value = id;
+                    command.Parameters.Add(p1);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            shift =(BuildShiftObject(reader));
+                        }
+                    }
+                }
+            }
+            return shift;
+        }
+
         public List<ScheduleShift> GetShiftsByScheduleId(int scheduleId)
         {
             List<ScheduleShift> scheduleShifts = new List<ScheduleShift>();
@@ -213,7 +238,8 @@ namespace DatabaseAccess.Shifts
             scheduleShift.Id = reader.GetInt32(0);
             scheduleShift.Employee = new EmployeeRepository().FindEmployeeById(Convert.ToInt32(reader["EmployeeId"].ToString()));
             scheduleShift.StartTime = reader.GetDateTime(1);
-            scheduleShift.Hours = Convert.ToDouble(reader["Hours"].ToString());
+            scheduleShift.Hours = Convert.ToDouble(reader[ "Hours"].ToString());
+            scheduleShift.IsForSale = reader.GetBoolean(5);
             return scheduleShift;
         }
     }
