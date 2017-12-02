@@ -64,12 +64,6 @@ namespace DesktopClient.TemplateScheduleService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/AddTemplateScheduleToDb", ReplyAction="http://tempuri.org/ITemplateScheduleService/AddTemplateScheduleToDbResponse")]
         System.Threading.Tasks.Task AddTemplateScheduleToDbAsync(Core.TemplateSchedule templateSchedule);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/AddTemplateShift", ReplyAction="http://tempuri.org/ITemplateScheduleService/AddTemplateShiftResponse")]
-        void AddTemplateShift(Core.TemplateShift templateShift);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/AddTemplateShift", ReplyAction="http://tempuri.org/ITemplateScheduleService/AddTemplateShiftResponse")]
-        System.Threading.Tasks.Task AddTemplateShiftAsync(Core.TemplateShift templateShift);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/UpdateTemplateSchedule", ReplyAction="http://tempuri.org/ITemplateScheduleService/UpdateTemplateScheduleResponse")]
         void UpdateTemplateSchedule(Core.TemplateSchedule templateSchedule);
         
@@ -127,15 +121,7 @@ namespace DesktopClient.TemplateScheduleService {
         public System.Threading.Tasks.Task AddTemplateScheduleToDbAsync(Core.TemplateSchedule templateSchedule) {
             return base.Channel.AddTemplateScheduleToDbAsync(templateSchedule);
         }
-        
-        public void AddTemplateShift(Core.TemplateShift templateShift) {
-            base.Channel.AddTemplateShift(templateShift);
-        }
-        
-        public System.Threading.Tasks.Task AddTemplateShiftAsync(Core.TemplateShift templateShift) {
-            return base.Channel.AddTemplateShiftAsync(templateShift);
-        }
-        
+       
         public void UpdateTemplateSchedule(Core.TemplateSchedule templateSchedule) {
             base.Channel.UpdateTemplateSchedule(templateSchedule);
         }

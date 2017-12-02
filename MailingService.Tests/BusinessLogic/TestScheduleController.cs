@@ -4,7 +4,9 @@ using Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DatabaseAccess.Schedules;
 using System.Collections.Generic;
+using Rhino.Mocks;
 using Moq;
+using MockRepository = Rhino.Mocks.MockRepository;
 
 namespace Tests.BusinessLogic
 {
