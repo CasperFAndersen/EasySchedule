@@ -17,9 +17,6 @@ namespace ServiceLibrary.TemplateSchedules
         void AddTemplateScheduleToDb(TemplateSchedule templateSchedule);
 
         [OperationContract]
-        void AddTemplateShift(TemplateShift templateShift);
-
-        [OperationContract]
         void UpdateTemplateSchedule(TemplateSchedule templateSchedule);
     }
 }

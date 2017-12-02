@@ -21,10 +21,6 @@ namespace ServiceLibrary.TemplateSchedules
         {
             return templateScheduleController.GetAllTemplateSchedules();
         }
-        public void AddTemplateShift(TemplateShift templateShift)
-        {
-            templateScheduleController.AddTemplateShift(templateShift);
-        }
 
         public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)
         {

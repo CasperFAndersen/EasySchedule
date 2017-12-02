@@ -52,5 +52,10 @@ namespace DatabaseAccess.Schedules
         {
             throw new NotImplementedException();
         }
+
+        public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

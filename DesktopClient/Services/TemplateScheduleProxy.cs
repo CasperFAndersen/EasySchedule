@@ -21,17 +21,7 @@ namespace DesktopClient
         {
             return proxy.AddTemplateScheduleToDbAsync(tSchedule);
         }
-
-        public void AddTemplateShift(TemplateShift templateShift)
-        {
-            proxy.AddTemplateShift(templateShift);
-        }
-
-        public Task AddTemplateShiftAsync(TemplateShift templateShift)
-        {
-            return proxy.AddTemplateShiftAsync(templateShift);
-        }
-
+        
         public TemplateSchedule FindTemplateScheduleByName(string name)
         {
             return proxy.FindTemplateScheduleByName(name);

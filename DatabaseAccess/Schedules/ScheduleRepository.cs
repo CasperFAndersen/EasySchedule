@@ -100,5 +100,10 @@ namespace DatabaseAccess.Schedules
             ShiftRepository shiftRepository = new ShiftRepository();
             shiftRepository.AddShiftsFromSchedule(schedule);
         }
+
+        public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

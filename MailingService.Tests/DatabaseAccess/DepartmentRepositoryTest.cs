@@ -10,29 +10,29 @@ namespace Tests.DatabaseAccess
     [TestClass]
     public class DepartmentRepositoryTest
     {
-        DepartmentRepository depDb;
+        IDepartmentRepository _departmentRepository;
         [TestInitialize]
         public void TestInitialize()
         {
-            depDb = new DepartmentRepository();
+            _departmentRepository = new DepartmentRepository();
         }
 
         [TestMethod]
         public void TestGetDepartmentById()
         {
-            Department dep = depDb.GetDepartmentById(1);
+            Department department = _departmentRepository.GetDepartmentById(1);
 
-            Assert.IsNotNull(dep);
-            Assert.AreEqual(3, dep.Employees.Count);
-            Assert.AreEqual("Mikkel Paulsen", dep.Employees[0].Name);
+            Assert.IsNotNull(department);
+            Assert.AreEqual(3, department.Employees.Count);
+            Assert.AreEqual("Mikkel Paulsen", department.Employees[0].Name);
         }
 
         [TestMethod]
         public void TestGetAllDepartments()
         {
-            List<Department> deps = depDb.GetAllDepartments();
+            List<Department> departments = _departmentRepository.GetAllDepartments();
 
-            Assert.AreEqual(3, deps.Count);
+            Assert.AreEqual(3, departments.Count);
         }
     }
 }

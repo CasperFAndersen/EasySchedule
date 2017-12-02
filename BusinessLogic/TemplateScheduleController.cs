@@ -11,7 +11,7 @@ namespace BusinessLogic
 {
     public class TemplateScheduleController : ITemplateScheduleController
     {
-        TemplateScheduleRepository _templateScheduleRepository;
+        ITemplateScheduleRepository _templateScheduleRepository;
         TemplateSchedule _templateSchedule;
 
         public TemplateScheduleController()
@@ -38,11 +38,6 @@ namespace BusinessLogic
         public void AddTemplateScheduleToDb(TemplateSchedule templateSchedule)
         {
             _templateScheduleRepository.AddTemplateScheduleToDatabase(templateSchedule);
-        }
-
-        public void AddTemplateShift(TemplateShift templateShift)
-        {
-            _templateSchedule.TemplateShifts.Add(templateShift);
         }
 
         public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)

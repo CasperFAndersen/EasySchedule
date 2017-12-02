@@ -40,10 +40,28 @@ namespace Tests.DatabaseAccess
         public void TestIfShiftIsForSale()
         {
             List<ScheduleShift> shifts = shiftRepository.GetShiftsByScheduleId(1);
-            foreach(ScheduleShift s in shifts)
+            List<ScheduleShift> shiftsForSale = new List<ScheduleShift>();
+            foreach (ScheduleShift s in shifts)
             {
-                s.IsForSale = false;
+                if (s.IsForSale)
+                {
+                    shiftsForSale.Add(s);
+                }
             }
+            Assert.AreEqual(2, shiftsForSale.Count);
+        }
+
+        [TestMethod]
+        public void TestSetShiftForSale()
+        {
+            int scheduleId = 1;
+            List<ScheduleShift> shifts = shiftRepository.GetShiftsByScheduleId(scheduleId);
+            ScheduleShift scheduleShift = shifts[1];
+            Assert.IsFalse(scheduleShift.IsForSale);
+            scheduleShift.IsForSale = true;
+            shiftRepository.UpdateScheduleShift(scheduleShift, scheduleId, new DbConnection().GetConnection());
+            List<ScheduleShift> shiftsAfterUpdate = shiftRepository.GetShiftsByScheduleId(scheduleId);
+            Assert.IsTrue(shiftsAfterUpdate[1].IsForSale);
         }
 
         [TestMethod]
