@@ -14,7 +14,7 @@ namespace BusinessLogic
     public class ScheduleController : IScheduleController
     {
         private readonly IScheduleRepository _scheduleRepository;
-        private IShiftRepository _shiftRepository;
+        public IShiftRepository _shiftRepository;
         public ScheduleController(IScheduleRepository scheduleRepository)
         {
             _scheduleRepository = scheduleRepository;
@@ -81,7 +81,7 @@ namespace BusinessLogic
             }
             else
             {
-                throw new Exception("The shift you are trying to accept, has already passed.");
+                throw new ArgumentException("Failure to accept shift. One or more arguments are illigal!");
             }
         }
     }

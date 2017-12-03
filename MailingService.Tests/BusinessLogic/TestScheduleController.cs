@@ -4,6 +4,7 @@ using Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DatabaseAccess.Schedules;
 using Rhino.Mocks;
+using DatabaseAccess.Shifts;
 
 namespace Tests.BusinessLogic
 {
@@ -26,7 +27,7 @@ namespace Tests.BusinessLogic
         public void TestGetSchedueleByCurrentDate()
         {
             MockScheduleRep mockScheduleRep = new MockScheduleRep();
-            DateTime currentDate = new DateTime(2017,11,13);
+            DateTime currentDate = new DateTime(2017, 11, 13);
             Schedule schedule = mockScheduleRep.GetScheduleByCurrentDate(currentDate);
 
             Assert.IsNotNull(schedule);
@@ -42,38 +43,56 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException),
+            "Failure to accept shift. One or more arguments are illigal!")]
+        public void TestIlligal_IsForSale_AcceptAvailableShift()
+        {
+            ScheduleShift shift = new ScheduleShift()
+            {
+                StartTime = DateTime.Now.AddDays(1),
+                Hours = 4,
+                Employee = new Employee(),
+                IsForSale = false,
+            };
+            Employee employee = new Employee();
+
+            scheduleController.AcceptAvailableShift(shift, employee);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException),
+            "Failure to accept shift. One or more arguments are illigal!")]
+        public void TestIlligal_AcceptTime_AcceptAvailableShift()
+        {
+            ScheduleShift shift = new ScheduleShift()
+            {
+                StartTime = DateTime.Now.AddDays(1),
+                Hours = 4,
+                Employee = new Employee(),
+                IsForSale = true,
+            };
+            Employee employee = new Employee();
+
+            scheduleController.AcceptAvailableShift(shift, employee);
+        }
+
+        [TestMethod]
         public void TestAcceptAvailableShift()
         {
+
+            scheduleController._shiftRepository = MockRepository.GenerateMock<IShiftRepository>();
+
             ScheduleShift shift = new ScheduleShift()
             {
                 StartTime = DateTime.Now.AddDays(-1),
                 Hours = 4,
                 Employee = new Employee(),
-                IsForSale = false,
+                IsForSale = true,
             };
-            try
-            {
-                scheduleController.AcceptAvailableShift(shift, new Employee());
-                Assert.Fail();
-            }
-            catch (Exception)
-            {
-               
-               
-            }
-            try
-            {
-                shift.IsForSale = true;
-                scheduleController.AcceptAvailableShift(shift, new Employee());
-             
-            }
-            catch (Exception)
-            {
+            Employee employee = new Employee();
 
-                throw;
-            }
-        
-
+            scheduleController.AcceptAvailableShift(shift, employee);
+            scheduleController._shiftRepository.AssertWasCalled(x => x.AcceptAvailableShift(shift, employee));
         }
 
         [TestMethod()]

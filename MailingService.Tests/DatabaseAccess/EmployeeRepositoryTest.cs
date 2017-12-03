@@ -69,6 +69,13 @@ namespace Tests.DatabaseAccess
 
         }
 
+        [TestMethod]
+        public void TestGetEmployeesByDepartmentId()
+        {
+            List<Employee> employees = employeeRepository.GetEmployeesByDepartmentId(1);
+            Assert.AreNotEqual(0, employees.Count);
+        }
+
         [TestCleanup]
         public void TestCleanup()
         {

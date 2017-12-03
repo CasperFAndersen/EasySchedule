@@ -86,7 +86,7 @@ namespace DatabaseAccess.Employees
                 //connection.Open();
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT * FROM Employee WHERE Employee.DepartmentId = @param1;";
+                    command.CommandText = "SELECT * FROM Employee WHERE Employee.departmentId = @param1;";
                     SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.Int, 100);
                     p1.Value = departmentId;
                     command.Parameters.Add(p1);

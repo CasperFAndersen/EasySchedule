@@ -83,7 +83,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
             Mediator.GetInstance().TemplateScheduleSelected += (s, e) =>
             {
                 EmployeeProxy employeeProxy = new EmployeeProxy();
-                LoadEmployeeList(employeeProxy.GetEmployeesByDepartmentId(e.TemplateSchedule.DepartmentId));
+                List<Employee> employees = employeeProxy.GetEmployeesByDepartmentId(e.TemplateSchedule.DepartmentId);
+                LoadEmployeeList(employees);
 
             };
         }
