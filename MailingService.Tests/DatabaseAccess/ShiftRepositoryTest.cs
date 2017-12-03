@@ -3,6 +3,7 @@ using Core;
 using DatabaseAccess.Shifts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DatabaseAccess.Employees;
+using DatabaseAccess;
 
 namespace Tests.DatabaseAccess
 {

@@ -143,7 +143,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
             {
                 if (this.IsVisible)
                 {
-                    AddShift(new TemplateShift() { Employee = e, StartTime = tod, WeekDay = dow, WeekNumber = WeekNumber, Hours = DEFAULTSHIFTLENGTH });
+                    Shifts.Add(new TemplateShift() { Employee = e, StartTime = tod, WeekDay = dow, WeekNumber = WeekNumber, Hours = DEFAULTSHIFTLENGTH });
                     LoadShiftsIntoCalendar();
                 }
 

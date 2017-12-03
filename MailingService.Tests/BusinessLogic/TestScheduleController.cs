@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Rhino.Mocks;
 using Moq;
 using MockRepository = Rhino.Mocks.MockRepository;
+using DatabaseAccess.Shifts;
 
 namespace Tests.BusinessLogic
 {
