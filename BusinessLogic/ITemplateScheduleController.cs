@@ -9,7 +9,6 @@ namespace BusinessLogic
         IEnumerable<TemplateSchedule> GetAllTemplateSchedules();
         TemplateSchedule FindTemplateScheduleByName(string name);
         void AddTemplateScheduleToDb(TemplateSchedule templateSchedule);
-        void AddTemplateShift(TemplateShift templateShift);
         void UpdateTemplateSchedule(TemplateSchedule templateSchedule);
     }
 }

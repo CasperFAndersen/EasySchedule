@@ -3,14 +3,18 @@ using BusinessLogic;
 using Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DatabaseAccess.Schedules;
+using System.Collections.Generic;
 using Rhino.Mocks;
-using DatabaseAccess.Shifts;
+using Moq;
+using MockRepository = Rhino.Mocks.MockRepository;
 
 namespace Tests.BusinessLogic
 {
     [TestClass]
     public class TestScheduleController
     {
+        Schedule schedule;
+        Mock<IScheduleRepository> scheduleRepository;
         ScheduleController scheduleController;
         private IScheduleRepository mockScheduleRepository;
         TemplateScheduleController templateScheduleController = new TemplateScheduleController();
@@ -19,6 +23,9 @@ namespace Tests.BusinessLogic
         [TestInitialize]
         public void InitializeTest()
         {
+
+
+
             mockScheduleRepository = MockRepository.GenerateMock<IScheduleRepository>();
             scheduleController = new ScheduleController(mockScheduleRepository);
         }
@@ -107,6 +114,61 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
+        public void TestMakeMoqWork()
+        {
+            List<Schedule> schedules = new List<Schedule>();
+            List<Employee> employees = new List<Employee>();
+            Employee employee = new Employee
+            {
+                Id = 1,
+                Name = "Employee",
+                DepartmentId = 1,
+                IsAdmin = true,
+                IsEmployed = true,
+                Mail = "employee@employee.dk",
+                NumbOfHours = 10,
+                Username = "emp",
+                Password = "emp",
+                Phone = "12345678"
+            };
+            employees.Add(employee);
+
+            Department department = new Department
+            {
+                Id = 1,
+                Name = "Test",
+                Address = "Address",
+                Email = "test@test.dk",
+                Employees = employees,
+                Phone = "98765432"
+            };
+
+            List<ScheduleShift> shifts = new List<ScheduleShift>();
+            ScheduleShift shift = new ScheduleShift
+            {
+                Id = 1,
+                Employee = employee,
+                Hours = 6,
+                IsForSale = true,
+                StartTime = new DateTime(2017, 12, 15, 10, 0, 0)
+            };
+            shifts.Add(shift);
+
+            schedule = new Schedule
+            {
+                Id = 1,
+                Department = department,
+                StartDate = new DateTime(2017, 12, 01),
+                EndDate = new DateTime(2017, 12, 31),
+                Shifts = shifts
+            };
+
+            schedules.Add(schedule);
+            scheduleRepository = new Mock<IScheduleRepository>();
+            //scheduleRepository.Setup(x => x.GetSchedulesByDepartmentId(1).Returns(schedules));
+        }
+
+        [TestMethod]
         public void TestGetShiftsFromTemplateShift()
         {
             scheduleController = new ScheduleController(new ScheduleRepository());
@@ -120,6 +182,12 @@ namespace Tests.BusinessLogic
             Schedule schedule = scheduleController.GetShiftsFromTemplateShift(templateSchedule, DateTime.Now);
             Assert.AreEqual(templateSchedule.TemplateShifts.Count, schedule.Shifts.Count);
             Assert.AreEqual(schedule.Shifts[1].Hours, templateSchedule.TemplateShifts[1].Hours);
+        }
+
+        [TestMethod]
+        public void TestShiftCanBeSetForSale()
+        {
+            scheduleController = new ScheduleController(new ScheduleRepository());
         }
     }
 }
