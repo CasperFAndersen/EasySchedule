@@ -12,12 +12,28 @@ namespace EasyScheduleWebClient.Services
     {
         IScheduleService proxy = new ScheduleServiceClient();
 
+        public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
+        {
+            proxy.AcceptAvailableShift(shift, employee);
+        }
+
+        public Task AcceptAvailableShiftAsync(ScheduleShift shift, Employee employee)
+        {
+            throw new NotImplementedException();
+        }
+
         public Schedule GenerateScheduleFromTemplateScheduleAndStartDate(TemplateSchedule templateSchedule, DateTime startTime)
         {
             throw new NotImplementedException();
         }
 
         public Task<Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(TemplateSchedule templateSchedule, DateTime startTime)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public Task<ScheduleShift[]> GetAllAvailableShiftsByDepartmentIdAsync(int departmentId)
         {
             throw new NotImplementedException();
         }
@@ -32,22 +48,21 @@ namespace EasyScheduleWebClient.Services
             throw new NotImplementedException();
         }
 
-        public Schedule[] GetSchedulesByDepartmentId(int departmentId)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public Task<Schedule[]> GetSchedulesByDepartmentIdAsync(int departmentId)
         {
             throw new NotImplementedException();
         }
 
-        public void InsertSchedule(Schedule schedule)
+
+
+        public void InsertScheduleToDb(Schedule schedule)
         {
-            proxy.InsertSchedule(schedule);
+            throw new NotImplementedException();
         }
 
-        public Task InsertScheduleAsync(Schedule schedule)
+        public Task InsertScheduleToDbAsync(Schedule schedule)
         {
             throw new NotImplementedException();
         }
@@ -58,6 +73,33 @@ namespace EasyScheduleWebClient.Services
         }
 
         public Task UpdateScheduleAsync(Schedule schedule)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
+        {
+            return proxy.GetAllAvailableShiftsByDepartmentId(departmentId);
+        }
+
+        List<ScheduleShift> IScheduleService.GetAllAvailableShiftsByDepartmentId(int departmentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<List<ScheduleShift>> IScheduleService.GetAllAvailableShiftsByDepartmentIdAsync(int departmentId)
+        {
+            throw new NotImplementedException();
+        }
+
+ 
+
+        List<Schedule> IScheduleService.GetSchedulesByDepartmentId(int departmentId)
+        {
+            return proxy.GetSchedulesByDepartmentId(departmentId);
+        }
+
+        Task<List<Schedule>> IScheduleService.GetSchedulesByDepartmentIdAsync(int departmentId)
         {
             throw new NotImplementedException();
         }
