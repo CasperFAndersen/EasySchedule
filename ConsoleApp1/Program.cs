@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DatabaseAccess;
+using BusinessLogic;
+using DatabaseAccess.Employees;
 
 namespace ConsoleApp1
 {
@@ -11,9 +14,12 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            string hashed = PasswordHashing.CryptPassword("");
+            IEmployeeRepository db = new EmployeeRepository();
+            string hashed = PasswordHashing.CryptPassword("hardToCrack");
+            Employee e = db.GetEmployeeByUsername("MikkelP");
 
-            Console.WriteLine(hashed);
+
+            Console.WriteLine("Hashed code: " + hashed + " " + "password from db: " + e.Password);
             Console.ReadLine();
         }
     }
