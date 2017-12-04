@@ -121,14 +121,15 @@ namespace DesktopClient
             }
         }
 
-        public delegate void CBoxDepartmentChangedHandler(Department department, Schedule schedule);
+        public delegate void CBoxDepartmentChangedHandler(Department department);
         public event CBoxDepartmentChangedHandler CBoxDepartmentChanged;
-        public void OnCBoxSelectionChanged(Department department, Schedule schedule)
+        public void OnCBoxSelectionChanged(Department department)
         {
             if (DepartmentBoxChanged != null)
             {
-                CBoxDepartmentChanged(department, schedule);
+               CBoxDepartmentChanged(department);
             }
+            
         }
 
         public delegate void CreateTemplateScheduleButtonClickedHandler(TemplateSchedule templateSchedule);
@@ -182,14 +183,14 @@ namespace DesktopClient
             }
         }
 
-        public delegate void NextOrPrevClickedHandler(Schedule schedule);
-        public event NextOrPrevClickedHandler NextOrPrevClicked;
-        public void OnNextOrPreviousButtonClicked(Schedule schedule)
-        {
-            if (NextOrPrevClicked != null)
-            {
-                NextOrPrevClicked(schedule);
-            }
-        }
+        //public delegate void NextOrPrevClickedHandler(Schedule schedule);
+        //public event NextOrPrevClickedHandler NextOrPrevClicked;
+        //public void OnNextOrPreviousButtonClicked(Schedule schedule)
+        //{
+        //    if (NextOrPrevClicked != null)
+        //    {
+        //        NextOrPrevClicked(schedule);
+        //    }
+        //}
     }
 }

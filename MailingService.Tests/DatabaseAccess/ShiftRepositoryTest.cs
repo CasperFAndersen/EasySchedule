@@ -37,6 +37,7 @@ namespace Tests.DatabaseAccess
             Assert.AreNotEqual(0, shifts.Count);
         }
 
+
         [TestMethod]
         public void TestIfShiftIsForSale()
         {
@@ -78,6 +79,14 @@ namespace Tests.DatabaseAccess
 
             Assert.AreEqual(shift.Employee.Name, employee.Name);
             Assert.AreEqual(shift.IsForSale, false);
+        }
+
+        [TestMethod]
+        public void TestGetAllAvailableShiftsByDepartment()
+        {
+            List<ScheduleShift> availableScheduleShifts = shiftRepository.GetAllAvailableShiftsByDepartmentId(1);
+            Assert.IsNotNull(availableScheduleShifts);
+            Assert.AreEqual(2, availableScheduleShifts.Count);
         }
     }
 }

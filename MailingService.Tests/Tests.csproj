@@ -246,6 +246,7 @@
     <None Include="Connected Services\TemplateShiftService\TemplateShiftService.wsdl" />
     <None Include="Properties\DataSources\Core.Department.datasource" />
     <None Include="Properties\DataSources\Core.Employee.datasource" />
+    <None Include="Properties\DataSources\Core.ScheduleShift.datasource" />
     <None Include="Properties\DataSources\Core.TemplateSchedule.datasource" />
     <None Include="Properties\DataSources\Core.TemplateShift.datasource" />
     <None Include="Properties\DataSources\Core.Schedule.datasource" />

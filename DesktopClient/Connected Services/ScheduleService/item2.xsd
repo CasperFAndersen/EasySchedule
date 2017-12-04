@@ -69,4 +69,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AcceptAvailableShift">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="shift" nillable="true" type="q7:ScheduleShift" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="employee" nillable="true" type="q8:Employee" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AcceptAvailableShiftResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllAvailableShiftsByDepartmentId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllAvailableShiftsByDepartmentIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetAllAvailableShiftsByDepartmentIdResult" nillable="true" type="q9:ArrayOfScheduleShift" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

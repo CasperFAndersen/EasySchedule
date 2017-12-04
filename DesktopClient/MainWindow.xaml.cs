@@ -37,6 +37,7 @@ namespace DesktopClient
         ScheduleCalendarView scheduleCalendarCreate;
         CreateScheduleView createScheduleView;
         EmployeeColors employeeColors;
+        ViewScheduleView viewScheduleView;
 
         public MainWindow()
         {
@@ -52,6 +53,7 @@ namespace DesktopClient
             scheduleCalendarCreate = new ScheduleCalendarView();
             createScheduleView = new CreateScheduleView();
             createEmployeeView = new Views.EmployeeViews.CreateEmployeeView();
+            viewScheduleView = new ViewScheduleView();
         }
 
         private void ViewEditTemplateScheduleMenuItimClicked(object sender, RoutedEventArgs e)
@@ -87,7 +89,7 @@ namespace DesktopClient
 
         private void ViewScheduleMenuItemClicked(object sender, RoutedEventArgs e)
         {
-            scheduleCalendarViewEdit.ControlPanel.Content = new ViewScheduleView();
+            scheduleCalendarViewEdit.ControlPanel.Content = viewScheduleView;
             frame.Content = scheduleCalendarViewEdit;
             
             //ScheduleCalendarView scv = new ScheduleCalendarView();

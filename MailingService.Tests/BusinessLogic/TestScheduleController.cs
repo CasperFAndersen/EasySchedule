@@ -16,6 +16,7 @@ namespace Tests.BusinessLogic
     {
         Schedule schedule;
         Mock<IScheduleRepository> scheduleRepository;
+        private IShiftRepository shiftRepository;
         ScheduleController scheduleController;
         private IScheduleRepository mockScheduleRepository;
         TemplateScheduleController templateScheduleController = new TemplateScheduleController();
@@ -26,7 +27,7 @@ namespace Tests.BusinessLogic
         {
 
 
-
+            shiftRepository = MockRepository.GenerateMock<IShiftRepository>();
             mockScheduleRepository = MockRepository.GenerateMock<IScheduleRepository>();
             scheduleController = new ScheduleController(mockScheduleRepository);
         }
@@ -48,6 +49,14 @@ namespace Tests.BusinessLogic
             Schedule s = new Schedule();
             mockScheduleRepository.InsertSchedule(s);
             mockScheduleRepository.AssertWasCalled(x => x.InsertSchedule(s));
+        }
+
+        [TestMethod]
+        public void TestGetAllAvailbleShiftsByDepartmentId()
+        {
+            scheduleController._shiftRepository = shiftRepository;
+            scheduleController.GetAllAvailableShiftsByDepartmentId(1);
+            scheduleController._shiftRepository.AssertWasCalled(x => x.GetAllAvailableShiftsByDepartmentId(1));
         }
 
         [TestMethod]

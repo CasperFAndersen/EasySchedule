@@ -42,9 +42,10 @@
 
         </StackPanel>
         <Calendar Name="NavCalendar" Grid.Row="4" Grid.RowSpan="6" FirstDayOfWeek="Monday"  SelectionMode="SingleRange" MouseDown="NavCalendar_MouseLeftButtonDown" SelectedDatesChanged="NavCalendar_SelectedDatesChanged"/>
-
+        
 
 
 
     </Grid>
+    
 </UserControl>

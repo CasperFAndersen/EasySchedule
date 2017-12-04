@@ -55,6 +55,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="tns:Shift">
         <xs:sequence>
+          <xs:element minOccurs="0" name="IsForSale" type="xs:boolean" />
           <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
         </xs:sequence>
       </xs:extension>
