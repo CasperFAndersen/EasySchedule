@@ -43,16 +43,8 @@ namespace EasyScheduleWebClient.Controllers
 
             ScheduleProxy scheduleProxy = new ScheduleProxy();
             scheduleProxy.AcceptAvailableShift(scheduleShift, employee);
-
-            var shifts = scheduleProxy.GetAllAvailableShiftsByDepartmentId(employee.DepartmentId);
-
-
-            var model = from s in shifts
-                orderby s.StartTime
-                select s;
-
-            return View(model);
+            
+            return RedirectToAction("Index", "AvailableShifts");
         }
-
     }
 }
