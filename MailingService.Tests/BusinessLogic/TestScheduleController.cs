@@ -23,9 +23,6 @@ namespace Tests.BusinessLogic
         [TestInitialize]
         public void InitializeTest()
         {
-
-
-
             mockScheduleRepository = MockRepository.GenerateMock<IScheduleRepository>();
             scheduleController = new ScheduleController(mockScheduleRepository);
         }
@@ -132,9 +129,17 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestShiftCanBeSetForSale()
+        public void TestUpdateScheduleWithShiftSetForSale()
         {
             scheduleController = new ScheduleController(new ScheduleRepository());
+            Schedule schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 12));
+
+            Assert.IsFalse(schedule.Shifts[1].IsForSale);
+
+            scheduleController.SetShiftForSale(schedule.Shifts[1]);
+
+            schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 12));
+            Assert.IsTrue(schedule.Shifts[1].IsForSale);
         }
     }
 }

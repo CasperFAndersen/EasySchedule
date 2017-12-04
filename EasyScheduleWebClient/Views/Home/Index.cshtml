@@ -1,11 +1,6 @@
-﻿@{
-    if (Session["employee"] == null)
-    {
-        Response.Redirect("~/Login/Index");
-    }
-}
+﻿
 
-@model IEnumerable<EasyScheduleWebClient.Models.Employee>
+@model IEnumerable<EasyScheduleWebClient.Models.EmployeeModel>
 @{
     ViewBag.Title = "Full Calendar Test";
 }
@@ -183,7 +178,7 @@
                     snapDuration: '00:05:00',
                     forceEventDuration: true,
                     drag: function () {
-                        confirm('Vil du dragge den hertil');
+                        confirm('Do you want to drag it?');
                     },
                     droppable: false, // this allows things to be dropped onto the calendar
                     drop: function (date) {
@@ -203,7 +198,7 @@
              
                         //// change the border color just for fun
                         $(this).css('background-color', 'blue');
-                        confirm('Er du nu sikker?');
+                        confirm('Are you sure?');
                     }
 
                 })

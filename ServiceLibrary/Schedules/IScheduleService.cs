@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using Core;
 
 namespace ServiceLibrary.Schedules
 {
@@ -17,5 +18,7 @@ namespace ServiceLibrary.Schedules
         List<Core.Schedule> GetSchedulesByDepartmentId(int departmentId);
         [OperationContract]
         Core.Schedule GenerateScheduleFromTemplateScheduleAndStartDate(Core.TemplateSchedule templateSchedule, DateTime startTime);
+        [OperationContract]
+        void SetShiftForSale(Core.ScheduleShift scheduleShift);
     }
 }

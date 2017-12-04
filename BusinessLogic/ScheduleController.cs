@@ -68,5 +68,20 @@ namespace BusinessLogic
             schedule.EndDate = startTime.AddDays(7 * templateSchedule.NoOfWeeks);
             return schedule;
         }
+
+        public void SetShiftForSale(ScheduleShift scheduleShift)
+        {
+            ScheduleRepository scheduleRepository = new ScheduleRepository();
+            Schedule schedule = GetScheduleByDepartmentIdAndDate(scheduleShift.Employee.DepartmentId, 
+                                                                 scheduleShift.StartTime);
+            foreach (ScheduleShift shift in schedule.Shifts)
+            {
+                if (shift.Id == scheduleShift.Id)
+                {
+                    shift.IsForSale = true;
+                    scheduleRepository.UpdateSchedule(schedule);
+                }
+            }
+        }
     }
 }

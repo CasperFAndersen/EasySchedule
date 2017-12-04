@@ -101,9 +101,5 @@ namespace DatabaseAccess.Schedules
             shiftRepository.AddShiftsFromSchedule(schedule);
         }
 
-        public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

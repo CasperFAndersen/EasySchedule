@@ -34,5 +34,10 @@ namespace ServiceLibrary.Schedules
         {
             scheduleController.UpdateSchedule(schedule);
         }
+
+        public void SetShiftForSale(Core.ScheduleShift scheduleShift)
+        {
+            scheduleController.SetShiftForSale(scheduleShift);
+        }
     }
 }
