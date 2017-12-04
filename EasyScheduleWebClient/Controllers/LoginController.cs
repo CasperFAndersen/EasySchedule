@@ -18,12 +18,17 @@ namespace EasyScheduleWebClient.Controllers
             EmployeeProxy empProxy = new EmployeeProxy();
             var emp = empProxy.GetEmployeeByUsername(loggingIn.Username);
 
+            
             if (empProxy.ValidatePassword(loggingIn.Username, loggingIn.Password))
             {
                 Session["employee"] = emp;
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            else
+            {
+                ModelState.AddModelError("", "Wrong username or password");
+            }
+            return View(loggingIn); 
         }
 
         public ActionResult Logout()
