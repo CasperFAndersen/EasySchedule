@@ -19,7 +19,7 @@ namespace EasyScheduleWebClient.Controllers
             EmployeeProxy empProxy = new EmployeeProxy();
             var emp = empProxy.GetEmployeeByUsername(loggingIn.Username);
 
-            if (loggingIn.Password.Equals(emp.Password))
+            if (empProxy.ValidatePassword(loggingIn.Username, loggingIn.Password))
             {
                 Session["employee"] = emp;
                 return RedirectToAction("Index", "Home");

@@ -1,14 +1,19 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 
 namespace Core
 {
+
     [DataContract]
     public class Employee
     {
+        private PasswordHashing passwordHashing = new PasswordHashing();
+
         private string _name;
         private string _mail;
         private string _phone;
+        private string _password;
 
         [DataMember]
         public int Id { get; set; }
@@ -41,7 +46,17 @@ namespace Core
         public string Username { get; set; }
 
         [DataMember]
-        public string Password { get; set; }
+        public string Password
+        {
+            get
+            {
+                return _password;
+            }
+            set
+            {
+                _password = CryptPassword(value);
+            }
+        }
 
         [DataMember]
         public string Mail
@@ -59,6 +74,12 @@ namespace Core
 
         [DataMember]
         public bool IsEmployed { get; set; }
+
+        public string CryptPassword(string password)
+        {
+            string salt = PasswordHashing.GenerateSalt(5);
+            return PasswordHashing.CryptPassword(password + salt);
+        }
 
     }
 }

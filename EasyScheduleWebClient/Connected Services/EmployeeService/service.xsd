@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/Core" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Core" />
   <xs:element name="GetEmployeeByUsername">
     <xs:complexType>
       <xs:sequence>
@@ -15,17 +15,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetListOfEmployeeByDepartmentId">
+  <xs:element name="GetEmployeesByDepartmentId">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="depId" type="xs:int" />
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetListOfEmployeeByDepartmentIdResponse">
+  <xs:element name="GetEmployeesByDepartmentIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetListOfEmployeeByDepartmentIdResult" nillable="true" type="q2:ArrayOfEmployee" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetEmployeesByDepartmentIdResult" nillable="true" type="q2:ArrayOfEmployee" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -63,6 +63,21 @@
   <xs:element name="UpdateEmployeeResponse">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidatePassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidatePasswordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ValidatePasswordResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

@@ -8,10 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Core;
-
 namespace EasyScheduleWebClient.EmployeeService {
     
     
@@ -25,17 +21,17 @@ namespace EasyScheduleWebClient.EmployeeService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeeByUsername", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeeByUsernameResponse")]
         System.Threading.Tasks.Task<Core.Employee> GetEmployeeByUsernameAsync(string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentIdResponse")]
-        List<Employee> GetListOfEmployeeByDepartmentId(int depId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentIdResponse")]
+        Core.Employee[] GetEmployeesByDepartmentId(int departmentId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetListOfEmployeeByDepartmentIdResponse")]
-        Task<List<Employee>> GetListOfEmployeeByDepartmentIdAsync(int depId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetAllEmployees", ReplyAction="http://tempuri.org/IEmployeeService/GetAllEmployeesResponse")]
-        List<Employee> GetAllEmployees();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentIdResponse")]
+        System.Threading.Tasks.Task<Core.Employee[]> GetEmployeesByDepartmentIdAsync(int departmentId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetAllEmployees", ReplyAction="http://tempuri.org/IEmployeeService/GetAllEmployeesResponse")]
-        Task<List<Employee>> GetAllEmployeesAsync();
+        Core.Employee[] GetAllEmployees();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetAllEmployees", ReplyAction="http://tempuri.org/IEmployeeService/GetAllEmployeesResponse")]
+        System.Threading.Tasks.Task<Core.Employee[]> GetAllEmployeesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/InsertEmployee", ReplyAction="http://tempuri.org/IEmployeeService/InsertEmployeeResponse")]
         void InsertEmployee(Core.Employee employee);
@@ -48,6 +44,12 @@ namespace EasyScheduleWebClient.EmployeeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/UpdateEmployee", ReplyAction="http://tempuri.org/IEmployeeService/UpdateEmployeeResponse")]
         System.Threading.Tasks.Task UpdateEmployeeAsync(Core.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/ValidatePassword", ReplyAction="http://tempuri.org/IEmployeeService/ValidatePasswordResponse")]
+        bool ValidatePassword(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/ValidatePassword", ReplyAction="http://tempuri.org/IEmployeeService/ValidatePasswordResponse")]
+        System.Threading.Tasks.Task<bool> ValidatePasswordAsync(string username, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -85,19 +87,19 @@ namespace EasyScheduleWebClient.EmployeeService {
             return base.Channel.GetEmployeeByUsernameAsync(username);
         }
         
-        public List<Employee> GetListOfEmployeeByDepartmentId(int depId) {
-            return base.Channel.GetListOfEmployeeByDepartmentId(depId);
+        public Core.Employee[] GetEmployeesByDepartmentId(int departmentId) {
+            return base.Channel.GetEmployeesByDepartmentId(departmentId);
         }
         
-        public Task<List<Employee>> GetListOfEmployeeByDepartmentIdAsync(int depId) {
-            return base.Channel.GetListOfEmployeeByDepartmentIdAsync(depId);
+        public System.Threading.Tasks.Task<Core.Employee[]> GetEmployeesByDepartmentIdAsync(int departmentId) {
+            return base.Channel.GetEmployeesByDepartmentIdAsync(departmentId);
         }
         
-        public List<Employee> GetAllEmployees() {
+        public Core.Employee[] GetAllEmployees() {
             return base.Channel.GetAllEmployees();
         }
         
-        public Task<List<Employee>> GetAllEmployeesAsync() {
+        public System.Threading.Tasks.Task<Core.Employee[]> GetAllEmployeesAsync() {
             return base.Channel.GetAllEmployeesAsync();
         }
         
@@ -115,6 +117,14 @@ namespace EasyScheduleWebClient.EmployeeService {
         
         public System.Threading.Tasks.Task UpdateEmployeeAsync(Core.Employee employee) {
             return base.Channel.UpdateEmployeeAsync(employee);
+        }
+        
+        public bool ValidatePassword(string username, string password) {
+            return base.Channel.ValidatePassword(username, password);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ValidatePasswordAsync(string username, string password) {
+            return base.Channel.ValidatePasswordAsync(username, password);
         }
     }
 }

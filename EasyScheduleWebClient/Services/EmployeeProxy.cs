@@ -11,16 +11,6 @@ namespace EasyScheduleWebClient.Services
     {
         EmployeeServiceClient proxy = new EmployeeServiceClient();
 
-        public List<Employee> GetAllEmployees()
-        {
-            return proxy.GetAllEmployees();
-        }
-
-        public Task<List<Employee>> GetAllEmployeesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public Employee GetEmployeeByUsername(string username)
         {
             return proxy.GetEmployeeByUsername(username);
@@ -31,21 +21,14 @@ namespace EasyScheduleWebClient.Services
             return proxy.GetEmployeeByUsernameAsync(username);
         }
 
-
-        public List<Employee> GetEmployeesByDepartmentId(int id)
+        public Employee[] GetEmployeesByDepartmentId(int departmentId)
         {
-            // return proxy.GetEmployeesByDepartmentId(id);
-            return null;
+            return proxy.GetEmployeesByDepartmentId(departmentId);
         }
 
-        public List<Employee> GetListOfEmployeeByDepartmentId(int depId)
+        public Task<Employee[]> GetEmployeesByDepartmentIdAsync(int departmentId)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Employee>> GetListOfEmployeeByDepartmentIdAsync(int depId)
-        {
-            throw new NotImplementedException();
+            return proxy.GetEmployeesByDepartmentIdAsync(departmentId);
         }
 
         public void InsertEmployee(Employee employee)
@@ -55,18 +38,42 @@ namespace EasyScheduleWebClient.Services
 
         public Task InsertEmployeeAsync(Employee employee)
         {
-            throw new NotImplementedException();
+            return proxy.InsertEmployeeAsync(employee);
         }
 
         public void UpdateEmployee(Employee employee)
         {
-
             proxy.UpdateEmployee(employee);
         }
 
         public Task UpdateEmployeeAsync(Employee employee)
         {
-            throw new NotImplementedException();
+            return proxy.UpdateEmployeeAsync(employee);
+        }
+
+        public bool ValidatePassword(string username, string password)
+        {
+            return ValidatePassword(username, password);
+        }
+
+        public Task<bool> ValidatePasswordAsync(string username, string password)
+        {
+           return proxy.ValidatePasswordAsync(username, password);
+        }
+
+        Employee[] IEmployeeService.GetAllEmployees()
+        {
+           return proxy.GetAllEmployees();
+        }
+
+        Task<Employee[]> IEmployeeService.GetAllEmployeesAsync()
+        {
+            return proxy.GetAllEmployeesAsync();
+        }
+
+        Employee[] IEmployeeService.GetEmployeesByDepartmentId(int departmentId)
+        {
+            return proxy.GetEmployeesByDepartmentId(departmentId);
         }
     }
 }

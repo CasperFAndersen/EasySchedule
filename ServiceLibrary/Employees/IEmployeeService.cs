@@ -22,6 +22,9 @@ namespace ServiceLibrary.Employees
         [OperationContract]
         void UpdateEmployee(Employee employee);
 
+        [OperationContract]
+        bool ValidatePassword(string username, string password);
+
     }
 
 }

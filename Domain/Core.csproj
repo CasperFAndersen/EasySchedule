@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PasswordHashing.cs" />
     <Compile Include="Shift.cs" />
     <Compile Include="TemplateSchedule.cs" />
     <Compile Include="Department.cs" />
