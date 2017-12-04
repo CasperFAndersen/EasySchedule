@@ -73,8 +73,8 @@ namespace Tests.BusinessLogic
             Employee emp1 = new Employee() { Password = password1 };
             Employee emp2 = new Employee() { Password = password2 };
 
-            string pHasing1 = passwordHashing.CryptPassword(password1);
-            string pHasing2 = passwordHashing.CryptPassword(password2); ;
+            string pHasing1 = PasswordHashing.CryptPassword(password1);
+            string pHasing2 = PasswordHashing.CryptPassword(password2); ;
 
             //Testing crypt through set Password Property
             Assert.AreNotEqual(emp1.Password ,password1);
@@ -85,7 +85,7 @@ namespace Tests.BusinessLogic
             Assert.AreEqual(emp2.Password, pHasing2);
 
             emp1.Password = "newPassWord";
-            string pHasing3 = passwordHashing.CryptPassword("newPassWord");
+            string pHasing3 = PasswordHashing.CryptPassword("newPassWord");
             Assert.AreNotEqual(emp1.Password, password1);
             Assert.AreEqual(emp1.Password, pHasing3);
         }

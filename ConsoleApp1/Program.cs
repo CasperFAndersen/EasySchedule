@@ -11,8 +11,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            PasswordHashing hashing = new PasswordHashing();
-            string hashed = hashing.CryptPassword("");
+            string hashed = PasswordHashing.CryptPassword("");
 
             Console.WriteLine(hashed);
             Console.ReadLine();
