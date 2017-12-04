@@ -7,6 +7,7 @@ namespace EasyScheduleWebClient.Models
     {
         public int EmployeeID { get; set; }
         public string Name { get; set; }
+        public int DepartmentId { get; set; }
 
 
 

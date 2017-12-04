@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using EasyScheduleWebClient.Models;
+using Core;
+using EasyScheduleWebClient.Services;
 
 namespace EasyScheduleWebClient.Controllers
 {
@@ -9,14 +13,46 @@ namespace EasyScheduleWebClient.Controllers
         // GET: AvailableShifts
         public ActionResult Index()
         {
-            ServiceLibrary.Schedules.ScheduleService scheduleService = new ServiceLibrary.Schedules.ScheduleService();
-            
-            
-            return View();
+
+            if (Session["employee"] != null)
+            {
+                Employee employee = new Employee();
+                employee = (Employee)Session["employee"];
+
+                ScheduleProxy scheduleProxy = new ScheduleProxy();
+                var shifts = scheduleProxy.GetAllAvailableShiftsByDepartmentId(employee.DepartmentId);
+
+
+                var model = from s in shifts
+                    orderby s.StartTime
+                    select s;
+
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
+       
         }
 
-        
+        public ActionResult AcceptShift(ScheduleShift scheduleShift)
+        {
+            Employee employee = new Employee();
+            employee = (Employee)Session["employee"];
 
+            ScheduleProxy scheduleProxy = new ScheduleProxy();
+            scheduleProxy.AcceptAvailableShift(scheduleShift, employee);
+
+            var shifts = scheduleProxy.GetAllAvailableShiftsByDepartmentId(employee.DepartmentId);
+
+
+            var model = from s in shifts
+                orderby s.StartTime
+                select s;
+
+            return View(model);
+        }
 
     }
 }

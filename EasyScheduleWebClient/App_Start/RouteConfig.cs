@@ -23,7 +23,7 @@ namespace EasyScheduleWebClient
             routes.MapRoute(
                 name: "ViewAllAvailableShifts",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "AvailableShifts", action = "AvailableShifts", id = UrlParameter.Optional},
+                defaults: new { controller = "AvailableShifts", action = "Index", id = UrlParameter.Optional},
                 namespaces: new[] { "EasyScheduleWebClient.Controllers" }
                 );
 
