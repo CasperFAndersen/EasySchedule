@@ -125,7 +125,6 @@ namespace Tests.DatabaseAccess
                                       "employeeId int foreign key references Employee(id), " +
                                       "isForSale bit); ";
 
-
                     command.ExecuteNonQuery();
                 }
             }
@@ -137,8 +136,7 @@ namespace Tests.DatabaseAccess
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = ""
-                                      +
+                    command.CommandText = 
                                       //WorkPlace
                                       "insert into Workplace(name, address, email, phone) " +
                                       "values('Meny', 'Aabybro Centret 12 9440 Aabybro', 'menyaabybro@meny.dk', '98241966'); " +
@@ -148,7 +146,6 @@ namespace Tests.DatabaseAccess
 
                                       "insert into Workplace(name, address, email, phone) " +
                                       "values('Bilka Skalborg', 'Hobrovej 450 9200 Aalborg SV', 'aalborg@bilka.dk', '98797000');"
-
                                       +
                                       //Department
                                       "insert into Department(name, address, email, phone, workplaceId) " +
@@ -159,7 +156,6 @@ namespace Tests.DatabaseAccess
 
                                       "insert into Department(name, address, email, phone, workplaceId) " +
                                       "values ('Elektronik', 'Tat paa lageret', 'elektronikaalborg@bilka.dk', '70707030', (select id from workplace where name='Bilka Skalborg')); "
-
                                       +
                                       //Employee
                                       "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId, isEmployed) " +
@@ -176,7 +172,6 @@ namespace Tests.DatabaseAccess
 
                                       "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId, isEmployed)" +
                                       "values ('Stefan Krabbe', 'stefankrabbe@gmail.com', '12093847', 30, 1, 'SKrabbe', 'ItsaHardHardLife', (select id from department where name='Kolonial'), 1); "
-
                                       +
                                       //TemplateSchedule
                                       "insert into TemplateSchedule(name, noOfWeeks, departmentId) " +
@@ -184,7 +179,6 @@ namespace Tests.DatabaseAccess
 
                                       "insert into TemplateSchedule(name, noOfWeeks, departmentId) " +
                                       "values ('PakkeCentralJuletid', 1, (select id from department where name = 'Pakkecentral')); "
-
                                       +
                                       //TemplateShift
                                       "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
@@ -192,7 +186,6 @@ namespace Tests.DatabaseAccess
                                       +
                                       "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
                                       "values ('Tuesday', 10, '06:30:00', 1, (select id from templateSchedule where name='PakkeCentralJuletid'), (select id from Employee where name='Tobias Andersen')); "
-
                                       +
                                       //Schedule
                                       "insert into Schedule(startDate, endDate, departmentId) " +
@@ -200,7 +193,6 @@ namespace Tests.DatabaseAccess
 
                                       "insert into Schedule(startDate, endDate,  departmentId) " +
                                       "values ('2017-11-27', '2017-12-18', 2); "
-
                                       +
                                       //Shift
 
@@ -304,7 +296,6 @@ namespace Tests.DatabaseAccess
                                       //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-24 09:00', 7, 2,  (select id from employee where name = 'Tobias Andersen')); " +
                                       //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-12-07 07:00', 10,2, (select id from employee where name = 'Tobias Andersen')); " +
                                       //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-04 12:00', 8, 2,  (select id from employee where name = 'Tobias Andersen')); ";
-
 
                     command.ExecuteNonQuery();
                 }
