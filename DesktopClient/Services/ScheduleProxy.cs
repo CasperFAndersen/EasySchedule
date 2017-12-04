@@ -12,6 +12,16 @@ namespace DesktopClient.Services
     {
         ScheduleServiceClient proxy = new ScheduleServiceClient();
 
+        public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
+        {
+            proxy.AcceptAvailableShift(shift, employee);
+        }
+
+        public Task AcceptAvailableShiftAsync(ScheduleShift shift, Employee employee)
+        {
+            throw new NotImplementedException();
+        }
+
         public Schedule GenerateScheduleFromTemplateScheduleAndStartDate(TemplateSchedule templateSchedule, DateTime startTime)
         {
             return proxy.GenerateScheduleFromTemplateScheduleAndStartDate(templateSchedule, startTime);
@@ -20,6 +30,16 @@ namespace DesktopClient.Services
         public Task<Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(TemplateSchedule templateSchedule, DateTime startTime)
         {
             return proxy.GenerateScheduleFromTemplateScheduleAndStartDateAsync(templateSchedule, startTime);
+        }
+
+        public List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<ScheduleShift>> GetAllAvailableShiftsByDepartmentIdAsync(int departmentId)
+        {
+            throw new NotImplementedException();
         }
 
         public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)

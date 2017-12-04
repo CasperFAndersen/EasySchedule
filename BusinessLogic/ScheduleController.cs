@@ -14,12 +14,14 @@ namespace BusinessLogic
     public class ScheduleController : IScheduleController
     {
         private readonly IScheduleRepository _scheduleRepository;
-        public IShiftRepository _shiftRepository;
+        public IShiftRepository _shiftRepository { get; set; }
+       
         public ScheduleController(IScheduleRepository scheduleRepository)
         {
             _scheduleRepository = scheduleRepository;
             _shiftRepository = new ShiftRepository();
         }
+
 
         public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
         {
@@ -83,6 +85,11 @@ namespace BusinessLogic
             {
                 throw new ArgumentException("Failure to accept shift. One or more arguments are illigal!");
             }
+        }
+
+        public List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
+        {
+            return _shiftRepository.GetAllAvailableShiftsByDepartmentId(departmentId);
         }
     }
 }

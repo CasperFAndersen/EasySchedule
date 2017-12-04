@@ -50,6 +50,11 @@ namespace DesktopClient.Views.TemplateScheduleViews
             {
                 BtnSaveUpdatedTemplateSchedule.IsEnabled = true;
             };
+
+            Mediator.GetInstance().CreateTemplateScheduleButtonClicked += (t) =>
+            {
+                BindData();
+            };
         }
 
         private void BtnSaveUpdatedTemplateSchedule_Click(object sender, RoutedEventArgs e)

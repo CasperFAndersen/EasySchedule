@@ -29,10 +29,11 @@ namespace DesktopClient.Views.ScheduleViews
 
         private void SetOnCBoxSelectionChanged()
         {
-            Mediator.GetInstance().CBoxDepartmentChanged += (d,s) =>
+            Mediator.GetInstance().CBoxDepartmentChanged += (d) =>
             {
                 List<Employee> employees = new EmployeeProxy().GetEmployeesByDepartmentId(d.Id);
                 LoadEmployeeList(employees);
+        
             };
             
         }

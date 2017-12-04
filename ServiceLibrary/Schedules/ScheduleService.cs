@@ -34,5 +34,15 @@ namespace ServiceLibrary.Schedules
         {
             scheduleController.UpdateSchedule(schedule);
         }
+
+        public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
+        {
+            scheduleController.AcceptAvailableShift(shift, employee);
+        }
+
+        public List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
+        {
+            return scheduleController.GetAllAvailableShiftsByDepartmentId(departmentId);
+        }
     }
 }

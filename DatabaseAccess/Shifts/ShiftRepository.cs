@@ -251,5 +251,32 @@ namespace DatabaseAccess.Shifts
             scheduleShift.IsForSale = Convert.ToBoolean(reader["IsForSale"]);
             return scheduleShift;
         }
+
+        public List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
+        {
+            List<ScheduleShift> scheduleShifts = new List<ScheduleShift>();
+
+            using (SqlConnection connection = new DbConnection().GetConnection())
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT * FROM shift WHERE isForSale = 1;";
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ScheduleShift scheduleShift = BuildShiftObject(reader);
+                            if (scheduleShift.Employee.DepartmentId == departmentId)
+                            {
+                                scheduleShifts.Add(scheduleShift);
+                            }
+                           
+                        }
+                    }
+                }
+            }
+            return scheduleShifts; ;
+        }
     }
 }

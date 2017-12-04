@@ -201,7 +201,7 @@ namespace Tests.DatabaseAccess
                                       +
                                       //Schedule
                                       "insert into Schedule(startDate, endDate, departmentId) " +
-                                      "values ('2017-10-30', '2017-11-26', 1); " +
+                                      "values ('2017-10-30', '2017-12-10', 1); " +
 
                                       "insert into Schedule(startDate, endDate,  departmentId) " +
                                       "values ('2017-11-27', '2017-12-18', 2); "

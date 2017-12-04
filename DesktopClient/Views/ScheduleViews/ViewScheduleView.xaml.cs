@@ -17,7 +17,7 @@ namespace DesktopClient.Views.ScheduleViews
         {
             InitializeComponent();
             BindComboBoxData();
-            SetOnNextOrPrevClicked();
+            //SetOnNextOrPrevClicked();
             EventChangesListener();
         }
 
@@ -33,34 +33,25 @@ namespace DesktopClient.Views.ScheduleViews
         {
             Core.Schedule schedule = null;
             Department department = (Department)cBoxDepartment.SelectedItem;
-            try
-            {
-                schedule = scheduleProxy.GetScheduleByDepartmentIdAndDate(department.Id, DateTime.Now);
-               
-                txtNoSchedule.Text = "";
-            }
-            catch (Exception)
-            {
-                txtNoSchedule.Text = "There is no schedelue for the selected time period";
-            }
 
-            Mediator.GetInstance().OnCBoxSelectionChanged(department, schedule);
+            Mediator.GetInstance().OnCBoxSelectionChanged(department);
+
         }
 
-        private void SetOnNextOrPrevClicked()
-        {
-            Mediator.GetInstance().NextOrPrevClicked += (s) =>
-            {
-                if (s != null)
-                {
-                    txtNoSchedule.Text = "";
-                }
-                else
-                {
-                    txtNoSchedule.Text = "There is no schedelue for the selected time period";
-                }
-            };
-        }
+        //private void SetOnNextOrPrevClicked()
+        //{
+        //    Mediator.GetInstance().NextOrPrevClicked += (s) =>
+        //    {
+        //        if (s != null)
+        //        {
+        //            txtNoSchedule.Text = "";
+        //        }
+        //        else
+        //        {
+        //            txtNoSchedule.Text = "There is no schedelue for the selected time period";
+        //        }
+        //    };
+        //}
 
         private void EventChangesListener()
         {

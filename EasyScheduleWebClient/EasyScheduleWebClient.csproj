@@ -235,6 +235,7 @@
     <None Include="Connected Services\ScheduleService\System.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Properties\DataSources\Core.ScheduleShift.datasource" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />

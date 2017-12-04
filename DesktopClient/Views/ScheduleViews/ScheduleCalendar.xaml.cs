@@ -19,12 +19,14 @@ namespace DesktopClient.Views.ScheduleViews
         public int DepartmentId { get; set; }
         public DateTime SelectedWeekStartDate { get; set; }
         public List<DateBox> DateBoxes { get; set; }
+        public TextBlock TxtNoSchedule { get; set; }
         public ScheduleCalendar()
         {
             InitializeComponent();
             Shifts = new List<ScheduleShift>();
             DayColumnList = new List<DayColumn>();
             DateBoxes = new List<DateBox>();
+            TxtNoSchedule = new TextBlock();
             WeekNumber = 1;
             btnNextWeek.IsEnabled = false;
             btnPrevWeek.IsEnabled = false;
@@ -130,7 +132,7 @@ namespace DesktopClient.Views.ScheduleViews
         public void BuildDateBoxes()
         {
             DateTime currentDate = DateTime.Now;
-           // int thisMonday = (currentDate.DayOfWeek == DayOfWeek.Sunday) ? (currentDate.AddDays(-6)) : (currentDate.AddDays(((int)currentDate.DayOfWeek - 1)));
+            // int thisMonday = (currentDate.DayOfWeek == DayOfWeek.Sunday) ? (currentDate.AddDays(-6)) : (currentDate.AddDays(((int)currentDate.DayOfWeek - 1)));
             DateTime date = (currentDate.DayOfWeek == DayOfWeek.Sunday) ? (currentDate.AddDays(-6)) : (currentDate.AddDays(((int)currentDate.DayOfWeek - 1)));
 
             int row = 1; int col = 2;
@@ -235,22 +237,69 @@ namespace DesktopClient.Views.ScheduleViews
 
         public void SetOnDepartmentSelected()
         {
-            Mediator.GetInstance().CBoxDepartmentChanged += (d, s) =>
+            Mediator.GetInstance().CBoxDepartmentChanged += (d) =>
             {
-                if (s != null)
+                if (this.IsVisible)
                 {
-                    Shifts = s.Shifts;
-                    Schedule = s;
-                    LoadShiftsIntoCalendar();
+                    if (d != null)
+                    {
+                        ScheduleProxy scheduleProxy = new ScheduleProxy();
+
+                        try
+                        {
+                            Clear();
+                            Schedule schedule = scheduleProxy.GetScheduleByDepartmentIdAndDate(d.Id, DateBoxes[0].Date);
+                            Shifts = schedule.Shifts;
+                            LoadShiftsIntoCalendar();
+                        }
+                        catch (Exception)
+                        {
+                            Shifts.Clear();
+
+                            Schedule = null;
+                            Clear();
+                            AddTxtNoSchedule();
+                        }
+
+                    }
+                    DepartmentId = d.Id;
                 }
-                else
-                {
-                    Shifts.Clear();
-                    Schedule = null;
-                    Clear();
-                }
-                DepartmentId = d.Id;
+          
+             
+
+                //if (s != null)
+                //{
+                //    Clear();
+                //    Shifts = s.Shifts;
+                //    Schedule = s;
+                //    LoadShiftsIntoCalendar();
+                //}
+                //else
+                //{
+                //    Shifts.Clear();
+                //    Schedule = null;
+                //    Clear();
+                //}
+
             };
+
+        }
+
+        private void AddTxtNoSchedule()
+        {
+            if (this.IsVisible)
+            {
+
+                Grid.SetColumn(TxtNoSchedule, 2);
+                Grid.SetColumnSpan(TxtNoSchedule, 4);
+                Grid.SetRow(TxtNoSchedule, 5);
+                TxtNoSchedule.HorizontalAlignment = HorizontalAlignment.Center;
+                TxtNoSchedule.FontWeight = FontWeights.Bold;
+                TxtNoSchedule.FontSize = 18;
+                TxtNoSchedule.Text = "There is no schedelue for the selected time period";
+                TxtNoSchedule.Background = new SolidColorBrush(Colors.White);
+                CalendarGrid.Children.Add(TxtNoSchedule);
+            }
 
         }
 
@@ -267,8 +316,8 @@ namespace DesktopClient.Views.ScheduleViews
                         MessageBox.Show("Schedule for " + Schedule.Department.Name + " Saved sucessfully");
                     }
 
-                   
-                    
+
+
                 }
                 catch (Exception)
                 {
@@ -293,13 +342,29 @@ namespace DesktopClient.Views.ScheduleViews
         {
             Mediator.GetInstance().CreateScheduleClicked += () =>
             {
-
+                if (this.IsVisible)
+                {
                     if (Schedule != null)
                     {
-                        ScheduleProxy scheduleProxy = new ScheduleProxy();
-                        scheduleProxy.InsertScheduleToDb(Schedule);
+                        try
+                        {
+                            ScheduleProxy scheduleProxy = new ScheduleProxy();
+                            scheduleProxy.InsertScheduleToDb(Schedule);
+                            MessageBox.Show("The schedule for " + Schedule.Department.Name + " StartDate: +" + Schedule.StartDate + "EndDate: " + Schedule.EndDate + " was succesfully published");
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Something went wrong!");
+
+                        }
                     }
-                
+                }
+                else
+                {
+                    Mediator.GetInstance().OnCBoxSelectionChanged(Schedule.Department);
+                }
+       
+
             };
         }
 
@@ -320,12 +385,12 @@ namespace DesktopClient.Views.ScheduleViews
                 }
                 catch (Exception)
                 {
-
+                    AddTxtNoSchedule();
                     Schedule = null;
                 }
 
             }
-            else if(Schedule == null)
+            else if (Schedule == null)
             {
                 try
                 {
@@ -334,12 +399,12 @@ namespace DesktopClient.Views.ScheduleViews
                 }
                 catch (Exception)
                 {
-
+                    AddTxtNoSchedule();
                     Schedule = null;
                 }
             }
             LoadShiftsIntoCalendar();
-            Mediator.GetInstance().OnNextOrPreviousButtonClicked(Schedule);
+           // Mediator.GetInstance().OnNextOrPreviousButtonClicked(Schedule);
 
         }
 
@@ -358,12 +423,12 @@ namespace DesktopClient.Views.ScheduleViews
                 }
                 catch (Exception)
                 {
-
+                    AddTxtNoSchedule();
                     Schedule = null;
                 }
 
             }
-            else if(Schedule == null)
+            else if (Schedule == null)
             {
                 try
                 {
@@ -372,17 +437,22 @@ namespace DesktopClient.Views.ScheduleViews
                 }
                 catch (Exception)
                 {
-
+                    AddTxtNoSchedule();
                     Schedule = null;
                 }
             }
-            
-            Mediator.GetInstance().OnNextOrPreviousButtonClicked(Schedule);
+
+            //Mediator.GetInstance().OnNextOrPreviousButtonClicked(Schedule);
             LoadShiftsIntoCalendar();
         }
 
         public void Clear()
         {
+            if (CalendarGrid.Children.Contains(TxtNoSchedule))
+            {
+                CalendarGrid.Children.Remove(TxtNoSchedule);
+            }
+    
             DayColumnList.ForEach(x => x.Clear());
         }
 

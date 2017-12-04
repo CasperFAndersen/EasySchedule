@@ -61,10 +61,10 @@ namespace Tests.ScheduleService {
         System.Threading.Tasks.Task UpdateScheduleAsync(Core.Schedule schedule);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentIdResponse")]
-        Core.Schedule[] GetSchedulesByDepartmentId(int departmentId);
+        System.Collections.Generic.List<Core.Schedule> GetSchedulesByDepartmentId(int departmentId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetSchedulesByDepartmentIdResponse")]
-        System.Threading.Tasks.Task<Core.Schedule[]> GetSchedulesByDepartmentIdAsync(int departmentId);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Schedule>> GetSchedulesByDepartmentIdAsync(int departmentId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
             "ate", ReplyAction="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
@@ -75,6 +75,18 @@ namespace Tests.ScheduleService {
             "ate", ReplyAction="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
             "ateResponse")]
         System.Threading.Tasks.Task<Core.Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(Core.TemplateSchedule templateSchedule, System.DateTime startTime);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/AcceptAvailableShift", ReplyAction="http://tempuri.org/IScheduleService/AcceptAvailableShiftResponse")]
+        void AcceptAvailableShift(Core.ScheduleShift shift, Core.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/AcceptAvailableShift", ReplyAction="http://tempuri.org/IScheduleService/AcceptAvailableShiftResponse")]
+        System.Threading.Tasks.Task AcceptAvailableShiftAsync(Core.ScheduleShift shift, Core.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentIdResponse")]
+        System.Collections.Generic.List<Core.ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentIdResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.ScheduleShift>> GetAllAvailableShiftsByDepartmentIdAsync(int departmentId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -128,11 +140,11 @@ namespace Tests.ScheduleService {
             return base.Channel.UpdateScheduleAsync(schedule);
         }
         
-        public Core.Schedule[] GetSchedulesByDepartmentId(int departmentId) {
+        public System.Collections.Generic.List<Core.Schedule> GetSchedulesByDepartmentId(int departmentId) {
             return base.Channel.GetSchedulesByDepartmentId(departmentId);
         }
         
-        public System.Threading.Tasks.Task<Core.Schedule[]> GetSchedulesByDepartmentIdAsync(int departmentId) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Schedule>> GetSchedulesByDepartmentIdAsync(int departmentId) {
             return base.Channel.GetSchedulesByDepartmentIdAsync(departmentId);
         }
         
@@ -142,6 +154,22 @@ namespace Tests.ScheduleService {
         
         public System.Threading.Tasks.Task<Core.Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(Core.TemplateSchedule templateSchedule, System.DateTime startTime) {
             return base.Channel.GenerateScheduleFromTemplateScheduleAndStartDateAsync(templateSchedule, startTime);
+        }
+        
+        public void AcceptAvailableShift(Core.ScheduleShift shift, Core.Employee employee) {
+            base.Channel.AcceptAvailableShift(shift, employee);
+        }
+        
+        public System.Threading.Tasks.Task AcceptAvailableShiftAsync(Core.ScheduleShift shift, Core.Employee employee) {
+            return base.Channel.AcceptAvailableShiftAsync(shift, employee);
+        }
+        
+        public System.Collections.Generic.List<Core.ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId) {
+            return base.Channel.GetAllAvailableShiftsByDepartmentId(departmentId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.ScheduleShift>> GetAllAvailableShiftsByDepartmentIdAsync(int departmentId) {
+            return base.Channel.GetAllAvailableShiftsByDepartmentIdAsync(departmentId);
         }
     }
 }

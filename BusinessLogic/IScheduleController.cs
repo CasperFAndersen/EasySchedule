@@ -12,5 +12,6 @@ namespace BusinessLogic
         List<Schedule> GetSchedulesByDepartmentId(int departmentId);
         Schedule GetShiftsFromTemplateShift(TemplateSchedule templateSchedule, DateTime startTime);
         void AcceptAvailableShift(ScheduleShift shift, Employee employee);
+        List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
     }
 }
