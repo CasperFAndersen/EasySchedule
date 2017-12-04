@@ -108,6 +108,13 @@
                     url: "/Home/GetEvents",
                     success: function (data) {
                         $.each(data, function (i, v) {
+                            var col;
+                            if (v.isForSale == true) {
+                                col = 'yellow';
+                            }
+                            else {
+                                col = 'blue';
+                            }
                             events.push({
                                 eventID: v.Id,
                                 title: v.Employee.Name,
@@ -115,6 +122,8 @@
                                 start: moment(v.StartTime),
                                 end: moment(v.StartTime).clone().add(v.Hours, 'hour'),
                                 // color: blue,//v.ThemeColor,
+                                //isForSale: v.isForSale,
+                                color: col,
                                 allDay: false
                             });
                         })
@@ -135,7 +144,6 @@
                     $(this).data('event', {
                         title: $.trim($(this).text()), // use the element's text as the event title
                         stick: true // maintain when user navigates (see docs on the renderEvent method)
-
                     });
 
                     // make the event draggable using jQuery UI
@@ -144,9 +152,7 @@
                         revert: true,      // will cause the event to go back to its
                         revertDuration: 0  //  original position after the drag
                     });
-
                 });
-
 
                 $('#calender').fullCalendar('destroy');
                 $('#calendar').fullCalendar({
