@@ -162,6 +162,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AvailableShiftsController.cs" />
     <Compile Include="Controllers\EmailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\MailingServiceContext.cs" />
     <Compile Include="Models\Shift.cs" />
+    <Compile Include="Models\ShiftModel.cs" />
     <Compile Include="Models\ViewModel\EmailViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmployeeProxy.cs" />
@@ -362,6 +364,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AvailableShifts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -383,6 +386,10 @@
     <ProjectReference Include="..\Domain\Core.csproj">
       <Project>{3e8c167c-bc2d-4ca0-a666-d3c4af3b9db0}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceLibrary\ServiceLibrary.csproj">
+      <Project>{7A2ED209-F25F-435F-9F5F-85CED99BD530}</Project>
+      <Name>ServiceLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
