@@ -38,9 +38,14 @@ namespace EasyScheduleWebClient.Services
             return null;
         }
 
-        public List<Employee> GetListOfEmployeeByDepartmentId(int depId)
+        public Task<List<Employee>> GetEmployeesByDepartmentIdAsync(int departmentId)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Employee> GetListOfEmployeeByDepartmentId(int depId)
+        {
+            return proxy.GetEmployeesByDepartmentId(depId);
         }
 
         public Task<List<Employee>> GetListOfEmployeeByDepartmentIdAsync(int depId)

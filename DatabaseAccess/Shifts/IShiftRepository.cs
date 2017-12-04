@@ -17,5 +17,8 @@ namespace DatabaseAccess.Shifts
         void UpdateScheduleShift(ScheduleShift shift, int scheduleId, SqlConnection connection);
         void AcceptAvailableShift(ScheduleShift shift, Employee employee);
         ScheduleShift BuildShiftObject(SqlDataReader reader);
+        List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
+        ScheduleShift GetShiftById(int id);
+
     }
 }

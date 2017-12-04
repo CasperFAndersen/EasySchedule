@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Rhino.Mocks;
 using Moq;
 using MockRepository = Rhino.Mocks.MockRepository;
+using DatabaseAccess.Shifts;
 
 namespace Tests.BusinessLogic
 {
@@ -15,6 +16,7 @@ namespace Tests.BusinessLogic
     {
         Schedule schedule;
         Mock<IScheduleRepository> scheduleRepository;
+        private IShiftRepository shiftRepository;
         ScheduleController scheduleController;
         private IScheduleRepository mockScheduleRepository;
         TemplateScheduleController templateScheduleController = new TemplateScheduleController();
@@ -23,6 +25,7 @@ namespace Tests.BusinessLogic
         [TestInitialize]
         public void InitializeTest()
         {
+            shiftRepository = MockRepository.GenerateMock<IShiftRepository>();
             mockScheduleRepository = MockRepository.GenerateMock<IScheduleRepository>();
             scheduleController = new ScheduleController(mockScheduleRepository);
         }
@@ -44,6 +47,67 @@ namespace Tests.BusinessLogic
             Schedule s = new Schedule();
             mockScheduleRepository.InsertSchedule(s);
             mockScheduleRepository.AssertWasCalled(x => x.InsertSchedule(s));
+        }
+
+        [TestMethod]
+        public void TestGetAllAvailbleShiftsByDepartmentId()
+        {
+            scheduleController._shiftRepository = shiftRepository;
+            scheduleController.GetAllAvailableShiftsByDepartmentId(1);
+            scheduleController._shiftRepository.AssertWasCalled(x => x.GetAllAvailableShiftsByDepartmentId(1));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException),
+            "Failure to accept shift. One or more arguments are illigal!")]
+        public void TestIlligal_IsForSale_AcceptAvailableShift()
+        {
+            ScheduleShift shift = new ScheduleShift()
+            {
+                StartTime = DateTime.Now.AddDays(1),
+                Hours = 4,
+                Employee = new Employee(),
+                IsForSale = false,
+            };
+            Employee employee = new Employee();
+
+            scheduleController.AcceptAvailableShift(shift, employee);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException),
+            "Failure to accept shift. One or more arguments are illigal!")]
+        public void TestIlligal_AcceptTime_AcceptAvailableShift()
+        {
+            ScheduleShift shift = new ScheduleShift()
+            {
+                StartTime = DateTime.Now.AddDays(1),
+                Hours = 4,
+                Employee = new Employee(),
+                IsForSale = true,
+            };
+            Employee employee = new Employee();
+
+            scheduleController.AcceptAvailableShift(shift, employee);
+        }
+
+        [TestMethod]
+        public void TestAcceptAvailableShift()
+        {
+
+            scheduleController._shiftRepository = MockRepository.GenerateMock<IShiftRepository>();
+
+            ScheduleShift shift = new ScheduleShift()
+            {
+                StartTime = DateTime.Now.AddDays(-1),
+                Hours = 4,
+                Employee = new Employee(),
+                IsForSale = true,
+            };
+            Employee employee = new Employee();
+
+            scheduleController.AcceptAvailableShift(shift, employee);
+            scheduleController._shiftRepository.AssertWasCalled(x => x.AcceptAvailableShift(shift, employee));
         }
 
         [TestMethod()]

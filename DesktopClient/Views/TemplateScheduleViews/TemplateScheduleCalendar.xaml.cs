@@ -143,7 +143,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
             {
                 if (this.IsVisible)
                 {
-                    AddShift(new TemplateShift() { Employee = e, StartTime = tod, WeekDay = dow, WeekNumber = WeekNumber, Hours = DEFAULTSHIFTLENGTH });
+                    Shifts.Add(new TemplateShift() { Employee = e, StartTime = tod, WeekDay = dow, WeekNumber = WeekNumber, Hours = DEFAULTSHIFTLENGTH });
                     LoadShiftsIntoCalendar();
                 }
 
@@ -198,18 +198,22 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             Mediator.GetInstance().CreateTemplateScheduleButtonClicked += (templateSchedule) =>
             {
-                if (Shifts.Count == 0)
+                if (this.IsVisible)
                 {
-                    MessageBox.Show("No shifts has been added!");
+                    if (Shifts.Count == 0)
+                    {
+                        MessageBox.Show("No shifts has been added!");
+                    }
+                    else
+                    {
+                        TemplateScheduleProxy templateScheduleProxy = new TemplateScheduleProxy();
+                        templateSchedule.TemplateShifts = Shifts;
+                        templateScheduleProxy.AddTemplateScheduleToDb(templateSchedule);
+                        Shifts.Clear();
+                        MessageBox.Show("Template schedule is now saved onto database");
+                    }
                 }
-                else
-                {
-                    TemplateScheduleProxy templateScheduleProxy = new TemplateScheduleProxy();
-                    templateSchedule.TemplateShifts = Shifts;
-                    templateScheduleProxy.AddTemplateScheduleToDb(templateSchedule);
-                    Shifts.Clear();
-                    MessageBox.Show("Template schedule is now saved onto database");
-                }
+
             };
         }
 

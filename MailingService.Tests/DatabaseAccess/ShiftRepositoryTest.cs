@@ -2,6 +2,7 @@
 using Core;
 using DatabaseAccess.Shifts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DatabaseAccess.Employees;
 using DatabaseAccess;
 
 namespace Tests.DatabaseAccess
@@ -36,6 +37,7 @@ namespace Tests.DatabaseAccess
             Assert.AreNotEqual(0, shifts.Count);
         }
 
+
         [TestMethod]
         public void TestIfShiftIsForSale()
         {
@@ -62,6 +64,29 @@ namespace Tests.DatabaseAccess
             shiftRepository.UpdateScheduleShift(scheduleShift, scheduleId, new DbConnection().GetConnection());
             List<ScheduleShift> shiftsAfterUpdate = shiftRepository.GetShiftsByScheduleId(scheduleId);
             Assert.IsTrue(shiftsAfterUpdate[1].IsForSale);
+        }
+
+        [TestMethod]
+        public void TestAcceptAvailableShift()
+        {
+            ScheduleShift shift = shiftRepository.GetShiftById(1);
+            Employee employee = new EmployeeRepository().FindEmployeeById(5);
+            Assert.AreNotEqual(shift.Employee, employee);
+
+            shiftRepository.AcceptAvailableShift(shift, employee);
+
+            shift = shiftRepository.GetShiftById(1);
+
+            Assert.AreEqual(shift.Employee.Name, employee.Name);
+            Assert.AreEqual(shift.IsForSale, false);
+        }
+
+        [TestMethod]
+        public void TestGetAllAvailableShiftsByDepartment()
+        {
+            List<ScheduleShift> availableScheduleShifts = shiftRepository.GetAllAvailableShiftsByDepartmentId(1);
+            Assert.IsNotNull(availableScheduleShifts);
+            Assert.AreEqual(2, availableScheduleShifts.Count);
         }
     }
 }

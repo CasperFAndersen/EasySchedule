@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using Core;
@@ -47,8 +48,10 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 templateSchedule.NoOfWeeks = (int)NoOfWeeks.SelectedItem;
                 templateSchedule.Name = TxtBoxTemplateScheduleName.Text;
                 Mediator.GetInstance().OnCreateTemplateScheduleButtonClicked(templateSchedule);
+           
             }
         }
+
 
         private void NoOfWeeks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

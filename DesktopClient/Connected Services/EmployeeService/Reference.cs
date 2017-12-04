@@ -8,10 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Core;
-
 namespace DesktopClient.EmployeeService {
     
     
@@ -26,16 +22,16 @@ namespace DesktopClient.EmployeeService {
         System.Threading.Tasks.Task<Core.Employee> GetEmployeeByUsernameAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentIdResponse")]
-        List<Employee> GetEmployeesByDepartmentId(int depId);
+        System.Collections.Generic.List<Core.Employee> GetEmployeesByDepartmentId(int departmentId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentIdResponse")]
-        Task<List<Employee>> GetEmployeesByDepartmentIdAsync(int depId);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetEmployeesByDepartmentIdAsync(int departmentId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetAllEmployees", ReplyAction="http://tempuri.org/IEmployeeService/GetAllEmployeesResponse")]
-        List<Employee> GetAllEmployees();
+        System.Collections.Generic.List<Core.Employee> GetAllEmployees();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetAllEmployees", ReplyAction="http://tempuri.org/IEmployeeService/GetAllEmployeesResponse")]
-        Task<List<Employee>> GetAllEmployeesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetAllEmployeesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/InsertEmployee", ReplyAction="http://tempuri.org/IEmployeeService/InsertEmployeeResponse")]
         void InsertEmployee(Core.Employee employee);
@@ -85,19 +81,19 @@ namespace DesktopClient.EmployeeService {
             return base.Channel.GetEmployeeByUsernameAsync(username);
         }
         
-        public List<Employee> GetEmployeesByDepartmentId(int departmentId) {
+        public System.Collections.Generic.List<Core.Employee> GetEmployeesByDepartmentId(int departmentId) {
             return base.Channel.GetEmployeesByDepartmentId(departmentId);
         }
         
-        public Task<List<Employee>> GetEmployeesByDepartmentIdAsync(int departmentId) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetEmployeesByDepartmentIdAsync(int departmentId) {
             return base.Channel.GetEmployeesByDepartmentIdAsync(departmentId);
         }
         
-        public List<Employee> GetAllEmployees() {
+        public System.Collections.Generic.List<Core.Employee> GetAllEmployees() {
             return base.Channel.GetAllEmployees();
         }
         
-        public Task<List<Employee>> GetAllEmployeesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetAllEmployeesAsync() {
             return base.Channel.GetAllEmployeesAsync();
         }
         

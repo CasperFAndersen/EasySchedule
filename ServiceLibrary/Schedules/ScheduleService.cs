@@ -38,6 +38,14 @@ namespace ServiceLibrary.Schedules
         public void SetShiftForSale(Core.ScheduleShift scheduleShift)
         {
             scheduleController.SetShiftForSale(scheduleShift);
+        public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
+        {
+            scheduleController.AcceptAvailableShift(shift, employee);
+        }
+
+        public List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
+        {
+            return scheduleController.GetAllAvailableShiftsByDepartmentId(departmentId);
         }
     }
 }
