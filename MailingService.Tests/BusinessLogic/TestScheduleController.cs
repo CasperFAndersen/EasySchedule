@@ -59,7 +59,7 @@ namespace Tests.BusinessLogic
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException),
-            "Failure to accept shift. One or more arguments are illigal!")]
+            "Failure to accept shift. One or more arguments are illegal!")]
         public void TestIlligal_IsForSale_AcceptAvailableShift()
         {
             ScheduleShift shift = new ScheduleShift()
@@ -117,7 +117,7 @@ namespace Tests.BusinessLogic
             Schedule schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
             Assert.IsNotNull(schedule);
             Assert.AreEqual(new DateTime(2017, 10, 30), schedule.StartDate);
-            Assert.AreEqual(new DateTime(2017, 11, 26), schedule.EndDate);
+            Assert.AreEqual(new DateTime(2017, 12, 10), schedule.EndDate);
             Assert.AreNotEqual(0, schedule.Shifts.Count);
         }
 

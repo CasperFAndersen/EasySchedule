@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Core;
+
 namespace EasyScheduleWebClient.ScheduleService {
     
     
@@ -60,6 +62,7 @@ namespace EasyScheduleWebClient.ScheduleService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentIdResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Core.ScheduleShift>> GetAllAvailableShiftsByDepartmentIdAsync(int departmentId);
+        void AcceptAvailableShift(ScheduleShift shift, Employee employee);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -143,6 +146,11 @@ namespace EasyScheduleWebClient.ScheduleService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.ScheduleShift>> GetAllAvailableShiftsByDepartmentIdAsync(int departmentId) {
             return base.Channel.GetAllAvailableShiftsByDepartmentIdAsync(departmentId);
+        }
+
+        public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

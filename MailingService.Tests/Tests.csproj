@@ -147,7 +147,6 @@
     <Compile Include="Services\EmpServiceTest.cs" />
     <Compile Include="Services\ScheduleServiceTest.cs" />
     <Compile Include="Services\DepartmentServiceTest.cs" />
-    <Compile Include="SetUdDb.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

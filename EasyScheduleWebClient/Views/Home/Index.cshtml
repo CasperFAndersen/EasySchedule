@@ -197,7 +197,7 @@
 
                         //// change the border color just for fun
 
-                        //confirm('Are you sure?');
+                        confirm('Are you sure?');
                         SetShiftForSale(calEvent);
                         $(this).css('background-color', 'blue');
 
@@ -242,19 +242,16 @@
                     StartTime: calEvent.start,
                     Hours: 4,
                     IsForSale: false,
-                    Employee:  {Name: calEvent.title }
+                    Employee: { Name: calEvent.title }
                 }
-                   
-
                 $.ajax({
-
                     url: '/Home/SetShiftForSale',
                     type: 'POST',
                     data: JSON.stringify(event),
                     contentType: 'application/json; charset=utf-8',
                     async: false,
                     success: function () {
-                        alert(JSON.stringify(event));
+                        //alert(JSON.stringify(event));
                     },
                     error: function () {
                         alert("error");

@@ -209,10 +209,10 @@ namespace Tests.DatabaseAccess
                                       +
                                       //Shift
 
-                                      "insert into Shift(startTime, hours, scheduleId, employeeId, isForSale)" + " values('2017-11-06 15:00', 5, 1,  (select id from employee where name = 'Mikkel Paulsen'), 1); " +
+                                      "insert into Shift(startTime, hours, scheduleId, employeeId, isForSale)" + " values('2017-11-06 15:00', 5, 1,  (select id from employee where name = 'Mikkel Paulsen'), 0); " +
                                       "insert into shift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-24 17:00', 3, 1,  (select id from employee where name = 'mikkel paulsen'), 0); " +
                                       "insert into shift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-17 15:00', 5, 1,  (select id from employee where name = 'mikkel paulsen'), 0); " +
-                                      "insert into shift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-16 12:00', 7, 1,  (select id from employee where name = 'mikkel paulsen'), 1); " +
+                                      "insert into shift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-16 12:00', 7, 1,  (select id from employee where name = 'mikkel paulsen'), 0); " +
                                       "insert into Shift(startTime, hours, scheduleId, employeeId, isForSale)" + " values('2017-10-30 09:00', 2, 1,  (select id from employee where name = 'Mikkel Paulsen'), 0); ";
                                       //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-19 16:00', 9, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
                                       //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-09 10:00', 3, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +

@@ -31,7 +31,9 @@ namespace EasyScheduleWebClient.Controllers
         [HttpPost]
         public JsonResult SetShiftForSale(ScheduleShift scheduleShift)
         {
-            return Json("Response");
+            ScheduleProxy scheduleProxy = new ScheduleProxy();
+            scheduleProxy.SetShiftForSaleById(scheduleShift.Id);
+            return null;
         }
 
         [HttpPost]

@@ -14,7 +14,6 @@ namespace EasyScheduleWebClient.Services
 
         public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
         {
-
             proxy.AcceptAvailableShift(shift, employee);
         }
 
