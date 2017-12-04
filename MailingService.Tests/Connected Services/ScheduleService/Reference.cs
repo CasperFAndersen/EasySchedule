@@ -76,11 +76,11 @@ namespace Tests.ScheduleService {
             "ateResponse")]
         System.Threading.Tasks.Task<Core.Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(Core.TemplateSchedule templateSchedule, System.DateTime startTime);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/AcceptAvailableShift", ReplyAction="http://tempuri.org/IScheduleService/AcceptAvailableShiftResponse")]
-        void AcceptAvailableShift(Core.ScheduleShift shift, Core.Employee employee);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/SetShiftForSaleById", ReplyAction="http://tempuri.org/IScheduleService/SetShiftForSaleByIdResponse")]
+        void SetShiftForSaleById(int scheduleShiftId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/AcceptAvailableShift", ReplyAction="http://tempuri.org/IScheduleService/AcceptAvailableShiftResponse")]
-        System.Threading.Tasks.Task AcceptAvailableShiftAsync(Core.ScheduleShift shift, Core.Employee employee);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/SetShiftForSaleById", ReplyAction="http://tempuri.org/IScheduleService/SetShiftForSaleByIdResponse")]
+        System.Threading.Tasks.Task SetShiftForSaleByIdAsync(int scheduleShiftId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentIdResponse")]
         System.Collections.Generic.List<Core.ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
@@ -156,12 +156,12 @@ namespace Tests.ScheduleService {
             return base.Channel.GenerateScheduleFromTemplateScheduleAndStartDateAsync(templateSchedule, startTime);
         }
         
-        public void AcceptAvailableShift(Core.ScheduleShift shift, Core.Employee employee) {
-            base.Channel.AcceptAvailableShift(shift, employee);
+        public void SetShiftForSaleById(int scheduleShiftId) {
+            base.Channel.SetShiftForSaleById(scheduleShiftId);
         }
         
-        public System.Threading.Tasks.Task AcceptAvailableShiftAsync(Core.ScheduleShift shift, Core.Employee employee) {
-            return base.Channel.AcceptAvailableShiftAsync(shift, employee);
+        public System.Threading.Tasks.Task SetShiftForSaleByIdAsync(int scheduleShiftId) {
+            return base.Channel.SetShiftForSaleByIdAsync(scheduleShiftId);
         }
         
         public System.Collections.Generic.List<Core.ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId) {

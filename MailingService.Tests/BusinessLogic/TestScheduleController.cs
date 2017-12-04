@@ -200,7 +200,7 @@ namespace Tests.BusinessLogic
 
             Assert.IsFalse(schedule.Shifts[1].IsForSale);
 
-            scheduleController.SetShiftForSale(schedule.Shifts[1]);
+            scheduleController.SetShiftForSaleById(2);
 
             schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 12));
             Assert.IsTrue(schedule.Shifts[1].IsForSale);

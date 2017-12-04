@@ -1,4 +1,9 @@
-﻿
+﻿@{
+    if (Session["employee"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
 
 @model IEnumerable<EasyScheduleWebClient.Models.EmployeeModel>
 @{
@@ -8,26 +13,26 @@
 <div id='wrap'>
 
     @*<div id='external-events'>
-        <h4>Employees</h4>
-        @foreach (var emp in Model)
-        {
-            <div class='fc-event'>@Html.DisplayFor((modelItem) => emp.Name)</div>
-            //<div class='fc-event'>@Html.DisplayName(emp.Name)</div>
-        }
+            <h4>Employees</h4>
+            @foreach (var emp in Model)
+            {
+                <div class='fc-event'>@Html.DisplayFor((modelItem) => emp.Name)</div>
+                //<div class='fc-event'>@Html.DisplayName(emp.Name)</div>
+            }
 
-        <p>
-            <input type='checkbox' id='drop-remove' />
-            <label for='drop-remove'>remove after drop</label>
-        </p>
-    </div>*@
+            <p>
+                <input type='checkbox' id='drop-remove' />
+                <label for='drop-remove'>remove after drop</label>
+            </p>
+        </div>*@
 
     <div id='calendar'></div>
 
     <div style='clear:both'></div>
 
     @*<div id="dialog" title="dialogBox">
-        Er du sikker på at du vil sætte din vagt til udbud?
-    </div>*@
+            Er du sikker på at du vil sætte din vagt til udbud?
+        </div>*@
 
 </div>
 
@@ -82,37 +87,34 @@
         float: right;
         width: 900px;
     }
-
-
-
-
 </style>
 
 @section scripts{
 
-<script src="~/Scripts/locale-all.js"></script>
+    <script src="~/Scripts/locale-all.js"></script>
 
-    <script>  
+    <script>
+
         $(document).ready(function () {
 
-      
+
             var events = [];
             FetchEventAndRenderCalendar();
-          
 
-        function FetchEventAndRenderCalendar() {
+
+            function FetchEventAndRenderCalendar() {
                 $.ajax({
                     type: "GET",
                     url: "/Home/GetEvents",
                     success: function (data) {
                         $.each(data, function (i, v) {
                             events.push({
-                                //eventID: v.Id,
+                                eventID: v.Id,
                                 title: v.Employee.Name,
-                               // description: v.Description,
+                                // description: v.Description,
                                 start: moment(v.StartTime),
                                 end: moment(v.StartTime).clone().add(v.Hours, 'hour'),
-                               // color: blue,//v.ThemeColor,
+                                // color: blue,//v.ThemeColor,
                                 allDay: false
                             });
                         })
@@ -133,7 +135,7 @@
                     $(this).data('event', {
                         title: $.trim($(this).text()), // use the element's text as the event title
                         stick: true // maintain when user navigates (see docs on the renderEvent method)
-                        
+
                     });
 
                     // make the event draggable using jQuery UI
@@ -187,22 +189,20 @@
                             // if so, remove the element from the "Draggable Events" list
                             $(this).remove();
                         }
-                       
-                      
                     },
                     eventClick: function (calEvent, jsEvent, view) {
-
-                        //alert('Event: ' + calEvent.title);
+                        alert('Event: ' + calEvent.title);
                         //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
                         //alert('View: ' + view.name);
-             
+
                         //// change the border color just for fun
+
+                        //confirm('Are you sure?');
+                        SetShiftForSale(calEvent);
                         $(this).css('background-color', 'blue');
-                        confirm('Are you sure?');
+
                     }
-
                 })
-
             }
 
             function Save() {
@@ -236,27 +236,53 @@
                 });
             }
 
+            function SetShiftForSale(calEvent) {
+                var event = {
+                    Id: calEvent.eventID,
+                    StartTime: calEvent.start,
+                    Hours: 4,
+                    IsForSale: false,
+                    Employee:  {Name: calEvent.title }
+                }
+                   
+
+                $.ajax({
+
+                    url: '/Home/SetShiftForSale',
+                    type: 'POST',
+                    data: JSON.stringify(event),
+                    contentType: 'application/json; charset=utf-8',
+                    async: false,
+                    success: function () {
+                        alert(JSON.stringify(event));
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+            }
+
         });
-    
+
     </script>
 
 }
 
-             @*theme: true,
-                    header: {
-                        left: 'prev, next today',
-                        center: 'title',
-                        right: 'month,agendaWeek,agendaDay'
-                    },
-                    locale: "da",
-                    contentHeight: 700,
-                    defaultDate: new Date(),
-                    defaultView: 'agendaWeek',
-                    timeFormat: 'h(:mm)a',
-                    editable: true,
-                    allDaySlot: false,
-                    selectable: true,
-                    slotMinutes: 15,
-                    eventLimit: true,
-                    eventColor: '#378006',
-                    events: events,*@
+@*theme: true,
+    header: {
+        left: 'prev, next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+    },
+    locale: "da",
+    contentHeight: 700,
+    defaultDate: new Date(),
+    defaultView: 'agendaWeek',
+    timeFormat: 'h(:mm)a',
+    editable: true,
+    allDaySlot: false,
+    selectable: true,
+    slotMinutes: 15,
+    eventLimit: true,
+    eventColor: '#378006',
+    events: events,*@

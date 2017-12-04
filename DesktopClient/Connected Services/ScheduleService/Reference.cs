@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+
 namespace DesktopClient.ScheduleService {
     
     
@@ -143,6 +145,11 @@ namespace DesktopClient.ScheduleService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.ScheduleShift>> GetAllAvailableShiftsByDepartmentIdAsync(int departmentId) {
             return base.Channel.GetAllAvailableShiftsByDepartmentIdAsync(departmentId);
+        }
+
+        internal void SetShiftForSaleById(int scheduleShiftId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

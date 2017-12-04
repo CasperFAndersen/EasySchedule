@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/Core" />
+  <xs:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/Core" />
   <xs:element name="GetScheduleByDepartmentIdAndDate">
     <xs:complexType>
       <xs:sequence>
@@ -69,15 +69,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AcceptAvailableShift">
+  <xs:element name="SetShiftForSaleById">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="shift" nillable="true" type="q7:ScheduleShift" />
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="employee" nillable="true" type="q8:Employee" />
+        <xs:element minOccurs="0" name="scheduleShiftId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AcceptAvailableShiftResponse">
+  <xs:element name="SetShiftForSaleByIdResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
@@ -92,7 +91,7 @@
   <xs:element name="GetAllAvailableShiftsByDepartmentIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetAllAvailableShiftsByDepartmentIdResult" nillable="true" type="q9:ArrayOfScheduleShift" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetAllAvailableShiftsByDepartmentIdResult" nillable="true" type="q7:ArrayOfScheduleShift" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

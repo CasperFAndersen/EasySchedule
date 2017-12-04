@@ -1,4 +1,10 @@
-﻿
+﻿@{
+    if (Session["employee"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
 @model EasyScheduleWebClient.Models.ViewModel.EmailViewModel
 
 @{

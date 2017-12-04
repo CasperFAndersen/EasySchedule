@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using EasyScheduleWebClient.Services;
 using EasyScheduleWebClient.Models;
-
+using Core;
 
 namespace EasyScheduleWebClient.Controllers
 {
@@ -26,6 +26,12 @@ namespace EasyScheduleWebClient.Controllers
             List<Core.ScheduleShift> shifts = scheduleProxy.GetScheduleByDepartmentIdAndDate(emp.DepartmentId, DateTime.Now).Shifts;
 
             return new JsonResult { Data = shifts, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        [HttpPost]
+        public JsonResult SetShiftForSale(ScheduleShift scheduleShift)
+        {
+            return Json("Response");
         }
 
         [HttpPost]

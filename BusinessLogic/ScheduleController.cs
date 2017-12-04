@@ -73,21 +73,6 @@ namespace BusinessLogic
             return schedule;
         }
 
-        public void SetShiftForSale(ScheduleShift scheduleShift)
-        {
-            ScheduleRepository scheduleRepository = new ScheduleRepository();
-            Schedule schedule = GetScheduleByDepartmentIdAndDate(scheduleShift.Employee.DepartmentId,
-                                                                 scheduleShift.StartTime);
-            foreach (ScheduleShift shift in schedule.Shifts)
-            {
-                if (shift.Id == scheduleShift.Id)
-                {
-                    shift.IsForSale = true;
-                    scheduleRepository.UpdateSchedule(schedule);
-                }
-            }
-        }
-
         public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
         {
             
@@ -105,6 +90,12 @@ namespace BusinessLogic
         public List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
         {
             return _shiftRepository.GetAllAvailableShiftsByDepartmentId(departmentId);
+        }
+
+        public void SetShiftForSaleById(int scheduleShiftId)
+        {
+            IShiftRepository shiftRepository = new ShiftRepository();
+            shiftRepository.SetScheduleShiftForSaleById(scheduleShiftId);
         }
     }
 }

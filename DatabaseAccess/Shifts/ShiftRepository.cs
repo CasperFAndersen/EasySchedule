@@ -27,7 +27,7 @@ namespace DatabaseAccess.Shifts
                     {
                         while (reader.Read())
                         {
-                            shift =(BuildShiftObject(reader));
+                            shift = (BuildShiftObject(reader));
                         }
                     }
                 }
@@ -209,6 +209,28 @@ namespace DatabaseAccess.Shifts
             }
         }
 
+        public void SetScheduleShiftForSaleById(int scheduleShiftId)
+        {
+            try
+            {
+                using (SqlConnection connection = new DbConnection().GetConnection())
+                {
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = "UPDATE Shift SET IsForSale = @param1 WHERE Id = @param2";
+                        command.Parameters.AddWithValue("@param1", true);
+                        command.Parameters.AddWithValue("@param2", scheduleShiftId);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Something went wrong when setting the shift for sale. \n" + e.Message);
+            }
+        }
+
         public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
         {
             try
@@ -271,7 +293,7 @@ namespace DatabaseAccess.Shifts
                             {
                                 scheduleShifts.Add(scheduleShift);
                             }
-                           
+
                         }
                     }
                 }

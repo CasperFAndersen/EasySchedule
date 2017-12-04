@@ -14,6 +14,7 @@ namespace EasyScheduleWebClient.Services
 
         public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
         {
+
             proxy.AcceptAvailableShift(shift, employee);
         }
 
@@ -77,6 +78,16 @@ namespace EasyScheduleWebClient.Services
             throw new NotImplementedException();
         }
 
+        public void SetShiftForSaleById(int scheduleShiftId)
+        {
+            proxy.SetShiftForSaleById(scheduleShiftId);
+        }
+
+        public Task SetShiftForSaleByIdAsync(int scheduleShiftId)
+        {
+            throw new NotImplementedException();
+        }
+
         List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
         {
             return proxy.GetAllAvailableShiftsByDepartmentId(departmentId);
@@ -91,8 +102,6 @@ namespace EasyScheduleWebClient.Services
         {
             throw new NotImplementedException();
         }
-
- 
 
         List<Schedule> IScheduleService.GetSchedulesByDepartmentId(int departmentId)
         {
