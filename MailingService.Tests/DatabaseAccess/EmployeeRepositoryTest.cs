@@ -79,7 +79,7 @@ namespace Tests.DatabaseAccess
         [TestCleanup]
         public void TestCleanup()
         {
-            DBSetUp.SetUpDB();
+            DbSetUp.SetUpDb();
         }
 
     }

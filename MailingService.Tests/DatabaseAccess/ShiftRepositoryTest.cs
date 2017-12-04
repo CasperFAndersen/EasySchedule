@@ -15,22 +15,20 @@ namespace Tests.DatabaseAccess
         [TestInitialize]
         public void TestInitializer()
         {
-            DBSetUp.SetUpDB();
+            DbSetUp.SetUpDb();
             shiftRepository = new ShiftRepository();
         }
 
         [TestCleanup]
         public void TestCleanUp()
         {
-            DBSetUp.SetUpDB();
+            DbSetUp.SetUpDb();
         }
 
 
         [TestMethod]
         public void TestGetAllShiftsByScheduleId()
         {
-            DBSetUp.SetUpDB();
-
             List<ScheduleShift> shifts = shiftRepository.GetShiftsByScheduleId(1);
 
             Assert.IsNotNull(shifts);

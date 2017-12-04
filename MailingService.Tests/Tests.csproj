@@ -132,7 +132,7 @@
     </Compile>
     <Compile Include="DatabaseAccess\TemplateScheduleRepositoryTest.cs" />
     <Compile Include="BusinessLogic\TestDepartmentController.cs" />
-    <Compile Include="DatabaseAccess\DBSetUp.cs" />
+    <Compile Include="DatabaseAccess\DbSetUp.cs" />
     <Compile Include="BusinessLogic\TestEmployeeController.cs" />
     <Compile Include="BusinessLogic\TestScheduleController.cs" />
     <Compile Include="DatabaseAccess\EmployeeRepositoryTest.cs" />

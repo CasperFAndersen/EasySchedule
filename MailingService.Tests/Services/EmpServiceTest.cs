@@ -77,7 +77,7 @@ namespace Tests.Services
         [TestCleanup]
         public void TestCleanup()
         {
-            DBSetUp.SetUpDB();
+            DbSetUp.SetUpDb();
         }
     }
 }

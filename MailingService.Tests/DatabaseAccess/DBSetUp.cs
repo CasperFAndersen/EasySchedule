@@ -4,15 +4,10 @@ using DatabaseAccess;
 
 namespace Tests.DatabaseAccess
 {
-    public class DBSetUp
+    public class DbSetUp
     {
-
-        public static string startTimeWeek1;
-
-        public static void SetUpDB()
+        public static void SetUpDb()
         {
-            startTimeWeek1 = GetCurrentStartTimeStringPlusDay(0);
-
             DropTables();
             CreateTables();
             InsertTestData();
@@ -27,17 +22,17 @@ namespace Tests.DatabaseAccess
                 day += numOfDays;
             }
 
-            return string.Format("{0}-{1}-{2}", currentDate.Year.ToString(), currentDate.Month.ToString(), day);
+            return string.Format("{0}-{1}-{2}", currentDate.Year, currentDate.Month, day);
         }
 
         public static void DropTables()
         {
 
-            using (SqlConnection conn = new DbConnection().GetConnection())
+            using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                using (SqlCommand cmd = conn.CreateCommand())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    cmd.CommandText = "drop table Shift; " +
+                    command.CommandText = "drop table Shift; " +
                                       "drop table Schedule; " +
                                       "drop table TemplateShift; " +
                                       "drop table TemplateSchedule; " +
@@ -45,7 +40,7 @@ namespace Tests.DatabaseAccess
                                       "drop table Department; " +
                                       "drop table Workplace;";
 
-                    cmd.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
 
                 }
             }
@@ -53,11 +48,11 @@ namespace Tests.DatabaseAccess
 
         public static void CreateTables()
         {
-            using (SqlConnection conn = new DbConnection().GetConnection())
+            using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                using (SqlCommand cmd = conn.CreateCommand())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    cmd.CommandText = ""
+                    command.CommandText = ""
                                       +
 
                                       //WorkPlace
@@ -131,18 +126,18 @@ namespace Tests.DatabaseAccess
                                       "isForSale bit); ";
 
 
-                    cmd.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
                 }
             }
         }
 
         public static void InsertTestData()
         {
-            using (SqlConnection conn = new DbConnection().GetConnection())
+            using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                using (SqlCommand cmd = conn.CreateCommand())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    cmd.CommandText = ""
+                    command.CommandText = ""
                                       +
                                       //WorkPlace
                                       "insert into Workplace(name, address, email, phone) " +
@@ -311,7 +306,7 @@ namespace Tests.DatabaseAccess
                                       //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-04 12:00', 8, 2,  (select id from employee where name = 'Tobias Andersen')); ";
 
 
-                    cmd.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
                 }
             }
         }
