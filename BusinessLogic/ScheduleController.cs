@@ -76,7 +76,7 @@ namespace BusinessLogic
         public void SetShiftForSale(ScheduleShift scheduleShift)
         {
             ScheduleRepository scheduleRepository = new ScheduleRepository();
-            Schedule schedule = GetScheduleByDepartmentIdAndDate(scheduleShift.Employee.DepartmentId, 
+            Schedule schedule = GetScheduleByDepartmentIdAndDate(scheduleShift.Employee.DepartmentId,
                                                                  scheduleShift.StartTime);
             foreach (ScheduleShift shift in schedule.Shifts)
             {
@@ -86,6 +86,8 @@ namespace BusinessLogic
                     scheduleRepository.UpdateSchedule(schedule);
                 }
             }
+        }
+
         public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
         {
             
