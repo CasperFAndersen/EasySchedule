@@ -75,7 +75,6 @@ namespace Core
         [DataMember]
         public bool IsEmployed { get; set; }
 
-        public string Salt { get; set; }
 
         public string CryptPassword(string password)
         {

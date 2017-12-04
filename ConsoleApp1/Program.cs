@@ -16,10 +16,13 @@ namespace ConsoleApp1
         {
             IEmployeeRepository db = new EmployeeRepository();
             string hashed = PasswordHashing.CryptPassword("hardToCrack");
+            string hased2 = PasswordHashing.CryptPassword("HardToCrack");
             Employee e = db.GetEmployeeByUsername("MikkelP");
 
 
-            Console.WriteLine("Hashed code: " + hashed + " " + "password from db: " + e.Password);
+            Console.WriteLine("Hashed code 1: " + hashed + " " + 
+                              "Hashed code 2: " + hased2 + " " +  
+                              "password from db: " + e.Password);
             Console.ReadLine();
         }
     }
