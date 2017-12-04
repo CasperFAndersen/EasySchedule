@@ -11,5 +11,6 @@ namespace DatabaseAccess.Employees
         Employee GetEmployeeByUsername(string username);
         List<Employee> GetEmployeesByDepartmentId(int departmentId);
         void UpdateEmployee(Employee employee);
+        string GetSaltFromEmployeePassword(Employee employee);
     }
 }

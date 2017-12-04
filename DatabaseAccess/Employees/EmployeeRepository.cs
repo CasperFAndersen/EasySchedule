@@ -224,6 +224,31 @@ namespace DatabaseAccess.Employees
             }
         }
 
+
+        public string GetSaltFromEmployeePassword(Employee employee)
+        {
+            //Employee employee = GetEmployeeByUsername(username);
+            string salt = "";
+            using (SqlConnection connection = new DbConnection().GetConnection())
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT Salt FROM Employee WHERE Employee.username = @param1;";
+                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.NVarChar);
+                    p1.Value = employee.Username;
+                    command.Parameters.Add(p1);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            salt = reader["Salt"].ToString();
+                        }
+                    }
+                }
+            }
+            return salt;
+        }
+
         public Employee BuildEmployeeObject(SqlDataReader reader)
         {
             Employee employee = new Employee();

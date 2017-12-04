@@ -53,7 +53,7 @@ namespace EasyScheduleWebClient.Services
 
         public bool ValidatePassword(string username, string password)
         {
-            return ValidatePassword(username, password);
+            return proxy.ValidatePassword(username, password);
         }
 
         public Task<bool> ValidatePasswordAsync(string username, string password)
