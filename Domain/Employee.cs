@@ -46,17 +46,10 @@ namespace Core
         public string Username { get; set; }
 
         [DataMember]
-        public string Password
-        {
-            get
-            {
-                return _password;
-            }
-            set
-            {
-                _password = CryptPassword(value);
-            }
-        }
+        public string Password { get; set; }
+        
+  
+        
 
         [DataMember]
         public string Mail

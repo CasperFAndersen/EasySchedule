@@ -17,12 +17,19 @@ namespace ConsoleApp1
             IEmployeeRepository db = new EmployeeRepository();
             string hashed = PasswordHashing.CryptPassword("hardToCrack");
             string hased2 = PasswordHashing.CryptPassword("HardToCrack");
+            string froberg = PasswordHashing.CryptPassword("hejhej");
+            string arne = PasswordHashing.CryptPassword("JegErUngOgVildEndnu");
+            string tobias = PasswordHashing.CryptPassword("CanYouGuessMyPass");
+            string stefan = PasswordHashing.CryptPassword("ItsaHardHardLife");
             Employee e = db.GetEmployeeByUsername("MikkelP");
 
-
-            Console.WriteLine("Hashed code 1: " + hashed + " " + 
-                              "Hashed code 2: " + hased2 + " " +  
-                              "password from db: " + e.Password);
+            Console.WriteLine("Hashed code 1: " + hashed + "\n" +
+                              "Hashed code 2: " + hased2 + "\n" +
+                              "DbHashed code: " + e.Password);
+            Console.WriteLine("Froberg: " + froberg);
+            Console.WriteLine("Arne : " + arne);
+            Console.WriteLine("Tobias: " + tobias);
+            Console.WriteLine("Stefan: " + stefan);
             Console.ReadLine();
         }
     }

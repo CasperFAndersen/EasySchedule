@@ -260,7 +260,7 @@ namespace DatabaseAccess.Employees
             employee.IsAdmin = reader.GetBoolean(5);
             employee.Username = reader["username"].ToString();
             employee.Password = reader["password"].ToString();
-            employee.Password += reader["salt"].ToString();
+           // employee.Password += reader["salt"].ToString();
             employee.DepartmentId = Convert.ToInt32(reader["departmentId"].ToString());
             employee.IsEmployed = reader.GetBoolean(10);
             return employee;
