@@ -32,9 +32,14 @@ namespace DesktopClient.Services
             return proxy.GetEmployeeByUsernameAsync(username);
         }
 
-        public List<Employee> GetEmployeesByDepartmentId(int depId)
+        public List<Employee> GetEmployeesByDepartmentId(int departmentId)
         {
-            return proxy.GetEmployeesByDepartmentId(depId);
+            return proxy.GetEmployeesByDepartmentId(departmentId);
+        }
+
+        public Task<List<Employee>> GetEmployeesByDepartmentIdAsync(int departmentId)
+        {
+            return proxy.GetEmployeesByDepartmentIdAsync(departmentId);
         }
 
 
@@ -46,7 +51,7 @@ namespace DesktopClient.Services
 
         public Task InsertEmployeeAsync(Employee employee)
         {
-            throw new NotImplementedException();
+            return proxy.InsertEmployeeAsync(employee);
         }
 
         public void UpdateEmployee(Employee employee)
@@ -56,18 +61,18 @@ namespace DesktopClient.Services
 
         public Task UpdateEmployeeAsync(Employee employee)
         {
-            throw new NotImplementedException();
+            return proxy.UpdateEmployeeAsync(employee);
         }
 
-
-        Task<List<Employee>> GetEmployeesByDepartmentIdAsync(int departmentId)
+        public bool ValidatePassword(string username, string password)
         {
-            throw new NotImplementedException();
+            return proxy.ValidatePassword(username, password);
         }
 
-        Task<List<Employee>> IEmployeeService.GetEmployeesByDepartmentIdAsync(int departmentId)
+        public Task<bool> ValidatePasswordAsync(string username, string password)
         {
-            throw new NotImplementedException();
+            return proxy.ValidatePasswordAsync(username, password);
         }
+
     }
 }

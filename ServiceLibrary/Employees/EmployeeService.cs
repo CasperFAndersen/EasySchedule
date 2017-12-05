@@ -33,5 +33,10 @@ namespace ServiceLibrary.Employees
         {
             employeeController.UpdateEmployee(employee);
         }
+
+        public bool ValidatePassword(string username, string password)
+        {
+           return employeeController.ValidatePassword(username, password);
+        }
     }
 }

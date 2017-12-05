@@ -38,7 +38,11 @@ namespace BusinessLogic
         public bool ValidatePassword(string username, string password)
         {
             Employee employee = GetEmployeeByUsername(username);
-            return employee.Password == password;
+            string salt = _employeeRepository.GetSaltFromEmployeePassword(employee);
+            password = PasswordHashing.CryptPassword(salt+password);
+            bool res;
+            res = employee.Password.Equals(password);
+            return res;
         }
 
         public void InsertEmployee(Employee employee)
