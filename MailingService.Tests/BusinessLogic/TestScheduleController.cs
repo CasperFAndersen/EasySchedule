@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DatabaseAccess.Schedules;
 using System.Collections.Generic;
 using Rhino.Mocks;
-using Moq;
+//using Moq;
 using MockRepository = Rhino.Mocks.MockRepository;
 using DatabaseAccess.Shifts;
 
@@ -172,7 +172,7 @@ namespace Tests.BusinessLogic
             };
 
             schedules.Add(schedule);
-            scheduleRepository = new Mock<IScheduleRepository>();
+           // scheduleRepository = new Mock<IScheduleRepository>();
             //scheduleRepository.Setup(x => x.GetSchedulesByDepartmentId(1).Returns(schedules));
         }
 

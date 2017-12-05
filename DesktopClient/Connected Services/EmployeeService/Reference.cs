@@ -44,6 +44,12 @@ namespace DesktopClient.EmployeeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/UpdateEmployee", ReplyAction="http://tempuri.org/IEmployeeService/UpdateEmployeeResponse")]
         System.Threading.Tasks.Task UpdateEmployeeAsync(Core.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/ValidatePassword", ReplyAction="http://tempuri.org/IEmployeeService/ValidatePasswordResponse")]
+        bool ValidatePassword(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/ValidatePassword", ReplyAction="http://tempuri.org/IEmployeeService/ValidatePasswordResponse")]
+        System.Threading.Tasks.Task<bool> ValidatePasswordAsync(string username, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -111,6 +117,14 @@ namespace DesktopClient.EmployeeService {
         
         public System.Threading.Tasks.Task UpdateEmployeeAsync(Core.Employee employee) {
             return base.Channel.UpdateEmployeeAsync(employee);
+        }
+        
+        public bool ValidatePassword(string username, string password) {
+            return base.Channel.ValidatePassword(username, password);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ValidatePasswordAsync(string username, string password) {
+            return base.Channel.ValidatePasswordAsync(username, password);
         }
     }
 }

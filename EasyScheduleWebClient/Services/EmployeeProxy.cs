@@ -11,16 +11,6 @@ namespace EasyScheduleWebClient.Services
     {
         EmployeeServiceClient proxy = new EmployeeServiceClient();
 
-        public List<Employee> GetAllEmployees()
-        {
-            return proxy.GetAllEmployees();
-        }
-
-        public Task<List<Employee>> GetAllEmployeesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public Employee GetEmployeeByUsername(string username)
         {
             return proxy.GetEmployeeByUsername(username);
@@ -31,26 +21,14 @@ namespace EasyScheduleWebClient.Services
             return proxy.GetEmployeeByUsernameAsync(username);
         }
 
-
-        public List<Employee> GetEmployeesByDepartmentId(int id)
+        public List<Employee> GetEmployeesByDepartmentId(int departmentId)
         {
-            // return proxy.GetEmployeesByDepartmentId(id);
-            return null;
+            return proxy.GetEmployeesByDepartmentId(departmentId);
         }
 
         public Task<List<Employee>> GetEmployeesByDepartmentIdAsync(int departmentId)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Employee> GetListOfEmployeeByDepartmentId(int depId)
-        {
-            return proxy.GetEmployeesByDepartmentId(depId);
-        }
-
-        public Task<List<Employee>> GetListOfEmployeeByDepartmentIdAsync(int depId)
-        {
-            throw new NotImplementedException();
+            return proxy.GetEmployeesByDepartmentIdAsync(departmentId);
         }
 
         public void InsertEmployee(Employee employee)
@@ -60,18 +38,37 @@ namespace EasyScheduleWebClient.Services
 
         public Task InsertEmployeeAsync(Employee employee)
         {
-            throw new NotImplementedException();
+            return proxy.InsertEmployeeAsync(employee);
         }
 
-        public void UpdateEmployee(Employee employee)
+        public Task<List<Employee>> UpdateEmployeeAsync(Employee employee)
         {
-
-            proxy.UpdateEmployee(employee);
+            proxy.UpdateEmployeeAsync(employee);
         }
 
-        public Task UpdateEmployeeAsync(Employee employee)
+        public bool ValidatePassword(string username, string password)
         {
-            throw new NotImplementedException();
+            return proxy.ValidatePassword(username, password);
+        }
+
+        public Task<bool> ValidatePasswordAsync(string username, string password)
+        {
+           return proxy.ValidatePasswordAsync(username, password);
+        }
+
+        List<Employee> IEmployeeService.GetAllEmployees()
+        {
+           return proxy.GetAllEmployees();
+        }
+
+        Task<List<Employee>> IEmployeeService.GetAllEmployeesAsync()
+        {
+            return proxy.GetAllEmployeesAsync();
+        }
+
+        List<Employee> IEmployeeService.GetEmployeesByDepartmentId(int departmentId)
+        {
+            return proxy.GetEmployeesByDepartmentId(departmentId);
         }
     }
 }
