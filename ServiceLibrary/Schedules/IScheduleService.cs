@@ -20,6 +20,7 @@ namespace ServiceLibrary.Schedules
         Core.Schedule GenerateScheduleFromTemplateScheduleAndStartDate(Core.TemplateSchedule templateSchedule, DateTime startTime);
         [OperationContract]
         void SetShiftForSaleById(int scheduleShiftId);
+        [OperationContract]
         void AcceptAvailableShift(ScheduleShift shift, Employee employee);
         [OperationContract]
         List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
