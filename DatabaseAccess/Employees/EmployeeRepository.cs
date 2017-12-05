@@ -11,6 +11,9 @@ namespace DatabaseAccess.Employees
     {
         public List<Employee> GetAllEmployees()
         {
+            try
+            {
+
             List<Employee> employees = new List<Employee>();
 
             using (SqlConnection connection = new DbConnection().GetConnection())
@@ -29,10 +32,21 @@ namespace DatabaseAccess.Employees
                 }
             }
             return employees;
+
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Something went wrong! Try again");
+            }
         }
 
         public Employee GetEmployeeByUsername(string username)
         {
+
+            try
+            {
+
             Employee employee = new Employee();
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
@@ -52,10 +66,21 @@ namespace DatabaseAccess.Employees
                 }
             }
             return employee;
+
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("something went wrong, try again!");
+            }
         }
 
         public Employee FindEmployeeById(int id)
         {
+
+            try
+            {
+
             Employee empRes = new Employee();
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
@@ -76,10 +101,21 @@ namespace DatabaseAccess.Employees
                 }
             }
             return empRes;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Something went wrong! Try again.");
+            }
         }
 
         public List<Employee> GetEmployeesByDepartmentId(int departmentId)
         {
+
+            try
+            {
+
+            
             List<Employee> employees = new List<Employee>();
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
@@ -101,6 +137,12 @@ namespace DatabaseAccess.Employees
                 }
             }
             return employees;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Something went wrong! Try again.");
+            }
         }
 
         public void InsertEmployee(Employee employee)

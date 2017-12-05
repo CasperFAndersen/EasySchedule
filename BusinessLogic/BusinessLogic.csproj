@@ -63,6 +63,7 @@
     <Compile Include="DepartmentController.cs" />
     <Compile Include="IDepartmentController.cs" />
     <Compile Include="IEmployeeController.cs" />
+    <Compile Include="InputValidator.cs" />
     <Compile Include="IScheduleController.cs" />
     <Compile Include="ITemplateScheduleController.cs" />
     <Compile Include="ITemplateShiftControlller.cs" />
