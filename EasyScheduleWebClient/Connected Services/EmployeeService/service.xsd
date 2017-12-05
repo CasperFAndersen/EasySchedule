@@ -76,7 +76,7 @@
   <xs:element name="ValidatePasswordResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ValidatePasswordResult" type="xs:boolean" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="ValidatePasswordResult" nillable="true" type="q6:Employee" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

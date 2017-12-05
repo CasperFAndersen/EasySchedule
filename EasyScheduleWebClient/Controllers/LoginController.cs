@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using EasyScheduleWebClient.Models;
 using EasyScheduleWebClient.Services;
+using Core;
 
 namespace EasyScheduleWebClient.Controllers
 {
@@ -16,19 +17,20 @@ namespace EasyScheduleWebClient.Controllers
         public ActionResult Authorize(EmployeeModel loggingIn)
         {
             EmployeeProxy empProxy = new EmployeeProxy();
-            var emp = empProxy.GetEmployeeByUsername(loggingIn.Username);
-
             
-            if (empProxy.ValidatePassword(loggingIn.Username, loggingIn.Password))
+            try
             {
+                Employee emp = empProxy.ValidatePassword(loggingIn.Username, loggingIn.Password);
                 Session["employee"] = emp;
                 return RedirectToAction("Index", "Home");
             }
-            else
+            catch (System.Exception)
             {
                 ModelState.AddModelError("", "Wrong username or password");
+                return RedirectToAction("Index", "Login");
             }
-            return View(loggingIn); 
+
+         
         }
 
         public ActionResult Logout()

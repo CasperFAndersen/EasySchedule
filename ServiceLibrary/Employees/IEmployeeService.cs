@@ -23,7 +23,7 @@ namespace ServiceLibrary.Employees
         void UpdateEmployee(Employee employee);
 
         [OperationContract]
-        bool ValidatePassword(string username, string password);
+        Employee ValidatePassword(string username, string password);
 
     }
 

@@ -16,7 +16,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Menu  Grid.Row="0" Grid.ColumnSpan="2" Background="#FFF0F0F0">
+        <Menu  Name="Menu" Grid.Row="0" Grid.ColumnSpan="2" Background="#FFF0F0F0">
             <MenuItem Header="Template Schedule">
                 <MenuItem Name="CreateTemplateSchedule" Header="Create Template Schedule" Click="CreateTemplateScheduleMenuItimClicked"/>
                 <MenuItem Name="ViewEditTemplateSchedule" Header="View/Edit Template Schedule" Click="ViewEditTemplateScheduleMenuItimClicked" />
@@ -30,7 +30,7 @@
                 <MenuItem Name="UpdateEmployee" Header="Update Employee" Click="UpdateEmployeeMenuItemClicked"></MenuItem>
             </MenuItem>
         </Menu>
-        <Frame Name="frame" Grid.Row="1"></Frame>
+        <Frame Name="frame" Grid.Row="1" NavigationUIVisibility="Hidden"></Frame>
         <!--<local:Calendar x:Name="Calendar" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
 
         <Label Name="LblTitle" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" />
