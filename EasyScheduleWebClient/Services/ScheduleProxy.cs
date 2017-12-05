@@ -87,7 +87,7 @@ namespace EasyScheduleWebClient.Services
             throw new NotImplementedException();
         }
 
-        List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
+        public List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
         {
             return proxy.GetAllAvailableShiftsByDepartmentId(departmentId);
         }

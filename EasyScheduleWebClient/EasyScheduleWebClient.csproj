@@ -174,7 +174,6 @@
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\MailingServiceContext.cs" />
-    <Compile Include="Models\Shift.cs" />
     <Compile Include="Models\ShiftModel.cs" />
     <Compile Include="Models\ViewModel\EmailViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -361,10 +360,10 @@
     <Content Include="Views\_Employee.cshtml" />
     <Content Include="Views\Emails\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\AvailableShifts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AvailableShifts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
