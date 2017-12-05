@@ -231,17 +231,21 @@ namespace DatabaseAccess.Employees
             string salt = "";
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                using (SqlCommand command = connection.CreateCommand())
+                using (SqlCommand command = new SqlCommand())
                 {
-                    command.CommandText = "SELECT Salt FROM Employee WHERE Employee.username = @param1;";
-                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.NVarChar);
-                    p1.Value = employee.Username;
+                    command.Connection = connection;
+                    command.CommandText = "SELECT salt FROM Employee WHERE username = @param1";
+
+                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.VarChar, 50)
+                    {
+                        Value = employee.Username
+                    };
                     command.Parameters.Add(p1);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            salt = reader["Salt"].ToString();
+                            salt = reader["salt"].ToString();
                         }
                     }
                 }
@@ -260,7 +264,6 @@ namespace DatabaseAccess.Employees
             employee.IsAdmin = reader.GetBoolean(5);
             employee.Username = reader["username"].ToString();
             employee.Password = reader["password"].ToString();
-           // employee.Password += reader["salt"].ToString();
             employee.DepartmentId = Convert.ToInt32(reader["departmentId"].ToString());
             employee.IsEmployed = reader.GetBoolean(10);
             return employee;

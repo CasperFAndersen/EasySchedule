@@ -169,19 +169,19 @@ namespace Tests.DatabaseAccess
                                       +
                                       //Employee
                                       "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, salt, departmentId, isEmployed) " +
-                                      "values ('Mikkel Paulsen', 'mikkelpaulsen@gmail.com', '12345678', 9, 0, 'MikkelP', 'a10588b94d99df24a9ace546d45a6e76', 'gtieo',  (select id from department where name='Kolonial'), 1); " +
+                                      "values ('Mikkel Paulsen', 'mikkelpaulsen@gmail.com', '12345678', 9, 0, 'MikkelP', '93d3c0e5006d12620470cac6c7b8aa54', 'gtieo',  (select id from department where name='Kolonial'), 1); " +
 
                                       "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, salt, departmentId, isEmployed) " +
-                                      "	values ('Casper Froberg', 'casperfroberg@gmail.com', '87654321', 14, 1, 'FroBro', '516b98488eff166d9f10c4af5003a0e4', 'ffppe', (select id from department where name='Kolonial'), 1); " +
+                                      "	values ('Casper Froberg', 'casperfroberg@gmail.com', '87654321', 14, 1, 'FroBro', '0b8d4715792e77e4d79f8c2c59bb7011', 'ffppe', (select id from department where name='Kolonial'), 1); " +
 
                                       "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, salt, departmentId, isEmployed) " +
-                                      "	values ('Arne Ralston', 'arnegr@gmail.com', '23456789', 12, 0, 'ArneGR', '1948ae5352d1450151cf4f8f3592ab68', 'epfel', (select id from department where name='PakkeCentral'), 1); " +
+                                      "	values ('Arne Ralston', 'arnegr@gmail.com', '23456789', 12, 0, 'ArneGR', 'ce564c92fc36e62b5a3bbd177a16738e', 'epfel', (select id from department where name='PakkeCentral'), 1); " +
 
                                       "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, salt, departmentId, isEmployed) " +
-                                      "	values ('Tobias Andersen', 'tobiasandersen@gmail.com', '98765432', 10, 1, 'TobiAs', '413eb40ad42705e9775e208a6bfefaa0', 'gepge', (select id from department where name='Pakkecentral'), 1); " +
+                                      "	values ('Tobias Andersen', 'tobiasandersen@gmail.com', '98765432', 10, 1, 'TobiAs', 'f37a6ff9c4f3ba758249d75a8bd65120', 'gepge', (select id from department where name='Pakkecentral'), 1); " +
 
                                       "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, salt, departmentId, isEmployed)" +
-                                      "values ('Stefan Krabbe', 'stefankrabbe@gmail.com', '12093847', 30, 1, 'SKrabbe', '4865788c2139008433ac4d3ff65cb26e', 'fptdv', (select id from department where name='Kolonial'), 1); "
+                                      "values ('Stefan Krabbe', 'stefankrabbe@gmail.com', '12093847', 30, 1, 'SKrabbe', 'a63c6b68454d1b13ea6471f287eba37b', 'fptdv', (select id from department where name='Kolonial'), 1); "
 
                                       +
                                       //TemplateSchedule

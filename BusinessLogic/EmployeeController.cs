@@ -37,8 +37,10 @@ namespace BusinessLogic
         {
             Employee employee = GetEmployeeByUsername(username);
             string salt = _employeeRepository.GetSaltFromEmployeePassword(employee);
-            password = PasswordHashing.CryptPassword(password + salt);
-            return employee.Password == password;
+            password = PasswordHashing.CryptPassword(salt+password);
+            bool res;
+            res = employee.Password.Equals(password);
+            return res;
         }
 
         public void InsertEmployee(Employee employee)

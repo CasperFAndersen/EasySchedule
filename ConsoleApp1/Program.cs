@@ -15,12 +15,12 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             IEmployeeRepository db = new EmployeeRepository();
-            string hashed = PasswordHashing.CryptPassword("hardToCrack");
+            string hashed = PasswordHashing.CryptPassword("gtieohardToCrack");
             string hased2 = PasswordHashing.CryptPassword("HardToCrack");
-            string froberg = PasswordHashing.CryptPassword("hejhej");
-            string arne = PasswordHashing.CryptPassword("JegErUngOgVildEndnu");
-            string tobias = PasswordHashing.CryptPassword("CanYouGuessMyPass");
-            string stefan = PasswordHashing.CryptPassword("ItsaHardHardLife");
+            string froberg = PasswordHashing.CryptPassword("ffppehejhej");
+            string arne = PasswordHashing.CryptPassword("epfelJegErUngOgVildEndnu");
+            string tobias = PasswordHashing.CryptPassword("gepgeCanYouGuessMyPass");
+            string stefan = PasswordHashing.CryptPassword("fptdvItsaHardHardLife");
             Employee e = db.GetEmployeeByUsername("MikkelP");
 
             Console.WriteLine("Hashed code 1: " + hashed + "\n" +
