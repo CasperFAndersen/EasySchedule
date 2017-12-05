@@ -41,9 +41,14 @@ namespace EasyScheduleWebClient.Services
             return proxy.InsertEmployeeAsync(employee);
         }
 
-        public Task<List<Employee>> UpdateEmployeeAsync(Employee employee)
+        public void UpdateEmployee(Employee employee)
         {
-            proxy.UpdateEmployeeAsync(employee);
+           proxy.UpdateEmployee(employee);
+        }
+
+        public Task UpdateEmployeeAsync(Employee employee)
+        {
+            return proxy.UpdateEmployeeAsync(employee);
         }
 
         public bool ValidatePassword(string username, string password)
@@ -53,12 +58,12 @@ namespace EasyScheduleWebClient.Services
 
         public Task<bool> ValidatePasswordAsync(string username, string password)
         {
-           return proxy.ValidatePasswordAsync(username, password);
+            return proxy.ValidatePasswordAsync(username, password);
         }
 
         List<Employee> IEmployeeService.GetAllEmployees()
         {
-           return proxy.GetAllEmployees();
+            return proxy.GetAllEmployees();
         }
 
         Task<List<Employee>> IEmployeeService.GetAllEmployeesAsync()

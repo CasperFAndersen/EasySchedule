@@ -64,12 +64,6 @@ namespace DesktopClient.Services
             return proxy.UpdateEmployeeAsync(employee);
         }
 
-
-        Task<List<Employee>> GetEmployeesByDepartmentIdAsync(int departmentId)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool ValidatePassword(string username, string password)
         {
             return proxy.ValidatePassword(username, password);

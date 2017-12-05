@@ -19,7 +19,7 @@ namespace Tests.DatabaseAccess
         [TestInitialize]
         public void TestInitialize()
         {
-            DBSetUp.SetUpDB();
+            DbSetUp.SetUpDb();
         }
 
         [TestMethod]
@@ -89,7 +89,7 @@ namespace Tests.DatabaseAccess
         [TestCleanup]
         public void TestCleanup()
         {
-            DBSetUp.SetUpDB();
+            DbSetUp.SetUpDb();
         }
     }
 }
