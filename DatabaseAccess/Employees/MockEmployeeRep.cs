@@ -15,6 +15,11 @@ namespace DatabaseAccess.Employees
             throw new NotImplementedException();
         }
 
+        public Employee FindEmployeeById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Employee> GetAllEmployees()
         {
             List<Employee> res = new List<Employee>();
