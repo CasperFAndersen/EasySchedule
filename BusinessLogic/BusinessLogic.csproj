@@ -66,6 +66,7 @@
     <Compile Include="IScheduleController.cs" />
     <Compile Include="ITemplateScheduleController.cs" />
     <Compile Include="ITemplateShiftControlller.cs" />
+    <Compile Include="PasswordHashing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateScheduleController.cs" />
     <Compile Include="TemplateShiftController.cs" />

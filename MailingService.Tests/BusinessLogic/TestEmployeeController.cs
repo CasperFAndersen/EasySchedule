@@ -67,7 +67,7 @@ namespace Tests.BusinessLogic
         public void TestPasswordHashing()
         {
             string input = "Password";
-            string output = PasswordHashing.CryptPassword(input);
+            string output = PasswordHashing.HashPassword(input);
             Assert.AreNotEqual(input, output);
             
         }
