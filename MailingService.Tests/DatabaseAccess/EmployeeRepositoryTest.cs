@@ -24,6 +24,13 @@ namespace Tests.DatabaseAccess
             Assert.AreEqual("Mikkel Paulsen", employeeRepository.GetEmployeeByUsername("MikkelP").Name);
         }
 
+        [TestMethod()]
+        public void TestFindEmployeeById()
+        {
+            Employee employee = employeeRepository.FindEmployeeById(1);
+            Assert.IsNotNull(employee);
+        }
+
         [TestMethod]
         public void TestInsertEmployeeIntoDb()
         {

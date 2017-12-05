@@ -19,7 +19,7 @@ namespace Tests.DatabaseAccess
         [TestInitialize]
         public void TestInitialize()
         {
-            //DBSetUp.SetUpDB();
+            DBSetUp.SetUpDB();
         }
 
         [TestMethod]
@@ -84,14 +84,12 @@ namespace Tests.DatabaseAccess
             Assert.AreEqual(new TimeSpan(12, 0, 0), templateSchedule.TemplateShifts[1].StartTime);
             Assert.AreEqual(8, templateSchedule.TemplateShifts[0].Hours);
             Assert.AreEqual(6, templateSchedule.TemplateShifts[1].Hours);
-        
-
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
-            //DBSetUp.SetUpDB();
+            DBSetUp.SetUpDB();
         }
     }
 }
