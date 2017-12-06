@@ -36,13 +36,13 @@ namespace Tests.Services
             {
                 Name = "Anders Andersen",
                 IsAdmin = false,
-                Mail = "andersen@bøgs.dk",
+                Mail = "andersen@aa.dk",
                 Phone = "98901349",
                 NumbOfHours = 37,
                 IsEmployed = true,
                 Username = "AAndersen",
                 DepartmentId = 3,
-                Password = "GotMilk?"
+                Password = "GotMilk"
             };
 
             client.InsertEmployee(employee);

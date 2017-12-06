@@ -39,22 +39,10 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddTemplateShift">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="templateShift" nillable="true" type="q4:TemplateShift" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddTemplateShiftResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="UpdateTemplateSchedule">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="templateSchedule" nillable="true" type="q5:TemplateSchedule" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="templateSchedule" nillable="true" type="q4:TemplateSchedule" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
