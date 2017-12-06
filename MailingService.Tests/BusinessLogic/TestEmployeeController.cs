@@ -46,12 +46,12 @@ namespace Tests.BusinessLogic
         public void TestValidPassword()
         {
             EmployeeController employeeController = new EmployeeController(new EmployeeRepository());
-            bool isPasswordCorrect = employeeController.ValidatePassword("TobiAs", "CanYouGuessMyPass");
-            //bool isPasswordIncorrect = employeeController.ValidatePassword("TobMaster", "5678");
+            Employee employee = employeeController.ValidatePassword("TobiAs", "CanYouGuessMyPass");
 
-            Assert.IsTrue(isPasswordCorrect);
-           // Assert.IsFalse(isPasswordIncorrect);
+            Assert.IsNotNull(employee);
+            Assert.AreEqual(employee.Username, "TobiAs");
         }
+
         [TestMethod]
         public void TestInsertEmployee()
         {

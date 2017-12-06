@@ -29,7 +29,6 @@ namespace EasyScheduleWebClient.Controllers
                 ModelState.AddModelError("", "Wrong username or password");
                 return RedirectToAction("Index", "Login");
             }
-
          
         }
 

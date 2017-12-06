@@ -109,11 +109,11 @@
                     success: function (data) {
                         $.each(data, function (i, v) {
                             var col;
-                            if (v.isForSale == true) {
-                                col = 'yellow';
+                            if (v.IsForSale == false) {
+                                col = 'blue';
                             }
                             else {
-                                col = 'blue';
+                                col = 'red';
                             }
                             events.push({
                                 eventID: v.Id,
@@ -205,7 +205,7 @@
 
                         confirm('Are you sure?');
                         SetShiftForSale(calEvent);
-                        $(this).css('background-color', 'blue');
+                       // $(this).css('background-color', 'blue');
 
                     }
                 })
@@ -243,6 +243,7 @@
             }
 
             function SetShiftForSale(calEvent) {
+
                 var event = {
                     Id: calEvent.eventID,
                     StartTime: calEvent.start,
@@ -257,6 +258,8 @@
                     contentType: 'application/json; charset=utf-8',
                     async: false,
                     success: function () {
+                      $(this).css('background-color', 'red');
+                     
                         //alert(JSON.stringify(event));
                     },
                     error: function () {
