@@ -12,7 +12,7 @@ namespace BusinessLogic
 {
     public class EmployeeController : IEmployeeController
     {
-        InputValidator iV = new InputValidator();
+        InputValidator inputValidator = new InputValidator();
         private readonly IEmployeeRepository _employeeRepository;
 
         public EmployeeController(IEmployeeRepository employeeRepository)
@@ -55,15 +55,15 @@ namespace BusinessLogic
             {
                 employee.Salt = PasswordHashing.GenerateSalt();
                 employee.Password = PasswordHashing.HashPassword(employee.Salt + employee.Password);
-                if 
+                if
                 (
-                Regex.IsMatch(employee.Name, iV.EmployeeNameCheck)
+                Regex.IsMatch(employee.Name, inputValidator.EmployeeNameCheck)
                 &&
-                Regex.IsMatch(employee.Phone, iV.EmployeePhoneCheck)
+                Regex.IsMatch(employee.Phone, inputValidator.EmployeePhoneCheck)
                 &&
-                Regex.IsMatch(employee.Mail, iV.EmployeeEmailCheck)
+                Regex.IsMatch(employee.Mail, inputValidator.EmployeeEmailCheck)
                 &&
-                Regex.IsMatch(employee.Username, iV.EmployeeUsernameCheck)
+                Regex.IsMatch(employee.Username, inputValidator.EmployeeUsernameCheck)
                 &&
                 employee.NumbOfHours >= 0
                 )
@@ -87,20 +87,23 @@ namespace BusinessLogic
         {
             try
             {
-                employee.Salt = PasswordHashing.GenerateSalt();
-                employee.Password = PasswordHashing.HashPassword(employee.Salt + employee.Password);
+                if (!employee.Password.Equals(GetEmployeeByUsername(employee.Username).Password))
+                {
+                    employee.Salt = PasswordHashing.GenerateSalt();
+                    employee.Password = PasswordHashing.HashPassword(employee.Salt + employee.Password);
+                }
 
                 if
                 (
-                Regex.IsMatch(employee.Name, iV.EmployeeNameCheck)
-                &&
-                Regex.IsMatch(employee.Phone, iV.EmployeePhoneCheck)
-                &&
-                Regex.IsMatch(employee.Mail, iV.EmployeeEmailCheck)
-                &&
-                Regex.IsMatch(employee.Username, iV.EmployeeUsernameCheck)
-                &&
-                employee.NumbOfHours >= 0
+                    Regex.IsMatch(employee.Name, inputValidator.EmployeeNameCheck)
+                    &&
+                    Regex.IsMatch(employee.Phone, inputValidator.EmployeePhoneCheck)
+                    &&
+                    Regex.IsMatch(employee.Mail, inputValidator.EmployeeEmailCheck)
+                    &&
+                    Regex.IsMatch(employee.Username, inputValidator.EmployeeUsernameCheck)
+                    &&
+                    employee.NumbOfHours >= 0
                 )
                 {
                     _employeeRepository.UpdateEmployee(employee);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using Core;
 using System.Transactions;
 
@@ -173,9 +174,6 @@ namespace DatabaseAccess.Employees
                     {
                         using (SqlCommand command = connection.CreateCommand())
                         {
-
-
-
                             command.CommandText =
                                 "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId, isEmployed, salt) " +
                                 "values (@param1, @param2, @param3, @param4, @param5, @param6, @param7, @param8, @param9, @param10);";
@@ -238,20 +236,20 @@ namespace DatabaseAccess.Employees
                         {
                             command.CommandText =
                                 "UPDATE Employee Set name = @param1, email = @param2, phone = @param3, noOfHours = @param4, " +
-                                "isAdmin = @param5, username = @param6, password = @param7, departmentId = @param8, isEmployed = @param9, @param10" +
-                                "WHERE employee.id = @param11;";
+                                "isAdmin = @param5, username = @param6, password = @param7, departmentId = @param8, isEmployed = @param9, salt = @param10 " +
+                                "WHERE employee.id = @param11";
 
-                            SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.VarChar, 100);
-                            SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.VarChar, 100);
-                            SqlParameter p3 = new SqlParameter(@"param3", SqlDbType.VarChar, 100);
-                            SqlParameter p4 = new SqlParameter(@"param4", SqlDbType.Int, 100);
-                            SqlParameter p5 = new SqlParameter(@"param5", SqlDbType.Bit, 100);
-                            SqlParameter p6 = new SqlParameter(@"param6", SqlDbType.VarChar, 100);
-                            SqlParameter p7 = new SqlParameter(@"param7", SqlDbType.VarChar, 100);
-                            SqlParameter p8 = new SqlParameter(@"param8", SqlDbType.Int, 100);
-                            SqlParameter p9 = new SqlParameter(@"param9", SqlDbType.Bit, 100);
-                            SqlParameter p10 = new SqlParameter(@"param10", SqlDbType.VarChar, 100);
-                            SqlParameter p11 = new SqlParameter(@"param11", SqlDbType.Int, 100);
+                            SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.VarChar);
+                            SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.VarChar);
+                            SqlParameter p3 = new SqlParameter(@"param3", SqlDbType.VarChar);
+                            SqlParameter p4 = new SqlParameter(@"param4", SqlDbType.Int);
+                            SqlParameter p5 = new SqlParameter(@"param5", SqlDbType.Bit);
+                            SqlParameter p6 = new SqlParameter(@"param6", SqlDbType.VarChar);
+                            SqlParameter p7 = new SqlParameter(@"param7", SqlDbType.VarChar);
+                            SqlParameter p8 = new SqlParameter(@"param8", SqlDbType.Int);
+                            SqlParameter p9 = new SqlParameter(@"param9", SqlDbType.Bit);
+                            SqlParameter p10 = new SqlParameter(@"param10", SqlDbType.VarChar);
+                            SqlParameter p11 = new SqlParameter(@"param11", SqlDbType.Int);
 
                             p1.Value = employee.Name;
                             p2.Value = employee.Mail;
@@ -284,9 +282,9 @@ namespace DatabaseAccess.Employees
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new Exception("Something went wrong while updating an employee in the database! Try again");
+                Debug.Print(e.StackTrace);
             }
         }
 
@@ -302,6 +300,7 @@ namespace DatabaseAccess.Employees
             employee.Username = reader["username"].ToString();
             employee.Password = reader["password"].ToString();
             employee.DepartmentId = Convert.ToInt32(reader["departmentId"].ToString());
+            employee.Salt = reader["Salt"].ToString();
             employee.IsEmployed = reader.GetBoolean(10);
             return employee;
         }

@@ -56,6 +56,7 @@ namespace Tests.BusinessLogic
         [TestMethod]
         public void TestInsertEmployee()
         {
+            _employeeController = new EmployeeController(new EmployeeRepository());
             Employee emp = new Employee()
             {
                 Name = "Anders Andersen",
@@ -66,15 +67,30 @@ namespace Tests.BusinessLogic
                 IsEmployed = true,
                 Username = "AAndersen",
                 DepartmentId = 3,
-                Password = "GotMilk?"
+                Password = "GotMilk"
             };
-            _mockEmployeeRepository.Setup(x => x.InsertEmployee(It.IsAny<Employee>()));
 
-            _employeeController.InsertEmployee(emp);
+            EmployeeController empCtr = new EmployeeController(new EmployeeRepository());
+            empCtr.InsertEmployee(emp);
+            Assert.IsNotNull(new EmployeeRepository().GetEmployeeByUsername(emp.Username));
 
-            _mockEmployeeRepository.VerifyAll();
+            //TODO: Assert employee is added to the database
+            //_mockEmployeeRepository.Setup(x => x.InsertEmployee(It.IsAny<Employee>()));
+
+            //_employeeController.InsertEmployee(emp);
+
+            //_mockEmployeeRepository.VerifyAll();
         }
 
+        [TestMethod]
+        public void TestUpdateEmployee()
+        {
+            EmployeeController empCtr = new EmployeeController(new EmployeeRepository());
+            Employee employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP");
+            employee.Name = "Fisk To";
+            empCtr.UpdateEmployee(employee);
+            Assert.AreEqual(new EmployeeRepository().GetEmployeeByUsername("MikkelP").Name, "Fisk To");
+        }
 
         [TestMethod]
         public void TestPasswordHashing()
