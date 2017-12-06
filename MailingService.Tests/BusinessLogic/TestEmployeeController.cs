@@ -47,7 +47,6 @@ namespace Tests.BusinessLogic
         {
             EmployeeController employeeController = new EmployeeController(new EmployeeRepository());
             Employee employee = employeeController.ValidatePassword("TobiAs", "CanYouGuessMyPass");
-            
 
             Assert.IsNotNull(employee);
             Assert.AreEqual("TobiAs", employee.Username);
