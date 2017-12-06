@@ -8,10 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Core;
-
 namespace Tests.EmployeeService {
     
     
@@ -25,23 +21,17 @@ namespace Tests.EmployeeService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeeByUsername", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeeByUsernameResponse")]
         System.Threading.Tasks.Task<Core.Employee> GetEmployeeByUsernameAsync(string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetListOfEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetListOfEmployeesByDepartmentIdResponse")]
-        Core.Employee[] GetListOfEmployeesByDepartmentId(int departmentId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetListOfEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetListOfEmployeesByDepartmentIdResponse")]
-        System.Threading.Tasks.Task<Core.Employee[]> GetListOfEmployeesByDepartmentIdAsync(int departmentId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentIdResponse")]
+        System.Collections.Generic.List<Core.Employee> GetEmployeesByDepartmentId(int departmentId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentIdResponse")]
-        Core.Employee[] GetEmployeesByDepartmentId(int depId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentIdResponse")]
-        System.Threading.Tasks.Task<Core.Employee[]> GetEmployeesByDepartmentIdAsync(int depId);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetEmployeesByDepartmentIdAsync(int departmentId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetAllEmployees", ReplyAction="http://tempuri.org/IEmployeeService/GetAllEmployeesResponse")]
-        List<Employee> GetAllEmployees();
+        System.Collections.Generic.List<Core.Employee> GetAllEmployees();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetAllEmployees", ReplyAction="http://tempuri.org/IEmployeeService/GetAllEmployeesResponse")]
-        Task<List<Employee>> GetAllEmployeesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetAllEmployeesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/InsertEmployee", ReplyAction="http://tempuri.org/IEmployeeService/InsertEmployeeResponse")]
         void InsertEmployee(Core.Employee employee);
@@ -54,6 +44,12 @@ namespace Tests.EmployeeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/UpdateEmployee", ReplyAction="http://tempuri.org/IEmployeeService/UpdateEmployeeResponse")]
         System.Threading.Tasks.Task UpdateEmployeeAsync(Core.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/ValidatePassword", ReplyAction="http://tempuri.org/IEmployeeService/ValidatePasswordResponse")]
+        Core.Employee ValidatePassword(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/ValidatePassword", ReplyAction="http://tempuri.org/IEmployeeService/ValidatePasswordResponse")]
+        System.Threading.Tasks.Task<Core.Employee> ValidatePasswordAsync(string username, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -91,27 +87,19 @@ namespace Tests.EmployeeService {
             return base.Channel.GetEmployeeByUsernameAsync(username);
         }
         
-        public Core.Employee[] GetListOfEmployeesByDepartmentId(int departmentId) {
-            return base.Channel.GetListOfEmployeesByDepartmentId(departmentId);
+        public System.Collections.Generic.List<Core.Employee> GetEmployeesByDepartmentId(int departmentId) {
+            return base.Channel.GetEmployeesByDepartmentId(departmentId);
         }
         
-        public System.Threading.Tasks.Task<Core.Employee[]> GetListOfEmployeesByDepartmentIdAsync(int departmentId) {
-            return base.Channel.GetListOfEmployeesByDepartmentIdAsync(departmentId);
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetEmployeesByDepartmentIdAsync(int departmentId) {
+            return base.Channel.GetEmployeesByDepartmentIdAsync(departmentId);
         }
         
-        public Core.Employee[] GetEmployeesByDepartmentId(int depId) {
-            return base.Channel.GetEmployeesByDepartmentId(depId);
-        }
-        
-        public System.Threading.Tasks.Task<Core.Employee[]> GetEmployeesByDepartmentIdAsync(int depId) {
-            return base.Channel.GetEmployeesByDepartmentIdAsync(depId);
-        }
-        
-        public List<Employee> GetAllEmployees() {
+        public System.Collections.Generic.List<Core.Employee> GetAllEmployees() {
             return base.Channel.GetAllEmployees();
         }
         
-        public System.Threading.Tasks.Task<List<Employee>> GetAllEmployeesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Employee>> GetAllEmployeesAsync() {
             return base.Channel.GetAllEmployeesAsync();
         }
         
@@ -129,6 +117,14 @@ namespace Tests.EmployeeService {
         
         public System.Threading.Tasks.Task UpdateEmployeeAsync(Core.Employee employee) {
             return base.Channel.UpdateEmployeeAsync(employee);
+        }
+        
+        public Core.Employee ValidatePassword(string username, string password) {
+            return base.Channel.ValidatePassword(username, password);
+        }
+        
+        public System.Threading.Tasks.Task<Core.Employee> ValidatePasswordAsync(string username, string password) {
+            return base.Channel.ValidatePasswordAsync(username, password);
         }
     }
 }

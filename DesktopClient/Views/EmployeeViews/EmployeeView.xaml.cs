@@ -33,6 +33,7 @@ namespace DesktopClient.Views.EmployeeViews
             {
                 try
                 {
+                    
                     Employee emp = new Employee();
                     EmployeeProxy empProxy = new EmployeeProxy();
 
@@ -51,10 +52,11 @@ namespace DesktopClient.Views.EmployeeViews
 
                     MessageBox.Show("An employee was succenfully saved", "Saved Employee");
                 }
-                catch (Exception e)
+                catch (ArgumentException e)
                 {
-
-                    MessageBox.Show("Something went wrong!", "Error:" + e.Message);
+                    //TODO
+                    //har fjernet så den ikke printer exception -> det fik vi at vide at user ikke skulle bruge til noget.
+                    MessageBox.Show("Something went wrong while processing your request. Please check input parameters.");
                     
                 }
                 ClearEmployeeView();
@@ -74,6 +76,11 @@ namespace DesktopClient.Views.EmployeeViews
             chkIsActive.IsChecked = true;
             txtUsername.Clear();
             txtPassword.Clear();
+        }
+
+        private void txtName_TextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+
         }
     }
 }

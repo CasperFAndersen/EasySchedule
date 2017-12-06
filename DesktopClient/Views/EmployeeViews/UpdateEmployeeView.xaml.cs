@@ -21,7 +21,7 @@ namespace DesktopClient.Views.EmployeeViews
 
         private void BtnUpdateEmployee_Click(object sender, RoutedEventArgs e)
         {
-            Mediator.GetInstance().OnUpdateEmployeeClicked();
+                Mediator.GetInstance().OnUpdateEmployeeClicked();
         }
 
         private void LoadDepartmentList()
@@ -62,10 +62,11 @@ namespace DesktopClient.Views.EmployeeViews
                     
                     MessageBox.Show("An employee was succenfully updated", "Updated Employee");
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-
-                    MessageBox.Show("Something went wrong!", "Error:" + e.Message);
+                    //TODO
+                    // har fjernet så messagebox ikke printer exception
+                    MessageBox.Show("Something went wrong while processing your request. Please check input parameters.", "Error:");
 
                 }
                 ClearEmployeeView();

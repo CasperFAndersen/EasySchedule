@@ -21,10 +21,10 @@ namespace Tests.DepartmentService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetAllDepartments", ReplyAction="http://tempuri.org/IDepartmentService/GetAllDepartmentsResponse")]
         System.Threading.Tasks.Task<Core.Department[]> GetAllDepartmentsAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/TestGetDepartmentById", ReplyAction="http://tempuri.org/IDepartmentService/GetDepartmentByIdResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetDepartmentById", ReplyAction="http://tempuri.org/IDepartmentService/GetDepartmentByIdResponse")]
         Core.Department GetDepartmentById(int departmentId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/TestGetDepartmentById", ReplyAction="http://tempuri.org/IDepartmentService/GetDepartmentByIdResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetDepartmentById", ReplyAction="http://tempuri.org/IDepartmentService/GetDepartmentByIdResponse")]
         System.Threading.Tasks.Task<Core.Department> GetDepartmentByIdAsync(int departmentId);
     }
     

@@ -11,95 +11,156 @@ namespace DatabaseAccess.Employees
     {
         public List<Employee> GetAllEmployees()
         {
-            List<Employee> employees = new List<Employee>();
-
-            using (SqlConnection connection = new DbConnection().GetConnection())
+            try
             {
-                using (SqlCommand command = connection.CreateCommand())
+
+                List<Employee> employees = new List<Employee>();
+
+                using (SqlConnection connection = new DbConnection().GetConnection())
                 {
-                    command.CommandText = "SELECT * FROM Employee";
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (SqlCommand command = connection.CreateCommand())
                     {
-                        while (reader.Read())
+                        command.CommandText = "SELECT * FROM Employee";
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            Employee employee = BuildEmployeeObject(reader);
-                            employees.Add(employee);
+                            while (reader.Read())
+                            {
+                                Employee employee = BuildEmployeeObject(reader);
+                                employees.Add(employee);
+                            }
                         }
                     }
                 }
+                return employees;
+
             }
-            return employees;
+            catch (Exception)
+            {
+
+                throw new Exception("Something went wrong! Try again");
+            }
         }
 
         public Employee GetEmployeeByUsername(string username)
         {
-            Employee employee = new Employee();
+
+            try
+            {
+
+                Employee employee = new Employee();
+                using (SqlConnection connection = new DbConnection().GetConnection())
+                {
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = "SELECT * FROM Employee WHERE Employee.username = @param1;";
+                        SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.NVarChar);
+                        p1.Value = username;
+                        command.Parameters.Add(p1);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                employee = BuildEmployeeObject(reader);
+                            }
+                        }
+                    }
+                }
+                return employee;
+
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("something went wrong, try again!");
+            }
+        }
+
+        public string GetSaltFromEmployeePassword(Employee employee)
+        {
+            string salt = null;
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                using (SqlCommand command = connection.CreateCommand())
+                using (SqlCommand commmand = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT * FROM Employee WHERE Employee.username = @param1;";
-                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.NVarChar);
-                    p1.Value = username;
-                    command.Parameters.Add(p1);
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    commmand.CommandText = "SELECT salt FROM Employee where Id = @param1";
+                    commmand.Parameters.AddWithValue("@param1", employee.Id);
+                    using (SqlDataReader reader = commmand.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            employee = BuildEmployeeObject(reader);
+                            salt = reader.GetString(0);
                         }
                     }
                 }
             }
-            return employee;
+            return salt;
         }
 
         public Employee FindEmployeeById(int id)
         {
-            Employee employee = null;
-            using (SqlConnection connection = new DbConnection().GetConnection())
+            try
             {
-                using (SqlCommand command = connection.CreateCommand())
+                Employee empRes = null;
+                using (SqlConnection connection = new DbConnection().GetConnection())
                 {
-                    command.CommandText = "SELECT * FROM Employee WHERE Employee.id = @param1;";
-                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.Int);
-                    p1.Value = id;
-                    command.Parameters.Add(p1);
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (SqlCommand command = connection.CreateCommand())
                     {
-                        while (reader.Read())
+                        command.CommandText = "SELECT * FROM Employee WHERE Employee.id = @param1;";
+                        SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.Int);
+                        p1.Value = id;
+                        command.Parameters.Add(p1);
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            employee = BuildEmployeeObject(reader);
+                            while (reader.Read())
+                            {
+                                empRes = BuildEmployeeObject(reader);
+                            }
                         }
                     }
                 }
+                return empRes;
             }
-            return employee;
+            catch (Exception)
+            {
+
+                throw new Exception("Something went wrong! Try again.");
+            }
         }
 
         public List<Employee> GetEmployeesByDepartmentId(int departmentId)
         {
-            List<Employee> employees = new List<Employee>();
-            using (SqlConnection connection = new DbConnection().GetConnection())
+
+            try
             {
-                //connection.Open();
-                using (SqlCommand command = connection.CreateCommand())
+
+
+                List<Employee> employees = new List<Employee>();
+                using (SqlConnection connection = new DbConnection().GetConnection())
                 {
-                    command.CommandText = "SELECT * FROM Employee WHERE Employee.departmentId = @param1;";
-                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.Int, 100);
-                    p1.Value = departmentId;
-                    command.Parameters.Add(p1);
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    //connection.Open();
+                    using (SqlCommand command = connection.CreateCommand())
                     {
-                        while (reader.Read())
+                        command.CommandText = "SELECT * FROM Employee WHERE Employee.departmentId = @param1;";
+                        SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.Int, 100);
+                        p1.Value = departmentId;
+                        command.Parameters.Add(p1);
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            Employee employee = BuildEmployeeObject(reader);
-                            employees.Add(employee);
+                            while (reader.Read())
+                            {
+                                Employee employee = BuildEmployeeObject(reader);
+                                employees.Add(employee);
+                            }
                         }
                     }
                 }
+                return employees;
             }
-            return employees;
+            catch (Exception)
+            {
+
+                throw new Exception("Something went wrong! Try again.");
+            }
         }
 
         public void InsertEmployee(Employee employee)
@@ -177,16 +238,16 @@ namespace DatabaseAccess.Employees
                                 "isAdmin = @param5, username = @param6, password = @param7, departmentId = @param8, isEmployed = @param9 " +
                                 "WHERE employee.id = @param10;";
 
-                            SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.VarChar);
-                            SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.VarChar);
-                            SqlParameter p3 = new SqlParameter(@"param3", SqlDbType.VarChar);
-                            SqlParameter p4 = new SqlParameter(@"param4", SqlDbType.Int);
-                            SqlParameter p5 = new SqlParameter(@"param5", SqlDbType.Bit);
-                            SqlParameter p6 = new SqlParameter(@"param6", SqlDbType.VarChar);
-                            SqlParameter p7 = new SqlParameter(@"param7", SqlDbType.VarChar);
-                            SqlParameter p8 = new SqlParameter(@"param8", SqlDbType.Int);
-                            SqlParameter p9 = new SqlParameter(@"param9", SqlDbType.Bit);
-                            SqlParameter p10 = new SqlParameter(@"param10", SqlDbType.Int);
+                            SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.VarChar, 100);
+                            SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.VarChar, 100);
+                            SqlParameter p3 = new SqlParameter(@"param3", SqlDbType.VarChar, 100);
+                            SqlParameter p4 = new SqlParameter(@"param4", SqlDbType.Int, 100);
+                            SqlParameter p5 = new SqlParameter(@"param5", SqlDbType.Bit, 100);
+                            SqlParameter p6 = new SqlParameter(@"param6", SqlDbType.VarChar, 100);
+                            SqlParameter p7 = new SqlParameter(@"param7", SqlDbType.VarChar, 100);
+                            SqlParameter p8 = new SqlParameter(@"param8", SqlDbType.Int, 100);
+                            SqlParameter p9 = new SqlParameter(@"param9", SqlDbType.Bit, 100);
+                            SqlParameter p10 = new SqlParameter(@"param10", SqlDbType.Int, 100);
 
                             p1.Value = employee.Name;
                             p2.Value = employee.Mail;
@@ -221,35 +282,6 @@ namespace DatabaseAccess.Employees
             {
                 throw new Exception("Something went wrong! Try again");
             }
-        }
-
-
-        public string GetSaltFromEmployeePassword(Employee employee)
-        {
-            //Employee employee = GetEmployeeByUsername(username);
-            string salt = "";
-            using (SqlConnection connection = new DbConnection().GetConnection())
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandText = "SELECT salt FROM Employee WHERE username = @param1";
-
-                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.VarChar, 50)
-                    {
-                        Value = employee.Username
-                    };
-                    command.Parameters.Add(p1);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            salt = reader["salt"].ToString();
-                        }
-                    }
-                }
-            }
-            return salt;
         }
 
         public Employee BuildEmployeeObject(SqlDataReader reader)

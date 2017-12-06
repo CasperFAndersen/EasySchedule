@@ -82,6 +82,12 @@ namespace Tests.ScheduleService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/SetShiftForSaleById", ReplyAction="http://tempuri.org/IScheduleService/SetShiftForSaleByIdResponse")]
         System.Threading.Tasks.Task SetShiftForSaleByIdAsync(int scheduleShiftId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/AcceptAvailableShift", ReplyAction="http://tempuri.org/IScheduleService/AcceptAvailableShiftResponse")]
+        void AcceptAvailableShift(Core.ScheduleShift shift, Core.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/AcceptAvailableShift", ReplyAction="http://tempuri.org/IScheduleService/AcceptAvailableShiftResponse")]
+        System.Threading.Tasks.Task AcceptAvailableShiftAsync(Core.ScheduleShift shift, Core.Employee employee);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentIdResponse")]
         System.Collections.Generic.List<Core.ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
         
@@ -162,6 +168,14 @@ namespace Tests.ScheduleService {
         
         public System.Threading.Tasks.Task SetShiftForSaleByIdAsync(int scheduleShiftId) {
             return base.Channel.SetShiftForSaleByIdAsync(scheduleShiftId);
+        }
+        
+        public void AcceptAvailableShift(Core.ScheduleShift shift, Core.Employee employee) {
+            base.Channel.AcceptAvailableShift(shift, employee);
+        }
+        
+        public System.Threading.Tasks.Task AcceptAvailableShiftAsync(Core.ScheduleShift shift, Core.Employee employee) {
+            return base.Channel.AcceptAvailableShiftAsync(shift, employee);
         }
         
         public System.Collections.Generic.List<Core.ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId) {

@@ -41,4 +41,5 @@
         <Label Grid.Row="8" Grid.Column="0" Content="Department:"></Label>
         <ComboBox x:Name="cBoxDepartment" Grid.Row="8" Grid.Column="1" ></ComboBox>
     </Grid>
+    
 </UserControl>

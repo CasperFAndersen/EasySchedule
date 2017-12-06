@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using Core;
 using DatabaseAccess;
 using DatabaseAccess.Employees;
+using System.Text.RegularExpressions;
 
 namespace BusinessLogic
 {
     public class EmployeeController : IEmployeeController
     {
+        InputValidator iV = new InputValidator();
         private readonly IEmployeeRepository _employeeRepository;
 
         public EmployeeController(IEmployeeRepository employeeRepository)
@@ -37,7 +39,7 @@ namespace BusinessLogic
         {
             Employee employee = GetEmployeeByUsername(username);
             string salt = _employeeRepository.GetSaltFromEmployeePassword(employee);
-            password = PasswordHashing.HashPassword(salt+password);
+            password = PasswordHashing.HashPassword(salt + password);
             bool res;
             res = employee.Password.Equals(password);
             if (res)
@@ -49,12 +51,69 @@ namespace BusinessLogic
 
         public void InsertEmployee(Employee employee)
         {
-            _employeeRepository.InsertEmployee(employee);
+            try
+            {
+                if
+                (
+                Regex.IsMatch(employee.Name, iV.EmployeeNameCheck)
+                &&
+                Regex.IsMatch(employee.Phone, iV.EmployeePhoneCheck)
+                &&
+                Regex.IsMatch(employee.Mail, iV.EmployeeEmailCheck)
+                &&
+                Regex.IsMatch(employee.Username, iV.EmployeeUsernameCheck)
+                &&
+                Regex.IsMatch(employee.Password, iV.EmployeePasswordCheck)
+                &&
+                employee.NumbOfHours >= 0
+                )
+                {
+                    _employeeRepository.InsertEmployee(employee);
+                }
+                else
+                {
+                    throw new ArgumentException("An error regarding input checks has arrised. Please check that the inputs are valid.");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         public void UpdateEmployee(Employee employee)
         {
-            _employeeRepository.UpdateEmployee(employee);
+            try
+            {
+                if
+                (
+                Regex.IsMatch(employee.Name, iV.EmployeeNameCheck)
+                &&
+                Regex.IsMatch(employee.Phone, iV.EmployeePhoneCheck)
+                &&
+                Regex.IsMatch(employee.Mail, iV.EmployeeEmailCheck)
+                &&
+                Regex.IsMatch(employee.Username, iV.EmployeeUsernameCheck)
+                &&
+                Regex.IsMatch(employee.Password, iV.EmployeePasswordCheck)
+                &&
+                employee.NumbOfHours >= 0
+                )
+                {
+                    _employeeRepository.UpdateEmployee(employee);
+                }
+                else
+                {
+                    throw new ArgumentException("An error regarding input checks has arrised. Please check that the inputs are valid.");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
     }
