@@ -56,9 +56,21 @@ namespace Tests.BusinessLogic
         [TestMethod]
         public void TestInsertEmployee()
         {
+            Employee emp = new Employee()
+            {
+                Name = "Anders Andersen",
+                IsAdmin = false,
+                Mail = "andersen@bos.dk",
+                Phone = "98901349",
+                NumbOfHours = 37,
+                IsEmployed = true,
+                Username = "AAndersen",
+                DepartmentId = 3,
+                Password = "GotMilk?"
+            };
             _mockEmployeeRepository.Setup(x => x.InsertEmployee(It.IsAny<Employee>()));
 
-            _employeeController.InsertEmployee(new Employee());
+            _employeeController.InsertEmployee(emp);
 
             _mockEmployeeRepository.VerifyAll();
         }

@@ -62,11 +62,11 @@ namespace DesktopClient.Views.EmployeeViews
                     
                     MessageBox.Show("An employee was succenfully updated", "Updated Employee");
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //TODO
                     // har fjernet så messagebox ikke printer exception
-                    MessageBox.Show("Something went wrong!", "Error:");
+                    MessageBox.Show("Something went wrong! While updating the employee!", "Error:");
 
                 }
                 ClearEmployeeView();
