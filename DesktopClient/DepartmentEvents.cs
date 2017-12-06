@@ -8,13 +8,13 @@ using DesktopClient.Services;
 
 namespace DesktopClient
 {
-    internal class DepartmentEvents
+    public class DepartmentEvents
     {
         public List<Department> LoadDeparmentList()
         {
             List<Department> departments = new List<Department>();
             DepartmentProxy deptProxy = new DepartmentProxy();
-            departments = deptProxy.GetAllDepartments().ToList();
+            departments = deptProxy.GetAllDepartments();
             return departments;
         }
 

@@ -43,10 +43,10 @@ namespace Tests.TemplateScheduleService {
     public interface ITemplateScheduleService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/GetAllTemplateSchedules", ReplyAction="http://tempuri.org/ITemplateScheduleService/GetAllTemplateSchedulesResponse")]
-        Core.TemplateSchedule[] GetAllTemplateSchedules();
+        System.Collections.Generic.List<Core.TemplateSchedule> GetAllTemplateSchedules();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/GetAllTemplateSchedules", ReplyAction="http://tempuri.org/ITemplateScheduleService/GetAllTemplateSchedulesResponse")]
-        System.Threading.Tasks.Task<Core.TemplateSchedule[]> GetAllTemplateSchedulesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.TemplateSchedule>> GetAllTemplateSchedulesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/FindTemplateScheduleByName", ReplyAction="http://tempuri.org/ITemplateScheduleService/FindTemplateScheduleByNameResponse")]
         Core.TemplateSchedule FindTemplateScheduleByName(string name);
@@ -94,11 +94,11 @@ namespace Tests.TemplateScheduleService {
                 base(binding, remoteAddress) {
         }
         
-        public Core.TemplateSchedule[] GetAllTemplateSchedules() {
+        public System.Collections.Generic.List<Core.TemplateSchedule> GetAllTemplateSchedules() {
             return base.Channel.GetAllTemplateSchedules();
         }
         
-        public System.Threading.Tasks.Task<Core.TemplateSchedule[]> GetAllTemplateSchedulesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.TemplateSchedule>> GetAllTemplateSchedulesAsync() {
             return base.Channel.GetAllTemplateSchedulesAsync();
         }
         

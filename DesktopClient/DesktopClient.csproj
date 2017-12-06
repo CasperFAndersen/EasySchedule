@@ -75,6 +75,7 @@
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Views\EmployeeViews\ListOfEmployeeView.xaml.cs">
       <DependentUpon>ListOfEmployeeView.xaml</DependentUpon>
     </Compile>
@@ -123,9 +124,6 @@
     </Compile>
     <Compile Include="DepartmentEvents.cs" />
     <Compile Include="EmployeeEvents.cs" />
-    <Compile Include="Views\EmployeeViews\EmployeeView.xaml.cs">
-      <DependentUpon>EmployeeView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\EmployeeViews\ManageEmployeeView.xaml.cs">
       <DependentUpon>ManageEmployeeView.xaml</DependentUpon>
     </Compile>
@@ -212,10 +210,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EmployeeListItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\EmployeeViews\EmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

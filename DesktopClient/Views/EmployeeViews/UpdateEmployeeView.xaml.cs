@@ -26,15 +26,15 @@ namespace DesktopClient.Views.EmployeeViews
 
         private void LoadDepartmentList()
         {
-            List<Department> listOfDepartments = new DepartmentEvents().LoadDeparmentList();
-            CBoxDepartment.ItemsSource = listOfDepartments;
+            List<Department> departments = new DepartmentEvents().LoadDeparmentList();
+            CBoxDepartment.ItemsSource = departments;
             CBoxDepartment.DisplayMemberPath = "Name";
         }
 
         private void LoadEmployeeList(Department department)
         {
-            List<Employee> listOfEmployees = new EmployeeEvents().GetListOfEmployees(department);
-            EmployeeListBox.ItemsSource = listOfEmployees;
+            List<Employee> employees = new EmployeeEvents().GetListOfEmployees(department);
+            EmployeeListBox.ItemsSource = employees;
             EmployeeListBox.DisplayMemberPath = "Name";
         }
 
