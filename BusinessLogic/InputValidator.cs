@@ -39,7 +39,7 @@ namespace BusinessLogic
 
         public string EmployeeUsernameCheck
         {
-            get { return employeeUsernameCheck = "[a-zA-Z]+( [a-zA-Z]+)+"; }
+            get { return employeeUsernameCheck = "[0-9a-zA-Z]{3,}"; }
         }
 
         public string EmployeePasswordCheck

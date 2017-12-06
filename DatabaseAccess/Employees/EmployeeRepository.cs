@@ -296,7 +296,7 @@ namespace DatabaseAccess.Employees
             employee.Username = reader["username"].ToString();
             employee.Password = reader["password"].ToString();
             employee.DepartmentId = Convert.ToInt32(reader["departmentId"].ToString());
-            employee.IsEmployed = reader.GetBoolean(9);
+            employee.IsEmployed = reader.GetBoolean(10);
             return employee;
         }
     }

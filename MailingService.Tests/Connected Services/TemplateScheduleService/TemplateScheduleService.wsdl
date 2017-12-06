@@ -26,12 +26,6 @@
   <wsdl:message name="ITemplateScheduleService_AddTemplateScheduleToDb_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddTemplateScheduleToDbResponse" />
   </wsdl:message>
-  <wsdl:message name="ITemplateScheduleService_AddTemplateShift_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddTemplateShift" />
-  </wsdl:message>
-  <wsdl:message name="ITemplateScheduleService_AddTemplateShift_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddTemplateShiftResponse" />
-  </wsdl:message>
   <wsdl:message name="ITemplateScheduleService_UpdateTemplateSchedule_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateTemplateSchedule" />
   </wsdl:message>
@@ -50,10 +44,6 @@
     <wsdl:operation name="AddTemplateScheduleToDb">
       <wsdl:input wsaw:Action="http://tempuri.org/ITemplateScheduleService/AddTemplateScheduleToDb" message="tns:ITemplateScheduleService_AddTemplateScheduleToDb_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITemplateScheduleService/AddTemplateScheduleToDbResponse" message="tns:ITemplateScheduleService_AddTemplateScheduleToDb_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddTemplateShift">
-      <wsdl:input wsaw:Action="http://tempuri.org/ITemplateScheduleService/AddTemplateShift" message="tns:ITemplateScheduleService_AddTemplateShift_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ITemplateScheduleService/AddTemplateShiftResponse" message="tns:ITemplateScheduleService_AddTemplateShift_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateTemplateSchedule">
       <wsdl:input wsaw:Action="http://tempuri.org/ITemplateScheduleService/UpdateTemplateSchedule" message="tns:ITemplateScheduleService_UpdateTemplateSchedule_InputMessage" />
@@ -82,15 +72,6 @@
     </wsdl:operation>
     <wsdl:operation name="AddTemplateScheduleToDb">
       <soap:operation soapAction="http://tempuri.org/ITemplateScheduleService/AddTemplateScheduleToDb" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddTemplateShift">
-      <soap:operation soapAction="http://tempuri.org/ITemplateScheduleService/AddTemplateShift" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
