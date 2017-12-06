@@ -86,5 +86,10 @@ namespace DesktopClient.Services
         {
             proxy.SetShiftForSaleById(scheduleShiftId);
         }
+
+        public Task SetShiftForSaleByIdAsync(int scheduleShiftId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

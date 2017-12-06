@@ -8,8 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-
 namespace DesktopClient.ScheduleService {
     
     
@@ -50,6 +48,12 @@ namespace DesktopClient.ScheduleService {
             "ate", ReplyAction="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
             "ateResponse")]
         System.Threading.Tasks.Task<Core.Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(Core.TemplateSchedule templateSchedule, System.DateTime startTime);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/SetShiftForSaleById", ReplyAction="http://tempuri.org/IScheduleService/SetShiftForSaleByIdResponse")]
+        void SetShiftForSaleById(int scheduleShiftId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/SetShiftForSaleById", ReplyAction="http://tempuri.org/IScheduleService/SetShiftForSaleByIdResponse")]
+        System.Threading.Tasks.Task SetShiftForSaleByIdAsync(int scheduleShiftId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/AcceptAvailableShift", ReplyAction="http://tempuri.org/IScheduleService/AcceptAvailableShiftResponse")]
         void AcceptAvailableShift(Core.ScheduleShift shift, Core.Employee employee);
@@ -131,6 +135,14 @@ namespace DesktopClient.ScheduleService {
             return base.Channel.GenerateScheduleFromTemplateScheduleAndStartDateAsync(templateSchedule, startTime);
         }
         
+        public void SetShiftForSaleById(int scheduleShiftId) {
+            base.Channel.SetShiftForSaleById(scheduleShiftId);
+        }
+        
+        public System.Threading.Tasks.Task SetShiftForSaleByIdAsync(int scheduleShiftId) {
+            return base.Channel.SetShiftForSaleByIdAsync(scheduleShiftId);
+        }
+        
         public void AcceptAvailableShift(Core.ScheduleShift shift, Core.Employee employee) {
             base.Channel.AcceptAvailableShift(shift, employee);
         }
@@ -145,11 +157,6 @@ namespace DesktopClient.ScheduleService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.ScheduleShift>> GetAllAvailableShiftsByDepartmentIdAsync(int departmentId) {
             return base.Channel.GetAllAvailableShiftsByDepartmentIdAsync(departmentId);
-        }
-
-        internal void SetShiftForSaleById(int scheduleShiftId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

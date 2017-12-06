@@ -44,7 +44,8 @@ namespace Tests.DatabaseAccess
                 IsEmployed = true,
                 Username = "AAndersen",
                 DepartmentId = 3,
-                Password = "GotMilk?"
+                Password = "GotMilk?",
+                Salt = "example"
             };
 
             employeeRepository.InsertEmployee(emp);

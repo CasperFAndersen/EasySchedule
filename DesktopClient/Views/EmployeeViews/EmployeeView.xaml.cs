@@ -59,7 +59,7 @@ namespace DesktopClient.Views.EmployeeViews
                     MessageBox.Show("Something went wrong while processing your request. Please check input parameters.");
                     
                 }
-                ClearEmployeeView();
+                //ClearEmployeeView();
                 
             };
         }

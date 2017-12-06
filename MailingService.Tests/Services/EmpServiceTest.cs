@@ -42,7 +42,8 @@ namespace Tests.Services
                 IsEmployed = true,
                 Username = "AAndersen",
                 DepartmentId = 3,
-                Password = "GotMilk"
+                Password = "GotMilk",
+                Salt = "example"
             };
 
             client.InsertEmployee(employee);

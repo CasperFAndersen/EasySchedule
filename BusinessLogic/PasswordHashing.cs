@@ -22,11 +22,11 @@ namespace BusinessLogic
             }
         }
 
-        public static string GenerateSalt(int length)
+        public static string GenerateSalt()
         {
             string result = "";
 
-            for (int i = 0; i <= length; i++)
+            for (int i = 0; i <= 10; i++)
             {
                 result += AllowedChars[Random.Next(AllowedChars.Length - 1)];
             }

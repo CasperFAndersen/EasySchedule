@@ -53,7 +53,9 @@ namespace BusinessLogic
         {
             try
             {
-                if
+                employee.Salt = PasswordHashing.GenerateSalt();
+                employee.Password = PasswordHashing.HashPassword(employee.Salt + employee.Password);
+                if 
                 (
                 Regex.IsMatch(employee.Name, iV.EmployeeNameCheck)
                 &&
@@ -62,8 +64,6 @@ namespace BusinessLogic
                 Regex.IsMatch(employee.Mail, iV.EmployeeEmailCheck)
                 &&
                 Regex.IsMatch(employee.Username, iV.EmployeeUsernameCheck)
-                &&
-                Regex.IsMatch(employee.Password, iV.EmployeePasswordCheck)
                 &&
                 employee.NumbOfHours >= 0
                 )
@@ -87,6 +87,9 @@ namespace BusinessLogic
         {
             try
             {
+                employee.Salt = PasswordHashing.GenerateSalt();
+                employee.Password = PasswordHashing.HashPassword(employee.Salt + employee.Password);
+
                 if
                 (
                 Regex.IsMatch(employee.Name, iV.EmployeeNameCheck)
@@ -96,8 +99,6 @@ namespace BusinessLogic
                 Regex.IsMatch(employee.Mail, iV.EmployeeEmailCheck)
                 &&
                 Regex.IsMatch(employee.Username, iV.EmployeeUsernameCheck)
-                &&
-                Regex.IsMatch(employee.Password, iV.EmployeePasswordCheck)
                 &&
                 employee.NumbOfHours >= 0
                 )

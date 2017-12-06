@@ -8,10 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Core;
-
 namespace DesktopClient.TemplateScheduleService {
     using System.Runtime.Serialization;
     
@@ -47,10 +43,10 @@ namespace DesktopClient.TemplateScheduleService {
     public interface ITemplateScheduleService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/GetAllTemplateSchedules", ReplyAction="http://tempuri.org/ITemplateScheduleService/GetAllTemplateSchedulesResponse")]
-        List<TemplateSchedule> GetAllTemplateSchedules();
+        System.Collections.Generic.List<Core.TemplateSchedule> GetAllTemplateSchedules();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/GetAllTemplateSchedules", ReplyAction="http://tempuri.org/ITemplateScheduleService/GetAllTemplateSchedulesResponse")]
-        Task<List<TemplateSchedule>> GetAllTemplateSchedulesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.TemplateSchedule>> GetAllTemplateSchedulesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/FindTemplateScheduleByName", ReplyAction="http://tempuri.org/ITemplateScheduleService/FindTemplateScheduleByNameResponse")]
         Core.TemplateSchedule FindTemplateScheduleByName(string name);
@@ -98,11 +94,11 @@ namespace DesktopClient.TemplateScheduleService {
                 base(binding, remoteAddress) {
         }
         
-        public List<TemplateSchedule> GetAllTemplateSchedules() {
+        public System.Collections.Generic.List<Core.TemplateSchedule> GetAllTemplateSchedules() {
             return base.Channel.GetAllTemplateSchedules();
         }
         
-        public Task<List<TemplateSchedule>> GetAllTemplateSchedulesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.TemplateSchedule>> GetAllTemplateSchedulesAsync() {
             return base.Channel.GetAllTemplateSchedulesAsync();
         }
         
@@ -121,7 +117,7 @@ namespace DesktopClient.TemplateScheduleService {
         public System.Threading.Tasks.Task AddTemplateScheduleToDbAsync(Core.TemplateSchedule templateSchedule) {
             return base.Channel.AddTemplateScheduleToDbAsync(templateSchedule);
         }
-       
+        
         public void UpdateTemplateSchedule(Core.TemplateSchedule templateSchedule) {
             base.Channel.UpdateTemplateSchedule(templateSchedule);
         }

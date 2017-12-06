@@ -238,8 +238,8 @@ namespace DatabaseAccess.Employees
                         {
                             command.CommandText =
                                 "UPDATE Employee Set name = @param1, email = @param2, phone = @param3, noOfHours = @param4, " +
-                                "isAdmin = @param5, username = @param6, password = @param7, departmentId = @param8, isEmployed = @param9 " +
-                                "WHERE employee.id = @param10;";
+                                "isAdmin = @param5, username = @param6, password = @param7, departmentId = @param8, isEmployed = @param9, @param10" +
+                                "WHERE employee.id = @param11;";
 
                             SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.VarChar, 100);
                             SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.VarChar, 100);
@@ -250,7 +250,8 @@ namespace DatabaseAccess.Employees
                             SqlParameter p7 = new SqlParameter(@"param7", SqlDbType.VarChar, 100);
                             SqlParameter p8 = new SqlParameter(@"param8", SqlDbType.Int, 100);
                             SqlParameter p9 = new SqlParameter(@"param9", SqlDbType.Bit, 100);
-                            SqlParameter p10 = new SqlParameter(@"param10", SqlDbType.Int, 100);
+                            SqlParameter p10 = new SqlParameter(@"param10", SqlDbType.VarChar, 100);
+                            SqlParameter p11 = new SqlParameter(@"param11", SqlDbType.Int, 100);
 
                             p1.Value = employee.Name;
                             p2.Value = employee.Mail;
@@ -261,7 +262,8 @@ namespace DatabaseAccess.Employees
                             p7.Value = employee.Password;
                             p8.Value = employee.DepartmentId;
                             p9.Value = employee.IsEmployed;
-                            p10.Value = employee.Id;
+                            p10.Value = employee.Salt;
+                            p11.Value = employee.Id;
 
                             command.Parameters.Add(p1);
                             command.Parameters.Add(p2);
@@ -273,6 +275,7 @@ namespace DatabaseAccess.Employees
                             command.Parameters.Add(p8);
                             command.Parameters.Add(p9);
                             command.Parameters.Add(p10);
+                            command.Parameters.Add(p11);
 
                             command.ExecuteNonQuery();
 
