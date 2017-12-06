@@ -62,6 +62,8 @@ namespace Core
 
         [DataMember]
         public bool IsEmployed { get; set; }
+        [DataMember]
+        public string Salt { get; set; }
 
     }
 }

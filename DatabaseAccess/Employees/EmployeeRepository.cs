@@ -177,8 +177,8 @@ namespace DatabaseAccess.Employees
 
 
                             command.CommandText =
-                                "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId, isEmployed) " +
-                                "values (@param1, @param2, @param3, @param4, @param5, @param6, @param7, @param8, @param9);";
+                                "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId, isEmployed, salt) " +
+                                "values (@param1, @param2, @param3, @param4, @param5, @param6, @param7, @param8, @param9, @param10);";
 
                             SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.VarChar, 100);
                             SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.VarChar, 100);
@@ -189,6 +189,7 @@ namespace DatabaseAccess.Employees
                             SqlParameter p7 = new SqlParameter(@"param7", SqlDbType.VarChar, 100);
                             SqlParameter p8 = new SqlParameter(@"param8", SqlDbType.Int, 100);
                             SqlParameter p9 = new SqlParameter(@"param9", SqlDbType.Bit, 100);
+                            SqlParameter p10 = new SqlParameter(@"param10", SqlDbType.VarChar, 100);
 
                             p1.Value = employee.Name;
                             p2.Value = employee.Mail;
@@ -199,6 +200,7 @@ namespace DatabaseAccess.Employees
                             p7.Value = employee.Password;
                             p8.Value = employee.DepartmentId;
                             p9.Value = employee.IsEmployed;
+                            p10.Value = employee.Salt;
 
                             command.Parameters.Add(p1);
                             command.Parameters.Add(p2);
@@ -209,6 +211,7 @@ namespace DatabaseAccess.Employees
                             command.Parameters.Add(p7);
                             command.Parameters.Add(p8);
                             command.Parameters.Add(p9);
+                            command.Parameters.Add(p10);
 
                             command.ExecuteNonQuery();
 
@@ -219,7 +222,7 @@ namespace DatabaseAccess.Employees
             }
             catch (Exception)
             {
-                throw new Exception("Something went wrong! Try again");
+                throw new Exception("Something went wrong while inserting an employee into the database! Try again");
             }
         }
 
@@ -280,7 +283,7 @@ namespace DatabaseAccess.Employees
             }
             catch (Exception)
             {
-                throw new Exception("Something went wrong! Try again");
+                throw new Exception("Something went wrong while updating an employee in the database! Try again");
             }
         }
 

@@ -52,7 +52,7 @@ namespace DesktopClient.Views.EmployeeViews
 
                     MessageBox.Show("An employee was succenfully saved", "Saved Employee");
                 }
-                catch (ArgumentException e)
+                catch (ArgumentException)
                 {
                     //TODO
                     //har fjernet så den ikke printer exception -> det fik vi at vide at user ikke skulle bruge til noget.
