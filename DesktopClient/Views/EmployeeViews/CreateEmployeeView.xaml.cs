@@ -16,7 +16,6 @@ namespace DesktopClient.Views.EmployeeViews
         {
             InitializeComponent();
             LoadDepartmentList();
-            CreateEmployeeClicked();
         }
 
         private void LoadDepartmentList()
@@ -28,6 +27,8 @@ namespace DesktopClient.Views.EmployeeViews
 
         private void BtnSaveEmployee_Click(object sender, RoutedEventArgs e)
         {
+            CreateEmployeeClicked();
+
             Mediator.GetInstance().OnCreateEmployeeClicked();
         }
 
@@ -62,9 +63,20 @@ namespace DesktopClient.Views.EmployeeViews
                     MessageBox.Show("Something went wrong while processing your request. Please check input parameters.");
 
                 }
-                // ClearEmployeeView();
-
+                ClearEmployeeView();
             };
+        }
+
+        public void ClearEmployeeView()
+        {
+            TxtName.Clear();
+            TxtEmail.Clear();
+            TxtPhone.Clear();
+            TxtNoOfHours.Clear();
+            ChkIsAdmin.IsChecked = false;
+            ChkIsActive.IsChecked = true;
+            TxtUsername.Clear();
+            TxtPassword.Clear();
         }
     }
 }
