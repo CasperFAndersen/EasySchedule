@@ -66,7 +66,7 @@ namespace DesktopClient.Views.EmployeeViews
                 {
                     //TODO
                     // har fjernet så messagebox ikke printer exception
-                    MessageBox.Show("Something went wrong! While updating the employee!", "Error:");
+                    MessageBox.Show("Something went wrong while processing your request. Please check input parameters.", "Error:");
 
                 }
                 ClearEmployeeView();

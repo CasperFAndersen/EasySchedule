@@ -18,8 +18,8 @@ namespace BusinessLogic
 
         public string EmployeePhoneCheck
         {
-            get { return employeePhoneCheck = "^[0-9]{8,}$"; }
-            // If it just needs numbers, use "[0-9]+" for international aswell. Currently only accepts danish 8 digit numbers.
+            //A phonenumber can have a minimum of 8 digits, and a maximum of 20.
+            get { return employeePhoneCheck = "^[0-9]{8,20}$"; }
         }
 
         public string EmployeeEmailCheck
@@ -44,7 +44,8 @@ namespace BusinessLogic
 
         public string EmployeePasswordCheck
         {
-            get { return employeePasswordCheck = "[0-9a-zA-Z]{6,}"; }
+            //A username can be between 6 and 30 digits.
+            get { return employeePasswordCheck = "[0-9a-zA-Z]{6,30}"; }
         }
 
     }

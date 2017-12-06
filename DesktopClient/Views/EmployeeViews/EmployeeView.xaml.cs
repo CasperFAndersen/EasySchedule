@@ -56,7 +56,7 @@ namespace DesktopClient.Views.EmployeeViews
                 {
                     //TODO
                     //har fjernet så den ikke printer exception -> det fik vi at vide at user ikke skulle bruge til noget.
-                    MessageBox.Show("Something went wrong!", "Error:" + e.Message);
+                    MessageBox.Show("Something went wrong while processing your request. Please check input parameters.");
                     
                 }
                 ClearEmployeeView();
