@@ -82,7 +82,7 @@ namespace Tests.DatabaseAccess
                         "phone varchar(20) not null," +
                         "noOfHours float not null," +
                         "isAdmin bit not null," +
-                        "username varchar(40) not null," +
+                        "username varchar(40) not null unique," +
                         "salt varchar(40) not null," +
                         "password varchar(40) not null," +
                         "departmentId int foreign key references Department(id) not null," +
