@@ -75,16 +75,35 @@ namespace DatabaseAccess.Employees
             }
         }
 
+        public string GetSaltFromEmployeePassword(Employee employee)
+        {
+            string salt = null;
+            using (SqlConnection connection = new DbConnection().GetConnection())
+            {
+                using (SqlCommand commmand = connection.CreateCommand())
+                {
+                    commmand.CommandText = "SELECT salt FROM Employee where Id = @param1";
+                    commmand.Parameters.AddWithValue("@param1", employee.Id);
+                    using (SqlDataReader reader = commmand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            salt = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            return salt;
+        }
+
         public Employee FindEmployeeById(int id)
         {
 
             try
             {
-
-            Employee empRes = new Employee();
+            Employee empRes = null;
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                //connection.Open();
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     command.CommandText = "SELECT * FROM Employee WHERE Employee.id = @param1;";
