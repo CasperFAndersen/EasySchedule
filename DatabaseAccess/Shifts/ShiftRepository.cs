@@ -87,6 +87,7 @@ namespace DatabaseAccess.Shifts
         {
             try
             {
+
                 using (connection)
                 {
                     foreach (var shift in shifts)
@@ -129,44 +130,50 @@ namespace DatabaseAccess.Shifts
         {
             try
             {
-                using (SqlConnection connection = new DbConnection().GetConnection())
+                using (TransactionScope scope = new TransactionScope())
                 {
-                    foreach (ScheduleShift shift in schedule.Shifts)
+                    using (SqlConnection connection = new DbConnection().GetConnection())
                     {
-                        if (shift.Id == 0)
+                        foreach (ScheduleShift shift in schedule.Shifts)
                         {
-                            using (SqlCommand command = connection.CreateCommand())
+                            if (shift.Id == 0)
                             {
-                                command.CommandText = "INSERT INTO Shift(startTime, hours, scheduleId, employeeId, isForSale) " +
-                                                        "VALUES (@param1, @param2, @param3, @param4, @param5)";
+                                using (SqlCommand command = connection.CreateCommand())
+                                {
+                                    command.CommandText = "INSERT INTO Shift(startTime, hours, scheduleId, employeeId, isForSale) " +
+                                                            "VALUES (@param1, @param2, @param3, @param4, @param5)";
 
-                                SqlParameter p1 = new SqlParameter("@param1", SqlDbType.DateTime);
-                                SqlParameter p2 = new SqlParameter("@param2", SqlDbType.Float);
-                                SqlParameter p3 = new SqlParameter("@param3", SqlDbType.Int);
-                                SqlParameter p4 = new SqlParameter("@param5", SqlDbType.Int);
-                                SqlParameter p5 = new SqlParameter("@param4", SqlDbType.Bit);
+                                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.DateTime);
+                                    SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.Float);
+                                    SqlParameter p3 = new SqlParameter(@"param3", SqlDbType.Int);
+                                    SqlParameter p4 = new SqlParameter(@"param4", SqlDbType.Int);
+                                    SqlParameter p5 = new SqlParameter(@"param5", SqlDbType.Bit);
 
-                                p1.Value = shift.StartTime;
-                                p2.Value = shift.Hours;
-                                p3.Value = schedule.Id;
-                                p4.Value = shift.Employee.Id;
-                                p5.Value = shift.IsForSale;
 
-                                command.Parameters.Add(p1);
-                                command.Parameters.Add(p2);
-                                command.Parameters.Add(p3);
-                                command.Parameters.Add(p4);
-                                command.Parameters.Add(p5);
+                                    p1.Value = shift.StartTime;
+                                    p2.Value = shift.Hours;
+                                    p3.Value = schedule.Id;
+                                    p4.Value = shift.Employee.Id;
+                                    p5.Value = shift.IsForSale;
 
-                                command.ExecuteNonQuery();
+                                    command.Parameters.Add(p1);
+                                    command.Parameters.Add(p2);
+                                    command.Parameters.Add(p3);
+                                    command.Parameters.Add(p4);
+                                    command.Parameters.Add(p5);
+
+                                    command.ExecuteNonQuery();
+                                }
+                            }
+                            else
+                            {
+                                UpdateScheduleShift(shift, schedule.Id, connection);
                             }
                         }
-                        else
-                        {
-                            UpdateScheduleShift(shift, schedule.Id, connection);
-                        }
                     }
+                    scope.Complete();
                 }
+
             }
             catch (Exception e)
             {

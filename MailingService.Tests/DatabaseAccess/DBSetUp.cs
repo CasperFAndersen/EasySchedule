@@ -83,8 +83,8 @@ namespace Tests.DatabaseAccess
                         "noOfHours float not null," +
                         "isAdmin bit not null," +
                         "username varchar(40) not null," +
-                        "salt varchar(40) not null," +
                         "password varchar(40) not null," +
+                        "salt varchar(40) not null, " +
                         "departmentId int foreign key references Department(id) not null," +
                         "isEmployed bit not null," +
                         "constraint ck_noOfHours_positive check(noOfHours >= 0)," +
@@ -181,9 +181,7 @@ namespace Tests.DatabaseAccess
                                       "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, salt, departmentId, isEmployed)" +
                                       "values ('Stefan Krabbe', 'stefankrabbe@gmail.com', '12093847', 30, 1, 'SKrabbe', 'a63c6b68454d1b13ea6471f287eba37b', 'fptdv', (select id from department where name='Kolonial'), 1); "
                                       +
-                                      //Salt
-                                      "insert into Salt(saltvalue, employeeId) " +
-                                      "values ('gtieo', (select id from Employee where name='Mikkel Paulsen')); " +
+
 
 
                                       //TemplateSchedule
