@@ -52,6 +52,7 @@ namespace Tests.BusinessLogic
             Assert.IsNotNull(isPasswordCorrect);
             Assert.IsNull(isPasswordIncorrect);
         }
+
         [TestMethod]
         public void TestInsertEmployee()
         {
