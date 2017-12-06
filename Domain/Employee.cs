@@ -52,6 +52,7 @@ namespace Core
             set
             {
                 //TODO: Use RegEx
+                //Ikke brug regex -> 
                 _mail = value;
             }
         }

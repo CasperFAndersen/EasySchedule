@@ -15,8 +15,8 @@ namespace DesktopClient.Views.EmployeeViews
         }
 
         private void BtnSaveEmployee_Click(object sender, RoutedEventArgs e)
-        {
-            Mediator.GetInstance().OnCreateEmployeeClicked();
+        { 
+                Mediator.GetInstance().OnCreateEmployeeClicked(); 
         }
     }
 }

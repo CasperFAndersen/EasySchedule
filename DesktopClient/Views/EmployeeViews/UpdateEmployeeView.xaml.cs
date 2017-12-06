@@ -21,7 +21,7 @@ namespace DesktopClient.Views.EmployeeViews
 
         private void BtnUpdateEmployee_Click(object sender, RoutedEventArgs e)
         {
-            Mediator.GetInstance().OnUpdateEmployeeClicked();
+                Mediator.GetInstance().OnUpdateEmployeeClicked();
         }
 
         private void LoadDepartmentList()
@@ -64,8 +64,9 @@ namespace DesktopClient.Views.EmployeeViews
                 }
                 catch (Exception e)
                 {
-
-                    MessageBox.Show("Something went wrong!", "Error:" + e.Message);
+                    //TODO
+                    // har fjernet så messagebox ikke printer exception
+                    MessageBox.Show("Something went wrong!", "Error:");
 
                 }
                 ClearEmployeeView();
