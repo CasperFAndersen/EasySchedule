@@ -52,6 +52,12 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
+        public void TestInsertOverlappingSchedule()
+        {
+
+        }
+
+        [TestMethod]
         public void TestGetAllAvailbleShiftsByDepartmentId()
         {
             scheduleController._shiftRepository = shiftRepository;

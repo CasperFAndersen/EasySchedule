@@ -41,7 +41,16 @@ namespace BusinessLogic
 
         public void InsertScheduleToDb(Schedule schedule)
         {
-            _scheduleRepository.InsertSchedule(schedule);
+            if (GetScheduleByDepartmentIdAndDate(schedule.Department.Id, schedule.StartDate) == null
+                        && GetScheduleByDepartmentIdAndDate(schedule.Department.Id, schedule.EndDate) == null)
+            {
+                _scheduleRepository.InsertSchedule(schedule);
+            }
+            else
+            {
+                throw new Exception("Insert schedule failed. Schedule time overlaps existing schedule");
+            }
+           
         }
 
         public void UpdateSchedule(Schedule schedule)

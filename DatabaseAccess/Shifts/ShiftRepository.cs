@@ -87,7 +87,6 @@ namespace DatabaseAccess.Shifts
         {
             try
             {
-
                 using (connection)
                 {
                     foreach (var shift in shifts)
