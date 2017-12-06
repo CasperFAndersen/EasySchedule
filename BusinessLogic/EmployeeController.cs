@@ -35,14 +35,18 @@ namespace BusinessLogic
             return _employeeRepository.GetEmployeesByDepartmentId(departmentId);
         }
 
-        public bool ValidatePassword(string username, string password)
+        public Employee ValidatePassword(string username, string password)
         {
             Employee employee = GetEmployeeByUsername(username);
             string salt = _employeeRepository.GetSaltFromEmployeePassword(employee);
-            password = PasswordHashing.CryptPassword(salt+password);
+            password = PasswordHashing.HashPassword(salt+password);
             bool res;
             res = employee.Password.Equals(password);
-            return res;
+            if (res)
+            {
+                return employee;
+            }
+            return null;
         }
 
         public void InsertEmployee(Employee employee)

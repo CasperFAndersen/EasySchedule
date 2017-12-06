@@ -183,6 +183,17 @@ namespace DesktopClient
             }
         }
 
+        public delegate void LoginButtonClickedHandler(Employee employee);
+        public event LoginButtonClickedHandler LoginButtonClicked;
+        public void OnLoginButtonClicked(Employee employee)
+        {
+            if (LoginButtonClicked != null)
+            {
+                LoginButtonClicked(employee);
+            }
+        }
+
+
         //public delegate void NextOrPrevClickedHandler(Schedule schedule);
         //public event NextOrPrevClickedHandler NextOrPrevClicked;
         //public void OnNextOrPreviousButtonClicked(Schedule schedule)

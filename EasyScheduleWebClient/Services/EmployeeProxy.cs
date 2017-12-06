@@ -51,12 +51,12 @@ namespace EasyScheduleWebClient.Services
             return proxy.UpdateEmployeeAsync(employee);
         }
 
-        public bool ValidatePassword(string username, string password)
+        public Employee ValidatePassword(string username, string password)
         {
             return proxy.ValidatePassword(username, password);
         }
 
-        public Task<bool> ValidatePasswordAsync(string username, string password)
+        public Task<Employee> ValidatePasswordAsync(string username, string password)
         {
             return proxy.ValidatePasswordAsync(username, password);
         }

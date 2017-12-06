@@ -8,7 +8,7 @@ namespace BusinessLogic
         List<Employee> GetAllEmployees();
         Employee GetEmployeeByUsername(string username);
         List<Employee> GetEmployeesByDepartmentId(int departmentId);
-        bool ValidatePassword(string username, string password);
+        Employee ValidatePassword(string username, string password);
         void InsertEmployee(Employee employee);
         void UpdateEmployee(Employee employee);
     }

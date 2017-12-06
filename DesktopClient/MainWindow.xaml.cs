@@ -42,6 +42,17 @@ namespace DesktopClient
         public MainWindow()
         {
             InitializeComponent();
+            frame.Content = new Login();
+            Menu.Visibility = Visibility.Hidden;
+            SetOnLoginButtonClicked();   
+        }
+
+        private void LoginSuccess()
+        {
+            
+            Menu.Visibility = Visibility.Visible;
+            frame.Content = null;
+
             employeeColors = new EmployeeColors();
             templateScheduleCalendarView1 = new TemplateScheduleCalendarView();
             templateScheduleCalendarView2 = new TemplateScheduleCalendarView();
@@ -114,6 +125,14 @@ namespace DesktopClient
             scheduleCalendarCreate.ControlPanel.Content = createScheduleView;
             scheduleCalendarCreate.Calendar.SetOnCreateScheduleClicked();
             frame.Content = scheduleCalendarCreate;
+        }
+
+        private void SetOnLoginButtonClicked()
+        {
+            Mediator.GetInstance().LoginButtonClicked += (employee) =>
+            {
+                LoginSuccess();
+            };
         }
     }
 }

@@ -72,6 +72,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="EmployeeColors.cs" />
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EmployeeViews\ListOfEmployeeView.xaml.cs">
       <DependentUpon>ListOfEmployeeView.xaml</DependentUpon>
     </Compile>
@@ -156,6 +159,10 @@
     <Compile Include="Views\TemplateScheduleViews\ViewEditTemplateSchedule.xaml.cs">
       <DependentUpon>ViewEditTemplateSchedule.xaml</DependentUpon>
     </Compile>
+    <Page Include="Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EmployeeViews\ListOfEmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

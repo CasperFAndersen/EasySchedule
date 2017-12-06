@@ -8,8 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Core;
-
 namespace EasyScheduleWebClient.ScheduleService {
     
     
@@ -57,12 +55,17 @@ namespace EasyScheduleWebClient.ScheduleService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/SetShiftForSaleById", ReplyAction="http://tempuri.org/IScheduleService/SetShiftForSaleByIdResponse")]
         System.Threading.Tasks.Task SetShiftForSaleByIdAsync(int scheduleShiftId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/AcceptAvailableShift", ReplyAction="http://tempuri.org/IScheduleService/AcceptAvailableShiftResponse")]
+        void AcceptAvailableShift(Core.ScheduleShift shift, Core.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/AcceptAvailableShift", ReplyAction="http://tempuri.org/IScheduleService/AcceptAvailableShiftResponse")]
+        System.Threading.Tasks.Task AcceptAvailableShiftAsync(Core.ScheduleShift shift, Core.Employee employee);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentIdResponse")]
         System.Collections.Generic.List<Core.ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentIdResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Core.ScheduleShift>> GetAllAvailableShiftsByDepartmentIdAsync(int departmentId);
-        void AcceptAvailableShift(ScheduleShift shift, Employee employee);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -140,17 +143,20 @@ namespace EasyScheduleWebClient.ScheduleService {
             return base.Channel.SetShiftForSaleByIdAsync(scheduleShiftId);
         }
         
+        public void AcceptAvailableShift(Core.ScheduleShift shift, Core.Employee employee) {
+            base.Channel.AcceptAvailableShift(shift, employee);
+        }
+        
+        public System.Threading.Tasks.Task AcceptAvailableShiftAsync(Core.ScheduleShift shift, Core.Employee employee) {
+            return base.Channel.AcceptAvailableShiftAsync(shift, employee);
+        }
+        
         public System.Collections.Generic.List<Core.ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId) {
             return base.Channel.GetAllAvailableShiftsByDepartmentId(departmentId);
         }
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.ScheduleShift>> GetAllAvailableShiftsByDepartmentIdAsync(int departmentId) {
             return base.Channel.GetAllAvailableShiftsByDepartmentIdAsync(departmentId);
-        }
-
-        public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

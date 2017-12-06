@@ -52,21 +52,23 @@ namespace Tests.BusinessLogic
             Assert.IsTrue(isPasswordCorrect);
             Assert.IsFalse(isPasswordIncorrect);
         }
-
         [TestMethod]
         public void TestInsertEmployee()
         {
             _mockEmployeeRepository.Setup(x => x.InsertEmployee(It.IsAny<Employee>()));
-            try
-            {
-                _employeeController.InsertEmployee(new Employee());
-            }
-            catch (System.Exception)
-            {
-            }
-            
+
+            _employeeController.InsertEmployee(new Employee());
 
             _mockEmployeeRepository.VerifyAll();
+        }
+
+
+        [TestMethod]
+        public void TestPasswordHashing()
+        {
+            string input = "Password";
+            string output = PasswordHashing.HashPassword(input);
+            Assert.AreNotEqual(input, output);
         }
     }
 }
