@@ -87,8 +87,14 @@ namespace Tests.DatabaseAccess
                                       "password varchar(40), " +
                                       "departmentId int foreign key references Department(id), " +
                                       "isEmployed bit not null); "
-
                                       +
+                                      //Salt
+                                      "create table Salt(" +
+                                      "id int primary key identity(1,1), " +
+                                      "saltvalue varchar(50) not null, " +
+                                      "employeeId int foreign key references Employee(id)); "
+                                      +
+
                                       //TemplateSchedule
                                       "create table TemplateSchedule(" +
                                       "id int primary key identity(1,1), " +
@@ -173,8 +179,12 @@ namespace Tests.DatabaseAccess
 
                                       "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, salt, departmentId, isEmployed)" +
                                       "values ('Stefan Krabbe', 'stefankrabbe@gmail.com', '12093847', 30, 1, 'SKrabbe', 'a63c6b68454d1b13ea6471f287eba37b', 'fptdv', (select id from department where name='Kolonial'), 1); "
-
                                       +
+                                      //Salt
+                                      "insert into Salt(saltvalue, employeeId) " +
+                                      "values ('gtieo', (select id from Employee where name='Mikkel Paulsen')); " +
+
+
                                       //TemplateSchedule
                                       "insert into TemplateSchedule(name, noOfWeeks, departmentId) " +
                                       "values ('KolonialBasis', 1, (select id from department where name = 'Kolonial')); " +
