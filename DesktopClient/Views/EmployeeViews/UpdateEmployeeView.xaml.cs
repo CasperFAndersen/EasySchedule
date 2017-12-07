@@ -56,7 +56,7 @@ namespace DesktopClient.Views.EmployeeViews
                     emp.IsAdmin = Convert.ToBoolean(ChkIsAdmin.IsChecked);
                     emp.IsEmployed = Convert.ToBoolean(ChkIsActive.IsChecked);
                     emp.Username = TxtUsername.Text;
-                    emp.Password = TxtPassword.Text;
+                    emp.Password = TxtPassword.Password;
                     //Department selectedDepartment = (Department)CBoxDepartment.SelectedItem;
                     //emp.DepartmentId = selectedDepartment.Id;
 
@@ -117,7 +117,7 @@ namespace DesktopClient.Views.EmployeeViews
                 ChkIsAdmin.IsChecked = emp.IsAdmin;
                 ChkIsActive.IsChecked = emp.IsEmployed;
                 TxtUsername.Text = emp.Username;
-                TxtPassword.Text = emp.Password;
+                TxtPassword.Password = emp.Password;
             }
             else
             {

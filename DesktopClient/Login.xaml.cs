@@ -30,19 +30,25 @@ namespace DesktopClient
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Employee employee = null;
-            EmployeeProxy employeeService = new EmployeeProxy();
+            EmployeeProxy employeeProxy = new EmployeeProxy();
 
             try
             {
-                employee = employeeService.ValidatePassword(TxtUsername.Text, PwBox.Password);
-
-                Mediator.GetInstance().OnLoginButtonClicked(employee);
+                employee = employeeProxy.ValidatePassword(TxtUsername.Text, PwBox.Password);
+                if (employee != null)
+                {
+                    Mediator.GetInstance().OnLoginButtonClicked(employee);
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
 
             }
-            catch (Exception)
+            catch (ArgumentException)
             {
 
-                MessageBox.Show("Something went wrong. Please try again");
+                MessageBox.Show("Something went wrong with the login information. Please try again");
             }
 
 
