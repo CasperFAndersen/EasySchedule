@@ -54,9 +54,9 @@ namespace Tests.BusinessLogic
         [TestMethod]
         public void TestGetAllAvailbleShiftsByDepartmentId()
         {
-            scheduleController._shiftRepository = shiftRepository;
+            scheduleController.ShiftRepository = shiftRepository;
             scheduleController.GetAllAvailableShiftsByDepartmentId(1);
-            scheduleController._shiftRepository.AssertWasCalled(x => x.GetAllAvailableShiftsByDepartmentId(1));
+            scheduleController.ShiftRepository.AssertWasCalled(x => x.GetAllAvailableShiftsByDepartmentId(1));
         }
 
         [TestMethod]
@@ -97,7 +97,7 @@ namespace Tests.BusinessLogic
         public void TestAcceptAvailableShift()
         {
 
-            scheduleController._shiftRepository = MockRepository.GenerateMock<IShiftRepository>();
+            scheduleController.ShiftRepository = MockRepository.GenerateMock<IShiftRepository>();
 
             ScheduleShift shift = new ScheduleShift()
             {
@@ -109,7 +109,7 @@ namespace Tests.BusinessLogic
             Employee employee = new Employee();
 
             scheduleController.AcceptAvailableShift(shift, employee);
-            scheduleController._shiftRepository.AssertWasCalled(x => x.AcceptAvailableShift(shift, employee));
+            scheduleController.ShiftRepository.AssertWasCalled(x => x.AcceptAvailableShift(shift, employee));
         }
 
         [TestMethod()]

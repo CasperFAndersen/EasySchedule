@@ -14,14 +14,13 @@ namespace BusinessLogic
     public class ScheduleController : IScheduleController
     {
         private readonly IScheduleRepository _scheduleRepository;
-        public IShiftRepository _shiftRepository { get; set; }
+        public IShiftRepository ShiftRepository { get; set; }
 
         public ScheduleController(IScheduleRepository scheduleRepository)
         {
             _scheduleRepository = scheduleRepository;
-            _shiftRepository = new ShiftRepository();
+            ShiftRepository = new ShiftRepository();
         }
-
 
         public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
         {
@@ -78,11 +77,12 @@ namespace BusinessLogic
 
             if (shift.StartTime < DateTime.Now && shift.IsForSale)
             {
+                ShiftRepository.AcceptAvailableShift(shift, employee);
+
                 MailSender mailSender = new MailSender();
-                _shiftRepository.AcceptAvailableShift(shift, employee);
                 string subject = "A shift has been accepted";
-                string text = "text" + employee.Name;
-                mailSender.SendMailToEmployeesInDepartmentByDepartmentId(subject, text, employee.DepartmentId);
+                string text = "The shift starting " + shift.StartTime + " and has a length of " + shift.Hours + " hours has been accepted by " + employee.Name;
+                mailSender.SendMailToEmployeesInDepartmentByDepartmentId(subject, text, 1);
             }
             else
             {
@@ -92,11 +92,12 @@ namespace BusinessLogic
 
         public List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
         {
-            return _shiftRepository.GetAllAvailableShiftsByDepartmentId(departmentId);
+            return ShiftRepository.GetAllAvailableShiftsByDepartmentId(departmentId);
         }
 
         public void SetShiftForSaleById(int scheduleShiftId)
         {
+            //TODO: Instead of ScheduleShiftId it should be a ScheduleShift-object, so that we can send more info about the shift in the email.
             IShiftRepository shiftRepository = new ShiftRepository();
             shiftRepository.SetScheduleShiftForSaleById(scheduleShiftId);
         }
