@@ -30,9 +30,9 @@
         <Label Grid.Row="2" Grid.Column="0" Content="Email:"></Label>
         <TextBox x:Name="TxtEmail" Grid.Row="2" Grid.Column="1"></TextBox>
         <Label Grid.Row="3" Grid.Column="0" Content="Phone number:"></Label>
-        <TextBox x:Name="TxtPhone" Grid.Row="3" Grid.Column="1"></TextBox>
+        <TextBox x:Name="TxtPhone" Grid.Row="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox"></TextBox>
         <Label Grid.Row="4" Grid.Column="0" Content="Number of hours per week:"></Label>
-        <TextBox x:Name="TxtNoOfHours" Grid.Row="4" Grid.Column="1"></TextBox>
+        <TextBox x:Name="TxtNoOfHours" Grid.Row="4" Grid.Column="1" PreviewTextInput="NumberValidationTextBox"></TextBox>
         <Label Grid.Row="5" Grid.Column="0" Content="Admin rights:"></Label>
         <CheckBox x:Name="ChkIsAdmin" Grid.Row="5" Grid.Column="1" IsChecked="False"></CheckBox>
         <Label Grid.Row="6" Grid.Column="0" Content="Is active:"></Label>
