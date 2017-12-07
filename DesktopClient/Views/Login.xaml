@@ -26,7 +26,7 @@
         <Label Grid.Row="1" Content="Username:" HorizontalContentAlignment="left" VerticalContentAlignment="Center" FontSize="18"/>
         <Label Grid.Row="3" Content="Password:" VerticalContentAlignment="Center" FontSize="18" HorizontalAlignment="Left"/>
         <TextBox Name="TxtUsername" Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" FontSize="18" />
-        <PasswordBox  Name="PwBox"  Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" FontSize="18"   />
-        <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Login" FontSize="16" FontWeight="Bold" Click="Button_Click"/>
+        <PasswordBox  Name="PwBox"  Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" FontSize="18" />
+        <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Login" FontSize="16" FontWeight="Bold" Click="Button_Click" IsDefault="True" />
     </Grid>
 </UserControl>

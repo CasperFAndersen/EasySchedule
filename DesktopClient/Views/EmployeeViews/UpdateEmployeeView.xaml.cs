@@ -89,7 +89,7 @@ namespace DesktopClient.Views.EmployeeViews
             TxtPassword.Clear();
         }
 
-        private void cBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ClearEmployeeView();
             Department tempDept = (Department)CBoxDepartment.SelectedItem;
