@@ -51,6 +51,15 @@ namespace Tests.BusinessLogic
 
             Assert.IsNotNull(employee);
             Assert.AreEqual("TobiAs", employee.Username);
+
+            string salt = employee.Salt;
+            string password = "CanYouGuessMyPass";
+            string HashedPassword = PasswordHashing.HashPassword(salt + password);
+
+            Employee afterHashingEmployee = employeeController.GetEmployeeByUsername("TobiAs");
+            string hashedPasswordFromDb = employee.Password;
+
+            Assert.AreEqual(HashedPassword, hashedPasswordFromDb);
         }
 
         [TestMethod]

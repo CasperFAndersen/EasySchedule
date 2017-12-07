@@ -40,9 +40,7 @@ namespace BusinessLogic
             Employee employee = GetEmployeeByUsername(username);
             string salt = _employeeRepository.GetSaltFromEmployeePassword(employee);
             password = PasswordHashing.HashPassword(salt + password);
-            bool res;
-            res = employee.Password.Equals(password);
-            if (res)
+            if (employee.Password.Equals(password))
             {
                 return employee;
             }
