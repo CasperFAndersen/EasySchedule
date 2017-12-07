@@ -15,7 +15,7 @@ namespace BusinessLogic
     {
         private readonly IScheduleRepository _scheduleRepository;
         public IShiftRepository _shiftRepository { get; set; }
-       
+
         public ScheduleController(IScheduleRepository scheduleRepository)
         {
             _scheduleRepository = scheduleRepository;
@@ -75,15 +75,18 @@ namespace BusinessLogic
 
         public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
         {
-            
-            if(shift.StartTime < DateTime.Now && shift.IsForSale)
+
+            if (shift.StartTime < DateTime.Now && shift.IsForSale)
             {
-                
+                MailSender mailSender = new MailSender();
                 _shiftRepository.AcceptAvailableShift(shift, employee);
+                string subject = "A shift has been accepted";
+                string text = "text" + employee.Name;
+                mailSender.SendMailToEmployeesInDepartmentByDepartmentId(subject, text, employee.DepartmentId);
             }
             else
             {
-                throw new ArgumentException("Failure to accept shift. One or more arguments are illigal!");
+                throw new ArgumentException("Failure to accept shift. One or more arguments are illegal!");
             }
         }
 
