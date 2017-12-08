@@ -33,7 +33,6 @@ namespace DatabaseAccess.Employees
                     }
                 }
                 return employees;
-
             }
             catch (Exception)
             {
@@ -65,11 +64,9 @@ namespace DatabaseAccess.Employees
                     }
                 }
                 return employee;
-
             }
             catch (Exception)
             {
-
                 throw new Exception("something went wrong, try again!");
             }
         }
@@ -133,7 +130,6 @@ namespace DatabaseAccess.Employees
                 List<Employee> employees = new List<Employee>();
                 using (SqlConnection connection = new DbConnection().GetConnection())
                 {
-                    //connection.Open();
                     using (SqlCommand command = connection.CreateCommand())
                     {
                         command.CommandText = "SELECT * FROM Employee WHERE Employee.departmentId = @param1;";
@@ -286,17 +282,17 @@ namespace DatabaseAccess.Employees
         public Employee BuildEmployeeObject(SqlDataReader reader)
         {
             Employee employee = new Employee();
-            employee.Id = Convert.ToInt32(reader["Id"].ToString());
-            employee.Name = reader["Name"].ToString();
-            employee.Mail = reader["Email"].ToString();
-            employee.Phone = reader["Phone"].ToString();
-            employee.NoOfHours = Convert.ToInt32(reader["NoOfHours"].ToString());
-            employee.IsAdmin = reader.GetBoolean(5);
+            employee.Id = Convert.ToInt32(reader["id"].ToString());
+            employee.Name = reader["name"].ToString();
+            employee.Mail = reader["email"].ToString();
+            employee.Phone = reader["phone"].ToString();
+            employee.NoOfHours = Convert.ToInt32(reader["noOfHours"].ToString());
+            employee.IsAdmin = Convert.ToBoolean(reader["isAdmin"].ToString());
             employee.Username = reader["username"].ToString();
             employee.Password = reader["password"].ToString();
             employee.DepartmentId = Convert.ToInt32(reader["departmentId"].ToString());
-            employee.Salt = reader["Salt"].ToString();
-            employee.IsEmployed = reader.GetBoolean(10);
+            employee.Salt = reader["salt"].ToString();
+            employee.IsEmployed = Convert.ToBoolean(reader["isEmployed"].ToString());
             return employee;
         }
     }
