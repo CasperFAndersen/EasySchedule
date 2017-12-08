@@ -14,14 +14,20 @@ namespace Tests.DatabaseAccess
         [TestInitialize]
         public void TestInitialize()
         {
+            DbSetUp.SetUpDb();
             _departmentRepository = new DepartmentRepository();
+        }
+
+        [TestCleanup]
+        public void TearDown()
+        {
+            DbSetUp.SetUpDb();
         }
 
         [TestMethod]
         public void TestGetDepartmentById()
         {
             Department department = _departmentRepository.GetDepartmentById(1);
-
             Assert.IsNotNull(department);
             Assert.AreEqual(3, department.Employees.Count);
             Assert.AreEqual("Mikkel Paulsen", department.Employees[0].Name);
@@ -31,8 +37,14 @@ namespace Tests.DatabaseAccess
         public void TestGetAllDepartments()
         {
             List<Department> departments = _departmentRepository.GetAllDepartments();
+            Assert.AreEqual(5, departments.Count);
+        }
 
-            Assert.AreEqual(3, departments.Count);
+        [TestMethod()]
+        public void GetDepartmentsByWorkplaceIdTest()
+        {
+            List<Department> departments = _departmentRepository.GetDepartmentsByWorkplaceId(1);
+            Assert.AreEqual(2, departments.Count);
         }
     }
 }

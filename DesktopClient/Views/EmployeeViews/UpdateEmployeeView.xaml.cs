@@ -26,9 +26,9 @@ namespace DesktopClient.Views.EmployeeViews
                 Mediator.GetInstance().OnUpdateEmployeeClicked();
         }
 
-        private void LoadDepartmentList()
+        private async void LoadDepartmentList()
         {
-            List<Department> departments = new DepartmentEvents().LoadDeparmentList();
+            List<Department> departments = await new DepartmentController().GetDepartmentsByLoggedinEmployee();
             CBoxDepartment.ItemsSource = departments;
             CBoxDepartment.DisplayMemberPath = "Name";
         }

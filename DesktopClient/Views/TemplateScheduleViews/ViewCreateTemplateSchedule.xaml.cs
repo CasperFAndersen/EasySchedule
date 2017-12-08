@@ -17,9 +17,9 @@ namespace DesktopClient.Views.TemplateScheduleViews
             NoOfWeeks.ItemsSource = new int[] { 1, 2, 3, 4 };
         }
 
-        public void LoadDeparmentList()
+        public async void LoadDeparmentList()
         {
-            List<Department> departmens = new DepartmentEvents().LoadDeparmentList();
+            List<Department> departmens = await new DepartmentController().GetDepartmentsByLoggedinEmployee();
             CBoxDepartment.ItemsSource = departmens;
             CBoxDepartment.DisplayMemberPath = "Name";
         }

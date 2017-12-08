@@ -128,11 +128,8 @@ namespace DatabaseAccess.Employees
 
         public List<Employee> GetEmployeesByDepartmentId(int departmentId)
         {
-
             try
             {
-
-
                 List<Employee> employees = new List<Employee>();
                 using (SqlConnection connection = new DbConnection().GetConnection())
                 {

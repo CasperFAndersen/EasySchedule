@@ -14,6 +14,7 @@
       <xs:element minOccurs="0" name="Mail" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkplaceId" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Department" nillable="true" type="tns:Department" />

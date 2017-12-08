@@ -29,8 +29,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
             int[] weeks = { 1, 2, 3, 4 };
             Weeks.ItemsSource = weeks;
             Weeks.SelectedItem = templateSchedule.NoOfWeeks;
-            Department dep = new DepartmentProxy().GetDepartmentById(templateSchedule.DepartmentId);
-            TxtBoxTemplateScheduleName.Text = dep.Name;
+            Department department = new DepartmentProxy().GetDepartmentById(templateSchedule.DepartmentId);
+            TxtBoxTemplateScheduleName.Text = department.Name;
             Mediator.GetInstance().OnTemplateScheduleSelected(sender, templateSchedule);
         }
 

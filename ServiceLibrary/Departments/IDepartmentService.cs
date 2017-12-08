@@ -1,14 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
+using Core;
 
 namespace ServiceLibrary.Departments
-{   [ServiceContract]
+{
+    [ServiceContract]
     public interface IDepartmentService
     {
         [OperationContract]
-        List<Core.Department> GetAllDepartments();
+        List<Department> GetAllDepartments();
 
         [OperationContract]
-        Core.Department GetDepartmentById(int departmentId);
+        Department GetDepartmentById(int departmentId);
+
+        [OperationContract]
+        List<Department> GetAllDepartmentsByWorkplaceId(int workplaceId);
     }
 }

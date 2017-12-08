@@ -16,8 +16,10 @@ namespace Core
         public string Mail { get; set; }
         [DataMember]
         public string Phone { get; set; }
-
         [DataMember]
         public List<Employee> Employees { get; set; }
+        [DataMember]
+        public int WorkplaceId { get; set; }
+
     }
 }

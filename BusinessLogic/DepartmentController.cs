@@ -22,5 +22,10 @@ namespace BusinessLogic
         {
             return _departmentRepository.GetDepartmentById(id);
         }
+
+        public List<Department> GetDepartmentsByWorkplaceId(int workplaceId)
+        {
+            return _departmentRepository.GetDepartmentsByWorkplaceId(workplaceId);
+        }
     }
 }

@@ -27,4 +27,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAllDepartmentsByWorkplaceId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="workplaceId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllDepartmentsByWorkplaceIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetAllDepartmentsByWorkplaceIdResult" nillable="true" type="q3:ArrayOfDepartment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -77,6 +77,8 @@
     <Compile Include="ScheduleShifts\ScheduleShiftRepository.cs" />
     <Compile Include="Schedules\IScheduleRepository.cs" />
     <Compile Include="Schedules\MockScheduleRep.cs" />
+    <Compile Include="Workplaces\IWorkplaceRepository.cs" />
+    <Compile Include="Workplaces\WorkplaceRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

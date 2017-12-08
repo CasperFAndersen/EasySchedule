@@ -38,18 +38,18 @@ namespace DesktopClient
         CreateScheduleView createScheduleView;
         EmployeeColors employeeColors;
         ViewScheduleView viewScheduleView;
+        public static Employee Employee { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
             frame.Content = new Login();
             Menu.Visibility = Visibility.Hidden;
-            SetOnLoginButtonClicked();   
+            SetOnLoginButtonClicked();
         }
 
         private void LoginSuccess()
         {
-            
             Menu.Visibility = Visibility.Visible;
             frame.Content = null;
 
@@ -104,7 +104,7 @@ namespace DesktopClient
             scheduleCalendarViewEdit.EmployeeList.Items.Clear();
             scheduleCalendarViewEdit.Calendar.IsViewScheduleEnabled = true;
             frame.Content = scheduleCalendarViewEdit;
-            
+
             //ScheduleCalendarView scv = new ScheduleCalendarView();
             //ViewScheduleView vsv = new ViewScheduleView();
             //scv.ControlPanel.Content = vsv;
@@ -138,9 +138,10 @@ namespace DesktopClient
             {
                 if (employee != null)
                 {
+                    Employee = employee;
                     LoginSuccess();
                 }
-               
+
             };
         }
     }

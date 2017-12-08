@@ -23,10 +23,9 @@ namespace DesktopClient.Views.ScheduleViews
 
         private async void BindComboBoxData()
         {
-            List<Department> departments = await new DepartmentProxy().GetAllDepartmentsAsync();
-            cBoxDepartment.ItemsSource = departments;
+            cBoxDepartment.ItemsSource = await new DepartmentController().GetDepartmentsByLoggedinEmployee();
             cBoxDepartment.DisplayMemberPath = "Name";
-            
+
         }
 
         private void cBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)

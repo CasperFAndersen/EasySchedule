@@ -21,8 +21,7 @@ namespace DesktopClient.Views.ScheduleViews
 
         private async void BindData()
         {
-            DepartmentProxy departmentProxy = new DepartmentProxy();
-            CBoxDepartment.ItemsSource = await departmentProxy.GetAllDepartmentsAsync();
+            CBoxDepartment.ItemsSource = await new DepartmentController().GetDepartmentsByLoggedinEmployee();
             CBoxDepartment.DisplayMemberPath = "Name";
         }
 
@@ -32,7 +31,7 @@ namespace DesktopClient.Views.ScheduleViews
             Mediator.GetInstance().OnCBoxSelectionChanged(selectedDepartment);
             LoadTemplateScheduleList(selectedDepartment.Id);
             BlackOutDatePicker(selectedDepartment.Id);
-            
+
         }
 
         private async void LoadTemplateScheduleList(int departmentId)
@@ -92,7 +91,7 @@ namespace DesktopClient.Views.ScheduleViews
                 {
                     DatePicker.SelectedDate = date;
                 }
-                
+
             }
 
         }

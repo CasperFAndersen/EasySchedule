@@ -26,6 +26,12 @@ namespace DesktopClient.DepartmentService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetDepartmentById", ReplyAction="http://tempuri.org/IDepartmentService/GetDepartmentByIdResponse")]
         System.Threading.Tasks.Task<Core.Department> GetDepartmentByIdAsync(int departmentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetAllDepartmentsByWorkplaceId", ReplyAction="http://tempuri.org/IDepartmentService/GetAllDepartmentsByWorkplaceIdResponse")]
+        System.Collections.Generic.List<Core.Department> GetAllDepartmentsByWorkplaceId(int workplaceId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetAllDepartmentsByWorkplaceId", ReplyAction="http://tempuri.org/IDepartmentService/GetAllDepartmentsByWorkplaceIdResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Department>> GetAllDepartmentsByWorkplaceIdAsync(int workplaceId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +75,14 @@ namespace DesktopClient.DepartmentService {
         
         public System.Threading.Tasks.Task<Core.Department> GetDepartmentByIdAsync(int departmentId) {
             return base.Channel.GetDepartmentByIdAsync(departmentId);
+        }
+        
+        public System.Collections.Generic.List<Core.Department> GetAllDepartmentsByWorkplaceId(int workplaceId) {
+            return base.Channel.GetAllDepartmentsByWorkplaceId(workplaceId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Department>> GetAllDepartmentsByWorkplaceIdAsync(int workplaceId) {
+            return base.Channel.GetAllDepartmentsByWorkplaceIdAsync(workplaceId);
         }
     }
 }

@@ -31,5 +31,15 @@ namespace DesktopClient.Services
         {
             return proxy.GetAllDepartmentsAsync();
         }
+
+        public List<Department> GetAllDepartmentsByWorkplaceId(int workplaceId)
+        {
+            return proxy.GetAllDepartmentsByWorkplaceId(workplaceId);
+        }
+
+        public Task<List<Department>> GetAllDepartmentsByWorkplaceIdAsync(int workplaceId)
+        {
+            return proxy.GetAllDepartmentsByWorkplaceIdAsync(workplaceId);
+        }
     }
 }

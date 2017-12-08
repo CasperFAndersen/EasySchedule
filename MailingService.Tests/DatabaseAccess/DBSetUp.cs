@@ -32,7 +32,7 @@ namespace Tests.DatabaseAccess
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "drop table Shift; " +
+                    command.CommandText = "drop table ScheduleShift; " +
                                       "drop table Schedule; " +
                                       "drop table TemplateShift; " +
                                       "drop table TemplateSchedule; " +
@@ -123,7 +123,7 @@ namespace Tests.DatabaseAccess
                         ")"
                         +
                         //Shift
-                        "create table Shift(" +
+                        "create table ScheduleShift(" +
                             "id int primary key identity(1,1)," +
                             "startTime smalldatetime not null," +
                             "hours float not null," +
@@ -158,13 +158,17 @@ namespace Tests.DatabaseAccess
                                       //Department
                                       "insert into Department(name, address, email, phone, workplaceId) " +
                                       "values ('Kolonial', 'I butikken', 'butik@meny.dk', '98241966', (select id from workplace where name='Meny')); " +
+                                      "insert into Department(name, address, email, phone, workplaceId) " +
+                                      "values ('Delikatessen', 'I midten', 'delikatesse@meny.dk', '98241966', (select id from workplace where name='Meny')); " +
 
                                       "insert into Department(name, address, email, phone, workplaceId) " +
                                       "values ('Pakkecentral', 'Ude bagved', 'pakaalborg@postnord.dk', '70707030', (select id from workplace where name='PostNord Terminal Aalborg')); " +
 
                                       "insert into Department(name, address, email, phone, workplaceId) " +
-                                      "values ('Elektronik', 'Tat paa lageret', 'elektronikaalborg@bilka.dk', '70707030', (select id from workplace where name='Bilka Skalborg')); "
-                                      +
+                                      "values ('Elektronik', 'Tat paa lageret', 'elektronikaalborg@bilka.dk', '70707030', (select id from workplace where name='Bilka Skalborg')); " +
+                                      "insert into Department(name, address, email, phone, workplaceId) " +
+                                      "values ('ALT FOOD', 'I hele butikken', 'food@bilka.dk', '70707030', (select id from workplace where name='Bilka Skalborg')); " +
+
                                       //Employee
                                       "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, salt, departmentId, isEmployed) " +
                                       "values ('Mikkel Paulsen', 'mikkellpaulsen@gmail.com', '12345678', 9, 0, 'MikkelP', '93d3c0e5006d12620470cac6c7b8aa54', 'gtieo',  (select id from department where name='Kolonial'), 1); " +
@@ -181,7 +185,7 @@ namespace Tests.DatabaseAccess
                                       "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, salt, departmentId, isEmployed)" +
                                       "values ('Stefan Krabbe', 'stefankrabbe54@gmail.com', '12093847', 30, 1, 'SKrabbe', 'f618a10d2be21da7338afb0974475915', 'v@y9Txspcxx', (select id from department where name='Kolonial'), 1); "
                                       +
-                                     //TemplateSchedule
+                                      //TemplateSchedule
                                       "insert into TemplateSchedule(name, noOfWeeks, departmentId) " +
                                       "values ('KolonialBasis', 1, (select id from department where name = 'Kolonial')); " +
 
@@ -202,13 +206,13 @@ namespace Tests.DatabaseAccess
                                       "insert into Schedule(startDate, endDate,  departmentId) " +
                                       "values ('2017-11-27', '2017-12-17', 2); "
                                       +
+                                      
                                       //Shift
-
-                                      "insert into Shift(startTime, hours, scheduleId, employeeId, isForSale)" + " values('2017-11-06 15:00', 5, 1,  (select id from employee where name = 'Mikkel Paulsen'), 1); " +
-                                      "insert into shift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-24 17:00', 3, 1,  (select id from employee where name = 'Casper Froberg'), 0); " +
-                                      "insert into shift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-17 15:00', 5, 1,  (select id from employee where name = 'mikkel paulsen'), 0); " +
-                                      "insert into shift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-16 12:00', 7, 1,  (select id from employee where name = 'Stefan Krabbe'), 1); " +
-                                      "insert into Shift(startTime, hours, scheduleId, employeeId, isForSale)" + " values('2017-10-30 09:00', 2, 1,  (select id from employee where name = 'Mikkel Paulsen'), 0); ";
+                                      "insert into ScheduleShift(startTime, hours, scheduleId, employeeId, isForSale)" + " values('2017-11-06 15:00', 5, 1,  (select id from employee where name = 'Mikkel Paulsen'), 1); " +
+                                      "insert into Scheduleshift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-24 17:00', 3, 1,  (select id from employee where name = 'Casper Froberg'), 0); " +
+                                      "insert into Scheduleshift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-17 15:00', 5, 1,  (select id from employee where name = 'mikkel paulsen'), 0); " +
+                                      "insert into Scheduleshift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-16 12:00', 7, 1,  (select id from employee where name = 'Stefan Krabbe'), 1); " +
+                                      "insert into ScheduleShift(startTime, hours, scheduleId, employeeId, isForSale)" + " values('2017-10-30 09:00', 2, 1,  (select id from employee where name = 'Mikkel Paulsen'), 0); ";
                                       //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-19 16:00', 9, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
                                       //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-09 10:00', 3, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
                                       //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-11-01 16:00', 4, 1, (select id from employee where name = 'Mikkel Paulsen')); " +

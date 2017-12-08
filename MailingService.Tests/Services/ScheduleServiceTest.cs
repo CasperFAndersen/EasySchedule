@@ -47,12 +47,12 @@ namespace Tests.Services
         public void TestInsertScheduleService()
         {
             ScheduleShift shift1 = new ScheduleShift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2017, 11, 28, 8, 0, 0) };
-            Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(3), StartDate = new DateTime(2017, 11, 27, 0, 0, 0, DateTimeKind.Utc), EndDate = new DateTime(2017, 12, 15) };
+            Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(4), StartDate = new DateTime(2017, 11, 27, 0, 0, 0, DateTimeKind.Utc), EndDate = new DateTime(2017, 12, 15) };
             schedule.Shifts.Add(shift1);
 
             client.InsertScheduleToDb(schedule);
 
-            schedule = client.GetScheduleByDepartmentIdAndDate(3, new DateTime(2017, 11, 28, 0, 0, 0));
+            schedule = client.GetScheduleByDepartmentIdAndDate(4, new DateTime(2017, 11, 28, 0, 0, 0));
 
             Assert.IsNotNull(schedule);
             Assert.AreEqual(1, schedule.Shifts.Count);

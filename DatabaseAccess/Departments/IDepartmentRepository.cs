@@ -8,5 +8,6 @@ namespace DatabaseAccess.Departments
     {
         List<Department> GetAllDepartments();
         Department GetDepartmentById(int id);
+        List<Department> GetDepartmentsByWorkplaceId(int workplaceId);
     }
 }

@@ -57,6 +57,31 @@ namespace DatabaseAccess.Departments
             return department;
         }
 
+        public List<Department> GetDepartmentsByWorkplaceId(int workplaceId)
+        {
+            List<Department> departments = new List<Department>();
+
+            using (SqlConnection connection = new DbConnection().GetConnection())
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT * FROM Department WHERE Department.workplaceId = @param1";
+                    SqlParameter param1 = new SqlParameter("@param1", SqlDbType.Int);
+                    param1.Value = workplaceId;
+                    command.Parameters.Add(param1);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Department department = BuildDepartmentObject(reader);
+                            departments.Add(department);
+                        }
+                    }
+                }
+            }
+            return departments;
+        }
+
         public Department BuildDepartmentObject(SqlDataReader reader)
         {
             Department department = new Department();
@@ -65,6 +90,7 @@ namespace DatabaseAccess.Departments
             department.Address = reader["address"].ToString();
             department.Mail = reader["email"].ToString();
             department.Phone = reader["phone"].ToString();
+            department.WorkplaceId = Convert.ToInt32(reader["workplaceId"].ToString());
             department.Employees = new EmployeeRepository().GetEmployeesByDepartmentId(department.Id);
             return department;
         }
