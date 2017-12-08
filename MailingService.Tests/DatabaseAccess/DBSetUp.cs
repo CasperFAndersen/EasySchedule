@@ -179,7 +179,7 @@ namespace Tests.DatabaseAccess
                                       "	values ('Tobias Andersen', 'rivercola9800@gmail.com', '98765432', 10, 1, 'TobiAs', 'f37a6ff9c4f3ba758249d75a8bd65120', 'gepge', (select id from department where name='Pakkecentral'), 1); " +
 
                                       "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, salt, departmentId, isEmployed)" +
-                                      "values ('Stefan Krabbe', 'stefankrabbe54@gmail.com', '12093847', 30, 1, 'SKrabbe', 'a63c6b68454d1b13ea6471f287eba37b', 'fptdv', (select id from department where name='Kolonial'), 1); "
+                                      "values ('Stefan Krabbe', 'stefankrabbe54@gmail.com', '12093847', 30, 1, 'SKrabbe', 'f618a10d2be21da7338afb0974475915', 'v@y9Txspcxx', (select id from department where name='Kolonial'), 1); "
                                       +
                                      //TemplateSchedule
                                       "insert into TemplateSchedule(name, noOfWeeks, departmentId) " +
