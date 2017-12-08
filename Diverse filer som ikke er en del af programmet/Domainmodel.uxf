@@ -1,118 +1,95 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>16</zoom_level>
+  <zoom_level>12</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>400</x>
-      <y>592</y>
-      <w>160</w>
-      <h>240</h>
+      <x>456</x>
+      <y>624</y>
+      <w>132</w>
+      <h>228</h>
     </coordinates>
     <panel_attributes>Employee
 --
-name
-phone
-email
-noOfHours
-isAdmin
-username
-password</panel_attributes>
+Id
+Name
+Phone
+Mail
+NoOfHours
+IsAdmin
+Username
+Password
+IsEmployed
+Salt</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>400</x>
-      <y>320</y>
-      <w>160</w>
-      <h>160</h>
+      <x>468</x>
+      <y>324</y>
+      <w>120</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>Department
 --
-name
-address
-email
-phone</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>400</x>
-      <y>32</y>
-      <w>160</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>Workplace
---
-name
-address
-email
-phone</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>464</x>
-      <y>176</y>
-      <w>112</w>
-      <h>176</h>
-    </coordinates>
-    <panel_attributes>lt=-
-m1=1..*
-m2=1
-has &gt;</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1088</x>
-      <y>320</y>
-      <w>160</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>Schedule
---
-startDate
+Id
+Name
+Address
+Mail
+Phone
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>996</x>
+      <y>324</y>
+      <w>120</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Schedule
+--
+Id
+StartDate
+EndDate
+Department</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
     <id>Relation</id>
     <coordinates>
-      <x>464</x>
-      <y>464</y>
-      <w>80</w>
-      <h>160</h>
+      <x>516</x>
+      <y>444</y>
+      <w>60</w>
+      <h>204</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=0..*</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>544</x>
-      <y>656</y>
-      <w>256</w>
-      <h>64</h>
+      <x>576</x>
+      <y>696</y>
+      <w>156</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=0..*</panel_attributes>
-    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>544</x>
-      <y>368</y>
-      <w>224</w>
-      <h>80</h>
+      <x>576</x>
+      <y>360</y>
+      <w>168</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -123,99 +100,183 @@ has &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1088</x>
-      <y>640</y>
-      <w>160</w>
-      <h>128</h>
+      <x>996</x>
+      <y>636</y>
+      <w>120</w>
+      <h>96</h>
     </coordinates>
-    <panel_attributes>Shift
+    <panel_attributes>ScheduleShift
 --
-date
-hours
-startTime
-</panel_attributes>
+StartTime
+IsForSale</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1152</x>
-      <y>464</y>
-      <w>80</w>
-      <h>208</h>
+      <x>1044</x>
+      <y>432</y>
+      <w>60</w>
+      <h>228</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=0..1
 m2=0..*</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>768</x>
-      <y>640</y>
-      <w>160</w>
-      <h>128</h>
+      <x>708</x>
+      <y>636</y>
+      <w>168</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>TemplateShift
 --
-weekDay
-hours
-startTime
+WeekDay
+StartTime
+TemplateScheduleId
+WeekNumber</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>324</y>
+      <w>156</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>TemplateSchedule
+--
+Id
+Name
+NoOfWeeks
+DepartmentId
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>780</x>
+      <y>432</y>
+      <w>60</w>
+      <h>228</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>720</y>
+      <w>528</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;40.0;400.0;40.0;400.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>864</x>
+      <y>360</y>
+      <w>156</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>736</x>
-      <y>320</y>
-      <w>208</w>
-      <h>160</h>
+      <x>888</x>
+      <y>456</y>
+      <w>96</w>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>TemplateSchedule
+    <panel_attributes>/&lt;&lt;abstract&gt;&gt;/
+Shift
 --
-name
-noOfWeeks</panel_attributes>
+Id
+Hours
+Employee</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>832</x>
-      <y>464</y>
-      <w>80</w>
-      <h>208</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-m1=1
-m2=0..*</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>544</x>
-      <y>752</y>
-      <w>688</w>
+      <x>924</x>
+      <y>564</y>
+      <w>120</w>
       <h>96</h>
     </coordinates>
-    <panel_attributes>lt=-
-m1=1
-m2=0..*</panel_attributes>
-    <additional_attributes>10.0;30.0;390.0;30.0;390.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;80.0;40.0;80.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>928</x>
-      <y>368</y>
-      <w>192</w>
-      <h>64</h>
+      <x>828</x>
+      <y>564</y>
+      <w>132</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;90.0;40.0;10.0;40.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>552</x>
+      <y>264</y>
+      <w>552</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
-m2=0..*</panel_attributes>
-    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+m2=0..*
+has &gt;</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;20.0;420.0;20.0;420.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>468</x>
+      <y>72</y>
+      <w>120</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>Workplace
+--
+Id
+Name
+Address
+Mail
+Phone</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>192</y>
+      <w>84</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=1
+has &gt;</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

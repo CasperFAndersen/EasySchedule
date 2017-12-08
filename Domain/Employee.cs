@@ -9,7 +9,6 @@ namespace Core
     public class Employee
     {
         private string _name;
-        private string _mail;
 
         [DataMember]
         public int Id { get; set; }
@@ -37,16 +36,7 @@ namespace Core
         public string Password { get; set; }
 
         [DataMember]
-        public string Mail
-        {
-            get { return _mail; }
-            set
-            {
-                //TODO: Use RegEx
-                //Ikke brug regex -> 
-                _mail = value;
-            }
-        }
+        public string Mail { get; set; }
 
         [DataMember]
         public int DepartmentId { get; set; }
