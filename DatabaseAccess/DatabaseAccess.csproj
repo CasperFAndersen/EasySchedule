@@ -73,8 +73,8 @@
     <Compile Include="TemplateShifts\ITemplateShiftRepository.cs" />
     <Compile Include="TemplateShifts\TemplateShiftRepository.cs" />
     <Compile Include="Schedules\ScheduleRepository.cs" />
-    <Compile Include="Shifts\IShiftRepository.cs" />
-    <Compile Include="Shifts\ShiftRepository.cs" />
+    <Compile Include="ScheduleShifts\IScheduleShiftRepository.cs" />
+    <Compile Include="ScheduleShifts\ScheduleShiftRepository.cs" />
     <Compile Include="Schedules\IScheduleRepository.cs" />
     <Compile Include="Schedules\MockScheduleRep.cs" />
   </ItemGroup>

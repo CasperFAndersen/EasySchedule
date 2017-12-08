@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Core;
 
-namespace DatabaseAccess.Shifts
+namespace DatabaseAccess.ScheduleShifts
 {
-    public interface IShiftRepository
+    public interface IScheduleShiftRepository
     {
         List<ScheduleShift> GetShiftsByScheduleId(int scheduleId);
         List<ScheduleShift> GetShiftsByEmployeeId(int employeeId);

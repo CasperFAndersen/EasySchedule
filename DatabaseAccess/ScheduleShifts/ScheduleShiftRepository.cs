@@ -1,14 +1,14 @@
-﻿using Core;
-using DatabaseAccess.Employees;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Transactions;
+using Core;
+using DatabaseAccess.Employees;
 
-namespace DatabaseAccess.Shifts
+namespace DatabaseAccess.ScheduleShifts
 {
-    public class ShiftRepository : IShiftRepository
+    public class ScheduleShiftRepository : IScheduleShiftRepository
     {
         public ScheduleShift GetShiftById(int id)
         {

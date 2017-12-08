@@ -3,9 +3,9 @@ using System.Data;
 using System.Data.SqlClient;
 using Core;
 using DatabaseAccess.Departments;
-using DatabaseAccess.Shifts;
 using System.Transactions;
 using System.Collections.Generic;
+using DatabaseAccess.ScheduleShifts;
 
 namespace DatabaseAccess.Schedules
 {
@@ -15,7 +15,7 @@ namespace DatabaseAccess.Schedules
         {
             Schedule schedule = new Schedule();
             schedule.Id = reader.GetInt32(0);
-            schedule.Shifts = new ShiftRepository().GetShiftsByScheduleId(schedule.Id);
+            schedule.Shifts = new ScheduleShiftRepository().GetShiftsByScheduleId(schedule.Id);
             schedule.StartDate = reader.GetDateTime(1);
             schedule.EndDate = reader.GetDateTime(2);
             schedule.Department = new DepartmentRepository().GetDepartmentById(reader.GetInt32(3));
@@ -81,8 +81,8 @@ namespace DatabaseAccess.Schedules
 
                             int id = Convert.ToInt32(command.ExecuteScalar());
 
-                            ShiftRepository shiftRep = new ShiftRepository();
-                            shiftRep.InsertShifts(schedule.Shifts, id, connection);
+                            ScheduleShiftRepository scheduleShiftRep = new ScheduleShiftRepository();
+                            scheduleShiftRep.InsertShifts(schedule.Shifts, id, connection);
 
                             
                         }
@@ -98,8 +98,8 @@ namespace DatabaseAccess.Schedules
 
         public void UpdateSchedule(Schedule schedule)
         {
-            ShiftRepository shiftRepository = new ShiftRepository();
-            shiftRepository.AddShiftsFromSchedule(schedule);
+            ScheduleShiftRepository scheduleShiftRepository = new ScheduleShiftRepository();
+            scheduleShiftRepository.AddShiftsFromSchedule(schedule);
         }
 
     }

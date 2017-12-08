@@ -1,22 +1,22 @@
 ﻿using System.Collections.Generic;
 using Core;
-using DatabaseAccess.Shifts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DatabaseAccess.Employees;
 using DatabaseAccess;
+using DatabaseAccess.ScheduleShifts;
 
 namespace Tests.DatabaseAccess
 {
     [TestClass]
     public class ShiftRepositoryTest
     {
-        IShiftRepository shiftRepository;
+        IScheduleShiftRepository _scheduleShiftRepository;
 
         [TestInitialize]
         public void TestInitializer()
         {
             DbSetUp.SetUpDb();
-            shiftRepository = new ShiftRepository();
+            _scheduleShiftRepository = new ScheduleShiftRepository();
         }
 
         [TestCleanup]
@@ -29,7 +29,7 @@ namespace Tests.DatabaseAccess
         [TestMethod]
         public void TestGetAllShiftsByScheduleId()
         {
-            List<ScheduleShift> shifts = shiftRepository.GetShiftsByScheduleId(1);
+            List<ScheduleShift> shifts = _scheduleShiftRepository.GetShiftsByScheduleId(1);
 
             Assert.IsNotNull(shifts);
             Assert.AreNotEqual(0, shifts.Count);
@@ -39,7 +39,7 @@ namespace Tests.DatabaseAccess
         [TestMethod]
         public void TestIfShiftIsForSale()
         {
-            List<ScheduleShift> shifts = shiftRepository.GetShiftsByScheduleId(1);
+            List<ScheduleShift> shifts = _scheduleShiftRepository.GetShiftsByScheduleId(1);
             List<ScheduleShift> shiftsForSale = new List<ScheduleShift>();
             foreach (ScheduleShift s in shifts)
             {
@@ -55,25 +55,25 @@ namespace Tests.DatabaseAccess
         public void TestSetShiftForSale()
         {
             int scheduleId = 1;
-            List<ScheduleShift> shifts = shiftRepository.GetShiftsByScheduleId(scheduleId);
+            List<ScheduleShift> shifts = _scheduleShiftRepository.GetShiftsByScheduleId(scheduleId);
             ScheduleShift scheduleShift = shifts[1];
             Assert.IsFalse(scheduleShift.IsForSale);
             scheduleShift.IsForSale = true;
-            shiftRepository.UpdateScheduleShift(scheduleShift, scheduleId, new DbConnection().GetConnection());
-            List<ScheduleShift> shiftsAfterUpdate = shiftRepository.GetShiftsByScheduleId(scheduleId);
+            _scheduleShiftRepository.UpdateScheduleShift(scheduleShift, scheduleId, new DbConnection().GetConnection());
+            List<ScheduleShift> shiftsAfterUpdate = _scheduleShiftRepository.GetShiftsByScheduleId(scheduleId);
             Assert.IsTrue(shiftsAfterUpdate[1].IsForSale);
         }
 
         [TestMethod]
         public void TestAcceptAvailableShift()
         {
-            ScheduleShift shift = shiftRepository.GetShiftById(1);
+            ScheduleShift shift = _scheduleShiftRepository.GetShiftById(1);
             Employee employee = new EmployeeRepository().FindEmployeeById(5);
             Assert.AreNotEqual(shift.Employee, employee);
 
-            shiftRepository.AcceptAvailableShift(shift, employee);
+            _scheduleShiftRepository.AcceptAvailableShift(shift, employee);
 
-            shift = shiftRepository.GetShiftById(1);
+            shift = _scheduleShiftRepository.GetShiftById(1);
 
             Assert.AreEqual(shift.Employee.Name, employee.Name);
             Assert.AreEqual(shift.IsForSale, false);
@@ -82,7 +82,7 @@ namespace Tests.DatabaseAccess
         [TestMethod]
         public void TestGetAllAvailableShiftsByDepartment()
         {
-            List<ScheduleShift> availableScheduleShifts = shiftRepository.GetAllAvailableShiftsByDepartmentId(1);
+            List<ScheduleShift> availableScheduleShifts = _scheduleShiftRepository.GetAllAvailableShiftsByDepartmentId(1);
             Assert.IsNotNull(availableScheduleShifts);
             Assert.AreEqual(2, availableScheduleShifts.Count);
         }

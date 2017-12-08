@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 using Core;
 using DatabaseAccess;
 using DatabaseAccess.Schedules;
-using DatabaseAccess.Shifts;
 using DatabaseAccess.Departments;
+using DatabaseAccess.ScheduleShifts;
 
 namespace BusinessLogic
 {
     public class ScheduleController : IScheduleController
     {
         private readonly IScheduleRepository _scheduleRepository;
-        public IShiftRepository ShiftRepository { get; set; }
+        public IScheduleShiftRepository ScheduleShiftRepository { get; set; }
 
         public ScheduleController(IScheduleRepository scheduleRepository)
         {
             _scheduleRepository = scheduleRepository;
-            ShiftRepository = new ShiftRepository();
+            ScheduleShiftRepository = new ScheduleShiftRepository();
         }
 
         public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
@@ -37,7 +37,7 @@ namespace BusinessLogic
                 }
                 if (schedule != null)
                 {
-                    schedule.Shifts = new ShiftRepository().GetShiftsByScheduleId(schedule.Id);
+                    schedule.Shifts = new ScheduleShiftRepository().GetShiftsByScheduleId(schedule.Id);
                 }
              
             }
@@ -94,7 +94,7 @@ namespace BusinessLogic
 
             if (shift.StartTime < DateTime.Now && shift.IsForSale)
             {
-                ShiftRepository.AcceptAvailableShift(shift, employee);
+                ScheduleShiftRepository.AcceptAvailableShift(shift, employee);
 
                 MailSender mailSender = new MailSender();
                 string subject = "A shift has been accepted";
@@ -109,12 +109,12 @@ namespace BusinessLogic
 
         public List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
         {
-            return ShiftRepository.GetAllAvailableShiftsByDepartmentId(departmentId);
+            return ScheduleShiftRepository.GetAllAvailableShiftsByDepartmentId(departmentId);
         }
 
         public void SetScheduleShiftForSale(ScheduleShift scheduleShift)
         {
-            ShiftRepository.SetScheduleShiftForSale(scheduleShift);
+            ScheduleShiftRepository.SetScheduleShiftForSale(scheduleShift);
             MailSender mailSender = new MailSender();
             string subject = "A new shift has been set for sale";
             string text = scheduleShift.Employee.Name + " has set a shift starting " + scheduleShift.StartTime + " and has a length of " + scheduleShift.Hours + " hours for sale.";

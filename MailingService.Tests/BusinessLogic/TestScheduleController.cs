@@ -4,11 +4,11 @@ using Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DatabaseAccess.Schedules;
 using System.Collections.Generic;
-using DatabaseAccess.Shifts;
 using Moq;
 using Rhino.Mocks;
 using MockRepository = Rhino.Mocks.MockRepository;
 using DatabaseAccess.Employees;
+using DatabaseAccess.ScheduleShifts;
 using Tests.DatabaseAccess;
 
 //using Moq;
@@ -20,7 +20,7 @@ namespace Tests.BusinessLogic
     {
         Schedule schedule;
         Mock<IScheduleRepository> scheduleRepository;
-        private IShiftRepository shiftRepository;
+        private IScheduleShiftRepository _scheduleShiftRepository;
         ScheduleController scheduleController;
         private IScheduleRepository mockScheduleRepository;
         TemplateScheduleController templateScheduleController = new TemplateScheduleController();
@@ -29,7 +29,7 @@ namespace Tests.BusinessLogic
         [TestInitialize]
         public void InitializeTest()
         {
-            shiftRepository = MockRepository.GenerateMock<IShiftRepository>();
+            _scheduleShiftRepository = MockRepository.GenerateMock<IScheduleShiftRepository>();
             mockScheduleRepository = MockRepository.GenerateMock<IScheduleRepository>();
             scheduleController = new ScheduleController(mockScheduleRepository);
         }
@@ -88,9 +88,9 @@ namespace Tests.BusinessLogic
         [TestMethod]
         public void TestGetAllAvailbleShiftsByDepartmentId()
         {
-            scheduleController.ShiftRepository = shiftRepository;
+            scheduleController.ScheduleShiftRepository = _scheduleShiftRepository;
             scheduleController.GetAllAvailableShiftsByDepartmentId(1);
-            scheduleController.ShiftRepository.AssertWasCalled(x => x.GetAllAvailableShiftsByDepartmentId(1));
+            scheduleController.ScheduleShiftRepository.AssertWasCalled(x => x.GetAllAvailableShiftsByDepartmentId(1));
         }
 
         [TestMethod]
@@ -131,7 +131,7 @@ namespace Tests.BusinessLogic
         public void TestAcceptAvailableShift()
         {
 
-            scheduleController.ShiftRepository = MockRepository.GenerateMock<IShiftRepository>();
+            scheduleController.ScheduleShiftRepository = MockRepository.GenerateMock<IScheduleShiftRepository>();
 
             ScheduleShift shift = new ScheduleShift()
             {
@@ -143,7 +143,7 @@ namespace Tests.BusinessLogic
             Employee employee = new Employee();
 
             scheduleController.AcceptAvailableShift(shift, employee);
-            scheduleController.ShiftRepository.AssertWasCalled(x => x.AcceptAvailableShift(shift, employee));
+            scheduleController.ScheduleShiftRepository.AssertWasCalled(x => x.AcceptAvailableShift(shift, employee));
         }
 
         [TestMethod()]
