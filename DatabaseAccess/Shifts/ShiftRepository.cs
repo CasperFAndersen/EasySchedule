@@ -10,7 +10,6 @@ namespace DatabaseAccess.Shifts
 {
     public class ShiftRepository : IShiftRepository
     {
-
         public ScheduleShift GetShiftById(int id)
         {
             ScheduleShift shift = new ScheduleShift();
@@ -209,7 +208,7 @@ namespace DatabaseAccess.Shifts
             }
         }
 
-        public void SetScheduleShiftForSaleById(int scheduleShiftId)
+        public void SetScheduleShiftForSale(ScheduleShift scheduleShift)
         {
             try
             {
@@ -219,7 +218,7 @@ namespace DatabaseAccess.Shifts
                     {
                         command.CommandText = "UPDATE Shift SET IsForSale = @param1 WHERE Id = @param2";
                         command.Parameters.AddWithValue("@param1", true);
-                        command.Parameters.AddWithValue("@param2", scheduleShiftId);
+                        command.Parameters.AddWithValue("@param2", scheduleShift.Id);
                         command.ExecuteNonQuery();
                     }
                 }
@@ -227,7 +226,7 @@ namespace DatabaseAccess.Shifts
             catch (Exception e)
             {
 
-                throw new Exception("Something went wrong when setting the shift for sale. \n" + e.Message);
+                throw new Exception("Something went wrong when setting the shift for sale." + e.Message);
             }
         }
 
@@ -253,8 +252,6 @@ namespace DatabaseAccess.Shifts
 
                         command.ExecuteNonQuery();
                     }
-
-
                 }
             }
             catch (Exception e)

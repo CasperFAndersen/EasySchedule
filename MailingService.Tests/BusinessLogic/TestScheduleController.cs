@@ -174,7 +174,7 @@ namespace Tests.BusinessLogic
             };
 
             schedules.Add(schedule);
-           // scheduleRepository = new Mock<IScheduleRepository>();
+            // scheduleRepository = new Mock<IScheduleRepository>();
             //scheduleRepository.Setup(x => x.GetSchedulesByDepartmentId(1).Returns(schedules));
         }
 
@@ -202,7 +202,7 @@ namespace Tests.BusinessLogic
 
             Assert.IsFalse(schedule.Shifts[1].IsForSale);
 
-            scheduleController.SetShiftForSaleById(2);
+            scheduleController.SetScheduleShiftForSale(new ScheduleShift { Id = 2 });
 
             schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 12));
             Assert.IsTrue(schedule.Shifts[1].IsForSale);

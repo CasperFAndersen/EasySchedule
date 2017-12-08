@@ -19,6 +19,6 @@ namespace DatabaseAccess.Shifts
         ScheduleShift BuildShiftObject(SqlDataReader reader);
         List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
         ScheduleShift GetShiftById(int id);
-        void SetScheduleShiftForSaleById(int scheduleShiftId);
+        void SetScheduleShiftForSale(ScheduleShift scheduleShift);
     }
 }

@@ -35,9 +35,9 @@ namespace ServiceLibrary.Schedules
             scheduleController.UpdateSchedule(schedule);
         }
 
-        public void SetShiftForSaleById(int scheduleShiftId)
+        public void SetScheduleShiftForSale(ScheduleShift scheduleShift)
         {
-            scheduleController.SetShiftForSaleById(scheduleShiftId);
+            scheduleController.SetScheduleShiftForSale(scheduleShift);
         }
 
         public void AcceptAvailableShift(ScheduleShift shift, Employee employee)

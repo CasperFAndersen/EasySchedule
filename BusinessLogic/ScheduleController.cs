@@ -82,7 +82,7 @@ namespace BusinessLogic
                 MailSender mailSender = new MailSender();
                 string subject = "A shift has been accepted";
                 string text = "The shift starting " + shift.StartTime + " and has a length of " + shift.Hours + " hours has been accepted by " + employee.Name;
-                mailSender.SendMailToEmployeesInDepartmentByDepartmentId(subject, text, 1);
+                mailSender.SendMailToEmployeesInDepartmentByDepartmentId(subject, text, employee.DepartmentId);
             }
             else
             {
@@ -95,11 +95,13 @@ namespace BusinessLogic
             return ShiftRepository.GetAllAvailableShiftsByDepartmentId(departmentId);
         }
 
-        public void SetShiftForSaleById(int scheduleShiftId)
+        public void SetScheduleShiftForSale(ScheduleShift scheduleShift)
         {
-            //TODO: Instead of ScheduleShiftId it should be a ScheduleShift-object, so that we can send more info about the shift in the email.
-            IShiftRepository shiftRepository = new ShiftRepository();
-            shiftRepository.SetScheduleShiftForSaleById(scheduleShiftId);
+            ShiftRepository.SetScheduleShiftForSale(scheduleShift);
+            MailSender mailSender = new MailSender();
+            string subject = "A new shift has been set for sale";
+            string text = scheduleShift.Employee.Name + " has set a shift starting " + scheduleShift.StartTime + " and has a length of " + scheduleShift.Hours + " hours for sale.";
+            mailSender.SendMailToEmployeesInDepartmentByDepartmentId(subject, text, scheduleShift.Employee.DepartmentId);
         }
     }
 }

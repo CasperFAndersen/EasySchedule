@@ -48,14 +48,10 @@ namespace EasyScheduleWebClient.Services
             throw new NotImplementedException();
         }
 
-
-
         public Task<Schedule[]> GetSchedulesByDepartmentIdAsync(int departmentId)
         {
             throw new NotImplementedException();
         }
-
-
 
         public void InsertScheduleToDb(Schedule schedule)
         {
@@ -77,12 +73,12 @@ namespace EasyScheduleWebClient.Services
             throw new NotImplementedException();
         }
 
-        public void SetShiftForSaleById(int scheduleShiftId)
+        public void SetScheduleShiftForSale(ScheduleShift scheduleShift)
         {
-            proxy.SetShiftForSaleById(scheduleShiftId);
+            proxy.SetScheduleShiftForSale(scheduleShift);
         }
 
-        public Task SetShiftForSaleByIdAsync(int scheduleShiftId)
+        public Task SetScheduleShiftForSaleAsync(ScheduleShift scheduleShift)
         {
             throw new NotImplementedException();
         }

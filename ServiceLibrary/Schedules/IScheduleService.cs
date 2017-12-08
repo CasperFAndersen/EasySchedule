@@ -9,19 +9,26 @@ namespace ServiceLibrary.Schedules
     public interface IScheduleService
     {
         [OperationContract]
-        Core.Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date);
+        Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date);
+
         [OperationContract]
-        void InsertScheduleToDb(Core.Schedule schedule);
+        void InsertScheduleToDb(Schedule schedule);
+
         [OperationContract]
-        void UpdateSchedule(Core.Schedule schedule);
+        void UpdateSchedule(Schedule schedule);
+
         [OperationContract]
-        List<Core.Schedule> GetSchedulesByDepartmentId(int departmentId);
+        List<Schedule> GetSchedulesByDepartmentId(int departmentId);
+
         [OperationContract]
-        Core.Schedule GenerateScheduleFromTemplateScheduleAndStartDate(Core.TemplateSchedule templateSchedule, DateTime startTime);
+        Schedule GenerateScheduleFromTemplateScheduleAndStartDate(TemplateSchedule templateSchedule, DateTime startTime);
+
         [OperationContract]
-        void SetShiftForSaleById(int scheduleShiftId);
+        void SetScheduleShiftForSale(ScheduleShift scheduleShift);
+
         [OperationContract]
         void AcceptAvailableShift(ScheduleShift shift, Employee employee);
+
         [OperationContract]
         List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
     }
