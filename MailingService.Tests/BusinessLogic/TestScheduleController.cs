@@ -136,7 +136,7 @@ namespace Tests.BusinessLogic
                 IsAdmin = true,
                 IsEmployed = true,
                 Mail = "employee@employee.dk",
-                NumbOfHours = 10,
+                NoOfHours = 10,
                 Username = "emp",
                 Password = "emp",
                 Phone = "12345678"
@@ -148,7 +148,7 @@ namespace Tests.BusinessLogic
                 Id = 1,
                 Name = "Test",
                 Address = "Address",
-                Email = "test@test.dk",
+                Mail = "test@test.dk",
                 Employees = employees,
                 Phone = "98765432"
             };

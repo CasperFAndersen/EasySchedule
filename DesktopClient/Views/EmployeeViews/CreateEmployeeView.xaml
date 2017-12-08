@@ -27,7 +27,7 @@
         <ComboBox x:Name="CBoxDepartment" Grid.Row="0" Grid.Column="1"></ComboBox>
         <Label  Grid.Row="1" Grid.Column="0" Content="Name:"></Label>
         <TextBox x:Name="TxtName" Grid.Row="1" Grid.Column="1"></TextBox>
-        <Label Grid.Row="2" Grid.Column="0" Content="Email:"></Label>
+        <Label Grid.Row="2" Grid.Column="0" Content="Mail:"></Label>
         <TextBox x:Name="TxtEmail" Grid.Row="2" Grid.Column="1"></TextBox>
         <Label Grid.Row="3" Grid.Column="0" Content="Phone number:"></Label>
         <TextBox x:Name="TxtPhone" Grid.Row="3" Grid.Column="1" PreviewTextInput="NumberValidationTextBox"></TextBox>

@@ -38,7 +38,7 @@ namespace Tests.Services
                 IsAdmin = false,
                 Mail = "andersen@aa.dk",
                 Phone = "98901349",
-                NumbOfHours = 37,
+                NoOfHours = 37,
                 IsEmployed = true,
                 Username = "AAndersen",
                 DepartmentId = 3,

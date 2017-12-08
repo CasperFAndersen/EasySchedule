@@ -52,7 +52,7 @@ namespace DesktopClient.Views.EmployeeViews
                     emp.Name = TxtName.Text;
                     emp.Mail = TxtEmail.Text;
                     emp.Phone = TxtPhone.Text;
-                    emp.NumbOfHours = Convert.ToInt32(TxtNoOfHours.Text);
+                    emp.NoOfHours = Convert.ToInt32(TxtNoOfHours.Text);
                     emp.IsAdmin = Convert.ToBoolean(ChkIsAdmin.IsChecked);
                     emp.IsEmployed = Convert.ToBoolean(ChkIsActive.IsChecked);
                     emp.Username = TxtUsername.Text;
@@ -113,7 +113,7 @@ namespace DesktopClient.Views.EmployeeViews
                 TxtName.Text = emp.Name;
                 TxtEmail.Text = emp.Mail;
                 TxtPhone.Text = emp.Phone;
-                TxtNoOfHours.Text = emp.NumbOfHours.ToString();
+                TxtNoOfHours.Text = emp.NoOfHours.ToString();
                 ChkIsAdmin.IsChecked = emp.IsAdmin;
                 ChkIsActive.IsChecked = emp.IsEmployed;
                 TxtUsername.Text = emp.Username;

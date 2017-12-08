@@ -192,7 +192,7 @@ namespace DatabaseAccess.Employees
                             p1.Value = employee.Name;
                             p2.Value = employee.Mail;
                             p3.Value = employee.Phone;
-                            p4.Value = employee.NumbOfHours;
+                            p4.Value = employee.NoOfHours;
                             p5.Value = employee.IsAdmin;
                             p6.Value = employee.Username;
                             p7.Value = employee.Password;
@@ -254,7 +254,7 @@ namespace DatabaseAccess.Employees
                             p1.Value = employee.Name;
                             p2.Value = employee.Mail;
                             p3.Value = employee.Phone;
-                            p4.Value = employee.NumbOfHours;
+                            p4.Value = employee.NoOfHours;
                             p5.Value = employee.IsAdmin;
                             p6.Value = employee.Username;
                             p7.Value = employee.Password;
@@ -293,9 +293,9 @@ namespace DatabaseAccess.Employees
             Employee employee = new Employee();
             employee.Id = Convert.ToInt32(reader["Id"].ToString());
             employee.Name = reader["Name"].ToString();
-            employee.Mail = reader["Email"].ToString();
+            employee.Mail = reader["Mail"].ToString();
             employee.Phone = reader["Phone"].ToString();
-            employee.NumbOfHours = Convert.ToInt32(reader["NoOfHours"].ToString());
+            employee.NoOfHours = Convert.ToInt32(reader["NoOfHours"].ToString());
             employee.IsAdmin = reader.GetBoolean(5);
             employee.Username = reader["username"].ToString();
             employee.Password = reader["password"].ToString();
