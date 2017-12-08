@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core;
 using DatabaseAccess.Departments;
-using DatabaseAccess.Employees;
 
 namespace BusinessLogic
 {
@@ -16,29 +15,17 @@ namespace BusinessLogic
 
         public List<Department> GetAllDepartments()
         {
-            List<Department> departments = _departmentRepository.GetAllDepartments();
-            foreach (Department department in departments)
-            {
-                department.Employees = new EmployeeController(new EmployeeRepository()).GetEmployeesByDepartmentId(department.Id);
-            }
-            return departments;
+            return _departmentRepository.GetAllDepartments();
         }
 
         public Department GetDepartmentById(int id)
         {
-            Department department = _departmentRepository.GetDepartmentById(id);
-            department.Employees = new EmployeeController(new EmployeeRepository()).GetEmployeesByDepartmentId(department.Id);
-            return department;
+            return _departmentRepository.GetDepartmentById(id);
         }
 
         public List<Department> GetDepartmentsByWorkplaceId(int workplaceId)
         {
-            List<Department> departments = _departmentRepository.GetDepartmentsByWorkplaceId(workplaceId);
-            foreach (Department department in departments)
-            {
-                department.Employees = new EmployeeController(new EmployeeRepository()).GetEmployeesByDepartmentId(department.Id);
-            }
-            return departments;
+            return _departmentRepository.GetDepartmentsByWorkplaceId(workplaceId);
         }
     }
 }

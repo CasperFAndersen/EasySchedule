@@ -12,13 +12,12 @@ namespace BusinessLogic
 {
     public class EmployeeController : IEmployeeController
     {
-        private InputValidator _inputValidator;
+        InputValidator inputValidator = new InputValidator();
         private readonly IEmployeeRepository _employeeRepository;
 
         public EmployeeController(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
-            _inputValidator = new InputValidator();
         }
 
         public List<Employee> GetAllEmployees()
@@ -56,13 +55,13 @@ namespace BusinessLogic
                 employee.Password = PasswordHashing.HashPassword(employee.Salt + employee.Password);
                 if
                 (
-                Regex.IsMatch(employee.Name, _inputValidator.EmployeeNameCheck)
+                Regex.IsMatch(employee.Name, inputValidator.EmployeeNameCheck)
                 &&
-                Regex.IsMatch(employee.Phone, _inputValidator.EmployeePhoneCheck)
+                Regex.IsMatch(employee.Phone, inputValidator.EmployeePhoneCheck)
                 &&
-                Regex.IsMatch(employee.Mail, _inputValidator.EmployeeEmailCheck)
+                Regex.IsMatch(employee.Mail, inputValidator.EmployeeEmailCheck)
                 &&
-                Regex.IsMatch(employee.Username, _inputValidator.EmployeeUsernameCheck)
+                Regex.IsMatch(employee.Username, inputValidator.EmployeeUsernameCheck)
                 &&
                 employee.NoOfHours >= 0
                 )
@@ -94,13 +93,13 @@ namespace BusinessLogic
 
                 if
                 (
-                    Regex.IsMatch(employee.Name, _inputValidator.EmployeeNameCheck)
+                    Regex.IsMatch(employee.Name, inputValidator.EmployeeNameCheck)
                     &&
-                    Regex.IsMatch(employee.Phone, _inputValidator.EmployeePhoneCheck)
+                    Regex.IsMatch(employee.Phone, inputValidator.EmployeePhoneCheck)
                     &&
-                    Regex.IsMatch(employee.Mail, _inputValidator.EmployeeEmailCheck)
+                    Regex.IsMatch(employee.Mail, inputValidator.EmployeeEmailCheck)
                     &&
-                    Regex.IsMatch(employee.Username, _inputValidator.EmployeeUsernameCheck)
+                    Regex.IsMatch(employee.Username, inputValidator.EmployeeUsernameCheck)
                     &&
                     employee.NoOfHours >= 0
                 )
@@ -115,7 +114,7 @@ namespace BusinessLogic
             catch (Exception)
             {
 
-                throw new Exception("An error has occured when trying to update an employee.");
+                throw;
             }
         }
 
