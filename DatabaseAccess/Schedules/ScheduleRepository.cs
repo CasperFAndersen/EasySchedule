@@ -83,8 +83,6 @@ namespace DatabaseAccess.Schedules
 
                             ScheduleShiftRepository scheduleShiftRep = new ScheduleShiftRepository();
                             scheduleShiftRep.InsertShifts(schedule.Shifts, id, connection);
-
-                            
                         }
                         scope.Complete();
                     }
