@@ -91,7 +91,6 @@ namespace DatabaseAccess.Departments
             department.Mail = reader["email"].ToString();
             department.Phone = reader["phone"].ToString();
             department.WorkplaceId = Convert.ToInt32(reader["workplaceId"].ToString());
-            department.Employees = new EmployeeRepository().GetEmployeesByDepartmentId(department.Id);
             return department;
         }
     }
