@@ -44,10 +44,8 @@ namespace DatabaseAccess.Employees
 
         public Employee GetEmployeeByUsername(string username)
         {
-
             try
             {
-
                 Employee employee = new Employee();
                 using (SqlConnection connection = new DbConnection().GetConnection())
                 {
@@ -293,7 +291,7 @@ namespace DatabaseAccess.Employees
             Employee employee = new Employee();
             employee.Id = Convert.ToInt32(reader["Id"].ToString());
             employee.Name = reader["Name"].ToString();
-            employee.Mail = reader["Mail"].ToString();
+            employee.Mail = reader["Email"].ToString();
             employee.Phone = reader["Phone"].ToString();
             employee.NoOfHours = Convert.ToInt32(reader["NoOfHours"].ToString());
             employee.IsAdmin = reader.GetBoolean(5);

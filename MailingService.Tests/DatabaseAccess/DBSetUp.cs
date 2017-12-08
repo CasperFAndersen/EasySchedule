@@ -83,8 +83,8 @@ namespace Tests.DatabaseAccess
                         "noOfHours float not null," +
                         "isAdmin bit not null," +
                         "username varchar(40) not null unique," +
-                        "salt varchar(40) not null," +
                         "password varchar(40) not null," +
+                        "salt varchar(40) not null, " +
                         "departmentId int foreign key references Department(id) not null," +
                         "isEmployed bit not null," +
                         "constraint ck_noOfHours_positive check(noOfHours >= 0)," +
@@ -200,14 +200,14 @@ namespace Tests.DatabaseAccess
                                       "values ('2017-10-30', '2017-12-10', 1); " +
 
                                       "insert into Schedule(startDate, endDate,  departmentId) " +
-                                      "values ('2017-11-27', '2017-12-18', 2); "
+                                      "values ('2017-11-27', '2017-12-17', 2); "
                                       +
                                       //Shift
 
                                       "insert into Shift(startTime, hours, scheduleId, employeeId, isForSale)" + " values('2017-11-06 15:00', 5, 1,  (select id from employee where name = 'Mikkel Paulsen'), 1); " +
-                                      "insert into shift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-24 17:00', 3, 1,  (select id from employee where name = 'mikkel paulsen'), 0); " +
+                                      "insert into shift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-24 17:00', 3, 1,  (select id from employee where name = 'Casper Froberg'), 0); " +
                                       "insert into shift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-17 15:00', 5, 1,  (select id from employee where name = 'mikkel paulsen'), 0); " +
-                                      "insert into shift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-16 12:00', 7, 1,  (select id from employee where name = 'mikkel paulsen'), 1); " +
+                                      "insert into shift(starttime, hours, scheduleid, employeeid, isForSale)" + " values('2017-11-16 12:00', 7, 1,  (select id from employee where name = 'Stefan Krabbe'), 1); " +
                                       "insert into Shift(startTime, hours, scheduleId, employeeId, isForSale)" + " values('2017-10-30 09:00', 2, 1,  (select id from employee where name = 'Mikkel Paulsen'), 0); ";
                                       //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-19 16:00', 9, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +
                                       //"insert into Shift(startTime, hours, scheduleId, employeeId)" + " values('2017-10-09 10:00', 3, 1,  (select id from employee where name = 'Mikkel Paulsen')); " +

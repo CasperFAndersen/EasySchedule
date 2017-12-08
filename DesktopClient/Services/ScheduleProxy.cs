@@ -82,12 +82,12 @@ namespace DesktopClient.Services
             throw new NotImplementedException();
         }
 
-        public void SetShiftForSaleById(int scheduleShiftId)
+        public void SetScheduleShiftForSale(ScheduleShift scheduleShift)
         {
-            proxy.SetShiftForSaleById(scheduleShiftId);
+            proxy.SetScheduleShiftForSale(scheduleShift);
         }
 
-        public Task SetShiftForSaleByIdAsync(int scheduleShiftId)
+        public Task SetScheduleShiftForSaleAsync(ScheduleShift scheduleShift)
         {
             throw new NotImplementedException();
         }

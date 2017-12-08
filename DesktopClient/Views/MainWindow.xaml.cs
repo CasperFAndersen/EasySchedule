@@ -101,6 +101,8 @@ namespace DesktopClient
         private void ViewScheduleMenuItemClicked(object sender, RoutedEventArgs e)
         {
             scheduleCalendarViewEdit.ControlPanel.Content = viewScheduleView;
+            scheduleCalendarViewEdit.EmployeeList.Items.Clear();
+            scheduleCalendarViewEdit.Calendar.IsViewScheduleEnabled = true;
             frame.Content = scheduleCalendarViewEdit;
             
             //ScheduleCalendarView scv = new ScheduleCalendarView();
@@ -124,14 +126,21 @@ namespace DesktopClient
         {
             scheduleCalendarCreate.ControlPanel.Content = createScheduleView;
             scheduleCalendarCreate.Calendar.SetOnCreateScheduleClicked();
+            scheduleCalendarCreate.EmployeeList.Items.Clear();
+            scheduleCalendarCreate.Calendar.IsViewScheduleEnabled = false;
             frame.Content = scheduleCalendarCreate;
+            scheduleCalendarCreate.Calendar.IsEnabled = false;
         }
 
         private void SetOnLoginButtonClicked()
         {
             Mediator.GetInstance().LoginButtonClicked += (employee) =>
             {
-                LoginSuccess();
+                if (employee != null)
+                {
+                    LoginSuccess();
+                }
+               
             };
         }
     }

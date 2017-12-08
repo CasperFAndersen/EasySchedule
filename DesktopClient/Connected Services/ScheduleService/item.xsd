@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Core" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Core" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:9000/ServiceLibrary/ScheduleService/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:import schemaLocation="http://localhost:9000/ServiceLibrary/ScheduleService/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
@@ -15,12 +15,11 @@
   <xs:complexType name="Department">
     <xs:sequence>
       <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Mail" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Employees" nillable="true" type="tns:ArrayOfEmployee" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Mail" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="WorkplaceId" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Department" nillable="true" type="tns:Department" />

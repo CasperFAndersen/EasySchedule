@@ -91,9 +91,9 @@ namespace DesktopClient.Views.TemplateScheduleViews
 
         private void SetOnDepartmentBoxSelected()
         {
-            Mediator.GetInstance().DepartmentBoxChanged += (e, d) =>
+            Mediator.GetInstance().DepartmentBoxChanged += (d) =>
             {
-                LoadEmployeeList(e);
+                LoadEmployeeList(d.Employees);
                 DepartmentName.Content = d.Name;
             };
         }

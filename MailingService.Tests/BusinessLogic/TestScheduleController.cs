@@ -8,6 +8,8 @@ using DatabaseAccess.Shifts;
 using Moq;
 using Rhino.Mocks;
 using MockRepository = Rhino.Mocks.MockRepository;
+using DatabaseAccess.Employees;
+using Tests.DatabaseAccess;
 
 //using Moq;
 
@@ -49,6 +51,38 @@ namespace Tests.BusinessLogic
             Schedule s = new Schedule();
             mockScheduleRepository.InsertSchedule(s);
             mockScheduleRepository.AssertWasCalled(x => x.InsertSchedule(s));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void TestTryToInsertOverlappingSchedule()
+        {
+            scheduleController = new ScheduleController(new ScheduleRepository());
+
+            Schedule schedule1 = new Schedule()
+            {
+                Department = new Department() { Id = 1 },
+                StartDate = new DateTime(2018, 12, 4),
+                EndDate = new DateTime(2018, 12, 11),
+                Shifts = new List<ScheduleShift>(),
+            };
+
+            ScheduleShift shift1 = new ScheduleShift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2018, 12, 5, 8, 0, 0) };
+            schedule1.Shifts.Add(shift1);
+            scheduleController.InsertScheduleToDb(schedule1);
+
+            Schedule schedule2 = new Schedule()
+            {
+                Department = new Department() { Id = 1 },
+                StartDate = new DateTime(2018, 11, 27),
+                EndDate = new DateTime(2018, 12, 5),
+                Shifts = new List<ScheduleShift>(),
+            };
+
+            ScheduleShift shift2 = new ScheduleShift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2018, 11, 28, 8, 0, 0) };
+            schedule1.Shifts.Add(shift2);
+
+            scheduleController.InsertScheduleToDb(schedule2);
         }
 
         [TestMethod]
@@ -197,15 +231,16 @@ namespace Tests.BusinessLogic
         [TestMethod]
         public void TestUpdateScheduleWithShiftSetForSale()
         {
+            DbSetUp.SetUpDb();
             scheduleController = new ScheduleController(new ScheduleRepository());
             Schedule schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 12));
 
             Assert.IsFalse(schedule.Shifts[1].IsForSale);
 
-            scheduleController.SetScheduleShiftForSale(new ScheduleShift { Id = 2 });
-
+            scheduleController.SetScheduleShiftForSale(schedule.Shifts[1]);
             schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 12));
             Assert.IsTrue(schedule.Shifts[1].IsForSale);
+            DbSetUp.SetUpDb();
         }
     }
 }
