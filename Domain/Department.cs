@@ -13,11 +13,10 @@ namespace Core
         [DataMember]
         public string Address { get; set; }
         [DataMember]
-        public string Email { get; set; }
+        public string Mail { get; set; }
         [DataMember]
         public string Phone { get; set; }
-        [DataMember]
-        public int WorkplaceId { get; set; }
+
         [DataMember]
         public List<Employee> Employees { get; set; }
     }

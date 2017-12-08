@@ -46,7 +46,7 @@ namespace DesktopClient.Views.EmployeeViews
                     emp.Name = TxtName.Text;
                     emp.Mail = TxtEmail.Text;
                     emp.Phone = TxtPhone.Text;
-                    emp.NumbOfHours = Convert.ToInt32(TxtNoOfHours.Text);
+                    emp.NoOfHours = Convert.ToInt32(TxtNoOfHours.Text);
                     emp.IsAdmin = Convert.ToBoolean(ChkIsAdmin.IsChecked);
                     emp.IsEmployed = Convert.ToBoolean(ChkIsActive.IsChecked);
                     emp.Username = TxtUsername.Text;

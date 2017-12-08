@@ -25,7 +25,7 @@ namespace Core
         public string Phone { get; set; }
 
         [DataMember]
-        public int NumbOfHours { get; set; }
+        public int NoOfHours { get; set; }
 
         [DataMember]
         public bool IsAdmin { get; set; }

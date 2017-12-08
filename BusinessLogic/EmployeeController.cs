@@ -63,7 +63,7 @@ namespace BusinessLogic
                 &&
                 Regex.IsMatch(employee.Username, inputValidator.EmployeeUsernameCheck)
                 &&
-                employee.NumbOfHours >= 0
+                employee.NoOfHours >= 0
                 )
                 {
                     _employeeRepository.InsertEmployee(employee);
@@ -101,7 +101,7 @@ namespace BusinessLogic
                     &&
                     Regex.IsMatch(employee.Username, inputValidator.EmployeeUsernameCheck)
                     &&
-                    employee.NumbOfHours >= 0
+                    employee.NoOfHours >= 0
                 )
                 {
                     _employeeRepository.UpdateEmployee(employee);
