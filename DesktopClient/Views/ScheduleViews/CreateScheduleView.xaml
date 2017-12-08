@@ -27,7 +27,7 @@
         </Grid.ColumnDefinitions>
         <ComboBox Name="CBoxDepartment" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="cBoxDepartment_SelectionChanged"/>
         <ListView Name="ListTemplateSchedule" Grid.Column="1" Grid.Row="3"></ListView>
-        <DatePicker Name="DatePicker" Grid.Column="2" Grid.Row="3"/>
+        <DatePicker Name="DatePicker" Grid.Column="2" Grid.Row="3" SelectedDateChanged="DatePicker_SelectedDateChanged" FontSize="16" FontWeight="Bold" />
         <Button Name="BtnGenerateSchedule" Content="Generate" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Click="btnGenerateSchedule_Click"/>
         <Button Name="BtnPublishSchedule" Content="Publish" Grid.Column="2" Grid.Row="7" Click="btnPublishSchedule_Click" />
     </Grid>

@@ -36,6 +36,7 @@ namespace EasyScheduleWebClient.Controllers
        
         }
 
+       [HttpPost]
         public ActionResult AcceptShift(ScheduleShift scheduleShift)
         {
             Employee employee = new Employee();

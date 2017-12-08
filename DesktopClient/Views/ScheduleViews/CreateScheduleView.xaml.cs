@@ -29,8 +29,10 @@ namespace DesktopClient.Views.ScheduleViews
         private void cBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Department selectedDepartment = (Department)CBoxDepartment.SelectedItem;
+            Mediator.GetInstance().OnCBoxSelectionChanged(selectedDepartment);
             LoadTemplateScheduleList(selectedDepartment.Id);
             BlackOutDatePicker(selectedDepartment.Id);
+            
         }
 
         private async void LoadTemplateScheduleList(int departmentId)
@@ -51,6 +53,7 @@ namespace DesktopClient.Views.ScheduleViews
         private void BlackOutDatePicker(int departmentId)
         {
             DatePicker.BlackoutDates.Clear();
+            DatePicker.SelectedDate = null;
             ScheduleProxy scheduleProxy = new ScheduleProxy();
 
             List<Core.Schedule> schedules = scheduleProxy.GetSchedulesByDepartmentId(departmentId);
@@ -77,6 +80,21 @@ namespace DesktopClient.Views.ScheduleViews
         private void btnPublishSchedule_Click(object sender, RoutedEventArgs e)
         {
             Mediator.GetInstance().OnCreateScheduleButtonClicked();
+        }
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DatePicker.SelectedDate != null)
+            {
+                DateTime date = (DateTime)DatePicker.SelectedDate;
+                date = (date.DayOfWeek == DayOfWeek.Sunday) ? (date.AddDays(-6)) : (date.AddDays(-(int)date.DayOfWeek + 1));
+                if (!DatePicker.BlackoutDates.Contains(date))
+                {
+                    DatePicker.SelectedDate = date;
+                }
+                
+            }
+
         }
     }
 }

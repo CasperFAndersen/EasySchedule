@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using Core;
 using DatabaseAccess.TemplateShifts;
+using System.Transactions;
 
 namespace DatabaseAccess.TemplateSchedules
 {
@@ -13,7 +14,7 @@ namespace DatabaseAccess.TemplateSchedules
             List<TemplateSchedule> templateSchedules = new List<TemplateSchedule>();
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-               // connection.Open();
+                // connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateSchedule", connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -27,30 +28,35 @@ namespace DatabaseAccess.TemplateSchedules
                         }
                     }
                 }
-               // connection.Close();
+                // connection.Close();
             }
             return templateSchedules;
         }
 
         public void AddTemplateScheduleToDatabase(TemplateSchedule templateSchedule)
         {
-            TemplateShiftRepository templateShiftRepository = new TemplateShiftRepository();
-            int templateScheduleId;
-
-            using (SqlConnection connection = new DbConnection().GetConnection())
+            using (TransactionScope scope = new TransactionScope())
             {
-                //connection.Open();
-                using (SqlCommand command = new SqlCommand(
-                    "INSERT INTO TemplateSchedule (name, NoOfWeeks, departmentID) " +
-                    "VALUES (@param1,@param2,@param3) SELECT SCOPE_IDENTITY()", connection))
+                TemplateShiftRepository templateShiftRepository = new TemplateShiftRepository();
+                int templateScheduleId;
+
+                using (SqlConnection connection = new DbConnection().GetConnection())
                 {
-                    command.Parameters.AddWithValue("@param1", templateSchedule.Name);
-                    command.Parameters.AddWithValue("@param2", templateSchedule.NoOfWeeks);
-                    command.Parameters.AddWithValue("@param3", templateSchedule.DepartmentId);
-                    templateScheduleId = Convert.ToInt32(command.ExecuteScalar());
+                    using (SqlCommand command = new SqlCommand(
+                        "INSERT INTO TemplateSchedule (name, NoOfWeeks, departmentID) " +
+                        "VALUES (@param1,@param2,@param3) SELECT SCOPE_IDENTITY()", connection))
+                    {
+                        command.Parameters.AddWithValue("@param1", templateSchedule.Name);
+                        command.Parameters.AddWithValue("@param2", templateSchedule.NoOfWeeks);
+                        command.Parameters.AddWithValue("@param3", templateSchedule.DepartmentId);
+                        templateScheduleId = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                    templateShiftRepository.AddTemplateShiftsFromTemplateSchedule(templateScheduleId, templateSchedule.TemplateShifts, connection);
                 }
+                
+                scope.Complete();
             }
-            templateShiftRepository.AddTemplateShiftsFromTemplateSchedule(templateScheduleId, templateSchedule.TemplateShifts);
+
         }
 
         public TemplateSchedule FindTemplateScheduleByName(string scheduleName)
@@ -58,7 +64,6 @@ namespace DatabaseAccess.TemplateSchedules
             TemplateSchedule templateSchedule = null;
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                //connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateSchedule WHERE Name = @param1", connection))
                 {
                     command.Parameters.AddWithValue("@param1", scheduleName);
@@ -71,25 +76,29 @@ namespace DatabaseAccess.TemplateSchedules
                         }
                     }
                 }
-                //connection.Close();
             }
             return templateSchedule;
         }
 
         public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)
         {
-            using (SqlConnection connection = new DbConnection().GetConnection())
+            using(TransactionScope scope = new TransactionScope())
             {
-               // connection.Open();
-                using (SqlCommand command = new SqlCommand("UPDATE TemplateSchedule SET noOfWeeks = @param1", connection))
+                using (SqlConnection connection = new DbConnection().GetConnection())
                 {
-                    command.Parameters.AddWithValue("@param1", templateSchedule.NoOfWeeks);
-                    command.ExecuteNonQuery();
+
+                    using (SqlCommand command = new SqlCommand("UPDATE TemplateSchedule SET noOfWeeks = @param1", connection))
+                    {
+                        command.Parameters.AddWithValue("@param1", templateSchedule.NoOfWeeks);
+                        command.ExecuteNonQuery();
+                    }
+                    TemplateShiftRepository templateShiftRepository = new TemplateShiftRepository();
+                    templateShiftRepository.AddTemplateShiftsFromTemplateSchedule(templateSchedule.Id, templateSchedule.TemplateShifts, connection);
+
                 }
-                TemplateShiftRepository templateShiftRepository = new TemplateShiftRepository();
-                templateShiftRepository.AddTemplateShiftsFromTemplateSchedule(templateSchedule.Id, templateSchedule.TemplateShifts);
-                //connection.Close();
+                scope.Complete();
             }
+
         }
     }
 }

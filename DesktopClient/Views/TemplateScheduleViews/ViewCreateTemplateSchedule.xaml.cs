@@ -26,8 +26,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
 
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            List<Employee> employees = new EmployeeEvents().GetListOfEmployees((Department)CBoxDepartment.SelectedItem);
-            Mediator.GetInstance().OnDepartmentBoxSelected(employees, (Department)CBoxDepartment.SelectedItem);
+            //List<Employee> employees = new EmployeeEvents().GetListOfEmployees((Department)CBoxDepartment.SelectedItem);
+            Mediator.GetInstance().OnDepartmentBoxSelected((Department)CBoxDepartment.SelectedItem);
         }
 
         private void BtnSaveTemplateSchedule_Click(object sender, RoutedEventArgs e)

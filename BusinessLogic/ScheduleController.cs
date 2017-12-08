@@ -27,14 +27,22 @@ namespace BusinessLogic
         {
             Schedule schedule = null;
             List<Schedule> schedules = _scheduleRepository.GetSchedulesByDepartmentId(departmentId);
-            foreach (Schedule temporarySchedule in schedules)
+            if (schedules != null)
             {
-                if (date.CompareTo(temporarySchedule.StartDate) > 0 && date.CompareTo(temporarySchedule.EndDate) < 0)
+                foreach (Schedule temporarySchedule in schedules)
                 {
-                    schedule = temporarySchedule;
+                    if (date.CompareTo(temporarySchedule.StartDate) > 0 && date.CompareTo(temporarySchedule.EndDate) < 0)
+                    {
+                        schedule = temporarySchedule;
+                    }
                 }
+                if (schedule != null)
+                {
+                    schedule.Shifts = new ShiftRepository().GetShiftsByScheduleId(schedule.Id);
+                }
+             
             }
-            schedule.Shifts = new ShiftRepository().GetShiftsByScheduleId(schedule.Id);
+
 
             return schedule;
         }

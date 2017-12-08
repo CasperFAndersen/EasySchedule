@@ -241,27 +241,31 @@ namespace DatabaseAccess.Shifts
         {
             try
             {
-                using (SqlConnection connection = new DbConnection().GetConnection())
+                using(TransactionScope scope = new TransactionScope())
                 {
-
-                    using (SqlCommand command = connection.CreateCommand())
+                    using (SqlConnection connection = new DbConnection().GetConnection())
                     {
-                        command.CommandText = "UPDATE Shift SET employeeId = @param1, isForSale = 0 WHERE id = @param2;";
 
-                        SqlParameter p1 = new SqlParameter("@param1", SqlDbType.Int);
-                        SqlParameter p2 = new SqlParameter("@param2", SqlDbType.Int);
+                        using (SqlCommand command = connection.CreateCommand())
+                        {
+                            command.CommandText = "UPDATE Shift SET employeeId = @param1, isForSale = 0 WHERE id = @param2;";
 
-                        p1.Value = employee.Id;
-                        p2.Value = shift.Id;
+                            SqlParameter p1 = new SqlParameter("@param1", SqlDbType.Int);
+                            SqlParameter p2 = new SqlParameter("@param2", SqlDbType.Int);
 
-                        command.Parameters.Add(p1);
-                        command.Parameters.Add(p2);
+                            p1.Value = employee.Id;
+                            p2.Value = shift.Id;
 
-                        command.ExecuteNonQuery();
+                            command.Parameters.Add(p1);
+                            command.Parameters.Add(p2);
+
+                            command.ExecuteNonQuery();
+                        }
+
                     }
-
-
+                    scope.Complete();
                 }
+     
             }
             catch (Exception e)
             {

@@ -8,6 +8,7 @@ using DatabaseAccess.Shifts;
 using Moq;
 using Rhino.Mocks;
 using MockRepository = Rhino.Mocks.MockRepository;
+using DatabaseAccess.Employees;
 
 //using Moq;
 
@@ -52,9 +53,35 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestInsertOverlappingSchedule()
+        [ExpectedException(typeof(Exception))]
+        public void TestTryToInsertOverlappingSchedule()
         {
+            scheduleController = new ScheduleController(new ScheduleRepository());
 
+            Schedule schedule1 = new Schedule()
+            {
+                Department = new Department() { Id = 1 },
+                StartDate = new DateTime(2018, 12, 4),
+                EndDate = new DateTime(2018, 12, 11),
+                Shifts = new List<ScheduleShift>(),
+            };
+
+            ScheduleShift shift1 = new ScheduleShift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2018, 12, 5, 8, 0, 0) };
+            schedule1.Shifts.Add(shift1);
+            scheduleController.InsertScheduleToDb(schedule1);
+
+            Schedule schedule2 = new Schedule()
+            {
+                Department = new Department() { Id = 1 },
+                StartDate = new DateTime(2018, 11, 27),
+                EndDate = new DateTime(2018, 12, 5),
+                Shifts = new List<ScheduleShift>(),
+            };
+
+            ScheduleShift shift2 = new ScheduleShift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2018, 11, 28, 8, 0, 0) };
+            schedule1.Shifts.Add(shift2);
+
+            scheduleController.InsertScheduleToDb(schedule2);
         }
 
         [TestMethod]

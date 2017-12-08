@@ -28,6 +28,41 @@ namespace EasyScheduleWebClient.Controllers
             return new JsonResult { Data = shifts, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        public ActionResult GetShiftsByEmployee()
+        {
+            List<ScheduleShift> res = new List<ScheduleShift>();
+            ScheduleProxy scheduleProxy = new ScheduleProxy();
+            Core.Employee emp = (Core.Employee)Session["employee"];
+            List<Core.ScheduleShift> shifts = scheduleProxy.GetScheduleByDepartmentIdAndDate(emp.DepartmentId, DateTime.Now).Shifts;
+            res = shifts.Where(x => x.Employee.Name == emp.Name).ToList();
+
+            return new JsonResult { Data = res, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+
+
+        public ActionResult GetLoggedInEmployee()
+        {
+            if ((Core.Employee)Session["employee"] != null)
+            {
+                return new JsonResult { Data = (Core.Employee)Session["employee"], JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            return null;
+           
+        }
+
+        [HttpPost]
+        public ActionResult AcceptShift(ScheduleShift scheduleShift)
+        {
+            Employee employee = new Employee();
+            employee = (Employee)Session["employee"];
+
+            ScheduleProxy scheduleProxy = new ScheduleProxy();
+            scheduleProxy.AcceptAvailableShift(scheduleShift, employee);
+
+            return null;
+        }
+
         [HttpPost]
         public JsonResult SetShiftForSale(ScheduleShift scheduleShift)
         {

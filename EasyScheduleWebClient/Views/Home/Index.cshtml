@@ -25,6 +25,10 @@
                 <label for='drop-remove'>remove after drop</label>
             </p>
         </div>*@
+    <div id="CheckBoxDiv">
+        <label for="OnlyMyShifts">View only my shifts</label>
+        <input type="checkbox" id="OnlyMyShifts" onchange="OnCheckBoxSelect()" />
+    </div>
 
     <div id='calendar'></div>
 
@@ -44,6 +48,18 @@
         text-align: center;
         font-size: 14px;
         font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    }
+
+    #OnlyMyShifts {
+        transform: scale(2);
+        margin-left: 2%;
+        /*margin-top: 19.5vh;
+        margin-left: 50vw;*/
+    }
+
+    #CheckBoxDiv {
+        margin-right: 68%;
+        margin-bottom: 2%;
     }
 
     #wrap {
@@ -84,28 +100,51 @@
             }
 
     #calendar {
-        float: right;
+        /*float: right;*/
+        margin: auto;
         width: 900px;
     }
 </style>
 
 @section scripts{
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="~/Scripts/locale-all.js"></script>
 
     <script>
+        var employee;
+        var events = [];
+        var employeeShifts = [];
+
+        function OnCheckBoxSelect() {
+            if (document.getElementById("OnlyMyShifts").checked) {
+                $('#calendar').fullCalendar("removeEvents");
+                $("#calendar").fullCalendar('addEventSource', employeeShifts);
+                $('#calendar').fullCalendar("refresh");
+            }
+            else {
+                $('#calendar').fullCalendar("removeEvents");
+                $("#calendar").fullCalendar('addEventSource', events);
+                $('#calendar').fullCalendar("refresh");
+            }
+
+        }
+
+
 
         $(document).ready(function () {
 
 
-            var events = [];
+
             FetchEventAndRenderCalendar();
+            GetLogginInEmployee();
+            GetShiftsByEmployee();
 
 
-            function FetchEventAndRenderCalendar() {
+
+            function GetShiftsByEmployee() {
                 $.ajax({
                     type: "GET",
-                    url: "/Home/GetEvents",
+                    url: "/Home/GetShiftsByEmployee",
                     success: function (data) {
                         $.each(data, function (i, v) {
                             var col;
@@ -115,14 +154,56 @@
                             else {
                                 col = 'red';
                             }
+                            employeeShifts.push({
+                                eventID: v.Id,
+                                title: v.Employee.Name,
+                                start: moment(v.StartTime),
+                                end: moment(v.StartTime).clone().add(v.Hours, 'hour'),
+                                color: col,
+                                allDay: false
+                            });
+                        })
+                    },
+                    error: function (error) {
+                        alert('failed');
+                    }
+                });
+            }
+
+            function GetLogginInEmployee() {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetLoggedInEmployee",
+                    success: function (data) {
+                        employee = data.Name;
+                    },
+                    error: function (error) {
+                        alert('failed');
+                    }
+                })
+            }
+
+
+            function FetchEventAndRenderCalendar() {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetEvents",
+                    success: function (data) {
+
+                        $.each(data, function (i, v) {
+                            var col;
+                            employee = v.Employee.Name;
+                            if (v.IsForSale == false) {
+                                col = 'blue';
+                            }
+                            else {
+                                col = 'red';
+                            }
                             events.push({
                                 eventID: v.Id,
                                 title: v.Employee.Name,
-                                // description: v.Description,
                                 start: moment(v.StartTime),
                                 end: moment(v.StartTime).clone().add(v.Hours, 'hour'),
-                                // color: blue,//v.ThemeColor,
-                                //isForSale: v.isForSale,
                                 color: col,
                                 allDay: false
                             });
@@ -135,6 +216,80 @@
                     }
                 })
             };
+
+
+            function ReloadEvents() {
+
+                if (document.getElementById("OnlyMyShifts").checked) {
+                    employeeShifts = [];
+                    $.ajax({
+                        type: "GET",
+                        url: "/Home/GetShiftsByEmployee",
+                        success: function (data) {
+                            $.each(data, function (i, v) {
+                                var col;
+                                if (v.IsForSale == false) {
+                                    col = 'blue';
+                                }
+                                else {
+                                    col = 'red';
+                                }
+                                employeeShifts.push({
+                                    eventID: v.Id,
+                                    title: v.Employee.Name,
+                                    start: moment(v.StartTime),
+                                    end: moment(v.StartTime).clone().add(v.Hours, 'hour'),
+                                    color: col,
+                                    allDay: false
+                                });
+                            })
+                            $('#calendar').fullCalendar("removeEvents");
+                            $("#calendar").fullCalendar('addEventSource', employeeShifts);
+                            $('#calendar').fullCalendar("refresh");
+                        },
+                        error: function (error) {
+                            alert('failed');
+                        }
+                    });
+                }
+                else {
+                    events = [];
+                    $.ajax({
+                        type: "GET",
+                        url: "/Home/GetEvents",
+                        success: function (data) {
+
+                            $.each(data, function (i, v) {
+                                var col;
+                                employee = v.Employee.Name;
+                                if (v.IsForSale == false) {
+                                    col = 'blue';
+                                }
+                                else {
+                                    col = 'red';
+                                }
+                                events.push({
+                                    eventID: v.Id,
+                                    title: v.Employee.Name,
+                                    start: moment(v.StartTime),
+                                    end: moment(v.StartTime).clone().add(v.Hours, 'hour'),
+                                    color: col,
+                                    allDay: false
+                                });
+                            });
+
+                            $('#calendar').fullCalendar("removeEvents");
+                            $("#calendar").fullCalendar('addEventSource', events);
+                            $('#calendar').fullCalendar("refresh");
+                        },
+                        error: function (error) {
+                            alert('failed');
+                        }
+
+                    });
+                }
+              
+            }
 
             function GenerateCalendar(events) {
 
@@ -158,12 +313,14 @@
                 $('#calendar').fullCalendar({
                     contentHeight: 500,
                     defaultDate: new Date(),
-                    //Buttons
                     //customButtons: {
                     //    myCustomButton: {
-                    //        text: 'Save',
+                    //        text: 'Show only my shifts',
                     //        click: function () {
-                    //            Save();
+                    //            $('#calendar').fullCalendar("removeEvents");
+                    //            $('#calendar').fullCalendar({
+                    //                events: employeeShifts
+                    //            });
                     //        }
                     //    }
                     //},
@@ -180,7 +337,7 @@
                     navLinks: true, // can click day/week names to navigate views
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
-                    locale: "da",
+                    locale: "au",
                     events: events,
                     editable: false,
                     snapDuration: '00:05:00',
@@ -197,19 +354,83 @@
                         }
                     },
                     eventClick: function (calEvent, jsEvent, view) {
-                        alert('Event: ' + calEvent.title);
-                        //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-                        //alert('View: ' + view.name);
 
-                        //// change the border color just for fun
+                        if (employee == calEvent.title) {
+                            if (calEvent.color == 'red') {
+                                swal({
+                                    title: "This shift is already set as availble",
+                                    text: "Do you wish to take it back?",
+                                    icon: "warning",
+                                    buttons: true,
+                                    dangerMode: true,
+                                })
+                                    .then((willDelete) => {
+                                        if (willDelete) {
+                                            swal("This shift is now yours again", {
+                                                icon: "success",
+                                            });
+                                            AcceptAvailableShift(calEvent);
+                                            ReloadEvents();
+                                        } else {
+                                            swal("No worries, we all click wrong from time to time");
+                                        }
+                                    });
+                            }
+                            else {
+                                swal({
+                                    title: "Are you sure?",
+                                    text: "This shift will be marked as available",
+                                    icon: "warning",
+                                    buttons: true,
+                                    dangerMode: true,
+                                })
+                                    .then((willDelete) => {
+                                        if (willDelete) {
+                                            swal("Your shift is now set as avaible", {
+                                                icon: "success",
+                                            });
+                                            SetShiftForSale(calEvent);
+                                            ReloadEvents();
+                                        } else {
+                                            swal("No worries");
+                                        }
+                                    });
+                            }
 
-                        confirm('Are you sure?');
-                        SetShiftForSale(calEvent);
-                       // $(this).css('background-color', 'blue');
+                        }
+                        else if (calEvent.color == 'red'){
+                            swal({
+                                title: "Do you wish to accept this shift?",
+                                text: "From: " + calEvent.title + " Date: " + moment(calEvent.start).format('YYYY-MM-DD') + " Time: " +
+                                moment(calEvent.start).format('HH:mm') + " - " + moment(calEvent.end).format('HH:mm'),
+                                icon: "warning",
+                                buttons: true,
+                                dangerMode: true,
+                            })
+                                .then((willDelete) => {
+                                    if (willDelete) {
+                                        swal("This shift is now yours!", {
+                                            icon: "success",
+                                        });
+                                        AcceptAvailableShift(calEvent);
+                                        ReloadEvents();
+                                    } else {
+                                        swal("No worries, we all click wrong from time to time");
+                                    }
+                                });
+                        }
+                        else {
+                            swal('You can only set your own shift for sale!')
+                        }
+                    },
 
-                    }
-                })
+                });
             }
+
+            var checkboxContainer = $('#CheckBoxDiv');
+
+            // Append it to FullCalendar.
+            $(".fc-right").append($('#CheckBoxDiv'));
 
             function Save() {
                 $.each($('#calendar').fullCalendar('clientEvents'), function (i, v) {
@@ -258,8 +479,34 @@
                     contentType: 'application/json; charset=utf-8',
                     async: false,
                     success: function () {
-                      $(this).css('background-color', 'red');
-                     
+                        $(this).css('background-color', 'red');
+
+                        //alert(JSON.stringify(event));
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+            }
+
+            function AcceptAvailableShift(calEvent) {
+
+                var event = {
+                    Id: calEvent.eventID,
+                    StartTime: calEvent.start,
+                    Hours: 4,
+                    IsForSale: true,
+                    Employee: { Name: calEvent.title }
+                }
+                $.ajax({
+                    url: '/Home/AcceptShift',
+                    type: 'POST',
+                    data: JSON.stringify(event),
+                    contentType: 'application/json; charset=utf-8',
+                    async: false,
+                    success: function () {
+                        $(this).css('background-color', 'blue');
+
                         //alert(JSON.stringify(event));
                     },
                     error: function () {
@@ -274,21 +521,4 @@
 
 }
 
-@*theme: true,
-    header: {
-        left: 'prev, next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay'
-    },
-    locale: "da",
-    contentHeight: 700,
-    defaultDate: new Date(),
-    defaultView: 'agendaWeek',
-    timeFormat: 'h(:mm)a',
-    editable: true,
-    allDaySlot: false,
-    selectable: true,
-    slotMinutes: 15,
-    eventLimit: true,
-    eventColor: '#378006',
-    events: events,*@
+
