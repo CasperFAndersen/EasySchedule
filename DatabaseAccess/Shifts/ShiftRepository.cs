@@ -247,7 +247,7 @@ namespace DatabaseAccess.Shifts
 
                         using (SqlCommand command = connection.CreateCommand())
                         {
-                            command.CommandText = "UPDATE Shift SET employeeId = @param1, isForSale = 0 WHERE id = @param2;";
+                            command.CommandText = "UPDATE Shift SET employeeId = @param1, isForSale = 0 WHERE id = @param2 AND isForSale = 1;";
 
                             SqlParameter p1 = new SqlParameter("@param1", SqlDbType.Int);
                             SqlParameter p2 = new SqlParameter("@param2", SqlDbType.Int);
@@ -258,7 +258,11 @@ namespace DatabaseAccess.Shifts
                             command.Parameters.Add(p1);
                             command.Parameters.Add(p2);
 
-                            command.ExecuteNonQuery();
+                            int rowsAffected = command.ExecuteNonQuery();
+                            if (rowsAffected == 0)
+                            {
+                                throw new Exception("Too slow! Shift is already accepted by another");
+                            }
                         }
 
                     }
