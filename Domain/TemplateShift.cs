@@ -18,6 +18,14 @@ namespace Core
         [DataMember]
         public int WeekNumber { get; set; }
 
+        /// <summary>
+        /// Constructor for TemplateShift which takes 5 parameters.
+        /// </summary>
+        /// <param name="weekDay"></param>
+        /// <param name="hours"></param>
+        /// <param name="startTime"></param>
+        /// <param name="templateScheduleID"></param>
+        /// <param name="employee"></param>
         public TemplateShift(DayOfWeek weekDay, double hours, TimeSpan startTime, int templateScheduleID, Employee employee)
         {
             WeekDay = weekDay;
@@ -26,6 +34,15 @@ namespace Core
             Employee = employee;
         }
 
+        /// <summary>
+        /// Constructor for TemplateShift which takes 6 parameters.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="weekDay"></param>
+        /// <param name="hours"></param>
+        /// <param name="startTime"></param>
+        /// <param name="templateScheduleId"></param>
+        /// <param name="employee"></param>
         public TemplateShift(int id, DayOfWeek weekDay, double hours, TimeSpan startTime, int templateScheduleId, Employee employee)
         {
             Id = id;

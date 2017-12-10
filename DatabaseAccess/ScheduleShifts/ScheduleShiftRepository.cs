@@ -120,7 +120,8 @@ namespace DatabaseAccess.ScheduleShifts
             }
             catch (Exception e)
             {
-                throw new Exception("" + e.Message + e.StackTrace);
+                throw new Exception("Something went wrong while adding the shifts to the database, try again!")
+               // throw new Exception("" + e.Message + e.StackTrace);
             }
         }
 
@@ -214,6 +215,11 @@ namespace DatabaseAccess.ScheduleShifts
             }
         }
 
+        /// <summary>
+        /// This method will set the chosen Shift that an employee has picked, for "sale" in the System.
+        /// This means that other employees will be able to take this shifts, and make it theirs.
+        /// </summary>
+        /// <param name="scheduleShift"></param>
         public void SetScheduleShiftForSale(ScheduleShift scheduleShift)
         {
             try
@@ -236,6 +242,11 @@ namespace DatabaseAccess.ScheduleShifts
             }
         }
 
+        /// <summary>
+        /// This method accepts a shift which has been set for sale.
+        /// </summary>
+        /// <param name="shift"></param>
+        /// <param name="employee"></param>
         public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
         {
             try
@@ -261,7 +272,7 @@ namespace DatabaseAccess.ScheduleShifts
                             int rowsAffected = command.ExecuteNonQuery();
                             if (rowsAffected == 0)
                             {
-                                throw new Exception("Too slow! Shift is already accepted by another");
+                                throw new Exception("Too slow! Shift is already accepted by another employee");
                             }
                         }
 
@@ -276,6 +287,13 @@ namespace DatabaseAccess.ScheduleShifts
             }
         }
 
+        /// <summary>
+        /// This method builds a Shift object, based on the information retrieved from the database.
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns>
+        /// returns a Shift object.
+        /// </returns>
         public ScheduleShift BuildShiftObject(SqlDataReader reader)
         {
             ScheduleShift scheduleShift = new ScheduleShift();

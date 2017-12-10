@@ -82,6 +82,13 @@ namespace DatabaseAccess.Departments
             return departments;
         }
 
+        /// <summary>
+        /// This method builds a new department object with the information retrieved from the database.
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns>
+        /// Returns a department object.
+        /// </returns>
         public Department BuildDepartmentObject(SqlDataReader reader)
         {
             Department department = new Department();

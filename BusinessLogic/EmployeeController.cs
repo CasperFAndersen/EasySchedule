@@ -35,6 +35,12 @@ namespace BusinessLogic
             return _employeeRepository.GetEmployeesByDepartmentId(departmentId);
         }
 
+        /// <summary>
+        /// This method validates a password. Its called upon login.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public Employee ValidatePassword(string username, string password)
         {
             Employee employee = GetEmployeeByUsername(username);

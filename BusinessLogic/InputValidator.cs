@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
+    /// <summary>
+    /// This class is for input checks regarding user inputs from the UI.
+    /// </summary>
     public class InputValidator
     {
         private string employeePhoneCheck;

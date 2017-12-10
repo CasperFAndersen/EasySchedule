@@ -11,6 +11,10 @@ using DatabaseAccess.Employees;
 
 namespace BusinessLogic
 {
+    /// <summary>
+    /// This class controls the outgoing emails from the system. 
+    /// It uses an api from MailGun.
+    /// </summary>
     public class MailSender
     {
         public IRestResponse SendMailToEmployeesInDepartmentByDepartmentId(string subject, string message, int departmentId)

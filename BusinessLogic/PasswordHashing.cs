@@ -9,6 +9,13 @@ namespace BusinessLogic
         public const string AllowedChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#@$^*()";
         public static Random Random = new Random();
 
+        /// <summary>
+        /// This method uses the MD5 from VisualStudios to hash passwords.
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns>
+        /// Returns a hashed string.
+        /// </returns>
         public static string HashPassword(string password)
         {
             StringBuilder builder = new StringBuilder();

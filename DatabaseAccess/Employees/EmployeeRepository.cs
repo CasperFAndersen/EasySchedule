@@ -38,7 +38,7 @@ namespace DatabaseAccess.Employees
             catch (Exception)
             {
 
-                throw new Exception("Something went wrong! Try again");
+                throw new Exception("Something went wrong while retriving all employees! Try again");
             }
         }
 
@@ -70,7 +70,7 @@ namespace DatabaseAccess.Employees
             catch (Exception)
             {
 
-                throw new Exception("something went wrong, try again!");
+                throw new Exception("something went wrong while looking for that username, try again!");
             }
         }
 
@@ -122,7 +122,7 @@ namespace DatabaseAccess.Employees
             catch (Exception)
             {
 
-                throw new Exception("Something went wrong! Try again.");
+                throw new Exception("Something went wrong while looking for that employee! Try again.");
             }
         }
 
@@ -279,10 +279,18 @@ namespace DatabaseAccess.Employees
             }
             catch (Exception e)
             {
-                Debug.Print(e.StackTrace);
+                throw new Exception("Something went wrong while updating an employee! Try again");
+                //Debug.Print(e.StackTrace);
             }
         }
 
+        /// <summary>
+        /// This method builds a new Employee object with the information retrieved from the database.
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns>
+        /// Returns a employee object.
+        /// </returns>
         public Employee BuildEmployeeObject(SqlDataReader reader)
         {
             Employee employee = new Employee();

@@ -70,6 +70,15 @@ namespace BusinessLogic
             return _scheduleRepository.GetSchedulesByDepartmentId(departmentId);
         }
 
+        /// <summary>
+        /// This method takes a templateSchedule and returns a Schedule for the user to use.
+        /// The returned Schedule can after the call be used without interfering with the template, and used as a base plan for your team.
+        /// </summary>
+        /// <param name="templateSchedule"></param>
+        /// <param name="startTime"></param>
+        /// <returns>
+        /// Returns a schedule object with shifts added.
+        /// </returns>
         public Schedule GetShiftsFromTemplateShift(TemplateSchedule templateSchedule, DateTime startTime)
         {
             Schedule schedule = new Schedule();
@@ -89,6 +98,12 @@ namespace BusinessLogic
             return schedule;
         }
 
+        /// <summary>
+        /// This method is used when a user wants to accept a shift, that is available for sale.
+        /// The method will also call the MailGun api method to send a mail to the employee whom accepted a shift.
+        /// </summary>
+        /// <param name="shift"></param>
+        /// <param name="employee"></param>
         public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
         {
 

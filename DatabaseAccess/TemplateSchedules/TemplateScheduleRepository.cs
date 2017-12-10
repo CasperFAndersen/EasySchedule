@@ -7,6 +7,7 @@ using System.Transactions;
 
 namespace DatabaseAccess.TemplateSchedules
 {
+    //TODO skal der tilføjes try catches her, med exceptions?
     public class TemplateScheduleRepository : ITemplateScheduleRepository
     {
         public IEnumerable<TemplateSchedule> GetAllTemplateSchedules()

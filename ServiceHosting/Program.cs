@@ -9,6 +9,9 @@ using ServiceLibrary.TemplateShifts;
 
 namespace ServiceHosting
 {
+    /// <summary>
+    /// This is the class which is responsible for hosting our services. This class starts all the relevant services, which we currently use.
+    /// </summary>
     class Program
     {
         static ServiceHost employeeHost = new ServiceHost(typeof(EmployeeService));

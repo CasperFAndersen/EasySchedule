@@ -7,11 +7,13 @@ using DatabaseAccess.Employees;
 
 namespace DatabaseAccess.TemplateShifts
 {
+
+    //TODO try catch? 
     public class TemplateShiftRepository : ITemplateShiftRepository
     {
         public void AddTemplateShiftsFromTemplateSchedule(int templateScheduleId, List<TemplateShift> templateShifts, SqlConnection connection)
         {
-
+            //TODO comment
             foreach (TemplateShift templateShift in templateShifts)
             {
                 using (SqlCommand insertTemplateShift = new SqlCommand("INSERT INTO TemplateShift " +
@@ -100,6 +102,13 @@ namespace DatabaseAccess.TemplateShifts
             return templateShifts;
         }
 
+        /// <summary>
+        /// This method builds a TemplateShift object based on information retrieved from the database.
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns>
+        /// Returns a TemplateShift object.
+        /// </returns>
         public TemplateShift BuildTemplateShiftObject(SqlDataReader reader)
         {
             TemplateShift templateShiftObject = new TemplateShift();
@@ -133,6 +142,14 @@ namespace DatabaseAccess.TemplateShifts
             }
             return templateShift;
         }
+
+        /// <summary>
+        /// This method returns the current day of the week.
+        /// </summary>
+        /// <param name="day"></param>
+        /// <returns>
+        /// The current day of the week.
+        /// </returns>
         public DayOfWeek GetDayOfweekBasedOnString(string day)
         {
             DayOfWeek currentDay = default(DayOfWeek);

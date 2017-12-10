@@ -11,6 +11,11 @@ namespace DatabaseAccess.Schedules
 {
     public class ScheduleRepository : IScheduleRepository
     {
+        /// <summary>
+        /// This method builds a new Schedule object with the information retrieved from the database.
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
         public Schedule BuildScheduleObject(SqlDataReader reader)
         {
             Schedule schedule = new Schedule();
@@ -22,6 +27,11 @@ namespace DatabaseAccess.Schedules
             return schedule;
         }
 
+        /// <summary>
+        /// This method builds a new Schedule without Shifts object with the information retrieved from the database.
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
         private Schedule BuildScheduleWithoutShifts(SqlDataReader reader)
         {
             Schedule schedule = new Schedule();
@@ -90,7 +100,7 @@ namespace DatabaseAccess.Schedules
             }
             catch (Exception e)
             {
-                throw new Exception("Something went wrong! Schedule not added to database." + e.Message);
+                throw new Exception("Something went wrong while adding the Schedule to the database, Try again!!" + e.Message);
             }
         }
 
@@ -99,6 +109,7 @@ namespace DatabaseAccess.Schedules
             ScheduleShiftRepository scheduleShiftRepository = new ScheduleShiftRepository();
             scheduleShiftRepository.AddShiftsFromSchedule(schedule);
         }
+        //TODO try catch? eller er det meningen?
 
     }
 }

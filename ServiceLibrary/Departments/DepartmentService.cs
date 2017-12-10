@@ -5,6 +5,7 @@ using Core;
 
 namespace ServiceLibrary.Departments
 {
+
     public class DepartmentService : IDepartmentService
     {
          IDepartmentController departmentController = new DepartmentController(new DepartmentRepository());
