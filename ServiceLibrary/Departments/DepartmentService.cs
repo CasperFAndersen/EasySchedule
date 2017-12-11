@@ -8,21 +8,21 @@ namespace ServiceLibrary.Departments
 
     public class DepartmentService : IDepartmentService
     {
-         IDepartmentController departmentController = new DepartmentController(new DepartmentRepository());
+        private readonly IDepartmentController _departmentController = new DepartmentController(new DepartmentRepository());
 
         public List<Department> GetAllDepartments()
         {
-            return departmentController.GetAllDepartments();
+            return _departmentController.GetAllDepartments();
         }
 
         public Department GetDepartmentById(int departmentId)
         {
-            return departmentController.GetDepartmentById(departmentId);
+            return _departmentController.GetDepartmentById(departmentId);
         }
 
         public List<Department> GetAllDepartmentsByWorkplaceId(int workplaceId)
         {
-            return departmentController.GetDepartmentsByWorkplaceId(workplaceId);
+            return _departmentController.GetDepartmentsByWorkplaceId(workplaceId);
         }
     }
 }

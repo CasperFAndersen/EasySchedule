@@ -12,6 +12,18 @@ namespace DatabaseAccess.Departments
 {
     public class DepartmentRepository : IDepartmentRepository
     {
+        private IDepartmentRepository _departmentRepository;
+
+        public DepartmentRepository()
+        {
+            
+        }
+
+        public DepartmentRepository(IDepartmentRepository departmentRepository)
+        {
+            _departmentRepository = departmentRepository;
+        }
+
         public List<Department> GetAllDepartments()
         {
             List<Department> departments = new List<Department>();

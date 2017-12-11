@@ -33,13 +33,6 @@ namespace Tests.Services
             Assert.AreNotEqual(0, schedule.Shifts.Count);
             Assert.AreEqual("Kolonial", schedule.Department.Name);
 
-            // Schedule schedule2 = client.GetCurrentScheduleDepartmentId(2);
-
-            //Assert.IsNotNull(schedule);
-            //Assert.AreEqual(new DateTime(2017, 11, 20), schedule2.StartDate);
-            //Assert.AreEqual(2, schedule2.Shifts.Count);
-            //Assert.AreEqual("Pakkecentral", schedule2.Department.Name);
-
         }
 
         [TestMethod]
