@@ -8,15 +8,12 @@ namespace Core
     {
         [DataMember]
         public DayOfWeek WeekDay { get; set; }
-
         [DataMember]
         public TimeSpan StartTime { get; set; }
-
-        [DataMember]
-        public int TemplateScheduleId { get; set; }
-
         [DataMember]
         public int WeekNumber { get; set; }
+        [DataMember]
+        public int TemplateScheduleId { get; set; }
 
         /// <summary>
         /// Constructor for TemplateShift which takes 5 parameters.
@@ -52,7 +49,6 @@ namespace Core
             TemplateScheduleId = templateScheduleId;
             Employee = employee;
         }
-
 
         public TemplateShift()
         {

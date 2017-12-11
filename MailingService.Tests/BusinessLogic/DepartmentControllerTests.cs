@@ -29,21 +29,6 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void GetAllDepartmentsWithMoqTest()
-        {
-            //Arrange
-            var mockDepartmentRepository = new Mock<IDepartmentRepository>();
-            mockDepartmentRepository.Setup(x => x.GetAllDepartments());
-            var departmentController = new DepartmentController(mockDepartmentRepository.Object);
-
-            //Act
-            departmentController.GetAllDepartments();
-
-            //Assert
-            mockDepartmentRepository.VerifyAll();
-        }
-
-        [TestMethod]
         public void GetDepartmentByIdTest()
         {
             Department department = _departmentController.GetDepartmentById(1);
@@ -51,7 +36,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestGetDepartmentByIdWithNegativeInput()
+        public void GetDepartmentByIdWithNegativeInputTest()
         {
             Department department = _departmentController.GetDepartmentById(-1);
             Assert.IsNull(department.Name);

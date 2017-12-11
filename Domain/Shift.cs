@@ -12,12 +12,9 @@ namespace Core
     {
         [DataMember]
         public int Id { get; set; }
-
         [DataMember]
         public Employee Employee { get; set; }
-
         [DataMember]
         public double Hours { get; set; }
-
     }
 }

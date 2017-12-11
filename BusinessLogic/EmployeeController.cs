@@ -71,7 +71,7 @@ namespace BusinessLogic
                 &&
                 Regex.IsMatch(employee.Phone, _inputValidator.EmployeePhoneCheck)
                 &&
-                Regex.IsMatch(employee.Email, inputValidator.EmployeeEmailCheck)
+                Regex.IsMatch(employee.Email, _inputValidator.EmployeeEmailCheck)
                 &&
                 Regex.IsMatch(employee.Username, _inputValidator.EmployeeUsernameCheck)
                 &&
@@ -107,7 +107,7 @@ namespace BusinessLogic
                     &&
                     Regex.IsMatch(employee.Phone, _inputValidator.EmployeePhoneCheck)
                     &&
-                    Regex.IsMatch(employee.Email, inputValidator.EmployeeEmailCheck)
+                    Regex.IsMatch(employee.Email, _inputValidator.EmployeeEmailCheck)
                     &&
                     Regex.IsMatch(employee.Username, _inputValidator.EmployeeUsernameCheck)
                     &&

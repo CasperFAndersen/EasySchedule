@@ -147,18 +147,18 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod()]
-        public void TestGetScheduleByDepartmentIdAndDate()
+        public void GetScheduleByDepartmentIdAndDateTest()
         {
             scheduleController = new ScheduleController(new ScheduleRepository());
             Schedule schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
             Assert.IsNotNull(schedule);
-            Assert.AreEqual(new DateTime(2017, 10, 30), schedule.StartDate);
-            Assert.AreEqual(new DateTime(2017, 12, 10), schedule.EndDate);
+            Assert.AreEqual(new DateTime(2017, 11, 01), schedule.StartDate);
+            Assert.AreEqual(new DateTime(2018, 01, 31), schedule.EndDate);
             Assert.AreNotEqual(0, schedule.Shifts.Count);
         }
 
         [TestMethod]
-        public void TestMakeMoqWork()
+        public void MakeMoqWorkTest()
         {
             List<Schedule> schedules = new List<Schedule>();
             List<Employee> employees = new List<Employee>();
@@ -213,7 +213,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestGetShiftsFromTemplateShift()
+        public void GetShiftsFromTemplateShiftTest()
         {
             scheduleController = new ScheduleController(new ScheduleRepository());
             Employee employee = new Employee();
@@ -229,7 +229,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestUpdateScheduleWithShiftSetForSale()
+        public void UpdateScheduleWithShiftSetForSaleTest()
         {
             DbSetUp.SetUpDb();
             scheduleController = new ScheduleController(new ScheduleRepository());

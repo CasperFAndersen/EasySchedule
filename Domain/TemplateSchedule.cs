@@ -12,16 +12,12 @@ namespace Core
     {
         [DataMember]
         public int Id { get; set; }
-
-        [DataMember]
-        public int NoOfWeeks { get; set; }
-
         [DataMember]
         public string Name { get; set; }
-
+        [DataMember]
+        public int NoOfWeeks { get; set; }
         [DataMember]
         public int DepartmentId { get; set; }
-
         [DataMember]
         public List<TemplateShift> TemplateShifts { get; set; }
 

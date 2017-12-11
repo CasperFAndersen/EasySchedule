@@ -25,12 +25,12 @@ namespace Tests.Services
         {
             ScheduleServiceClient client = new ScheduleServiceClient();
 
-            Schedule schedule = client.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 10, 31));
+            Schedule schedule = client.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 12, 15));
 
             List<ScheduleShift> shifts = schedule.Shifts;
 
             Assert.IsNotNull(schedule);
-            Assert.AreEqual(new DateTime(2017, 10, 30), schedule.StartDate);
+            Assert.AreEqual(new DateTime(2017, 11, 01), schedule.StartDate);
             Assert.AreNotEqual(0, schedule.Shifts.Count);
             Assert.AreEqual("Kolonial", schedule.Department.Name);
 
