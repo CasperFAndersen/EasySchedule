@@ -8,7 +8,7 @@ using DatabaseAccess.ScheduleShifts;
 namespace Tests.DatabaseAccess
 {
     [TestClass]
-    public class ShiftRepositoryTest
+    public class ShiftRepositoryTests
     {
         IScheduleShiftRepository _scheduleShiftRepository;
 
@@ -27,7 +27,7 @@ namespace Tests.DatabaseAccess
 
 
         [TestMethod]
-        public void TestGetAllShiftsByScheduleId()
+        public void GetAllShiftsByScheduleIdTest()
         {
             List<ScheduleShift> shifts = _scheduleShiftRepository.GetShiftsByScheduleId(1);
 
@@ -37,7 +37,7 @@ namespace Tests.DatabaseAccess
 
 
         [TestMethod]
-        public void TestIfShiftIsForSale()
+        public void ShiftIsForSaleTest()
         {
             List<ScheduleShift> shifts = _scheduleShiftRepository.GetShiftsByScheduleId(1);
             List<ScheduleShift> shiftsForSale = new List<ScheduleShift>();
@@ -52,7 +52,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestSetShiftForSale()
+        public void SetShiftForSaleTest()
         {
             int scheduleId = 1;
             List<ScheduleShift> shifts = _scheduleShiftRepository.GetShiftsByScheduleId(scheduleId);
@@ -65,7 +65,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestAcceptAvailableShift()
+        public void AcceptAvailableShiftTest()
         {
             ScheduleShift shift = _scheduleShiftRepository.GetShiftById(1);
             Employee employee = new EmployeeRepository().FindEmployeeById(5);
@@ -80,7 +80,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestGetAllAvailableShiftsByDepartment()
+        public void GetAllAvailableShiftsByDepartmentTest()
         {
             List<ScheduleShift> availableScheduleShifts = _scheduleShiftRepository.GetAllAvailableShiftsByDepartmentId(1);
             Assert.IsNotNull(availableScheduleShifts);

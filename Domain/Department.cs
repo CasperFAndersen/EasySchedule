@@ -13,7 +13,7 @@ namespace Core
         [DataMember]
         public string Address { get; set; }
         [DataMember]
-        public string Mail { get; set; }
+        public string Email { get; set; }
         [DataMember]
         public string Phone { get; set; }
         [DataMember]

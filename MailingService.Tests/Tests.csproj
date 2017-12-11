@@ -107,8 +107,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessLogic\TestTemplateScheduleController.cs" />
-    <Compile Include="BusinessLogic\TestInputValidator.cs" />
+    <Compile Include="BusinessLogic\TemplateScheduleControllerTests.cs" />
+    <Compile Include="BusinessLogic\InputValidatorTests.cs" />
     <Compile Include="Connected Services\DepartmentService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -134,24 +134,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseAccess\TemplateScheduleRepositoryTest.cs" />
-    <Compile Include="BusinessLogic\TestDepartmentController.cs" />
+    <Compile Include="DatabaseAccess\TemplateScheduleRepositoryTests.cs" />
+    <Compile Include="BusinessLogic\DepartmentControllerTests.cs" />
     <Compile Include="DatabaseAccess\DbSetUp.cs" />
-    <Compile Include="BusinessLogic\TestEmployeeController.cs" />
-    <Compile Include="BusinessLogic\TestScheduleController.cs" />
-    <Compile Include="DatabaseAccess\EmployeeRepositoryTest.cs" />
-    <Compile Include="DatabaseAccess\ScheduleRepositoryTest.cs" />
-    <Compile Include="DatabaseAccess\ShiftRepositoryTest.cs" />
-    <Compile Include="DatabaseAccess\DepartmentRepositoryTest.cs" />
-    <Compile Include="DatabaseAccess\SetupDatabaseTest.cs" />
+    <Compile Include="BusinessLogic\EmployeeControllerTests.cs" />
+    <Compile Include="BusinessLogic\ScheduleControllerTests.cs" />
+    <Compile Include="DatabaseAccess\EmployeeRepositoryTests.cs" />
+    <Compile Include="DatabaseAccess\ScheduleRepositoryTests.cs" />
+    <Compile Include="DatabaseAccess\ShiftRepositoryTests.cs" />
+    <Compile Include="DatabaseAccess\DepartmentRepositoryTests.cs" />
+    <Compile Include="DatabaseAccess\SetupDatabaseTests.cs" />
     <Compile Include="BusinessLogic\MailSenderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DatabaseAccess\DatabaseConnectionTest.cs" />
-    <Compile Include="Services\TemplateScheduleServiceTest.cs" />
-    <Compile Include="Services\TemplateShiftServiceTest.cs" />
-    <Compile Include="Services\EmpServiceTest.cs" />
-    <Compile Include="Services\ScheduleServiceTest.cs" />
-    <Compile Include="Services\DepartmentServiceTest.cs" />
+    <Compile Include="DatabaseAccess\DatabaseConnectionTests.cs" />
+    <Compile Include="Services\TemplateScheduleServiceTests.cs" />
+    <Compile Include="Services\TemplateShiftServiceTests.cs" />
+    <Compile Include="Services\EmployeeServiceTests.cs" />
+    <Compile Include="Services\ScheduleServiceTests.cs" />
+    <Compile Include="Services\DepartmentServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Tests.DatabaseAccess
 {
     [TestClass]
-    public class EmployeeRepositoryTest
+    public class EmployeeRepositoryTests
     {
         IEmployeeRepository employeeRepository;
 
@@ -18,27 +18,27 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestGetEmployeeByUsername()
+        public void GetEmployeeByUsernameTest()
         {
             Employee employee = employeeRepository.GetEmployeeByUsername("MikkelP");
             Assert.AreEqual("Mikkel Paulsen", employeeRepository.GetEmployeeByUsername("MikkelP").Name);
         }
 
         [TestMethod()]
-        public void TestFindEmployeeById()
+        public void FindEmployeeByIdTest()
         {
             Employee employee = employeeRepository.FindEmployeeById(1);
             Assert.IsNotNull(employee);
         }
 
         [TestMethod]
-        public void TestInsertEmployeeIntoDb()
+        public void InsertEmployeeIntoDbTest()
         {
             Employee emp = new Employee()
             {
                 Name = "Anders Andersen",
                 IsAdmin = false,
-                Mail = "andersen@bos.dk",
+                Email = "andersen@bos.dk",
                 Phone = "98901349",
                 NoOfHours = 37,
                 IsEmployed = true,
@@ -60,7 +60,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestUpdateEmployee()
+        public void UpdateEmployeeTest()
         {
             Employee emp = employeeRepository.GetEmployeeByUsername("MikkelP");
 
@@ -78,7 +78,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestGetEmployeesByDepartmentId()
+        public void GetEmployeesByDepartmentIdTest()
         {
             List<Employee> employees = employeeRepository.GetEmployeesByDepartmentId(1);
             Assert.AreNotEqual(0, employees.Count);

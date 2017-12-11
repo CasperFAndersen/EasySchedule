@@ -10,7 +10,7 @@ using Rhino.Mocks;
 namespace Tests.BusinessLogic
 {
     [TestClass]
-    public class TestDepartmentController
+    public class DepartmentControllerTests
     {
         private IDepartmentController _departmentController;
 
@@ -21,7 +21,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestGetAllDepartments()
+        public void GetAllDepartmentsTest()
         {
             List<Department> departments = _departmentController.GetAllDepartments();
             Assert.IsNotNull(departments);
@@ -29,7 +29,22 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestGetDepartmentById()
+        public void GetAllDepartmentsWithMoqTest()
+        {
+            //Arrange
+            var mockDepartmentRepository = new Mock<IDepartmentRepository>();
+            mockDepartmentRepository.Setup(x => x.GetAllDepartments());
+            var departmentController = new DepartmentController(mockDepartmentRepository.Object);
+
+            //Act
+            departmentController.GetAllDepartments();
+
+            //Assert
+            mockDepartmentRepository.VerifyAll();
+        }
+
+        [TestMethod]
+        public void GetDepartmentByIdTest()
         {
             Department department = _departmentController.GetDepartmentById(1);
             Assert.IsNotNull(department);

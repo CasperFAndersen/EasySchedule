@@ -95,7 +95,7 @@ namespace DatabaseAccess.Departments
             department.Id = Convert.ToInt32(reader["id"].ToString());
             department.Name = reader["name"].ToString();
             department.Address = reader["address"].ToString();
-            department.Mail = reader["email"].ToString();
+            department.Email = reader["email"].ToString();
             department.Phone = reader["phone"].ToString();
             department.WorkplaceId = Convert.ToInt32(reader["workplaceId"].ToString());
             return department;

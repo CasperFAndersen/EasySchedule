@@ -14,7 +14,7 @@ namespace Tests.DatabaseAccess
     /// Summary description for TemplateScheduleDBTest
     /// </summary>
     [TestClass]
-    public class TemplateScheduleRepositoryTest
+    public class TemplateScheduleRepositoryTests
     {
         [TestInitialize]
         public void TestInitialize()
@@ -23,7 +23,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestCreateTemplateSchedule()
+        public void CreateTemplateScheduleTest()
         {
             //TemplateScheduleController tSC = new TemplateScheduleController();
             //int numberOfCurrentTemplateSchedules = tSC.GetAllTemplateSchedules().Count();
@@ -39,7 +39,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestAddTemplateShiftToTemplateScheldule()
+        public void AddTemplateShiftToTemplateSchelduleTest()
         {
             TemplateShiftRepository templateShiftRepository = new TemplateShiftRepository();
             TemplateScheduleRepository templateScheduleRepository = new TemplateScheduleRepository();
@@ -54,7 +54,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestGetAllTemplateSchedules()
+        public void GetAllTemplateSchedulesTest()
         {
             TemplateScheduleRepository templateScheduleRepository = new TemplateScheduleRepository();
             List<TemplateSchedule> templateSchedules = templateScheduleRepository.GetAllTemplateSchedules().ToList();
@@ -63,7 +63,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestUpdateTemplateSchedule()
+        public void UpdateTemplateScheduleTest()
         {
             TemplateScheduleRepository templateScheduleRepository = new TemplateScheduleRepository();
             TemplateSchedule templateSchedule = templateScheduleRepository.FindTemplateScheduleByName("KolonialBasis");
@@ -87,7 +87,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestCleanup]
-        public void TestCleanup()
+        public void CleanupTest()
         {
             DbSetUp.SetUpDb();
         }

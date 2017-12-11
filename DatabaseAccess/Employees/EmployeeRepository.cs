@@ -199,7 +199,7 @@ namespace DatabaseAccess.Employees
                             SqlParameter p10 = new SqlParameter(@"param10", SqlDbType.VarChar, 100);
 
                             p1.Value = employee.Name;
-                            p2.Value = employee.Mail;
+                            p2.Value = employee.Email;
                             p3.Value = employee.Phone;
                             p4.Value = employee.NoOfHours;
                             p5.Value = employee.IsAdmin;
@@ -261,7 +261,7 @@ namespace DatabaseAccess.Employees
                             SqlParameter p11 = new SqlParameter(@"param11", SqlDbType.Int);
 
                             p1.Value = employee.Name;
-                            p2.Value = employee.Mail;
+                            p2.Value = employee.Email;
                             p3.Value = employee.Phone;
                             p4.Value = employee.NoOfHours;
                             p5.Value = employee.IsAdmin;
@@ -310,14 +310,14 @@ namespace DatabaseAccess.Employees
             Employee employee = new Employee();
             employee.Id = Convert.ToInt32(reader["Id"].ToString());
             employee.Name = reader["Name"].ToString();
-            employee.Mail = reader["Email"].ToString();
+            employee.Email = reader["Email"].ToString();
             employee.Phone = reader["Phone"].ToString();
             employee.NoOfHours = Convert.ToInt32(reader["NoOfHours"].ToString());
             employee.IsAdmin = reader.GetBoolean(5);
-            employee.Username = reader["username"].ToString();
-            employee.Password = reader["password"].ToString();
-            employee.DepartmentId = Convert.ToInt32(reader["departmentId"].ToString());
-            employee.Salt = reader["salt"].ToString();
+            employee.Username = reader["Username"].ToString();
+            employee.Password = reader["Password"].ToString();
+            employee.DepartmentId = Convert.ToInt32(reader["DepartmentId"].ToString());
+            employee.Salt = reader["Salt"].ToString();
             employee.IsEmployed = reader.GetBoolean(10);
             return employee;
         }

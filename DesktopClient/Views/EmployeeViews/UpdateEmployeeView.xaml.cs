@@ -50,7 +50,7 @@ namespace DesktopClient.Views.EmployeeViews
 
                     Employee emp = (Employee)EmployeeListBox.SelectedItem;
                     emp.Name = TxtName.Text;
-                    emp.Mail = TxtEmail.Text;
+                    emp.Email = TxtEmail.Text;
                     emp.Phone = TxtPhone.Text;
                     emp.NoOfHours = Convert.ToInt32(TxtNoOfHours.Text);
                     emp.IsAdmin = Convert.ToBoolean(ChkIsAdmin.IsChecked);
@@ -111,7 +111,7 @@ namespace DesktopClient.Views.EmployeeViews
             if (emp != null)
             {
                 TxtName.Text = emp.Name;
-                TxtEmail.Text = emp.Mail;
+                TxtEmail.Text = emp.Email;
                 TxtPhone.Text = emp.Phone;
                 TxtNoOfHours.Text = emp.NoOfHours.ToString();
                 ChkIsAdmin.IsChecked = emp.IsAdmin;

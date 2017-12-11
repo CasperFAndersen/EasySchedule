@@ -6,10 +6,10 @@ using Tests.TemplateShiftService;
 namespace Tests.Services
 {
     [TestClass]
-    public class TemplateShiftServiceTest
+    public class TemplateShiftServiceTests
     {
         [TestMethod]
-        public void TestAddTemplaceShiftService()
+        public void AddTemplaceShiftServiceTest()
         {
             TemplateShiftServiceClient templateShiftService = new TemplateShiftServiceClient();
 

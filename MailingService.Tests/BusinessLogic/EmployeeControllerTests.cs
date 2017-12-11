@@ -11,7 +11,7 @@ using MockRepository = Rhino.Mocks.MockRepository;
 namespace Tests.BusinessLogic
 {
     [TestClass]
-    public class TestEmployeeController
+    public class EmployeeControllerTests
     {
         private EmployeeController _employeeController;
         private Mock<IEmployeeRepository> _mockEmployeeRepository;
@@ -24,7 +24,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestGetEmployeeByUsername()
+        public void GetEmployeeByUsernameTest()
         {
             _mockEmployeeRepository.Setup(x => x.GetEmployeeByUsername(It.IsAny<string>()));
 
@@ -34,7 +34,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestGetAllEmployees()
+        public void GetAllEmployeesTest()
         {
             _mockEmployeeRepository.Setup(x => x.GetAllEmployees());
 
@@ -44,7 +44,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestValidPassword()
+        public void ValidPasswordTest()
         {
             EmployeeController employeeController = new EmployeeController(new EmployeeRepository());
             Employee employee = employeeController.ValidatePassword("TobiAs", "CanYouGuessMyPass");
@@ -63,7 +63,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestInsertEmployee()
+        public void InsertEmployeeTest()
         {
             DbSetUp.SetUpDb();
 
@@ -72,7 +72,7 @@ namespace Tests.BusinessLogic
             {
                 Name = "Anders Andersen",
                 IsAdmin = false,
-                Mail = "andersen@bos.dk",
+                Email = "andersen@bos.dk",
                 Phone = "98901349",
                 NoOfHours = 37,
                 IsEmployed = true,
@@ -89,7 +89,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestUpdateEmployee()
+        public void UpdateEmployeeTest()
         {
             DbSetUp.SetUpDb();
 
@@ -103,7 +103,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestPasswordHashing()
+        public void PasswordHashingTest()
         {
             string input = "Password";
             string output = PasswordHashing.HashPassword(input);

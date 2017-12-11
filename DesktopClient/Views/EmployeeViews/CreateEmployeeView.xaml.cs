@@ -44,7 +44,7 @@ namespace DesktopClient.Views.EmployeeViews
                     EmployeeProxy empProxy = new EmployeeProxy();
 
                     emp.Name = TxtName.Text;
-                    emp.Mail = TxtEmail.Text;
+                    emp.Email = TxtEmail.Text;
                     emp.Phone = TxtPhone.Text;
                     emp.NoOfHours = Convert.ToInt32(TxtNoOfHours.Text);
                     emp.IsAdmin = Convert.ToBoolean(ChkIsAdmin.IsChecked);

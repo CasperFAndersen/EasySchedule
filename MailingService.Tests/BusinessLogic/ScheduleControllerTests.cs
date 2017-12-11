@@ -17,7 +17,7 @@ using Tests.DatabaseAccess;
 namespace Tests.BusinessLogic
 {
     [TestClass]
-    public class TestScheduleController
+    public class ScheduleControllerTests
     {
         Mock<IScheduleRepository> scheduleRepository;
         private IScheduleShiftRepository _scheduleShiftRepository;
@@ -35,7 +35,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestGetSchedueleByCurrentDate()
+        public void GetSchedueleByCurrentDateTest()
         {
             MockScheduleRep mockScheduleRep = new MockScheduleRep();
             DateTime currentDate = new DateTime(2017, 11, 13);
@@ -46,7 +46,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestInsertScheduleIntoDb()
+        public void InsertScheduleIntoDbTest()
         {
             Schedule s = new Schedule();
             mockScheduleRepository.InsertSchedule(s);
@@ -55,7 +55,7 @@ namespace Tests.BusinessLogic
 
         [TestMethod]
         [ExpectedException(typeof(Exception))]
-        public void TestTryToInsertOverlappingSchedule()
+        public void InsertOverlappingScheduleTest()
         {
             scheduleController = new ScheduleController(new ScheduleRepository());
 
@@ -86,7 +86,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestGetAllAvailbleShiftsByDepartmentId()
+        public void GetAllAvailbleShiftsByDepartmentIdTest()
         {
             scheduleController.ScheduleShiftRepository = _scheduleShiftRepository;
             scheduleController.GetAllAvailableShiftsByDepartmentId(1);
@@ -96,7 +96,7 @@ namespace Tests.BusinessLogic
         [TestMethod]
         [ExpectedException(typeof(ArgumentException),
             "Failure to accept shift. One or more arguments are illegal!")]
-        public void TestIlligal_IsForSale_AcceptAvailableShift()
+        public void IllegalIsForSaleAcceptAvailableShiftTest()
         {
             ScheduleShift shift = new ScheduleShift()
             {
@@ -113,7 +113,7 @@ namespace Tests.BusinessLogic
         [TestMethod]
         [ExpectedException(typeof(ArgumentException),
             "Failure to accept shift. One or more arguments are illigal!")]
-        public void TestIlligal_AcceptTime_AcceptAvailableShift()
+        public void IllegalAcceptTimeAcceptAvailableShiftTest()
         {
             ScheduleShift shift = new ScheduleShift()
             {
@@ -128,7 +128,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestAcceptAvailableShift()
+        public void AcceptAvailableShiftTest()
         {
 
             scheduleController.ScheduleShiftRepository = MockRepository.GenerateMock<IScheduleShiftRepository>();
@@ -169,7 +169,7 @@ namespace Tests.BusinessLogic
                 DepartmentId = 1,
                 IsAdmin = true,
                 IsEmployed = true,
-                Mail = "employee@employee.dk",
+                Email = "employee@employee.dk",
                 NoOfHours = 10,
                 Username = "emp",
                 Password = "emp",
@@ -182,7 +182,7 @@ namespace Tests.BusinessLogic
                 Id = 1,
                 Name = "Test",
                 Address = "Address",
-                Mail = "test@test.dk",
+                Email = "test@test.dk",
                 Employees = employees,
                 Phone = "98765432"
             };

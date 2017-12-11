@@ -9,7 +9,7 @@ namespace Tests.Services
 {
     
     [TestClass]
-    public class EmpServiceTest
+    public class EmployeeServiceTests
     {
         EmployeeServiceClient client;
 
@@ -20,7 +20,7 @@ namespace Tests.Services
         }
 
         [TestMethod]
-        public void TestEmployeeServiceGetEmployeeByUsername()
+        public void EmployeeServiceGetEmployeeByUsernameTest()
         {
         
             string expected = "Tobias Andersen";
@@ -30,13 +30,13 @@ namespace Tests.Services
         }
 
         [TestMethod]
-        public void TestEmployeeServiceInsertEmployee()
+        public void EmployeeServiceInsertEmployeeTest()
         {
             Employee employee = new Employee()
             {
                 Name = "Anders Andersen",
                 IsAdmin = false,
-                Mail = "andersen@aa.dk",
+                Email = "andersen@aa.dk",
                 Phone = "98901349",
                 NoOfHours = 37,
                 IsEmployed = true,
@@ -59,7 +59,7 @@ namespace Tests.Services
         }
 
         [TestMethod]
-        public void TestEmployeeServiceUpdateEmployee()
+        public void EmployeeServiceUpdateEmployeeTest()
         {
             Employee emp = client.GetEmployeeByUsername("MikkelP");
 

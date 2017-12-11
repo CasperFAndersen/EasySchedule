@@ -10,7 +10,7 @@ using Tests.DatabaseAccess;
 namespace Tests.Services
 {
     [TestClass]
-    public class ScheduleServiceTest
+    public class ScheduleServiceTests
     {
         ScheduleServiceClient client;
 
@@ -21,7 +21,7 @@ namespace Tests.Services
         }
 
         [TestMethod]
-        public void TestGetSchedulesByDepartmentIdAndDate()
+        public void GetSchedulesByDepartmentIdAndDateTest()
         {
             ScheduleServiceClient client = new ScheduleServiceClient();
 
@@ -44,7 +44,7 @@ namespace Tests.Services
         }
 
         [TestMethod]
-        public void TestInsertScheduleService()
+        public void InsertScheduleServiceTest()
         {
             ScheduleShift shift1 = new ScheduleShift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2017, 11, 28, 8, 0, 0) };
             Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(4), StartDate = new DateTime(2017, 11, 27, 0, 0, 0, DateTimeKind.Utc), EndDate = new DateTime(2017, 12, 15) };
@@ -62,7 +62,7 @@ namespace Tests.Services
         }
 
         [TestMethod]
-        public void TestGetAllAvailableShiftsByDepartmentId()
+        public void GetAllAvailableShiftsByDepartmentIdTest()
         {
             List<ScheduleShift> availableScheduleShifts = client.GetAllAvailableShiftsByDepartmentId(1);
             Assert.IsNotNull(availableScheduleShifts);

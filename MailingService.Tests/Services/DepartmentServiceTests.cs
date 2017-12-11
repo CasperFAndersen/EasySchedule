@@ -8,10 +8,10 @@ using Tests.DepartmentService;
 namespace Tests.Services
 {
     [TestClass]
-    public class DepartmentServiceTest
+    public class DepartmentServiceTests
     {
         [TestMethod]
-        public void TestDepartmentService()
+        public void DepartmentServiceTest()
         {
             DepartmentServiceClient departmentServiceClient = new DepartmentServiceClient();
 
