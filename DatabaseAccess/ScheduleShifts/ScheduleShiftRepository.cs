@@ -120,7 +120,7 @@ namespace DatabaseAccess.ScheduleShifts
             }
             catch (Exception e)
             {
-                throw new Exception("Something went wrong while adding the shifts to the database, try again!")
+                throw new Exception("Something went wrong while adding the shifts to the database, try again!");
                // throw new Exception("" + e.Message + e.StackTrace);
             }
         }
