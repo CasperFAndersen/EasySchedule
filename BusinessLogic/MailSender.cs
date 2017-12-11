@@ -31,7 +31,7 @@ namespace BusinessLogic
             request.AddParameter("from", "EasySchedule <mailgun@itkrabbe.dk>");
             foreach (Employee employee in employeeController.GetEmployeesByDepartmentId(departmentId))
             {
-                request.AddParameter("to", employee.Mail);
+                request.AddParameter("to", employee.Email);
             }
             request.AddParameter("subject", subject);
             request.AddParameter("text", message);

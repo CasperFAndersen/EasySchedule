@@ -8,7 +8,7 @@ namespace Tests.DatabaseAccess
 {
 
     [TestClass]
-    public class DepartmentRepositoryTest
+    public class DepartmentRepositoryTests
     {
         IDepartmentRepository _departmentRepository;
         [TestInitialize]
@@ -25,7 +25,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestGetDepartmentById()
+        public void GetDepartmentByIdTest()
         {
             Department department = _departmentRepository.GetDepartmentById(1);
             Assert.IsNotNull(department);
@@ -34,7 +34,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestGetAllDepartments()
+        public void GetAllDepartmentsTest()
         {
             List<Department> departments = _departmentRepository.GetAllDepartments();
             Assert.AreEqual(5, departments.Count);

@@ -6,13 +6,13 @@ using Core;
 namespace Tests.BusinessLogic
 {
     [TestClass]
-    public class TestTemplateScheduleController
+    public class TemplateScheduleControllerTests
     {
         TemplateScheduleController templateScheduleController = new TemplateScheduleController();
         TemplateShiftController templateShiftController = new TemplateShiftController();
 
         [TestMethod]
-        public void TestCreateTemplateSchedule()
+        public void CreateTemplateScheduleTest()
         {
             TemplateSchedule tSchedule = templateScheduleController.CreateTemplateSchedule(10, "basicSchedule");
 
@@ -21,7 +21,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestAddTemplateShiftToTemplateSchedule()
+        public void AddTemplateShiftToTemplateScheduleTest()
         {
             Employee e = new Employee();
             TemplateSchedule tSchedule = templateScheduleController.CreateTemplateSchedule(10, "basicSchedule");

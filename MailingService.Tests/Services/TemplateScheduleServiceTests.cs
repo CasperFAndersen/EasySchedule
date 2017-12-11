@@ -8,10 +8,10 @@ using Tests.TemplateScheduleService;
 namespace Tests.Services
 {
     [TestClass]
-    public class TemplateScheduleServiceTest
+    public class TemplateScheduleServiceTests
     {
         [TestMethod]
-        public void TestAddTemplateScheduleToDbService()
+        public void AddTemplateScheduleToDbServiceTest()
         {
             TemplateScheduleServiceClient templateScheduleService = new TemplateScheduleServiceClient();
             List<TemplateSchedule> beforeAddingTemplateScheduleList = new List<TemplateSchedule>(templateScheduleService.GetAllTemplateSchedules());
@@ -23,7 +23,7 @@ namespace Tests.Services
         }
 
         [TestMethod]
-        public void TestGetAllTemplateSchedules()
+        public void GetAllTemplateSchedulesTest()
         {
             TemplateScheduleServiceClient templateScheduleService = new TemplateScheduleServiceClient();
             List<TemplateSchedule> templateSchedules = templateScheduleService.GetAllTemplateSchedules().ToList();

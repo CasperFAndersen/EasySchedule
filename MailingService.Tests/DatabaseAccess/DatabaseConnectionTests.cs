@@ -4,10 +4,10 @@ using DatabaseAccess;
 namespace Tests.DatabaseAccess
 {
     [TestClass]
-    public class DatabaseConnectionTest
+    public class DatabaseConnectionTests
     {
         [TestMethod]
-        public void TestConnectToDatabase()
+        public void ConnectToDatabaseTest()
         {
            DbConnection dbConnection = new DbConnection();
             dbConnection.OpenConnection();
@@ -17,7 +17,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestDisconnectFromDatabase()
+        public void DisconnectFromDatabaseTest()
         {
             DbConnection dbConnection = new DbConnection();
             dbConnection.OpenConnection();

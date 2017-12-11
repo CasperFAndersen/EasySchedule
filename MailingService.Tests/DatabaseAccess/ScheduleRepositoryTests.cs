@@ -11,7 +11,7 @@ using BusinessLogic;
 namespace Tests.DatabaseAccess
 {
     [TestClass]
-    public class ScheduleRepositoryTest
+    public class ScheduleRepositoryTests
     {
         IScheduleRepository _scheduleRepository;
 
@@ -23,7 +23,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod]
-        public void TestInsertSchedule()
+        public void InsertScheduleTest()
         {
             ScheduleShift shift1 = new ScheduleShift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2017, 11, 28, 8, 0, 0) };
             Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(3), StartDate = new DateTime(2017, 11, 27, 0, 0, 0, DateTimeKind.Utc), EndDate = new DateTime(2017, 12, 18, 0, 0, 0, DateTimeKind.Utc) };
@@ -35,12 +35,10 @@ namespace Tests.DatabaseAccess
             _scheduleRepository.InsertSchedule(schedule);
             afterInsert = _scheduleRepository.GetSchedulesByDepartmentId(3).Count;
             Assert.AreEqual(beforeInsert, afterInsert - 1);
-
-
         }
 
         [TestMethod()]
-        public void TestGetSchedulesByDepartmentId()
+        public void GetSchedulesByDepartmentIdTest()
         {
             List<Schedule> schedules = _scheduleRepository.GetSchedulesByDepartmentId(1);
             Assert.IsNotNull(schedules);
@@ -48,7 +46,7 @@ namespace Tests.DatabaseAccess
         }
 
         [TestMethod()]
-        public void TestUpdateSchedule()
+        public void UpdateScheduleTest()
         {
             ///TODO: Implement test
             Schedule schedule =  new ScheduleController(_scheduleRepository).GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
@@ -76,7 +74,7 @@ namespace Tests.DatabaseAccess
         [TestCleanup]
         public void TestCleanup()
         {
-           // DbSetUp.SetUpDb();
+           DbSetUp.SetUpDb();
         }
     }
 }

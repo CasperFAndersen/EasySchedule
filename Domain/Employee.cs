@@ -8,17 +8,14 @@ namespace Core
     [DataContract]
     public class Employee
     {
-        private string _name;
-
         [DataMember]
         public int Id { get; set; }
 
         [DataMember]
-        public string Name
-        {
-            get { return this._name; }
-            set { if (value != null) { this._name = value; } }
-        }
+        public string Name { get;set;}
+
+        [DataMember]
+        public string Email { get; set; }
 
         [DataMember]
         public string Phone { get; set; }
@@ -34,9 +31,6 @@ namespace Core
 
         [DataMember]
         public string Password { get; set; }
-
-        [DataMember]
-        public string Mail { get; set; }
 
         [DataMember]
         public int DepartmentId { get; set; }

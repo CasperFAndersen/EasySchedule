@@ -6,10 +6,9 @@ using System.Collections.Generic;
 namespace Tests.BusinessLogic
 {
     [TestClass]
-    public class TestInputValidator
+    public class InputValidatorTests
     {
-
-        InputValidator IV = new InputValidator();
+        readonly InputValidator _iv = new InputValidator();
         //[TestMethod]
         //public void TestEmailValidator()
         //{
@@ -17,7 +16,7 @@ namespace Tests.BusinessLogic
         //}
 
         [TestMethod]
-        public void TestPhoneInputCheck()
+        public void PhoneInputCheckTest()
         {
             String[] PhoneNumbers =
             {
@@ -37,7 +36,7 @@ namespace Tests.BusinessLogic
             List<string> passedPhoneNumbers = new List<string>();
             List<string> failedPhoneNumbers = new List<string>();
 
-            string sPattern = IV.EmployeePhoneCheck;
+            string sPattern = _iv.EmployeePhoneCheck;
             foreach (string s in PhoneNumbers)
             {
                 if (System.Text.RegularExpressions.Regex.IsMatch(s, sPattern))
@@ -55,7 +54,7 @@ namespace Tests.BusinessLogic
         }
 
         [TestMethod]
-        public void TestEmailInputCheck()
+        public void EmailInputCheckTest()
         {
             String[] emails =
             {
@@ -69,7 +68,7 @@ namespace Tests.BusinessLogic
             List<string> passedEmails = new List<string>();
             List<string> failedEmails = new List<string>();
 
-            string sPattern = IV.EmployeeEmailCheck;
+            string sPattern = _iv.EmployeeEmailCheck;
             foreach (string s in emails)
             {
                 if (System.Text.RegularExpressions.Regex.IsMatch(s, sPattern))
