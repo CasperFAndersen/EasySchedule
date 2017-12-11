@@ -42,36 +42,50 @@ namespace DatabaseAccess.Employees
             }
         }
 
-        public Employee GetEmployeeByUsername(string username)
+        public Employee GetEmployeeById(int id)
         {
-            try
+            Employee employee = new Employee();
+            using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                Employee employee = new Employee();
-                using (SqlConnection connection = new DbConnection().GetConnection())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    using (SqlCommand command = connection.CreateCommand())
+                    command.CommandText = "SELECT * FROM Employee WHERE Employee.id = @param1;";
+                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.Int);
+                    p1.Value = id;
+                    command.Parameters.Add(p1);
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        command.CommandText = "SELECT * FROM Employee WHERE Employee.username = @param1;";
-                        SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.NVarChar);
-                        p1.Value = username;
-                        command.Parameters.Add(p1);
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
-                            {
-                                employee = BuildEmployeeObject(reader);
-                            }
+                            employee = BuildEmployeeObject(reader);
                         }
                     }
                 }
-                return employee;
-
             }
-            catch (Exception)
+            return employee;
+        }
+
+        public Employee GetEmployeeByUsername(string username)
+        {
+            Employee employee = new Employee();
+            using (SqlConnection connection = new DbConnection().GetConnection())
             {
-
-                throw new Exception("something went wrong while looking for that username, try again!");
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT * FROM Employee WHERE Employee.username = @param1;";
+                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.NVarChar);
+                    p1.Value = username;
+                    command.Parameters.Add(p1);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            employee = BuildEmployeeObject(reader);
+                        }
+                    }
+                }
             }
+            return employee;
         }
 
         public string GetSaltFromEmployeePassword(Employee employee)
@@ -303,7 +317,7 @@ namespace DatabaseAccess.Employees
             employee.Username = reader["username"].ToString();
             employee.Password = reader["password"].ToString();
             employee.DepartmentId = Convert.ToInt32(reader["departmentId"].ToString());
-            employee.Salt = reader["Salt"].ToString();
+            employee.Salt = reader["salt"].ToString();
             employee.IsEmployed = reader.GetBoolean(10);
             return employee;
         }

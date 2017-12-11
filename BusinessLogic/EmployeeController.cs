@@ -26,6 +26,11 @@ namespace BusinessLogic
             return _employeeRepository.GetAllEmployees();
         }
 
+        public Employee GetEmployeeById(int id)
+        {
+            return _employeeRepository.GetEmployeeById(id);
+        }
+
         public Employee GetEmployeeByUsername(string username)
         {
             return _employeeRepository.GetEmployeeByUsername(username);

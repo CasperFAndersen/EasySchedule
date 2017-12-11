@@ -9,6 +9,7 @@ using Rhino.Mocks;
 using MockRepository = Rhino.Mocks.MockRepository;
 using DatabaseAccess.Employees;
 using DatabaseAccess.ScheduleShifts;
+using DatabaseAccess.TemplateShifts;
 using Tests.DatabaseAccess;
 
 //using Moq;
@@ -18,13 +19,12 @@ namespace Tests.BusinessLogic
     [TestClass]
     public class TestScheduleController
     {
-        Schedule schedule;
         Mock<IScheduleRepository> scheduleRepository;
         private IScheduleShiftRepository _scheduleShiftRepository;
         ScheduleController scheduleController;
         private IScheduleRepository mockScheduleRepository;
         TemplateScheduleController templateScheduleController = new TemplateScheduleController();
-        TemplateShiftController templateShiftController = new TemplateShiftController();
+        readonly TemplateShiftController _templateShiftController = new TemplateShiftController(new TemplateShiftRepository());
 
         [TestInitialize]
         public void InitializeTest()
@@ -198,7 +198,7 @@ namespace Tests.BusinessLogic
             };
             shifts.Add(shift);
 
-            schedule = new Schedule
+            Schedule schedule = new Schedule
             {
                 Id = 1,
                 Department = department,
@@ -218,8 +218,8 @@ namespace Tests.BusinessLogic
             scheduleController = new ScheduleController(new ScheduleRepository());
             Employee employee = new Employee();
             TemplateSchedule templateSchedule = templateScheduleController.CreateTemplateSchedule(10, "basicSchedule");
-            TemplateShift templateShift = templateShiftController.CreateTemplateShift(DayOfWeek.Friday, 10.0, new TimeSpan(10, 0, 0), 1, employee);
-            TemplateShift templateShift2 = templateShiftController.CreateTemplateShift(DayOfWeek.Monday, 15.0, new TimeSpan(3, 1, 2), 2, employee);
+            TemplateShift templateShift = _templateShiftController.CreateTemplateShift(DayOfWeek.Friday, 10.0, new TimeSpan(10, 0, 0), 1, employee);
+            TemplateShift templateShift2 = _templateShiftController.CreateTemplateShift(DayOfWeek.Monday, 15.0, new TimeSpan(3, 1, 2), 2, employee);
             templateSchedule.TemplateShifts.Add(templateShift);
             templateSchedule.TemplateShifts.Add(templateShift2);
 

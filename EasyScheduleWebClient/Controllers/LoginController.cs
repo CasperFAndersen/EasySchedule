@@ -1,7 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using Core;
 using EasyScheduleWebClient.Models;
 using EasyScheduleWebClient.Services;
-using Core;
 
 namespace EasyScheduleWebClient.Controllers
 {
@@ -24,7 +25,7 @@ namespace EasyScheduleWebClient.Controllers
                 Session["employee"] = emp;
                 return RedirectToAction("Index", "Home");
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 ModelState.AddModelError("", "Wrong username or password");
                 return RedirectToAction("Index", "Login");

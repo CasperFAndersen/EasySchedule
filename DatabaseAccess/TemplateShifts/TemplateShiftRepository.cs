@@ -7,8 +7,6 @@ using DatabaseAccess.Employees;
 
 namespace DatabaseAccess.TemplateShifts
 {
-
-    //TODO try catch? 
     public class TemplateShiftRepository : ITemplateShiftRepository
     {
         public void AddTemplateShiftsFromTemplateSchedule(int templateScheduleId, List<TemplateShift> templateShifts, SqlConnection connection)
@@ -16,9 +14,10 @@ namespace DatabaseAccess.TemplateShifts
             //TODO comment
             foreach (TemplateShift templateShift in templateShifts)
             {
-                using (SqlCommand insertTemplateShift = new SqlCommand("INSERT INTO TemplateShift " +
-                                                                   "(weekDay, hours, startTime, weekNumber, templateScheduleId, employeeId)  " +
-                                                                   "VALUES (@param1,@param2,@param3,@param4,@param5,@Param6)", connection))
+                using (SqlCommand insertTemplateShift = new SqlCommand(
+                        "INSERT INTO TemplateShift " +
+                        "(weekDay, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                        "VALUES (@param1,@param2,@param3,@param4,@param5,@Param6)", connection))
                 {
                     if (templateShift.Id == 0)
                     {
@@ -42,9 +41,10 @@ namespace DatabaseAccess.TemplateShifts
 
         public void UpdateTemplateScheduleShift(TemplateShift templateShift, SqlConnection connection)
         {
-            using (SqlCommand updateTemplateShift = new SqlCommand("UPDATE TemplateShift SET " +
-                                                                   "weekday = @param1, hours = @param2, " +
-                                                                   "startTime = @param3 WHERE id = @param4",
+            using (SqlCommand updateTemplateShift = new SqlCommand(
+                 "UPDATE TemplateShift SET " +
+                 "weekday = @param1, hours = @param2, " +
+                 "startTime = @param3 WHERE id = @param4",
                 connection))
             {
                 updateTemplateShift.Parameters.AddWithValue("@param1", templateShift.WeekDay.ToString());
@@ -56,13 +56,11 @@ namespace DatabaseAccess.TemplateShifts
             }
         }
 
-        public IEnumerable<TemplateShift> GetAllTemplateShifts()
+        public List<TemplateShift> GetAllTemplateShifts()
         {
             List<TemplateShift> templateShifts = new List<TemplateShift>();
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                // connection.Open();
-
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateShift", connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -83,7 +81,6 @@ namespace DatabaseAccess.TemplateShifts
             List<TemplateShift> templateShifts = new List<TemplateShift>();
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                // connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateShift WHERE templateScheduleId = @param1", connection))
                 {
                     SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.Int);
@@ -118,7 +115,7 @@ namespace DatabaseAccess.TemplateShifts
             templateShiftObject.StartTime = reader.GetTimeSpan(3);
             templateShiftObject.WeekNumber = reader.GetInt32(4);
             templateShiftObject.TemplateScheduleId = reader.GetInt32(5);
-            templateShiftObject.Employee = new EmployeeRepository().FindEmployeeById(reader.GetInt32(6));
+            templateShiftObject.Employee = new Employee() { Id = reader.GetInt32(6) };
             return templateShiftObject;
         }
 

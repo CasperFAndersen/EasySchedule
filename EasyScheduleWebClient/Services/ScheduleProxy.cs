@@ -12,9 +12,9 @@ namespace EasyScheduleWebClient.Services
     {
         IScheduleService proxy = new ScheduleServiceClient();
 
-        public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
+        public void AcceptAvailableShift(ScheduleShift scheduleShift, Employee employee)
         {
-            proxy.AcceptAvailableShift(shift, employee);
+            proxy.AcceptAvailableShift(scheduleShift, employee);
         }
 
         public Task AcceptAvailableShiftAsync(ScheduleShift shift, Employee employee)

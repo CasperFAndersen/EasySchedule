@@ -7,7 +7,6 @@ using System.Transactions;
 
 namespace DatabaseAccess.TemplateSchedules
 {
-    //TODO skal der tilføjes try catches her, med exceptions?
     public class TemplateScheduleRepository : ITemplateScheduleRepository
     {
         public IEnumerable<TemplateSchedule> GetAllTemplateSchedules()
@@ -15,7 +14,6 @@ namespace DatabaseAccess.TemplateSchedules
             List<TemplateSchedule> templateSchedules = new List<TemplateSchedule>();
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                // connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateSchedule", connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -29,7 +27,6 @@ namespace DatabaseAccess.TemplateSchedules
                         }
                     }
                 }
-                // connection.Close();
             }
             return templateSchedules;
         }
@@ -54,7 +51,6 @@ namespace DatabaseAccess.TemplateSchedules
                     }
                     templateShiftRepository.AddTemplateShiftsFromTemplateSchedule(templateScheduleId, templateSchedule.TemplateShifts, connection);
                 }
-                
                 scope.Complete();
             }
 

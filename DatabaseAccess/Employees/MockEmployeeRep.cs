@@ -35,6 +35,11 @@ namespace DatabaseAccess.Employees
             return res;
         }
 
+        public Employee GetEmployeeById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Employee GetEmployeeByUsername(string username)
         {
             Employee employee = new Employee() {Username = "TobMaster", Name = "Tobias", Password = "1234"};

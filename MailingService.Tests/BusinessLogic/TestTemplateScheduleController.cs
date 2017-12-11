@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLogic;
 using Core;
+using DatabaseAccess.TemplateShifts;
 
 namespace Tests.BusinessLogic
 {
@@ -9,7 +10,7 @@ namespace Tests.BusinessLogic
     public class TestTemplateScheduleController
     {
         TemplateScheduleController templateScheduleController = new TemplateScheduleController();
-        TemplateShiftController templateShiftController = new TemplateShiftController();
+        TemplateShiftController templateShiftController = new TemplateShiftController(new TemplateShiftRepository());
 
         [TestMethod]
         public void TestCreateTemplateSchedule()

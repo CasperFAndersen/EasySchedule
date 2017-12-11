@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using EasyScheduleWebClient.Services;
-using EasyScheduleWebClient.Models;
 using Core;
+using EasyScheduleWebClient.Services;
 
 namespace EasyScheduleWebClient.Controllers
 {
@@ -13,42 +12,51 @@ namespace EasyScheduleWebClient.Controllers
     {
         public ActionResult Index()
         {
-            EmployeeRepository empRepo = new EmployeeRepository();
-            //var model = empRepo.GetEmployeesByDepartmentId(Convert.ToInt32(Session["employeeId"].ToString()));
-            //var model = empRepo.GetEmployeesByDepartmentId(Convert.ToInt32(Session["employeeId"].ToString()));
             return View();
         }
 
         public ActionResult GetEvents()
         {
             ScheduleProxy scheduleProxy = new ScheduleProxy();
-            Core.Employee emp = (Core.Employee)Session["employee"];
-            List<Core.ScheduleShift> shifts = scheduleProxy.GetScheduleByDepartmentIdAndDate(emp.DepartmentId, DateTime.Now).Shifts;
+            Employee emp = (Employee)Session["employee"];
+            try
+            {
+                List<ScheduleShift> shifts = scheduleProxy.GetScheduleByDepartmentIdAndDate(emp.DepartmentId, DateTime.Now).Shifts;
+                return new JsonResult { Data = shifts, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception)
+            {
 
-            return new JsonResult { Data = shifts, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            return null;
         }
 
         public ActionResult GetShiftsByEmployee()
         {
             List<ScheduleShift> res = new List<ScheduleShift>();
             ScheduleProxy scheduleProxy = new ScheduleProxy();
-            Core.Employee emp = (Core.Employee)Session["employee"];
-            List<Core.ScheduleShift> shifts = scheduleProxy.GetScheduleByDepartmentIdAndDate(emp.DepartmentId, DateTime.Now).Shifts;
-            res = shifts.Where(x => x.Employee.Name == emp.Name).ToList();
+            Employee emp = (Employee)Session["employee"];
+            try
+            {
+                List<ScheduleShift> shifts = scheduleProxy.GetScheduleByDepartmentIdAndDate(emp.DepartmentId, DateTime.Now).Shifts;
+                res = shifts.Where(x => x.Employee.Name == emp.Name).ToList();
+                return new JsonResult { Data = res, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 
-            return new JsonResult { Data = res, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception)
+            {
+
+            }
+            return null;
         }
-
-
 
         public ActionResult GetLoggedInEmployee()
         {
-            if ((Core.Employee)Session["employee"] != null)
+            if ((Employee)Session["employee"] != null)
             {
-                return new JsonResult { Data = (Core.Employee)Session["employee"], JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                return new JsonResult { Data = (Employee)Session["employee"], JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
             return null;
-           
         }
 
         [HttpPost]
@@ -67,7 +75,7 @@ namespace EasyScheduleWebClient.Controllers
         public JsonResult SetShiftForSale(ScheduleShift scheduleShift)
         {
             ScheduleProxy scheduleProxy = new ScheduleProxy();
-            scheduleShift.Employee = (Employee) Session["employee"];
+            scheduleShift.Employee = (Employee)Session["employee"];
             scheduleProxy.SetScheduleShiftForSale(scheduleShift);
             return null;
         }
@@ -75,14 +83,14 @@ namespace EasyScheduleWebClient.Controllers
         [HttpPost]
         public ActionResult SaveEvent(Event e)
         {
-            System.Diagnostics.Debug.WriteLine(e.Subject);
-            System.Diagnostics.Debug.WriteLine(e.Start);
-            System.Diagnostics.Debug.WriteLine(" " + e.End);
+            Debug.WriteLine(e.Subject);
+            Debug.WriteLine(e.Start);
+            Debug.WriteLine(" " + e.End);
             return null;
         }
 
 
     }
 
-   
+
 }

@@ -6,6 +6,7 @@ namespace BusinessLogic
     public interface IEmployeeController
     {
         List<Employee> GetAllEmployees();
+        Employee GetEmployeeById(int id);
         Employee GetEmployeeByUsername(string username);
         List<Employee> GetEmployeesByDepartmentId(int departmentId);
         Employee ValidatePassword(string username, string password);

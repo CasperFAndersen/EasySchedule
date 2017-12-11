@@ -6,10 +6,11 @@ namespace DatabaseAccess.Employees
 {
     public interface IEmployeeRepository
     {
-        void InsertEmployee(Employee employee);
         List<Employee> GetAllEmployees();
+        Employee GetEmployeeById(int id);
         Employee GetEmployeeByUsername(string username);
         List<Employee> GetEmployeesByDepartmentId(int departmentId);
+        void InsertEmployee(Employee employee);
         void UpdateEmployee(Employee employee);
         string GetSaltFromEmployeePassword(Employee employee);
         Employee FindEmployeeById(int id);

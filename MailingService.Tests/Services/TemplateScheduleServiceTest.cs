@@ -26,7 +26,7 @@ namespace Tests.Services
         public void TestGetAllTemplateSchedules()
         {
             TemplateScheduleServiceClient templateScheduleService = new TemplateScheduleServiceClient();
-            List<TemplateSchedule> templateSchedules = templateScheduleService.GetAllTemplateSchedules().ToList();
+            List<TemplateSchedule> templateSchedules = templateScheduleService.GetAllTemplateSchedules();
             Assert.IsNotNull(templateSchedules);
         }
     }
