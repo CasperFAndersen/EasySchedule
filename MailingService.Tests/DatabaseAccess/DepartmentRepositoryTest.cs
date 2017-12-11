@@ -29,8 +29,7 @@ namespace Tests.DatabaseAccess
         {
             Department department = _departmentRepository.GetDepartmentById(1);
             Assert.IsNotNull(department);
-            Assert.AreEqual(3, department.Employees.Count);
-            Assert.AreEqual("Mikkel Paulsen", department.Employees[0].Name);
+            Assert.AreEqual("Kolonial", department.Name);
         }
 
         [TestMethod]
