@@ -30,7 +30,7 @@ namespace EasyScheduleWebClient.Controllers
             return RedirectToAction("Index", "Login");
         }
 
-        [HttpPost]
+        
         public ActionResult AcceptShift(ScheduleShift scheduleShift)
         {
             Employee employee = (Employee)Session["employee"];
