@@ -31,6 +31,12 @@ namespace ServiceLibrary.Tests
         }
 
         [TestMethod]
+        public void GetDepartmentByIdTest()
+        {
+            //TODO: Implement this
+        }
+
+        [TestMethod]
         public void GetDepartmentsByWorkplaceIdParameterTest()
         {
             Mock<IDepartmentService> mockDepartmentService = new Mock<IDepartmentService>();
