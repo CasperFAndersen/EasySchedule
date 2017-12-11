@@ -5,7 +5,6 @@ using Core;
 using System.Collections.Generic;
 using DatabaseAccess.Employees;
 using DatabaseAccess.Departments;
-using Tests.DatabaseAccess;
 
 namespace Tests.Services
 {
@@ -67,12 +66,6 @@ namespace Tests.Services
             List<ScheduleShift> availableScheduleShifts = client.GetAllAvailableShiftsByDepartmentId(1);
             Assert.IsNotNull(availableScheduleShifts);
             Assert.AreEqual(2, availableScheduleShifts.Count);
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            DbSetUp.SetUpDb();
         }
     }
 }

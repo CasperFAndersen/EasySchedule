@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DatabaseAccess.Departments;
+﻿using System.Collections.Generic;
 using Core;
-using System.Collections.Generic;
+using DatabaseAccess.Departments;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.DatabaseAccess
+namespace DatabaseAccess.Tests
 {
 
     [TestClass]

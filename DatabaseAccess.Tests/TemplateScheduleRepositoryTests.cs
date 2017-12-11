@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Linq;
-using Core;
-using DatabaseAccess;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Linq;
 using DatabaseAccess.Employees;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DatabaseAccess.TemplateSchedules;
 using DatabaseAccess.TemplateShifts;
+using Core;
 
-namespace Tests.DatabaseAccess
+namespace DatabaseAccess.Tests
 {
     /// <summary>
     /// Summary description for TemplateScheduleDBTest

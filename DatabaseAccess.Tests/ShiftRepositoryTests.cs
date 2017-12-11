@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DatabaseAccess.Employees;
-using DatabaseAccess;
 using DatabaseAccess.ScheduleShifts;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.DatabaseAccess
+namespace DatabaseAccess.Tests
 {
     [TestClass]
     public class ShiftRepositoryTests

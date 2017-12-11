@@ -107,8 +107,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessLogic\TemplateScheduleControllerTests.cs" />
-    <Compile Include="BusinessLogic\InputValidatorTests.cs" />
     <Compile Include="Connected Services\DepartmentService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -134,19 +132,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseAccess\TemplateScheduleRepositoryTests.cs" />
-    <Compile Include="BusinessLogic\DepartmentControllerTests.cs" />
-    <Compile Include="DatabaseAccess\DbSetUp.cs" />
-    <Compile Include="BusinessLogic\EmployeeControllerTests.cs" />
-    <Compile Include="BusinessLogic\ScheduleControllerTests.cs" />
-    <Compile Include="DatabaseAccess\EmployeeRepositoryTests.cs" />
-    <Compile Include="DatabaseAccess\ScheduleRepositoryTests.cs" />
-    <Compile Include="DatabaseAccess\ShiftRepositoryTests.cs" />
-    <Compile Include="DatabaseAccess\DepartmentRepositoryTests.cs" />
-    <Compile Include="DatabaseAccess\SetupDatabaseTests.cs" />
-    <Compile Include="BusinessLogic\MailSenderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DatabaseAccess\DatabaseConnectionTests.cs" />
     <Compile Include="Services\TemplateScheduleServiceTests.cs" />
     <Compile Include="Services\TemplateShiftServiceTests.cs" />
     <Compile Include="Services\EmployeeServiceTests.cs" />

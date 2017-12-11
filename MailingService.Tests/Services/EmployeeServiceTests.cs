@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests.EmployeeService;
 using Core;
 using System.Collections.Generic;
-using Tests.DatabaseAccess;
 
 namespace Tests.Services
 {
@@ -66,19 +65,14 @@ namespace Tests.Services
             Assert.IsNotNull(emp);
             Assert.AreEqual("Mikkel Paulsen", emp.Name);
 
-            emp.Name = "Mikkel Hansen";
+            emp.Name = "Mikkel Paulsen";
 
             client.UpdateEmployee(emp);
 
             emp = client.GetEmployeeByUsername("MikkelP");
             Assert.IsNotNull(emp);
-            Assert.AreEqual("Mikkel Hansen", emp.Name);
+            Assert.AreEqual("Mikkel Paulsen", emp.Name);
         }
 
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            DbSetUp.SetUpDb();
-        }
     }
 }

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using BusinessLogic;
-using Core;
-using DatabaseAccess.Departments;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using Rhino.Mocks;
+using DatabaseAccess.Departments;
+using Core;
 
-namespace Tests.BusinessLogic
+namespace BusinessLogic.Tests
 {
     [TestClass]
     public class DepartmentControllerTests

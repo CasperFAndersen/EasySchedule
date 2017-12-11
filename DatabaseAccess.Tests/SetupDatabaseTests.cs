@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.DatabaseAccess
+namespace DatabaseAccess.Tests
 {
     [TestClass]
     public class SetupDatabaseTests

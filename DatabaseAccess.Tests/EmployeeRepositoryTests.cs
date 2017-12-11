@@ -1,10 +1,9 @@
-﻿using Core;
+﻿using System.Collections.Generic;
+using Core;
 using DatabaseAccess.Employees;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Rhino.Mocks;
-using System.Collections.Generic;
 
-namespace Tests.DatabaseAccess
+namespace DatabaseAccess.Tests
 {
     [TestClass]
     public class EmployeeRepositoryTests

@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DatabaseAccess;
 
-namespace Tests.DatabaseAccess
+namespace DatabaseAccess.Tests
 {
     [TestClass]
     public class DatabaseConnectionTests

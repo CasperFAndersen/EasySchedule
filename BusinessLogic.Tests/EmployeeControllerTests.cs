@@ -1,14 +1,10 @@
-﻿using System.Collections.Generic;
-using BusinessLogic;
-using Core;
+﻿using Core;
 using DatabaseAccess.Employees;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using Rhino.Mocks;
-using Tests.DatabaseAccess;
 using MockRepository = Rhino.Mocks.MockRepository;
+using Moq;
 
-namespace Tests.BusinessLogic
+namespace BusinessLogic.Tests
 {
     [TestClass]
     public class EmployeeControllerTests
@@ -65,8 +61,6 @@ namespace Tests.BusinessLogic
         [TestMethod]
         public void InsertEmployeeTest()
         {
-            DbSetUp.SetUpDb();
-
             _employeeController = new EmployeeController(new EmployeeRepository());
             Employee emp = new Employee()
             {
@@ -84,22 +78,16 @@ namespace Tests.BusinessLogic
             EmployeeController empCtr = new EmployeeController(new EmployeeRepository());
             empCtr.InsertEmployee(emp);
             Assert.IsNotNull(new EmployeeRepository().GetEmployeeByUsername(emp.Username));
-
-            DbSetUp.SetUpDb();
         }
 
         [TestMethod]
         public void UpdateEmployeeTest()
         {
-            DbSetUp.SetUpDb();
-
             EmployeeController empCtr = new EmployeeController(new EmployeeRepository());
             Employee employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP");
             employee.Name = "Fisk To";
             empCtr.UpdateEmployee(employee);
             Assert.AreEqual(new EmployeeRepository().GetEmployeeByUsername("MikkelP").Name, "Fisk To");
-
-            DbSetUp.SetUpDb();
         }
 
         [TestMethod]

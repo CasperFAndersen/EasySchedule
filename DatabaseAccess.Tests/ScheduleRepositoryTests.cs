@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Core;
-using DatabaseAccess.Schedules;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DatabaseAccess.Departments;
 using DatabaseAccess.Employees;
-using System.Transactions;
+using DatabaseAccess.Schedules;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLogic;
 
-namespace Tests.DatabaseAccess
+namespace DatabaseAccess.Tests
 {
     [TestClass]
     public class ScheduleRepositoryTests

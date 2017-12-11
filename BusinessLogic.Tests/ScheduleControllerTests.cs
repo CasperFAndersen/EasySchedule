@@ -1,20 +1,18 @@
 ﻿using System;
-using BusinessLogic;
-using Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DatabaseAccess.Schedules;
 using System.Collections.Generic;
+using Core;
+using DatabaseAccess.Employees;
+using DatabaseAccess.Schedules;
+using DatabaseAccess.ScheduleShifts;
+using DatabaseAccess.TemplateShifts;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Rhino.Mocks;
 using MockRepository = Rhino.Mocks.MockRepository;
-using DatabaseAccess.Employees;
-using DatabaseAccess.ScheduleShifts;
-using DatabaseAccess.TemplateShifts;
-using Tests.DatabaseAccess;
 
 //using Moq;
 
-namespace Tests.BusinessLogic
+namespace BusinessLogic.Tests
 {
     [TestClass]
     public class ScheduleControllerTests
@@ -231,7 +229,6 @@ namespace Tests.BusinessLogic
         [TestMethod]
         public void UpdateScheduleWithShiftSetForSaleTest()
         {
-            DbSetUp.SetUpDb();
             scheduleController = new ScheduleController(new ScheduleRepository());
             Schedule schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 12));
 
@@ -240,7 +237,6 @@ namespace Tests.BusinessLogic
             scheduleController.SetScheduleShiftForSale(schedule.Shifts[1]);
             schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 12));
             Assert.IsTrue(schedule.Shifts[1].IsForSale);
-            DbSetUp.SetUpDb();
         }
     }
 }

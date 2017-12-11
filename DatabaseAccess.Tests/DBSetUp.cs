@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
-using DatabaseAccess;
 
-namespace Tests.DatabaseAccess
+namespace DatabaseAccess.Tests
 {
     public class DbSetUp
     {

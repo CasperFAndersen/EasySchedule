@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BusinessLogic;
 using Core;
 using DatabaseAccess.TemplateShifts;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.BusinessLogic
+namespace BusinessLogic.Tests
 {
     [TestClass]
     public class TemplateScheduleControllerTests
