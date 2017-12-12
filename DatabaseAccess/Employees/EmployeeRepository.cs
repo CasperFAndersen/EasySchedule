@@ -14,7 +14,6 @@ namespace DatabaseAccess.Employees
         {
             try
             {
-
                 List<Employee> employees = new List<Employee>();
 
                 using (SqlConnection connection = new DbConnection().GetConnection())
@@ -33,11 +32,9 @@ namespace DatabaseAccess.Employees
                     }
                 }
                 return employees;
-
             }
             catch (Exception)
             {
-
                 throw new Exception("Something went wrong while retriving all employees! Try again");
             }
         }
@@ -88,7 +85,7 @@ namespace DatabaseAccess.Employees
             return employee;
         }
 
-        public string GetSaltFromEmployeePassword(Employee employee)
+        public string GetSaltByEmployee(Employee employee)
         {
             string salt = null;
             using (SqlConnection connection = new DbConnection().GetConnection())
@@ -107,37 +104,6 @@ namespace DatabaseAccess.Employees
                 }
             }
             return salt;
-        }
-
-        public Employee FindEmployeeById(int id)
-        {
-            try
-            {
-                Employee empRes = null;
-                using (SqlConnection connection = new DbConnection().GetConnection())
-                {
-                    using (SqlCommand command = connection.CreateCommand())
-                    {
-                        command.CommandText = "SELECT * FROM Employee WHERE Employee.id = @param1;";
-                        SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.Int);
-                        p1.Value = id;
-                        command.Parameters.Add(p1);
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                empRes = BuildEmployeeObject(reader);
-                            }
-                        }
-                    }
-                }
-                return empRes;
-            }
-            catch (Exception)
-            {
-
-                throw new Exception("Something went wrong while looking for that employee! Try again.");
-            }
         }
 
         public List<Employee> GetEmployeesByDepartmentId(int departmentId)

@@ -47,7 +47,7 @@ namespace DatabaseAccess.Tests
         [TestMethod()]
         public void UpdateScheduleTest()
         {
-            ///TODO: Implement test
+            //TODO: Implement test
             Schedule schedule =  new ScheduleController(_scheduleRepository).GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
 
             ScheduleShift scheduleShift = schedule.Shifts[0];

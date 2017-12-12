@@ -7,17 +7,18 @@ namespace BusinessLogic.Tests
     [TestClass]
     public class InputValidatorTests
     {
-        readonly InputValidator _iv = new InputValidator();
-        //[TestMethod]
-        //public void TestEmailValidator()
-        //{
-        //   
-        //}
+        private InputValidator _inputValidator;
+
+        [TestInitialize]
+        public void TestInitializer()
+        {
+            _inputValidator = new InputValidator();
+        }
 
         [TestMethod]
-        public void PhoneInputCheckTest()
+        public void PhoneCheckTest()
         {
-            String[] PhoneNumbers =
+            String[] phoneNumbers =
             {
                 // 3 invalid          
                 "123456",
@@ -35,27 +36,27 @@ namespace BusinessLogic.Tests
             List<string> passedPhoneNumbers = new List<string>();
             List<string> failedPhoneNumbers = new List<string>();
 
-            string sPattern = _iv.EmployeePhoneCheck;
-            foreach (string s in PhoneNumbers)
+            string pattern = _inputValidator.PhoneCheck;
+            foreach (string input in phoneNumbers)
             {
-                if (System.Text.RegularExpressions.Regex.IsMatch(s, sPattern))
+                if (System.Text.RegularExpressions.Regex.IsMatch(input, pattern))
                 {
-                    passedPhoneNumbers.Add(s);
+                    passedPhoneNumbers.Add(input);
                 }
                 else
                 {
-                    failedPhoneNumbers.Add(s);
+                    failedPhoneNumbers.Add(input);
                 }
             }
-            
+
             Assert.AreEqual(3, failedPhoneNumbers.Count);
             Assert.AreEqual(6, passedPhoneNumbers.Count);
         }
 
         [TestMethod]
-        public void EmailInputCheckTest()
+        public void EmailCheckTest()
         {
-            String[] emails =
+            string[] emails =
             {
                 "Casper@thisemail.com",
                 "Casper.this@thisemail.com",
@@ -67,16 +68,16 @@ namespace BusinessLogic.Tests
             List<string> passedEmails = new List<string>();
             List<string> failedEmails = new List<string>();
 
-            string sPattern = _iv.EmployeeEmailCheck;
-            foreach (string s in emails)
+            string pattern = _inputValidator.EmailCheck;
+            foreach (string input in emails)
             {
-                if (System.Text.RegularExpressions.Regex.IsMatch(s, sPattern))
+                if (System.Text.RegularExpressions.Regex.IsMatch(input, pattern))
                 {
-                    passedEmails.Add(s);
+                    passedEmails.Add(input);
                 }
                 else
                 {
-                    failedEmails.Add(s);
+                    failedEmails.Add(input);
                 }
             }
 
@@ -84,5 +85,50 @@ namespace BusinessLogic.Tests
             Assert.AreEqual(2, failedEmails.Count);
         }
 
+        [TestMethod]
+        public void NameCheckTest()
+        {
+            string[] names =
+            {
+                "Test test",
+                "Test test tester",
+                "F F",
+
+                "!",
+                "test",
+                "JegHarToNavne"
+            };
+            List<string> passedNames = new List<string>();
+            List<string> failedNames = new List<string>();
+
+            string pattern = _inputValidator.NameCheck;
+            foreach (string input in names)
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(input, pattern))
+                {
+                    passedNames.Add(input);
+                }
+                else
+                {
+                    failedNames.Add(input);
+                }
+            }
+
+            Assert.AreEqual(3, passedNames.Count);
+            Assert.AreEqual(3, failedNames.Count);
+        }
+
+        [TestMethod]
+        public void UsernameCheckTest()
+        {
+            //TODO: IMPLEMENT THIS
+        }
+
+
+        [TestMethod]
+        public void PasswordCheckTest()
+        {
+            //TODO: IMPLEMENT THIS
+        }
     }
 }

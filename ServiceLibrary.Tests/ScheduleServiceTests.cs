@@ -6,26 +6,53 @@ namespace ServiceLibrary.Tests
     public class ScheduleServiceTests
     {
 
-        [TestInitialize]
-        public void TestInitialize()
+        [TestMethod]
+        public void GenerateScheduleFromTemplateScheduleAndStartDateTest()
         {
+            //TODO: Implement this
         }
 
         [TestMethod]
         public void GetSchedulesByDepartmentIdAndDateTest()
         {
-
+            //TODO: Implement this
         }
 
         [TestMethod]
-        public void InsertScheduleServiceTest()
+        public void GetSchedulesByDepartmentIdTest()
         {
+            //TODO: Implement this
+        }
 
+        [TestMethod]
+        public void InsertScheduleTest()
+        {
+            //TODO: Implement this
+        }
+
+        [TestMethod]
+        public void UpdateScheduleTest()
+        {
+            //TODO: Implement this
+        }
+
+        [TestMethod]
+        public void SetScheduleShiftForSaleTest()
+        {
+            //TODO: Implement this
+        }
+
+        [TestMethod]
+        public void AcceptAvailableShiftTest()
+        {
+            //TODO: Implement this
         }
 
         [TestMethod]
         public void GetAllAvailableShiftsByDepartmentIdTest()
         {
+            //TODO: Implement this
         }
+
     }
 }

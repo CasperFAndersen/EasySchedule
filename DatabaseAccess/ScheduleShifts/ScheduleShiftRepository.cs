@@ -82,49 +82,6 @@ namespace DatabaseAccess.ScheduleShifts
             return scheduleShifts; ;
         }
 
-        public void InsertShifts(List<ScheduleShift> shifts, int scheduleId, SqlConnection connection)
-        {
-            try
-            {
-                using (connection)
-                {
-                    foreach (var shift in shifts)
-                    {
-                        using (SqlCommand command = connection.CreateCommand())
-                        {
-                            command.CommandText = "INSERT INTO ScheduleShift (startTime, hours, scheduleId, employeeId, isForSale)" +
-                                              " VALUES (@param1, @param2, @param3, @param4, @param5)";
-
-                            SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.SmallDateTime, 100);
-                            SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.Int, 100);
-                            SqlParameter p3 = new SqlParameter(@"param3", SqlDbType.Int, 100);
-                            SqlParameter p4 = new SqlParameter(@"param4", SqlDbType.Int, 100);
-                            SqlParameter p5 = new SqlParameter(@"param5", SqlDbType.Bit);
-
-                            p1.Value = shift.StartTime;
-                            p2.Value = shift.Hours;
-                            p3.Value = scheduleId;
-                            p4.Value = shift.Employee.Id;
-                            p5.Value = shift.IsForSale;
-
-                            command.Parameters.Add(p1);
-                            command.Parameters.Add(p2);
-                            command.Parameters.Add(p3);
-                            command.Parameters.Add(p4);
-                            command.Parameters.Add(p5);
-
-                            command.ExecuteNonQuery();
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong while adding the shifts to the database, try again!");
-               // throw new Exception("" + e.Message + e.StackTrace);
-            }
-        }
-
         public void AddShiftsFromSchedule(Schedule schedule)
         {
             try
@@ -251,7 +208,7 @@ namespace DatabaseAccess.ScheduleShifts
         {
             try
             {
-                using(TransactionScope scope = new TransactionScope())
+                using (TransactionScope scope = new TransactionScope())
                 {
                     using (SqlConnection connection = new DbConnection().GetConnection())
                     {
@@ -279,7 +236,7 @@ namespace DatabaseAccess.ScheduleShifts
                     }
                     scope.Complete();
                 }
-     
+
             }
             catch (Exception e)
             {
@@ -298,7 +255,7 @@ namespace DatabaseAccess.ScheduleShifts
         {
             ScheduleShift scheduleShift = new ScheduleShift();
             scheduleShift.Id = reader.GetInt32(0);
-            scheduleShift.Employee = new EmployeeRepository().FindEmployeeById(Convert.ToInt32(reader["EmployeeId"].ToString()));
+            scheduleShift.Employee = new EmployeeRepository().GetEmployeeById(Convert.ToInt32(reader["EmployeeId"].ToString()));
             scheduleShift.StartTime = reader.GetDateTime(1);
             scheduleShift.Hours = Convert.ToDouble(reader["Hours"].ToString());
             scheduleShift.IsForSale = Convert.ToBoolean(reader["IsForSale"]);
@@ -324,7 +281,6 @@ namespace DatabaseAccess.ScheduleShifts
                             {
                                 scheduleShifts.Add(scheduleShift);
                             }
-
                         }
                     }
                 }

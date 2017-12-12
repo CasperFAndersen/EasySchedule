@@ -33,7 +33,7 @@ namespace BusinessLogic.Tests
         }
 
         [TestMethod]
-        public void GetSchedueleByCurrentDateTest()
+        public void GetScheduleByCurrentDateTest()
         {
             MockScheduleRep mockScheduleRep = new MockScheduleRep();
             DateTime currentDate = new DateTime(2017, 11, 13);
@@ -44,7 +44,7 @@ namespace BusinessLogic.Tests
         }
 
         [TestMethod]
-        public void InsertScheduleIntoDbTest()
+        public void InsertScheduleToDbTest()
         {
             Schedule s = new Schedule();
             mockScheduleRepository.InsertSchedule(s);
@@ -128,7 +128,6 @@ namespace BusinessLogic.Tests
         [TestMethod]
         public void AcceptAvailableShiftTest()
         {
-
             scheduleController.ScheduleShiftRepository = MockRepository.GenerateMock<IScheduleShiftRepository>();
 
             ScheduleShift shift = new ScheduleShift()
@@ -227,7 +226,7 @@ namespace BusinessLogic.Tests
         }
 
         [TestMethod]
-        public void UpdateScheduleWithShiftSetForSaleTest()
+        public void SetScheduleShiftForSaleTest()
         {
             scheduleController = new ScheduleController(new ScheduleRepository());
             Schedule schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 12));
@@ -237,6 +236,24 @@ namespace BusinessLogic.Tests
             scheduleController.SetScheduleShiftForSale(schedule.Shifts[1]);
             schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 12));
             Assert.IsTrue(schedule.Shifts[1].IsForSale);
+        }
+
+        [TestMethod]
+        public void UpdateScheduleTest()
+        {
+            //TODO: Implement this
+        }
+
+        [TestMethod]
+        public void GetSchedulesByDepartmentIdTest()
+        {
+            //TODO: Implement this
+        }
+
+        [TestMethod]
+        public void GetAllAvailableShiftsByDepartmentIdTest()
+        {
+            //TODO: Implement this
         }
     }
 }

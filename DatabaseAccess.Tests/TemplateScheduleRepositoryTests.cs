@@ -34,11 +34,23 @@ namespace DatabaseAccess.Tests
             templateScheduleRepository.AddTemplateScheduleToDatabase(templateSchedule);
 
             Assert.AreNotEqual(numberOfCurrentTemplateSchedules, templateScheduleRepository.GetAllTemplateSchedules().Count());
-            Assert.AreEqual(templateScheduleRepository.FindTemplateScheduleByName("DummySchedule").Name, templateSchedule.Name);
+            Assert.AreEqual(templateScheduleRepository.GetTemplateScheduleByName("DummySchedule").Name, templateSchedule.Name);
         }
 
         [TestMethod]
-        public void AddTemplateShiftToTemplateSchelduleTest()
+        public void AddTemplateScheduleToDatabaseTest()
+        {
+            //TODO: Implement this
+        }
+
+        [TestMethod]
+        public void GetTemplateScheduleByNameTest()
+        {
+            //TODO: Implement this
+        }
+
+        [TestMethod]
+        public void AddTemplateShiftToTemplateScheduleTest()
         {
             TemplateShiftRepository templateShiftRepository = new TemplateShiftRepository();
             TemplateScheduleRepository templateScheduleRepository = new TemplateScheduleRepository();
@@ -65,17 +77,17 @@ namespace DatabaseAccess.Tests
         public void UpdateTemplateScheduleTest()
         {
             TemplateScheduleRepository templateScheduleRepository = new TemplateScheduleRepository();
-            TemplateSchedule templateSchedule = templateScheduleRepository.FindTemplateScheduleByName("KolonialBasis");
+            TemplateSchedule templateSchedule = templateScheduleRepository.GetTemplateScheduleByName("KolonialBasis");
             TemplateShift templateShift = templateSchedule.TemplateShifts[0];
             templateShift.StartTime = new TimeSpan(8, 0, 0);
             templateShift.Hours = 8;
 
-            TemplateShift templateShift2 = new TemplateShift() { StartTime = new TimeSpan(12, 0, 0), WeekNumber = 1, Hours = 6, Employee = new EmployeeRepository().FindEmployeeById(5), TemplateScheduleId = templateSchedule.Id };
+            TemplateShift templateShift2 = new TemplateShift() { StartTime = new TimeSpan(12, 0, 0), WeekNumber = 1, Hours = 6, Employee = new EmployeeRepository().GetEmployeeById(5), TemplateScheduleId = templateSchedule.Id };
             templateSchedule.TemplateShifts.Add(templateShift2);
 
             templateScheduleRepository.UpdateTemplateSchedule(templateSchedule);
 
-            templateSchedule = templateScheduleRepository.FindTemplateScheduleByName("KolonialBasis");
+            templateSchedule = templateScheduleRepository.GetTemplateScheduleByName("KolonialBasis");
 
             Assert.IsNotNull(templateSchedule);
             Assert.AreEqual(2, templateSchedule.TemplateShifts.Count);

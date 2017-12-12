@@ -8,15 +8,28 @@ namespace ServiceLibrary.Tests
     public class TemplateScheduleServiceTests
     {
         [TestMethod]
-        public void AddTemplateScheduleToDbServiceTest()
+        public void AddTemplateScheduleToDbTest()
         {
-            
+            //TODO: Implement this   
+        }
+
+        [TestMethod]
+        public void FindTemplateScheduleByNameTest()
+        {
+            //TODO: Implement this   
         }
 
         [TestMethod]
         public void GetAllTemplateSchedulesTest()
         {
-            
+            //TODO: Implement this   
         }
+
+        [TestMethod]
+        public void UpdateTemplateScheduleTest()
+        {
+            //TODO: Implement this   
+        }
+
     }
 }

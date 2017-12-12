@@ -20,6 +20,26 @@ namespace BusinessLogic.Tests
         }
 
         [TestMethod]
+        public void GetAllEmployeesTest()
+        {
+            _mockEmployeeRepository.Setup(x => x.GetAllEmployees());
+
+            _employeeController.GetAllEmployees();
+
+            _mockEmployeeRepository.VerifyAll();
+        }
+
+        [TestMethod]
+        public void GetEmployeeByIdTest()
+        {
+            _mockEmployeeRepository.Setup(x => x.GetEmployeeById(It.IsAny<int>()));
+
+            _employeeController.GetEmployeeById(1);
+
+            _mockEmployeeRepository.VerifyAll();
+        }
+
+        [TestMethod]
         public void GetEmployeeByUsernameTest()
         {
             _mockEmployeeRepository.Setup(x => x.GetEmployeeByUsername(It.IsAny<string>()));
@@ -30,11 +50,11 @@ namespace BusinessLogic.Tests
         }
 
         [TestMethod]
-        public void GetAllEmployeesTest()
+        public void GetEmployeesByDepartmentId()
         {
-            _mockEmployeeRepository.Setup(x => x.GetAllEmployees());
+            _mockEmployeeRepository.Setup(x => x.GetEmployeesByDepartmentId(It.IsAny<int>()));
 
-            _employeeController.GetAllEmployees();
+            _employeeController.GetEmployeesByDepartmentId(1);
 
             _mockEmployeeRepository.VerifyAll();
         }
@@ -47,12 +67,17 @@ namespace BusinessLogic.Tests
 
             Assert.IsNotNull(employee);
             Assert.AreEqual("TobiAs", employee.Username);
+        }
 
+        [TestMethod]
+        public void GenerateHashFromPasswordAndSaltTest()
+        {
+            _employeeController = new EmployeeController(new EmployeeRepository());
+            Employee employee = _employeeController.GetEmployeeByUsername("TobiAs");
             string salt = employee.Salt;
             string password = "CanYouGuessMyPass";
             string HashedPassword = PasswordHashing.HashPassword(salt + password);
 
-            Employee afterHashingEmployee = employeeController.GetEmployeeByUsername("TobiAs");
             string hashedPasswordFromDb = employee.Password;
 
             Assert.AreEqual(HashedPassword, hashedPasswordFromDb);
@@ -75,8 +100,7 @@ namespace BusinessLogic.Tests
                 Password = "GotMilk"
             };
 
-            EmployeeController empCtr = new EmployeeController(new EmployeeRepository());
-            empCtr.InsertEmployee(emp);
+            _employeeController.InsertEmployee(emp);
             Assert.IsNotNull(new EmployeeRepository().GetEmployeeByUsername(emp.Username));
         }
 
@@ -90,12 +114,6 @@ namespace BusinessLogic.Tests
             Assert.AreEqual(new EmployeeRepository().GetEmployeeByUsername("MikkelP").Name, "Fisk To");
         }
 
-        [TestMethod]
-        public void PasswordHashingTest()
-        {
-            string input = "Password";
-            string output = PasswordHashing.HashPassword(input);
-            Assert.AreNotEqual(input, output);
-        }
+        
     }
 }

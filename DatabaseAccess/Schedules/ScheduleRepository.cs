@@ -89,10 +89,10 @@ namespace DatabaseAccess.Schedules
                             command.Parameters.Add(p2);
                             command.Parameters.Add(p3);
 
-                            int id = Convert.ToInt32(command.ExecuteScalar());
+                            schedule.Id = Convert.ToInt32(command.ExecuteScalar());
 
                             ScheduleShiftRepository scheduleShiftRep = new ScheduleShiftRepository();
-                            scheduleShiftRep.InsertShifts(schedule.Shifts, id, connection);
+                            scheduleShiftRep.AddShiftsFromSchedule(schedule);
                         }
                         scope.Complete();
                     }
@@ -109,7 +109,6 @@ namespace DatabaseAccess.Schedules
             ScheduleShiftRepository scheduleShiftRepository = new ScheduleShiftRepository();
             scheduleShiftRepository.AddShiftsFromSchedule(schedule);
         }
-        //TODO try catch? eller er det meningen?
 
     }
 }
