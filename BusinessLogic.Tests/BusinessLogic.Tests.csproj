@@ -81,6 +81,10 @@
       <Project>{F9F9296A-AEF1-4FB7-9AEC-DA0D2DAF8207}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DatabaseAccess.Tests\DatabaseAccess.Tests.csproj">
+      <Project>{7D5BE189-9C07-4E4C-BADD-9244FF3F7D10}</Project>
+      <Name>DatabaseAccess.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DatabaseAccess\DatabaseAccess.csproj">
       <Project>{61DFD29F-5446-4AFE-AB42-D80B26E6FDC2}</Project>
       <Name>DatabaseAccess</Name>

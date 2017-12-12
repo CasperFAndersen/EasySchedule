@@ -5,6 +5,7 @@ using DatabaseAccess.Employees;
 using DatabaseAccess.Schedules;
 using DatabaseAccess.ScheduleShifts;
 using DatabaseAccess.TemplateShifts;
+using DatabaseAccess.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Rhino.Mocks;
@@ -83,21 +84,17 @@ namespace BusinessLogic.Tests
             scheduleController.InsertScheduleToDb(schedule2);
         }
 
-
-
-
-
-
-
         [TestMethod()]
         public void GetScheduleByDepartmentIdAndDateTest()
         {
+            DbSetUp.SetUpDb();
             scheduleController = new ScheduleController(new ScheduleRepository());
             Schedule schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
             Assert.IsNotNull(schedule);
             Assert.AreEqual(new DateTime(2017, 11, 01), schedule.StartDate);
             Assert.AreEqual(new DateTime(2018, 01, 31), schedule.EndDate);
             Assert.AreNotEqual(0, schedule.Shifts.Count);
+            DbSetUp.SetUpDb();
         }
 
         [TestMethod]
