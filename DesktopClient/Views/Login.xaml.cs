@@ -35,7 +35,7 @@ namespace DesktopClient
             try
             {
                 employee = employeeProxy.ValidatePassword(TxtUsername.Text, PwBox.Password);
-                if (employee != null)
+                if (employee != null && employee.IsAdmin)
                 {
                     Mediator.GetInstance().OnLoginButtonClicked(employee);
                 }
