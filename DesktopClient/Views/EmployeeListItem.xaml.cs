@@ -15,7 +15,7 @@ namespace DesktopClient.Views
         {
             InitializeComponent();
             DataContext = employee;
-            empBox.Background = new SolidColorBrush(EmployeeColors.EmpColors[employee.Name]);
+       
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
@@ -23,6 +23,7 @@ namespace DesktopClient.Views
             base.OnMouseMove(e);
             if (e.LeftButton == MouseButtonState.Pressed)
             {
+                Mediator.GetInstance().OnResizeStarted();
                 // Package the data.
                 DataObject data = new DataObject();
                 data.SetData(DataFormats.StringFormat, DataContext);

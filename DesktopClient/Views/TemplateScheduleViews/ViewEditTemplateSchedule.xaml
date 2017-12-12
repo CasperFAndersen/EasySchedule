@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <Grid  Background="White" Margin="0,0,0,0" >
+    <Grid  Margin="0,0,0,0" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -26,11 +26,13 @@
 
         </Grid.RowDefinitions>
         <Line Grid.ColumnSpan="2" Fill="Black"></Line>
-        <ComboBox Name="ChooseSchedule"  Grid.Row="2" Grid.Column="1" SelectionChanged="ChooseSchedule_SelectionChanged" ></ComboBox>
-        <TextBox x:Name="TxtBoxTemplateScheduleName" Text=""  Grid.Column="1" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label Content="Choose Template Schedule" Grid.Row="2" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"  FontWeight="Bold" FontFamily="Segoe UI Black"/>
-        <Label Content="Department" Grid.Row="4" VerticalAlignment="Center" Height="24" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Segoe UI Black" FontWeight="Bold" />
-        <ComboBox Name="Weeks"  Grid.Column="1" Grid.Row="6"></ComboBox>
+        <ComboBox Name = "CBoxSchedule"  Grid.Row="4" Grid.Column="1" SelectionChanged="ChooseSchedule_SelectionChanged" />
+        <ComboBox Name = "CBoxDepartment" Text=""  Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="CBoxDepartment_SelectionChanged"/>
+        <Label Content="Select Template Schedule" Grid.Row="4" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"  FontWeight="Bold" FontFamily="Segoe UI Black"/>
+        <Label Content="Select Department" Grid.Row="2" VerticalAlignment="Center" Height="24" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Segoe UI Black" FontWeight="Bold" />
+        <Border Grid.Column="1" Grid.Row="6" BorderThickness="2" BorderBrush="Black" Width="50"  HorizontalAlignment="Left">
+            <TextBlock Name="txtWeeks" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"></TextBlock>
+        </Border>
         <Label Content="Weeks:"  Grid.Row="6"   FontFamily="Segoe UI Black" FontWeight="Bold" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Button x:Name="BtnSaveUpdatedTemplateSchedule" Content="Save" Grid.Row="10" Click="BtnSaveUpdatedTemplateSchedule_Click" Grid.Column="1" MaxWidth="150" MaxHeight="30" HorizontalContentAlignment="Center" Margin="0,10,0,0" HorizontalAlignment="Right" MinWidth="86"/>
         <!--<ComboBox Name="CBoxDepartment" MaxHeight="20" SelectionChanged="CBoxDepartment_SelectionChanged"  HorizontalAlignment="Left" Margin="150,68,0,113.1" Width="150" Grid.ColumnSpan="2"/>

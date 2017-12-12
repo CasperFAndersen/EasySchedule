@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:DesktopClient.Views.ScheduleViews"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBox Name="txtBox"></TextBox>
+    <Grid Background="White">
+        <TextBlock Name="txtBox" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             
     </Grid>
 </UserControl>

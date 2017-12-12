@@ -13,13 +13,20 @@ namespace DesktopClient.Views.TemplateScheduleViews
     public partial class TimeCell : UserControl
     {
         public List<Shift> ShiftsInCell { get; set; }
+        public List<ShiftElement> ShiftElements { get; set; }
         public Core.TemplateSchedule TemplateSchedule { get; set; }
         public TimeSpan Time { get; set; }
         public DayOfWeek WeekDay { get; set; }
+        public ShiftElement ShiftElement { get; set; }
+        public Dictionary<Shift, TimeCell> ShiftAndRootCell { get; set; }
+        public int ShiftCount { get; set; }
+        public int MaxRowCount { get; set; }
         public TimeCell()
         {
             InitializeComponent();
             ShiftsInCell = new List<Shift>();
+            ShiftElements = new List<ShiftElement>();
+            ShiftAndRootCell = new Dictionary<Shift, TimeCell>();
             SetDropHandler();
             SetCloseClick();
             SetEmployeeDropped();
@@ -33,22 +40,26 @@ namespace DesktopClient.Views.TemplateScheduleViews
             return TimeCellGrid;
         }
 
-        public void SetToolTipText(string text)
-        {
-            TimeCellGrid.ToolTip = text;
-        }
 
         public void FillCell(Shift shift, bool isFirstElement, bool isLastElement)
         {
-            Color color = EmployeeColors.EmpColors[shift.Employee.Name];
-            
+            Color color = Colors.RoyalBlue;
+            //Color color = EmployeeColors.EmpColors[shift.Employee.Name];
+            if (shift.GetType() == typeof(ScheduleShift))
+            {
+                ScheduleShift scheduleShift = (ScheduleShift)shift;
+                color = scheduleShift.IsForSale ? Colors.Red : Colors.RoyalBlue;
+            }
+
+
             ShiftElement shiftElement = null;
             if (isFirstElement)
             {
-                shiftElement = new ShiftElement(shift, shift.Employee.Name, color);
-                
-               // Border.BorderThickness = new Thickness(0.1, 0.1, 0.1, 0);
-             
+                shiftElement = new ShiftElement(shift, color);
+                Grid.SetRowSpan(this, 2);
+
+                // Border.BorderThickness = new Thickness(0.1, 0.1, 0.1, 0);
+
             }
             else if (isLastElement)
             {
@@ -58,7 +69,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
             else // Middle Element 
             {
                 shiftElement = new ShiftElement(shift, color, false);
-               // Border.BorderThickness = new Thickness(0.1, 0, 0.1, 0);
+                // Border.BorderThickness = new Thickness(0.1, 0, 0.1, 0);
             }
             TimeCellGrid.ColumnDefinitions.Add(new ColumnDefinition());
             TimeCellGrid.Children.Add(shiftElement);
@@ -77,16 +88,17 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 bool isLastElement = (bool)e.Data.GetData("IsLastShiftElement");
                 if (isLastElement)
                 {
-                    TimeCellGrid.Background = new SolidColorBrush(Colors.White);
                     if (droppedShift.GetType() == typeof(TemplateShift))
                     {
                         TemplateShift ts = (TemplateShift)droppedShift;
-                        ts.Hours = (Time.Subtract(ts.StartTime).Add(new TimeSpan(0, TemplateScheduleCalendar.INCREMENT, 0)).TotalHours);
+                        double hours = (Time.Subtract(ts.StartTime).Add(new TimeSpan(0, TemplateScheduleCalendar.INCREMENT, 0)).TotalHours);
+                        ts.Hours = hours > 0 ? hours : 1;
                     }
                     else if (droppedShift.GetType() == typeof(ScheduleShift))
                     {
                         ScheduleShift ss = (ScheduleShift)droppedShift;
-                        droppedShift.Hours = (Time.Hours - (ss.StartTime.Hour)); //+ TemplateScheduleCalendar.INCREMENT);
+                        double hours = (Time.Hours - (ss.StartTime.Hour)); //+ TemplateScheduleCalendar.INCREMENT);
+                        droppedShift.Hours = hours > 0 ? hours : 1;
                     }
                 }
                 else
@@ -135,7 +147,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             Mediator.GetInstance().EmployeeDropped += (e, tod, dow) =>
             {
-                Clear();
+               Clear();
             };
         }
 
@@ -168,19 +180,37 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             TemplateSchedule = null;
             ShiftsInCell = new List<Shift>();
+            ShiftElements = new List<ShiftElement>();
             TimeCellGrid.Children.Clear();
             TimeCellGrid.ColumnDefinitions.Clear();
+            TimeCellGrid.RowDefinitions.Clear();
+            MaxRowCount = 0;
+        }
+
+        public int GetMaxRowCount()
+        {
+            int res = 0;
+            foreach (Shift s in ShiftsInCell)
+            {
+                int  rowCount  = (int)(s.Hours * (60 / TemplateScheduleCalendar.INCREMENT));
+                if (rowCount > res)
+                {
+                    res = rowCount;
+                }
+            }
+            return res;
         }
 
         private void Border_DragEnter(object sender, DragEventArgs e)
         {
-            Background = new SolidColorBrush(Colors.LightGray);
+           
         }
 
         private void Border_DragLeave(object sender, DragEventArgs e)
         {
-            Background = null;
+            
         }
+
 
     }
 }

@@ -18,7 +18,17 @@ namespace DesktopClient.Views.ScheduleViews
             InitializeComponent();
             BindComboBoxData();
             //SetOnNextOrPrevClicked();
+            SetOnNewScheduleActive();
             EventChangesListener();
+            HideStartEndTxt();
+        }
+
+        private void HideStartEndTxt()
+        {
+            lblStart.Visibility = Visibility.Hidden;
+            lblEnd.Visibility = Visibility.Hidden;
+            txtStart.Visibility = Visibility.Hidden;
+            txtEnd.Visibility = Visibility.Hidden;
         }
 
         private async void BindComboBoxData()
@@ -33,7 +43,9 @@ namespace DesktopClient.Views.ScheduleViews
             Core.Schedule schedule = null;
             Department department = (Department)cBoxDepartment.SelectedItem;
 
-            Mediator.GetInstance().OnCBoxSelectionChanged(department);
+            schedule = Mediator.GetInstance().OnCBoxSelectionChanged(department);
+            Mediator.GetInstance().OnCBoxSelectionChangedVoid(department);
+            SetStartEndTxt(schedule);
 
         }
 
@@ -56,24 +68,62 @@ namespace DesktopClient.Views.ScheduleViews
         {
             Mediator.GetInstance().EmployeeDropped += (e, tod, dow) =>
             {
-                btnSave.IsEnabled = true;
+                EnableSaveAndResetBtn();
             };
 
             Mediator.GetInstance().ShiftDropped += (s, e) =>
             {
-                btnSave.IsEnabled = true;
+                EnableSaveAndResetBtn();
             };
 
             Mediator.GetInstance().ShiftCloseClicked += (s, e) =>
             {
-                btnSave.IsEnabled = true;
+                EnableSaveAndResetBtn();
             };
 
+        }
+
+        private void EnableSaveAndResetBtn()
+        {
+            btnSave.IsEnabled = true;
+            btnReset.IsEnabled = true;
+        }
+
+        private void SetStartEndTxt(Schedule schedule)
+        {
+            if (schedule != null)
+            {
+                lblStart.Visibility = Visibility.Visible;
+                lblEnd.Visibility = Visibility.Visible;
+                txtStart.Visibility = Visibility.Visible;
+                txtEnd.Visibility = Visibility.Visible;
+                txtStart.Text = schedule.StartDate.ToShortDateString();
+                txtEnd.Text = schedule.EndDate.ToShortDateString();
+            }
+            else
+            {
+                HideStartEndTxt();
+            }
+        }
+        private void SetOnNewScheduleActive()
+        {
+            Mediator.GetInstance().NewScheduleActive += (s) =>
+            {
+                SetStartEndTxt(s);
+            };
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             Mediator.GetInstance().OnEditScheduleClicked();
+        }
+
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+            btnReset.IsEnabled = false;
+            btnSave.IsEnabled = false;
+            Mediator.GetInstance().OnResetButtonClicked();
+
         }
     }
 }

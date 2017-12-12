@@ -7,47 +7,62 @@
       xmlns:templateSchedules="clr-namespace:DesktopClient.Views.TemplateScheduleViews"
       xmlns:templateScheduleViews="clr-namespace:DesktopClient.Views.TemplateScheduleViews"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="700" d:DesignWidth="1300"
       Title="TemplateScheduleCalendar">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Name="TitleRow" Height="*"/>
-            <RowDefinition Name="CotrolsRow" Height="6*"/>
+
+            <RowDefinition Name="CotrolsRow" Height="4*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Name="CalendarRow" Height="10*"/>
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <templateScheduleViews:TemplateScheduleCalendar x:Name="Calendar" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <templateScheduleViews:TemplateScheduleCalendar x:Name="Calendar" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="15,25,15,10"/>
 
         <Label Name="LblTitle" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" />
 
-        
+
         <!--<StackPanel Name="ButtonPanel" Grid.Column="2" Grid.Row="3">
 
         </StackPanel>-->
-        <Frame Name="ControlPanel" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
-        <Grid Grid.Row="1" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Label Content="Employees :"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Width="93" FontSize="16" Height="32" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <Label x:Name="DepartmentName" Content="" Grid.Column="2" FontSize="16" FontWeight="Bold" Height="32"  VerticalAlignment="Bottom" />
-            <ListView x:Name="EmployeeList" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" Padding="0" ScrollViewer.CanContentScroll="False"/>
-        </Grid>
+        <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#FFD9D9D9">
+            <Border.Effect>
+                <DropShadowEffect/>
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+
+                </Grid.ColumnDefinitions>
+                <Frame Name="ControlPanel" Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+                <Grid Grid.Row="0" Grid.Column="1" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Employees :"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Width="93" FontSize="16" Height="32" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                    <Label x:Name="DepartmentName" Content="" Grid.Column="3" FontSize="16" FontWeight="Bold" Height="32"  VerticalAlignment="Bottom" />
+                    <ListView x:Name="EmployeeList" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" Grid.Column="1" Padding="0" ScrollViewer.CanContentScroll="False" Background="White" BorderBrush="#FF262626" BorderThickness="2" HorizontalContentAlignment="Stretch"/>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

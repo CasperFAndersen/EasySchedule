@@ -15,7 +15,7 @@ namespace DesktopClient.Views.ScheduleViews
     /// </summary>
     public partial class ScheduleCalendar : UserControl
     {
-        public Core.Schedule Schedule { get; set; }
+        public Schedule Schedule { get; set; }
         public int DepartmentId { get; set; }
         public DateTime SelectedWeekStartDate { get; set; }
         public List<DateBox> DateBoxes { get; set; }
@@ -38,15 +38,18 @@ namespace DesktopClient.Views.ScheduleViews
             btnNextWeek.IsEnabled = true;
             btnPrevWeek.IsEnabled = true;
             SetSelectedStartDate(DateTime.Now);
-            SetOnDepartmentSelected();
+           // SetOnDepartmentSelected();
             LoadShiftsIntoCalendar();
             SetShiftDropHandler();
             SetCloseShiftClicked();
             SetEmployeeDroppedHandler();
             SetOnEditScheduleClicked();
             SetOnGenerateScheduleButtonClicked();
-            //SetOnCreateScheduleClicked();
+            SetOnResetButtonClicked();
+            SetOnCreateScheduleClicked();
         }
+
+
         public static readonly TimeSpan STARTTIME = new TimeSpan(6, 0, 0);
         public static readonly TimeSpan ENDTIME = new TimeSpan(20, 0, 0);
         public static readonly double DEFAULTSHIFTLENGTH = 3;
@@ -72,12 +75,40 @@ namespace DesktopClient.Views.ScheduleViews
                     if (dbox.Date.Day == s.StartTime.Day && dbox.Date.Month == s.StartTime.Month)
                     {
                         DayColumn dayCol = GetDayCoulmByName(s.StartTime.DayOfWeek.ToString());
-                        dayCol.InsertShiftIntoDay(shift);
+                        //dayCol.InsertShiftIntoDay(shift);
+                        dayCol.Shifts.Add(shift);
+                    }
+                }          
+            }
+            DayColumnList.ForEach(x => x.RenderShifts());
+
+        }
+
+        private bool IsConflictingWithExistingShift(ScheduleShift scheduleShift)
+        {
+            bool res = false;
+            foreach (Shift s in Shifts)
+            {
+                ScheduleShift currShift = (ScheduleShift)s;
+                if (scheduleShift.Employee != currShift.Employee)
+                {
+                    if (scheduleShift.StartTime < currShift.StartTime &&
+                        (scheduleShift.StartTime.AddHours(scheduleShift.Hours) > currShift.StartTime))
+                    {
+                        res = true;
+                    }
+                    else if (scheduleShift.StartTime > currShift.StartTime &&
+                        (currShift.StartTime.AddHours(currShift.Hours) > scheduleShift.StartTime))
+                    {
+                        res = true;
+                    }
+                    else if (scheduleShift.StartTime == currShift.StartTime)
+                    {
+                        res = true;
                     }
                 }
-
             }
-
+            return res;
         }
 
         public DayColumn GetDayCoulmByName(string name)
@@ -85,6 +116,19 @@ namespace DesktopClient.Views.ScheduleViews
             return DayColumnList.Find(x => x.Name == name);
         }
 
+        public void Disable()
+        {
+            GreyOut.Background = new SolidColorBrush(Colors.LightGray);
+            ClearDateBoxes();
+            NavCalendar.IsEnabled = false;
+            this.IsEnabled = false;
+        }
+        public void Enable()
+        {
+            GreyOut.Background = null;
+            NavCalendar.IsEnabled = true;
+            this.IsEnabled = true;
+        }
 
         public void BuildTimesGrid()
         {
@@ -94,8 +138,8 @@ namespace DesktopClient.Views.ScheduleViews
             {
                 TimesColumn.RowDefinitions.Add(new RowDefinition());
                 Border border = new Border() { BorderBrush = new SolidColorBrush(Colors.Black), BorderThickness = new Thickness(0.5, 0.5, 0.5, 0.5) };
-                border.Background = new SolidColorBrush(Colors.LightGray);
-                TextBlock textBlock = new TextBlock() { Text = timeCount.ToString().Substring(0, 5), FontSize = 14, FontWeight = FontWeights.Bold };
+                border.Background = new SolidColorBrush(Colors.White);
+                TextBlock textBlock = new TextBlock() { Text = timeCount.ToString().Substring(0, 5), FontSize = 12, FontWeight = FontWeights.Bold };
                 textBlock.Margin = new Thickness(0, -2, 5, 0);
                 border.Child = textBlock;
                 textBlock.HorizontalAlignment = HorizontalAlignment.Right;
@@ -110,7 +154,7 @@ namespace DesktopClient.Views.ScheduleViews
 
         public void BuildDayColumns()
         {
-            int row = 2; int col = 2;
+            int row = 3; int col = 1;
             int day = 1;
             while (day < 6)
             {
@@ -130,13 +174,18 @@ namespace DesktopClient.Views.ScheduleViews
             }
         }
 
+        public void ClearDateBoxes()
+        {
+            DateBoxes.ForEach(x => x.txtBox.Text = "");
+        }
+
         public void BuildDateBoxes()
         {
             DateTime currentDate = DateTime.Now;
             // int thisMonday = (currentDate.DayOfWeek == DayOfWeek.Sunday) ? (currentDate.AddDays(-6)) : (currentDate.AddDays(((int)currentDate.DayOfWeek - 1)));
             DateTime date = (currentDate.DayOfWeek == DayOfWeek.Sunday) ? (currentDate.AddDays(-6)) : (currentDate.AddDays(-((int)currentDate.DayOfWeek - 1)));
 
-            int row = 1; int col = 2;
+            int row = 2; int col = 1;
             int day = 0;
             while (day < 5)
             {
@@ -194,14 +243,18 @@ namespace DesktopClient.Views.ScheduleViews
 
         public void SetShiftDropHandler()
         {
+
             Mediator.GetInstance().ShiftDropped += (s, e) =>
             {
-                if (!e.IsLastElement && this.IsVisible)
+                Clear();
+                if (!e.IsLastElement && IsVisible)
                 {
+                    
                     ScheduleShift ss = (ScheduleShift)e.Shift;
                     DateBox db = DateBoxes[ss.StartTime.Day - 1];
                     DateTime dt = new DateTime(db.Date.Year, db.Date.Month, db.Date.Day, ss.StartTime.Hour, ss.StartTime.Minute, 0);
                     ss.StartTime = dt;
+                    
                 }
                 LoadShiftsIntoCalendar();
             };
@@ -213,6 +266,7 @@ namespace DesktopClient.Views.ScheduleViews
             {
                 if (this.IsVisible)
                 {
+                    Clear();
                     ScheduleShift ss = new ScheduleShift();
                     DateBox db = DateBoxes[(int)dow - 1];
                     DateTime dt = new DateTime(db.Date.Year, db.Date.Month, db.Date.Day, tod.Hours, tod.Minutes, 0);
@@ -231,26 +285,33 @@ namespace DesktopClient.Views.ScheduleViews
         {
             Mediator.GetInstance().ShiftCloseClicked += (s, e) =>
             {
-                Shifts.Remove((ScheduleShift)e.Shift);
-                LoadShiftsIntoCalendar();
+                if (e.Shift.GetType() == typeof(ScheduleShift))
+                {
+                    Shifts.Remove((ScheduleShift)e.Shift);
+                    DayColumnList.ForEach(x => x.ResetTimeCells());
+                    Clear();
+                    LoadShiftsIntoCalendar();
+                }
+
             };
         }
 
         public void SetOnDepartmentSelected()
         {
-            Mediator.GetInstance().CBoxDepartmentChanged += (d) =>
+
+            Mediator.GetInstance().CBoxDepartmentChanged += (department) =>
             {
-                if (this.IsVisible)
+                if (IsViewScheduleEnabled)
                 {
-                    if (d != null)
+                    if (department != null)
                     {
                         ScheduleProxy scheduleProxy = new ScheduleProxy();
 
                         try
                         {
                             Clear();
-                            Schedule schedule = scheduleProxy.GetScheduleByDepartmentIdAndDate(d.Id, DateBoxes[0].Date);
-                            Shifts = schedule.Shifts;
+                            Schedule = scheduleProxy.GetScheduleByDepartmentIdAndDate(department.Id, DateBoxes[0].Date);
+                            Shifts = Schedule.Shifts;
                             LoadShiftsIntoCalendar();
                         }
                         catch (Exception)
@@ -263,19 +324,43 @@ namespace DesktopClient.Views.ScheduleViews
                         }
 
                     }
-                    DepartmentId = d.Id;
+                    DepartmentId = department.Id;
+
                 }
 
+                return Schedule;
             };
 
         }
+
+
+        public void SetOnCreateScheduleDepartmentChanged()
+        {
+            if (!IsViewScheduleEnabled)
+            {
+                Mediator.GetInstance().CBoxDepartmentCreateScheduleChanged += (d) =>
+                {
+
+                    Clear();
+                    Shifts = new List<ScheduleShift>();
+                    LoadShiftsIntoCalendar();
+
+
+                };
+            }
+        }
+
+
+
+
+
 
         private void AddTxtNoSchedule()
         {
             if (this.IsVisible && IsViewScheduleEnabled)
             {
 
-                Grid.SetColumn(TxtNoSchedule, 2);
+                Grid.SetColumn(TxtNoSchedule, 1);
                 Grid.SetColumnSpan(TxtNoSchedule, 4);
                 Grid.SetRow(TxtNoSchedule, 5);
                 TxtNoSchedule.HorizontalAlignment = HorizontalAlignment.Center;
@@ -300,13 +385,9 @@ namespace DesktopClient.Views.ScheduleViews
                         scheduleProxy.UpdateSchedule(Schedule);
                         MessageBox.Show("Schedule for " + Schedule.Department.Name + " Saved sucessfully");
                     }
-
-
-
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
             };
@@ -316,11 +397,27 @@ namespace DesktopClient.Views.ScheduleViews
         {
             Mediator.GetInstance().GenerateScheduleButtonClicked += (s) =>
             {
-                Schedule = s;
-                Shifts = s.Shifts;
-                LoadShiftsIntoCalendar();
+                if (s != null)
+                {
+                    Enable();
+                    SelectedWeekStartDate = s.StartDate;
+                    UpdateDateBoxes();
+                    Schedule = s;
+                    Shifts = s.Shifts;
+                    btnPrevWeek.IsEnabled = false;
+                    if (s.EndDate > SelectedWeekStartDate.AddDays(7))
+                    {
+                        btnNextWeek.IsEnabled = true;
+                    }
+                    else
+                    {
+                        btnNextWeek.IsEnabled = false;
+                    }
+                    NavCalendar.DisplayDateStart = Schedule.StartDate;
+                    NavCalendar.DisplayDateEnd = Schedule.EndDate;
+                    LoadShiftsIntoCalendar();
+                }
             };
-
         }
 
         public void SetOnCreateScheduleClicked()
@@ -356,19 +453,21 @@ namespace DesktopClient.Views.ScheduleViews
 
         private void NextWeek_Click(object sender, RoutedEventArgs e)
         {
-            SelectedWeekStartDate = SelectedWeekStartDate.AddDays(7);
-            UpdateDateBoxes();
-            NavCalendar.SelectedDate = SelectedWeekStartDate;
-            Clear();
+
             if (IsViewScheduleEnabled)
             {
-                MessageBox.Show("Hello!!");
+                SelectedWeekStartDate = SelectedWeekStartDate.AddDays(7);
+                UpdateDateBoxes();
+                NavCalendar.SelectedDate = SelectedWeekStartDate;
+                Clear();
+
                 if (Schedule != null && Schedule.EndDate.CompareTo(DateBoxes[0].Date) < 0)
                 {
                     try
                     {
                         Schedule = new ScheduleProxy().GetScheduleByDepartmentIdAndDate(DepartmentId, DateBoxes[0].Date);
                         Shifts = Schedule.Shifts;
+
                     }
                     catch (Exception)
                     {
@@ -391,8 +490,21 @@ namespace DesktopClient.Views.ScheduleViews
                         Schedule = null;
                     }
                 }
+                Mediator.GetInstance().OnNewScheduleActive(Schedule);
             }
-           
+            else
+            {
+                SelectedWeekStartDate = SelectedWeekStartDate.AddDays(7);
+                UpdateDateBoxes();
+                NavCalendar.SelectedDate = SelectedWeekStartDate;
+                Clear();
+                if (Schedule.EndDate <= SelectedWeekStartDate.AddDays(7))
+                {
+                    btnNextWeek.IsEnabled = false;
+                }
+                btnPrevWeek.IsEnabled = true;
+            }
+
             LoadShiftsIntoCalendar();
             // Mediator.GetInstance().OnNextOrPreviousButtonClicked(Schedule);
 
@@ -400,18 +512,20 @@ namespace DesktopClient.Views.ScheduleViews
 
         private void PrevWeek_Click(object sender, RoutedEventArgs e)
         {
-            SelectedWeekStartDate = SelectedWeekStartDate.AddDays(-7);
-            UpdateDateBoxes();
-            NavCalendar.SelectedDate = SelectedWeekStartDate;
-            Clear();
+
             if (IsViewScheduleEnabled)
             {
+                SelectedWeekStartDate = SelectedWeekStartDate.AddDays(-7);
+                UpdateDateBoxes();
+                NavCalendar.SelectedDate = SelectedWeekStartDate;
+                Clear();
                 if (Schedule != null && Schedule.StartDate.CompareTo(DateBoxes[0].Date) >= 0)
                 {
                     try
                     {
                         Schedule = new ScheduleProxy().GetScheduleByDepartmentIdAndDate(DepartmentId, DateBoxes[0].Date);
                         Shifts = Schedule.Shifts;
+
                     }
                     catch (Exception)
                     {
@@ -433,10 +547,40 @@ namespace DesktopClient.Views.ScheduleViews
                         Schedule = null;
                     }
                 }
+                Mediator.GetInstance().OnNewScheduleActive(Schedule);
             }
-           
+            else
+            {
+                SelectedWeekStartDate = SelectedWeekStartDate.AddDays(-7);
+                UpdateDateBoxes();
+                NavCalendar.SelectedDate = SelectedWeekStartDate;
+                Clear();
+                if (Schedule.StartDate > SelectedWeekStartDate.AddDays(-7))
+                {
+                    btnPrevWeek.IsEnabled = false;
+                }
+                btnNextWeek.IsEnabled = true;
+            }
+
             //Mediator.GetInstance().OnNextOrPreviousButtonClicked(Schedule);
             LoadShiftsIntoCalendar();
+        }
+
+
+        private void SetOnResetButtonClicked()
+        {
+            Mediator.GetInstance().ResetButtonClicked += () =>
+            {
+                if (IsViewScheduleEnabled)
+                {
+                    Schedule = new ScheduleProxy().GetScheduleByDepartmentIdAndDate(Schedule.Department.Id, DateBoxes[0].Date);
+                    Clear();
+                    Shifts = Schedule.Shifts;
+                    LoadShiftsIntoCalendar();
+                }
+
+            };
+
         }
 
         public void Clear()
@@ -448,17 +592,6 @@ namespace DesktopClient.Views.ScheduleViews
 
             DayColumnList.ForEach(x => x.Clear());
         }
-
-
-        public static List<ScheduleShift> GetListOfTestShifts()
-        {
-            List<ScheduleShift> res = new List<ScheduleShift>();
-            ScheduleShift ts = new ScheduleShift() { StartTime = new DateTime(2017, 11, 28, 15, 0, 0), Hours = 6, Employee = new Employee() { Name = "Holger" } };
-            res.Add(ts);
-
-            return res;
-        }
-
 
     }
 

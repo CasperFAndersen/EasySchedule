@@ -41,17 +41,23 @@ namespace DesktopClient
                 }
                 else
                 {
-                    throw new ArgumentException();
+                    ShowErrorMessage();
                 }
 
             }
-            catch (ArgumentException)
+            catch (Exception)
             {
-
-                MessageBox.Show("Something went wrong with the login information. Please try again");
+                ShowErrorMessage();
             }
 
 
         }
+
+        private void ShowErrorMessage()
+        {
+            MessageBox.Show("Something went wrong with the login information. Please try again");
+            TxtUsername.Text = "";
+            PwBox.Password = "";
+        } 
     }
 }

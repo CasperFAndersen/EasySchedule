@@ -10,12 +10,16 @@ namespace DesktopClient
 {
     public class DepartmentController
     {
+        DepartmentProxy departmentProxy = new DepartmentProxy();
         public async Task<List<Department>> GetDepartmentsByLoggedinEmployee()
         {
-            DepartmentProxy departmentProxy = new DepartmentProxy();
             Department department = departmentProxy.GetDepartmentById(MainWindow.Employee.DepartmentId);
-            return await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
-    
+            return await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);   
+        }
+
+        public async Task<Department> GetDepartmentByIdAsync(int departmentId)
+        {
+            return await departmentProxy.GetDepartmentByIdAsync(departmentId);
         }
 
     }

@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:DesktopClient.Views.ScheduleViews"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
+           MaxWidth="350"
       Title="CreateScheduleView">
 
     <Grid>
@@ -18,17 +19,23 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+
             <ColumnDefinition/>
             <ColumnDefinition/>
             
         </Grid.ColumnDefinitions>
+        <Label Content="Select department" Grid.Row="1" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label Content="Select templateschedule" Grid.Row="3" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label Content="Select start date" Grid.Row="6" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
         <ComboBox Name="CBoxDepartment" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="cBoxDepartment_SelectionChanged"/>
-        <ListView Name="ListTemplateSchedule" Grid.Column="1" Grid.Row="3"></ListView>
-        <DatePicker Name="DatePicker" Grid.Column="2" Grid.Row="3" SelectedDateChanged="DatePicker_SelectedDateChanged" FontSize="16" FontWeight="Bold" />
-        <Button Name="BtnGenerateSchedule" Content="Generate" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Click="btnGenerateSchedule_Click"/>
-        <Button Name="BtnPublishSchedule" Content="Publish" Grid.Column="2" Grid.Row="7" Click="btnPublishSchedule_Click" />
+        <ListView Name="ListTemplateSchedule" Grid.Column="1" Grid.Row="3" Grid.RowSpan="3" Margin="0,0,0,15"></ListView>
+        <DatePicker Name="DatePicker" Grid.Column="2" Grid.Row="6" SelectedDateChanged="DatePicker_SelectedDateChanged" FontSize="16" FontWeight="Bold" />
+        <Button Name="BtnGenerateSchedule" Content="Generate" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="1" Click="btnGenerateSchedule_Click" Margin="2,2,2,2"/>
+        <Button Name="BtnPublishSchedule" Content="Publish" Grid.Column="2" Grid.Row="8" Click="btnPublishSchedule_Click" Margin="2,2,2,2" />
     </Grid>
 </Page>
