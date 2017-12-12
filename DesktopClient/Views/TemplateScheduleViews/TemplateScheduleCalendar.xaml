@@ -7,6 +7,11 @@
              mc:Ignorable="d" 
              AllowDrop="true"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Image x:Key="leftArrow" Source="C:\Users\Arne\Documents\GitHub\UCN-Projekt_3\DesktopClient\Views\leftArraowBlue.png"/>
+        <Image x:Key="rightArrow" Source="C:\Users\Arne\Documents\GitHub\UCN-Projekt_3\DesktopClient\Views\RightArrowBlue.png"/>
+    </UserControl.Resources>
+    
     <Grid Name="CalendarGrid">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -23,7 +28,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-       
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -40,14 +45,16 @@
         <TextBlock Grid.Column="4"  Grid.Row="1" HorizontalAlignment="Left" Height="25.771" Margin="10,5,0,0" TextWrapping="Wrap" Text="Thursday" VerticalAlignment="Top" Width="74.291" FontSize="18"/>
         <TextBlock Grid.Column="5"  Grid.Row="1" HorizontalAlignment="Left" Height="25.771" Margin="10,5,0,0" TextWrapping="Wrap" Text="Friday" VerticalAlignment="Top" Width="74.291" FontSize="18"/>
         <Grid x:Name="TimesColumn"  Grid.Row="2"  Grid.RowSpan="12"></Grid>
-        <StackPanel Grid.Column="1" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Name="btnPrevWeek"  Content="Previous" Click="PrevWeek_Click" HorizontalAlignment="Right" MinWidth="150" Margin="0,0,50,0"/>
-            <TextBlock Text="Week Number:" FontSize="18" FontWeight="Bold"/>
-            <TextBlock Name="txtWeekNum" Text="1" FontSize="18" FontWeight="Bold"/>
-            <Button Name="btnNextWeek" Content="Next" Click="NextWeek_Click" HorizontalAlignment="Left" MinWidth="150" Margin="50,0,0,0"/>
+        <StackPanel Grid.ColumnSpan="6" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20" Grid.RowSpan="2" Width="300">
+            <Button Content="{StaticResource leftArrow}" Width="20" Name="btnPrevWeek"  Click="PrevWeek_Click" HorizontalAlignment="Right" Margin="0,0,50,0" BorderBrush="{x:Null}" Foreground="{x:Null}" Background="{x:Null}" />
+            <TextBlock Text="Week:" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Name="txtWeekNum" Text="1" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Content="{StaticResource rightArrow}" Width="20"  Name="btnNextWeek" Click="NextWeek_Click" HorizontalAlignment="Right"  Margin="50,0,0,0.4"  Background="{x:Null}" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" Foreground="{x:Null}" />
+
+
 
         </StackPanel>
-       
+
 
 
 

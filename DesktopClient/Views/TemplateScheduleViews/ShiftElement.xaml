@@ -5,13 +5,38 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DesktopClient"
              mc:Ignorable="d" 
-
-             d:DesignHeight="300" d:DesignWidth="300"
+            
+             d:DesignHeight="300" d:DesignWidth="300" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" DragOver="UserControl_DragOver" 
              >
 
-    <Grid Name="Grid"  Margin="0,0,0,0" >
+    <Border Name ="ElementBorder" BorderBrush="#FFBDBDBD" BorderThickness="1,1,1,1" CornerRadius="5" Margin="2,2,2,2" >
+        <Border.Effect>
+            <DropShadowEffect/>
+        </Border.Effect>
+        <Grid Name="ElementGrid"  Margin="0,0,0,0"  MouseMove="UserControl_MouseMove"  >
+            <Grid.Background>
+                <SolidColorBrush Color="#FFB74747" Opacity="0"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="20"/>
+                <RowDefinition MaxHeight="20"/>
+                <RowDefinition/>
+                <RowDefinition MaxHeight="30" />
 
-        <TextBlock Name="textBox" FontWeight="Bold"></TextBlock>
-        <Button Name="button" HorizontalAlignment="Right" VerticalAlignment="Top" Height="14" FontSize="6" Click="button_Click">x</Button>
-    </Grid>
+            </Grid.RowDefinitions>
+            <Viewbox Stretch="Fill" MaxWidth="80"  HorizontalAlignment="Left" Margin="5,0,0,0" >
+                <TextBlock Name="textBox1" FontSize="10" FontWeight="Bold" VerticalAlignment="Top"/>
+            </Viewbox>
+            <Viewbox Stretch="Fill" Grid.Row="1" MaxWidth="80"  HorizontalAlignment="Left" Margin="5,0,0,0">
+                <TextBlock Name="textBox2" FontSize="10"  VerticalAlignment="Top"/>
+            </Viewbox>
+            <Button Name="button" Width="20" FontSize="12" Click="button_Click" HorizontalAlignment="Right" VerticalContentAlignment="Stretch" BorderBrush="{x:Null}">
+                <Button.Background>
+                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                </Button.Background> x</Button>
+        </Grid>
+    </Border>
+
+
+
 </UserControl>

@@ -5,9 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DesktopClient.Views.ScheduleViews"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="600">
+    <UserControl.Resources>
+        <Image x:Key="leftArrow" Source="C:\Users\Arne\Documents\GitHub\UCN-Projekt_3\DesktopClient\Views\leftArraowBlue.png"/>
+        <Image x:Key="rightArrow" Source="C:\Users\Arne\Documents\GitHub\UCN-Projekt_3\DesktopClient\Views\RightArrowBlue.png"/>
+    </UserControl.Resources>
     <Grid Name="CalendarGrid" >
         <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -26,26 +31,34 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
             <!--<ColumnDefinition/>-->
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="TimesColumn"  Grid.Row="2"  Grid.Column="1" Grid.RowSpan="12"></Grid>
-        <StackPanel Grid.Column="2" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Name="btnPrevWeek"  Content="Previous" Click="PrevWeek_Click" HorizontalAlignment="Right" MinWidth="150" Margin="0,0,50,0"/>
-            <Button Name="btnNextWeek" Content="Next" Click="NextWeek_Click" HorizontalAlignment="Left" MinWidth="150" Margin="50,0,0,0"/>
+        <Grid x:Name="TimesColumn"  Grid.Row="3"  Grid.Column="0" Grid.RowSpan="12"></Grid>
+        <Grid  Grid.Column="0" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-        </StackPanel>
-        <Calendar Name="NavCalendar" Grid.Row="4" Grid.RowSpan="6" FirstDayOfWeek="Monday"  SelectionMode="SingleRange" MouseDown="NavCalendar_MouseLeftButtonDown" SelectedDatesChanged="NavCalendar_SelectedDatesChanged"/>
-        
+ 
 
+        </Grid>
+        <Calendar Name="NavCalendar"  Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="3" FirstDayOfWeek="Monday" SelectionMode="SingleRange" MouseDown="NavCalendar_MouseLeftButtonDown" SelectedDatesChanged="NavCalendar_SelectedDatesChanged" Margin="0,0,0,-20" HorizontalContentAlignment="Stretch"/>
+        <Label Name="GreyOut" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="12"></Label>
+        <Button Name="btnNextWeek" Grid.Column="3" Grid.Row="1" Content="{StaticResource rightArrow}" Click="NextWeek_Click"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Margin="26,0,0,0" >
+
+        </Button>
+        <Button Name="btnPrevWeek" Grid.Column="2" Grid.Row="1" Content="{StaticResource leftArrow}" Click="PrevWeek_Click"  VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Margin="0,0,-14,0" >
+
+        </Button>
 
 
     </Grid>
-    
+
 </UserControl>

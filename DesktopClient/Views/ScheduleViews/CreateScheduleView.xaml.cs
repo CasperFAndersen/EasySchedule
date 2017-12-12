@@ -16,6 +16,8 @@ namespace DesktopClient.Views.ScheduleViews
         public CreateScheduleView()
         {
             InitializeComponent();
+            BtnGenerateSchedule.IsEnabled = false;
+            BtnPublishSchedule.IsEnabled = false;
             BindData();
         }
 
@@ -25,13 +27,24 @@ namespace DesktopClient.Views.ScheduleViews
             CBoxDepartment.DisplayMemberPath = "Name";
         }
 
+        private void ActivateButtons()
+        {
+            Department selectedDepartment = (Department)CBoxDepartment.SelectedItem;
+            if (CBoxDepartment.SelectedIndex != 1 && DatePicker.SelectedDate != null)
+            {
+                BtnGenerateSchedule.IsEnabled = true;
+                BtnPublishSchedule.IsEnabled = false;
+            }
+        }
+
         private void cBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Department selectedDepartment = (Department)CBoxDepartment.SelectedItem;
-            Mediator.GetInstance().OnCBoxSelectionChanged(selectedDepartment);
+            Mediator.GetInstance().OnCBoxDepartmentCreateScheduleChanged(selectedDepartment);
             LoadTemplateScheduleList(selectedDepartment.Id);
             BlackOutDatePicker(selectedDepartment.Id);
-
+            BtnGenerateSchedule.IsEnabled = false;
+            BtnPublishSchedule.IsEnabled = false;
         }
 
         private async void LoadTemplateScheduleList(int departmentId)
@@ -67,12 +80,17 @@ namespace DesktopClient.Views.ScheduleViews
 
         private void btnGenerateSchedule_Click(object sender, RoutedEventArgs e)
         {
-            if (DatePicker.SelectedDate != null && ListTemplateSchedule.SelectedIndex != 1)
+            if (DatePicker.SelectedDate != null && ListTemplateSchedule.SelectedIndex != -1)
             {
                 Core.TemplateSchedule templateSchedule = (Core.TemplateSchedule)ListTemplateSchedule.SelectedItem;
                 DateTime startTime = (DateTime)DatePicker.SelectedDate;
                 Core.Schedule schedule = new ScheduleProxy().GenerateScheduleFromTemplateScheduleAndStartDate(templateSchedule, startTime);
                 Mediator.GetInstance().OnGenerateScheduleButtonClicked(schedule);
+                BtnPublishSchedule.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Please select both, department, templateschedule and start date");
             }
         }
 
@@ -91,7 +109,7 @@ namespace DesktopClient.Views.ScheduleViews
                 {
                     DatePicker.SelectedDate = date;
                 }
-
+                ActivateButtons();
             }
 
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using Core;
@@ -8,30 +9,52 @@ namespace DesktopClient.Views.TemplateScheduleViews
 {
     public partial class ViewEditTemplateSchedule : UserControl
     {
-        TemplateScheduleProxy _templateProxy = new TemplateScheduleProxy();
+        public List<TemplateSchedule> TemplateSchedules  { get; set; }
+        TemplateScheduleProxy _templateProxy;
+        DepartmentProxy _departmentProxy;
         public ViewEditTemplateSchedule()
         {
             InitializeComponent();
-            BindData();
+            TemplateSchedules = new List<TemplateSchedule>();
+            _departmentProxy = new DepartmentProxy();
+            _templateProxy = new TemplateScheduleProxy();
+            BindDataDepartmentcBox();
             EventChangesListener();
+            BtnSaveUpdatedTemplateSchedule.IsEnabled = false;
         }
 
-        private async void BindData()
+        private async void BindDataDepartmentcBox()
         {
-            List<Core.TemplateSchedule> templateSchedules = await _templateProxy.GetAllTemplateSchedulesAsync();
-            ChooseSchedule.ItemsSource = templateSchedules;
-            ChooseSchedule.DisplayMemberPath = "Name";
+            CBoxDepartment.ItemsSource = await new DepartmentController().GetDepartmentsByLoggedinEmployee();
+            CBoxDepartment.DisplayMemberPath = "Name";
+        }
+
+        private async void BindDataTempScheduleCBox()
+        {
+            Department department = (Department)CBoxDepartment.SelectedItem;
+            if (department != null)
+            {
+                List<TemplateSchedule> templateSchedules = await _templateProxy.GetAllTemplateSchedulesAsync();
+                templateSchedules = templateSchedules.FindAll(x => x.DepartmentId == department.Id);
+                CBoxSchedule.ItemsSource = templateSchedules;
+                CBoxSchedule.DisplayMemberPath = "Name";
+            }
+
         }
 
         private void ChooseSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Core.TemplateSchedule templateSchedule = (Core.TemplateSchedule)ChooseSchedule.SelectedItem;
-            int[] weeks = { 1, 2, 3, 4 };
-            Weeks.ItemsSource = weeks;
-            Weeks.SelectedItem = templateSchedule.NoOfWeeks;
-            Department department = new DepartmentProxy().GetDepartmentById(templateSchedule.DepartmentId);
-            TxtBoxTemplateScheduleName.Text = department.Name;
-            Mediator.GetInstance().OnTemplateScheduleSelected(sender, templateSchedule);
+            if (CBoxSchedule.HasItems)
+            {
+                Core.TemplateSchedule templateSchedule = (Core.TemplateSchedule)CBoxSchedule.SelectedItem;
+                txtWeeks.Text = templateSchedule.NoOfWeeks.ToString();
+                Mediator.GetInstance().OnTemplateScheduleSelected(sender, templateSchedule);
+            }
+            else
+            {
+                txtWeeks.Text = "";
+            }
+
         }
 
         private void EventChangesListener()
@@ -53,16 +76,21 @@ namespace DesktopClient.Views.TemplateScheduleViews
 
             Mediator.GetInstance().CreateTemplateScheduleButtonClicked += (t) =>
             {
-                BindData();
+                BindDataTempScheduleCBox();
             };
         }
 
         private void BtnSaveUpdatedTemplateSchedule_Click(object sender, RoutedEventArgs e)
         {
-            Core.TemplateSchedule templateSchedule = (Core.TemplateSchedule)ChooseSchedule.SelectedItem;
+            Core.TemplateSchedule templateSchedule = (Core.TemplateSchedule)CBoxSchedule.SelectedItem;
             Mediator.GetInstance().OnTemplateScheduleUpdateButtonClicked(sender, templateSchedule);
             MessageBox.Show("Changes to: " + templateSchedule.Name + " have been saved to database ");
            // BindData();
+        }
+
+        private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BindDataTempScheduleCBox();
         }
     }
 }

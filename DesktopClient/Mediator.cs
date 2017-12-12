@@ -90,6 +90,16 @@ namespace DesktopClient
             }
         }
 
+        public delegate void ResizeShiftHandler();
+        public event ResizeShiftHandler ResizeShiftStarted;
+        public void OnResizeStarted()
+        {
+            if (ResizeShiftStarted != null)
+            {
+                ResizeShiftStarted();
+            }
+        }
+
         public delegate void GenerateScheduleButtonClickedHandler(Schedule schedule);
         public event GenerateScheduleButtonClickedHandler GenerateScheduleButtonClicked;
 
@@ -122,15 +132,28 @@ namespace DesktopClient
             }
         }
 
-        public delegate void CBoxDepartmentChangedHandler(Department department);
+        public delegate Schedule CBoxDepartmentChangedHandler(Department department);
         public event CBoxDepartmentChangedHandler CBoxDepartmentChanged;
-        public void OnCBoxSelectionChanged(Department department)
+        public Schedule OnCBoxSelectionChanged(Department department)
         {
+            Schedule schedule = null;
             if (CBoxDepartmentChanged != null)
             {
-               CBoxDepartmentChanged(department);
+               schedule = CBoxDepartmentChanged(department);
             }
-            
+            return schedule;
+        }
+
+        public delegate void CBoxDepartmentChangedVoidHandler(Department department);
+        public event CBoxDepartmentChangedVoidHandler CBoxDepartmentChangedVoid;
+        public void OnCBoxSelectionChangedVoid(Department department)
+        {
+         
+            if (CBoxDepartmentChangedVoid != null)
+            {
+                CBoxDepartmentChangedVoid(department);
+            }
+           
         }
 
         public delegate void CBoxDepartment_CreateSchedule_ChangedHandler(Department department);
@@ -202,6 +225,26 @@ namespace DesktopClient
             if (LoginButtonClicked != null)
             {
                 LoginButtonClicked(employee);
+            }
+        }
+
+        public delegate void NewScheduleActiveHandler(Schedule schedule);
+        public event NewScheduleActiveHandler NewScheduleActive;
+        public void OnNewScheduleActive(Schedule schedule)
+        {
+            if(NewScheduleActive != null)
+            {
+                NewScheduleActive(schedule);
+            }
+        }
+
+        public delegate void ResetButtonClickedHandler();
+        public event ResetButtonClickedHandler ResetButtonClicked;
+        public void OnResetButtonClicked()
+        {
+            if (ResetButtonClicked != null)
+            {
+                ResetButtonClicked();
             }
         }
 

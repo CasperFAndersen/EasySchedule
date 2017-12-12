@@ -99,7 +99,7 @@ namespace BusinessLogic
             schedule.Shifts = _scheduleShiftController.GenerateShiftsFromTemplateSchedule(templateSchedule, startTime);
             schedule.Department = _departmentController.GetDepartmentById(templateSchedule.DepartmentId);
             schedule.StartDate = startTime;
-            schedule.EndDate = startTime.AddDays(7 * templateSchedule.NoOfWeeks);
+            schedule.EndDate = startTime.AddDays((7 * templateSchedule.NoOfWeeks)-1);
             return schedule;
         }
 

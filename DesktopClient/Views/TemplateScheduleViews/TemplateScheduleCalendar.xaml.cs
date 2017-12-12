@@ -72,10 +72,14 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 if (shift.WeekNumber == Convert.ToInt32(txtWeekNum.Text))
                 {
                     TemplateScheduleViews.DayColumn dayCol = GetDayCoulmByName(shift.WeekDay.ToString());
-                    dayCol.InsertShiftIntoDay(shift);
+                    // dayCol.InsertShiftIntoDay(shift);
+                    
+                    dayCol.Shifts.Add(shift);
+                    
                 }
 
             }
+            DayColumnList.ForEach(x => x.RenderShifts());
 
         }
 
@@ -133,6 +137,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
 
             Mediator.GetInstance().ShiftDropped += (s, e) =>
             {
+                Clear();
+                //  DayColumnList.ForEach(x => x.ResetTimeCells());
                 LoadShiftsIntoCalendar();
             };
         }
@@ -143,6 +149,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
             {
                 if (this.IsVisible)
                 {
+                    Clear();
                     Shifts.Add(new TemplateShift() { Employee = e, StartTime = tod, WeekDay = dow, WeekNumber = WeekNumber, Hours = DEFAULTSHIFTLENGTH });
                     LoadShiftsIntoCalendar();
                 }
@@ -159,7 +166,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
                      TemplateShift ts = (TemplateShift)e.Shift;
                      Shifts.Remove(ts);
                  }
-
+                 DayColumnList.ForEach(x => x.ResetTimeCells());
+                 Clear();
                  LoadShiftsIntoCalendar();
              };
         }

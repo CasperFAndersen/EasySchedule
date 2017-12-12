@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -10,31 +11,90 @@ namespace DesktopClient.Views.TemplateScheduleViews
     {
         public bool IsFirstElement { get; set; }
         public bool IsLastElement { get; set; }
+        public TimeCell RootTimeCell { get; set; }
         public ShiftElement(Shift shift, Color color, bool isLastElement)
         {
             InitializeComponent();
             DataContext = shift;
             IsLastElement = isLastElement;
-            textBox.Background = new SolidColorBrush(color);
+            ElementBorder.Background = new SolidColorBrush(color);
+            //ElementGrid.Background = new SolidColorBrush(color);
             SetCursor();
+            ElementBorder.Effect = null;
+            ElementBorder.BorderBrush = null;
             button.Visibility = Visibility.Hidden;
         }
 
-        public ShiftElement(Shift shift, string text, Color color)
+        public ShiftElement(Shift shift, Color color)
         {
             InitializeComponent();
             DataContext = shift;
             IsLastElement = false;
-            textBox.Background = new SolidColorBrush(color);
-            textBox.Text = text;
+            ElementBorder.Background = new SolidColorBrush(color);
+            // ElementGrid.Background = new SolidColorBrush(color);
+            SetTextHeader(shift);
             SetCursor();
+
         }
 
-        protected override void OnMouseMove(MouseEventArgs e)
+
+        public void AddButtom(ShiftElement shiftElement)
+        {
+            shiftElement.ElementBorder.Effect = null;
+            ElementGrid.Children.Add(shiftElement);
+            Grid.SetRow(shiftElement, 3);
+        }
+
+        private void SetTextHeader(Shift shift)
+        {
+            ScheduleShift scheduleShift = null;
+            TemplateShift templateShift = null;
+            if (shift.GetType() == typeof(ScheduleShift))
+            {
+                scheduleShift = (ScheduleShift)shift;
+                textBox1.Text = scheduleShift.Employee.Name;
+                textBox2.Text = scheduleShift.StartTime.ToShortTimeString() + " - " + scheduleShift.StartTime.AddHours(scheduleShift.Hours).ToShortTimeString();
+            }
+            else
+            {
+                templateShift = (TemplateShift)shift;
+                int minutes = (int)(60 * (templateShift.Hours - (int)templateShift.Hours));
+                DateTime startTime = new DateTime(2017, 1, 1, templateShift.StartTime.Hours, templateShift.StartTime.Minutes, 0);
+                DateTime endTime = startTime.AddHours(templateShift.Hours);
+
+                textBox1.Text = templateShift.Employee.Name; //+ " : " + startTime.ToShortTimeString() + " - " + endTime.ToShortTimeString();
+                textBox2.Text = startTime.ToShortTimeString() + " - " + endTime.ToShortTimeString();
+
+            }
+        }
+
+
+
+        public void SetCursor()
+        {
+            if (IsLastElement)
+            {
+                ElementGrid.Cursor = Cursors.SizeNS;
+            }
+            else
+            {
+                ElementGrid.Cursor = Cursors.Hand;
+            }
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Mediator.GetInstance().OnShiftCloseClick(sender, (Shift)DataContext);
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
             base.OnMouseMove(e);
             if (e.LeftButton == MouseButtonState.Pressed)
             {
+
+                Mediator.GetInstance().OnResizeStarted();
+             
                 // Package the data.
                 DataObject data = new DataObject();
                 data.SetData("IsLastShiftElement", IsLastElement);
@@ -45,21 +105,29 @@ namespace DesktopClient.Views.TemplateScheduleViews
             }
         }
 
-        public void SetCursor()
+        private void UserControl_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (IsLastElement)
+            if (RootTimeCell != null)
             {
-                Grid.Cursor = Cursors.SizeNS;
-            }
-            else
-            {
-                Grid.Cursor = Cursors.Hand;
+                Grid.SetZIndex(RootTimeCell, 700);
             }
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void UserControl_MouseLeave(object sender, MouseEventArgs e)
         {
-            Mediator.GetInstance().OnShiftCloseClick(sender, (Shift)DataContext);
+            if (RootTimeCell != null)
+            {
+                Grid.SetZIndex(RootTimeCell, 600);
+            }
+
+        }
+
+        private void UserControl_DragOver(object sender, DragEventArgs e)
+        {
+            if (RootTimeCell != null)
+            {
+                Grid.SetZIndex(RootTimeCell, 0);
+            }
         }
     }
 }
