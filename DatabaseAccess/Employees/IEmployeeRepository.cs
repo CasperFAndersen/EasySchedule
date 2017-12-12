@@ -12,7 +12,6 @@ namespace DatabaseAccess.Employees
         List<Employee> GetEmployeesByDepartmentId(int departmentId);
         void InsertEmployee(Employee employee);
         void UpdateEmployee(Employee employee);
-        string GetSaltFromEmployeePassword(Employee employee);
-        Employee FindEmployeeById(int id);
+        string GetSaltByEmployee(Employee employee);
     }
 }

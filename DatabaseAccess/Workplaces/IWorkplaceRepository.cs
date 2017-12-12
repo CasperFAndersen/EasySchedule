@@ -9,5 +9,6 @@ namespace DatabaseAccess.Workplaces
 {
     public interface IWorkplaceRepository
     {
+        //NOTE: Not implemented since we dont have a user story with it yet.
     }
 }

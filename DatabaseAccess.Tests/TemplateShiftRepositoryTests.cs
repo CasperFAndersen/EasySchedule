@@ -1,45 +1,43 @@
-﻿using System.Collections.Generic;
-using Core;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ServiceLibrary.Tests
+namespace DatabaseAccess.Tests
 {
-
     [TestClass]
-    public class EmployeeServiceTests
+    public class TemplateShiftRepositoryTests
     {
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-        }
-
         [TestMethod]
-        public void GetEmployeeByUsernameTest()
+        public void AddTemplateShiftsFromTemplateScheduleTest()
         {
             //TODO: Implement this
         }
 
         [TestMethod]
-        public void GetEmployeesByDepartmentId()
+        public void UpdateTemplateScheduleShiftTest()
         {
             //TODO: Implement this
         }
 
         [TestMethod]
-        public void InsertEmployeeTest()
+        public void GetAllTemplateShiftsTest()
         {
             //TODO: Implement this
         }
 
         [TestMethod]
-        public void UpdateEmployeeTest()
+        public void GetTemplateShiftsByTemplateScheduleIdTest()
         {
             //TODO: Implement this
         }
 
         [TestMethod]
-        public void ValidateEmployeeTest()
+        public void FindTemplateShiftByIdTest()
+        {
+            //TODO: Implement this
+        }
+
+        [TestMethod]
+        public void GetDayOfweekBasedOnStringTest()
         {
             //TODO: Implement this
         }

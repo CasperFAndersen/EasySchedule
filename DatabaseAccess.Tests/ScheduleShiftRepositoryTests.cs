@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace DatabaseAccess.Tests
 {
     [TestClass]
-    public class ShiftRepositoryTests
+    public class ScheduleShiftRepositoryTests
     {
         IScheduleShiftRepository _scheduleShiftRepository;
 
@@ -24,9 +24,32 @@ namespace DatabaseAccess.Tests
             DbSetUp.SetUpDb();
         }
 
+        [TestMethod]
+        public void GetShiftByIdTest()
+        {
+            //TODO: Implement this
+        }
 
         [TestMethod]
-        public void GetAllShiftsByScheduleIdTest()
+        public void GetShiftsByEmployeeIdTest()
+        {
+            //TODO: Implement this
+        }
+
+        [TestMethod]
+        public void AddShiftsFromScheduleTest()
+        {
+            //TODO: Implement this
+        }
+
+        [TestMethod]
+        public void UpdateScheduleShiftTest()
+        {
+            //TODO: Implement this
+        }
+
+        [TestMethod]
+        public void GetShiftsByScheduleIdTest()
         {
             List<ScheduleShift> shifts = _scheduleShiftRepository.GetShiftsByScheduleId(1);
 
@@ -67,7 +90,7 @@ namespace DatabaseAccess.Tests
         public void AcceptAvailableShiftTest()
         {
             ScheduleShift shift = _scheduleShiftRepository.GetShiftById(1);
-            Employee employee = new EmployeeRepository().FindEmployeeById(5);
+            Employee employee = new EmployeeRepository().GetEmployeeById(5);
             Assert.AreNotEqual(shift.Employee, employee);
 
             _scheduleShiftRepository.AcceptAvailableShift(shift, employee);

@@ -60,12 +60,7 @@ namespace Tests.DepartmentService {
         public DepartmentServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
-
-        public DepartmentServiceClient(IDepartmentService endpointConfigurationName)
-        {
-            throw new System.NotImplementedException();
-        }
-
+        
         public System.Collections.Generic.List<Core.Department> GetAllDepartments() {
             return base.Channel.GetAllDepartments();
         }

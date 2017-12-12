@@ -11,44 +11,30 @@ namespace BusinessLogic
     /// </summary>
     public class InputValidator
     {
-        private string employeePhoneCheck;
-        private string employeeEmailCheck;
-        private string employeeNameCheck;
-        private int employeeNoOfHoursCheck;
-        private string employeeUsernameCheck;
-        private string employeePasswordCheck;
 
-
-        public string EmployeePhoneCheck
+        public string PhoneCheck
         {
-            //A phonenumber can have a minimum of 8 digits, and a maximum of 20.
-            get { return employeePhoneCheck = "^[0-9]{8,20}$"; }
+            get { return "^[0-9]{8,20}$"; }
         }
 
-        public string EmployeeEmailCheck
+        public string EmailCheck
         {
-            get { return employeeEmailCheck = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$"; }
+            get { return "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$"; }
         }
 
-        public string EmployeeNameCheck
+        public string NameCheck
         {
-            get { return employeeNameCheck = "[a-zA-Z]+( [a-zA-Z]+)+"; }
-        }
-            
-        //public int EmployeeNoOfHoursCheck
-        //{
-        //    get { return employeeNoOfHoursCheck = ; }
-        //}
-
-        public string EmployeeUsernameCheck
-        {
-            get { return employeeUsernameCheck = "[0-9a-zA-Z]{3,}"; }
+            get { return "[a-zA-Z]+( [a-zA-Z]+)+"; }
         }
 
-        public string EmployeePasswordCheck
+        public string UsernameCheck
         {
-            //A username can be between 6 and 30 digits.
-            get { return employeePasswordCheck = "[0-9a-zA-Z]{6,30}"; }
+            get { return "[0-9a-zA-Z]{3,}"; }
+        }
+
+        public string PasswordCheck
+        {
+            get { return "[0-9a-zA-Z]{6,30}"; }
         }
 
     }

@@ -69,6 +69,8 @@
     <Compile Include="ScheduleControllerTests.cs" />
     <Compile Include="TemplateScheduleControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PasswordHashingTests.cs" />
+    <Compile Include="TemplateShiftControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

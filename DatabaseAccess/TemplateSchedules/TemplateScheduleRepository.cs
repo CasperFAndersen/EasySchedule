@@ -56,7 +56,7 @@ namespace DatabaseAccess.TemplateSchedules
 
         }
 
-        public TemplateSchedule FindTemplateScheduleByName(string scheduleName)
+        public TemplateSchedule GetTemplateScheduleByName(string scheduleName)
         {
             TemplateSchedule templateSchedule = null;
             using (SqlConnection connection = new DbConnection().GetConnection())

@@ -25,18 +25,18 @@ namespace DatabaseAccess.Tests
         }
 
         [TestMethod]
+        public void GetAllDepartmentsTest()
+        {
+            List<Department> departments = _departmentRepository.GetAllDepartments();
+            Assert.AreEqual(5, departments.Count);
+        }
+
+        [TestMethod]
         public void GetDepartmentByIdTest()
         {
             Department department = _departmentRepository.GetDepartmentById(1);
             Assert.IsNotNull(department);
             Assert.AreEqual("Kolonial", department.Name);
-        }
-
-        [TestMethod]
-        public void GetAllDepartmentsTest()
-        {
-            List<Department> departments = _departmentRepository.GetAllDepartments();
-            Assert.AreEqual(5, departments.Count);
         }
 
         [TestMethod()]

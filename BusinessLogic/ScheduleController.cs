@@ -39,10 +39,7 @@ namespace BusinessLogic
                 {
                     schedule.Shifts = new ScheduleShiftRepository().GetShiftsByScheduleId(schedule.Id);
                 }
-             
             }
-
-
             return schedule;
         }
 

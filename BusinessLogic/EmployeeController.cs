@@ -50,7 +50,7 @@ namespace BusinessLogic
         public Employee ValidatePassword(string username, string password)
         {
             Employee employee = GetEmployeeByUsername(username);
-            string salt = _employeeRepository.GetSaltFromEmployeePassword(employee);
+            string salt = _employeeRepository.GetSaltByEmployee(employee);
             password = PasswordHashing.HashPassword(salt + password);
             if (employee.Password.Equals(password))
             {
@@ -67,13 +67,13 @@ namespace BusinessLogic
                 employee.Password = PasswordHashing.HashPassword(employee.Salt + employee.Password);
                 if
                 (
-                Regex.IsMatch(employee.Name, _inputValidator.EmployeeNameCheck)
+                Regex.IsMatch(employee.Name, _inputValidator.NameCheck)
                 &&
-                Regex.IsMatch(employee.Phone, _inputValidator.EmployeePhoneCheck)
+                Regex.IsMatch(employee.Phone, _inputValidator.PhoneCheck)
                 &&
-                Regex.IsMatch(employee.Email, _inputValidator.EmployeeEmailCheck)
+                Regex.IsMatch(employee.Email, _inputValidator.EmailCheck)
                 &&
-                Regex.IsMatch(employee.Username, _inputValidator.EmployeeUsernameCheck)
+                Regex.IsMatch(employee.Username, _inputValidator.UsernameCheck)
                 &&
                 employee.NoOfHours >= 0
                 )
@@ -103,13 +103,13 @@ namespace BusinessLogic
                     employee.Password = PasswordHashing.HashPassword(employee.Salt + employee.Password);
                 }
                 if (
-                    Regex.IsMatch(employee.Name, _inputValidator.EmployeeNameCheck)
+                    Regex.IsMatch(employee.Name, _inputValidator.NameCheck)
                     &&
-                    Regex.IsMatch(employee.Phone, _inputValidator.EmployeePhoneCheck)
+                    Regex.IsMatch(employee.Phone, _inputValidator.PhoneCheck)
                     &&
-                    Regex.IsMatch(employee.Email, _inputValidator.EmployeeEmailCheck)
+                    Regex.IsMatch(employee.Email, _inputValidator.EmailCheck)
                     &&
-                    Regex.IsMatch(employee.Username, _inputValidator.EmployeeUsernameCheck)
+                    Regex.IsMatch(employee.Username, _inputValidator.UsernameCheck)
                     &&
                     employee.NoOfHours >= 0
                 )

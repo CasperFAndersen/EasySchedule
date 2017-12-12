@@ -21,7 +21,7 @@ namespace BusinessLogic.Tests
         {
             List<Department> departments = _departmentController.GetAllDepartments();
             Assert.IsNotNull(departments);
-            Assert.AreNotEqual(departments.Count, 0);
+            Assert.AreNotEqual(0, departments.Count);
         }
 
         [TestMethod]
@@ -36,6 +36,14 @@ namespace BusinessLogic.Tests
         {
             Department department = _departmentController.GetDepartmentById(-1);
             Assert.IsNull(department.Name);
+        }
+
+        [TestMethod]
+        public void GetDepartmentByWorkplaceIdTest()
+        {
+            List<Department> departments = _departmentController.GetDepartmentsByWorkplaceId(1);
+            Assert.IsNotNull(departments);
+            Assert.AreEqual(2, departments.Count);
         }
 
     }

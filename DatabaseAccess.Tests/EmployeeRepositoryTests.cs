@@ -8,30 +8,36 @@ namespace DatabaseAccess.Tests
     [TestClass]
     public class EmployeeRepositoryTests
     {
-        IEmployeeRepository employeeRepository;
+        private IEmployeeRepository _employeeRepository;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            employeeRepository = new EmployeeRepository();
+            _employeeRepository = new EmployeeRepository();
+        }
+
+        [TestMethod]
+        public void GetAllEmployeesTest()
+        {
+            //TODO: Implement this
         }
 
         [TestMethod]
         public void GetEmployeeByUsernameTest()
         {
-            Employee employee = employeeRepository.GetEmployeeByUsername("MikkelP");
-            Assert.AreEqual("Mikkel Paulsen", employeeRepository.GetEmployeeByUsername("MikkelP").Name);
+            Employee employee = _employeeRepository.GetEmployeeByUsername("MikkelP");
+            Assert.AreEqual("Mikkel Paulsen", _employeeRepository.GetEmployeeByUsername("MikkelP").Name);
         }
 
         [TestMethod()]
-        public void FindEmployeeByIdTest()
+        public void GetEmployeeByIdTest()
         {
-            Employee employee = employeeRepository.FindEmployeeById(1);
+            Employee employee = _employeeRepository.GetEmployeeById(1);
             Assert.IsNotNull(employee);
         }
 
         [TestMethod]
-        public void InsertEmployeeIntoDbTest()
+        public void InsertEmployeeTest()
         {
             Employee emp = new Employee()
             {
@@ -47,10 +53,10 @@ namespace DatabaseAccess.Tests
                 Salt = "example"
             };
 
-            employeeRepository.InsertEmployee(emp);
+            _employeeRepository.InsertEmployee(emp);
 
-            emp = employeeRepository.GetEmployeeByUsername("AAndersen");
-            List<Employee> emps = employeeRepository.GetAllEmployees();
+            emp = _employeeRepository.GetEmployeeByUsername("AAndersen");
+            List<Employee> emps = _employeeRepository.GetAllEmployees();
 
             Assert.IsNotNull(emp);
             Assert.AreEqual("Anders Andersen", emp.Name);
@@ -61,26 +67,31 @@ namespace DatabaseAccess.Tests
         [TestMethod]
         public void UpdateEmployeeTest()
         {
-            Employee emp = employeeRepository.GetEmployeeByUsername("MikkelP");
+            Employee emp = _employeeRepository.GetEmployeeByUsername("MikkelP");
 
             Assert.IsNotNull(emp);
             Assert.AreEqual("Mikkel Paulsen", emp.Name);
 
             emp.Name = "Mikkel Hansen";
 
-            employeeRepository.UpdateEmployee(emp);
+            _employeeRepository.UpdateEmployee(emp);
 
-            emp = employeeRepository.GetEmployeeByUsername("MikkelP");
+            emp = _employeeRepository.GetEmployeeByUsername("MikkelP");
             Assert.IsNotNull(emp);
             Assert.AreEqual("Mikkel Hansen", emp.Name);
-
         }
 
         [TestMethod]
         public void GetEmployeesByDepartmentIdTest()
         {
-            List<Employee> employees = employeeRepository.GetEmployeesByDepartmentId(1);
+            List<Employee> employees = _employeeRepository.GetEmployeesByDepartmentId(1);
             Assert.AreNotEqual(0, employees.Count);
+        }
+
+        [TestMethod]
+        public void GetSaltByEmployeeTest()
+        {
+            //TODO: Implement this
         }
 
         [TestCleanup]

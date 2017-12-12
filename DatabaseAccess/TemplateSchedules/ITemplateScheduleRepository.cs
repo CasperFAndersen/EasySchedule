@@ -8,7 +8,7 @@ namespace DatabaseAccess.TemplateSchedules
     {
         IEnumerable<TemplateSchedule> GetAllTemplateSchedules();
         void AddTemplateScheduleToDatabase(TemplateSchedule templateSchedule);
-        TemplateSchedule FindTemplateScheduleByName(string scheduleName);
+        TemplateSchedule GetTemplateScheduleByName(string scheduleName);
         void UpdateTemplateSchedule(TemplateSchedule templateSchedule);
     }
 }

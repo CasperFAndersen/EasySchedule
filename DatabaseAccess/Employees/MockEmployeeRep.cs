@@ -51,7 +51,7 @@ namespace DatabaseAccess.Employees
             throw new NotImplementedException();
         }
 
-        public string GetSaltFromEmployeePassword(Employee employee)
+        public string GetSaltByEmployee(Employee employee)
         {
             throw new NotImplementedException();
         }

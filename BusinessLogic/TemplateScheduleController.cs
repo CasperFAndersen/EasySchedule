@@ -32,7 +32,7 @@ namespace BusinessLogic
 
         public TemplateSchedule FindTemplateScheduleByName(string name)
         {
-            return _templateScheduleRepository.FindTemplateScheduleByName(name);
+            return _templateScheduleRepository.GetTemplateScheduleByName(name);
         }
 
         public void AddTemplateScheduleToDb(TemplateSchedule templateSchedule)

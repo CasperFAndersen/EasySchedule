@@ -62,9 +62,10 @@
     <Compile Include="EmployeeRepositoryTests.cs" />
     <Compile Include="ScheduleRepositoryTests.cs" />
     <Compile Include="SetupDatabaseTests.cs" />
-    <Compile Include="ShiftRepositoryTests.cs" />
+    <Compile Include="ScheduleShiftRepositoryTests.cs" />
     <Compile Include="TemplateScheduleRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateShiftRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

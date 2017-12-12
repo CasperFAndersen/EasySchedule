@@ -9,6 +9,6 @@ namespace DatabaseAccess.Workplaces
 {
     public class WorkplaceRepository : IWorkplaceRepository
     {
-        
+        //NOTE: Not implemented since we dont have a user story with it yet.
     }
 }
