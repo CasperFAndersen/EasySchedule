@@ -23,13 +23,6 @@ namespace ServiceLibrary.Schedules
         [OperationContract]
         Schedule GenerateScheduleFromTemplateScheduleAndStartDate(TemplateSchedule templateSchedule, DateTime startTime);
 
-        [OperationContract]
-        void SetScheduleShiftForSale(ScheduleShift scheduleShift);
 
-        [OperationContract]
-        void AcceptAvailableShift(ScheduleShift shift, Employee employee);
-
-        [OperationContract]
-        List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
     }
 }

@@ -20,27 +20,13 @@ namespace DatabaseAccess.Schedules
         {
             Schedule schedule = new Schedule();
             schedule.Id = reader.GetInt32(0);
-            schedule.Shifts = new ScheduleShiftRepository().GetShiftsByScheduleId(schedule.Id);
+
             schedule.StartDate = reader.GetDateTime(1);
             schedule.EndDate = reader.GetDateTime(2);
-            schedule.Department = new DepartmentRepository().GetDepartmentById(reader.GetInt32(3));
+
             return schedule;
         }
 
-        /// <summary>
-        /// This method builds a new Schedule without Shifts object with the information retrieved from the database.
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <returns></returns>
-        private Schedule BuildScheduleWithoutShifts(SqlDataReader reader)
-        {
-            Schedule schedule = new Schedule();
-            schedule.Id = reader.GetInt32(0);
-            schedule.StartDate = reader.GetDateTime(1);
-            schedule.EndDate = reader.GetDateTime(2);
-            schedule.Department = new DepartmentRepository().GetDepartmentById(Convert.ToInt32(reader["departmentId"].ToString()));
-            return schedule;
-        }
 
         public List<Schedule> GetSchedulesByDepartmentId(int departmentId)
         {
@@ -55,7 +41,7 @@ namespace DatabaseAccess.Schedules
                     {
                         while (reader.Read())
                         {
-                            Schedule schedule = BuildScheduleWithoutShifts(reader);
+                            Schedule schedule = BuildScheduleObject(reader);
                             schedules.Add(schedule);
                         }
                     }
@@ -64,51 +50,39 @@ namespace DatabaseAccess.Schedules
             return schedules;
         }
 
-        public void InsertSchedule(Schedule schedule)
+        public Schedule InsertSchedule(Schedule schedule)
         {
-            try
+            using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                using (TransactionScope scope = new TransactionScope())
+                using (SqlCommand command = connection.CreateCommand())
                 {
-                    using (SqlConnection connection = new DbConnection().GetConnection())
-                    {
-                        using (SqlCommand command = connection.CreateCommand())
-                        {
-                            command.CommandText = "INSERT INTO Schedule (startDate, endDate, departmentId)" +
-                                              " VALUES (@param1, @param2, @param3) SELECT SCOPE_IDENTITY();";
+                    command.CommandText = "INSERT INTO Schedule (startDate, endDate, departmentId)" +
+                                      " VALUES (@param1, @param2, @param3) SELECT SCOPE_IDENTITY();";
 
-                            SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.DateTime, 100);
-                            SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.DateTime, 100);
-                            SqlParameter p3 = new SqlParameter(@"param3", SqlDbType.Int, 100);
+                    SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.DateTime, 100);
+                    SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.DateTime, 100);
+                    SqlParameter p3 = new SqlParameter(@"param3", SqlDbType.Int, 100);
 
-                            p1.Value = schedule.StartDate;
-                            p2.Value = schedule.EndDate;
-                            p3.Value = schedule.Department.Id;
+                    p1.Value = schedule.StartDate;
+                    p2.Value = schedule.EndDate;
+                    p3.Value = schedule.Department.Id;
 
-                            command.Parameters.Add(p1);
-                            command.Parameters.Add(p2);
-                            command.Parameters.Add(p3);
+                    command.Parameters.Add(p1);
+                    command.Parameters.Add(p2);
+                    command.Parameters.Add(p3);
 
-                            schedule.Id = Convert.ToInt32(command.ExecuteScalar());
+                    schedule.Id = Convert.ToInt32(command.ExecuteScalar());
 
-                            ScheduleShiftRepository scheduleShiftRep = new ScheduleShiftRepository();
-                            scheduleShiftRep.AddShiftsFromSchedule(schedule);
-                        }
-                        scope.Complete();
-                    }
                 }
             }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong while adding the Schedule to the database, Try again!!" + e.Message);
-            }
+            return schedule;
         }
 
-        public void UpdateSchedule(Schedule schedule)
-        {
-            ScheduleShiftRepository scheduleShiftRepository = new ScheduleShiftRepository();
-            scheduleShiftRepository.AddShiftsFromSchedule(schedule);
-        }
+        //public void UpdateSchedule(Schedule schedule)
+        //{
+        //    ScheduleShiftRepository scheduleShiftRepository = new ScheduleShiftRepository();
+        //    scheduleShiftRepository.AddShiftsFromSchedule(schedule);
+        //}
 
     }
 }

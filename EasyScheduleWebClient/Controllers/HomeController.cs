@@ -10,6 +10,8 @@ namespace EasyScheduleWebClient.Controllers
 {
     public class HomeController : Controller
     {
+        ScheduleShiftProxy scheduleShiftProxy = new ScheduleShiftProxy();
+        ScheduleProxy scheduleProxy = new ScheduleProxy();
         public ActionResult Index()
         {
             return View();
@@ -34,7 +36,7 @@ namespace EasyScheduleWebClient.Controllers
         public ActionResult GetShiftsByEmployee()
         {
             List<ScheduleShift> res = new List<ScheduleShift>();
-            ScheduleProxy scheduleProxy = new ScheduleProxy();
+
             Employee emp = (Employee)Session["employee"];
             try
             {
@@ -65,8 +67,8 @@ namespace EasyScheduleWebClient.Controllers
             Employee employee = new Employee();
             employee = (Employee)Session["employee"];
 
-            ScheduleProxy scheduleProxy = new ScheduleProxy();
-            scheduleProxy.AcceptAvailableShift(scheduleShift, employee);
+         
+            scheduleShiftProxy.AcceptAvailableShift(scheduleShift, employee);
 
             return null;
         }
@@ -74,9 +76,9 @@ namespace EasyScheduleWebClient.Controllers
         [HttpPost]
         public JsonResult SetShiftForSale(ScheduleShift scheduleShift)
         {
-            ScheduleProxy scheduleProxy = new ScheduleProxy();
+  
             scheduleShift.Employee = (Employee)Session["employee"];
-            scheduleProxy.SetScheduleShiftForSale(scheduleShift);
+            scheduleShiftProxy.SetScheduleShiftForSale(scheduleShift);
             return null;
         }
 

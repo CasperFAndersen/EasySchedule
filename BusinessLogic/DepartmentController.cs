@@ -10,10 +10,16 @@ namespace BusinessLogic
         private readonly IDepartmentRepository _departmentRepository;
         private readonly IEmployeeController _employeeController;
 
+        public DepartmentController()
+        {
+            _departmentRepository = new DepartmentRepository();
+            _employeeController = new EmployeeController();
+        }
+
         public DepartmentController(IDepartmentRepository departmentRepository)
         {
             this._departmentRepository = departmentRepository;
-            _employeeController = new EmployeeController(new EmployeeRepository());
+            _employeeController = new EmployeeController();
         }
 
         public List<Department> GetAllDepartments()

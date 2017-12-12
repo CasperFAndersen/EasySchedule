@@ -164,6 +164,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ScheduleShiftService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AvailableShiftsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -182,6 +187,7 @@
     <Compile Include="Services\EmployeeRepository.cs" />
     <Compile Include="Services\EventRepository.cs" />
     <Compile Include="Services\ScheduleProxy.cs" />
+    <Compile Include="Services\ScheduleShiftProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\EmployeeService\Core.xsd">
@@ -203,6 +209,13 @@
     <None Include="Connected Services\EmployeeService\configuration91.svcinfo" />
     <None Include="Connected Services\EmployeeService\configuration.svcinfo" />
     <None Include="Connected Services\EmployeeService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ScheduleShiftService\item.disco" />
+    <None Include="Connected Services\ScheduleShiftService\configuration91.svcinfo" />
+    <None Include="Connected Services\ScheduleShiftService\configuration.svcinfo" />
+    <None Include="Connected Services\ScheduleShiftService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -236,6 +249,16 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Properties\DataSources\Core.ScheduleShift.datasource" />
+    <None Include="Connected Services\ScheduleShiftService\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ScheduleShiftService\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ScheduleShiftService\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ScheduleShiftService\ScheduleShiftService.wsdl" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
@@ -397,6 +420,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\EmployeeService\" />
     <WCFMetadataStorage Include="Connected Services\ScheduleService\" />
+    <WCFMetadataStorage Include="Connected Services\ScheduleShiftService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

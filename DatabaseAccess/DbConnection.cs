@@ -79,7 +79,8 @@ namespace DatabaseAccess
             Database = "dmab0916_1062358";
             Username = "dmab0916_1062358";
             Password = "Password1!";
-            return "Data Source=" + Server + "; Initial Catalog=" + Database + ";User Id=" + Username + ";Password=" + Password + ";";
+            string connectionTimeOut = "120";
+            return "Data Source=" + Server + "; Initial Catalog=" + Database + ";User Id=" + Username + ";Password=" + Password + ";" + "Connection Timeout=" + connectionTimeOut +";";
         }
 
         public void Dispose()

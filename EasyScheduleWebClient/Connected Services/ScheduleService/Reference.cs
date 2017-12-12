@@ -48,24 +48,6 @@ namespace EasyScheduleWebClient.ScheduleService {
             "ate", ReplyAction="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartD" +
             "ateResponse")]
         System.Threading.Tasks.Task<Core.Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(Core.TemplateSchedule templateSchedule, System.DateTime startTime);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/SetScheduleShiftForSale", ReplyAction="http://tempuri.org/IScheduleService/SetScheduleShiftForSaleResponse")]
-        void SetScheduleShiftForSale(Core.ScheduleShift scheduleShift);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/SetScheduleShiftForSale", ReplyAction="http://tempuri.org/IScheduleService/SetScheduleShiftForSaleResponse")]
-        System.Threading.Tasks.Task SetScheduleShiftForSaleAsync(Core.ScheduleShift scheduleShift);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/AcceptAvailableShift", ReplyAction="http://tempuri.org/IScheduleService/AcceptAvailableShiftResponse")]
-        void AcceptAvailableShift(Core.ScheduleShift shift, Core.Employee employee);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/AcceptAvailableShift", ReplyAction="http://tempuri.org/IScheduleService/AcceptAvailableShiftResponse")]
-        System.Threading.Tasks.Task AcceptAvailableShiftAsync(Core.ScheduleShift shift, Core.Employee employee);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentIdResponse")]
-        System.Collections.Generic.List<Core.ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentId", ReplyAction="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentIdResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.ScheduleShift>> GetAllAvailableShiftsByDepartmentIdAsync(int departmentId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -133,30 +115,6 @@ namespace EasyScheduleWebClient.ScheduleService {
         
         public System.Threading.Tasks.Task<Core.Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(Core.TemplateSchedule templateSchedule, System.DateTime startTime) {
             return base.Channel.GenerateScheduleFromTemplateScheduleAndStartDateAsync(templateSchedule, startTime);
-        }
-        
-        public void SetScheduleShiftForSale(Core.ScheduleShift scheduleShift) {
-            base.Channel.SetScheduleShiftForSale(scheduleShift);
-        }
-        
-        public System.Threading.Tasks.Task SetScheduleShiftForSaleAsync(Core.ScheduleShift scheduleShift) {
-            return base.Channel.SetScheduleShiftForSaleAsync(scheduleShift);
-        }
-        
-        public void AcceptAvailableShift(Core.ScheduleShift shift, Core.Employee employee) {
-            base.Channel.AcceptAvailableShift(shift, employee);
-        }
-        
-        public System.Threading.Tasks.Task AcceptAvailableShiftAsync(Core.ScheduleShift shift, Core.Employee employee) {
-            return base.Channel.AcceptAvailableShiftAsync(shift, employee);
-        }
-        
-        public System.Collections.Generic.List<Core.ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId) {
-            return base.Channel.GetAllAvailableShiftsByDepartmentId(departmentId);
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.ScheduleShift>> GetAllAvailableShiftsByDepartmentIdAsync(int departmentId) {
-            return base.Channel.GetAllAvailableShiftsByDepartmentIdAsync(departmentId);
         }
     }
 }

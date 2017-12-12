@@ -8,8 +8,8 @@ namespace DatabaseAccess.Schedules
     public interface IScheduleRepository
     {
         Schedule BuildScheduleObject(SqlDataReader reader);
-        void InsertSchedule(Schedule schedule);
+        Schedule InsertSchedule(Schedule schedule);
         List<Schedule> GetSchedulesByDepartmentId(int departmentId);
-        void UpdateSchedule(Schedule schedule);
+        //void UpdateSchedule(Schedule schedule);
     }
 }

@@ -57,5 +57,10 @@ namespace DatabaseAccess.Schedules
         {
             throw new NotImplementedException();
         }
+
+        Schedule IScheduleRepository.InsertSchedule(Schedule schedule)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

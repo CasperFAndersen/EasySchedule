@@ -15,11 +15,18 @@ namespace BusinessLogic
         private InputValidator _inputValidator;
         private readonly IEmployeeRepository _employeeRepository;
 
+        public EmployeeController()
+        {
+            _employeeRepository = new EmployeeRepository();
+            _inputValidator = new InputValidator();
+        }
+
         public EmployeeController(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
             _inputValidator = new InputValidator();
         }
+        
 
         public List<Employee> GetAllEmployees()
         {
@@ -61,25 +68,39 @@ namespace BusinessLogic
 
         public void InsertEmployee(Employee employee)
         {
+            bool isCorrectFormatted = true;
             try
             {
                 employee.Salt = PasswordHashing.GenerateSalt();
                 employee.Password = PasswordHashing.HashPassword(employee.Salt + employee.Password);
-                if
-                (
-                Regex.IsMatch(employee.Name, _inputValidator.NameCheck)
-                &&
-                Regex.IsMatch(employee.Phone, _inputValidator.PhoneCheck)
-                &&
-                Regex.IsMatch(employee.Email, _inputValidator.EmailCheck)
-                &&
-                Regex.IsMatch(employee.Username, _inputValidator.UsernameCheck)
-                &&
-                employee.NoOfHours >= 0
-                )
+
+
+                if (!Regex.IsMatch(employee.Name, _inputValidator.NameCheck))
+                {
+                    isCorrectFormatted = false;
+                }
+                else if (!Regex.IsMatch(employee.Phone, _inputValidator.PhoneCheck))
+                {
+                    isCorrectFormatted = false;
+                }
+                else if (!Regex.IsMatch(employee.Email, _inputValidator.EmailCheck))
+                {
+                    isCorrectFormatted = false;
+                }
+                else if (!Regex.IsMatch(employee.Username, _inputValidator.UsernameCheck))
+                {
+                    isCorrectFormatted = false;
+                }
+                else if (!(employee.NoOfHours >= 0))
+                {
+                    isCorrectFormatted = false;
+                }
+
+                if (isCorrectFormatted)
                 {
                     _employeeRepository.InsertEmployee(employee);
                 }
+
                 else
                 {
                     throw new ArgumentException("An error regarding input checks has arrised. Please check that the inputs are valid.");

@@ -6,6 +6,7 @@ using ServiceLibrary.Employees;
 using ServiceLibrary.Schedules;
 using ServiceLibrary.TemplateSchedules;
 using ServiceLibrary.TemplateShifts;
+using ServiceLibrary.ScheduleShifts;
 
 namespace ServiceHosting
 {
@@ -16,14 +17,16 @@ namespace ServiceHosting
     {
         static ServiceHost employeeHost = new ServiceHost(typeof(EmployeeService));
         static ServiceHost scheduleHost = new ServiceHost(typeof(ScheduleService));
+        static ServiceHost scheduleShiftHost = new ServiceHost(typeof(ScheduleShiftService));
         static ServiceHost templateScheduleHost = new ServiceHost(typeof(TemplateScheduleService));
         static ServiceHost templateShiftHost = new ServiceHost(typeof(TemplateShiftService));
         static ServiceHost departmentHost = new ServiceHost(typeof(DepartmentService));
-
+ 
         static void Main(string[] args)
         {
             EmployeeHost();
             ScheduleHost();
+            ScheduleShiftHost();
             TemplateScheduleHost();
             TemplateShiftHost();
             DepartmentHost();
@@ -36,11 +39,14 @@ namespace ServiceHosting
             CloseConnections();
         }
 
+
+
         static void CloseConnections()
         {
             templateShiftHost.Close();
             employeeHost.Close();
             scheduleHost.Close();
+            scheduleShiftHost.Close();
             templateScheduleHost.Close();
             departmentHost.Close();
         }
@@ -57,6 +63,13 @@ namespace ServiceHosting
             scheduleHost.Open();
             DisplayHostInfo(scheduleHost);
             Console.WriteLine("Schedule Service is now running");
+        }
+
+        static void ScheduleShiftHost()
+        {
+            scheduleShiftHost.Open();
+            DisplayHostInfo(scheduleShiftHost);
+            Console.WriteLine("ScheduleShift Service is now running");
         }
 
         static void TemplateScheduleHost()

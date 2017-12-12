@@ -122,6 +122,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ScheduleShiftService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\TemplateScheduleService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -137,9 +142,27 @@
     <Compile Include="Services\TemplateShiftServiceTests.cs" />
     <Compile Include="Services\EmployeeServiceTests.cs" />
     <Compile Include="Services\ScheduleServiceTests.cs" />
+    <Compile Include="Services\ScheduleShiftServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
+    <None Include="Connected Services\ScheduleShiftService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ScheduleShiftService\configuration.svcinfo" />
+    <None Include="Connected Services\ScheduleShiftService\configuration91.svcinfo" />
+    <None Include="Connected Services\ScheduleShiftService\item.disco" />
+    <None Include="Connected Services\ScheduleShiftService\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ScheduleShiftService\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ScheduleShiftService\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ScheduleShiftService\ScheduleShiftService.wsdl" />
     <None Include="Connected Services\TemplateShiftService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -249,6 +272,10 @@
       <Project>{f9f9296a-aef1-4fb7-9aec-da0d2daf8207}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DatabaseAccess.Tests\DatabaseAccess.Tests.csproj">
+      <Project>{7D5BE189-9C07-4E4C-BADD-9244FF3F7D10}</Project>
+      <Name>DatabaseAccess.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DatabaseAccess\DatabaseAccess.csproj">
       <Project>{61dfd29f-5446-4afe-ab42-d80b26e6fdc2}</Project>
       <Name>DatabaseAccess</Name>
@@ -265,6 +292,7 @@
     <WCFMetadataStorage Include="Connected Services\DepartmentService\" />
     <WCFMetadataStorage Include="Connected Services\EmployeeService\" />
     <WCFMetadataStorage Include="Connected Services\ScheduleService\" />
+    <WCFMetadataStorage Include="Connected Services\ScheduleShiftService\" />
     <WCFMetadataStorage Include="Connected Services\TemplateScheduleService\" />
     <WCFMetadataStorage Include="Connected Services\TemplateShiftService\" />
   </ItemGroup>

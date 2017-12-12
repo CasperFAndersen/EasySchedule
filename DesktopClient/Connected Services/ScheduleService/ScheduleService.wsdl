@@ -38,24 +38,6 @@
   <wsdl:message name="IScheduleService_GenerateScheduleFromTemplateScheduleAndStartDate_OutputMessage">
     <wsdl:part name="parameters" element="tns:GenerateScheduleFromTemplateScheduleAndStartDateResponse" />
   </wsdl:message>
-  <wsdl:message name="IScheduleService_SetScheduleShiftForSale_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetScheduleShiftForSale" />
-  </wsdl:message>
-  <wsdl:message name="IScheduleService_SetScheduleShiftForSale_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetScheduleShiftForSaleResponse" />
-  </wsdl:message>
-  <wsdl:message name="IScheduleService_AcceptAvailableShift_InputMessage">
-    <wsdl:part name="parameters" element="tns:AcceptAvailableShift" />
-  </wsdl:message>
-  <wsdl:message name="IScheduleService_AcceptAvailableShift_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AcceptAvailableShiftResponse" />
-  </wsdl:message>
-  <wsdl:message name="IScheduleService_GetAllAvailableShiftsByDepartmentId_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllAvailableShiftsByDepartmentId" />
-  </wsdl:message>
-  <wsdl:message name="IScheduleService_GetAllAvailableShiftsByDepartmentId_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllAvailableShiftsByDepartmentIdResponse" />
-  </wsdl:message>
   <wsdl:portType name="IScheduleService">
     <wsdl:operation name="GetScheduleByDepartmentIdAndDate">
       <wsdl:input wsaw:Action="http://tempuri.org/IScheduleService/GetScheduleByDepartmentIdAndDate" message="tns:IScheduleService_GetScheduleByDepartmentIdAndDate_InputMessage" />
@@ -76,18 +58,6 @@
     <wsdl:operation name="GenerateScheduleFromTemplateScheduleAndStartDate">
       <wsdl:input wsaw:Action="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartDate" message="tns:IScheduleService_GenerateScheduleFromTemplateScheduleAndStartDate_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartDateResponse" message="tns:IScheduleService_GenerateScheduleFromTemplateScheduleAndStartDate_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SetScheduleShiftForSale">
-      <wsdl:input wsaw:Action="http://tempuri.org/IScheduleService/SetScheduleShiftForSale" message="tns:IScheduleService_SetScheduleShiftForSale_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IScheduleService/SetScheduleShiftForSaleResponse" message="tns:IScheduleService_SetScheduleShiftForSale_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AcceptAvailableShift">
-      <wsdl:input wsaw:Action="http://tempuri.org/IScheduleService/AcceptAvailableShift" message="tns:IScheduleService_AcceptAvailableShift_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IScheduleService/AcceptAvailableShiftResponse" message="tns:IScheduleService_AcceptAvailableShift_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAllAvailableShiftsByDepartmentId">
-      <wsdl:input wsaw:Action="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentId" message="tns:IScheduleService_GetAllAvailableShiftsByDepartmentId_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentIdResponse" message="tns:IScheduleService_GetAllAvailableShiftsByDepartmentId_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IScheduleService" type="tns:IScheduleService">
@@ -130,33 +100,6 @@
     </wsdl:operation>
     <wsdl:operation name="GenerateScheduleFromTemplateScheduleAndStartDate">
       <soap:operation soapAction="http://tempuri.org/IScheduleService/GenerateScheduleFromTemplateScheduleAndStartDate" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SetScheduleShiftForSale">
-      <soap:operation soapAction="http://tempuri.org/IScheduleService/SetScheduleShiftForSale" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AcceptAvailableShift">
-      <soap:operation soapAction="http://tempuri.org/IScheduleService/AcceptAvailableShift" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllAvailableShiftsByDepartmentId">
-      <soap:operation soapAction="http://tempuri.org/IScheduleService/GetAllAvailableShiftsByDepartmentId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

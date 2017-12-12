@@ -8,7 +8,8 @@ namespace EasyScheduleWebClient.Controllers
 {
     public class AvailableShiftsController : Controller
     {
-        public List<int> test { get; set; }
+        ScheduleShiftProxy scheduleShiftProxy = new ScheduleShiftProxy();
+
         // GET: AvailableShifts
         public ActionResult Index()
         {
@@ -16,10 +17,8 @@ namespace EasyScheduleWebClient.Controllers
             {
                 Employee employee = new Employee();
                 employee = (Employee)Session["employee"];
-
-                ScheduleProxy scheduleProxy = new ScheduleProxy();
-                var shifts = scheduleProxy.GetAllAvailableShiftsByDepartmentId(employee.DepartmentId);
-
+                     
+                var shifts = scheduleShiftProxy.GetAllAvailableShiftsByDepartmentId(employee.DepartmentId);
 
                 var model = from s in shifts
                             orderby s.StartTime
@@ -35,8 +34,7 @@ namespace EasyScheduleWebClient.Controllers
         {
             Employee employee = (Employee)Session["employee"];
 
-            ScheduleProxy scheduleProxy = new ScheduleProxy();
-            scheduleProxy.AcceptAvailableShift(scheduleShift, employee);
+            scheduleShiftProxy.AcceptAvailableShift(scheduleShift, employee);
 
             return RedirectToAction("Index", "AvailableShifts");
         }

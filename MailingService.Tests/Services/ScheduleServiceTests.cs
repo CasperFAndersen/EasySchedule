@@ -5,6 +5,8 @@ using Core;
 using System.Collections.Generic;
 using DatabaseAccess.Employees;
 using DatabaseAccess.Departments;
+using System.Transactions;
+using DatabaseAccess.Tests;
 
 namespace Tests.Services
 {
@@ -35,6 +37,8 @@ namespace Tests.Services
         [TestMethod]
         public void InsertScheduleServiceTest()
         {
+            DbSetUp.SetUpDb();
+
             ScheduleShift shift1 = new ScheduleShift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2017, 11, 28, 8, 0, 0) };
             Schedule schedule = new Schedule() { Department = new DepartmentRepository().GetDepartmentById(4), StartDate = new DateTime(2017, 11, 27, 0, 0, 0, DateTimeKind.Utc), EndDate = new DateTime(2017, 12, 15) };
             schedule.Shifts.Add(shift1);
@@ -48,14 +52,9 @@ namespace Tests.Services
             Assert.AreEqual("Mikkel Paulsen", schedule.Shifts[0].Employee.Name);
             Assert.AreEqual("Elektronik", schedule.Department.Name);
 
+            DbSetUp.SetUpDb();
+
         }
 
-        [TestMethod]
-        public void GetAllAvailableShiftsByDepartmentIdTest()
-        {
-            List<ScheduleShift> availableScheduleShifts = client.GetAllAvailableShiftsByDepartmentId(1);
-            Assert.IsNotNull(availableScheduleShifts);
-            Assert.AreEqual(2, availableScheduleShifts.Count);
-        }
     }
 }

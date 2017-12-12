@@ -83,65 +83,11 @@ namespace BusinessLogic.Tests
             scheduleController.InsertScheduleToDb(schedule2);
         }
 
-        [TestMethod]
-        public void GetAllAvailbleShiftsByDepartmentIdTest()
-        {
-            scheduleController.ScheduleShiftRepository = _scheduleShiftRepository;
-            scheduleController.GetAllAvailableShiftsByDepartmentId(1);
-            scheduleController.ScheduleShiftRepository.AssertWasCalled(x => x.GetAllAvailableShiftsByDepartmentId(1));
-        }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
-            "Failure to accept shift. One or more arguments are illegal!")]
-        public void IllegalIsForSaleAcceptAvailableShiftTest()
-        {
-            ScheduleShift shift = new ScheduleShift()
-            {
-                StartTime = DateTime.Now.AddDays(1),
-                Hours = 4,
-                Employee = new Employee(),
-                IsForSale = false,
-            };
-            Employee employee = new Employee();
 
-            scheduleController.AcceptAvailableShift(shift, employee);
-        }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
-            "Failure to accept shift. One or more arguments are illigal!")]
-        public void IllegalAcceptTimeAcceptAvailableShiftTest()
-        {
-            ScheduleShift shift = new ScheduleShift()
-            {
-                StartTime = DateTime.Now.AddDays(1),
-                Hours = 4,
-                Employee = new Employee(),
-                IsForSale = true,
-            };
-            Employee employee = new Employee();
 
-            scheduleController.AcceptAvailableShift(shift, employee);
-        }
 
-        [TestMethod]
-        public void AcceptAvailableShiftTest()
-        {
-            scheduleController.ScheduleShiftRepository = MockRepository.GenerateMock<IScheduleShiftRepository>();
-
-            ScheduleShift shift = new ScheduleShift()
-            {
-                StartTime = DateTime.Now.AddDays(-1),
-                Hours = 4,
-                Employee = new Employee(),
-                IsForSale = true,
-            };
-            Employee employee = new Employee();
-
-            scheduleController.AcceptAvailableShift(shift, employee);
-            scheduleController.ScheduleShiftRepository.AssertWasCalled(x => x.AcceptAvailableShift(shift, employee));
-        }
 
         [TestMethod()]
         public void GetScheduleByDepartmentIdAndDateTest()
@@ -220,23 +166,12 @@ namespace BusinessLogic.Tests
             templateSchedule.TemplateShifts.Add(templateShift);
             templateSchedule.TemplateShifts.Add(templateShift2);
 
-            Schedule schedule = scheduleController.GetShiftsFromTemplateShift(templateSchedule, DateTime.Now);
+            Schedule schedule = scheduleController.GenerateScheduleFromTemplateSchedule(templateSchedule, DateTime.Now);
             Assert.AreEqual(templateSchedule.TemplateShifts.Count, schedule.Shifts.Count);
             Assert.AreEqual(schedule.Shifts[1].Hours, templateSchedule.TemplateShifts[1].Hours);
         }
 
-        [TestMethod]
-        public void SetScheduleShiftForSaleTest()
-        {
-            scheduleController = new ScheduleController(new ScheduleRepository());
-            Schedule schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 12));
 
-            Assert.IsFalse(schedule.Shifts[1].IsForSale);
-
-            scheduleController.SetScheduleShiftForSale(schedule.Shifts[1]);
-            schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 12));
-            Assert.IsTrue(schedule.Shifts[1].IsForSale);
-        }
 
         [TestMethod]
         public void UpdateScheduleTest()

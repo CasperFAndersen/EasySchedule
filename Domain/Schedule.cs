@@ -27,6 +27,7 @@ namespace Core
 
         public Schedule()
         {
+            Department = new Department();
             Shifts = new List<ScheduleShift>();
         }
     }

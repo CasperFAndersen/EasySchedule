@@ -8,11 +8,11 @@ namespace ServiceLibrary.Schedules
 {
     public class ScheduleService : IScheduleService
     {
-        IScheduleController scheduleController = new ScheduleController(new ScheduleRepository());
+        IScheduleController scheduleController = new ScheduleController();
 
         public Schedule GenerateScheduleFromTemplateScheduleAndStartDate(TemplateSchedule templateSchedule, DateTime startTime)
         {
-            return scheduleController.GetShiftsFromTemplateShift(templateSchedule, startTime);
+            return scheduleController.GenerateScheduleFromTemplateSchedule(templateSchedule, startTime);
         }
 
         public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
@@ -35,19 +35,5 @@ namespace ServiceLibrary.Schedules
             scheduleController.UpdateSchedule(schedule);
         }
 
-        public void SetScheduleShiftForSale(ScheduleShift scheduleShift)
-        {
-            scheduleController.SetScheduleShiftForSale(scheduleShift);
-        }
-
-        public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
-        {
-            scheduleController.AcceptAvailableShift(shift, employee);
-        }
-
-        public List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
-        {
-            return scheduleController.GetAllAvailableShiftsByDepartmentId(departmentId);
-        }
     }
 }

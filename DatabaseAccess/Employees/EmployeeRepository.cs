@@ -134,7 +134,6 @@ namespace DatabaseAccess.Employees
             }
             catch (Exception)
             {
-
                 throw new Exception("Something went wrong! Try again.");
             }
         }
@@ -193,7 +192,7 @@ namespace DatabaseAccess.Employees
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw new Exception("Something went wrong while inserting an employee into the database! Try again");
             }

@@ -24,6 +24,12 @@ namespace DatabaseAccess.Tests
             DbSetUp.SetUpDb();
         }
 
+        [TestMethod()]
+        public void UpdateScheduleTest()
+        {
+
+        }
+
         [TestMethod]
         public void GetShiftByIdTest()
         {
@@ -39,7 +45,27 @@ namespace DatabaseAccess.Tests
         [TestMethod]
         public void AddShiftsFromScheduleTest()
         {
-            //TODO: Implement this
+            //TODO: Implement test
+            //Schedule schedule = new ScheduleController(_scheduleRepository).GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
+
+            //ScheduleShift scheduleShift = schedule.Shifts[0];
+            //scheduleShift.StartTime = scheduleShift.StartTime.AddDays(1);
+            //Employee emp = new Employee { Id = 1 };
+            //ScheduleShift scheduleShift2 = new ScheduleShift() { StartTime = new DateTime(2017, 11, 16, 8, 0, 0), Employee = emp, Hours = 5 };
+            //int shiftsBeforeInsert = schedule.Shifts.Count;
+            //int shiftsAfterInsert = 0;
+            //ScheduleShift shift1BeforeInsert = schedule.Shifts[0];
+            //schedule.Shifts.Add(scheduleShift2);
+
+            //_scheduleRepository.UpdateSchedule(schedule);
+
+            //schedule = new ScheduleController(_scheduleRepository).GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
+
+            //shiftsAfterInsert = schedule.Shifts.Count;
+
+            //Assert.AreNotEqual(shiftsBeforeInsert, shiftsAfterInsert);
+            //Assert.AreEqual(shiftsBeforeInsert, shiftsAfterInsert - 1);
+            //Assert.AreEqual(schedule.Shifts[0].StartTime, shift1BeforeInsert.StartTime);
         }
 
         [TestMethod]

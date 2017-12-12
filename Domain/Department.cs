@@ -20,5 +20,10 @@ namespace Core
         public int WorkplaceId { get; set; }
         [DataMember]
         public List<Employee> Employees { get; set; }
+        public Department()
+        {
+            Employees = new List<Employee>();
+        }
+
     }
 }

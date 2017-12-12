@@ -15,9 +15,9 @@
   <xs:complexType name="Department">
     <xs:sequence>
       <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Employees" nillable="true" type="tns:ArrayOfEmployee" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Mail" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WorkplaceId" type="xs:int" />
@@ -33,10 +33,10 @@
   <xs:complexType name="Employee">
     <xs:sequence>
       <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IsAdmin" type="xs:boolean" />
       <xs:element minOccurs="0" name="IsEmployed" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Mail" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NoOfHours" type="xs:int" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />

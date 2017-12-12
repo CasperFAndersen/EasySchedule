@@ -12,16 +12,6 @@ namespace DesktopClient.Services
     {
         ScheduleServiceClient proxy = new ScheduleServiceClient();
 
-        public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
-        {
-            proxy.AcceptAvailableShift(shift, employee);
-        }
-
-        public Task AcceptAvailableShiftAsync(ScheduleShift shift, Employee employee)
-        {
-            throw new NotImplementedException();
-        }
-
         public Schedule GenerateScheduleFromTemplateScheduleAndStartDate(TemplateSchedule templateSchedule, DateTime startTime)
         {
             return proxy.GenerateScheduleFromTemplateScheduleAndStartDate(templateSchedule, startTime);
@@ -82,14 +72,5 @@ namespace DesktopClient.Services
             throw new NotImplementedException();
         }
 
-        public void SetScheduleShiftForSale(ScheduleShift scheduleShift)
-        {
-            proxy.SetScheduleShiftForSale(scheduleShift);
-        }
-
-        public Task SetScheduleShiftForSaleAsync(ScheduleShift scheduleShift)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

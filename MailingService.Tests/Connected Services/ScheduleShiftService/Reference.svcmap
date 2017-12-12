@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a93cc0af-a28b-490b-97d2-ed2fdedcfbdb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9000/ServiceLibrary/ScheduleShiftService/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ScheduleShiftService.wsdl" MetadataType="Wsdl" ID="28918cbf-3af9-4fa5-82e8-e2f8ba8d5a6e" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleShiftService/?wsdl" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="c22eb670-4ef1-48e6-bf81-e72965e6a112" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleShiftService/?disco" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="a0ede23c-3818-4866-ab09-d6b8620c3ef8" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleShiftService/?xsd=xsd0" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="9e626476-9687-4b55-9f79-61fa6c39844c" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleShiftService/?xsd=xsd2" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="fcb523b6-81d5-4c05-bbe3-0008cd123bb8" SourceId="1" SourceUrl="http://localhost:9000/ServiceLibrary/ScheduleShiftService/?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
