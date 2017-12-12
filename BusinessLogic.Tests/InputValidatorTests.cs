@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BusinessLogic.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BusinessLogic.Tests

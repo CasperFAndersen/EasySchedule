@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BusinessLogic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DatabaseAccess.Departments;
 using Core;
@@ -13,7 +14,7 @@ namespace BusinessLogic.Tests
         [TestInitialize]
         public void TestInitializer()
         {
-            _departmentController = new DepartmentController(new DepartmentRepository());
+            _departmentController = new DepartmentController();
         }
 
         [TestMethod]

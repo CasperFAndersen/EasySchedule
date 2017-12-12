@@ -1,4 +1,6 @@
-﻿using Core;
+﻿using BusinessLogic;
+using BusinessLogic.Utilities;
+using Core;
 using DatabaseAccess.Employees;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MockRepository = Rhino.Mocks.MockRepository;
@@ -62,7 +64,7 @@ namespace BusinessLogic.Tests
         [TestMethod]
         public void ValidPasswordTest()
         {
-            EmployeeController employeeController = new EmployeeController(new EmployeeRepository());
+            EmployeeController employeeController = new EmployeeController();
             Employee employee = employeeController.ValidatePassword("TobiAs", "CanYouGuessMyPass");
 
             Assert.IsNotNull(employee);
@@ -72,7 +74,7 @@ namespace BusinessLogic.Tests
         [TestMethod]
         public void GenerateHashFromPasswordAndSaltTest()
         {
-            _employeeController = new EmployeeController(new EmployeeRepository());
+            _employeeController = new EmployeeController();
             Employee employee = _employeeController.GetEmployeeByUsername("TobiAs");
             string salt = employee.Salt;
             string password = "CanYouGuessMyPass";
@@ -87,7 +89,7 @@ namespace BusinessLogic.Tests
         public void InsertEmployeeTest()
         {
             //TODO: Implement this
-            //_employeeController = new EmployeeController(new EmployeeRepository());
+            //_employeeController = new EmployeeController();
             //Employee emp = new Employee()
             //{
             //    Name = "Anders Andersen",
@@ -102,17 +104,17 @@ namespace BusinessLogic.Tests
             //};
 
             //_employeeController.InsertEmployee(emp);
-            //Assert.IsNotNull(new EmployeeRepository().GetEmployeeByUsername(emp.Username));
+            //Assert.IsNotNull(new EmployeeController().GetEmployeeByUsername(emp.Username));
         }
 
         [TestMethod]
         public void UpdateEmployeeTest()
         {
-            EmployeeController empCtr = new EmployeeController(new EmployeeRepository());
+            EmployeeController empCtr = new EmployeeController();
             Employee employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP");
             employee.Name = "Fisk To";
             empCtr.UpdateEmployee(employee);
-            Assert.AreEqual(new EmployeeRepository().GetEmployeeByUsername("MikkelP").Name, "Fisk To");
+            Assert.AreEqual(new EmployeeController().GetEmployeeByUsername("MikkelP").Name, "Fisk To");
         }
 
         

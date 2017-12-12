@@ -142,7 +142,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 LoadShiftsIntoCalendar();
             };
         }
-
+        
         public void SetEmployeeDroppedHandler()
         {
             Mediator.GetInstance().EmployeeDropped += (e, tod, dow) =>

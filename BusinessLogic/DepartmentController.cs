@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using BusinessLogic;
 using Core;
 using DatabaseAccess.Departments;
-using DatabaseAccess.Employees;
 
 namespace BusinessLogic
 {

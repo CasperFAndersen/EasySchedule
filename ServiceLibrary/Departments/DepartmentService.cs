@@ -8,7 +8,7 @@ namespace ServiceLibrary.Departments
 
     public class DepartmentService : IDepartmentService
     {
-        private readonly IDepartmentController _departmentController = new DepartmentController(new DepartmentRepository());
+        private readonly IDepartmentController _departmentController = new DepartmentController();
 
         public List<Department> GetAllDepartments()
         {

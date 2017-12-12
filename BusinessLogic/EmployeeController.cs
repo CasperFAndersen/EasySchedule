@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core;
-using DatabaseAccess;
-using DatabaseAccess.Employees;
 using System.Text.RegularExpressions;
+using BusinessLogic.Utilities;
+using Core;
+using DatabaseAccess.Employees;
 
 namespace BusinessLogic
 {

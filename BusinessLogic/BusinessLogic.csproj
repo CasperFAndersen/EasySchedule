@@ -58,18 +58,19 @@
     <Compile Include="DepartmentController.cs" />
     <Compile Include="IDepartmentController.cs" />
     <Compile Include="IEmployeeController.cs" />
-    <Compile Include="InputValidator.cs" />
+    <Compile Include="ITemplateShiftController.cs" />
+    <Compile Include="Utilities\InputValidator.cs" />
     <Compile Include="IScheduleController.cs" />
     <Compile Include="IScheduleShiftController.cs" />
     <Compile Include="ITemplateScheduleController.cs" />
     <Compile Include="ITemplateShiftControlller.cs" />
-    <Compile Include="PasswordHashing.cs" />
+    <Compile Include="Utilities\PasswordHashing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScheduleShiftController.cs" />
     <Compile Include="TemplateScheduleController.cs" />
     <Compile Include="TemplateShiftController.cs" />
     <Compile Include="EmployeeController.cs" />
-    <Compile Include="MailSender.cs" />
+    <Compile Include="Utilities\MailSender.cs" />
     <Compile Include="ScheduleController.cs" />
   </ItemGroup>
   <ItemGroup>

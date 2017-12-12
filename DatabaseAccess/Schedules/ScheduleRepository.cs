@@ -18,15 +18,14 @@ namespace DatabaseAccess.Schedules
         /// <returns></returns>
         public Schedule BuildScheduleObject(SqlDataReader reader)
         {
-            Schedule schedule = new Schedule();
-            schedule.Id = reader.GetInt32(0);
-
-            schedule.StartDate = reader.GetDateTime(1);
-            schedule.EndDate = reader.GetDateTime(2);
-
+            Schedule schedule = new Schedule()
+            {
+                Id = reader.GetInt32(0),
+                StartDate = reader.GetDateTime(1),
+                EndDate = reader.GetDateTime(2)
+            };
             return schedule;
         }
-
 
         public List<Schedule> GetSchedulesByDepartmentId(int departmentId)
         {
@@ -72,17 +71,10 @@ namespace DatabaseAccess.Schedules
                     command.Parameters.Add(p3);
 
                     schedule.Id = Convert.ToInt32(command.ExecuteScalar());
-
                 }
             }
             return schedule;
         }
-
-        //public void UpdateSchedule(Schedule schedule)
-        //{
-        //    ScheduleShiftRepository scheduleShiftRepository = new ScheduleShiftRepository();
-        //    scheduleShiftRepository.AddShiftsFromSchedule(schedule);
-        //}
 
     }
 }

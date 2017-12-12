@@ -194,7 +194,6 @@ namespace DatabaseAccess.ScheduleShifts
             }
             catch (Exception e)
             {
-
                 throw new Exception("Something went wrong when setting the shift for sale." + e.Message);
             }
         }

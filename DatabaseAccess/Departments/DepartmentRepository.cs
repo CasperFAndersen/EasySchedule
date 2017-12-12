@@ -16,7 +16,7 @@ namespace DatabaseAccess.Departments
 
         public DepartmentRepository()
         {
-            
+            _departmentRepository = new DepartmentRepository();
         }
 
         public DepartmentRepository(IDepartmentRepository departmentRepository)
