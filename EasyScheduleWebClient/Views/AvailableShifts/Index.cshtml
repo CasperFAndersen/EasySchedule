@@ -9,6 +9,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Employee.Name)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.StartTime)
         </th>
         <th>
@@ -20,13 +23,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Employee.Name)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.StartTime)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Hours)
         </td>
         <td>
-            <input type ="button" value =" Accept shift" onclick="location.href='@Url.Action("AcceptShift", "AvailableShifts", item)'"/>
+            <input type="button" value=" Accept shift" onclick="location.href = '@Url.Action("AcceptShift", "AvailableShifts", item)'"/>
         </td>
     </tr>
 }
