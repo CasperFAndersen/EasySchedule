@@ -33,13 +33,13 @@ namespace Core
         public string Password { get; set; }
 
         [DataMember]
-        public int DepartmentId { get; set; }
-
-        [DataMember]
         public bool IsEmployed { get; set; }
 
         [DataMember]
         public string Salt { get; set; }
+
+        [DataMember]
+        public int DepartmentId { get; set; }
 
     }
 }

@@ -20,10 +20,10 @@ namespace Core
         public DateTime EndDate { get; set; }
 
         [DataMember]
-        public List<ScheduleShift> Shifts { get; set; }
+        public Department Department { get; set; }
 
         [DataMember]
-        public Department Department { get; set; }
+        public List<ScheduleShift> Shifts { get; set; }
 
         public Schedule()
         {
