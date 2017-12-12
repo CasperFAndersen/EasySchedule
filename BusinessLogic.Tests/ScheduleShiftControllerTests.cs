@@ -60,8 +60,8 @@ namespace BusinessLogic.Tests
         [TestMethod]
         public void SetScheduleShiftForSaleTest()
         {
-            ScheduleController scheduleController = new ScheduleController();
-            _scheduleShiftController = new ScheduleShiftController();
+            ScheduleController scheduleController = new ScheduleController(new ScheduleRepository());
+            _scheduleShiftController = new ScheduleShiftController(new ScheduleShiftRepository());
             Schedule schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 12));
 
             Assert.IsFalse(schedule.Shifts[1].IsForSale);

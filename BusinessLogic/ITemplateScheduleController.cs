@@ -7,7 +7,7 @@ namespace BusinessLogic
     {
         TemplateSchedule CreateTemplateSchedule(int numberOfWeeks, string name);
         IEnumerable<TemplateSchedule> GetAllTemplateSchedules();
-        TemplateSchedule GetTemplateScheduleByName(string name);
+        TemplateSchedule FindTemplateScheduleByName(string name);
         void AddTemplateScheduleToDb(TemplateSchedule templateSchedule);
         void UpdateTemplateSchedule(TemplateSchedule templateSchedule);
     }

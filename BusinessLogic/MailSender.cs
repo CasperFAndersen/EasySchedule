@@ -1,11 +1,15 @@
 ﻿using System;
-using BusinessLogic;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Core;
-using DatabaseAccess.Employees;
 using RestSharp;
 using RestSharp.Authenticators;
+using DatabaseAccess;
+using DatabaseAccess.Employees;
 
-namespace BusinessLogic.Utilities
+namespace BusinessLogic
 {
     /// <summary>
     /// This class controls the outgoing emails from the system. 
@@ -15,7 +19,7 @@ namespace BusinessLogic.Utilities
     {
         public IRestResponse SendMailToEmployeesInDepartmentByDepartmentId(string subject, string message, int departmentId)
         {
-            EmployeeController employeeController = new EmployeeController();
+            EmployeeController employeeController = new EmployeeController(new EmployeeRepository());
             RestClient client = new RestClient();
             client.BaseUrl = new Uri("https://api.mailgun.net/v3");
             client.Authenticator =

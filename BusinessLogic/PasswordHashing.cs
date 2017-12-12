@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace BusinessLogic.Utilities
+namespace BusinessLogic
 {
     public class PasswordHashing
     {

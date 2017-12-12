@@ -273,16 +273,16 @@ namespace DatabaseAccess.Employees
         public Employee BuildEmployeeObject(SqlDataReader reader)
         {
             Employee employee = new Employee();
-            employee.Id = Convert.ToInt32(reader["id"].ToString());
-            employee.Name = reader["name"].ToString();
-            employee.Email = reader["email"].ToString();
-            employee.Phone = reader["phone"].ToString();
-            employee.NoOfHours = Convert.ToInt32(reader["noOfHours"].ToString());
+            employee.Id = Convert.ToInt32(reader["Id"].ToString());
+            employee.Name = reader["Name"].ToString();
+            employee.Email = reader["Email"].ToString();
+            employee.Phone = reader["Phone"].ToString();
+            employee.NoOfHours = Convert.ToInt32(reader["NoOfHours"].ToString());
             employee.IsAdmin = reader.GetBoolean(5);
-            employee.Username = reader["username"].ToString();
-            employee.Password = reader["password"].ToString();
-            employee.DepartmentId = Convert.ToInt32(reader["departmentId"].ToString());
-            employee.Salt = reader["salt"].ToString();
+            employee.Username = reader["Username"].ToString();
+            employee.Password = reader["Password"].ToString();
+            employee.DepartmentId = Convert.ToInt32(reader["DepartmentId"].ToString());
+            employee.Salt = reader["Salt"].ToString();
             employee.IsEmployed = reader.GetBoolean(10);
             return employee;
         }

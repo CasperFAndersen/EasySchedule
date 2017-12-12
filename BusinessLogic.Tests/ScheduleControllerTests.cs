@@ -10,6 +10,8 @@ using Moq;
 using Rhino.Mocks;
 using MockRepository = Rhino.Mocks.MockRepository;
 
+//using Moq;
+
 namespace BusinessLogic.Tests
 {
     [TestClass]
@@ -20,7 +22,7 @@ namespace BusinessLogic.Tests
         ScheduleController scheduleController;
         private IScheduleRepository mockScheduleRepository;
         TemplateScheduleController templateScheduleController = new TemplateScheduleController();
-        private TemplateShiftController _templateShiftController;
+        readonly TemplateShiftController _templateShiftController = new TemplateShiftController(new TemplateShiftRepository());
 
         [TestInitialize]
         public void InitializeTest()
@@ -28,7 +30,6 @@ namespace BusinessLogic.Tests
             _scheduleShiftRepository = MockRepository.GenerateMock<IScheduleShiftRepository>();
             mockScheduleRepository = MockRepository.GenerateMock<IScheduleRepository>();
             scheduleController = new ScheduleController(mockScheduleRepository);
-            _templateShiftController = new TemplateShiftController();
         }
 
         [TestMethod]
@@ -54,7 +55,7 @@ namespace BusinessLogic.Tests
         [ExpectedException(typeof(Exception))]
         public void InsertOverlappingScheduleTest()
         {
-            scheduleController = new ScheduleController();
+            scheduleController = new ScheduleController(new ScheduleRepository());
 
             Schedule schedule1 = new Schedule()
             {
@@ -64,7 +65,7 @@ namespace BusinessLogic.Tests
                 Shifts = new List<ScheduleShift>(),
             };
 
-            ScheduleShift shift1 = new ScheduleShift() { Employee = new EmployeeController().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2018, 12, 5, 8, 0, 0) };
+            ScheduleShift shift1 = new ScheduleShift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2018, 12, 5, 8, 0, 0) };
             schedule1.Shifts.Add(shift1);
             scheduleController.InsertScheduleToDb(schedule1);
 
@@ -91,7 +92,7 @@ namespace BusinessLogic.Tests
         [TestMethod()]
         public void GetScheduleByDepartmentIdAndDateTest()
         {
-            scheduleController = new ScheduleController();
+            scheduleController = new ScheduleController(new ScheduleRepository());
             Schedule schedule = scheduleController.GetScheduleByDepartmentIdAndDate(1, new DateTime(2017, 11, 15));
             Assert.IsNotNull(schedule);
             Assert.AreEqual(new DateTime(2017, 11, 01), schedule.StartDate);
@@ -157,7 +158,7 @@ namespace BusinessLogic.Tests
         [TestMethod]
         public void GetShiftsFromTemplateShiftTest()
         {
-            scheduleController = new ScheduleController();
+            scheduleController = new ScheduleController(new ScheduleRepository());
             Employee employee = new Employee();
             TemplateSchedule templateSchedule = templateScheduleController.CreateTemplateSchedule(10, "basicSchedule");
             TemplateShift templateShift = _templateShiftController.CreateTemplateShift(DayOfWeek.Friday, 10.0, new TimeSpan(10, 0, 0), 1, employee);

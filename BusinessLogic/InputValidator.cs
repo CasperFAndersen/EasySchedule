@@ -1,4 +1,10 @@
-﻿namespace BusinessLogic.Utilities
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessLogic
 {
     /// <summary>
     /// This class is for input checks regarding user inputs from the UI.

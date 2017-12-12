@@ -9,7 +9,7 @@ namespace BusinessLogic.Tests
     public class TemplateScheduleControllerTests
     {
         TemplateScheduleController templateScheduleController = new TemplateScheduleController();
-        TemplateShiftController templateShiftController = new TemplateShiftController();
+        TemplateShiftController templateShiftController = new TemplateShiftController(new TemplateShiftRepository());
 
         [TestMethod]
         public void CreateTemplateScheduleTest()

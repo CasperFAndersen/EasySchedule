@@ -14,7 +14,7 @@ namespace ServiceLibrary.TemplateSchedules
 
         public TemplateSchedule FindTemplateScheduleByName(string name)
         {
-            return templateScheduleController.GetTemplateScheduleByName(name);
+            return templateScheduleController.FindTemplateScheduleByName(name);
         }
 
         public IEnumerable<TemplateSchedule> GetAllTemplateSchedules()

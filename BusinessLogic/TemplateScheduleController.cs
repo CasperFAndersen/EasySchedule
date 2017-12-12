@@ -11,13 +11,13 @@ namespace BusinessLogic
 {
     public class TemplateScheduleController : ITemplateScheduleController
     {
-        private readonly ITemplateScheduleRepository _templateScheduleRepository;
-        private readonly ITemplateShiftController _templateShiftController;
+        ITemplateScheduleRepository _templateScheduleRepository;
+        TemplateSchedule _templateSchedule;
 
         public TemplateScheduleController()
         {
+            _templateSchedule = new TemplateSchedule();
             _templateScheduleRepository = new TemplateScheduleRepository();
-            _templateShiftController = new TemplateShiftController();
         }
 
         public TemplateSchedule CreateTemplateSchedule(int numberOfWeeks, string name)
@@ -27,32 +27,22 @@ namespace BusinessLogic
 
         public IEnumerable<TemplateSchedule> GetAllTemplateSchedules()
         {
-            List<TemplateSchedule> templateSchedules = _templateScheduleRepository.GetAllTemplateSchedules();
-            foreach (TemplateSchedule templateSchedule in templateSchedules)
-            {
-                templateSchedule.TemplateShifts =
-                    _templateShiftController.GetTemplateShiftsByTemplateScheduleId(templateSchedule.Id);
-            }
-            return templateSchedules;
+            return _templateScheduleRepository.GetAllTemplateSchedules();
         }
 
-        public TemplateSchedule GetTemplateScheduleByName(string name)
+        public TemplateSchedule FindTemplateScheduleByName(string name)
         {
-            TemplateSchedule templateSchedule = _templateScheduleRepository.GetTemplateScheduleByName(name);
-            templateSchedule.TemplateShifts = _templateShiftController.GetTemplateShiftsByTemplateScheduleId(templateSchedule.Id);
-            return templateSchedule;
+            return _templateScheduleRepository.GetTemplateScheduleByName(name);
         }
 
         public void AddTemplateScheduleToDb(TemplateSchedule templateSchedule)
         {
-            int id = _templateScheduleRepository.AddTemplateScheduleToDatabase(templateSchedule);
-            _templateShiftController.AddTemplateShiftsFromTemplateSchedule(id, templateSchedule.TemplateShifts);
+            _templateScheduleRepository.AddTemplateScheduleToDatabase(templateSchedule);
         }
 
         public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)
         {
             _templateScheduleRepository.UpdateTemplateSchedule(templateSchedule);
-            _templateShiftController.AddTemplateShiftsFromTemplateSchedule(templateSchedule.Id, templateSchedule.TemplateShifts);
         }
     }
 }

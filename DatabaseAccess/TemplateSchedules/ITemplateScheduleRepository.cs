@@ -6,8 +6,8 @@ namespace DatabaseAccess.TemplateSchedules
 {
     public interface ITemplateScheduleRepository
     {
-        List<TemplateSchedule> GetAllTemplateSchedules();
-        int AddTemplateScheduleToDatabase(TemplateSchedule templateSchedule);
+        IEnumerable<TemplateSchedule> GetAllTemplateSchedules();
+        void AddTemplateScheduleToDatabase(TemplateSchedule templateSchedule);
         TemplateSchedule GetTemplateScheduleByName(string scheduleName);
         void UpdateTemplateSchedule(TemplateSchedule templateSchedule);
     }
