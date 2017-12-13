@@ -13,17 +13,21 @@ namespace DesktopClient.Views.ScheduleViews
     /// </summary>
     public partial class CreateScheduleView : Page
     {
+        DepartmentProxy departmentProxy;
         public CreateScheduleView()
         {
+            departmentProxy = new DepartmentProxy();
             InitializeComponent();
             BtnGenerateSchedule.IsEnabled = false;
             BtnPublishSchedule.IsEnabled = false;
             BindData();
+            
         }
 
         private async void BindData()
         {
-            CBoxDepartment.ItemsSource = await new DepartmentController().GetDepartmentsByLoggedinEmployee();
+            Department department = await departmentProxy.GetDepartmentByIdAsync(MainWindow.Employee.DepartmentId);
+            CBoxDepartment.ItemsSource = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
             CBoxDepartment.DisplayMemberPath = "Name";
         }
 

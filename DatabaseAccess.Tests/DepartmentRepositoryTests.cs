@@ -34,9 +34,9 @@ namespace DatabaseAccess.Tests
         [TestMethod]
         public void GetDepartmentByIdTest()
         {
-            Department department = _departmentRepository.GetDepartmentById(1);
+            Department department = _departmentRepository.GetDepartmentById(4);
             Assert.IsNotNull(department);
-            Assert.AreEqual("Kolonial", department.Name);
+            Assert.AreEqual("Elektronik", department.Name);
         }
 
         [TestMethod()]

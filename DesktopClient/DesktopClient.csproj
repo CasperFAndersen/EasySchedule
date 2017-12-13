@@ -128,8 +128,6 @@
     <Compile Include="Views\TemplateScheduleViews\DayColumn.xaml.cs">
       <DependentUpon>DayColumn.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DepartmentController.cs" />
-    <Compile Include="EmployeeEvents.cs" />
     <Compile Include="Services\ScheduleProxy.cs" />
     <Compile Include="Views\TemplateScheduleViews\TemplateScheduleCalendarView.xaml.cs">
       <DependentUpon>TemplateScheduleCalendarView.xaml</DependentUpon>

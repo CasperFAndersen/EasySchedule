@@ -2,6 +2,7 @@
 using Core;
 using DatabaseAccess.TemplateShifts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace BusinessLogic.Tests
 {
@@ -23,7 +24,8 @@ namespace BusinessLogic.Tests
         [TestMethod]
         public void GetAllTemplateSchedulesTest()
         {
-            //TODO: Implement this
+            List<TemplateSchedule> templateSchedules = (List<TemplateSchedule>)templateScheduleController.GetAllTemplateSchedules();
+            Assert.IsNotNull(templateSchedules);
         }
 
         [TestMethod]

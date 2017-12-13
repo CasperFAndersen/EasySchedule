@@ -12,9 +12,12 @@ namespace DesktopClient.Views.ScheduleViews
     /// </summary>
     public partial class ViewScheduleView : Page
     {
-        ScheduleProxy scheduleProxy = new ScheduleProxy();
+        ScheduleProxy scheduleProxy; 
+        DepartmentProxy departmentProxy;
         public ViewScheduleView()
         {
+            scheduleProxy = new ScheduleProxy();
+            departmentProxy = new DepartmentProxy();
             InitializeComponent();
             BindComboBoxData();
             //SetOnNextOrPrevClicked();
@@ -33,7 +36,8 @@ namespace DesktopClient.Views.ScheduleViews
 
         private async void BindComboBoxData()
         {
-            cBoxDepartment.ItemsSource = await new DepartmentController().GetDepartmentsByLoggedinEmployee();
+            Department department = await departmentProxy.GetDepartmentByIdAsync(MainWindow.Employee.DepartmentId);
+            cBoxDepartment.ItemsSource = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
             cBoxDepartment.DisplayMemberPath = "Name";
 
         }

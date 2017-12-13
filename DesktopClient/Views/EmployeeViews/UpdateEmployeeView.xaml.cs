@@ -14,11 +14,16 @@ namespace DesktopClient.Views.EmployeeViews
     /// </summary>
     public partial class UpdateEmployeeView : UserControl
     {
+        EmployeeProxy empProxy;
+        DepartmentProxy departmentProxy;
         public UpdateEmployeeView()
         {
+            departmentProxy = new DepartmentProxy();
             InitializeComponent();
             LoadDepartmentList();
             UpdateEmployeeClicked();
+            empProxy = new EmployeeProxy();
+          
         }
 
         private void BtnUpdateEmployee_Click(object sender, RoutedEventArgs e)
@@ -28,14 +33,15 @@ namespace DesktopClient.Views.EmployeeViews
 
         private async void LoadDepartmentList()
         {
-            List<Department> departments = await new DepartmentController().GetDepartmentsByLoggedinEmployee();
+            Department department = await departmentProxy.GetDepartmentByIdAsync(MainWindow.Employee.DepartmentId);
+            List<Department> departments = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
             CBoxDepartment.ItemsSource = departments;
             CBoxDepartment.DisplayMemberPath = "Name";
         }
 
         private void LoadEmployeeList(Department department)
-        {
-            List<Employee> employees = new EmployeeEvents().GetListOfEmployees(department);
+        {    
+            List<Employee> employees = new List<Employee>(empProxy.GetEmployeesByDepartmentId(department.Id));           
             EmployeeListBox.ItemsSource = employees;
             EmployeeListBox.DisplayMemberPath = "Name";
         }
@@ -47,7 +53,6 @@ namespace DesktopClient.Views.EmployeeViews
                 try
                 {
                     EmployeeProxy empProxy = new EmployeeProxy();
-
                     Employee emp = (Employee)EmployeeListBox.SelectedItem;
                     emp.Name = TxtName.Text;
                     emp.Email = TxtEmail.Text;

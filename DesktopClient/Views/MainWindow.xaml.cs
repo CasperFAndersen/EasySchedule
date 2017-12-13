@@ -77,7 +77,7 @@ namespace DesktopClient
 
         private async void SetEmployeeInfo()
         {
-            Department department = await new DepartmentController().GetDepartmentByIdAsync(Employee.DepartmentId);
+            Department department = await new DepartmentProxy().GetDepartmentByIdAsync(Employee.DepartmentId);
             employeeBox.Visibility = Visibility.Visible;
             txtDepartment.Text = department.Name;
             txtName.Text = Employee.Name;

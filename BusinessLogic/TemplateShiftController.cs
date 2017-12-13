@@ -68,7 +68,7 @@ namespace BusinessLogic
             {
                 isOkToInsert = false;
             }
-            else if (templateShift.Employee != null)
+            else if (templateShift.Employee == null)
             {
                 isOkToInsert = false;
             }

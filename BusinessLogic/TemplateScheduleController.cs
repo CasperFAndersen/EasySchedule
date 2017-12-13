@@ -13,12 +13,13 @@ namespace BusinessLogic
     public class TemplateScheduleController : ITemplateScheduleController
     {
         ITemplateScheduleRepository _templateScheduleRepository;
-        ITemplateShiftControlller _templateShiftControlller;
+        ITemplateShiftControlller _templateShiftController;
 
         TemplateSchedule _templateSchedule;
 
         public TemplateScheduleController()
         {
+            _templateShiftController = new TemplateShiftController();
             _templateSchedule = new TemplateSchedule();
             _templateScheduleRepository = new TemplateScheduleRepository();
         }
@@ -31,7 +32,7 @@ namespace BusinessLogic
         public IEnumerable<TemplateSchedule> GetAllTemplateSchedules()
         {
             List<TemplateSchedule> templateSchedules = _templateScheduleRepository.GetAllTemplateSchedules().ToList();
-            templateSchedules.ForEach(x => x.TemplateShifts = _templateShiftControlller.GetTemplateShiftsByTemplateScheduleId(x.Id));
+            templateSchedules.ForEach(x => x.TemplateShifts = _templateShiftController.GetTemplateShiftsByTemplateScheduleId(x.Id));
             return templateSchedules;
         }
 
@@ -48,7 +49,7 @@ namespace BusinessLogic
                 using (TransactionScope scope = new TransactionScope())
                 {
                     _templateScheduleRepository.AddTemplateScheduleToDatabase(templateSchedule);
-                    _templateShiftControlller.AddTemplateShiftsFromTemplateSchedule(templateSchedule.Id, templateSchedule.TemplateShifts);
+                    _templateShiftController.AddTemplateShiftsFromTemplateSchedule(templateSchedule.Id, templateSchedule.TemplateShifts);
                     scope.Complete();
                 }
             }
@@ -65,7 +66,7 @@ namespace BusinessLogic
                 using (TransactionScope scope = new TransactionScope())
                 {
                     _templateScheduleRepository.UpdateTemplateSchedule(templateSchedule);
-                    _templateShiftControlller.AddTemplateShiftsFromTemplateSchedule(templateSchedule.Id, templateSchedule.TemplateShifts);
+                    _templateShiftController.AddTemplateShiftsFromTemplateSchedule(templateSchedule.Id, templateSchedule.TemplateShifts);
                     scope.Complete();
                 }
             }
@@ -82,7 +83,7 @@ namespace BusinessLogic
             {
                 isOkToInsert = false;
             }
-            else if (templateSchedule.Name != null || templateSchedule.Name == "")
+            else if (templateSchedule.Name == null || templateSchedule.Name == "")
             {
                 isOkToInsert = false;
             }

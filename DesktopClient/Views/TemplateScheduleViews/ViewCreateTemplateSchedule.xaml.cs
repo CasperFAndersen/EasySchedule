@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using Core;
+using DesktopClient.Services;
 
 namespace DesktopClient.Views.TemplateScheduleViews
 {
     public partial class ViewCreateTemplateSchedule : UserControl
     {
         private List<Department> DepartmentList { get; set; }
+        DepartmentProxy departmentProxy;
 
         public ViewCreateTemplateSchedule()
         {
+            departmentProxy = new DepartmentProxy();
             InitializeComponent();
             LoadDeparmentList();
             NoOfWeeks.ItemsSource = new int[] { 1, 2, 3, 4 };
@@ -19,7 +22,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
 
         public async void LoadDeparmentList()
         {
-            List<Department> departmens = await new DepartmentController().GetDepartmentsByLoggedinEmployee();
+            Department department = departmentProxy.GetDepartmentById(MainWindow.Employee.DepartmentId);           
+            List<Department> departmens = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
             CBoxDepartment.ItemsSource = departmens;
             CBoxDepartment.DisplayMemberPath = "Name";
         }

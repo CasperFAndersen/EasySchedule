@@ -25,7 +25,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
 
         private async void BindDataDepartmentcBox()
         {
-            CBoxDepartment.ItemsSource = await new DepartmentController().GetDepartmentsByLoggedinEmployee();
+            Department department = _departmentProxy.GetDepartmentById(MainWindow.Employee.DepartmentId);
+            CBoxDepartment.ItemsSource = await _departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
             CBoxDepartment.DisplayMemberPath = "Name";
         }
 

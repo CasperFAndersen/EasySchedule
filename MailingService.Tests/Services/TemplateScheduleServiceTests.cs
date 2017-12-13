@@ -14,7 +14,7 @@ namespace Tests.Services
         public void AddTemplateScheduleToDbServiceTest()
         {
             TemplateScheduleServiceClient templateScheduleService = new TemplateScheduleServiceClient();
-            List<TemplateSchedule> beforeAddingTemplateScheduleList = new List<TemplateSchedule>(templateScheduleService.GetAllTemplateSchedules());
+            List<TemplateSchedule> beforeAddingTemplateScheduleList = templateScheduleService.GetAllTemplateSchedules();
             TemplateSchedule templateSchedule = new TemplateSchedule(4, "DummySchedule", 1);
             templateScheduleService.AddTemplateScheduleToDb(templateSchedule);
             List<TemplateSchedule> afterAddingTemplateScheduleList = new List<TemplateSchedule>(templateScheduleService.GetAllTemplateSchedules());

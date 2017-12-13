@@ -66,7 +66,7 @@ namespace BusinessLogic
             }
             else
             {
-                throw new Exception("Insert schedule failed. Schedule time overlaps existing schedule");
+                throw new ArgumentException("Insert schedule failed. Schedule time overlaps existing schedule");
             }
         }
 
@@ -82,7 +82,7 @@ namespace BusinessLogic
             }
             else
             {
-                throw new Exception("Insert schedule failed. Schedule time overlaps existing schedule");
+                throw new ArgumentException("Insert schedule failed. Schedule time overlaps existing schedule");
             }
       
         }
@@ -123,8 +123,8 @@ namespace BusinessLogic
         {
             bool isOkToInput = true;
 
-            if (GetScheduleByDepartmentIdAndDate(schedule.Department.Id, schedule.StartDate) == null
-            && GetScheduleByDepartmentIdAndDate(schedule.Department.Id, schedule.EndDate) == null)
+            if (GetScheduleByDepartmentIdAndDate(schedule.Department.Id, schedule.StartDate) != null
+            || GetScheduleByDepartmentIdAndDate(schedule.Department.Id, schedule.EndDate) != null)
             {
                 isOkToInput = false;
             }
@@ -132,7 +132,7 @@ namespace BusinessLogic
             {
                 isOkToInput = false;
             }
-            else if (schedule.Department != null)
+            else if (schedule.Department == null)
             {
                 isOkToInput = false;
             }

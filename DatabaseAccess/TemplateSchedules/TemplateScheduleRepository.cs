@@ -22,6 +22,7 @@ namespace DatabaseAccess.TemplateSchedules
                         {
                             TemplateSchedule templateSchedule = new TemplateSchedule(reader.GetInt32(0), reader.GetString(1),
                                                                                  reader.GetInt32(2), reader.GetInt32(3));
+                            templateSchedules.Add(templateSchedule);
                         }
                     }
                 }

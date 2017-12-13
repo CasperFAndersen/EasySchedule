@@ -53,9 +53,11 @@ namespace BusinessLogic.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(ArgumentException))]
         public void InsertOverlappingScheduleTest()
         {
+            DbSetUp.SetUpDb();
+
             scheduleController = new ScheduleController(new ScheduleRepository());
 
             Schedule schedule1 = new Schedule()
@@ -82,6 +84,8 @@ namespace BusinessLogic.Tests
             schedule1.Shifts.Add(shift2);
 
             scheduleController.InsertScheduleToDb(schedule2);
+
+            DbSetUp.SetUpDb();
         }
 
         [TestMethod()]

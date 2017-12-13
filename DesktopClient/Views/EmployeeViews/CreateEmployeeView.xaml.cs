@@ -14,15 +14,19 @@ namespace DesktopClient.Views.EmployeeViews
     /// </summary>
     public partial class CreateEmployeeView : UserControl
     {
+        DepartmentProxy departmentProxy;
         public CreateEmployeeView()
         {
+            departmentProxy = new DepartmentProxy();
             InitializeComponent();
             LoadDepartmentList();
+      
         }
 
         private async void LoadDepartmentList()
         {
-            List<Department> departments = await new DepartmentController().GetDepartmentsByLoggedinEmployee();
+            Department department = await departmentProxy.GetDepartmentByIdAsync(MainWindow.Employee.DepartmentId);          
+            List<Department> departments = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
             CBoxDepartment.ItemsSource = departments;
             CBoxDepartment.DisplayMemberPath = "Name";
         }
