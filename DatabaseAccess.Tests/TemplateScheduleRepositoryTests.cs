@@ -69,8 +69,7 @@ namespace DatabaseAccess.Tests
         {
             TemplateScheduleRepository templateScheduleRepository = new TemplateScheduleRepository();
             List<TemplateSchedule> templateSchedules = templateScheduleRepository.GetAllTemplateSchedules().ToList();
-            Assert.IsNotNull(templateScheduleRepository);
-
+            Assert.IsNotNull(templateSchedules);
         }
 
         [TestMethod]

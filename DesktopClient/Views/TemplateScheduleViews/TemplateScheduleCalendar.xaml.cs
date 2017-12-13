@@ -179,7 +179,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 if (this.IsVisible)
                 {
                     Shifts.Clear();
-                    EmployeeColors.Clear();
                     AddShifts(e.TemplateSchedule.TemplateShifts);
                     if (e.TemplateSchedule.NoOfWeeks > 1)
                     {

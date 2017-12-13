@@ -22,7 +22,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             InitializeComponent();
             //LoadEmployeeColors();
-            SetOnDepartmentSelected();
+            SetOnTemplateScheduleSelected();
             SetOnTemplateScheduleUpdateClicked();
             SetOnDepartmentBoxSelected();
         }
@@ -78,7 +78,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
         }
 
 
-        public void SetOnDepartmentSelected()
+        public void SetOnTemplateScheduleSelected()
         {
             Mediator.GetInstance().TemplateScheduleSelected += (s, e) =>
             {
