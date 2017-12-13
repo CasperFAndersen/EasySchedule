@@ -149,41 +149,21 @@ namespace DatabaseAccess.Employees
                         using (SqlCommand command = connection.CreateCommand())
                         {
                             command.CommandText =
-                                "insert into Employee(name, email, phone, noOfHours, isAdmin, username, password, departmentId, isEmployed, salt) " +
-                                "values (@param1, @param2, @param3, @param4, @param5, @param6, @param7, @param8, @param9, @param10);";
+                                "insert into Employee(name, email, phone, noOfHours, isAdmin, " +
+                                "         username, password, departmentId, isEmployed, salt) " +
+                                "values (@param1, @param2, @param3, @param4, @param5, " +
+                                "        @param6, @param7, @param8, @param9, @param10);";
 
-                            SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.VarChar, 100);
-                            SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.VarChar, 100);
-                            SqlParameter p3 = new SqlParameter(@"param3", SqlDbType.VarChar, 100);
-                            SqlParameter p4 = new SqlParameter(@"param4", SqlDbType.Int, 100);
-                            SqlParameter p5 = new SqlParameter(@"param5", SqlDbType.Bit, 100);
-                            SqlParameter p6 = new SqlParameter(@"param6", SqlDbType.VarChar, 100);
-                            SqlParameter p7 = new SqlParameter(@"param7", SqlDbType.VarChar, 100);
-                            SqlParameter p8 = new SqlParameter(@"param8", SqlDbType.Int, 100);
-                            SqlParameter p9 = new SqlParameter(@"param9", SqlDbType.Bit, 100);
-                            SqlParameter p10 = new SqlParameter(@"param10", SqlDbType.VarChar, 100);
-
-                            p1.Value = employee.Name;
-                            p2.Value = employee.Email;
-                            p3.Value = employee.Phone;
-                            p4.Value = employee.NoOfHours;
-                            p5.Value = employee.IsAdmin;
-                            p6.Value = employee.Username;
-                            p7.Value = employee.Password;
-                            p8.Value = employee.DepartmentId;
-                            p9.Value = employee.IsEmployed;
-                            p10.Value = employee.Salt;
-
-                            command.Parameters.Add(p1);
-                            command.Parameters.Add(p2);
-                            command.Parameters.Add(p3);
-                            command.Parameters.Add(p4);
-                            command.Parameters.Add(p5);
-                            command.Parameters.Add(p6);
-                            command.Parameters.Add(p7);
-                            command.Parameters.Add(p8);
-                            command.Parameters.Add(p9);
-                            command.Parameters.Add(p10);
+                            command.Parameters.AddWithValue("@param1", employee.Name);
+                            command.Parameters.AddWithValue("@param2", employee.Email);
+                            command.Parameters.AddWithValue("@param3", employee.Phone);
+                            command.Parameters.AddWithValue("@param4", employee.NoOfHours);
+                            command.Parameters.AddWithValue("@param5", employee.IsAdmin);
+                            command.Parameters.AddWithValue("@param6", employee.Username);
+                            command.Parameters.AddWithValue("@param7", employee.Password);
+                            command.Parameters.AddWithValue("@param8", employee.DepartmentId);
+                            command.Parameters.AddWithValue("@param9", employee.IsEmployed);
+                            command.Parameters.AddWithValue("@param10", employee.Salt);
 
                             command.ExecuteNonQuery();
 
@@ -259,7 +239,6 @@ namespace DatabaseAccess.Employees
             catch (Exception e)
             {
                 throw new Exception("Something went wrong while updating an employee! Try again");
-                //Debug.Print(e.StackTrace);
             }
         }
 
@@ -273,16 +252,16 @@ namespace DatabaseAccess.Employees
         public Employee BuildEmployeeObject(SqlDataReader reader)
         {
             Employee employee = new Employee();
-            employee.Id = Convert.ToInt32(reader["Id"].ToString());
-            employee.Name = reader["Name"].ToString();
-            employee.Email = reader["Email"].ToString();
-            employee.Phone = reader["Phone"].ToString();
-            employee.NoOfHours = Convert.ToInt32(reader["NoOfHours"].ToString());
+            employee.Id = Convert.ToInt32(reader["id"].ToString());
+            employee.Name = reader["name"].ToString();
+            employee.Email = reader["email"].ToString();
+            employee.Phone = reader["phone"].ToString();
+            employee.NoOfHours = Convert.ToInt32(reader["noOfHours"].ToString());
             employee.IsAdmin = reader.GetBoolean(5);
-            employee.Username = reader["Username"].ToString();
-            employee.Password = reader["Password"].ToString();
-            employee.DepartmentId = Convert.ToInt32(reader["DepartmentId"].ToString());
-            employee.Salt = reader["Salt"].ToString();
+            employee.Username = reader["username"].ToString();
+            employee.Password = reader["password"].ToString();
+            employee.DepartmentId = Convert.ToInt32(reader["departmentId"].ToString());
+            employee.Salt = reader["salt"].ToString();
             employee.IsEmployed = reader.GetBoolean(10);
             return employee;
         }
