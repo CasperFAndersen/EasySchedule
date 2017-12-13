@@ -8,6 +8,7 @@ using DatabaseAccess;
 using DatabaseAccess.Schedules;
 using DatabaseAccess.Departments;
 using DatabaseAccess.ScheduleShifts;
+using System.Transactions;
 
 namespace BusinessLogic
 {
@@ -53,12 +54,15 @@ namespace BusinessLogic
         }
 
         public void InsertScheduleToDb(Schedule schedule)
-        {
-            if (GetScheduleByDepartmentIdAndDate(schedule.Department.Id, schedule.StartDate) == null
-                        && GetScheduleByDepartmentIdAndDate(schedule.Department.Id, schedule.EndDate) == null)
+        {           
+            if (ValidateScheduleObject(schedule))
             {
-                schedule = _scheduleRepository.InsertSchedule(schedule);
-                _scheduleShiftController.AddShiftsFromSchedule(schedule);
+                using(TransactionScope scope = new TransactionScope())
+                {
+                    schedule = _scheduleRepository.InsertSchedule(schedule);
+                    _scheduleShiftController.AddShiftsFromSchedule(schedule);
+                    scope.Complete();
+                }
             }
             else
             {
@@ -68,7 +72,19 @@ namespace BusinessLogic
 
         public void UpdateSchedule(Schedule schedule)
         {
-            _scheduleShiftController.AddShiftsFromSchedule(schedule);
+            if (ValidateScheduleObject(schedule))
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    _scheduleShiftController.AddShiftsFromSchedule(schedule);
+                    scope.Complete();
+                }
+            }
+            else
+            {
+                throw new Exception("Insert schedule failed. Schedule time overlaps existing schedule");
+            }
+      
         }
 
         public List<Schedule> GetSchedulesByDepartmentId(int departmentId)
@@ -101,6 +117,26 @@ namespace BusinessLogic
             schedule.StartDate = startTime;
             schedule.EndDate = startTime.AddDays((7 * templateSchedule.NoOfWeeks)-1);
             return schedule;
+        }
+
+        private bool ValidateScheduleObject(Schedule schedule)
+        {
+            bool isOkToInput = true;
+
+            if (GetScheduleByDepartmentIdAndDate(schedule.Department.Id, schedule.StartDate) == null
+            && GetScheduleByDepartmentIdAndDate(schedule.Department.Id, schedule.EndDate) == null)
+            {
+                isOkToInput = false;
+            }
+            else if(schedule.StartDate > schedule.EndDate)
+            {
+                isOkToInput = false;
+            }
+            else if (schedule.Department != null)
+            {
+                isOkToInput = false;
+            }
+                return isOkToInput;
         }
 
 

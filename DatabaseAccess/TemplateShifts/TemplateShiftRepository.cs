@@ -9,30 +9,32 @@ namespace DatabaseAccess.TemplateShifts
 {
     public class TemplateShiftRepository : ITemplateShiftRepository
     {
-        public void AddTemplateShiftsFromTemplateSchedule(int templateScheduleId, List<TemplateShift> templateShifts, SqlConnection connection)
+        public void AddTemplateShiftsFromTemplateSchedule(int templateScheduleId, List<TemplateShift> templateShifts)
         {
-            //TODO comment
-            foreach (TemplateShift templateShift in templateShifts)
+            using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                using (SqlCommand insertTemplateShift = new SqlCommand(
-                        "INSERT INTO TemplateShift " +
-                        "(weekDay, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
-                        "VALUES (@param1,@param2,@param3,@param4,@param5,@Param6)", connection))
+                foreach (TemplateShift templateShift in templateShifts)
                 {
-                    if (templateShift.Id == 0)
+                    using (SqlCommand insertTemplateShift = new SqlCommand(
+                            "INSERT INTO TemplateShift " +
+                            "(weekDay, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                            "VALUES (@param1,@param2,@param3,@param4,@param5,@Param6)", connection))
                     {
-                        insertTemplateShift.Parameters.AddWithValue("@param1", templateShift.WeekDay.ToString());
-                        insertTemplateShift.Parameters.AddWithValue("@param2", templateShift.Hours);
-                        insertTemplateShift.Parameters.AddWithValue("@param3", templateShift.StartTime);
-                        insertTemplateShift.Parameters.AddWithValue("@param4", templateShift.WeekNumber);
-                        insertTemplateShift.Parameters.AddWithValue("@param5", templateScheduleId);
-                        insertTemplateShift.Parameters.AddWithValue("@param6", templateShift.Employee.Id);
+                        if (templateShift.Id == 0)
+                        {
+                            insertTemplateShift.Parameters.AddWithValue("@param1", templateShift.WeekDay.ToString());
+                            insertTemplateShift.Parameters.AddWithValue("@param2", templateShift.Hours);
+                            insertTemplateShift.Parameters.AddWithValue("@param3", templateShift.StartTime);
+                            insertTemplateShift.Parameters.AddWithValue("@param4", templateShift.WeekNumber);
+                            insertTemplateShift.Parameters.AddWithValue("@param5", templateScheduleId);
+                            insertTemplateShift.Parameters.AddWithValue("@param6", templateShift.Employee.Id);
 
-                        insertTemplateShift.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        UpdateTemplateScheduleShift(templateShift, connection);
+                            insertTemplateShift.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            UpdateTemplateScheduleShift(templateShift, connection);
+                        }
                     }
                 }
             }
@@ -115,7 +117,7 @@ namespace DatabaseAccess.TemplateShifts
             templateShiftObject.StartTime = reader.GetTimeSpan(3);
             templateShiftObject.WeekNumber = reader.GetInt32(4);
             templateShiftObject.TemplateScheduleId = reader.GetInt32(5);
-            templateShiftObject.Employee = new Employee() { Id = reader.GetInt32(6) };
+            templateShiftObject.Employee = new Employee() { Id = reader.GetInt32(6) }; //Creates dumme-employee-object
             return templateShiftObject;
         }
 

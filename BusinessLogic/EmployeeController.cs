@@ -7,6 +7,7 @@ using Core;
 using DatabaseAccess;
 using DatabaseAccess.Employees;
 using System.Text.RegularExpressions;
+using System.Transactions;
 
 namespace BusinessLogic
 {
@@ -26,7 +27,7 @@ namespace BusinessLogic
             _employeeRepository = employeeRepository;
             _inputValidator = new InputValidator();
         }
-        
+
 
         public List<Employee> GetAllEmployees()
         {
@@ -68,85 +69,64 @@ namespace BusinessLogic
 
         public void InsertEmployee(Employee employee)
         {
-            bool isCorrectFormatted = true;
-            try
+            employee.Salt = PasswordHashing.GenerateSalt();
+            employee.Password = PasswordHashing.HashPassword(employee.Salt + employee.Password);
+
+            if (ValidateEmployeeObject(employee))
             {
-                employee.Salt = PasswordHashing.GenerateSalt();
-                employee.Password = PasswordHashing.HashPassword(employee.Salt + employee.Password);
-
-
-                if (!Regex.IsMatch(employee.Name, _inputValidator.NameCheck))
-                {
-                    isCorrectFormatted = false;
-                }
-                else if (!Regex.IsMatch(employee.Phone, _inputValidator.PhoneCheck))
-                {
-                    isCorrectFormatted = false;
-                }
-                else if (!Regex.IsMatch(employee.Email, _inputValidator.EmailCheck))
-                {
-                    isCorrectFormatted = false;
-                }
-                else if (!Regex.IsMatch(employee.Username, _inputValidator.UsernameCheck))
-                {
-                    isCorrectFormatted = false;
-                }
-                else if (!(employee.NoOfHours >= 0))
-                {
-                    isCorrectFormatted = false;
-                }
-
-                if (isCorrectFormatted)
-                {
-                    _employeeRepository.InsertEmployee(employee);
-                }
-
-                else
-                {
-                    throw new ArgumentException("An error regarding input checks has arrised. Please check that the inputs are valid.");
-                }
+                _employeeRepository.InsertEmployee(employee);
             }
-            catch (Exception)
+            else
             {
-
-                throw;
+                throw new ArgumentException("An error regarding input checks has arrised. Please check that the inputs are valid.");
             }
-
         }
 
         public void UpdateEmployee(Employee employee)
         {
-            try
-            {
-                if (!employee.Password.Equals(GetEmployeeByUsername(employee.Username).Password))
-                {
-                    employee.Salt = PasswordHashing.GenerateSalt();
-                    employee.Password = PasswordHashing.HashPassword(employee.Salt + employee.Password);
-                }
-                if (
-                    Regex.IsMatch(employee.Name, _inputValidator.NameCheck)
-                    &&
-                    Regex.IsMatch(employee.Phone, _inputValidator.PhoneCheck)
-                    &&
-                    Regex.IsMatch(employee.Email, _inputValidator.EmailCheck)
-                    &&
-                    Regex.IsMatch(employee.Username, _inputValidator.UsernameCheck)
-                    &&
-                    employee.NoOfHours >= 0
-                )
-                {
-                    _employeeRepository.UpdateEmployee(employee);
-                }
-                else
-                {
-                    throw new ArgumentException("An error regarding input checks has arrised. Please check that the inputs are valid.");
-                }
-            }
-            catch (Exception)
-            {
 
-                throw;
+            if (!employee.Password.Equals(GetEmployeeByUsername(employee.Username).Password))
+            {
+                employee.Salt = PasswordHashing.GenerateSalt();
+                employee.Password = PasswordHashing.HashPassword(employee.Salt + employee.Password);
             }
+            if (ValidateEmployeeObject(employee))
+            {
+                _employeeRepository.UpdateEmployee(employee);
+            }
+            else
+            {
+                throw new ArgumentException("An error regarding input checks has arrised. Please check that the inputs are valid.");
+            }
+
+        }
+
+        private bool ValidateEmployeeObject(Employee employee)
+        {
+            bool isCorrectFormatted = true;
+
+            if (!Regex.IsMatch(employee.Name, _inputValidator.NameCheck))
+            {
+                isCorrectFormatted = false;
+            }
+            else if (!Regex.IsMatch(employee.Phone, _inputValidator.PhoneCheck))
+            {
+                isCorrectFormatted = false;
+            }
+            else if (!Regex.IsMatch(employee.Email, _inputValidator.EmailCheck))
+            {
+                isCorrectFormatted = false;
+            }
+            else if (!Regex.IsMatch(employee.Username, _inputValidator.UsernameCheck))
+            {
+                isCorrectFormatted = false;
+            }
+            else if (!(employee.NoOfHours >= 0))
+            {
+                isCorrectFormatted = false;
+            }
+
+            return isCorrectFormatted;
         }
 
     }
