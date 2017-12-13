@@ -33,17 +33,34 @@ namespace DesktopClient.Views.EmployeeViews
 
         private async void LoadDepartmentList()
         {
-            Department department = await departmentProxy.GetDepartmentByIdAsync(MainWindow.Employee.DepartmentId);
-            List<Department> departments = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
-            CBoxDepartment.ItemsSource = departments;
-            CBoxDepartment.DisplayMemberPath = "Name";
+            try
+            {
+                Department department = await departmentProxy.GetDepartmentByIdAsync(MainWindow.Employee.DepartmentId);
+                List<Department> departments = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
+                CBoxDepartment.ItemsSource = departments;
+                CBoxDepartment.DisplayMemberPath = "Name";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something went wrong! Could net fetch department");
+            }
+
         }
 
         private void LoadEmployeeList(Department department)
-        {    
-            List<Employee> employees = new List<Employee>(empProxy.GetEmployeesByDepartmentId(department.Id));           
-            EmployeeListBox.ItemsSource = employees;
-            EmployeeListBox.DisplayMemberPath = "Name";
+        {
+            try
+            {
+                List<Employee> employees = new List<Employee>(empProxy.GetEmployeesByDepartmentId(department.Id));
+                EmployeeListBox.ItemsSource = employees;
+                EmployeeListBox.DisplayMemberPath = "Name";
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Something went wrong! Could not feth employees");
+            }
+
         }
 
         public void UpdateEmployeeClicked()
@@ -71,10 +88,7 @@ namespace DesktopClient.Views.EmployeeViews
                 }
                 catch (Exception)
                 {
-                    //TODO
-                    // har fjernet så messagebox ikke printer exception
                     MessageBox.Show("Something went wrong while processing your request. Please check input parameters.", "Error:");
-
                 }
                 ClearEmployeeView();
                 LoadDepartmentList();

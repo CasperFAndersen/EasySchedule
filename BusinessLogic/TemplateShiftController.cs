@@ -72,7 +72,7 @@ namespace BusinessLogic
             {
                 isOkToInsert = false;
             }
-            else if (templateShift.TemplateScheduleId <= 0)
+            else if (templateShift.TemplateScheduleId < 0)
             {
                 isOkToInsert = false;
             }

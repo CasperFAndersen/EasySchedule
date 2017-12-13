@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Core;
 using EasyScheduleWebClient.Services;
+using EasyScheduleWebClient.Models;
 
 namespace EasyScheduleWebClient.Controllers
 {
@@ -14,7 +15,13 @@ namespace EasyScheduleWebClient.Controllers
         ScheduleProxy scheduleProxy = new ScheduleProxy();
         public ActionResult Index()
         {
-            return View();
+            EmployeeModel employeeModel = new EmployeeModel();
+            Employee employee = (Employee)Session["employee"];
+            Department department = new DepartmentProxy().GetDepartmentById(employee.Id);
+            employeeModel.Employee = employee;
+            employeeModel.Department = department;
+
+            return View(employeeModel);
         }
 
         public ActionResult GetEvents()

@@ -25,10 +25,18 @@ namespace DesktopClient.Views.EmployeeViews
 
         private async void LoadDepartmentList()
         {
-            Department department = await departmentProxy.GetDepartmentByIdAsync(MainWindow.Employee.DepartmentId);          
-            List<Department> departments = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
-            CBoxDepartment.ItemsSource = departments;
-            CBoxDepartment.DisplayMemberPath = "Name";
+            try
+            {
+                Department department = await departmentProxy.GetDepartmentByIdAsync(MainWindow.Employee.DepartmentId);
+                List<Department> departments = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
+                CBoxDepartment.ItemsSource = departments;
+                CBoxDepartment.DisplayMemberPath = "Name";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something went wrong! Could net fetch department");
+            }
+
         }
 
         private void BtnSaveEmployee_Click(object sender, RoutedEventArgs e)
@@ -64,10 +72,7 @@ namespace DesktopClient.Views.EmployeeViews
                 }
                 catch (ArgumentException)
                 {
-                    //TODO
-                    //har fjernet så den ikke printer exception -> det fik vi at vide at user ikke skulle bruge til noget.
                     MessageBox.Show("Something went wrong while processing your request. Please check input parameters.");
-
                 }
                 ClearEmployeeView();
             };

@@ -195,9 +195,16 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             Mediator.GetInstance().TemplateScheduleUpdateClicked += (schedule, e) =>
             {
-                e.TemplateSchedule.TemplateShifts = Shifts;
-                TemplateScheduleProxy templateScheduleProxy = new TemplateScheduleProxy();
-                templateScheduleProxy.UpdateTemplateSchedule(e.TemplateSchedule);
+                try
+                {
+                    e.TemplateSchedule.TemplateShifts = Shifts;
+                    TemplateScheduleProxy templateScheduleProxy = new TemplateScheduleProxy();
+                    templateScheduleProxy.UpdateTemplateSchedule(e.TemplateSchedule);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Something went wrong! Could not fetch template schedules");
+                }
             };
         }
 
@@ -213,14 +220,20 @@ namespace DesktopClient.Views.TemplateScheduleViews
                     }
                     else
                     {
-                        TemplateScheduleProxy templateScheduleProxy = new TemplateScheduleProxy();
-                        templateSchedule.TemplateShifts = Shifts;
-                        templateScheduleProxy.AddTemplateScheduleToDb(templateSchedule);
-                        Shifts.Clear();
-                        MessageBox.Show("Template schedule is now saved onto database");
+                        try
+                        {
+                            TemplateScheduleProxy templateScheduleProxy = new TemplateScheduleProxy();
+                            templateSchedule.TemplateShifts = Shifts;
+                            templateScheduleProxy.AddTemplateScheduleToDb(templateSchedule);
+                            Shifts.Clear();
+                            MessageBox.Show("Template schedule is now saved onto database");
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Something went wrong! Templateschedule could not be saved! Too bad");
+                        }
                     }
                 }
-
             };
         }
 

@@ -154,6 +154,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Connected Services\DepartmentService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\EmployeeService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -183,6 +188,7 @@
     <Compile Include="Models\ShiftModel.cs" />
     <Compile Include="Models\ViewModel\EmailViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DepartmentProxy.cs" />
     <Compile Include="Services\EmployeeProxy.cs" />
     <Compile Include="Services\EmployeeRepository.cs" />
     <Compile Include="Services\EventRepository.cs" />
@@ -190,6 +196,16 @@
     <Compile Include="Services\ScheduleShiftProxy.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\DepartmentService\DepartmentService.wsdl" />
+    <None Include="Connected Services\DepartmentService\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DepartmentService\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DepartmentService\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\EmployeeService\Core.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -216,6 +232,13 @@
     <None Include="Connected Services\ScheduleShiftService\configuration91.svcinfo" />
     <None Include="Connected Services\ScheduleShiftService\configuration.svcinfo" />
     <None Include="Connected Services\ScheduleShiftService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\DepartmentService\item.disco" />
+    <None Include="Connected Services\DepartmentService\configuration91.svcinfo" />
+    <None Include="Connected Services\DepartmentService\configuration.svcinfo" />
+    <None Include="Connected Services\DepartmentService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -259,6 +282,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ScheduleShiftService\ScheduleShiftService.wsdl" />
+    <Content Include="Properties\DataSources\Core.Department.datasource" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
@@ -418,6 +442,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\DepartmentService\" />
     <WCFMetadataStorage Include="Connected Services\EmployeeService\" />
     <WCFMetadataStorage Include="Connected Services\ScheduleService\" />
     <WCFMetadataStorage Include="Connected Services\ScheduleShiftService\" />

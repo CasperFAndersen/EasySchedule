@@ -25,9 +25,17 @@ namespace DesktopClient.Views.TemplateScheduleViews
 
         private async void BindDataDepartmentcBox()
         {
-            Department department = _departmentProxy.GetDepartmentById(MainWindow.Employee.DepartmentId);
-            CBoxDepartment.ItemsSource = await _departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
-            CBoxDepartment.DisplayMemberPath = "Name";
+            try
+            {
+                Department department = _departmentProxy.GetDepartmentById(MainWindow.Employee.DepartmentId);
+                CBoxDepartment.ItemsSource = await _departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
+                CBoxDepartment.DisplayMemberPath = "Name";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something went wrong! Could not fetch departments");
+            }
+
         }
 
         private async void BindDataTempScheduleCBox()
@@ -35,12 +43,18 @@ namespace DesktopClient.Views.TemplateScheduleViews
             Department department = (Department)CBoxDepartment.SelectedItem;
             if (department != null)
             {
-                List<TemplateSchedule> templateSchedules = await _templateProxy.GetAllTemplateSchedulesAsync();
-                templateSchedules = templateSchedules.FindAll(x => x.DepartmentId == department.Id);
-                CBoxSchedule.ItemsSource = templateSchedules;
-                CBoxSchedule.DisplayMemberPath = "Name";
+                try
+                {
+                    List<TemplateSchedule> templateSchedules = await _templateProxy.GetAllTemplateSchedulesAsync();
+                    templateSchedules = templateSchedules.FindAll(x => x.DepartmentId == department.Id);
+                    CBoxSchedule.ItemsSource = templateSchedules;
+                    CBoxSchedule.DisplayMemberPath = "Name";
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Something went wrong! Could not fetch template schedules");
+                }
             }
-
         }
 
         private void ChooseSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)

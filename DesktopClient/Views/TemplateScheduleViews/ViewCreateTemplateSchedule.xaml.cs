@@ -22,10 +22,18 @@ namespace DesktopClient.Views.TemplateScheduleViews
 
         public async void LoadDeparmentList()
         {
-            Department department = departmentProxy.GetDepartmentById(MainWindow.Employee.DepartmentId);           
-            List<Department> departmens = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
-            CBoxDepartment.ItemsSource = departmens;
-            CBoxDepartment.DisplayMemberPath = "Name";
+            try
+            {
+                Department department = departmentProxy.GetDepartmentById(MainWindow.Employee.DepartmentId);
+                List<Department> departmens = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
+                CBoxDepartment.ItemsSource = departmens;
+                CBoxDepartment.DisplayMemberPath = "Name";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something went wrong! Could not fetch departments");
+            }
+
         }
 
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)

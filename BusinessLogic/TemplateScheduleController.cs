@@ -48,7 +48,7 @@ namespace BusinessLogic
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    _templateScheduleRepository.AddTemplateScheduleToDatabase(templateSchedule);
+                    templateSchedule.Id = _templateScheduleRepository.AddTemplateScheduleToDatabase(templateSchedule);
                     _templateShiftController.AddTemplateShiftsFromTemplateSchedule(templateSchedule.Id, templateSchedule.TemplateShifts);
                     scope.Complete();
                 }

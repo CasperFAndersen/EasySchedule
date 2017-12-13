@@ -36,10 +36,16 @@ namespace DesktopClient.Views.ScheduleViews
 
         private async void BindComboBoxData()
         {
-            Department department = await departmentProxy.GetDepartmentByIdAsync(MainWindow.Employee.DepartmentId);
-            cBoxDepartment.ItemsSource = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
-            cBoxDepartment.DisplayMemberPath = "Name";
-
+            try
+            {
+                Department department = await departmentProxy.GetDepartmentByIdAsync(MainWindow.Employee.DepartmentId);
+                cBoxDepartment.ItemsSource = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
+                cBoxDepartment.DisplayMemberPath = "Name";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something went wrong! Could net fetch department");
+            }
         }
 
         private void cBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)

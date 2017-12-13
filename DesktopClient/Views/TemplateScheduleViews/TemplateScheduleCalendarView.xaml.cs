@@ -39,16 +39,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
             EmployeeList.BorderThickness = new Thickness(1, 1, 1, 1);
         }
 
-        private async void LoadEmployeeColors()
-        {
-            EmployeeColors = new Dictionary<string, Color>();
-            List<Employee> employees = await new EmployeeProxy().GetAllEmployeesAsync();
-            foreach (var emp in employees)
-            {
-                EmployeeColors.Add(emp.Name, Color.FromRgb((byte)rnd.Next(256), (byte)rnd.Next(256), (byte)rnd.Next(256)));
-
-            };
-        }
 
         public Color GetRandomColor()
         {
@@ -82,10 +72,17 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             Mediator.GetInstance().TemplateScheduleSelected += (s, e) =>
             {
-                EmployeeProxy employeeProxy = new EmployeeProxy();
-                List<Employee> employees = employeeProxy.GetEmployeesByDepartmentId(e.TemplateSchedule.DepartmentId);
-                LoadEmployeeList(employees);
+                try
+                {
+                    EmployeeProxy employeeProxy = new EmployeeProxy();
+                    List<Employee> employees = employeeProxy.GetEmployeesByDepartmentId(e.TemplateSchedule.DepartmentId);
+                    LoadEmployeeList(employees);
+                }
+                catch (Exception)
+                {
 
+                    MessageBox.Show("Something went wrong! Could not feth employees");
+                }
             };
         }
 

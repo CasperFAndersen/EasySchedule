@@ -77,13 +77,19 @@ namespace DesktopClient
 
         private async void SetEmployeeInfo()
         {
-            Department department = await new DepartmentProxy().GetDepartmentByIdAsync(Employee.DepartmentId);
-            employeeBox.Visibility = Visibility.Visible;
-            txtDepartment.Text = department.Name;
-            txtName.Text = Employee.Name;
-            txtUserName.Text = Employee.Username;
-            txtAdimn.Text = Employee.IsAdmin.ToString();
-
+            try
+            {
+                Department department = await new DepartmentProxy().GetDepartmentByIdAsync(Employee.DepartmentId);
+                employeeBox.Visibility = Visibility.Visible;
+                txtDepartment.Text = department.Name;
+                txtName.Text = Employee.Name;
+                txtUserName.Text = Employee.Username;
+                txtAdimn.Text = Employee.IsAdmin.ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something went wrong! Could net fetch department");
+            }
         }
 
         private void ViewEditTemplateScheduleMenuItimClicked(object sender, RoutedEventArgs e)
@@ -95,11 +101,6 @@ namespace DesktopClient
             templateScheduleCalendarView1.EmployeeList.Items.Clear();
             frame.Content = templateScheduleCalendarView1;
             templateScheduleCalendarView1.Calendar.LoadShiftsIntoCalendar();
-
-            //TemplateScheduleCalendarView tscv = new TemplateScheduleCalendarView();
-            //ViewEditTemplateSchedule vets = new ViewEditTemplateSchedule();
-            //tscv.ControlPanel.Content = vets;
-            //frame.Content = tscv;
 
             txtViewtitle.Text = "View/Edit Template Schedule";
         }
@@ -115,10 +116,6 @@ namespace DesktopClient
 
             txtViewtitle.Text = "Create Template Schedule";
 
-            //TemplateScheduleCalendarView tscv = new TemplateScheduleCalendarView();
-            //ViewCreateTemplateSchedule vcts = new ViewCreateTemplateSchedule();
-            //tscv.ControlPanel.Content = vcts;
-            //frame.Content = tscv;
         }
 
         private void ViewScheduleMenuItemClicked(object sender, RoutedEventArgs e)
@@ -130,10 +127,19 @@ namespace DesktopClient
             frame.Content = scheduleCalendarViewEdit;
 
             txtViewtitle.Text = "View/Edit Template Schedule";
-            //ScheduleCalendarView scv = new ScheduleCalendarView();
-            //ViewScheduleView vsv = new ViewScheduleView();
-            //scv.ControlPanel.Content = vsv;
-            //frame.Content = scv;
+
+        }
+
+        private void CreateScheduleMenuItemClicked(object sender, RoutedEventArgs e)
+        {
+            scheduleCalendarCreate.ControlPanel.Content = createScheduleView;
+            scheduleCalendarCreate.Calendar.IsViewScheduleEnabled = false;
+            scheduleCalendarCreate.Calendar.SetOnCreateScheduleClicked();
+            scheduleCalendarCreate.EmployeeList.Items.Clear();
+            scheduleCalendarCreate.Calendar.SetOnCreateScheduleDepartmentChanged();;
+            frame.Content = scheduleCalendarCreate;
+            scheduleCalendarCreate.Calendar.Disable();
+            txtViewtitle.Text = "Create Schedule";
         }
 
 
@@ -151,17 +157,7 @@ namespace DesktopClient
             txtViewtitle.Text = "Update Employee";
         }
 
-        private void CreateScheduleMenuItemClicked(object sender, RoutedEventArgs e)
-        {
-            scheduleCalendarCreate.ControlPanel.Content = createScheduleView;
-            scheduleCalendarCreate.Calendar.SetOnCreateScheduleClicked();
-            scheduleCalendarCreate.EmployeeList.Items.Clear();
-            scheduleCalendarCreate.Calendar.IsViewScheduleEnabled = false;
-            scheduleCalendarCreate.Calendar.SetOnCreateScheduleDepartmentChanged();
-            frame.Content = scheduleCalendarCreate;
-            scheduleCalendarCreate.Calendar.Disable();
-            txtViewtitle.Text = "Create Schedule";
-        }
+
 
         private void SetOnLoginButtonClicked()
         {

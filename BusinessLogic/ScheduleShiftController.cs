@@ -48,7 +48,16 @@ namespace BusinessLogic
 
         public void AddShiftsFromSchedule(Schedule schedule)
         {
-            _scheduleShiftRepository.AddShiftsFromSchedule(schedule);
+            
+            if (ValidateScheduleShiftObjects(schedule.Shifts))
+            {
+                _scheduleShiftRepository.AddShiftsFromSchedule(schedule);
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
+          
         }
 
         public List<ScheduleShift> GenerateShiftsFromTemplateSchedule(TemplateSchedule templateSchedule, DateTime startTime)
@@ -86,6 +95,37 @@ namespace BusinessLogic
             string text = scheduleShift.Employee.Name + " has set a shift starting " + scheduleShift.StartTime + " and has a length of " + scheduleShift.Hours + " hours for sale.";
             //TODO: Next line is commented out so that we won't recieve mails when testing the program
             //mailSender.SendMailToEmployeesInDepartmentByDepartmentId(subject, text, scheduleShift.Employee.DepartmentId);
+        }
+
+        public bool ValidateScheduleShiftObject(ScheduleShift scheduleShift)
+        {
+            bool isOkToInsert = true;
+            if (scheduleShift.Employee == null)
+            {
+                isOkToInsert = false;
+            }
+            else if (scheduleShift.Hours < 0)
+            {
+                isOkToInsert = false;
+            }
+            else if (scheduleShift.StartTime == null)
+            {
+                isOkToInsert = false;
+            }
+            return isOkToInsert;
+        }
+
+        public bool ValidateScheduleShiftObjects(List<ScheduleShift> scheduleShifts)
+        {
+            bool isOkToInsert = true;
+            foreach (ScheduleShift ss in scheduleShifts)
+            {
+                if (!ValidateScheduleShiftObject(ss))
+                {
+                    isOkToInsert = false;
+                }
+            }
+            return isOkToInsert;
         }
     }
 }

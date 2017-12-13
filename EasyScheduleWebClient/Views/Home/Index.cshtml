@@ -5,26 +5,17 @@
     }
 }
 
-@model IEnumerable<EasyScheduleWebClient.Models.EmployeeModel>
+@model EasyScheduleWebClient.Models.EmployeeModel
 @{
     ViewBag.Title = "Full Calendar Test";
 }
 
 <div id='wrap'>
 
-    @*<div id='external-events'>
-            <h4>Employees</h4>
-            @foreach (var emp in Model)
-            {
-                <div class='fc-event'>@Html.DisplayFor((modelItem) => emp.Name)</div>
-                //<div class='fc-event'>@Html.DisplayName(emp.Name)</div>
-            }
-
-            <p>
-                <input type='checkbox' id='drop-remove' />
-                <label for='drop-remove'>remove after drop</label>
-            </p>
-        </div>*@
+    <div>
+        <h1>@Model.Department.Name</h1>
+        <hr />
+    </div>
     <div id="CheckBoxDiv">
         <label for="OnlyMyShifts">View only my shifts</label>
         <input type="checkbox" id="OnlyMyShifts" onchange="OnCheckBoxSelect()" />
@@ -34,11 +25,21 @@
 
     <div style='clear:both'></div>
 
-    @*<div id="dialog" title="dialogBox">
-            Er du sikker på at du vil sætte din vagt til udbud?
-        </div>*@
 
 </div>
+<div>
+    @if (Session["employee"] != null)
+    {
+        <p style="color:#141414; position:fixed; top:55px; right:10px; ">
+            Hello @Model.Employee.Name.ToString();
+
+        </p>
+    }
+
+</div>
+
+
+
 
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />

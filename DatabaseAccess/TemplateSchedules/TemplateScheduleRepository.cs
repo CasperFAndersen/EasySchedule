@@ -30,10 +30,9 @@ namespace DatabaseAccess.TemplateSchedules
             return templateSchedules;
         }
 
-        public void AddTemplateScheduleToDatabase(TemplateSchedule templateSchedule)
+        public int AddTemplateScheduleToDatabase(TemplateSchedule templateSchedule)
         {
             int templateScheduleId;
-
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
                 using (SqlCommand command = new SqlCommand(
@@ -46,6 +45,7 @@ namespace DatabaseAccess.TemplateSchedules
                     templateScheduleId = Convert.ToInt32(command.ExecuteScalar());
                 }
             }
+            return templateScheduleId;
         }
 
         //Do we need this???
