@@ -15,6 +15,9 @@ namespace ServiceLibrary.Schedules
         void InsertScheduleToDb(Schedule schedule);
 
         [OperationContract]
+        void UpdateScheduleWithDelete(Schedule schedule, List<ScheduleShift> deletedScheduleShifts);
+
+        [OperationContract]
         void UpdateSchedule(Schedule schedule);
 
         [OperationContract]

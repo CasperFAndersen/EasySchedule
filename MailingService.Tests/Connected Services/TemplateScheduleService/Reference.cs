@@ -65,6 +65,14 @@ namespace Tests.TemplateScheduleService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/UpdateTemplateSchedule", ReplyAction="http://tempuri.org/ITemplateScheduleService/UpdateTemplateScheduleResponse")]
         System.Threading.Tasks.Task UpdateTemplateScheduleAsync(Core.TemplateSchedule templateSchedule);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/UpdateTemplateScheduleWithDelete", ReplyAction="http://tempuri.org/ITemplateScheduleService/UpdateTemplateScheduleWithDeleteRespo" +
+            "nse")]
+        void UpdateTemplateScheduleWithDelete(Core.TemplateSchedule templateSchedule, System.Collections.Generic.List<Core.TemplateShift> deletedTemplateShifts);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/UpdateTemplateScheduleWithDelete", ReplyAction="http://tempuri.org/ITemplateScheduleService/UpdateTemplateScheduleWithDeleteRespo" +
+            "nse")]
+        System.Threading.Tasks.Task UpdateTemplateScheduleWithDeleteAsync(Core.TemplateSchedule templateSchedule, System.Collections.Generic.List<Core.TemplateShift> deletedTemplateShifts);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -124,6 +132,14 @@ namespace Tests.TemplateScheduleService {
         
         public System.Threading.Tasks.Task UpdateTemplateScheduleAsync(Core.TemplateSchedule templateSchedule) {
             return base.Channel.UpdateTemplateScheduleAsync(templateSchedule);
+        }
+        
+        public void UpdateTemplateScheduleWithDelete(Core.TemplateSchedule templateSchedule, System.Collections.Generic.List<Core.TemplateShift> deletedTemplateShifts) {
+            base.Channel.UpdateTemplateScheduleWithDelete(templateSchedule, deletedTemplateShifts);
+        }
+        
+        public System.Threading.Tasks.Task UpdateTemplateScheduleWithDeleteAsync(Core.TemplateSchedule templateSchedule, System.Collections.Generic.List<Core.TemplateShift> deletedTemplateShifts) {
+            return base.Channel.UpdateTemplateScheduleWithDeleteAsync(templateSchedule, deletedTemplateShifts);
         }
     }
 }

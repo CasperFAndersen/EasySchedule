@@ -61,6 +61,11 @@ namespace BusinessLogic
             return templateShifts;
         }
 
+        public void DeleteTemplateShift(TemplateShift templateShift)
+        {
+            _templateShiftRepository.DeleteTemplateShift(templateShift);
+        }
+
         private bool ValidateTemplateShift(TemplateShift templateShift)
         {
             bool isOkToInsert = true;

@@ -51,4 +51,17 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="UpdateTemplateScheduleWithDelete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="templateSchedule" nillable="true" type="q5:TemplateSchedule" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="deletedTemplateShifts" nillable="true" type="q6:ArrayOfTemplateShift" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTemplateScheduleWithDeleteResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

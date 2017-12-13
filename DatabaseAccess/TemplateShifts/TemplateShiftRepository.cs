@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using Core;
 using DatabaseAccess.Employees;
+using System.Transactions;
 
 namespace DatabaseAccess.TemplateShifts
 {
@@ -179,5 +180,20 @@ namespace DatabaseAccess.TemplateShifts
             return currentDay;
         }
 
+        public void DeleteTemplateShift(TemplateShift templateShift)
+        {
+            using (SqlConnection connection = new DbConnection().GetConnection())
+            {
+
+                using (SqlCommand deleteTemplateShift = new SqlCommand(
+                      "DELETE FROM TemplateShift WHERE id = @param1;", connection))
+                {
+                    deleteTemplateShift.Parameters.AddWithValue(@"param1", templateShift.Id);
+
+                    deleteTemplateShift.ExecuteNonQuery();
+
+                }
+            }
+        }
     }
 }

@@ -20,10 +20,12 @@ namespace DesktopClient.Views
     /// </summary>
     public partial class WelcomePage : Page
     {
-        public WelcomePage()
+        public MainWindow MainWindow { get; set; }
+        public WelcomePage(MainWindow mainWindow)
         {
             InitializeComponent();
             SetWelcomeText();
+            MainWindow = mainWindow;
         }
 
         private void SetWelcomeText()
@@ -31,6 +33,36 @@ namespace DesktopClient.Views
             string welcome = String.Format("Welcome {0}!", MainWindow.Employee.Name);
             txtWelcome.Text = welcome;
             
+        }
+
+        private void btnViewEditTemp_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.ViewEditTemplateScheduleMenuItimClicked(sender, e);
+        }
+
+        private void btnCreateTemp_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.CreateTemplateScheduleMenuItimClicked(sender, e);
+        }
+
+        private void btnViewEditSchedule_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.ViewScheduleMenuItemClicked(sender ,e);
+        }
+
+        private void btnCreateSchedule_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.CreateScheduleMenuItemClicked(sender, e);
+        }
+
+        private void btnCreateEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.CreateEmployeeMenuItemClicked(sender, e);
+        }
+
+        private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.UpdateEmployeeMenuItemClicked(sender, e);
         }
     }
 }

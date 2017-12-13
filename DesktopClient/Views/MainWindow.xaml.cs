@@ -64,13 +64,18 @@ namespace DesktopClient
             viewEditTemplateSchedule = new ViewEditTemplateSchedule();
             createEmployeeView = new Views.EmployeeViews.CreateEmployeeView();
             updateEmployeeView = new Views.EmployeeViews.UpdateEmployeeView();
+
             scheduleCalendarViewEdit = new ScheduleCalendarView();
+            scheduleCalendarViewEdit.Calendar.SetUpAsViedEditCalendar();
+
             scheduleCalendarCreate = new ScheduleCalendarView();
+            scheduleCalendarCreate.Calendar.SetUpAsCreateCalendar();
+
             createScheduleView = new CreateScheduleView();
             createEmployeeView = new Views.EmployeeViews.CreateEmployeeView();
             viewScheduleView = new ViewScheduleView();
 
-            frame.Content = new WelcomePage();
+            frame.Content = new WelcomePage(this);
 
             SetEmployeeInfo();
         }
@@ -92,7 +97,7 @@ namespace DesktopClient
             }
         }
 
-        private void ViewEditTemplateScheduleMenuItimClicked(object sender, RoutedEventArgs e)
+        public void ViewEditTemplateScheduleMenuItimClicked(object sender, RoutedEventArgs e)
         {
             templateScheduleCalendarView2.Calendar.Clear();
             templateScheduleCalendarView1.ControlPanel.Content = viewEditTemplateSchedule;
@@ -105,7 +110,7 @@ namespace DesktopClient
             txtViewtitle.Text = "View/Edit Template Schedule";
         }
 
-        private void CreateTemplateScheduleMenuItimClicked(object sender, RoutedEventArgs e)
+        public void CreateTemplateScheduleMenuItimClicked(object sender, RoutedEventArgs e)
         {
             templateScheduleCalendarView2.Calendar.Clear();
             templateScheduleCalendarView1.Calendar.Clear();
@@ -118,32 +123,32 @@ namespace DesktopClient
 
         }
 
-        private void ViewScheduleMenuItemClicked(object sender, RoutedEventArgs e)
+        public void ViewScheduleMenuItemClicked(object sender, RoutedEventArgs e)
         {
             scheduleCalendarViewEdit.ControlPanel.Content = viewScheduleView;
             scheduleCalendarViewEdit.EmployeeList.Items.Clear();
-            scheduleCalendarViewEdit.Calendar.IsViewScheduleEnabled = true;
-            scheduleCalendarViewEdit.Calendar.SetOnDepartmentSelected();
+           // scheduleCalendarViewEdit.Calendar.IsViewScheduleEnabled = true;
+           // scheduleCalendarViewEdit.Calendar.SetOnDepartmentSelected();
             frame.Content = scheduleCalendarViewEdit;
 
-            txtViewtitle.Text = "View/Edit Template Schedule";
+            txtViewtitle.Text = "View/Edit Schedule";
 
         }
 
-        private void CreateScheduleMenuItemClicked(object sender, RoutedEventArgs e)
+        public void CreateScheduleMenuItemClicked(object sender, RoutedEventArgs e)
         {
             scheduleCalendarCreate.ControlPanel.Content = createScheduleView;
-            scheduleCalendarCreate.Calendar.IsViewScheduleEnabled = false;
-            scheduleCalendarCreate.Calendar.SetOnCreateScheduleClicked();
+            //scheduleCalendarCreate.Calendar.IsViewScheduleEnabled = false;
+            //scheduleCalendarCreate.Calendar.SetOnCreateScheduleClicked();
             scheduleCalendarCreate.EmployeeList.Items.Clear();
-            scheduleCalendarCreate.Calendar.SetOnCreateScheduleDepartmentChanged();;
+           // scheduleCalendarCreate.Calendar.SetOnCreateScheduleDepartmentChanged();;
             frame.Content = scheduleCalendarCreate;
             scheduleCalendarCreate.Calendar.Disable();
             txtViewtitle.Text = "Create Schedule";
         }
 
 
-        private void CreateEmployeeMenuItemClicked(object sender, RoutedEventArgs e)
+        public void CreateEmployeeMenuItemClicked(object sender, RoutedEventArgs e)
         {
             frame.Content = createEmployeeView;
 

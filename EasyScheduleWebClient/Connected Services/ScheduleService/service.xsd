@@ -28,10 +28,23 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdateSchedule">
+  <xs:element name="UpdateScheduleWithDelete">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="schedule" nillable="true" type="q3:Schedule" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="deletedScheduleShifts" nillable="true" type="q4:ArrayOfScheduleShift" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateScheduleWithDeleteResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSchedule">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="schedule" nillable="true" type="q5:Schedule" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -50,14 +63,14 @@
   <xs:element name="GetSchedulesByDepartmentIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetSchedulesByDepartmentIdResult" nillable="true" type="q4:ArrayOfSchedule" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GetSchedulesByDepartmentIdResult" nillable="true" type="q6:ArrayOfSchedule" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GenerateScheduleFromTemplateScheduleAndStartDate">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="templateSchedule" nillable="true" type="q5:TemplateSchedule" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="templateSchedule" nillable="true" type="q7:TemplateSchedule" />
         <xs:element minOccurs="0" name="startTime" type="xs:dateTime" />
       </xs:sequence>
     </xs:complexType>
@@ -65,7 +78,7 @@
   <xs:element name="GenerateScheduleFromTemplateScheduleAndStartDateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GenerateScheduleFromTemplateScheduleAndStartDateResult" nillable="true" type="q6:Schedule" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Core" minOccurs="0" name="GenerateScheduleFromTemplateScheduleAndStartDateResult" nillable="true" type="q8:Schedule" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

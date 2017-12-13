@@ -18,5 +18,8 @@ namespace ServiceLibrary.TemplateSchedules
 
         [OperationContract]
         void UpdateTemplateSchedule(TemplateSchedule templateSchedule);
+
+        [OperationContract]
+        void UpdateTemplateScheduleWithDelete(TemplateSchedule templateSchedule, List<TemplateShift> deletedTemplateShifts);
     }
 }

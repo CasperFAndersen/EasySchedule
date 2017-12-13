@@ -287,5 +287,19 @@ namespace DatabaseAccess.ScheduleShifts
             }
             return scheduleShifts; ;
         }
+
+        public void DeleteScheduleShift(ScheduleShift scheduleShift)
+        {
+            using (SqlConnection connection = new DbConnection().GetConnection())
+            {
+                using (SqlCommand deleteScheduleShift = new SqlCommand(
+                      "DELETE FROM ScheduleShift WHERE id = @param1;", connection))
+                {
+                    deleteScheduleShift.Parameters.AddWithValue(@"param1", scheduleShift.Id);
+
+                    deleteScheduleShift.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

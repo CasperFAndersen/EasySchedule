@@ -57,6 +57,9 @@ namespace DesktopClient.Views.ScheduleViews
             Mediator.GetInstance().OnCBoxSelectionChangedVoid(department);
             SetStartEndTxt(schedule);
 
+            btnReset.IsEnabled = false;
+            btnSave.IsEnabled = false;
+
         }
 
         //private void SetOnNextOrPrevClicked()

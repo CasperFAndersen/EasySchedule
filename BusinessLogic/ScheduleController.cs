@@ -70,6 +70,25 @@ namespace BusinessLogic
             }
         }
 
+        public void UpdateSchedule(Schedule schedule, List<ScheduleShift> deletedScheduleShifts)
+        {
+            if (ValidateScheduleObject(schedule))
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    _scheduleShiftController.AddShiftsFromSchedule(schedule);
+
+                    deletedScheduleShifts.ForEach(x => _scheduleShiftController.DeleteScheduleShift(x));
+
+                    scope.Complete();
+                }
+            }
+            else
+            {
+                throw new ArgumentException("Insert schedule failed. Schedule time overlaps existing schedule");
+            }
+        }
+
         public void UpdateSchedule(Schedule schedule)
         {
             if (ValidateScheduleObject(schedule))
@@ -84,7 +103,6 @@ namespace BusinessLogic
             {
                 throw new ArgumentException("Insert schedule failed. Schedule time overlaps existing schedule");
             }
-      
         }
 
         public List<Schedule> GetSchedulesByDepartmentId(int departmentId)
@@ -126,7 +144,10 @@ namespace BusinessLogic
             if (GetScheduleByDepartmentIdAndDate(schedule.Department.Id, schedule.StartDate) != null
             || GetScheduleByDepartmentIdAndDate(schedule.Department.Id, schedule.EndDate) != null)
             {
-                isOkToInput = false;
+                if (schedule.Id == 0)
+                {
+                    isOkToInput = false;
+                }           
             }
             else if(schedule.StartDate > schedule.EndDate)
             {
@@ -138,7 +159,6 @@ namespace BusinessLogic
             }
                 return isOkToInput;
         }
-
 
     }
 }

@@ -59,6 +59,27 @@ namespace BusinessLogic
             }           
         }
 
+        public void UpdateTemplateSchedule(TemplateSchedule templateSchedule, List<TemplateShift> deletedShifts)
+        {
+            if (ValidateTemplateSchedule(templateSchedule))
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    _templateScheduleRepository.UpdateTemplateSchedule(templateSchedule);
+                    _templateShiftController.AddTemplateShiftsFromTemplateSchedule(templateSchedule.Id, templateSchedule.TemplateShifts);
+
+                    deletedShifts.ForEach(x => _templateShiftController.DeleteTemplateShift(x));
+
+                    scope.Complete();
+                }
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
+        }
+
+
         public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)
         {
             if (ValidateTemplateSchedule(templateSchedule))
@@ -67,6 +88,7 @@ namespace BusinessLogic
                 {
                     _templateScheduleRepository.UpdateTemplateSchedule(templateSchedule);
                     _templateShiftController.AddTemplateShiftsFromTemplateSchedule(templateSchedule.Id, templateSchedule.TemplateShifts);
+
                     scope.Complete();
                 }
             }

@@ -10,5 +10,6 @@ namespace DatabaseAccess.TemplateShifts
         void UpdateTemplateScheduleShift(TemplateShift templateShift, SqlConnection connection);
         List<TemplateShift> GetTemplateShiftsByTemplateScheduleId(int templateScheduleId);
         TemplateShift FindTemplateShiftById(int templateShiftId);
+        void DeleteTemplateShift(TemplateShift templateShift);
     }
 }

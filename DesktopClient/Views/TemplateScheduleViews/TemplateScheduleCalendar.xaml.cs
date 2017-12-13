@@ -24,19 +24,19 @@ namespace DesktopClient.Views.TemplateScheduleViews
         private int numOfWeeks = 1;
         public List<TemplateScheduleViews.DayColumn> DayColumnList { get; set; }
         public List<TemplateShift> Shifts { get; set; }
+        public List<TemplateShift> DeletedShifts { get; set; }
         public static int WeekNumber { get; set; }
         public TemplateScheduleCalendar()
         {
             InitializeComponent();
             DayColumnList = new List<TemplateScheduleViews.DayColumn>();
             Shifts = new List<TemplateShift>();
+            DeletedShifts = new List<TemplateShift>();
             WeekNumber = 1;
             btnNextWeek.IsEnabled = false;
             btnPrevWeek.IsEnabled = false;
             BuildTimesGrid();
             BuildDayColumns();
-            EmployeeColors = new Dictionary<Employee, Color>();
-            //AddShifts(GetListOfTemplateShifts());
             SetShiftDropHandler();
             SetCloseShiftClicked();
             SetEmployeeDroppedHandler();
@@ -45,6 +45,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
             SetTemplateScheduleUpdateClicked();
             SetCreateTemplateScheduleClicked();
             SetOnNumOfWeeksBoxChanged();
+            SetOnDepartmentSelectionChanged();
         }
 
 
@@ -73,9 +74,9 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 {
                     TemplateScheduleViews.DayColumn dayCol = GetDayCoulmByName(shift.WeekDay.ToString());
                     // dayCol.InsertShiftIntoDay(shift);
-                    
+
                     dayCol.Shifts.Add(shift);
-                    
+
                 }
 
             }
@@ -157,6 +158,24 @@ namespace DesktopClient.Views.TemplateScheduleViews
             };
         }
 
+        public void SetOnDepartmentSelectionChanged()
+        {
+            Mediator.GetInstance().DepartmentBoxChanged += (d) =>
+            {
+                if (IsVisible)
+                {
+                    if (Shifts.Count > 0)
+                    {
+                        if (MessageBox.Show("Your work will be lost. Are you sure?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.No)
+                        {
+                            Shifts.Clear();
+                            Clear();
+                        }                     
+                    }
+                }
+            };
+        }
+
         public void SetCloseShiftClicked()
         {
             Mediator.GetInstance().ShiftCloseClicked += (s, e) =>
@@ -165,6 +184,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
                  {
                      TemplateShift ts = (TemplateShift)e.Shift;
                      Shifts.Remove(ts);
+                     DeletedShifts.Add((TemplateShift)e.Shift);
                  }
                  DayColumnList.ForEach(x => x.ResetTimeCells());
                  Clear();
@@ -199,11 +219,12 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 {
                     e.TemplateSchedule.TemplateShifts = Shifts;
                     TemplateScheduleProxy templateScheduleProxy = new TemplateScheduleProxy();
-                    templateScheduleProxy.UpdateTemplateSchedule(e.TemplateSchedule);
+                    templateScheduleProxy.UpdateTemplateScheduleWithDelete(e.TemplateSchedule, DeletedShifts);
+                    Clear();
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Something went wrong! Could not fetch template schedules");
+                    MessageBox.Show("Something went wrong! Could not save changes to template schedules");
                 }
             };
         }
@@ -227,6 +248,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
                             templateScheduleProxy.AddTemplateScheduleToDb(templateSchedule);
                             Shifts.Clear();
                             MessageBox.Show("Template schedule is now saved onto database");
+                            Clear();
                         }
                         catch (Exception)
                         {

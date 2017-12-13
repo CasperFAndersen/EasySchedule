@@ -33,13 +33,12 @@ namespace DesktopClient.Views.TemplateScheduleViews
             {
                 MessageBox.Show("Something went wrong! Could not fetch departments");
             }
-
         }
 
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //List<Employee> employees = new EmployeeEvents().GetListOfEmployees((Department)CBoxDepartment.SelectedItem);
             Mediator.GetInstance().OnDepartmentBoxSelected((Department)CBoxDepartment.SelectedItem);
+            NoOfWeeks.SelectedIndex = 1;
         }
 
         private void BtnSaveTemplateSchedule_Click(object sender, RoutedEventArgs e)
@@ -63,7 +62,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
            
             }
         }
-
 
         private void NoOfWeeks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

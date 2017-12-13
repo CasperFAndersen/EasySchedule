@@ -47,7 +47,17 @@ namespace EasyScheduleWebClient.Services
             proxy.UpdateSchedule(schedule);
         }
 
+        public void UpdateScheduleWithDelete(Schedule schedule, List<ScheduleShift> deletedScheduleShifts)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task UpdateScheduleAsync(Schedule schedule)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateScheduleAsync(Schedule schedule, List<ScheduleShift> deletedScheduleShifts)
         {
             throw new NotImplementedException();
         }
@@ -58,6 +68,11 @@ namespace EasyScheduleWebClient.Services
         }
 
         Task<List<Schedule>> IScheduleService.GetSchedulesByDepartmentIdAsync(int departmentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateScheduleWithDeleteAsync(Schedule schedule, List<ScheduleShift> deletedScheduleShifts)
         {
             throw new NotImplementedException();
         }

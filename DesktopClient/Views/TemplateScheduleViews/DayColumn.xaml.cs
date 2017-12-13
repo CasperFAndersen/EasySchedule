@@ -217,43 +217,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
 
         }
 
-        //public void InsertShiftIntoDay(Shift shift)
-        //{
-        //    TimeCell timeCell = new TimeCell();
-        //    if (shift.GetType() == typeof(TemplateShift))
-        //    {
-        //        TemplateShift ts = (TemplateShift)shift;
-        //        timeCell = FindMatchingTimeCell(ts.StartTime);
-        //    }
-        //    else if (shift.GetType() == typeof(ScheduleShift))
-        //    {
-        //        ScheduleShift ss = (ScheduleShift)shift;
-        //        timeCell = FindMatchingTimeCell(new TimeSpan(ss.StartTime.Hour, ss.StartTime.Minute, ss.StartTime.Second));
-        //    }
-
-        //    for (int i = 0; i < (shift.Hours * (60 / TemplateScheduleCalendar.INCREMENT)); i++)
-        //    {
-        //        if (i == 0)
-        //        {
-        //            timeCell.FillCell(shift, true, false);
-
-        //        }
-        //        else if (i == 1)
-        //        {
-        //            timeCell.TimeCellGrid.Opacity = 0.0;
-        //        }
-        //        else if (i == (shift.Hours * (60 / TemplateScheduleCalendar.INCREMENT)) - 1)
-        //        {
-        //            timeCell.FillCell(shift, false, true);
-        //        }
-        //        else
-        //        {
-        //            timeCell.FillCell(shift, false, false);
-        //        }
-        //        timeCell = GetNextTimeCell(timeCell);
-        //    }
-        //}
-
         public TimeCell FindMatchingTimeCell(TimeSpan time)
         {
             return TimeCellList.Find(x => x.Time == time);

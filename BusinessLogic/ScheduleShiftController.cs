@@ -127,5 +127,10 @@ namespace BusinessLogic
             }
             return isOkToInsert;
         }
+
+        public void DeleteScheduleShift(ScheduleShift scheduleShift)
+        {
+            _scheduleShiftRepository.DeleteScheduleShift(scheduleShift);
+        }
     }
 }

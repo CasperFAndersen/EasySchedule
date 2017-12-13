@@ -59,7 +59,7 @@ namespace DesktopClient.Services
 
         public Task InsertScheduleToDbAsync(Schedule schedule)
         {
-            throw new NotImplementedException();
+            return proxy.InsertScheduleToDbAsync(schedule);
         }
 
         public void UpdateSchedule(Schedule schedule)
@@ -69,8 +69,17 @@ namespace DesktopClient.Services
 
         public Task UpdateScheduleAsync(Schedule schedule)
         {
-            throw new NotImplementedException();
+            return proxy.UpdateScheduleAsync(schedule);
         }
 
+        public void UpdateScheduleWithDelete(Schedule schedule, List<ScheduleShift> deletedScheduleShifts)
+        {
+            proxy.UpdateScheduleWithDelete(schedule, deletedScheduleShifts);
+        }
+
+        public Task UpdateScheduleWithDeleteAsync(Schedule schedule, List<ScheduleShift> deletedScheduleShifts)
+        {
+            return proxy.UpdateScheduleWithDeleteAsync(schedule, deletedScheduleShifts);
+        }
     }
 }

@@ -44,7 +44,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
         public void FillCell(Shift shift, bool isFirstElement, bool isLastElement)
         {
             Color color = Colors.RoyalBlue;
-            //Color color = EmployeeColors.EmpColors[shift.Employee.Name];
             if (shift.GetType() == typeof(ScheduleShift))
             {
                 ScheduleShift scheduleShift = (ScheduleShift)shift;

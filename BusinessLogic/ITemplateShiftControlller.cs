@@ -8,5 +8,6 @@ namespace BusinessLogic
         TemplateShift FindTemplateShiftById(int templateShiftId);
         List<TemplateShift> GetTemplateShiftsByTemplateScheduleId(int templateScheduleId);
         void AddTemplateShiftsFromTemplateSchedule(int templateScheduleId, List<TemplateShift> shifts);
+        void DeleteTemplateShift(TemplateShift templateShift);
     }
 }

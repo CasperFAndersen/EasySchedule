@@ -15,5 +15,6 @@ namespace DatabaseAccess.ScheduleShifts
         List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
         ScheduleShift GetShiftById(int id);
         void SetScheduleShiftForSale(ScheduleShift scheduleShift);
+        void DeleteScheduleShift(ScheduleShift scheduleShift);
     }
 }

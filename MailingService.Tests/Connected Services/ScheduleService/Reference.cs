@@ -54,6 +54,12 @@ namespace Tests.ScheduleService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/InsertScheduleToDb", ReplyAction="http://tempuri.org/IScheduleService/InsertScheduleToDbResponse")]
         System.Threading.Tasks.Task InsertScheduleToDbAsync(Core.Schedule schedule);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/UpdateScheduleWithDelete", ReplyAction="http://tempuri.org/IScheduleService/UpdateScheduleWithDeleteResponse")]
+        void UpdateScheduleWithDelete(Core.Schedule schedule, System.Collections.Generic.List<Core.ScheduleShift> deletedScheduleShifts);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/UpdateScheduleWithDelete", ReplyAction="http://tempuri.org/IScheduleService/UpdateScheduleWithDeleteResponse")]
+        System.Threading.Tasks.Task UpdateScheduleWithDeleteAsync(Core.Schedule schedule, System.Collections.Generic.List<Core.ScheduleShift> deletedScheduleShifts);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IScheduleService/UpdateSchedule", ReplyAction="http://tempuri.org/IScheduleService/UpdateScheduleResponse")]
         void UpdateSchedule(Core.Schedule schedule);
         
@@ -118,6 +124,14 @@ namespace Tests.ScheduleService {
         
         public System.Threading.Tasks.Task InsertScheduleToDbAsync(Core.Schedule schedule) {
             return base.Channel.InsertScheduleToDbAsync(schedule);
+        }
+        
+        public void UpdateScheduleWithDelete(Core.Schedule schedule, System.Collections.Generic.List<Core.ScheduleShift> deletedScheduleShifts) {
+            base.Channel.UpdateScheduleWithDelete(schedule, deletedScheduleShifts);
+        }
+        
+        public System.Threading.Tasks.Task UpdateScheduleWithDeleteAsync(Core.Schedule schedule, System.Collections.Generic.List<Core.ScheduleShift> deletedScheduleShifts) {
+            return base.Channel.UpdateScheduleWithDeleteAsync(schedule, deletedScheduleShifts);
         }
         
         public void UpdateSchedule(Core.Schedule schedule) {

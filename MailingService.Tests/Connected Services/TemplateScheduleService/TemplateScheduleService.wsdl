@@ -32,6 +32,12 @@
   <wsdl:message name="ITemplateScheduleService_UpdateTemplateSchedule_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateTemplateScheduleResponse" />
   </wsdl:message>
+  <wsdl:message name="ITemplateScheduleService_UpdateTemplateScheduleWithDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTemplateScheduleWithDelete" />
+  </wsdl:message>
+  <wsdl:message name="ITemplateScheduleService_UpdateTemplateScheduleWithDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTemplateScheduleWithDeleteResponse" />
+  </wsdl:message>
   <wsdl:portType name="ITemplateScheduleService">
     <wsdl:operation name="GetAllTemplateSchedules">
       <wsdl:input wsaw:Action="http://tempuri.org/ITemplateScheduleService/GetAllTemplateSchedules" message="tns:ITemplateScheduleService_GetAllTemplateSchedules_InputMessage" />
@@ -48,6 +54,10 @@
     <wsdl:operation name="UpdateTemplateSchedule">
       <wsdl:input wsaw:Action="http://tempuri.org/ITemplateScheduleService/UpdateTemplateSchedule" message="tns:ITemplateScheduleService_UpdateTemplateSchedule_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITemplateScheduleService/UpdateTemplateScheduleResponse" message="tns:ITemplateScheduleService_UpdateTemplateSchedule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTemplateScheduleWithDelete">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITemplateScheduleService/UpdateTemplateScheduleWithDelete" message="tns:ITemplateScheduleService_UpdateTemplateScheduleWithDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITemplateScheduleService/UpdateTemplateScheduleWithDeleteResponse" message="tns:ITemplateScheduleService_UpdateTemplateScheduleWithDelete_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ITemplateScheduleService" type="tns:ITemplateScheduleService">
@@ -81,6 +91,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateTemplateSchedule">
       <soap:operation soapAction="http://tempuri.org/ITemplateScheduleService/UpdateTemplateSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTemplateScheduleWithDelete">
+      <soap:operation soapAction="http://tempuri.org/ITemplateScheduleService/UpdateTemplateScheduleWithDelete" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

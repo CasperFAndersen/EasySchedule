@@ -50,7 +50,17 @@ namespace DesktopClient
 
         public Task UpdateTemplateScheduleAsync(TemplateSchedule templateSchedule)
         {
-            throw new NotImplementedException();
+            return proxy.UpdateTemplateScheduleAsync(templateSchedule);
+        }
+
+        public void UpdateTemplateScheduleWithDelete(TemplateSchedule templateSchedule, List<TemplateShift> deletedTemplateShifts)
+        {
+            proxy.UpdateTemplateScheduleWithDelete(templateSchedule, deletedTemplateShifts);
+        }
+
+        public Task UpdateTemplateScheduleWithDeleteAsync(TemplateSchedule templateSchedule, List<TemplateShift> deletedTemplateShifts)
+        {
+            return proxy.UpdateTemplateScheduleWithDeleteAsync(templateSchedule, deletedTemplateShifts);
         }
     }
 }

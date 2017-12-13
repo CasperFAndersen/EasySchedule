@@ -16,5 +16,6 @@ namespace BusinessLogic
         void AcceptAvailableShift(ScheduleShift shift, Employee employee);
         List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
         void SetScheduleShiftForSale(ScheduleShift scheduleShift);
+        void DeleteScheduleShift(ScheduleShift scheduleShift);
     }
 }

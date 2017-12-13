@@ -30,10 +30,14 @@ namespace ServiceLibrary.Schedules
             scheduleController.InsertScheduleToDb(schedule);
         }
 
+        public void UpdateScheduleWithDelete(Schedule schedule, List<ScheduleShift> deletedScheduleShifts)
+        {
+            scheduleController.UpdateSchedule(schedule, deletedScheduleShifts);
+        }
+
         public void UpdateSchedule(Schedule schedule)
         {
             scheduleController.UpdateSchedule(schedule);
         }
-
     }
 }
