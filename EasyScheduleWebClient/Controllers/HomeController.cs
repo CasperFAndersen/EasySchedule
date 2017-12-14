@@ -16,10 +16,13 @@ namespace EasyScheduleWebClient.Controllers
         public ActionResult Index()
         {
             EmployeeModel employeeModel = new EmployeeModel();
-            Employee employee = (Employee)Session["employee"];
-            Department department = new DepartmentProxy().GetDepartmentById(employee.Id);
-            employeeModel.Employee = employee;
-            employeeModel.Department = department;
+            if (Session["employee"] != null)
+            {
+                Employee employee = (Employee)Session["employee"];
+                Department department = new DepartmentProxy().GetDepartmentById(employee.Id);
+                employeeModel.Employee = employee;
+                employeeModel.Department = department;
+            }
 
             return View(employeeModel);
         }
