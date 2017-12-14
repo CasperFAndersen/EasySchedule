@@ -68,7 +68,7 @@ namespace BusinessLogic.Tests
                 Shifts = new List<ScheduleShift>(),
             };
 
-            ScheduleShift shift1 = new ScheduleShift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2018, 12, 5, 8, 0, 0) };
+            ScheduleShift shift1 = new ScheduleShift() { Employee = new EmployeeController().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2018, 12, 5, 8, 0, 0) };
             schedule1.Shifts.Add(shift1);
             scheduleController.InsertScheduleToDb(schedule1);
 
@@ -80,7 +80,7 @@ namespace BusinessLogic.Tests
                 Shifts = new List<ScheduleShift>(),
             };
 
-            ScheduleShift shift2 = new ScheduleShift() { Employee = new EmployeeRepository().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2018, 11, 28, 8, 0, 0) };
+            ScheduleShift shift2 = new ScheduleShift() { Employee = new EmployeeController().GetEmployeeByUsername("MikkelP"), Hours = 8, StartTime = new DateTime(2018, 11, 28, 8, 0, 0) };
             schedule1.Shifts.Add(shift2);
 
             scheduleController.InsertScheduleToDb(schedule2);
