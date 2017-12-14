@@ -37,8 +37,7 @@ namespace BusinessLogic
                 MailSender mailSender = new MailSender();
                 string subject = "A shift has been accepted";
                 string text = "The shift starting " + shift.StartTime + " and has a length of " + shift.Hours + " hours has been accepted by " + employee.Name;
-                //TODO: Next line is commented out so that we won't recieve mails when testing the program
-                //mailSender.SendMailToEmployeesInDepartmentByDepartmentId(subject, text, employee.DepartmentId);
+                mailSender.SendMailToEmployeesInDepartmentByDepartmentId(subject, text, employee.DepartmentId);
             }
             else
             {
@@ -93,8 +92,7 @@ namespace BusinessLogic
             MailSender mailSender = new MailSender();
             string subject = "A new shift has been set for sale";
             string text = scheduleShift.Employee.Name + " has set a shift starting " + scheduleShift.StartTime + " and has a length of " + scheduleShift.Hours + " hours for sale.";
-            //TODO: Next line is commented out so that we won't recieve mails when testing the program
-            //mailSender.SendMailToEmployeesInDepartmentByDepartmentId(subject, text, scheduleShift.Employee.DepartmentId);
+            mailSender.SendMailToEmployeesInDepartmentByDepartmentId(subject, text, scheduleShift.Employee.DepartmentId);
         }
 
         public bool ValidateScheduleShiftObject(ScheduleShift scheduleShift)
