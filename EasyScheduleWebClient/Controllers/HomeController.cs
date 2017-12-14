@@ -19,7 +19,7 @@ namespace EasyScheduleWebClient.Controllers
             if (Session["employee"] != null)
             {
                 Employee employee = (Employee)Session["employee"];
-                Department department = new DepartmentProxy().GetDepartmentById(employee.Id);
+                Department department = new DepartmentProxy().GetDepartmentById(employee.DepartmentId);
                 employeeModel.Employee = employee;
                 employeeModel.Department = department;
             }
