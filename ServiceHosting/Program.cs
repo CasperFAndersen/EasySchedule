@@ -15,12 +15,12 @@ namespace ServiceHosting
     /// </summary>
     class Program
     {
-        static ServiceHost employeeHost = new ServiceHost(typeof(EmployeeService));
-        static ServiceHost scheduleHost = new ServiceHost(typeof(ScheduleService));
-        static ServiceHost scheduleShiftHost = new ServiceHost(typeof(ScheduleShiftService));
-        static ServiceHost templateScheduleHost = new ServiceHost(typeof(TemplateScheduleService));
-        static ServiceHost templateShiftHost = new ServiceHost(typeof(TemplateShiftService));
-        static ServiceHost departmentHost = new ServiceHost(typeof(DepartmentService));
+        private static readonly ServiceHost _employeeHost = new ServiceHost(typeof(EmployeeService));
+        private static readonly ServiceHost _scheduleHost = new ServiceHost(typeof(ScheduleService));
+        private static readonly ServiceHost _scheduleShiftHost = new ServiceHost(typeof(ScheduleShiftService));
+        private static readonly ServiceHost _templateScheduleHost = new ServiceHost(typeof(TemplateScheduleService));
+        private static readonly ServiceHost _templateShiftHost = new ServiceHost(typeof(TemplateShiftService));
+        private static readonly ServiceHost _departmentHost = new ServiceHost(typeof(DepartmentService));
  
         static void Main(string[] args)
         {
@@ -43,59 +43,52 @@ namespace ServiceHosting
 
         static void CloseConnections()
         {
-            templateShiftHost.Close();
-            employeeHost.Close();
-            scheduleHost.Close();
-            scheduleShiftHost.Close();
-            templateScheduleHost.Close();
-            departmentHost.Close();
+            _templateShiftHost.Close();
+            _employeeHost.Close();
+            _scheduleHost.Close();
+            _scheduleShiftHost.Close();
+            _templateScheduleHost.Close();
+            _departmentHost.Close();
         }
 
         static void EmployeeHost()
         {
-            employeeHost.Open();
-            DisplayHostInfo(employeeHost);
-            Console.WriteLine("Employee Service is now running");
+            _employeeHost.Open();
+            DisplayHostInfo(_employeeHost, "Employee");
         }
 
         static void ScheduleHost()
         {
-            scheduleHost.Open();
-            DisplayHostInfo(scheduleHost);
-            Console.WriteLine("Schedule Service is now running");
+            _scheduleHost.Open();
+            DisplayHostInfo(_scheduleHost, "Schedule");
         }
 
         static void ScheduleShiftHost()
         {
-            scheduleShiftHost.Open();
-            DisplayHostInfo(scheduleShiftHost);
-            Console.WriteLine("ScheduleShift Service is now running");
+            _scheduleShiftHost.Open();
+            DisplayHostInfo(_scheduleShiftHost, "Schedule shift");
         }
 
         static void TemplateScheduleHost()
         {
-            templateScheduleHost.Open();
-            DisplayHostInfo(templateScheduleHost);
-            Console.WriteLine("Template Schedule Service is now running");
+            _templateScheduleHost.Open();
+            DisplayHostInfo(_templateScheduleHost, "Template schedule");
         }
 
         static void TemplateShiftHost()
         {
-            templateShiftHost.Open();
-            DisplayHostInfo(templateShiftHost);
-            Console.WriteLine("Template Shift Service is now running");
+            _templateShiftHost.Open();
+            DisplayHostInfo(_templateShiftHost, "Template shift");
 
         }
         static void DepartmentHost()
         {
-            departmentHost.Open();
-            DisplayHostInfo(departmentHost);
-            Console.WriteLine("Department Service is now running");
+            _departmentHost.Open();
+            DisplayHostInfo(_departmentHost, "Department");
         }
 
-        static void DisplayHostInfo(ServiceHost host)
+        static void DisplayHostInfo(ServiceHost host, string serviceName)
         {
-            Console.WriteLine();
             Console.WriteLine("****** Host Info *******");
             foreach (System.ServiceModel.Description.ServiceEndpoint se in host.Description.Endpoints)
             {
@@ -104,8 +97,9 @@ namespace ServiceHosting
                 Console.WriteLine("Contract: {0}", se.Contract.Name);
                 Console.WriteLine();
             }
-            Console.WriteLine("************************");
-
+            Console.WriteLine(serviceName + " service is now running");
+            Console.WriteLine("**********************************************************");
+            Console.WriteLine();
         }
     }
 }
