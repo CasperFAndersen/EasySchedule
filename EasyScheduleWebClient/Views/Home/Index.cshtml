@@ -7,7 +7,7 @@
 
 @model EasyScheduleWebClient.Models.EmployeeModel
 @{
-    ViewBag.Title = "Full Calendar Test";
+    ViewBag.Title = "EZ-Schedule";
 }
 
 <div id='wrap'>
@@ -314,17 +314,6 @@
                 $('#calendar').fullCalendar({
                     contentHeight: 500,
                     defaultDate: new Date(),
-                    //customButtons: {
-                    //    myCustomButton: {
-                    //        text: 'Show only my shifts',
-                    //        click: function () {
-                    //            $('#calendar').fullCalendar("removeEvents");
-                    //            $('#calendar').fullCalendar({
-                    //                events: employeeShifts
-                    //            });
-                    //        }
-                    //    }
-                    //},
                     header: {
                         left: 'prev,next today',
                         center: 'title',
@@ -410,9 +399,7 @@
                             })
                                 .then((willDelete) => {
                                     if (willDelete) {
-                                        swal("This shift is now yours!", {
-                                            icon: "success",
-                                        });
+       
                                         AcceptAvailableShift(calEvent);
                                         ReloadEvents();
                                     } else {
@@ -506,12 +493,14 @@
                     contentType: 'application/json; charset=utf-8',
                     async: false,
                     success: function () {
+                        swal("This shift is now yours!", {
+                            icon: "success",
+                        });
                         $(this).css('background-color', 'blue');
 
-                        //alert(JSON.stringify(event));
                     },
                     error: function () {
-                        alert("error");
+                        swal("Error! Shift already accepted! Too slow!")
                     }
                 });
             }
