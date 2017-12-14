@@ -78,8 +78,6 @@ namespace DesktopClient
             }
         }
 
-     
-
         public delegate void EditScheduleClickedHandler();
         public event EditScheduleClickedHandler EditScheduleClicked;
         public void OnEditScheduleClicked()
@@ -156,8 +154,8 @@ namespace DesktopClient
            
         }
 
-        public delegate void CBoxDepartment_CreateSchedule_ChangedHandler(Department department);
-        public event CBoxDepartment_CreateSchedule_ChangedHandler CBoxDepartmentCreateScheduleChanged;
+        public delegate void CBoxDepartmentCreateScheduleChangedHandler(Department department);
+        public event CBoxDepartmentCreateScheduleChangedHandler CBoxDepartmentCreateScheduleChanged;
         public void OnCBoxDepartmentCreateScheduleChanged(Department department)
         {
             if (CBoxDepartmentCreateScheduleChanged != null)
@@ -248,15 +246,5 @@ namespace DesktopClient
             }
         }
 
-
-        //public delegate void NextOrPrevClickedHandler(Schedule schedule);
-        //public event NextOrPrevClickedHandler NextOrPrevClicked;
-        //public void OnNextOrPreviousButtonClicked(Schedule schedule)
-        //{
-        //    if (NextOrPrevClicked != null)
-        //    {
-        //        NextOrPrevClicked(schedule);
-        //    }
-        //}
     }
 }

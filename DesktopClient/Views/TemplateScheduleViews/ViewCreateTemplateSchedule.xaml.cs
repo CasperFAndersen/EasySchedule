@@ -9,12 +9,11 @@ namespace DesktopClient.Views.TemplateScheduleViews
 {
     public partial class ViewCreateTemplateSchedule : UserControl
     {
-        private List<Department> DepartmentList { get; set; }
-        DepartmentProxy departmentProxy;
+        private readonly DepartmentProxy _departmentProxy;
 
         public ViewCreateTemplateSchedule()
         {
-            departmentProxy = new DepartmentProxy();
+            _departmentProxy = new DepartmentProxy();
             InitializeComponent();
             LoadDeparmentList();
             NoOfWeeks.ItemsSource = new int[] { 1, 2, 3, 4 };
@@ -24,8 +23,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             try
             {
-                Department department = departmentProxy.GetDepartmentById(MainWindow.Employee.DepartmentId);
-                List<Department> departmens = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
+                Department department = _departmentProxy.GetDepartmentById(MainWindow.Employee.DepartmentId);
+                List<Department> departmens = await _departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
                 CBoxDepartment.ItemsSource = departmens;
                 CBoxDepartment.DisplayMemberPath = "Name";
             }
@@ -53,13 +52,12 @@ namespace DesktopClient.Views.TemplateScheduleViews
             }
             else
             {
-                Core.TemplateSchedule templateSchedule = new Core.TemplateSchedule();
+                TemplateSchedule templateSchedule = new TemplateSchedule();
                 Department selectedDep = (Department)CBoxDepartment.SelectedItem;
                 templateSchedule.DepartmentId = selectedDep.Id;
                 templateSchedule.NoOfWeeks = (int)NoOfWeeks.SelectedItem;
                 templateSchedule.Name = TxtBoxTemplateScheduleName.Text;
                 Mediator.GetInstance().OnCreateTemplateScheduleButtonClicked(templateSchedule);
-           
             }
         }
 

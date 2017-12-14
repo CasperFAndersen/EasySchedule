@@ -10,36 +10,36 @@ namespace DesktopClient.Services
 {
     public class ScheduleShiftProxy : IScheduleShiftService
     {
-        ScheduleShiftServiceClient proxy = new ScheduleShiftServiceClient();
+        readonly ScheduleShiftServiceClient _scheduleShiftServiceClient = new ScheduleShiftServiceClient();
 
         public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
         {
-            proxy.AcceptAvailableShift(shift, employee);
+            _scheduleShiftServiceClient.AcceptAvailableShift(shift, employee);
         }
 
         public Task AcceptAvailableShiftAsync(ScheduleShift shift, Employee employee)
         {
-            return proxy.AcceptAvailableShiftAsync(shift, employee);
+            return _scheduleShiftServiceClient.AcceptAvailableShiftAsync(shift, employee);
         }
 
         public List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
         {
-            return proxy.GetAllAvailableShiftsByDepartmentId(departmentId);
+            return _scheduleShiftServiceClient.GetAllAvailableShiftsByDepartmentId(departmentId);
         }
 
         public Task<List<ScheduleShift>> GetAllAvailableShiftsByDepartmentIdAsync(int departmentId)
         {
-            return proxy.GetAllAvailableShiftsByDepartmentIdAsync(departmentId);
+            return _scheduleShiftServiceClient.GetAllAvailableShiftsByDepartmentIdAsync(departmentId);
         }
 
         public void SetScheduleShiftForSale(ScheduleShift scheduleShift)
         {
-            proxy.SetScheduleShiftForSale(scheduleShift);
+            _scheduleShiftServiceClient.SetScheduleShiftForSale(scheduleShift);
         }
 
         public Task SetScheduleShiftForSaleAsync(ScheduleShift scheduleShift)
         {
-            return proxy.SetScheduleShiftForSaleAsync(scheduleShift); ;
+            return _scheduleShiftServiceClient.SetScheduleShiftForSaleAsync(scheduleShift); ;
         }
     }
 }

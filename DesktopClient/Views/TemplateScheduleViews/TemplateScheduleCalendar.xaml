@@ -8,10 +8,9 @@
              AllowDrop="true"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <Image x:Key="leftArrow" Source="C:\Users\Arne\Documents\GitHub\UCN-Projekt_3\DesktopClient\Views\leftArraowBlue.png"/>
-        <Image x:Key="rightArrow" Source="C:\Users\Arne\Documents\GitHub\UCN-Projekt_3\DesktopClient\Views\RightArrowBlue.png"/>
+        <Image x:Key="leftArrow" Source="/Images/LeftArrowBlue.png"/>
+        <Image x:Key="rightArrow" Source="/Images/RightArrowBlue.png"/>
     </UserControl.Resources>
-    
     <Grid Name="CalendarGrid">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -28,7 +27,6 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -37,7 +35,6 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
-            <!--<ColumnDefinition/>-->
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="1" Grid.Row="1" Height="25.771" Margin="10,5,10,0" TextWrapping="Wrap" Text="Monday" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.67,0.782"/>
         <TextBlock Grid.Column="2"  Grid.Row="1" HorizontalAlignment="Left" Height="25.771" Margin="10,5,0,0" TextWrapping="Wrap" Text="Tuesday" VerticalAlignment="Top" FontSize="18"/>
@@ -51,12 +48,7 @@
             <TextBlock Name="txtWeekNum" Text="1" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Button Content="{StaticResource rightArrow}" Width="20"  Name="btnNextWeek" Click="NextWeek_Click" HorizontalAlignment="Right"  Margin="50,0,0,0.4"  Background="{x:Null}" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" Foreground="{x:Null}" />
 
-
-
         </StackPanel>
-
-
-
 
     </Grid>
 </UserControl>

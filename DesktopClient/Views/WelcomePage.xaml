@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1200"
       Title="WelcomePage">
-
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -21,17 +20,14 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-
-
         </Grid.ColumnDefinitions>
-        <Image Source="logo.png" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="2"></Image>
+        <Image Source="/Images/Logo.png" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="2"></Image>
         <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="5" Name="txtWelcome" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold"></TextBlock>
         <Button Grid.Row="4" Grid.Column="1" Name="btnViewEditTemp" Content="View/Edit Templateschedule" Click="btnViewEditTemp_Click" FontSize="14">
             <Button.Background>

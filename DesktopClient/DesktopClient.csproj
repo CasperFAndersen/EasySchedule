@@ -76,7 +76,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeColors.cs" />
     <Compile Include="Services\ScheduleShiftProxy.cs" />
     <Compile Include="Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -133,7 +132,6 @@
       <DependentUpon>TemplateScheduleCalendarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="TemplateSelectedArgs.cs" />
-    <Compile Include="EmployeeDropEventArgs.cs" />
     <Compile Include="Views\EmployeeListItem.xaml.cs">
       <DependentUpon>EmployeeListItem.xaml</DependentUpon>
     </Compile>
@@ -141,7 +139,7 @@
     <Compile Include="Services\DepartmentProxy.cs" />
     <Compile Include="Services\EmployeeProxy.cs" />
     <Compile Include="Services\TemplateScheduleProxy.cs" />
-    <Compile Include="Services\TempShiftProxy.cs" />
+    <Compile Include="Services\TemplateShiftProxy.cs" />
     <Compile Include="ShiftDropEventArgs.cs" />
     <Compile Include="Views\TemplateScheduleViews\ShiftElement.xaml.cs">
       <DependentUpon>ShiftElement.xaml</DependentUpon>
@@ -459,13 +457,14 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Resource Include="Views\logo.png" />
+    <Resource Include="Images\Logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\leftArraowBlue.png" />
+    <Resource Include="Images\LeftArrowBlue.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\RightArrowBlue.png" />
+    <Resource Include="Images\RightArrowBlue.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

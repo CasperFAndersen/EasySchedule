@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
     <UserControl.Resources>
-        <Image x:Key="leftArrow" Source="C:\Users\Arne\Documents\GitHub\UCN-Projekt_3\DesktopClient\Views\leftArraowBlue.png"/>
-        <Image x:Key="rightArrow" Source="C:\Users\Arne\Documents\GitHub\UCN-Projekt_3\DesktopClient\Views\RightArrowBlue.png"/>
+        <Image x:Key="leftArrow" Source="/Images/LeftArrowBlue.png"/>
+        <Image x:Key="rightArrow" Source="/Images/RightArrowBlue.png"/>
     </UserControl.Resources>
     <Grid Name="CalendarGrid" >
         <Grid.RowDefinitions>
@@ -27,7 +27,6 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -36,17 +35,13 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="3*"/>
-            <!--<ColumnDefinition/>-->
         </Grid.ColumnDefinitions>
-
         <Grid x:Name="TimesColumn"  Grid.Row="3"  Grid.Column="0" Grid.RowSpan="12"></Grid>
         <Grid  Grid.Column="0" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-
- 
 
         </Grid>
         <Calendar Name="NavCalendar"  Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="3" FirstDayOfWeek="Monday" SelectionMode="SingleRange" MouseDown="NavCalendar_MouseLeftButtonDown" SelectedDatesChanged="NavCalendar_SelectedDatesChanged" Margin="0,0,0,-20" HorizontalContentAlignment="Stretch"/>
@@ -57,8 +52,5 @@
         <Button Name="btnPrevWeek" Grid.Column="2" Grid.Row="1" Content="{StaticResource leftArrow}" Click="PrevWeek_Click"  VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Margin="0,0,-14,0" >
 
         </Button>
-
-
     </Grid>
-
 </UserControl>

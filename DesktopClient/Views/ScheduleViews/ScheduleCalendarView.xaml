@@ -9,15 +9,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1300"
       Title="ScheduleCalendarView">
-
-    
     <Grid>
         <Grid.RowDefinitions>
-
             <RowDefinition Name="CotrolsRow" Height="4*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Name="CalendarRow" Height="10*"/>
-
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -28,11 +24,6 @@
 
         <scheduleViews:ScheduleCalendar x:Name="Calendar" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" Margin="15,0,15,10"></scheduleViews:ScheduleCalendar>
         <Label Name="LblTitle" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" />
-
-
-        <!--<StackPanel Name="ButtonPanel" Grid.Column="2" Grid.Row="3">
-
-        </StackPanel>-->
         <Border Name="ContentBorder" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan='2' Background="#FFE0E0E0">
             <Border.Effect>
                 <DropShadowEffect/>

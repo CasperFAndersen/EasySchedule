@@ -6,7 +6,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using Core;
 using DesktopClient.Services;
-using DesktopClient.Views.TemplateScheduleViews;
 
 namespace DesktopClient.Views.TemplateScheduleViews
 {
@@ -15,19 +14,13 @@ namespace DesktopClient.Views.TemplateScheduleViews
     /// </summary>
     public partial class TemplateScheduleCalendarView : Page
     {
-        public static Dictionary<string, Color> EmployeeColors { get; set; }
-        Color[] colors = { Colors.IndianRed, Colors.DarkKhaki, Colors.DarkOrange, Colors.LightGreen, Colors.Thistle, Colors.SkyBlue, Colors.RoyalBlue, Colors.Turquoise };
-        Random rnd = new Random();
         public TemplateScheduleCalendarView()
         {
             InitializeComponent();
-            //LoadEmployeeColors();
             SetOnTemplateScheduleSelected();
             SetOnTemplateScheduleUpdateClicked();
             SetOnDepartmentBoxSelected();
         }
-
-
 
         public void LoadEmployeeList(List<Employee> employees)
         {
@@ -39,25 +32,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
             EmployeeList.BorderThickness = new Thickness(1, 1, 1, 1);
         }
 
-
-        public Color GetRandomColor()
-        {
-            Color color = colors[rnd.Next(colors.Length)];
-            bool isUniqeColorFound = false;
-            while (!isUniqeColorFound)
-            {
-                if (!EmployeeColors.Values.Contains(color))
-                {
-                    isUniqeColorFound = true;
-                }
-                else
-                {
-                    color = colors[rnd.Next(colors.Length)];
-                }
-            }
-            return color;
-        }
-
         private void SetOnTemplateScheduleUpdateClicked()
         {
             Mediator.GetInstance().TemplateScheduleUpdateClicked += (s, e) =>
@@ -66,8 +40,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 EmployeeList.Items.Clear();
             };
         }
-
-
         public void SetOnTemplateScheduleSelected()
         {
             Mediator.GetInstance().TemplateScheduleSelected += (s, e) =>
@@ -81,7 +53,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 catch (Exception)
                 {
 
-                    MessageBox.Show("Something went wrong! Could not feth employees");
+                    MessageBox.Show("Something went wrong! Could not fetch employees");
                 }
             };
         }

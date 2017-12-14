@@ -32,7 +32,6 @@ namespace DesktopClient.Views
         {
             string welcome = String.Format("Welcome {0}!", MainWindow.Employee.Name);
             txtWelcome.Text = welcome;
-            
         }
 
         private void btnViewEditTemp_Click(object sender, RoutedEventArgs e)
@@ -47,7 +46,7 @@ namespace DesktopClient.Views
 
         private void btnViewEditSchedule_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.ViewScheduleMenuItemClicked(sender ,e);
+            MainWindow.ViewScheduleMenuItemClicked(sender, e);
         }
 
         private void btnCreateSchedule_Click(object sender, RoutedEventArgs e)

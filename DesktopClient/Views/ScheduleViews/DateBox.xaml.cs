@@ -13,7 +13,7 @@ namespace DesktopClient.Views.ScheduleViews
         {
             InitializeComponent();
             DataContext = date;
-            txtBox.Text = string.Format("{0}-{1}/{2}", date.DayOfWeek.ToString(),date.Day.ToString(), date.Month.ToString());
+            txtBox.Text = string.Format("{0}-{1}/{2}", date.DayOfWeek.ToString(), date.Day, date.Month);
             Date = date;
         }
 
@@ -21,7 +21,7 @@ namespace DesktopClient.Views.ScheduleViews
         {
             DataContext = newDate;
             Date = newDate;
-            txtBox.Text = string.Format("{0}-{1}/{2}", Date.DayOfWeek.ToString(), Date.Day.ToString(), Date.Month.ToString());
+            txtBox.Text = string.Format("{0}-{1}/{2}", Date.DayOfWeek.ToString(), Date.Day, Date.Month);
         }
     }
 }

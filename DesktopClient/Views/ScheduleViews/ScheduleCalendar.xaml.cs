@@ -53,10 +53,10 @@ namespace DesktopClient.Views.ScheduleViews
         }
 
         private delegate void OnNextBtnClickedHandler();
-        private OnNextBtnClickedHandler delNextBtn;
+        private OnNextBtnClickedHandler _delNextBtn;
 
         private delegate void OnPrevBtnClickedHandler();
-        private OnPrevBtnClickedHandler delPrevBtn;
+        private OnPrevBtnClickedHandler _delPrevBtn;
 
         public void SetUpAsViedEditCalendar()
         {
@@ -64,8 +64,8 @@ namespace DesktopClient.Views.ScheduleViews
             SetOnEditScheduleClicked();
             SetOnResetButtonClicked();
 
-            delNextBtn += new OnNextBtnClickedHandler(NextBtnClickedAsViewEditCalendar);
-            delPrevBtn += new OnPrevBtnClickedHandler(PreviousBtnClickedAsViewEditCalendar);
+            _delNextBtn += new OnNextBtnClickedHandler(NextBtnClickedAsViewEditCalendar);
+            _delPrevBtn += new OnPrevBtnClickedHandler(PreviousBtnClickedAsViewEditCalendar);
         }
 
         public void SetUpAsCreateCalendar()
@@ -74,8 +74,8 @@ namespace DesktopClient.Views.ScheduleViews
             SetOnGenerateScheduleButtonClicked();
             SetOnCreateScheduleClicked();
 
-            delNextBtn += new OnNextBtnClickedHandler(NextBtnClickedAsCreateCalendar);
-            delPrevBtn += new OnPrevBtnClickedHandler(PreviousBtnClickedAsCreateCalendar);
+            _delNextBtn += new OnNextBtnClickedHandler(NextBtnClickedAsCreateCalendar);
+            _delPrevBtn += new OnPrevBtnClickedHandler(PreviousBtnClickedAsCreateCalendar);
         }
 
         public void LoadShiftsIntoCalendar()
@@ -92,7 +92,7 @@ namespace DesktopClient.Views.ScheduleViews
                     }
                 }
             }
-           DayColumnList.ForEach(x => x.RenderShifts());
+            DayColumnList.ForEach(x => x.RenderShifts());
         }
 
         private bool IsConflictingWithExistingShift(ScheduleShift scheduleShift)
@@ -134,6 +134,7 @@ namespace DesktopClient.Views.ScheduleViews
             NavCalendar.IsEnabled = false;
             this.IsEnabled = false;
         }
+
         public void Enable()
         {
             GreyOut.Background = null;
@@ -172,14 +173,11 @@ namespace DesktopClient.Views.ScheduleViews
                 string name = Enum.GetName(typeof(DayOfWeek), day);
                 DayColumn dayCol = new DayColumn((DayOfWeek)day) { Name = name };
                 CalendarGrid.Children.Add(dayCol);
-
                 Grid.SetColumn(dayCol, col);
                 Grid.SetRow(dayCol, row);
                 Grid.SetRowSpan(dayCol, 12);
-
                 day++;
                 col++;
-
                 DayColumnList.Add(dayCol);
             }
         }
@@ -193,17 +191,14 @@ namespace DesktopClient.Views.ScheduleViews
         {
             DateTime currentDate = DateTime.Now;
             DateTime date = (currentDate.DayOfWeek == DayOfWeek.Sunday) ? (currentDate.AddDays(-6)) : (currentDate.AddDays(-((int)currentDate.DayOfWeek - 1)));
-
             int row = 2; int col = 1;
             int day = 0;
             while (day < 5)
             {
                 DateBox dBox = new DateBox(date.AddDays(day));
                 CalendarGrid.Children.Add(dBox);
-
                 Grid.SetColumn(dBox, col);
                 Grid.SetRow(dBox, row);
-
                 day++;
                 col++;
                 DateBoxes.Add(dBox);
@@ -250,18 +245,15 @@ namespace DesktopClient.Views.ScheduleViews
 
         public void SetShiftDropHandler()
         {
-
             Mediator.GetInstance().ShiftDropped += (s, e) =>
             {
                 Clear();
                 if (!e.IsLastElement && IsVisible)
                 {
-
                     ScheduleShift ss = (ScheduleShift)e.Shift;
                     DateBox db = DateBoxes[ss.StartTime.Day - 1];
                     DateTime dt = new DateTime(db.Date.Year, db.Date.Month, db.Date.Day, ss.StartTime.Hour, ss.StartTime.Minute, 0);
                     ss.StartTime = dt;
-
                 }
                 LoadShiftsIntoCalendar();
             };
@@ -298,19 +290,16 @@ namespace DesktopClient.Views.ScheduleViews
                     Clear();
                     LoadShiftsIntoCalendar();
                 }
-
             };
         }
 
         public void SetOnDepartmentSelected()
         {
-
             Mediator.GetInstance().CBoxDepartmentChanged += (department) =>
             {
                 if (department != null)
                 {
                     ScheduleProxy scheduleProxy = new ScheduleProxy();
-
                     try
                     {
                         Clear();
@@ -326,24 +315,19 @@ namespace DesktopClient.Views.ScheduleViews
                         Clear();
                         AddTxtNoSchedule();
                     }
-
                 }
                 DepartmentId = department.Id;
                 return Schedule;
             };
-
         }
 
         public void SetOnCreateScheduleDepartmentChanged()
         {
             Mediator.GetInstance().CBoxDepartmentCreateScheduleChanged += (d) =>
             {
-
                 Clear();
                 Shifts = new List<ScheduleShift>();
                 LoadShiftsIntoCalendar();
-
-
             };
         }
 
@@ -351,7 +335,6 @@ namespace DesktopClient.Views.ScheduleViews
         {
             if (this.IsVisible)
             {
-
                 Grid.SetColumn(TxtNoSchedule, 1);
                 Grid.SetColumnSpan(TxtNoSchedule, 4);
                 Grid.SetRow(TxtNoSchedule, 5);
@@ -362,7 +345,6 @@ namespace DesktopClient.Views.ScheduleViews
                 TxtNoSchedule.Background = new SolidColorBrush(Colors.White);
                 CalendarGrid.Children.Add(TxtNoSchedule);
             }
-
         }
 
         public void SetOnEditScheduleClicked()
@@ -416,7 +398,6 @@ namespace DesktopClient.Views.ScheduleViews
         {
             Mediator.GetInstance().CreateScheduleClicked += () =>
             {
-
                 if (Schedule != null)
                 {
                     try
@@ -431,18 +412,12 @@ namespace DesktopClient.Views.ScheduleViews
 
                     }
                 }
-                else
-                {
-                    // Mediator.GetInstance().OnCBoxSelectionChanged(Schedule.Department);
-                }
-
             };
         }
 
-
         private void NextWeek_Click(object sender, RoutedEventArgs e)
         {
-            delNextBtn();
+            _delNextBtn();
             LoadShiftsIntoCalendar();
         }
 
@@ -452,7 +427,6 @@ namespace DesktopClient.Views.ScheduleViews
             UpdateDateBoxes();
             NavCalendar.SelectedDate = SelectedWeekStartDate;
             Clear();
-
             if (Schedule != null && Schedule.EndDate.CompareTo(DateBoxes[0].Date) < 0)
             {
                 try
@@ -467,7 +441,6 @@ namespace DesktopClient.Views.ScheduleViews
                     AddTxtNoSchedule();
                     Schedule = null;
                 }
-
             }
             else if (Schedule == null)
             {
@@ -510,14 +483,12 @@ namespace DesktopClient.Views.ScheduleViews
                 {
                     Schedule = new ScheduleProxy().GetScheduleByDepartmentIdAndDate(DepartmentId, DateBoxes[0].Date);
                     Shifts = Schedule.Shifts;
-
                 }
                 catch (Exception)
                 {
                     AddTxtNoSchedule();
                     Schedule = null;
                 }
-
             }
             else if (Schedule == null)
             {
@@ -549,7 +520,7 @@ namespace DesktopClient.Views.ScheduleViews
         }
         private void PrevWeek_Click(object sender, RoutedEventArgs e)
         {
-            delPrevBtn();
+            _delPrevBtn();
             LoadShiftsIntoCalendar();
         }
 
@@ -567,7 +538,6 @@ namespace DesktopClient.Views.ScheduleViews
                 }
                 catch (Exception)
                 {
-
                     MessageBox.Show("Something went wrong! Could not reset");
                 }
             };
@@ -579,11 +549,7 @@ namespace DesktopClient.Views.ScheduleViews
             {
                 CalendarGrid.Children.Remove(TxtNoSchedule);
             }
-
             DayColumnList.ForEach(x => x.Clear());
         }
-
     }
-
-
 }

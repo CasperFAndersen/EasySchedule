@@ -32,11 +32,8 @@ namespace DesktopClient.Views.ScheduleViews
         {
             Mediator.GetInstance().CBoxDepartmentCreateScheduleChanged += (d) =>
             {
-                //List<Employee> employees = new EmployeeProxy().GetEmployeesByDepartmentId(d.Id);
                 LoadEmployeeList(d.Employees);
-        
             };
-            
         }
 
         private void SetOnCBoxDepartmentCreateViewChanged()
@@ -44,10 +41,7 @@ namespace DesktopClient.Views.ScheduleViews
             Mediator.GetInstance().CBoxDepartmentChangedVoid += (d) =>
             {
                 LoadEmployeeList(d.Employees);
-               
             };
-
-
         }
     }
 }

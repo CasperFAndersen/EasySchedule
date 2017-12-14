@@ -10,57 +10,56 @@ namespace DesktopClient
 {
     public class TemplateScheduleProxy : ITemplateScheduleService
     {
-        TemplateScheduleServiceClient proxy = new TemplateScheduleServiceClient();
+        private readonly TemplateScheduleServiceClient _templateScheduleServiceClient = new TemplateScheduleServiceClient();
 
         public void AddTemplateScheduleToDb(TemplateSchedule tSchedule)
         {
-            proxy.AddTemplateScheduleToDb(tSchedule);
+            _templateScheduleServiceClient.AddTemplateScheduleToDb(tSchedule);
         }
 
         public Task AddTemplateScheduleToDbAsync(TemplateSchedule tSchedule)
         {
-            return proxy.AddTemplateScheduleToDbAsync(tSchedule);
+            return _templateScheduleServiceClient.AddTemplateScheduleToDbAsync(tSchedule);
         }
-        
+
         public TemplateSchedule FindTemplateScheduleByName(string name)
         {
-            return proxy.FindTemplateScheduleByName(name);
+            return _templateScheduleServiceClient.FindTemplateScheduleByName(name);
         }
 
         public Task<TemplateSchedule> FindTemplateScheduleByNameAsync(string name)
         {
-            return proxy.FindTemplateScheduleByNameAsync(name);
+            return _templateScheduleServiceClient.FindTemplateScheduleByNameAsync(name);
         }
-
 
         public List<TemplateSchedule> GetAllTemplateSchedules()
         {
-            return proxy.GetAllTemplateSchedules();
+            return _templateScheduleServiceClient.GetAllTemplateSchedules();
         }
 
         public Task<List<TemplateSchedule>> GetAllTemplateSchedulesAsync()
         {
-            return proxy.GetAllTemplateSchedulesAsync();
+            return _templateScheduleServiceClient.GetAllTemplateSchedulesAsync();
         }
 
         public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)
         {
-            proxy.UpdateTemplateSchedule(templateSchedule);
+            _templateScheduleServiceClient.UpdateTemplateSchedule(templateSchedule);
         }
 
         public Task UpdateTemplateScheduleAsync(TemplateSchedule templateSchedule)
         {
-            return proxy.UpdateTemplateScheduleAsync(templateSchedule);
+            return _templateScheduleServiceClient.UpdateTemplateScheduleAsync(templateSchedule);
         }
 
         public void UpdateTemplateScheduleWithDelete(TemplateSchedule templateSchedule, List<TemplateShift> deletedTemplateShifts)
         {
-            proxy.UpdateTemplateScheduleWithDelete(templateSchedule, deletedTemplateShifts);
+            _templateScheduleServiceClient.UpdateTemplateScheduleWithDelete(templateSchedule, deletedTemplateShifts);
         }
 
         public Task UpdateTemplateScheduleWithDeleteAsync(TemplateSchedule templateSchedule, List<TemplateShift> deletedTemplateShifts)
         {
-            return proxy.UpdateTemplateScheduleWithDeleteAsync(templateSchedule, deletedTemplateShifts);
+            return _templateScheduleServiceClient.UpdateTemplateScheduleWithDeleteAsync(templateSchedule, deletedTemplateShifts);
         }
     }
 }

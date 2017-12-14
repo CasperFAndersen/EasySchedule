@@ -12,7 +12,7 @@ namespace DesktopClient.Views.ScheduleViews
     /// </summary>
     public partial class ViewScheduleView : Page
     {
-        ScheduleProxy scheduleProxy; 
+        ScheduleProxy scheduleProxy;
         DepartmentProxy departmentProxy;
         public ViewScheduleView()
         {
@@ -20,7 +20,6 @@ namespace DesktopClient.Views.ScheduleViews
             departmentProxy = new DepartmentProxy();
             InitializeComponent();
             BindComboBoxData();
-            //SetOnNextOrPrevClicked();
             SetOnNewScheduleActive();
             EventChangesListener();
             HideStartEndTxt();
@@ -50,7 +49,7 @@ namespace DesktopClient.Views.ScheduleViews
 
         private void cBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Core.Schedule schedule = null;
+            Schedule schedule = null;
             Department department = (Department)cBoxDepartment.SelectedItem;
 
             schedule = Mediator.GetInstance().OnCBoxSelectionChanged(department);
@@ -61,21 +60,6 @@ namespace DesktopClient.Views.ScheduleViews
             btnSave.IsEnabled = false;
 
         }
-
-        //private void SetOnNextOrPrevClicked()
-        //{
-        //    Mediator.GetInstance().NextOrPrevClicked += (s) =>
-        //    {
-        //        if (s != null)
-        //        {
-        //            txtNoSchedule.Text = "";
-        //        }
-        //        else
-        //        {
-        //            txtNoSchedule.Text = "There is no schedelue for the selected time period";
-        //        }
-        //    };
-        //}
 
         private void EventChangesListener()
         {
@@ -93,7 +77,6 @@ namespace DesktopClient.Views.ScheduleViews
             {
                 EnableSaveAndResetBtn();
             };
-
         }
 
         private void EnableSaveAndResetBtn()
@@ -136,7 +119,6 @@ namespace DesktopClient.Views.ScheduleViews
             btnReset.IsEnabled = false;
             btnSave.IsEnabled = false;
             Mediator.GetInstance().OnResetButtonClicked();
-
         }
     }
 }

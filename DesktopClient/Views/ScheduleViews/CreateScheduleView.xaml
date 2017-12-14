@@ -23,11 +23,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-
             <ColumnDefinition/>
             <ColumnDefinition/>
-            
         </Grid.ColumnDefinitions>
+        
         <Label Content="Select department" Grid.Row="1" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label Content="Select templateschedule" Grid.Row="3" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label Content="Select start date" Grid.Row="6" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>

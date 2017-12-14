@@ -20,8 +20,6 @@ namespace DesktopClient.Views.ScheduleViews
             IsLastElement = isLastElement;
             textBox.Background = new SolidColorBrush(color);
             SetCursor();
-
-           
             button.Visibility = Visibility.Hidden;
         }
 
@@ -33,7 +31,6 @@ namespace DesktopClient.Views.ScheduleViews
             textBox.Background = new SolidColorBrush(color);
             textBox.Text = text;
             SetCursor();
-
         }
 
         protected override void OnMouseMove(MouseEventArgs e)

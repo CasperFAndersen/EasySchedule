@@ -18,7 +18,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
             DataContext = shift;
             IsLastElement = isLastElement;
             ElementBorder.Background = new SolidColorBrush(color);
-            //ElementGrid.Background = new SolidColorBrush(color);
             SetCursor();
             ElementBorder.Effect = null;
             ElementBorder.BorderBrush = null;
@@ -31,12 +30,9 @@ namespace DesktopClient.Views.TemplateScheduleViews
             DataContext = shift;
             IsLastElement = false;
             ElementBorder.Background = new SolidColorBrush(color);
-            // ElementGrid.Background = new SolidColorBrush(color);
             SetTextHeader(shift);
             SetCursor();
-
         }
-
 
         public void AddButtom(ShiftElement shiftElement)
         {
@@ -62,13 +58,10 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 DateTime startTime = new DateTime(2017, 1, 1, templateShift.StartTime.Hours, templateShift.StartTime.Minutes, 0);
                 DateTime endTime = startTime.AddHours(templateShift.Hours);
 
-                textBox1.Text = templateShift.Employee.Name; //+ " : " + startTime.ToShortTimeString() + " - " + endTime.ToShortTimeString();
+                textBox1.Text = templateShift.Employee.Name; 
                 textBox2.Text = startTime.ToShortTimeString() + " - " + endTime.ToShortTimeString();
-
             }
         }
-
-
 
         public void SetCursor()
         {
@@ -92,7 +85,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
             base.OnMouseMove(e);
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-
                 Mediator.GetInstance().OnResizeStarted();
              
                 // Package the data.

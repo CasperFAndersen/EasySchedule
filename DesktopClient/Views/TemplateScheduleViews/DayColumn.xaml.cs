@@ -46,7 +46,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 {
                     DayColumnGrid.RowDefinitions.Add(new RowDefinition());
                     TimeCell tempTimeCell = new TimeCell() { Time = timeCount, WeekDay = DayOfWeek };
-                    
+
                     DayColumnGrid.Children.Add(tempTimeCell);
                     Grid.SetZIndex(tempTimeCell, 100);
                     Grid.SetRow(tempTimeCell, rowCount);
@@ -59,7 +59,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
             }
         }
 
-
         public void RenderShifts()
         {
             loadedShifts.Clear();
@@ -67,7 +66,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
             int zIndex = 600;
             foreach (Shift shift in Shifts)
             {
-
                 //Find the corosponding timecell element
                 TimeCell timeCell = new TimeCell();
                 if (shift.GetType() == typeof(TemplateShift))
@@ -81,8 +79,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
                     ScheduleShift ss = (ScheduleShift)shift;
                     timeCell = FindMatchingTimeCell(new TimeSpan(ss.StartTime.Hour, ss.StartTime.Minute, ss.StartTime.Second));
                 }
-             
-              
+
                 //------------------Set rows and columns-----------------------
                 //Find out how many columns the should be in the current timecell
                 int columnAmount = OverlapsWithShiftsInList(shift, Shifts) > 0 ? OverlapsWithShiftsInList(shift, Shifts) + 1 : 1;
@@ -109,8 +106,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 ShiftElement shiftElement = new ShiftElement(shift, col);
                 shiftElement.RootTimeCell = timeCell;
                 shiftElement.AddButtom(new ShiftElement(shift, col, true));
-                //shiftElement.SetMouseOver();
-                //shiftElement.SetMouseLeave();
+
                 //Add shiftelement to timecell
                 timeCell.TimeCellGrid.Children.Add(shiftElement);
                 //Add columns
@@ -134,17 +130,15 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 //Set column for shiftelement
                 Grid.SetColumn(shiftElement, columnNr);
                 Grid.SetZIndex(timeCell, zIndex);
-                //zIndex--;
+
                 //Finally add shift to list of loaded shifts
                 loadedShifts.Add(shift);
-        
-            }         
+            }
         }
 
         public int OverlapsWithShiftsInList(Shift shift, List<Shift> shifts)
         {
             int res = 0;
-
             if (shift.GetType() == typeof(TemplateShift))
             {
                 TemplateShift templateShift = (TemplateShift)shift;
@@ -197,13 +191,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
 
                 }
             }
-
             return res;
         }
-
-
-
-
 
         public void ResetTimeCells()
         {
@@ -213,8 +202,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 Grid.SetZIndex(x, 100);
                 x.ShiftAndRootCell.Clear();
             });
-
-
         }
 
         public TimeCell FindMatchingTimeCell(TimeSpan time)
@@ -236,7 +223,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
 
         internal void Clear()
         {
-           
             Shifts.Clear();
             TimeCellList.ForEach(x => x.Clear());
         }

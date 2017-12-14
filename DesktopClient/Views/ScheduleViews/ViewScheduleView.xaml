@@ -8,8 +8,6 @@
       d:DesignHeight="300" d:DesignWidth="300"
       MaxWidth="350"
       Title="ViewScheduleView">
-
-    
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -19,16 +17,13 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
-  
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            
         </Grid.ColumnDefinitions>
         <ComboBox Name="cBoxDepartment" Grid.ColumnSpan="1" Grid.Row="1" Grid.Column="1" SelectionChanged="cBoxDepartment_SelectionChanged"></ComboBox>
-        
         <TextBlock Name="txtNoSchedule" Grid.Row="5" Grid.ColumnSpan="3"/>
         <Button Name="btnReset" Content="Reset" IsEnabled="False" Grid.Column="0" Grid.Row="6" Click="btnReset_Click" Margin="2,2,2,2"/>
         <Button Name="btnSave" Content="Save" IsEnabled="False" Grid.Column="1" Grid.Row="6" Click="btnSave_Click" Margin="2,2,2,2"/>
@@ -49,7 +44,5 @@
             <Label Name="lblEnd" Grid.Row="0" Grid.Column="1" Content="End" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
             </Grid>
         </Border>
-
-
     </Grid>
 </Page>

@@ -15,7 +15,6 @@ namespace DesktopClient.Views
         {
             InitializeComponent();
             DataContext = employee;
-       
         }
 
         protected override void OnMouseMove(MouseEventArgs e)

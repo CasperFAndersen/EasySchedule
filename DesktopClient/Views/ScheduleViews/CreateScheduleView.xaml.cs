@@ -21,7 +21,6 @@ namespace DesktopClient.Views.ScheduleViews
             BtnGenerateSchedule.IsEnabled = false;
             BtnPublishSchedule.IsEnabled = false;
             BindData();
-            
         }
 
         private async void BindData()
@@ -36,7 +35,6 @@ namespace DesktopClient.Views.ScheduleViews
             {
                 MessageBox.Show("Something went wrong! Could net fetch department");
             }
-
         }
 
         private void ActivateButtons()
@@ -77,10 +75,8 @@ namespace DesktopClient.Views.ScheduleViews
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Something went wrong! Could not fetch templateschedules");
             }
-
         }
 
         private void BlackOutDatePicker(int departmentId)
@@ -88,11 +84,10 @@ namespace DesktopClient.Views.ScheduleViews
             DatePicker.BlackoutDates.Clear();
             DatePicker.SelectedDate = null;
             ScheduleProxy scheduleProxy = new ScheduleProxy();
-
             try
             {
-                List<Core.Schedule> schedules = scheduleProxy.GetSchedulesByDepartmentId(departmentId);
-                foreach (Core.Schedule s in schedules)
+                List<Schedule> schedules = scheduleProxy.GetSchedulesByDepartmentId(departmentId);
+                foreach (Schedule s in schedules)
                 {
                     CalendarDateRange blackOutDates = new CalendarDateRange();
                     blackOutDates.Start = s.StartDate;
@@ -102,10 +97,8 @@ namespace DesktopClient.Views.ScheduleViews
             }
             catch (Exception)
             {
-
                 
             }
-
         }
 
         private void btnGenerateSchedule_Click(object sender, RoutedEventArgs e)
@@ -114,18 +107,16 @@ namespace DesktopClient.Views.ScheduleViews
             {
                 try
                 {
-                    Core.TemplateSchedule templateSchedule = (Core.TemplateSchedule)ListTemplateSchedule.SelectedItem;
+                    TemplateSchedule templateSchedule = (TemplateSchedule)ListTemplateSchedule.SelectedItem;
                     DateTime startTime = (DateTime)DatePicker.SelectedDate;
-                    Core.Schedule schedule = new ScheduleProxy().GenerateScheduleFromTemplateScheduleAndStartDate(templateSchedule, startTime);
+                    Schedule schedule = new ScheduleProxy().GenerateScheduleFromTemplateScheduleAndStartDate(templateSchedule, startTime);
                     Mediator.GetInstance().OnGenerateScheduleButtonClicked(schedule);
                     BtnPublishSchedule.IsEnabled = true;
                 }
                 catch (Exception)
                 {
-
                     MessageBox.Show("Could not generate Schedule! Please check all parameters and try again");
                 }
-
             }
             else
             {
@@ -150,7 +141,6 @@ namespace DesktopClient.Views.ScheduleViews
                 }
                 ActivateButtons();
             }
-
         }
     }
 }

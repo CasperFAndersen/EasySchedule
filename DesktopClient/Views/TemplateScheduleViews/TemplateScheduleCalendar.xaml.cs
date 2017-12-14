@@ -44,7 +44,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
             SetOnDepartmentSelectionChanged();
         }
 
-
         private void AddShifts(List<TemplateShift> list)
         {
             list.ForEach(x => Shifts.Add(x));
@@ -61,20 +60,18 @@ namespace DesktopClient.Views.TemplateScheduleViews
             {
                 if (shift.WeekNumber == Convert.ToInt32(txtWeekNum.Text))
                 {
-                    TemplateScheduleViews.DayColumn dayCol = GetDayCoulmByName(shift.WeekDay.ToString());
+                    DayColumn dayCol = GetDayCoulmByName(shift.WeekDay.ToString());
 
                     dayCol.Shifts.Add(shift);
                 }
             }
             DayColumnList.ForEach(x => x.RenderShifts());
-
         }
 
         public TemplateScheduleViews.DayColumn GetDayCoulmByName(string name)
         {
             return DayColumnList.Find(x => x.Name == name);
         }
-
 
         public void BuildTimesGrid()
         {
@@ -89,10 +86,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 textBlock.Margin = new Thickness(0, -2, 5, 0);
                 border.Child = textBlock;
                 textBlock.HorizontalAlignment = HorizontalAlignment.Right;
-
                 TimesColumn.Children.Add(border);
                 Grid.SetRow(border, rowCount);
-
                 rowCount++;
                 timeCount = timeCount.Add(new TimeSpan(0, 60, 0));
             }
@@ -105,27 +100,22 @@ namespace DesktopClient.Views.TemplateScheduleViews
             while (day < 6)
             {
                 string name = Enum.GetName(typeof(DayOfWeek), day);
-                TemplateScheduleViews.DayColumn dayCol = new TemplateScheduleViews.DayColumn((DayOfWeek)day) { Name = name };
+                DayColumn dayCol = new DayColumn((DayOfWeek)day) { Name = name };
                 CalendarGrid.Children.Add(dayCol);
-
                 Grid.SetColumn(dayCol, col);
                 Grid.SetRow(dayCol, row);
                 Grid.SetRowSpan(dayCol, 12);
-
                 day++;
                 col++;
-
                 DayColumnList.Add(dayCol);
             }
         }
 
         public void SetShiftDropHandler()
         {
-
             Mediator.GetInstance().ShiftDropped += (s, e) =>
             {
                 Clear();
-                //  DayColumnList.ForEach(x => x.ResetTimeCells());
                 LoadShiftsIntoCalendar();
             };
         }
@@ -140,7 +130,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
                     Shifts.Add(new TemplateShift() { Employee = e, StartTime = tod, WeekDay = dow, WeekNumber = WeekNumber, Hours = DEFAULTSHIFTLENGTH });
                     LoadShiftsIntoCalendar();
                 }
-
             };
         }
 
@@ -148,7 +137,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             Mediator.GetInstance().DepartmentBoxChanged += (d) =>
             {
-                if (IsVisible)
+                if (this.IsVisible)
                 {
                     if (Shifts.Count > 0)
                     {
@@ -156,7 +145,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
                         {
                             Shifts.Clear();
                             Clear();
-                        }                     
+                        }
                     }
                 }
             };
@@ -193,7 +182,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
                     numOfWeeks = e.TemplateSchedule.NoOfWeeks;
                     LoadShiftsIntoCalendar();
                 }
-
             };
         }
 
@@ -265,7 +253,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
                     bool noShiftsWillBeLost = Shifts.TrueForAll(x => x.WeekNumber < numberOfWeeks);
                     if (!noShiftsWillBeLost)
                     {
-                        MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Shifts placed in higher week numbers will be lost. Are you sure?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+                        MessageBoxResult messageBoxResult = MessageBox.Show("Shifts placed in higher week numbers will be lost. Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
                         if (messageBoxResult == MessageBoxResult.Yes)
                         {
                             Shifts.RemoveAll(x => x.WeekNumber > numberOfWeeks);

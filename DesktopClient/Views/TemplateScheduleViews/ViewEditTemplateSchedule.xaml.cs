@@ -9,7 +9,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
 {
     public partial class ViewEditTemplateSchedule : UserControl
     {
-        public List<TemplateSchedule> TemplateSchedules  { get; set; }
+        public List<TemplateSchedule> TemplateSchedules { get; set; }
         TemplateScheduleProxy _templateProxy;
         DepartmentProxy _departmentProxy;
         public ViewEditTemplateSchedule()
@@ -35,7 +35,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
             {
                 MessageBox.Show("Something went wrong! Could not fetch departments");
             }
-
         }
 
         private async void BindDataTempScheduleCBox()
@@ -61,7 +60,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             if (CBoxSchedule.HasItems)
             {
-                Core.TemplateSchedule templateSchedule = (Core.TemplateSchedule)CBoxSchedule.SelectedItem;
+                TemplateSchedule templateSchedule = (TemplateSchedule)CBoxSchedule.SelectedItem;
                 txtWeeks.Text = templateSchedule.NoOfWeeks.ToString();
                 Mediator.GetInstance().OnTemplateScheduleSelected(sender, templateSchedule);
             }
@@ -69,7 +68,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
             {
                 txtWeeks.Text = "";
             }
-
         }
 
         private void EventChangesListener()
@@ -97,10 +95,9 @@ namespace DesktopClient.Views.TemplateScheduleViews
 
         private void BtnSaveUpdatedTemplateSchedule_Click(object sender, RoutedEventArgs e)
         {
-            Core.TemplateSchedule templateSchedule = (Core.TemplateSchedule)CBoxSchedule.SelectedItem;
+            TemplateSchedule templateSchedule = (TemplateSchedule)CBoxSchedule.SelectedItem;
             Mediator.GetInstance().OnTemplateScheduleUpdateButtonClicked(sender, templateSchedule);
-            MessageBox.Show("Changes to: " + templateSchedule.Name + " have been saved to database ");
-           // BindData();
+            MessageBox.Show("Changes for the schedule " + templateSchedule.Name + " has been saved to database ");
         }
 
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
