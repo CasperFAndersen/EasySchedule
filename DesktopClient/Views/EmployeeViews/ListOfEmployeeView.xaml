@@ -11,8 +11,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Padding="5,0,5,0"
-          Text="{Binding FirstName}" />
+                        <TextBlock Padding="5,0,5,0" Text="{Binding FirstName}" />
                         <TextBlock Text="{Binding LastName}" />
                         <TextBlock Text=", " />
                         <TextBlock Text="{Binding Address}" />
