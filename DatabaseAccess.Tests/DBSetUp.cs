@@ -200,7 +200,7 @@ namespace DatabaseAccess.Tests
                         +
                         //Schedule
                         "insert into Schedule(startDate, endDate, departmentId) " +
-                        "values ('2017-11-01', '2018-01-31', 1); " +
+                        "values ('2017-11-01', '2017-11-30', 1); " +
 
                         "insert into Schedule(startDate, endDate,  departmentId) " +
                         "values ('2017-11-27', '2018-01-31', 2); "
@@ -211,7 +211,7 @@ namespace DatabaseAccess.Tests
                         "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2017-11-24 17:00', 3, 1, (select id from employee where name = 'Casper Froberg'), 0); " +
                         "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2017-11-17 15:00', 5, 1, (select id from employee where name = 'Mikkel Paulsen'), 0); " +
                         "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2017-11-16 12:00', 7, 1, (select id from employee where name = 'Stefan Krabbe'), 1); " +
-                        "insert into ScheduleShift(startTime, hours, scheduleId, employeeId, isForSale) values('2017-10-30 09:00', 2, 1, (select id from employee where name = 'Mikkel Paulsen'), 0); " +
+                        "insert into ScheduleShift(startTime, hours, scheduleId, employeeId, isForSale) values('2017-11-30 09:00', 2, 1, (select id from employee where name = 'Mikkel Paulsen'), 0); " +
                         "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2017-11-30 12:00', 7, 2, (select id from employee where name = 'Arne Ralston'), 1); " +
                         "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2017-11-30 12:00', 7, 2, (select id from employee where name = 'Tobias Andersen'), 0); " +
                         "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2017-12-11 13:00', 7, 2, (select id from employee where name = 'Arne Ralston'), 1); ";

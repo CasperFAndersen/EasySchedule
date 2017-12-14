@@ -17,10 +17,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
         public static readonly double DEFAULTSHIFTLENGTH = 3;
         public static readonly int INCREMENT = 30;
 
-        Color[] colors = { Colors.IndianRed, Colors.DarkKhaki, Colors.DarkOrange, Colors.LightGreen, Colors.Thistle, Colors.SkyBlue, Colors.RoyalBlue, Colors.Turquoise };
-        public static Dictionary<Employee, Color> EmployeeColors { get; set; }
-
-        Random rnd = new Random();
         private int numOfWeeks = 1;
         public List<TemplateScheduleViews.DayColumn> DayColumnList { get; set; }
         public List<TemplateShift> Shifts { get; set; }
@@ -52,18 +48,11 @@ namespace DesktopClient.Views.TemplateScheduleViews
         private void AddShifts(List<TemplateShift> list)
         {
             list.ForEach(x => Shifts.Add(x));
-            Shifts.ForEach(x => EmployeeColors.Add(x.Employee, GetRandomColor()));
         }
 
         public void AddShift(TemplateShift shift)
         {
-
-            if (!EmployeeColors.ContainsKey(shift.Employee))
-            {
-                EmployeeColors.Add(shift.Employee, GetRandomColor());
-            }
             Shifts.Add(shift);
-
         }
 
         public void LoadShiftsIntoCalendar()
@@ -73,12 +62,9 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 if (shift.WeekNumber == Convert.ToInt32(txtWeekNum.Text))
                 {
                     TemplateScheduleViews.DayColumn dayCol = GetDayCoulmByName(shift.WeekDay.ToString());
-                    // dayCol.InsertShiftIntoDay(shift);
 
                     dayCol.Shifts.Add(shift);
-
                 }
-
             }
             DayColumnList.ForEach(x => x.RenderShifts());
 
@@ -305,12 +291,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
                     }
                 }
             };
-        }
-
-
-        public Color GetRandomColor()
-        {
-            return colors[rnd.Next(colors.Length)];
         }
 
         private void NextWeek_Click(object sender, RoutedEventArgs e)
