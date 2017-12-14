@@ -189,15 +189,56 @@ namespace DatabaseAccess.Tests
                         "values ('KolonialBasis', 1, (select id from department where name = 'Kolonial')); " +
 
                         "insert into TemplateSchedule(name, noOfWeeks, departmentId) " +
-                        "values ('PakkeCentralJuletid', 1, (select id from department where name = 'Pakkecentral')); "
-                        +
+                        "values ('PakkeCentralJuletid', 1, (select id from department where name = 'Pakkecentral')); " +
+
+                        "insert into TemplateSchedule(name, noOfWeeks, departmentId) " +
+                        "values ('JuleplanKolonial', 2, (select id from department where name = 'Kolonial')); " +
+
                         //TemplateShift
                         "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
                         "values ('Tuesday', 10, '06:30:00', 1, (select id from templateSchedule where name='KolonialBasis'), (select id from Employee where name='Mikkel Paulsen')); "
                         +
                         "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
-                        "values ('Tuesday', 10, '06:30:00', 1, (select id from templateSchedule where name='PakkeCentralJuletid'), (select id from Employee where name='Tobias Andersen')); "
-                        +
+                        "values ('Tuesday', 10, '06:30:00', 1, (select id from templateSchedule where name='PakkeCentralJuletid'), (select id from Employee where name='Tobias Andersen')); " +
+
+
+                        "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                        "values ('Monday', 12, '06:30:00', 1, (select id from templateSchedule where name='JuleplanKolonial'), 1); " +
+                        
+                        "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                        "values ('Tuesday', 3, '08:00:00', 1, (select id from templateSchedule where name='JuleplanKolonial'), 2); " +
+                        
+                        "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                        "values ('Wednesday', 7, '11:30:00', 1, (select id from templateSchedule where name='JuleplanKolonial'), 5); " +
+                        
+                        "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                        "values ('Wednesday', 5, '15:00:00', 1, (select id from templateSchedule where name='JuleplanKolonial'), 1); " +
+                        
+                        "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                        "values ('Friday', 3, '15:00:00', 1, (select id from templateSchedule where name='JuleplanKolonial'), 5); " +
+                        
+                        "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                        "values ('Thursday', 9, '08:00:00', 1, (select id from templateSchedule where name='JuleplanKolonial'), 5); " +
+                        
+                        "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                        "values ('Monday', 9, '07:30:00', 2, (select id from templateSchedule where name='JuleplanKolonial'), 1); " +
+                        
+                        "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                        "values ('Tuesday', 3, '10:00:00', 2, (select id from templateSchedule where name='JuleplanKolonial'), 2); " +
+                        
+                        "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                        "values ('Wednesday', 7, '07:30:00', 2, (select id from templateSchedule where name='JuleplanKolonial'), 5); " +
+                        
+                        "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                        "values ('Thursday', 10, '08:00:00', 2, (select id from templateSchedule where name='JuleplanKolonial'), 1); " +
+                        
+                        "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                        "values ('Wednesday', 3, '13:00:00', 2, (select id from templateSchedule where name='JuleplanKolonial'), 2); " +
+                        
+                        "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
+                        "values ('Friday', 8, '08:30:00', 2, (select id from templateSchedule where name='JuleplanKolonial'), 5); " +
+
+
                         //Schedule
                         "insert into Schedule(startDate, endDate, departmentId) " +
                         "values ('2017-11-01', '2017-11-30', 1); " +
