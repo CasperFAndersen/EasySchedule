@@ -1,8 +1,5 @@
 ﻿using DesktopClient.EmployeeService;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Core;
 
@@ -10,7 +7,7 @@ namespace DesktopClient.Services
 {
     public class EmployeeProxy : IEmployeeService
     {
-        readonly EmployeeServiceClient _employeeServiceClient = new EmployeeServiceClient();
+        private readonly EmployeeServiceClient _employeeServiceClient = new EmployeeServiceClient();
 
         public List<Employee> GetAllEmployees()
         {

@@ -45,6 +45,5 @@ namespace BusinessLogic.Tests
             Assert.IsNotNull(departments);
             Assert.AreEqual(2, departments.Count);
         }
-
     }
 }

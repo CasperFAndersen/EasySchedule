@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Core;
+using DesktopClient.Services;
 
 namespace DesktopClient.Views.TemplateScheduleViews
 {
@@ -16,21 +17,20 @@ namespace DesktopClient.Views.TemplateScheduleViews
         public static readonly TimeSpan ENDTIME = new TimeSpan(20, 0, 0);
         public static readonly double DEFAULTSHIFTLENGTH = 3;
         public static readonly int INCREMENT = 30;
-
         private int numOfWeeks = 1;
-        public List<TemplateScheduleViews.DayColumn> DayColumnList { get; set; }
+        public List<DayColumn> DayColumnList { get; set; }
         public List<TemplateShift> Shifts { get; set; }
         public List<TemplateShift> DeletedShifts { get; set; }
-        public static int WeekNumber { get; set; }
+        public int WeekNumber { get; set; }
         public TemplateScheduleCalendar()
         {
             InitializeComponent();
-            DayColumnList = new List<TemplateScheduleViews.DayColumn>();
+            DayColumnList = new List<DayColumn>();
             Shifts = new List<TemplateShift>();
             DeletedShifts = new List<TemplateShift>();
             WeekNumber = 1;
-            btnNextWeek.IsEnabled = false;
-            btnPrevWeek.IsEnabled = false;
+            BtnNextWeek.IsEnabled = false;
+            BtnPrevWeek.IsEnabled = false;
             BuildTimesGrid();
             BuildDayColumns();
             SetShiftDropHandler();
@@ -58,7 +58,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             foreach (var shift in Shifts)
             {
-                if (shift.WeekNumber == Convert.ToInt32(txtWeekNum.Text))
+                if (shift.WeekNumber == Convert.ToInt32(TxtWeekNum.Text))
                 {
                     DayColumn dayCol = GetDayCoulmByName(shift.WeekDay.ToString());
 
@@ -68,7 +68,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
             DayColumnList.ForEach(x => x.RenderShifts());
         }
 
-        public TemplateScheduleViews.DayColumn GetDayCoulmByName(string name)
+        public DayColumn GetDayCoulmByName(string name)
         {
             return DayColumnList.Find(x => x.Name == name);
         }
@@ -86,8 +86,10 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 textBlock.Margin = new Thickness(0, -2, 5, 0);
                 border.Child = textBlock;
                 textBlock.HorizontalAlignment = HorizontalAlignment.Right;
+
                 TimesColumn.Children.Add(border);
                 Grid.SetRow(border, rowCount);
+
                 rowCount++;
                 timeCount = timeCount.Add(new TimeSpan(0, 60, 0));
             }
@@ -102,11 +104,14 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 string name = Enum.GetName(typeof(DayOfWeek), day);
                 DayColumn dayCol = new DayColumn((DayOfWeek)day) { Name = name };
                 CalendarGrid.Children.Add(dayCol);
+
                 Grid.SetColumn(dayCol, col);
                 Grid.SetRow(dayCol, row);
                 Grid.SetRowSpan(dayCol, 12);
+
                 day++;
                 col++;
+
                 DayColumnList.Add(dayCol);
             }
         }
@@ -124,7 +129,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             Mediator.GetInstance().EmployeeDropped += (e, tod, dow) =>
             {
-                if (this.IsVisible)
+                if (IsVisible)
                 {
                     Clear();
                     Shifts.Add(new TemplateShift() { Employee = e, StartTime = tod, WeekDay = dow, WeekNumber = WeekNumber, Hours = DEFAULTSHIFTLENGTH });
@@ -137,7 +142,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             Mediator.GetInstance().DepartmentBoxChanged += (d) =>
             {
-                if (this.IsVisible)
+                if (IsVisible)
                 {
                     if (Shifts.Count > 0)
                     {
@@ -171,13 +176,14 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             Mediator.GetInstance().TemplateScheduleSelected += (s, e) =>
             {
-                if (this.IsVisible)
+                if (IsVisible)
                 {
+                    Clear();
                     Shifts.Clear();
                     AddShifts(e.TemplateSchedule.TemplateShifts);
                     if (e.TemplateSchedule.NoOfWeeks > 1)
                     {
-                        btnNextWeek.IsEnabled = true;
+                        BtnNextWeek.IsEnabled = true;
                     }
                     numOfWeeks = e.TemplateSchedule.NoOfWeeks;
                     LoadShiftsIntoCalendar();
@@ -189,16 +195,19 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             Mediator.GetInstance().TemplateScheduleUpdateClicked += (schedule, e) =>
             {
-                try
+                if (IsVisible)
                 {
-                    e.TemplateSchedule.TemplateShifts = Shifts;
-                    TemplateScheduleProxy templateScheduleProxy = new TemplateScheduleProxy();
-                    templateScheduleProxy.UpdateTemplateScheduleWithDelete(e.TemplateSchedule, DeletedShifts);
-                    Clear();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Something went wrong! Could not save changes to template schedules");
+                    try
+                    {
+                        e.TemplateSchedule.TemplateShifts = Shifts;
+                        TemplateScheduleProxy templateScheduleProxy = new TemplateScheduleProxy();
+                        templateScheduleProxy.UpdateTemplateScheduleWithDelete(e.TemplateSchedule, DeletedShifts);
+                        Clear();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Something went wrong! Could not save changes to template schedules");
+                    }
                 }
             };
         }
@@ -207,7 +216,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             Mediator.GetInstance().CreateTemplateScheduleButtonClicked += (templateSchedule) =>
             {
-                if (this.IsVisible)
+                if (IsVisible)
                 {
                     if (Shifts.Count == 0)
                     {
@@ -235,21 +244,20 @@ namespace DesktopClient.Views.TemplateScheduleViews
 
         private void SetOnNumOfWeeksBoxChanged()
         {
-            //TODO: WHAT IS B AND P ARNE?
             Mediator.GetInstance().NumOfWeekBoxChanged += (numberOfWeeks, b, p) =>
             {
                 numOfWeeks = numberOfWeeks;
                 if (numOfWeeks > WeekNumber)
                 {
-                    btnNextWeek.IsEnabled = true;
+                    BtnNextWeek.IsEnabled = true;
                 }
                 else if (numOfWeeks == WeekNumber)
                 {
-                    btnNextWeek.IsEnabled = false;
+                    BtnNextWeek.IsEnabled = false;
                 }
                 else if (numberOfWeeks < WeekNumber)
                 {
-                    btnNextWeek.IsEnabled = false;
+                    BtnNextWeek.IsEnabled = false;
                     bool noShiftsWillBeLost = Shifts.TrueForAll(x => x.WeekNumber < numberOfWeeks);
                     if (!noShiftsWillBeLost)
                     {
@@ -257,9 +265,9 @@ namespace DesktopClient.Views.TemplateScheduleViews
                         if (messageBoxResult == MessageBoxResult.Yes)
                         {
                             Shifts.RemoveAll(x => x.WeekNumber > numberOfWeeks);
-                            txtWeekNum.Text = numberOfWeeks.ToString();
+                            TxtWeekNum.Text = numberOfWeeks.ToString();
                             WeekNumber = numberOfWeeks;
-                            btnNextWeek.IsEnabled = false;
+                            BtnNextWeek.IsEnabled = false;
                             Clear();
                             LoadShiftsIntoCalendar();
                         }
@@ -271,11 +279,11 @@ namespace DesktopClient.Views.TemplateScheduleViews
                     else
                     {
                         WeekNumber = numberOfWeeks;
-                        txtWeekNum.Text = numberOfWeeks.ToString();
+                        TxtWeekNum.Text = numberOfWeeks.ToString();
                     }
                     if (numberOfWeeks == 1)
                     {
-                        btnPrevWeek.IsEnabled = false;
+                        BtnPrevWeek.IsEnabled = false;
                     }
                 }
             };
@@ -286,12 +294,12 @@ namespace DesktopClient.Views.TemplateScheduleViews
             if (WeekNumber < numOfWeeks)
             {
                 WeekNumber++;
-                txtWeekNum.Text = WeekNumber.ToString();
+                TxtWeekNum.Text = WeekNumber.ToString();
                 Clear();
-                btnPrevWeek.IsEnabled = true;
+                BtnPrevWeek.IsEnabled = true;
                 if (WeekNumber == numOfWeeks)
                 {
-                    btnNextWeek.IsEnabled = false;
+                    BtnNextWeek.IsEnabled = false;
                 }
                 LoadShiftsIntoCalendar();
             }
@@ -302,14 +310,14 @@ namespace DesktopClient.Views.TemplateScheduleViews
             if (WeekNumber != 1)
             {
                 WeekNumber--;
-                txtWeekNum.Text = WeekNumber.ToString();
+                TxtWeekNum.Text = WeekNumber.ToString();
                 Clear();
                 LoadShiftsIntoCalendar();
                 if (WeekNumber == 1)
                 {
-                    btnPrevWeek.IsEnabled = false;
+                    BtnPrevWeek.IsEnabled = false;
                 }
-                btnNextWeek.IsEnabled = true;
+                BtnNextWeek.IsEnabled = true;
             }
         }
 

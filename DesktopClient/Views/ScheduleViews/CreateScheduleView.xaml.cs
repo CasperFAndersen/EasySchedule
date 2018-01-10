@@ -77,6 +77,7 @@ namespace DesktopClient.Views.ScheduleViews
             {
                 MessageBox.Show("Something went wrong! Could not fetch templateschedules");
             }
+
         }
 
         private void BlackOutDatePicker(int departmentId)
@@ -97,11 +98,10 @@ namespace DesktopClient.Views.ScheduleViews
             }
             catch (Exception)
             {
-                
             }
         }
 
-        private void btnGenerateSchedule_Click(object sender, RoutedEventArgs e)
+        private void BtnGenerateSchedule_Click(object sender, RoutedEventArgs e)
         {
             if (DatePicker.SelectedDate != null && ListTemplateSchedule.SelectedIndex != -1)
             {
@@ -115,8 +115,10 @@ namespace DesktopClient.Views.ScheduleViews
                 }
                 catch (Exception)
                 {
+
                     MessageBox.Show("Could not generate Schedule! Please check all parameters and try again");
                 }
+
             }
             else
             {
@@ -124,7 +126,7 @@ namespace DesktopClient.Views.ScheduleViews
             }
         }
 
-        private void btnPublishSchedule_Click(object sender, RoutedEventArgs e)
+        private void BtnPublishSchedule_Click(object sender, RoutedEventArgs e)
         {
             Mediator.GetInstance().OnCreateScheduleButtonClicked();
         }

@@ -1,6 +1,6 @@
 use dmab0916_1062358;
 
-drop table Shift; 
+drop table ScheduleShift; 
 drop table Schedule; 
 drop table TemplateShift; 
 drop table TemplateSchedule; 

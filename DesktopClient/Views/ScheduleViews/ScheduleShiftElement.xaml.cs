@@ -18,9 +18,9 @@ namespace DesktopClient.Views.ScheduleViews
             InitializeComponent();
             DataContext = shift;
             IsLastElement = isLastElement;
-            textBox.Background = new SolidColorBrush(color);
+            TextBox.Background = new SolidColorBrush(color);
             SetCursor();
-            button.Visibility = Visibility.Hidden;
+            Button.Visibility = Visibility.Hidden;
         }
 
         public ScheduleShiftElement(TemplateShift shift, string text, Color color)
@@ -28,8 +28,8 @@ namespace DesktopClient.Views.ScheduleViews
             InitializeComponent();
             DataContext = shift;
             IsLastElement = false;
-            textBox.Background = new SolidColorBrush(color);
-            textBox.Text = text;
+            TextBox.Background = new SolidColorBrush(color);
+            TextBox.Text = text;
             SetCursor();
         }
 
@@ -60,7 +60,7 @@ namespace DesktopClient.Views.ScheduleViews
             }
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             Mediator.GetInstance().OnShiftCloseClick(sender, (TemplateShift)DataContext);
         }

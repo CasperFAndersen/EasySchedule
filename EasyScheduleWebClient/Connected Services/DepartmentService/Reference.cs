@@ -16,10 +16,10 @@ namespace EasyScheduleWebClient.DepartmentService {
     public interface IDepartmentService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetAllDepartments", ReplyAction="http://tempuri.org/IDepartmentService/GetAllDepartmentsResponse")]
-        Core.Department[] GetAllDepartments();
+        System.Collections.Generic.List<Core.Department> GetAllDepartments();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetAllDepartments", ReplyAction="http://tempuri.org/IDepartmentService/GetAllDepartmentsResponse")]
-        System.Threading.Tasks.Task<Core.Department[]> GetAllDepartmentsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Department>> GetAllDepartmentsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetDepartmentById", ReplyAction="http://tempuri.org/IDepartmentService/GetDepartmentByIdResponse")]
         Core.Department GetDepartmentById(int departmentId);
@@ -28,10 +28,10 @@ namespace EasyScheduleWebClient.DepartmentService {
         System.Threading.Tasks.Task<Core.Department> GetDepartmentByIdAsync(int departmentId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetAllDepartmentsByWorkplaceId", ReplyAction="http://tempuri.org/IDepartmentService/GetAllDepartmentsByWorkplaceIdResponse")]
-        Core.Department[] GetAllDepartmentsByWorkplaceId(int workplaceId);
+        System.Collections.Generic.List<Core.Department> GetAllDepartmentsByWorkplaceId(int workplaceId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDepartmentService/GetAllDepartmentsByWorkplaceId", ReplyAction="http://tempuri.org/IDepartmentService/GetAllDepartmentsByWorkplaceIdResponse")]
-        System.Threading.Tasks.Task<Core.Department[]> GetAllDepartmentsByWorkplaceIdAsync(int workplaceId);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Department>> GetAllDepartmentsByWorkplaceIdAsync(int workplaceId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -61,11 +61,11 @@ namespace EasyScheduleWebClient.DepartmentService {
                 base(binding, remoteAddress) {
         }
         
-        public Core.Department[] GetAllDepartments() {
+        public System.Collections.Generic.List<Core.Department> GetAllDepartments() {
             return base.Channel.GetAllDepartments();
         }
         
-        public System.Threading.Tasks.Task<Core.Department[]> GetAllDepartmentsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Department>> GetAllDepartmentsAsync() {
             return base.Channel.GetAllDepartmentsAsync();
         }
         
@@ -77,11 +77,11 @@ namespace EasyScheduleWebClient.DepartmentService {
             return base.Channel.GetDepartmentByIdAsync(departmentId);
         }
         
-        public Core.Department[] GetAllDepartmentsByWorkplaceId(int workplaceId) {
+        public System.Collections.Generic.List<Core.Department> GetAllDepartmentsByWorkplaceId(int workplaceId) {
             return base.Channel.GetAllDepartmentsByWorkplaceId(workplaceId);
         }
         
-        public System.Threading.Tasks.Task<Core.Department[]> GetAllDepartmentsByWorkplaceIdAsync(int workplaceId) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Department>> GetAllDepartmentsByWorkplaceIdAsync(int workplaceId) {
             return base.Channel.GetAllDepartmentsByWorkplaceIdAsync(workplaceId);
         }
     }

@@ -12,15 +12,14 @@ namespace BusinessLogic.Tests
     [TestClass]
     public class ScheduleShiftControllerTests
     {
-        private IScheduleShiftRepository mockScheduleRepository;
+        private IScheduleShiftRepository _mockScheduleRepository;
         private IScheduleShiftController _scheduleShiftController;
-
 
         [TestInitialize]
         public void TestInitialize()
         {
-            mockScheduleRepository = MockRepository.GenerateMock<IScheduleShiftRepository>();
-            _scheduleShiftController = new ScheduleShiftController(mockScheduleRepository);
+            _mockScheduleRepository = MockRepository.GenerateMock<IScheduleShiftRepository>();
+            _scheduleShiftController = new ScheduleShiftController(_mockScheduleRepository);
         }
 
         [TestMethod]

@@ -10,13 +10,14 @@ namespace ServiceLibrary.ScheduleShifts
 {
     public class ScheduleShiftService : IScheduleShiftService
     {
-        IScheduleShiftController _scheduleShiftController = new ScheduleShiftController();
+        private readonly IScheduleShiftController _scheduleShiftController = new ScheduleShiftController();
+
         public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
         {
             _scheduleShiftController.AcceptAvailableShift(shift, employee);
         }
 
-        public List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
+        public IEnumerable<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
         {
             return _scheduleShiftController.GetAllAvailableShiftsByDepartmentId(departmentId);
         }

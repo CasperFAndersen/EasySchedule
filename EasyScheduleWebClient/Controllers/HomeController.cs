@@ -11,8 +11,9 @@ namespace EasyScheduleWebClient.Controllers
 {
     public class HomeController : Controller
     {
-        ScheduleShiftProxy scheduleShiftProxy = new ScheduleShiftProxy();
-        ScheduleProxy scheduleProxy = new ScheduleProxy();
+        readonly ScheduleShiftProxy _scheduleShiftProxy = new ScheduleShiftProxy();
+        readonly ScheduleProxy _scheduleProxy = new ScheduleProxy();
+
         public ActionResult Index()
         {
             EmployeeModel employeeModel = new EmployeeModel();
@@ -23,22 +24,20 @@ namespace EasyScheduleWebClient.Controllers
                 employeeModel.Employee = employee;
                 employeeModel.Department = department;
             }
-
             return View(employeeModel);
         }
 
         public ActionResult GetEvents()
         {
             ScheduleProxy scheduleProxy = new ScheduleProxy();
-            Employee emp = (Employee)Session["employee"];
+            Employee employee = (Employee)Session["employee"];
             try
             {
-                List<ScheduleShift> shifts = scheduleProxy.GetScheduleByDepartmentIdAndDate(emp.DepartmentId, DateTime.Now).Shifts;
+                List<ScheduleShift> shifts = scheduleProxy.GetScheduleByDepartmentIdAndDate(employee.DepartmentId, DateTime.Now).Shifts;
                 return new JsonResult { Data = shifts, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
             }
             return null;
         }
@@ -47,17 +46,15 @@ namespace EasyScheduleWebClient.Controllers
         {
             List<ScheduleShift> res = new List<ScheduleShift>();
 
-            Employee emp = (Employee)Session["employee"];
+            Employee employee = (Employee)Session["employee"];
             try
             {
-                List<ScheduleShift> shifts = scheduleProxy.GetScheduleByDepartmentIdAndDate(emp.DepartmentId, DateTime.Now).Shifts;
-                res = shifts.Where(x => x.Employee.Name == emp.Name).ToList();
+                List<ScheduleShift> shifts = _scheduleProxy.GetScheduleByDepartmentIdAndDate(employee.DepartmentId, DateTime.Now).Shifts;
+                res = shifts.Where(x => x.Employee.Name == employee.Name).ToList();
                 return new JsonResult { Data = res, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
             }
             return null;
         }
@@ -74,21 +71,16 @@ namespace EasyScheduleWebClient.Controllers
         [HttpPost]
         public ActionResult AcceptShift(ScheduleShift scheduleShift)
         {
-            Employee employee = new Employee();
-            employee = (Employee)Session["employee"];
-
-         
-            scheduleShiftProxy.AcceptAvailableShift(scheduleShift, employee);
-
+            Employee employee = (Employee)Session["employee"];
+            _scheduleShiftProxy.AcceptAvailableShift(scheduleShift, employee);
             return null;
         }
 
         [HttpPost]
         public JsonResult SetShiftForSale(ScheduleShift scheduleShift)
         {
-  
             scheduleShift.Employee = (Employee)Session["employee"];
-            scheduleShiftProxy.SetScheduleShiftForSale(scheduleShift);
+            _scheduleShiftProxy.SetScheduleShiftForSale(scheduleShift);
             return null;
         }
 
@@ -100,9 +92,5 @@ namespace EasyScheduleWebClient.Controllers
             Debug.WriteLine(" " + e.End);
             return null;
         }
-
-
     }
-
-
 }

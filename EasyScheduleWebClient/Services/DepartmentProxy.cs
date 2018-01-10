@@ -10,34 +10,35 @@ namespace EasyScheduleWebClient.Services
 {
     public class DepartmentProxy : IDepartmentService
     {
-        DepartmentServiceClient proxy = new DepartmentServiceClient();
+        readonly IDepartmentService _departmentServiceClient = new DepartmentServiceClient();
 
-        public Department[] GetAllDepartments()
+
+        public List<Department> GetAllDepartments()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Department[]> GetAllDepartmentsAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Department[] GetAllDepartmentsByWorkplaceId(int workplaceId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Department[]> GetAllDepartmentsByWorkplaceIdAsync(int workplaceId)
+        public Task<List<Department>> GetAllDepartmentsAsync()
         {
             throw new NotImplementedException();
         }
 
         public Department GetDepartmentById(int departmentId)
         {
-            return proxy.GetDepartmentById(departmentId);
+            return _departmentServiceClient.GetDepartmentById(departmentId);
         }
 
         public Task<Department> GetDepartmentByIdAsync(int departmentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Department> GetAllDepartmentsByWorkplaceId(int workplaceId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Department>> GetAllDepartmentsByWorkplaceIdAsync(int workplaceId)
         {
             throw new NotImplementedException();
         }

@@ -1,13 +1,7 @@
 ﻿using Core;
-using DatabaseAccess;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DatabaseAccess.Employees;
 using DatabaseAccess.TemplateShifts;
-using System.Transactions;
 
 namespace BusinessLogic
 {
@@ -39,7 +33,6 @@ namespace BusinessLogic
                 throw new ArgumentException();
             }
         }
-
 
         //Do we need this????
         public TemplateShift CreateTemplateShift(DayOfWeek weekDay, double hours, TimeSpan startTime, int templateScheduleId, Employee employee)
@@ -94,10 +87,7 @@ namespace BusinessLogic
                     isOkToInsert = false;
                 }
             }
-
             return isOkToInsert;
         }
-
-     
     }
 }

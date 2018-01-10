@@ -12,6 +12,5 @@ namespace BusinessLogic
         void UpdateSchedule(Schedule schedule, List<ScheduleShift> deletedScheduleShifts);
         List<Schedule> GetSchedulesByDepartmentId(int departmentId);
         Schedule GenerateScheduleFromTemplateSchedule(TemplateSchedule templateSchedule, DateTime startTime);
- 
     }
 }

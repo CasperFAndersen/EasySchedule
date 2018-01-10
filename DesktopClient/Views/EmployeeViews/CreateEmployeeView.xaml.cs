@@ -20,7 +20,6 @@ namespace DesktopClient.Views.EmployeeViews
             departmentProxy = new DepartmentProxy();
             InitializeComponent();
             LoadDepartmentList();
-      
         }
 
         private async void LoadDepartmentList()
@@ -36,13 +35,11 @@ namespace DesktopClient.Views.EmployeeViews
             {
                 MessageBox.Show("Something went wrong! Could net fetch department");
             }
-
         }
 
         private void BtnSaveEmployee_Click(object sender, RoutedEventArgs e)
         {
             CreateEmployeeClicked();
-
             Mediator.GetInstance().OnCreateEmployeeClicked();
         }
 

@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseConnectionTests.cs" />
-    <Compile Include="DBSetUp.cs" />
+    <Compile Include="DbSetUp.cs" />
     <Compile Include="DepartmentRepositoryTests.cs" />
     <Compile Include="EmployeeRepositoryTests.cs" />
     <Compile Include="ScheduleRepositoryTests.cs" />

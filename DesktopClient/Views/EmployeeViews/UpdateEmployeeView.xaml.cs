@@ -23,7 +23,6 @@ namespace DesktopClient.Views.EmployeeViews
             LoadDepartmentList();
             UpdateEmployeeClicked();
             empProxy = new EmployeeProxy();
-          
         }
 
         private void BtnUpdateEmployee_Click(object sender, RoutedEventArgs e)
@@ -44,7 +43,6 @@ namespace DesktopClient.Views.EmployeeViews
             {
                 MessageBox.Show("Something went wrong! Could net fetch department");
             }
-
         }
 
         private void LoadEmployeeList(Department department)
@@ -57,10 +55,8 @@ namespace DesktopClient.Views.EmployeeViews
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Something went wrong! Could not feth employees");
             }
-
         }
 
         public void UpdateEmployeeClicked()
@@ -79,8 +75,6 @@ namespace DesktopClient.Views.EmployeeViews
                     emp.IsEmployed = Convert.ToBoolean(ChkIsActive.IsChecked);
                     emp.Username = TxtUsername.Text;
                     emp.Password = TxtPassword.Password;
-                    //Department selectedDepartment = (Department)CBoxDepartment.SelectedItem;
-                    //emp.DepartmentId = selectedDepartment.Id;
 
                     empProxy.UpdateEmployee(emp);
                     
@@ -93,7 +87,6 @@ namespace DesktopClient.Views.EmployeeViews
                 ClearEmployeeView();
                 LoadDepartmentList();
             };
-
         }
 
         public void ClearEmployeeView()

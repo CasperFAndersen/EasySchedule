@@ -9,7 +9,7 @@ namespace DatabaseAccess.TemplateSchedules
 {
     public class TemplateScheduleRepository : ITemplateScheduleRepository
     {
-        public IEnumerable<TemplateSchedule> GetAllTemplateSchedules()
+        public List<TemplateSchedule> GetAllTemplateSchedules()
         {
             List<TemplateSchedule> templateSchedules = new List<TemplateSchedule>();
             using (SqlConnection connection = new DbConnection().GetConnection())
@@ -20,8 +20,7 @@ namespace DatabaseAccess.TemplateSchedules
                     {
                         while (reader.Read())
                         {
-                            TemplateSchedule templateSchedule = new TemplateSchedule(reader.GetInt32(0), reader.GetString(1),
-                                                                                 reader.GetInt32(2), reader.GetInt32(3));
+                            TemplateSchedule templateSchedule = BuildTemplateScheduleObject(reader);
                             templateSchedules.Add(templateSchedule);
                         }
                     }
@@ -48,38 +47,34 @@ namespace DatabaseAccess.TemplateSchedules
             return templateScheduleId;
         }
 
-        //Do we need this???
-        public TemplateSchedule GetTemplateScheduleByName(string scheduleName)
-        {
-            TemplateSchedule templateSchedule = null;
-            using (SqlConnection connection = new DbConnection().GetConnection())
-            {
-                using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateSchedule WHERE Name = @param1", connection))
-                {
-                    command.Parameters.AddWithValue("@param1", scheduleName);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            templateSchedule = new TemplateSchedule(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetInt32(3));
-
-                        }
-                    }
-                }
-            }
-            return templateSchedule;
-        }
-
         public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)
         {
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                using (SqlCommand command = new SqlCommand("UPDATE TemplateSchedule SET noOfWeeks = @param1", connection))
+                using (SqlCommand command = new SqlCommand(
+                    "UPDATE TemplateSchedule SET noOfWeeks = @param1 " +
+                     "WHERE RV = @param2", connection))
                 {
                     command.Parameters.AddWithValue("@param1", templateSchedule.NoOfWeeks);
-                    command.ExecuteNonQuery();
+                    command.Parameters.AddWithValue("@param2", templateSchedule.RowVersion);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected == 0)
+                    {
+                        throw new DataInInvalidStateException();
+                    }
                 }
             }
+        }
+
+        public TemplateSchedule BuildTemplateScheduleObject(SqlDataReader reader)
+        {
+            TemplateSchedule templateSchedule = new TemplateSchedule();
+            templateSchedule.Id = reader.GetInt32(0);
+            templateSchedule.Name = reader.GetString(1);
+            templateSchedule.NoOfWeeks = reader.GetInt32(2);
+            templateSchedule.DepartmentId = reader.GetInt32(3);
+            templateSchedule.RowVersion = reader.GetFieldValue<byte[]>(4);
+            return templateSchedule;
         }
     }
 }

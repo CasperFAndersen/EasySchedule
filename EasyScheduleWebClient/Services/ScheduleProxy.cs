@@ -10,7 +10,7 @@ namespace EasyScheduleWebClient.Services
 {
     public class ScheduleProxy : IScheduleService
     {
-        IScheduleService proxy = new ScheduleServiceClient();
+        readonly IScheduleService _scheduleService = new ScheduleServiceClient();
 
         public Schedule GenerateScheduleFromTemplateScheduleAndStartDate(TemplateSchedule templateSchedule, DateTime startTime)
         {
@@ -24,7 +24,7 @@ namespace EasyScheduleWebClient.Services
 
         public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)
         {
-            return proxy.GetScheduleByDepartmentIdAndDate(departmentId, date);
+            return _scheduleService.GetScheduleByDepartmentIdAndDate(departmentId, date);
         }
 
         public Task<Schedule> GetScheduleByDepartmentIdAndDateAsync(int departmentId, DateTime date)
@@ -44,7 +44,7 @@ namespace EasyScheduleWebClient.Services
 
         public void UpdateSchedule(Schedule schedule)
         {
-            proxy.UpdateSchedule(schedule);
+            _scheduleService.UpdateSchedule(schedule);
         }
 
         public void UpdateScheduleWithDelete(Schedule schedule, List<ScheduleShift> deletedScheduleShifts)
@@ -64,7 +64,7 @@ namespace EasyScheduleWebClient.Services
 
         List<Schedule> IScheduleService.GetSchedulesByDepartmentId(int departmentId)
         {
-            return proxy.GetSchedulesByDepartmentId(departmentId);
+            return _scheduleService.GetSchedulesByDepartmentId(departmentId);
         }
 
         Task<List<Schedule>> IScheduleService.GetSchedulesByDepartmentIdAsync(int departmentId)

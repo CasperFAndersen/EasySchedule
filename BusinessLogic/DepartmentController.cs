@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core;
 using DatabaseAccess.Departments;
-using DatabaseAccess.Employees;
 
 namespace BusinessLogic
 {
@@ -18,7 +17,7 @@ namespace BusinessLogic
 
         public DepartmentController(IDepartmentRepository departmentRepository)
         {
-            this._departmentRepository = departmentRepository;
+            _departmentRepository = departmentRepository;
             _employeeController = new EmployeeController();
         }
 

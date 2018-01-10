@@ -21,8 +21,8 @@ namespace EasyScheduleWebClient.Controllers
             
             try
             {
-                Employee emp = empProxy.ValidatePassword(loggingIn.Username, loggingIn.Password);
-                Session["employee"] = emp;
+                Employee employee = empProxy.ValidatePassword(loggingIn.Username, loggingIn.Password);
+                Session["employee"] = employee;
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception)
@@ -30,12 +30,10 @@ namespace EasyScheduleWebClient.Controllers
                 ModelState.AddModelError("", "Wrong username or password");
                 return RedirectToAction("Index", "Login");
             }
-         
         }
 
         public ActionResult Logout()
         {
-            //int id = (int)Session["employeeId"];
             Session.Abandon();
             return RedirectToAction("Index", "Login");
         }

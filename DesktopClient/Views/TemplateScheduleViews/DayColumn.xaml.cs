@@ -15,7 +15,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
         private List<Shift> loadedShifts = new List<Shift>();
         public DayColumn(DayOfWeek dayOfWeek)
         {
-            this.DayOfWeek = dayOfWeek;
+            DayOfWeek = dayOfWeek;
             InitializeComponent();
             TimeCellList = new List<TimeCell>();
             Shifts = new List<Shift>();
@@ -48,7 +48,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
                     TimeCell tempTimeCell = new TimeCell() { Time = timeCount, WeekDay = DayOfWeek };
 
                     DayColumnGrid.Children.Add(tempTimeCell);
-                    Grid.SetZIndex(tempTimeCell, 100);
+                    Panel.SetZIndex(tempTimeCell, 100);
                     Grid.SetRow(tempTimeCell, rowCount);
 
                     TimeCellList.Add(tempTimeCell);
@@ -106,7 +106,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 ShiftElement shiftElement = new ShiftElement(shift, col);
                 shiftElement.RootTimeCell = timeCell;
                 shiftElement.AddButtom(new ShiftElement(shift, col, true));
-
+                //shiftElement.SetMouseOver();
+                //shiftElement.SetMouseLeave();
                 //Add shiftelement to timecell
                 timeCell.TimeCellGrid.Children.Add(shiftElement);
                 //Add columns
@@ -129,8 +130,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 Grid.SetColumnSpan(timeCell, columnAmount);
                 //Set column for shiftelement
                 Grid.SetColumn(shiftElement, columnNr);
-                Grid.SetZIndex(timeCell, zIndex);
-
+                Panel.SetZIndex(timeCell, zIndex);
+                //zIndex--;
                 //Finally add shift to list of loaded shifts
                 loadedShifts.Add(shift);
             }
@@ -162,7 +163,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
                             res++;
                         }
                     }
-
                 }
             }
             else if (shift.GetType() == typeof(ScheduleShift))
@@ -188,7 +188,6 @@ namespace DesktopClient.Views.TemplateScheduleViews
                             res++;
                         }
                     }
-
                 }
             }
             return res;
@@ -199,7 +198,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
             TimeCellList.ForEach(x =>
             {
                 x.Visibility = System.Windows.Visibility.Visible;
-                Grid.SetZIndex(x, 100);
+                Panel.SetZIndex(x, 100);
                 x.ShiftAndRootCell.Clear();
             });
         }

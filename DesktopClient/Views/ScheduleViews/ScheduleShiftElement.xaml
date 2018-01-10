@@ -5,9 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DesktopClient"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+
+             d:DesignHeight="300" d:DesignWidth="300"
+             >
+
     <Grid Name="Grid"  Margin="0,0,0,0" >
-        <TextBlock Name="textBox" FontWeight="Bold"></TextBlock>
-        <Button Name="button" HorizontalAlignment="Right" VerticalAlignment="Top" Height="14" FontSize="6" Click="button_Click">x</Button>
+
+        <TextBlock Name="TextBox" FontWeight="Bold"></TextBlock>
+        <Button Name="Button" HorizontalAlignment="Right" VerticalAlignment="Top" Height="14" FontSize="6" Click="Button_Click">x</Button>
     </Grid>
 </UserControl>

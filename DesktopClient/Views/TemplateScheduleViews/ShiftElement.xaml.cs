@@ -21,7 +21,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
             SetCursor();
             ElementBorder.Effect = null;
             ElementBorder.BorderBrush = null;
-            button.Visibility = Visibility.Hidden;
+            Button.Visibility = Visibility.Hidden;
         }
 
         public ShiftElement(Shift shift, Color color)
@@ -48,8 +48,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
             if (shift.GetType() == typeof(ScheduleShift))
             {
                 scheduleShift = (ScheduleShift)shift;
-                textBox1.Text = scheduleShift.Employee.Name;
-                textBox2.Text = scheduleShift.StartTime.ToShortTimeString() + " - " + scheduleShift.StartTime.AddHours(scheduleShift.Hours).ToShortTimeString();
+                TextBox1.Text = scheduleShift.Employee.Name;
+                TextBox2.Text = scheduleShift.StartTime.ToShortTimeString() + " - " + scheduleShift.StartTime.AddHours(scheduleShift.Hours).ToShortTimeString();
             }
             else
             {
@@ -58,8 +58,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 DateTime startTime = new DateTime(2017, 1, 1, templateShift.StartTime.Hours, templateShift.StartTime.Minutes, 0);
                 DateTime endTime = startTime.AddHours(templateShift.Hours);
 
-                textBox1.Text = templateShift.Employee.Name; 
-                textBox2.Text = startTime.ToShortTimeString() + " - " + endTime.ToShortTimeString();
+                TextBox1.Text = templateShift.Employee.Name;
+                TextBox2.Text = startTime.ToShortTimeString() + " - " + endTime.ToShortTimeString();
             }
         }
 
@@ -82,11 +82,12 @@ namespace DesktopClient.Views.TemplateScheduleViews
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
-            base.OnMouseMove(e);
+            OnMouseMove(e);
             if (e.LeftButton == MouseButtonState.Pressed)
             {
+
                 Mediator.GetInstance().OnResizeStarted();
-             
+
                 // Package the data.
                 DataObject data = new DataObject();
                 data.SetData("IsLastShiftElement", IsLastElement);
@@ -101,7 +102,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             if (RootTimeCell != null)
             {
-                Grid.SetZIndex(RootTimeCell, 700);
+                Panel.SetZIndex(RootTimeCell, 700);
             }
         }
 
@@ -109,16 +110,15 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             if (RootTimeCell != null)
             {
-                Grid.SetZIndex(RootTimeCell, 600);
+                Panel.SetZIndex(RootTimeCell, 600);
             }
-
         }
 
         private void UserControl_DragOver(object sender, DragEventArgs e)
         {
             if (RootTimeCell != null)
             {
-                Grid.SetZIndex(RootTimeCell, 0);
+                Panel.SetZIndex(RootTimeCell, 0);
             }
         }
     }

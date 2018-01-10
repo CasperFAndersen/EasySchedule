@@ -12,18 +12,6 @@ namespace DatabaseAccess.Departments
 {
     public class DepartmentRepository : IDepartmentRepository
     {
-        private IDepartmentRepository _departmentRepository;
-
-        public DepartmentRepository()
-        {
-            
-        }
-
-        public DepartmentRepository(IDepartmentRepository departmentRepository)
-        {
-            _departmentRepository = departmentRepository;
-        }
-
         public List<Department> GetAllDepartments()
         {
             List<Department> departments = new List<Department>();
@@ -94,14 +82,7 @@ namespace DatabaseAccess.Departments
             return departments;
         }
 
-        /// <summary>
-        /// This method builds a new department object with the information retrieved from the database.
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <returns>
-        /// Returns a department object.
-        /// </returns>
-        public Department BuildDepartmentObject(SqlDataReader reader)
+        private Department BuildDepartmentObject(SqlDataReader reader)
         {
             Department department = new Department();
             department.Id = Convert.ToInt32(reader["id"].ToString());

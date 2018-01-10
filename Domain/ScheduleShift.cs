@@ -1,23 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core
 {
     [DataContract]
     public class ScheduleShift : Shift
     {
+        #region Properties
         [DataMember]
         public DateTime StartTime { get; set; }
+
         [DataMember]
         public bool IsForSale { get; set; }
 
-        public ScheduleShift()
-        {
-            
-        }
+        [DataMember]
+        public byte[] RowVersion { get; set; }
+        #endregion
     }
 }

@@ -48,12 +48,6 @@ namespace DesktopClient.TemplateScheduleService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/GetAllTemplateSchedules", ReplyAction="http://tempuri.org/ITemplateScheduleService/GetAllTemplateSchedulesResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<Core.TemplateSchedule>> GetAllTemplateSchedulesAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/FindTemplateScheduleByName", ReplyAction="http://tempuri.org/ITemplateScheduleService/FindTemplateScheduleByNameResponse")]
-        Core.TemplateSchedule FindTemplateScheduleByName(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/FindTemplateScheduleByName", ReplyAction="http://tempuri.org/ITemplateScheduleService/FindTemplateScheduleByNameResponse")]
-        System.Threading.Tasks.Task<Core.TemplateSchedule> FindTemplateScheduleByNameAsync(string name);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITemplateScheduleService/AddTemplateScheduleToDb", ReplyAction="http://tempuri.org/ITemplateScheduleService/AddTemplateScheduleToDbResponse")]
         void AddTemplateScheduleToDb(Core.TemplateSchedule templateSchedule);
         
@@ -108,14 +102,6 @@ namespace DesktopClient.TemplateScheduleService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.TemplateSchedule>> GetAllTemplateSchedulesAsync() {
             return base.Channel.GetAllTemplateSchedulesAsync();
-        }
-        
-        public Core.TemplateSchedule FindTemplateScheduleByName(string name) {
-            return base.Channel.FindTemplateScheduleByName(name);
-        }
-        
-        public System.Threading.Tasks.Task<Core.TemplateSchedule> FindTemplateScheduleByNameAsync(string name) {
-            return base.Channel.FindTemplateScheduleByNameAsync(name);
         }
         
         public void AddTemplateScheduleToDb(Core.TemplateSchedule templateSchedule) {

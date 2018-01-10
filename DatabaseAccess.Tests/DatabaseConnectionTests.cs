@@ -8,7 +8,7 @@ namespace DatabaseAccess.Tests
         [TestMethod]
         public void ConnectToDatabaseTest()
         {
-           DbConnection dbConnection = new DbConnection();
+            DbConnection dbConnection = new DbConnection();
             dbConnection.OpenConnection();
             Assert.IsTrue(dbConnection.IsConnected());
             Assert.IsNotNull(dbConnection);

@@ -96,8 +96,9 @@ namespace DatabaseAccess.ScheduleShifts
                             {
                                 using (SqlCommand command = connection.CreateCommand())
                                 {
-                                    command.CommandText = "INSERT INTO ScheduleShift(startTime, hours, scheduleId, employeeId, isForSale) " +
-                                                            "VALUES (@param1, @param2, @param3, @param4, @param5)";
+                                    command.CommandText =
+                                        "INSERT INTO ScheduleShift(startTime, hours, scheduleId, employeeId, isForSale) " +
+                                        "VALUES (@param1, @param2, @param3, @param4, @param5)";
 
                                     SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.DateTime);
                                     SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.Float);
@@ -129,7 +130,10 @@ namespace DatabaseAccess.ScheduleShifts
                     }
                     scope.Complete();
                 }
-
+            }
+            catch (DataInInvalidStateException e)
+            {
+                throw;
             }
             catch (Exception e)
             {
@@ -137,19 +141,21 @@ namespace DatabaseAccess.ScheduleShifts
             }
         }
 
-        public void UpdateScheduleShift(ScheduleShift shift, int scheduleId, SqlConnection connection)
+        private void UpdateScheduleShift(ScheduleShift shift, int scheduleId, SqlConnection connection)
         {
             try
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "UPDATE ScheduleShift SET startTime = @param1, hours = @param2, scheduleId = @param3, IsForSale = @param4 WHERE ScheduleShift.id = @param5";
+                    command.CommandText = "UPDATE ScheduleShift SET startTime = @param1, hours = @param2, " +
+                        "scheduleId = @param3, IsForSale = @param4 WHERE ScheduleShift.id = @param5 AND RV = @param6";
 
                     SqlParameter p1 = new SqlParameter("@param1", SqlDbType.DateTime, 100);
                     SqlParameter p2 = new SqlParameter("@param2", SqlDbType.Float);
                     SqlParameter p3 = new SqlParameter("@param3", SqlDbType.Int);
                     SqlParameter p4 = new SqlParameter("@param4", SqlDbType.Bit);
                     SqlParameter p5 = new SqlParameter("@param5", SqlDbType.Int);
+                    command.Parameters.AddWithValue("@param6", shift.RowVersion);
 
                     p1.Value = shift.StartTime;
                     p2.Value = shift.Hours;
@@ -163,8 +169,16 @@ namespace DatabaseAccess.ScheduleShifts
                     command.Parameters.Add(p4);
                     command.Parameters.Add(p5);
 
-                    command.ExecuteNonQuery();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected == 0)
+                    {
+                        throw new DataInInvalidStateException();
+                    }
                 }
+            }
+            catch (DataInInvalidStateException)
+            {
+                throw;
             }
             catch (Exception e)
             {
@@ -212,7 +226,6 @@ namespace DatabaseAccess.ScheduleShifts
                 {
                     using (SqlConnection connection = new DbConnection().GetConnection())
                     {
-
                         using (SqlCommand command = connection.CreateCommand())
                         {
                             command.CommandText = "UPDATE ScheduleShift SET employeeId = @param1, isForSale = 0 WHERE id = @param2 AND isForSale = 1;";
@@ -232,11 +245,9 @@ namespace DatabaseAccess.ScheduleShifts
                                 throw new Exception("Too slow! Shift is already accepted by another employee");
                             }
                         }
-
                     }
                     scope.Complete();
                 }
-
             }
             catch (Exception e)
             {
@@ -244,25 +255,7 @@ namespace DatabaseAccess.ScheduleShifts
             }
         }
 
-        /// <summary>
-        /// This method builds a Shift object, based on the information retrieved from the database.
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <returns>
-        /// returns a Shift object.
-        /// </returns>
-        public ScheduleShift BuildShiftObject(SqlDataReader reader)
-        {
-            ScheduleShift scheduleShift = new ScheduleShift();
-            scheduleShift.Id = reader.GetInt32(0);
-            scheduleShift.Employee = new EmployeeRepository().GetEmployeeById(Convert.ToInt32(reader["EmployeeId"].ToString()));
-            scheduleShift.StartTime = reader.GetDateTime(1);
-            scheduleShift.Hours = Convert.ToDouble(reader["Hours"].ToString());
-            scheduleShift.IsForSale = Convert.ToBoolean(reader["IsForSale"]);
-            return scheduleShift;
-        }
-
-        public List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
+        public IEnumerable<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
         {
             List<ScheduleShift> scheduleShifts = new List<ScheduleShift>();
 
@@ -293,13 +286,24 @@ namespace DatabaseAccess.ScheduleShifts
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
                 using (SqlCommand deleteScheduleShift = new SqlCommand(
-                      "DELETE FROM ScheduleShift WHERE id = @param1;", connection))
+                      "DELETE FROM ScheduleShift WHERE id = @param1", connection))
                 {
                     deleteScheduleShift.Parameters.AddWithValue(@"param1", scheduleShift.Id);
-
                     deleteScheduleShift.ExecuteNonQuery();
                 }
             }
+        }
+
+        private ScheduleShift BuildShiftObject(SqlDataReader reader)
+        {
+            ScheduleShift scheduleShift = new ScheduleShift();
+            scheduleShift.Id = reader.GetInt32(0);
+            scheduleShift.Employee = new EmployeeRepository().GetEmployeeById(Convert.ToInt32(reader["EmployeeId"].ToString()));
+            scheduleShift.StartTime = reader.GetDateTime(1);
+            scheduleShift.Hours = Convert.ToDouble(reader["Hours"].ToString());
+            scheduleShift.IsForSale = Convert.ToBoolean(reader["IsForSale"]);
+            scheduleShift.RowVersion = reader.GetFieldValue<byte[]>(6);
+            return scheduleShift;
         }
     }
 }

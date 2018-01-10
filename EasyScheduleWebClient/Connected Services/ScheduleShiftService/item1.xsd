@@ -5,6 +5,7 @@
       <xs:extension base="tns:Shift">
         <xs:sequence>
           <xs:element minOccurs="0" name="IsForSale" type="xs:boolean" />
+          <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
           <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
         </xs:sequence>
       </xs:extension>
@@ -30,6 +31,7 @@
       <xs:element minOccurs="0" name="NoOfHours" type="xs:int" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="Salt" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
     </xs:sequence>

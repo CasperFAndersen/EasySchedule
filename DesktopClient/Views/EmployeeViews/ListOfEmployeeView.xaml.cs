@@ -29,8 +29,6 @@ namespace DesktopClient.Views.EmployeeViews
             InitializeComponent();
         }
 
-
-
         public void GetListOfEmployeesBasedOnDepartment(int departmentId)
         {
             try
@@ -40,10 +38,8 @@ namespace DesktopClient.Views.EmployeeViews
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Something went wrong! Could not feth employees");
             }
-
         }
     }
 }

@@ -8,7 +8,7 @@ namespace EasyScheduleWebClient.Services
 {
     public class EventRepository
     {
-        public IEnumerable<Event> GetEvents()
+        public List<Event> GetEvents()
         {
             List<Event> events = new List<Event>();
 
@@ -19,7 +19,7 @@ namespace EasyScheduleWebClient.Services
             {
                 events.Add(new Event()
                 {
-                    EventID = ++id,
+                    EventId = ++id,
                     Subject = shift.Employee.Name,
                     Description = "Work",
                     Start = shift.StartTime,
@@ -32,44 +32,11 @@ namespace EasyScheduleWebClient.Services
 
             return events;
         }
-
-
-        //public IEnumerable<Event> GetEvents()
-        //{
-        //    Event e1 = new Event
-        //    {
-        //        EventID = 1,
-        //        Subject = "Rikke",
-        //        Description = "Rikke arbejder ved kassen",
-        //        Start = DateTime.Now,
-        //        End = DateTime.Now.AddHours(2),
-        //        ThemeColor = "Red",
-        //        IsFullDay = false
-        //    };
-
-        //    Event e2 = new Event
-        //    {
-        //        EventID = 1,
-        //        Subject = "Morten",
-        //        Description = "Morten er opfylder",
-        //        Start = DateTime.Now.AddDays(1).AddHours(2),
-        //        End = DateTime.Now.AddDays(1).AddHours(7),
-        //        ThemeColor = "Green",
-        //        IsFullDay = false
-        //    };
-
-        //    List<Event> res = new List<Event>();
-        //    res.Add(e1);
-        //    res.Add(e2);
-
-        //    return res;
-
-        //}
     }
 
     public class Event
     {
-        public int EventID { get; set; }
+        public int EventId { get; set; }
         public string Subject { get; set; }
         public string Description { get; set; }
         public DateTime Start { get; set; }

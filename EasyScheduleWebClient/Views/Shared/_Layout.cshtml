@@ -28,7 +28,6 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("View Schedule", "Index", "Home")</li>
                     <li>@Html.ActionLink("Show all avaliable shifts", "Index", "AvailableShifts")</li>
-                    @*<li>@Html.ActionLink("Somethng else", "Contact", "Home")</li>*@
                     @if (Session["employee"] != null)
                     {
                         <li>@Html.ActionLink("Logout", "Logout", "Login")</li>

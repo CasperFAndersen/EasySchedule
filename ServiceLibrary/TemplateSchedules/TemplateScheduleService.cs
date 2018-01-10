@@ -6,30 +6,26 @@ namespace ServiceLibrary.TemplateSchedules
 {
     public class TemplateScheduleService : ITemplateScheduleService
     {
-        TemplateScheduleController templateScheduleController = new TemplateScheduleController();
+        private readonly TemplateScheduleController _templateScheduleController = new TemplateScheduleController();
+
         public void AddTemplateScheduleToDb(TemplateSchedule templateSchedule)
         {
-            templateScheduleController.AddTemplateScheduleToDb(templateSchedule);
+            _templateScheduleController.AddTemplateScheduleToDb(templateSchedule);
         }
 
-        public TemplateSchedule FindTemplateScheduleByName(string name)
+        public List<TemplateSchedule> GetAllTemplateSchedules()
         {
-            return templateScheduleController.FindTemplateScheduleByName(name);
-        }
-
-        public IEnumerable<TemplateSchedule> GetAllTemplateSchedules()
-        {
-            return templateScheduleController.GetAllTemplateSchedules();
+            return _templateScheduleController.GetAllTemplateSchedules();
         }
 
         public void UpdateTemplateScheduleWithDelete(TemplateSchedule templateSchedule, List<TemplateShift> deletedTemplateShifts)
         {
-            templateScheduleController.UpdateTemplateSchedule(templateSchedule, deletedTemplateShifts);
+            _templateScheduleController.UpdateTemplateSchedule(templateSchedule, deletedTemplateShifts);
         }
 
         public void UpdateTemplateSchedule(TemplateSchedule templateSchedule)
         {
-            templateScheduleController.UpdateTemplateSchedule(templateSchedule);
+            _templateScheduleController.UpdateTemplateSchedule(templateSchedule);
         }
     }
 }

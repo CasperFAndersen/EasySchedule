@@ -1,35 +1,22 @@
-﻿using DesktopClient.TemplateScheduleService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core;
+using DesktopClient.TemplateScheduleService;
 
-namespace DesktopClient
+namespace DesktopClient.Services
 {
     public class TemplateScheduleProxy : ITemplateScheduleService
     {
         private readonly TemplateScheduleServiceClient _templateScheduleServiceClient = new TemplateScheduleServiceClient();
 
-        public void AddTemplateScheduleToDb(TemplateSchedule tSchedule)
+        public void AddTemplateScheduleToDb(TemplateSchedule templateSchedule)
         {
-            _templateScheduleServiceClient.AddTemplateScheduleToDb(tSchedule);
+            _templateScheduleServiceClient.AddTemplateScheduleToDb(templateSchedule);
         }
 
-        public Task AddTemplateScheduleToDbAsync(TemplateSchedule tSchedule)
+        public Task AddTemplateScheduleToDbAsync(TemplateSchedule templateSchedule)
         {
-            return _templateScheduleServiceClient.AddTemplateScheduleToDbAsync(tSchedule);
-        }
-
-        public TemplateSchedule FindTemplateScheduleByName(string name)
-        {
-            return _templateScheduleServiceClient.FindTemplateScheduleByName(name);
-        }
-
-        public Task<TemplateSchedule> FindTemplateScheduleByNameAsync(string name)
-        {
-            return _templateScheduleServiceClient.FindTemplateScheduleByNameAsync(name);
+            return _templateScheduleServiceClient.AddTemplateScheduleToDbAsync(templateSchedule);
         }
 
         public List<TemplateSchedule> GetAllTemplateSchedules()

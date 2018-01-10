@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Core;
-using DatabaseAccess;
 using DatabaseAccess.Employees;
 using System.Text.RegularExpressions;
-using System.Transactions;
 
 namespace BusinessLogic
 {
     public class EmployeeController : IEmployeeController
     {
-        private InputValidator _inputValidator;
+        private readonly InputValidator _inputValidator;
         private readonly IEmployeeRepository _employeeRepository;
 
         public EmployeeController()
@@ -27,7 +22,6 @@ namespace BusinessLogic
             _employeeRepository = employeeRepository;
             _inputValidator = new InputValidator();
         }
-
 
         public List<Employee> GetAllEmployees()
         {
@@ -58,8 +52,7 @@ namespace BusinessLogic
         public Employee ValidatePassword(string username, string password)
         {
             Employee employee = GetEmployeeByUsername(username);
-            string salt = _employeeRepository.GetSaltByEmployee(employee);
-            password = PasswordHashing.HashPassword(salt + password);
+            password = PasswordHashing.HashPassword(employee.Salt + password);
             if (employee.Password.Equals(password))
             {
                 return employee;
@@ -84,7 +77,6 @@ namespace BusinessLogic
 
         public void UpdateEmployee(Employee employee)
         {
-
             if (!employee.Password.Equals(GetEmployeeByUsername(employee.Username).Password))
             {
                 employee.Salt = PasswordHashing.GenerateSalt();
@@ -98,7 +90,6 @@ namespace BusinessLogic
             {
                 throw new ArgumentException("An error regarding input checks has arrised. Please check that the inputs are valid.");
             }
-
         }
 
         private bool ValidateEmployeeObject(Employee employee)
@@ -125,9 +116,7 @@ namespace BusinessLogic
             {
                 isCorrectFormatted = false;
             }
-
             return isCorrectFormatted;
         }
-
     }
 }

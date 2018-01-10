@@ -17,7 +17,6 @@ namespace DatabaseAccess.Tests
         [TestInitialize]
         public void TestInitialize()
         {
-            
             _scheduleRepository = new ScheduleRepository();
         }
 
@@ -44,12 +43,10 @@ namespace DatabaseAccess.Tests
             Assert.AreNotEqual(0, schedules.Count);
         }
 
-
-
         [TestCleanup]
         public void TestCleanup()
         {
-           DbSetUp.SetUpDb();
+            DbSetUp.SetUpDb();
         }
     }
 }

@@ -1,8 +1,5 @@
 ﻿using DesktopClient.ScheduleShiftService;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Core;
 
@@ -10,7 +7,7 @@ namespace DesktopClient.Services
 {
     public class ScheduleShiftProxy : IScheduleShiftService
     {
-        readonly ScheduleShiftServiceClient _scheduleShiftServiceClient = new ScheduleShiftServiceClient();
+        private readonly ScheduleShiftServiceClient _scheduleShiftServiceClient = new ScheduleShiftServiceClient();
 
         public void AcceptAvailableShift(ScheduleShift shift, Employee employee)
         {

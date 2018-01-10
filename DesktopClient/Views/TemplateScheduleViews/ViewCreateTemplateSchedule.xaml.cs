@@ -9,11 +9,12 @@ namespace DesktopClient.Views.TemplateScheduleViews
 {
     public partial class ViewCreateTemplateSchedule : UserControl
     {
-        private readonly DepartmentProxy _departmentProxy;
+        private List<Department> DepartmentList { get; set; }
+        DepartmentProxy departmentProxy;
 
         public ViewCreateTemplateSchedule()
         {
-            _departmentProxy = new DepartmentProxy();
+            departmentProxy = new DepartmentProxy();
             InitializeComponent();
             LoadDeparmentList();
             NoOfWeeks.ItemsSource = new int[] { 1, 2, 3, 4 };
@@ -23,8 +24,8 @@ namespace DesktopClient.Views.TemplateScheduleViews
         {
             try
             {
-                Department department = _departmentProxy.GetDepartmentById(MainWindow.Employee.DepartmentId);
-                List<Department> departmens = await _departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
+                Department department = await departmentProxy.GetDepartmentByIdAsync(MainWindow.Employee.DepartmentId);
+                List<Department> departmens = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
                 CBoxDepartment.ItemsSource = departmens;
                 CBoxDepartment.DisplayMemberPath = "Name";
             }
@@ -37,7 +38,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
         private void CBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Mediator.GetInstance().OnDepartmentBoxSelected((Department)CBoxDepartment.SelectedItem);
-            NoOfWeeks.SelectedIndex = 1;
+            NoOfWeeks.SelectedIndex = 0;
         }
 
         private void BtnSaveTemplateSchedule_Click(object sender, RoutedEventArgs e)
@@ -58,6 +59,7 @@ namespace DesktopClient.Views.TemplateScheduleViews
                 templateSchedule.NoOfWeeks = (int)NoOfWeeks.SelectedItem;
                 templateSchedule.Name = TxtBoxTemplateScheduleName.Text;
                 Mediator.GetInstance().OnCreateTemplateScheduleButtonClicked(templateSchedule);
+           
             }
         }
 

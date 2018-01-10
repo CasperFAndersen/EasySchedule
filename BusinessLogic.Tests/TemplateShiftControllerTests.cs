@@ -8,12 +8,12 @@ namespace BusinessLogic.Tests
     [TestClass]
     public class TemplateShiftControllerTests
     {
-        ITemplateShiftControlller templateShiftController;
+        private ITemplateShiftControlller _templateShiftController;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            templateShiftController = new TemplateShiftController();
+            _templateShiftController = new TemplateShiftController();
         }
         [TestMethod]
         public void CreateTemplateShiftTest()
@@ -30,7 +30,7 @@ namespace BusinessLogic.Tests
         [TestMethod]
         public void TestGetAllTemplateShiftsByTemplateScheduleId()
         {
-            List<TemplateShift> templateShifts = templateShiftController.GetTemplateShiftsByTemplateScheduleId(1);
+            List<TemplateShift> templateShifts = _templateShiftController.GetTemplateShiftsByTemplateScheduleId(1);
             Assert.IsNotNull(templateShifts);
         }
     }

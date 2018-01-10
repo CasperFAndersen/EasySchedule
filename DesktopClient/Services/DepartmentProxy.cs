@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core;
 using DesktopClient.DepartmentService;
@@ -10,36 +7,36 @@ namespace DesktopClient.Services
 {
     public class DepartmentProxy : IDepartmentService
     {
-        DepartmentServiceClient proxy = new DepartmentServiceClient();
+        private readonly DepartmentServiceClient _departmentServiceClient = new DepartmentServiceClient();
 
-        public Department GetDepartmentById(int depId)
+        public Department GetDepartmentById(int departmentId)
         {
-            return proxy.GetDepartmentById(depId);
+            return _departmentServiceClient.GetDepartmentById(departmentId);
         }
 
-        public Task<Department> GetDepartmentByIdAsync(int depId)
+        public Task<Department> GetDepartmentByIdAsync(int departmentId)
         {
-            return proxy.GetDepartmentByIdAsync(depId);
+            return _departmentServiceClient.GetDepartmentByIdAsync(departmentId);
         }
 
         public List<Department> GetAllDepartments()
         {
-            return proxy.GetAllDepartments();
+            return _departmentServiceClient.GetAllDepartments();
         }
 
         public Task<List<Department>> GetAllDepartmentsAsync()
         {
-            return proxy.GetAllDepartmentsAsync();
+            return _departmentServiceClient.GetAllDepartmentsAsync();
         }
 
         public List<Department> GetAllDepartmentsByWorkplaceId(int workplaceId)
         {
-            return proxy.GetAllDepartmentsByWorkplaceId(workplaceId);
+            return _departmentServiceClient.GetAllDepartmentsByWorkplaceId(workplaceId);
         }
 
         public Task<List<Department>> GetAllDepartmentsByWorkplaceIdAsync(int workplaceId)
         {
-            return proxy.GetAllDepartmentsByWorkplaceIdAsync(workplaceId);
+            return _departmentServiceClient.GetAllDepartmentsByWorkplaceIdAsync(workplaceId);
         }
     }
 }

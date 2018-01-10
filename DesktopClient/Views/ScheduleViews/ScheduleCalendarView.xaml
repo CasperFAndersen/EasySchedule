@@ -11,9 +11,11 @@
       Title="ScheduleCalendarView">
     <Grid>
         <Grid.RowDefinitions>
+
             <RowDefinition Name="CotrolsRow" Height="4*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Name="CalendarRow" Height="10*"/>
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

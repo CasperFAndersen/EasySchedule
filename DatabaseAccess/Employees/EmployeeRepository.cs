@@ -113,7 +113,6 @@ namespace DatabaseAccess.Employees
                 List<Employee> employees = new List<Employee>();
                 using (SqlConnection connection = new DbConnection().GetConnection())
                 {
-                    //connection.Open();
                     using (SqlCommand command = connection.CreateCommand())
                     {
                         command.CommandText = "SELECT * FROM Employee WHERE Employee.departmentId = @param1;";
@@ -191,7 +190,7 @@ namespace DatabaseAccess.Employees
                             command.CommandText =
                                 "UPDATE Employee Set name = @param1, email = @param2, phone = @param3, noOfHours = @param4, " +
                                 "isAdmin = @param5, username = @param6, password = @param7, departmentId = @param8, isEmployed = @param9, salt = @param10 " +
-                                "WHERE employee.id = @param11";
+                                "WHERE employee.id = @param11 AND RV = @param12";
 
                             SqlParameter p1 = new SqlParameter(@"param1", SqlDbType.VarChar);
                             SqlParameter p2 = new SqlParameter(@"param2", SqlDbType.VarChar);
@@ -205,6 +204,7 @@ namespace DatabaseAccess.Employees
                             SqlParameter p10 = new SqlParameter(@"param10", SqlDbType.VarChar);
                             SqlParameter p11 = new SqlParameter(@"param11", SqlDbType.Int);
 
+
                             p1.Value = employee.Name;
                             p2.Value = employee.Email;
                             p3.Value = employee.Phone;
@@ -216,6 +216,7 @@ namespace DatabaseAccess.Employees
                             p9.Value = employee.IsEmployed;
                             p10.Value = employee.Salt;
                             p11.Value = employee.Id;
+                            command.Parameters.AddWithValue("@param12", employee.RowVersion);
 
                             command.Parameters.Add(p1);
                             command.Parameters.Add(p2);
@@ -229,12 +230,20 @@ namespace DatabaseAccess.Employees
                             command.Parameters.Add(p10);
                             command.Parameters.Add(p11);
 
-                            command.ExecuteNonQuery();
+                            int rowsAffected = command.ExecuteNonQuery();
+                            if (rowsAffected == 0)
+                            {
+                                throw new DataInInvalidStateException();
+                            }
 
                             scope.Complete();
                         }
                     }
                 }
+            }
+            catch (DataInInvalidStateException)
+            {
+                throw;
             }
             catch (Exception e)
             {
@@ -242,14 +251,7 @@ namespace DatabaseAccess.Employees
             }
         }
 
-        /// <summary>
-        /// This method builds a new Employee object with the information retrieved from the database.
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <returns>
-        /// Returns a employee object.
-        /// </returns>
-        public Employee BuildEmployeeObject(SqlDataReader reader)
+        private Employee BuildEmployeeObject(SqlDataReader reader)
         {
             Employee employee = new Employee();
             employee.Id = Convert.ToInt32(reader["id"].ToString());
@@ -263,6 +265,7 @@ namespace DatabaseAccess.Employees
             employee.DepartmentId = Convert.ToInt32(reader["departmentId"].ToString());
             employee.Salt = reader["salt"].ToString();
             employee.IsEmployed = reader.GetBoolean(10);
+            employee.RowVersion = reader.GetFieldValue<byte[]>(11);
             return employee;
         }
     }

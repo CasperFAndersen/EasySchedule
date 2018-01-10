@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Core;
 using DesktopClient.ScheduleService;
@@ -10,7 +8,7 @@ namespace DesktopClient.Services
 {
     public class ScheduleProxy : IScheduleService
     {
-        readonly ScheduleServiceClient _scheduleServiceClient = new ScheduleServiceClient();
+        private readonly ScheduleServiceClient _scheduleServiceClient = new ScheduleServiceClient();
 
         public Schedule GenerateScheduleFromTemplateScheduleAndStartDate(TemplateSchedule templateSchedule, DateTime startTime)
         {
@@ -20,6 +18,16 @@ namespace DesktopClient.Services
         public Task<Schedule> GenerateScheduleFromTemplateScheduleAndStartDateAsync(TemplateSchedule templateSchedule, DateTime startTime)
         {
             return _scheduleServiceClient.GenerateScheduleFromTemplateScheduleAndStartDateAsync(templateSchedule, startTime);
+        }
+
+        public IEnumerable<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<ScheduleShift>> GetAllAvailableShiftsByDepartmentIdAsync(int departmentId)
+        {
+            throw new NotImplementedException();
         }
 
         public Schedule GetScheduleByDepartmentIdAndDate(int departmentId, DateTime date)

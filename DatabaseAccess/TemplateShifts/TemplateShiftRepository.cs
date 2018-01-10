@@ -39,10 +39,9 @@ namespace DatabaseAccess.TemplateShifts
                     }
                 }
             }
-
         }
 
-        public void UpdateTemplateScheduleShift(TemplateShift templateShift, SqlConnection connection)
+        private void UpdateTemplateScheduleShift(TemplateShift templateShift, SqlConnection connection)
         {
             using (SqlCommand updateTemplateShift = new SqlCommand(
                  "UPDATE TemplateShift SET " +
@@ -102,32 +101,11 @@ namespace DatabaseAccess.TemplateShifts
             return templateShifts;
         }
 
-        /// <summary>
-        /// This method builds a TemplateShift object based on information retrieved from the database.
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <returns>
-        /// Returns a TemplateShift object.
-        /// </returns>
-        public TemplateShift BuildTemplateShiftObject(SqlDataReader reader)
-        {
-            TemplateShift templateShiftObject = new TemplateShift();
-            templateShiftObject.Id = reader.GetInt32(0);
-            templateShiftObject.WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader.GetString(1));
-            templateShiftObject.Hours = reader.GetDouble(2);
-            templateShiftObject.StartTime = reader.GetTimeSpan(3);
-            templateShiftObject.WeekNumber = reader.GetInt32(4);
-            templateShiftObject.TemplateScheduleId = reader.GetInt32(5);
-            templateShiftObject.Employee = new Employee() { Id = reader.GetInt32(6) }; //Creates dumme-employee-object
-            return templateShiftObject;
-        }
-
         public TemplateShift FindTemplateShiftById(int templateShiftId)
         {
             TemplateShift templateShift = null;
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-                //connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM TemplateShift WHERE ID = @param1", connection))
                 {
                     command.Parameters.AddWithValue("@param1", templateShiftId);
@@ -184,16 +162,26 @@ namespace DatabaseAccess.TemplateShifts
         {
             using (SqlConnection connection = new DbConnection().GetConnection())
             {
-
                 using (SqlCommand deleteTemplateShift = new SqlCommand(
                       "DELETE FROM TemplateShift WHERE id = @param1;", connection))
                 {
                     deleteTemplateShift.Parameters.AddWithValue(@"param1", templateShift.Id);
-
                     deleteTemplateShift.ExecuteNonQuery();
-
                 }
             }
+        }
+
+        private TemplateShift BuildTemplateShiftObject(SqlDataReader reader)
+        {
+            TemplateShift templateShiftObject = new TemplateShift();
+            templateShiftObject.Id = reader.GetInt32(0);
+            templateShiftObject.WeekDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), reader.GetString(1));
+            templateShiftObject.Hours = reader.GetDouble(2);
+            templateShiftObject.StartTime = reader.GetTimeSpan(3);
+            templateShiftObject.WeekNumber = reader.GetInt32(4);
+            templateShiftObject.TemplateScheduleId = reader.GetInt32(5);
+            templateShiftObject.Employee = new Employee() { Id = reader.GetInt32(6) }; //Creates dummy-employee-object, so it is possible to find the employee by id later
+            return templateShiftObject;
         }
     }
 }

@@ -9,71 +9,71 @@ namespace EasyScheduleWebClient.Services
 {
     public class EmployeeProxy : IEmployeeService
     {
-        EmployeeServiceClient proxy = new EmployeeServiceClient();
+        readonly EmployeeServiceClient employeeService = new EmployeeServiceClient();
 
         public Employee GetEmployeeByUsername(string username)
         {
-            return proxy.GetEmployeeByUsername(username);
+            return employeeService.GetEmployeeByUsername(username);
         }
 
         public Task<Employee> GetEmployeeByUsernameAsync(string username)
         {
-            return proxy.GetEmployeeByUsernameAsync(username);
+            return employeeService.GetEmployeeByUsernameAsync(username);
         }
 
         public List<Employee> GetEmployeesByDepartmentId(int departmentId)
         {
-            return proxy.GetEmployeesByDepartmentId(departmentId);
+            return employeeService.GetEmployeesByDepartmentId(departmentId);
         }
 
         public Task<List<Employee>> GetEmployeesByDepartmentIdAsync(int departmentId)
         {
-            return proxy.GetEmployeesByDepartmentIdAsync(departmentId);
+            return employeeService.GetEmployeesByDepartmentIdAsync(departmentId);
         }
 
         public void InsertEmployee(Employee employee)
         {
-            proxy.InsertEmployee(employee);
+            employeeService.InsertEmployee(employee);
         }
 
         public Task InsertEmployeeAsync(Employee employee)
         {
-            return proxy.InsertEmployeeAsync(employee);
+            return employeeService.InsertEmployeeAsync(employee);
         }
 
         public void UpdateEmployee(Employee employee)
         {
-           proxy.UpdateEmployee(employee);
+           employeeService.UpdateEmployee(employee);
         }
 
         public Task UpdateEmployeeAsync(Employee employee)
         {
-            return proxy.UpdateEmployeeAsync(employee);
+            return employeeService.UpdateEmployeeAsync(employee);
         }
 
         public Employee ValidatePassword(string username, string password)
         {
-            return proxy.ValidatePassword(username, password);
+            return employeeService.ValidatePassword(username, password);
         }
 
         public Task<Employee> ValidatePasswordAsync(string username, string password)
         {
-            return proxy.ValidatePasswordAsync(username, password);
+            return employeeService.ValidatePasswordAsync(username, password);
         }
 
         List<Employee> IEmployeeService.GetAllEmployees()
         {
-            return proxy.GetAllEmployees();
+            return employeeService.GetAllEmployees();
         }
 
         Task<List<Employee>> IEmployeeService.GetAllEmployeesAsync()
         {
-            return proxy.GetAllEmployeesAsync();
+            return employeeService.GetAllEmployeesAsync();
         }
 
         List<Employee> IEmployeeService.GetEmployeesByDepartmentId(int departmentId)
         {
-            return proxy.GetEmployeesByDepartmentId(departmentId);
+            return employeeService.GetEmployeesByDepartmentId(departmentId);
         }
     }
 }

@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BusinessLogic
+﻿namespace BusinessLogic
 {
     /// <summary>
     /// This class is for input checks regarding user inputs from the UI.
     /// </summary>
     public class InputValidator
     {
-
         public string PhoneCheck
         {
             get { return "^[0-9]{8,20}$"; }
@@ -24,18 +17,17 @@ namespace BusinessLogic
 
         public string NameCheck
         {
-            get { return "[a-zA-Z]+( [a-zA-Z]+)+"; }
+            get { return "^[a-zA-Z]+( [a-zA-Z]+)+"; }
         }
 
         public string UsernameCheck
         {
-            get { return "[0-9a-zA-Z]{3,}"; }
+            get { return "^[0-9a-zA-Z]{3,}"; }
         }
 
         public string PasswordCheck
         {
-            get { return "[0-9a-zA-Z]{6,30}"; }
+            get { return "^[0-9a-zA-Z]{6,30}"; }
         }
-
     }
 }

@@ -25,6 +25,7 @@ namespace EasyScheduleWebClient
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/HomeIndex.css",
                       "~/Content/site.css"));
 
             //bundles.Add(new StyleBundle("~/Content/fullcalendarcss").Include(

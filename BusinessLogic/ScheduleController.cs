@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Core;
-using DatabaseAccess;
 using DatabaseAccess.Schedules;
-using DatabaseAccess.Departments;
-using DatabaseAccess.ScheduleShifts;
 using System.Transactions;
 
 namespace BusinessLogic
@@ -39,7 +33,7 @@ namespace BusinessLogic
             {
                 foreach (Schedule temporarySchedule in schedules)
                 {
-                    if (date >= (temporarySchedule.StartDate)  && date <= (temporarySchedule.EndDate))
+                    if (date >= (temporarySchedule.StartDate) && date <= (temporarySchedule.EndDate))
                     {
                         schedule = temporarySchedule;
                     }
@@ -54,10 +48,10 @@ namespace BusinessLogic
         }
 
         public void InsertScheduleToDb(Schedule schedule)
-        {           
+        {
             if (ValidateScheduleObject(schedule))
             {
-                using(TransactionScope scope = new TransactionScope())
+                using (TransactionScope scope = new TransactionScope())
                 {
                     schedule = _scheduleRepository.InsertSchedule(schedule);
                     _scheduleShiftController.AddShiftsFromSchedule(schedule);
@@ -77,9 +71,7 @@ namespace BusinessLogic
                 using (TransactionScope scope = new TransactionScope())
                 {
                     _scheduleShiftController.AddShiftsFromSchedule(schedule);
-
                     deletedScheduleShifts.ForEach(x => _scheduleShiftController.DeleteScheduleShift(x));
-
                     scope.Complete();
                 }
             }
@@ -114,13 +106,11 @@ namespace BusinessLogic
                 schedule.Department = department;
                 schedule.Shifts = _scheduleShiftController.GetShiftsByScheduleId(schedule.Id);
             }
-
             return schedules;
         }
 
         /// <summary>
-        /// This method takes a templateSchedule and returns a Schedule for the user to use.
-        /// The returned Schedule can after the call be used without interfering with the template, and used as a base plan for your team.
+        /// This method generates a schedule by a template schedule and date.
         /// </summary>
         /// <param name="templateSchedule"></param>
         /// <param name="startTime"></param>
@@ -133,23 +123,22 @@ namespace BusinessLogic
             schedule.Shifts = _scheduleShiftController.GenerateShiftsFromTemplateSchedule(templateSchedule, startTime);
             schedule.Department = _departmentController.GetDepartmentById(templateSchedule.DepartmentId);
             schedule.StartDate = startTime;
-            schedule.EndDate = startTime.AddDays((7 * templateSchedule.NoOfWeeks)-1);
+            schedule.EndDate = startTime.AddDays((7 * templateSchedule.NoOfWeeks) - 1);
             return schedule;
         }
 
         private bool ValidateScheduleObject(Schedule schedule)
         {
             bool isOkToInput = true;
-
             if (GetScheduleByDepartmentIdAndDate(schedule.Department.Id, schedule.StartDate) != null
             || GetScheduleByDepartmentIdAndDate(schedule.Department.Id, schedule.EndDate) != null)
             {
                 if (schedule.Id == 0)
                 {
                     isOkToInput = false;
-                }           
+                }
             }
-            else if(schedule.StartDate > schedule.EndDate)
+            else if (schedule.StartDate > schedule.EndDate)
             {
                 isOkToInput = false;
             }
@@ -157,8 +146,7 @@ namespace BusinessLogic
             {
                 isOkToInput = false;
             }
-                return isOkToInput;
+            return isOkToInput;
         }
-
     }
 }

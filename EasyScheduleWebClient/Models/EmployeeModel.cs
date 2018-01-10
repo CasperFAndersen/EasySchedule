@@ -13,6 +13,7 @@ namespace EasyScheduleWebClient.Models
         [Required(ErrorMessage = "This field is required")]
         public string Username { get; set; }
 
+
         [Required(ErrorMessage = "This field is required")]
         [DisplayName("Password: ")]
         [DataType(DataType.Password)]

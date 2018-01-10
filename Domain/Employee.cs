@@ -1,18 +1,16 @@
-﻿using System;
-using System.Runtime.Serialization;
-using System.Text.RegularExpressions;
+﻿using System.Runtime.Serialization;
 
 namespace Core
 {
-
     [DataContract]
     public class Employee
     {
+        #region Properties
         [DataMember]
         public int Id { get; set; }
 
         [DataMember]
-        public string Name { get;set;}
+        public string Name { get; set; }
 
         [DataMember]
         public string Email { get; set; }
@@ -41,5 +39,8 @@ namespace Core
         [DataMember]
         public int DepartmentId { get; set; }
 
+        [DataMember]
+        public byte[] RowVersion { get; set; }
+        #endregion
     }
 }

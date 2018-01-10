@@ -28,7 +28,7 @@ namespace DesktopClient.Views
         public MainWindow()
         {
             InitializeComponent();
-            frame.Content = new Login();
+            Frame.Content = new Login();
             Menu.Visibility = Visibility.Hidden;
             SetOnLoginButtonClicked();
             employeeBox.Visibility = Visibility.Hidden;
@@ -37,7 +37,7 @@ namespace DesktopClient.Views
         private void LoginSuccess()
         {
             Menu.Visibility = Visibility.Visible;
-            frame.Content = null;
+            Frame.Content = null;
 
             templateScheduleCalendarView1 = new TemplateScheduleCalendarView();
             templateScheduleCalendarView2 = new TemplateScheduleCalendarView();
@@ -56,7 +56,7 @@ namespace DesktopClient.Views
             createEmployeeView = new EmployeeViews.CreateEmployeeView();
             viewScheduleView = new ViewScheduleView();
 
-            frame.Content = new WelcomePage(this);
+            Frame.Content = new WelcomePage(this);
 
             SetEmployeeInfo();
         }
@@ -67,10 +67,10 @@ namespace DesktopClient.Views
             {
                 Department department = await new DepartmentProxy().GetDepartmentByIdAsync(Employee.DepartmentId);
                 employeeBox.Visibility = Visibility.Visible;
-                txtDepartment.Text = department.Name;
-                txtName.Text = Employee.Name;
-                txtUserName.Text = Employee.Username;
-                txtAdimn.Text = Employee.IsAdmin.ToString();
+                TxtDepartment.Text = department.Name;
+                TxtName.Text = Employee.Name;
+                TxtUserName.Text = Employee.Username;
+                TxtAdmin.Text = Employee.IsAdmin.ToString();
             }
             catch (Exception)
             {
@@ -85,10 +85,10 @@ namespace DesktopClient.Views
             viewCreateTemplateSchedule.CBoxDepartment.SelectedIndex = 0;
             templateScheduleCalendarView1.Calendar.Clear();
             templateScheduleCalendarView1.EmployeeList.Items.Clear();
-            frame.Content = templateScheduleCalendarView1;
+            Frame.Content = templateScheduleCalendarView1;
             templateScheduleCalendarView1.Calendar.LoadShiftsIntoCalendar();
 
-            txtViewtitle.Text = "View/Edit Template Schedule";
+            TxtViewTitle.Text = "View/Edit Template Schedule";
         }
 
         public void CreateTemplateScheduleMenuItimClicked(object sender, RoutedEventArgs e)
@@ -97,40 +97,41 @@ namespace DesktopClient.Views
             templateScheduleCalendarView1.Calendar.Clear();
             templateScheduleCalendarView2.ControlPanel.Content = viewCreateTemplateSchedule;
             templateScheduleCalendarView2.EmployeeList.Items.Clear();
-            frame.Content = templateScheduleCalendarView2;
+            Frame.Content = templateScheduleCalendarView2;
             templateScheduleCalendarView2.Calendar.LoadShiftsIntoCalendar();
 
-            txtViewtitle.Text = "Create Template Schedule";
+            TxtViewTitle.Text = "Create Template Schedule";
         }
 
         public void ViewScheduleMenuItemClicked(object sender, RoutedEventArgs e)
         {
             scheduleCalendarViewEdit.ControlPanel.Content = viewScheduleView;
             scheduleCalendarViewEdit.EmployeeList.Items.Clear();
-            frame.Content = scheduleCalendarViewEdit;
+            Frame.Content = scheduleCalendarViewEdit;
 
-            txtViewtitle.Text = "View/Edit Schedule";
+            TxtViewTitle.Text = "View/Edit Schedule";
         }
 
         public void CreateScheduleMenuItemClicked(object sender, RoutedEventArgs e)
         {
             scheduleCalendarCreate.ControlPanel.Content = createScheduleView;
             scheduleCalendarCreate.EmployeeList.Items.Clear();
-            frame.Content = scheduleCalendarCreate;
+            Frame.Content = scheduleCalendarCreate;
             scheduleCalendarCreate.Calendar.Disable();
-            txtViewtitle.Text = "Create Schedule";
+            TxtViewTitle.Text = "Create Schedule";
         }
+
 
         public void CreateEmployeeMenuItemClicked(object sender, RoutedEventArgs e)
         {
-            frame.Content = createEmployeeView;
-            txtViewtitle.Text = "Create Employee";
+            Frame.Content = createEmployeeView;
+            TxtViewTitle.Text = "Create Employee";
         }
 
         public void UpdateEmployeeMenuItemClicked(object sender, RoutedEventArgs e)
         {
-            frame.Content = updateEmployeeView;
-            txtViewtitle.Text = "Update Employee";
+            Frame.Content = updateEmployeeView;
+            TxtViewTitle.Text = "Update Employee";
         }
 
         private void SetOnLoginButtonClicked()
@@ -145,13 +146,15 @@ namespace DesktopClient.Views
             };
         }
 
-        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        private void BtnLogOut_Click(object sender, RoutedEventArgs e)
         {
-            frame.Content = new Login();
+            Frame.Content = new Login();
             Employee = null;
             Menu.Visibility = Visibility.Hidden;
             employeeBox.Visibility = Visibility.Hidden;
-            txtViewtitle.Text = "";
+            TxtViewTitle.Text = "";
+            Mediator.ResetMediator();
+            SetOnLoginButtonClicked();
         }
     }
 }

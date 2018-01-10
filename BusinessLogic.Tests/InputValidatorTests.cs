@@ -113,7 +113,6 @@ namespace BusinessLogic.Tests
                     failedNames.Add(input);
                 }
             }
-
             Assert.AreEqual(3, passedNames.Count);
             Assert.AreEqual(3, failedNames.Count);
         }
@@ -121,14 +120,68 @@ namespace BusinessLogic.Tests
         [TestMethod]
         public void UsernameCheckTest()
         {
-            //TODO: IMPLEMENT THIS
+            string[] usernames =
+            {
+                "Username",
+                "Admin",
+                "123hej",
+                "hej123",
+
+                "!",
+                "ab",
+                "a"
+            };
+            List<string> passedUsernames = new List<string>();
+            List<string> failedUsernames = new List<string>();
+
+            string pattern = _inputValidator.UsernameCheck;
+            foreach (string input in usernames)
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(input, pattern))
+                {
+                    passedUsernames.Add(input);
+                }
+                else
+                {
+                    failedUsernames.Add(input);
+                }
+            }
+            Assert.AreEqual(4, passedUsernames.Count);
+            Assert.AreEqual(3, failedUsernames.Count);
         }
 
 
         [TestMethod]
         public void PasswordCheckTest()
         {
-            //TODO: IMPLEMENT THIS
+            string[] passwords =
+            {
+                "minKode",
+                "kode123",
+                "123hej",
+                "hej123",
+
+                "!",
+                "ab",
+                "a",
+            };
+            List<string> passedPasswords = new List<string>();
+            List<string> failedPasswords = new List<string>();
+
+            string pattern = _inputValidator.PasswordCheck;
+            foreach (string input in passwords)
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(input, pattern))
+                {
+                    passedPasswords.Add(input);
+                }
+                else
+                {
+                    failedPasswords.Add(input);
+                }
+            }
+            Assert.AreEqual(4, passedPasswords.Count);
+            Assert.AreEqual(3, failedPasswords.Count);
         }
     }
 }

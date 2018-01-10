@@ -11,6 +11,7 @@
       Title="TemplateScheduleCalendar">
     <Grid>
         <Grid.RowDefinitions>
+
             <RowDefinition Name="CotrolsRow" Height="4*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Name="CalendarRow" Height="10*"/>
@@ -22,7 +23,6 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <templateScheduleViews:TemplateScheduleCalendar x:Name="Calendar" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="15,25,15,10"/>
-
         <Label Name="LblTitle" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" />
         <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#FFD9D9D9">
             <Border.Effect>

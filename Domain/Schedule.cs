@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core
 {
     [DataContract]
     public class Schedule
     {
+        #region Properties
         [DataMember]
         public int Id { get; set; }
 
@@ -24,6 +22,7 @@ namespace Core
 
         [DataMember]
         public List<ScheduleShift> Shifts { get; set; }
+        #endregion
 
         public Schedule()
         {

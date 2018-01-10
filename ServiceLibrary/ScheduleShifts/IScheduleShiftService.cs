@@ -18,6 +18,6 @@ namespace ServiceLibrary.ScheduleShifts
         void AcceptAvailableShift(ScheduleShift shift, Employee employee);
 
         [OperationContract]
-        List<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
+        IEnumerable<ScheduleShift> GetAllAvailableShiftsByDepartmentId(int departmentId);
     }
 }

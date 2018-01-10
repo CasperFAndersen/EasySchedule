@@ -11,23 +11,6 @@ namespace DatabaseAccess.Schedules
 {
     public class ScheduleRepository : IScheduleRepository
     {
-        /// <summary>
-        /// This method builds a new Schedule object with the information retrieved from the database.
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <returns></returns>
-        public Schedule BuildScheduleObject(SqlDataReader reader)
-        {
-            Schedule schedule = new Schedule();
-            schedule.Id = reader.GetInt32(0);
-
-            schedule.StartDate = reader.GetDateTime(1);
-            schedule.EndDate = reader.GetDateTime(2);
-
-            return schedule;
-        }
-
-
         public List<Schedule> GetSchedulesByDepartmentId(int departmentId)
         {
             List<Schedule> schedules = new List<Schedule>();
@@ -72,17 +55,18 @@ namespace DatabaseAccess.Schedules
                     command.Parameters.Add(p3);
 
                     schedule.Id = Convert.ToInt32(command.ExecuteScalar());
-
                 }
             }
             return schedule;
         }
 
-        //public void UpdateSchedule(Schedule schedule)
-        //{
-        //    ScheduleShiftRepository scheduleShiftRepository = new ScheduleShiftRepository();
-        //    scheduleShiftRepository.AddShiftsFromSchedule(schedule);
-        //}
-
+        private Schedule BuildScheduleObject(SqlDataReader reader)
+        {
+            Schedule schedule = new Schedule();
+            schedule.Id = reader.GetInt32(0);
+            schedule.StartDate = reader.GetDateTime(1);
+            schedule.EndDate = reader.GetDateTime(2);
+            return schedule;
+        }
     }
 }

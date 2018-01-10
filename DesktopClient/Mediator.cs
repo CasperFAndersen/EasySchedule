@@ -27,6 +27,11 @@ namespace DesktopClient
             return _instance;
         }
 
+        public static void ResetMediator()
+        {
+            _instance = new Mediator();
+        }
+
         public event EventHandler<ShiftDropEventArgs> ShiftDropped;
 
         public void OnShiftDropped(object sender, Shift shift, bool isLastElement)
@@ -146,23 +151,20 @@ namespace DesktopClient
         public event CBoxDepartmentChangedVoidHandler CBoxDepartmentChangedVoid;
         public void OnCBoxSelectionChangedVoid(Department department)
         {
-         
             if (CBoxDepartmentChangedVoid != null)
             {
                 CBoxDepartmentChangedVoid(department);
             }
-           
         }
 
-        public delegate void CBoxDepartmentCreateScheduleChangedHandler(Department department);
-        public event CBoxDepartmentCreateScheduleChangedHandler CBoxDepartmentCreateScheduleChanged;
+        public delegate void CBoxDepartment_CreateSchedule_ChangedHandler(Department department);
+        public event CBoxDepartment_CreateSchedule_ChangedHandler CBoxDepartmentCreateScheduleChanged;
         public void OnCBoxDepartmentCreateScheduleChanged(Department department)
         {
             if (CBoxDepartmentCreateScheduleChanged != null)
             {
                 CBoxDepartmentCreateScheduleChanged(department);
             }
-
         }
 
         public delegate void CreateTemplateScheduleButtonClickedHandler(TemplateSchedule templateSchedule);
@@ -245,6 +247,5 @@ namespace DesktopClient
                 ResetButtonClicked();
             }
         }
-
     }
 }

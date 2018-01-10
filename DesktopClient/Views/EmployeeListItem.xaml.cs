@@ -26,7 +26,6 @@ namespace DesktopClient.Views
                 // Package the data.
                 DataObject data = new DataObject();
                 data.SetData(DataFormats.StringFormat, DataContext);
-                // data.SetData("Double", circleUI.Height);
                 data.SetData("Object", DataContext);
 
                 // Inititate the drag-and-drop operation.

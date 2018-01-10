@@ -2,7 +2,7 @@ using EasyScheduleWebClient.Services;
 
 namespace EasyScheduleWebClient
 {
-    using EasyScheduleWebClient.Services;
+    using Services;
     using System;
     using System.Data.Entity;
     using System.Linq;

@@ -4,8 +4,6 @@ using Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using ServiceLibrary.Departments;
-using DatabaseAccess.Departments;
-using BusinessLogic;
 
 namespace ServiceLibrary.Tests
 {

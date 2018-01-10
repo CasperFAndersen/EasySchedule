@@ -12,8 +12,9 @@ namespace DesktopClient.Views.ScheduleViews
     /// </summary>
     public partial class ViewScheduleView : Page
     {
-        ScheduleProxy scheduleProxy;
+        ScheduleProxy scheduleProxy; 
         DepartmentProxy departmentProxy;
+
         public ViewScheduleView()
         {
             scheduleProxy = new ScheduleProxy();
@@ -27,10 +28,10 @@ namespace DesktopClient.Views.ScheduleViews
 
         private void HideStartEndTxt()
         {
-            lblStart.Visibility = Visibility.Hidden;
-            lblEnd.Visibility = Visibility.Hidden;
-            txtStart.Visibility = Visibility.Hidden;
-            txtEnd.Visibility = Visibility.Hidden;
+            LblStart.Visibility = Visibility.Hidden;
+            LblEnd.Visibility = Visibility.Hidden;
+            TxtStart.Visibility = Visibility.Hidden;
+            TxtEnd.Visibility = Visibility.Hidden;
         }
 
         private async void BindComboBoxData()
@@ -38,8 +39,8 @@ namespace DesktopClient.Views.ScheduleViews
             try
             {
                 Department department = await departmentProxy.GetDepartmentByIdAsync(MainWindow.Employee.DepartmentId);
-                cBoxDepartment.ItemsSource = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
-                cBoxDepartment.DisplayMemberPath = "Name";
+                CBoxDepartment.ItemsSource = await departmentProxy.GetAllDepartmentsByWorkplaceIdAsync(department.WorkplaceId);
+                CBoxDepartment.DisplayMemberPath = "Name";
             }
             catch (Exception)
             {
@@ -50,14 +51,14 @@ namespace DesktopClient.Views.ScheduleViews
         private void cBoxDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Schedule schedule = null;
-            Department department = (Department)cBoxDepartment.SelectedItem;
+            Department department = (Department)CBoxDepartment.SelectedItem;
 
             schedule = Mediator.GetInstance().OnCBoxSelectionChanged(department);
             Mediator.GetInstance().OnCBoxSelectionChangedVoid(department);
             SetStartEndTxt(schedule);
 
-            btnReset.IsEnabled = false;
-            btnSave.IsEnabled = false;
+            BtnReset.IsEnabled = false;
+            BtnSave.IsEnabled = false;
 
         }
 
@@ -67,12 +68,10 @@ namespace DesktopClient.Views.ScheduleViews
             {
                 EnableSaveAndResetBtn();
             };
-
             Mediator.GetInstance().ShiftDropped += (s, e) =>
             {
                 EnableSaveAndResetBtn();
             };
-
             Mediator.GetInstance().ShiftCloseClicked += (s, e) =>
             {
                 EnableSaveAndResetBtn();
@@ -81,20 +80,20 @@ namespace DesktopClient.Views.ScheduleViews
 
         private void EnableSaveAndResetBtn()
         {
-            btnSave.IsEnabled = true;
-            btnReset.IsEnabled = true;
+            BtnSave.IsEnabled = true;
+            BtnReset.IsEnabled = true;
         }
 
         private void SetStartEndTxt(Schedule schedule)
         {
             if (schedule != null)
             {
-                lblStart.Visibility = Visibility.Visible;
-                lblEnd.Visibility = Visibility.Visible;
-                txtStart.Visibility = Visibility.Visible;
-                txtEnd.Visibility = Visibility.Visible;
-                txtStart.Text = schedule.StartDate.ToShortDateString();
-                txtEnd.Text = schedule.EndDate.ToShortDateString();
+                LblStart.Visibility = Visibility.Visible;
+                LblEnd.Visibility = Visibility.Visible;
+                TxtStart.Visibility = Visibility.Visible;
+                TxtEnd.Visibility = Visibility.Visible;
+                TxtStart.Text = schedule.StartDate.ToShortDateString();
+                TxtEnd.Text = schedule.EndDate.ToShortDateString();
             }
             else
             {
@@ -116,8 +115,8 @@ namespace DesktopClient.Views.ScheduleViews
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-            btnReset.IsEnabled = false;
-            btnSave.IsEnabled = false;
+            BtnReset.IsEnabled = false;
+            BtnSave.IsEnabled = false;
             Mediator.GetInstance().OnResetButtonClicked();
         }
     }

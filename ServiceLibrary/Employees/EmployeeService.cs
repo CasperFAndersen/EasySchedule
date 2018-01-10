@@ -7,36 +7,36 @@ namespace ServiceLibrary.Employees
 {
     public class EmployeeService : IEmployeeService
     {
-        IEmployeeController employeeController = new EmployeeController(new EmployeeRepository());
+        private readonly IEmployeeController _employeeController = new EmployeeController();
 
         public List<Employee> GetAllEmployees()
         {
-            return employeeController.GetAllEmployees();
+            return _employeeController.GetAllEmployees();
         }
 
         public Employee GetEmployeeByUsername(string username)
         {
-            return employeeController.GetEmployeeByUsername(username);
+            return _employeeController.GetEmployeeByUsername(username);
         }
 
         public List<Employee> GetEmployeesByDepartmentId(int departmentId)
         {
-            return employeeController.GetEmployeesByDepartmentId(departmentId);
+            return _employeeController.GetEmployeesByDepartmentId(departmentId);
         }
 
         public void InsertEmployee(Employee employee)
         {
-            employeeController.InsertEmployee(employee);
+            _employeeController.InsertEmployee(employee);
         }
 
         public void UpdateEmployee(Employee employee)
         {
-            employeeController.UpdateEmployee(employee);
+            _employeeController.UpdateEmployee(employee);
         }
 
         public Employee ValidatePassword(string username, string password)
         {
-           return employeeController.ValidatePassword(username, password);
+            return _employeeController.ValidatePassword(username, password);
         }
     }
 }

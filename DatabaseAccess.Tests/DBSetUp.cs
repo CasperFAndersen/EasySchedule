@@ -86,6 +86,7 @@ namespace DatabaseAccess.Tests
                             "salt varchar(40) not null, " +
                             "departmentId int foreign key references Department(id) not null," +
                             "isEmployed bit not null," +
+                            "RV rowversion, " +
                             "constraint ck_noOfHours_positive check(noOfHours >= 0)," +
                             "constraint ck_passwordLength check(datalength(password) >= 6)" +
                         ")"
@@ -96,6 +97,7 @@ namespace DatabaseAccess.Tests
                             "name varchar(50) not null," +
                             "noOfWeeks int not null," +
                             "departmentId int foreign key references Department(id)," +
+                            "RV rowversion, " +
                             "constraint ck_noOfWeeks_positive check(noOfWeeks >= 0)," +
                         ")"
                         +
@@ -119,6 +121,8 @@ namespace DatabaseAccess.Tests
                             "endDate datetime not null," +
                             "departmentId int foreign key references Department(id)," +
                             "constraint ck_startBeforeEnd check(startDate <= endDate)," +
+                            "constraint CK_Schedule_ValidateDates " +
+                             "check(dbo.ValidateEZScheduleDates(startDate, endDate, departmentId) = 1)" +
                         ")"
                         +
                         //Shift
@@ -129,6 +133,7 @@ namespace DatabaseAccess.Tests
                             "scheduleId int foreign key references Schedule(id) not null," +
                             "employeeId int foreign key references Employee(id) not null," +
                             "isForSale bit not null," +
+                            "RV rowversion, " +
                             "constraint ck_hoursShift_positive check(hours >= 0)," +
                         ")";
 
@@ -204,37 +209,37 @@ namespace DatabaseAccess.Tests
 
                         "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
                         "values ('Monday', 12, '06:30:00', 1, (select id from templateSchedule where name='JuleplanKolonial'), 1); " +
-                        
+
                         "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
                         "values ('Tuesday', 3, '08:00:00', 1, (select id from templateSchedule where name='JuleplanKolonial'), 2); " +
-                        
+
                         "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
                         "values ('Wednesday', 7, '11:30:00', 1, (select id from templateSchedule where name='JuleplanKolonial'), 5); " +
-                        
+
                         "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
                         "values ('Wednesday', 5, '15:00:00', 1, (select id from templateSchedule where name='JuleplanKolonial'), 1); " +
-                        
+
                         "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
                         "values ('Friday', 3, '15:00:00', 1, (select id from templateSchedule where name='JuleplanKolonial'), 5); " +
-                        
+
                         "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
                         "values ('Thursday', 9, '08:00:00', 1, (select id from templateSchedule where name='JuleplanKolonial'), 5); " +
-                        
+
                         "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
                         "values ('Monday', 9, '07:30:00', 2, (select id from templateSchedule where name='JuleplanKolonial'), 1); " +
-                        
+
                         "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
                         "values ('Tuesday', 3, '10:00:00', 2, (select id from templateSchedule where name='JuleplanKolonial'), 2); " +
-                        
+
                         "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
                         "values ('Wednesday', 7, '07:30:00', 2, (select id from templateSchedule where name='JuleplanKolonial'), 5); " +
-                        
+
                         "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
                         "values ('Thursday', 10, '08:00:00', 2, (select id from templateSchedule where name='JuleplanKolonial'), 1); " +
-                        
+
                         "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
                         "values ('Wednesday', 3, '13:00:00', 2, (select id from templateSchedule where name='JuleplanKolonial'), 2); " +
-                        
+
                         "insert into TemplateShift(weekday, hours, startTime, weekNumber, templateScheduleId, employeeId) " +
                         "values ('Friday', 8, '08:30:00', 2, (select id from templateSchedule where name='JuleplanKolonial'), 5); " +
 
@@ -247,7 +252,7 @@ namespace DatabaseAccess.Tests
                         "values ('2017-11-27', '2018-01-31', 2); "
                         +
 
-                        //Shift
+                        //ScheduleShift
                         "insert into ScheduleShift(startTime, hours, scheduleId, employeeId, isForSale) values('2017-11-06 15:00', 5, 1, (select id from employee where name = 'Mikkel Paulsen'), 1); " +
                         "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2017-11-24 17:00', 3, 1, (select id from employee where name = 'Casper Froberg'), 0); " +
                         "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2017-11-17 15:00', 5, 1, (select id from employee where name = 'Mikkel Paulsen'), 0); " +

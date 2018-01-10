@@ -8,10 +8,7 @@ namespace ServiceLibrary.TemplateSchedules
     public interface ITemplateScheduleService
     {
         [OperationContract]
-        IEnumerable<TemplateSchedule> GetAllTemplateSchedules();
-
-        [OperationContract]
-        TemplateSchedule FindTemplateScheduleByName(string name);
+        List<TemplateSchedule> GetAllTemplateSchedules();
 
         [OperationContract]
         void AddTemplateScheduleToDb(TemplateSchedule templateSchedule);
