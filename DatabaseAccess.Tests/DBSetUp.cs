@@ -267,13 +267,13 @@ namespace DatabaseAccess.Tests
                         "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2017-12-11 13:00', 7, 2, (select id from employee where name = 'Arne Ralston'), 1); " +
                         //Schedule 3
                         "insert into ScheduleShift(startTime, hours, scheduleId, employeeId, isForSale) values('2018-01-08 09:00', 4, 3, (select id from employee where name = 'Mikkel Paulsen'), 1); " +
-                        "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2018-01-08 12:30', 5, 3, (select id from employee where name = 'Casper Froberg'), 0); " +
+                        "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2018-01-08 12:30', 5, 3, (select id from employee where name = 'Casper Froberg'), 1); " +
                         "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2018-01-09 09:00', 5, 3, (select id from employee where name = 'Mikkel Paulsen'), 0); " +
                         "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2018-01-09 12:00', 5, 3, (select id from employee where name = 'Stefan Krabbe'), 1); " +
                         "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2018-01-10 10:00', 8, 3, (select id from employee where name = 'Stefan Krabbe'), 0); " +
                         "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2018-01-11 09:00', 5, 3, (select id from employee where name = 'Mikkel Paulsen'), 0); " +
                         "insert into Scheduleshift(starttime, hours, scheduleId, employeeId, isForSale) values('2018-01-11 12:00', 6, 3, (select id from employee where name = 'Stefan Krabbe'), 1); " +
-                        "insert into ScheduleShift(startTime, hours, scheduleId, employeeId, isForSale) values('2018-01-12 10:00', 5, 3, (select id from employee where name = 'Mikkel Paulsen'), 1); ";
+                        "insert into ScheduleShift(startTime, hours, scheduleId, employeeId, isForSale) values('2018-01-12 10:00', 5, 3, (select id from employee where name = 'Casper Froberg'), 1); ";
 
 
                     command.ExecuteNonQuery();
