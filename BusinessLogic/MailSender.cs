@@ -19,7 +19,7 @@ namespace BusinessLogic
             client.BaseUrl = new Uri("https://api.mailgun.net/v3");
             client.Authenticator =
                 new HttpBasicAuthenticator("api",
-                    "key-0973b4497a2a12bd51960502b8c04573");
+                    "key-");
             RestRequest request = new RestRequest();
             request.AddParameter("domain", "mailgun.itkrabbe.dk", ParameterType.UrlSegment);
             request.Resource = "{domain}/messages";
